@@ -18,6 +18,10 @@ import {
   MdOutlineSkipNext,
 } from "react-icons/md";
 import WidgetSection from "../WidgetSection";
+import MuiModal from "../MuiModal"; // if not already
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import UploadImageInput from "../UploadImageInput";
 
 const AllocatedBudget = ({
   financialData,
@@ -30,6 +34,30 @@ const AllocatedBudget = ({
   const fiscalYears = ["FY 2024-25", "FY 2025-26"];
   const [selectedFYIndex, setSelectedFYIndex] = useState(0);
   const selectedFY = fiscalYears[selectedFYIndex];
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: {
+      invoice: null,
+    },
+  });
+
+  const onUpload = (data) => {
+    const file = data.invoiceImage[0];
+    console.log("Uploading invoice for:", selectedRow);
+    console.log("Selected file:", file);
+
+    // You can use FormData to upload the file here
+    // const formData = new FormData();
+    // formData.append("invoice", file);
+    // formData.append("rowId", selectedRow.id);
+    // axios.post("/upload-invoice", formData)...
+
+    toast.success("Invoice uploaded!");
+    reset();
+    setUploadModalOpen(false);
+  };
 
   const allTypes = useMemo(() => {
     const types = new Set();
@@ -67,12 +95,11 @@ const AllocatedBudget = ({
       allMonths.forEach((month) => {
         const monthData = financialData.find((fd) => fd.month === month);
         const rows =
-        noFilter || type === "All"
-          ? monthData?.tableData?.rows || []
-          : monthData?.tableData?.rows?.filter(
-              (r) => (r.expanseType || "Unknown") === type
-            ) || [];
-      
+          noFilter || type === "All"
+            ? monthData?.tableData?.rows || []
+            : monthData?.tableData?.rows?.filter(
+                (r) => (r.expanseType || "Unknown") === type
+              ) || [];
 
         const projectedAmount = rows.reduce(
           (sum, r) =>
@@ -120,33 +147,52 @@ const AllocatedBudget = ({
 
   const totalProjectedAmountForFY = useMemo(() => {
     return filteredMonths.reduce((sum, month) => {
-      return (
-        sum +
-        allTypes.reduce((typeSum, type) => {
-          const data = groupedData[type]?.[month];
-          return typeSum + (data?.projectedAmount || 0);
-        }, 0)
-      );
+      const data = groupedData["All"]?.[month];
+      return sum + (data?.projectedAmount || 0);
     }, 0);
-  }, [filteredMonths, groupedData, allTypes]);
+  }, [filteredMonths, groupedData]);
+
+  const enhancedColumns = useMemo(() => {
+    return [
+      ...monthDataForSelectedType.columns,
+      {
+        field: "actions",
+        headerName: "Actions",
+        pinned: "right",
+        cellRenderer: (params) => (
+          <div className="p-2">
+            <PrimaryButton
+              title="Upload Invoice"
+              externalStyles={"p-2"}
+              handleSubmit={() => {
+                setSelectedRow(params.row);
+                setUploadModalOpen(true);
+              }}
+            />
+          </div>
+        ),
+      },
+    ];
+  }, [monthDataForSelectedType.columns]);
 
   if (isLoading) return <CircularProgress />;
 
   return (
     <>
       <WidgetSection
-        title={"BIZ Nest DEPARTMENT WISE EXPENSE DETAILS FY 2024-25"}
+        title={"BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"}
+        TitleAmount={`INR ${inrFormat(totalProjectedAmountForFY)}`}
         border
       >
         <div className="flex flex-col gap-4 rounded-md ">
           {!hideTitle ? (
             <div className="flex justify-between items-center">
-              <span className="text-title font-pmedium text-primary uppercase">
-                Allocated Budget:
-              </span>
-              <span className="text-title font-pmedium">
+              {/* <span className="text-title font-pmedium text-primary uppercase">
+                Actual Budget:
+              </span> */}
+              {/* <span className="text-title font-pmedium">
                 INR {inrFormat(totalProjectedAmountForFY)}
-              </span>
+              </span> */}
             </div>
           ) : (
             ""
@@ -233,7 +279,7 @@ const AllocatedBudget = ({
               </div>
             </div>
           </div>
-          <hr className="mt-4"/>
+          <hr className="mt-4" />
 
           {/* AgTable */}
           {monthDataForSelectedType.rows.length > 0 ? (
@@ -241,9 +287,8 @@ const AllocatedBudget = ({
               <AgTable
                 search
                 data={monthDataForSelectedType.rows}
-                columns={monthDataForSelectedType.columns}
+                columns={enhancedColumns}
                 tableHeight={350}
-                // hideFilter={monthDataForSelectedType.rows.length <= 9}
               />
             </div>
           ) : (
@@ -254,6 +299,29 @@ const AllocatedBudget = ({
           )}
         </div>
       </WidgetSection>
+
+      <MuiModal
+        open={uploadModalOpen}
+        onClose={() => setUploadModalOpen(false)}
+        title="Upload Invoice"
+      >
+        <form onSubmit={handleSubmit(onUpload)} className="space-y-4">
+          <Controller
+            name="invoiceImage"
+            control={control}
+            render={({ field }) => (
+              <UploadImageInput
+                value={field.value}
+                onChange={field.onChange}
+                label="Invoice"
+              />
+            )}
+          />
+          <div className="text-right">
+            <PrimaryButton title="Submit" type="submit" />
+          </div>
+        </form>
+      </MuiModal>
     </>
   );
 };

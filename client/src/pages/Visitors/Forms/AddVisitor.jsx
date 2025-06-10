@@ -19,8 +19,10 @@ const AddVisitor = () => {
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       firstName: "",
       email: "",
@@ -31,12 +33,22 @@ const AddVisitor = () => {
       idProof: { idType: "", idNumber: "" },
       dateOfVisit: null,
       checkIn: null,
+      checkOut: null,
       toMeet: "",
       department: "",
+      clientToMeet: "",
+      clientCompany: "",
       visitorType: "",
       visitorCompany: "",
+      paymentAmount: "",
+      paymentStatus: "",
     },
   });
+
+  const selectedCompany = watch("clientCompany");
+  const selectedIdType = watch("idProof.idType");
+  const visitorType = watch("visitorType");
+
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
@@ -51,6 +63,35 @@ const AddVisitor = () => {
       }
     },
   });
+
+  const { data: clientCompanies = [], clientCompaniesIsLoading } = useQuery({
+    queryKey: ["clientCompanies"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("/api/sales/co-working-clients");
+        return response.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+  });
+
+  const { data: clientMembers = [], isLoading: clientMembersIsLoading } =
+    useQuery({
+      queryKey: ["clientMembers", selectedCompany],
+      queryFn: async () => {
+        try {
+          const response = await axios.get(
+            `/api/sales/co-working-client-members?clientId=${selectedCompany}`
+          );
+          return response.data;
+        } catch (error) {
+          throw new Error(error.response.data.message);
+        }
+      },
+      enabled: !!selectedCompany, // <-- Runs only if selectedCompany has a truthy value
+    });
+
   //---------------------------------------Data processing----------------------------------------------------//
   const departmentMap = new Map();
   employees.forEach((employee) => {
@@ -67,7 +108,11 @@ const AddVisitor = () => {
   const { mutate: addVisitor, isPending: isMutateVisitor } = useMutation({
     mutationKey: ["addVisitor"],
     mutationFn: async (data) => {
-      const response = await axios.post("/api/visitors/add-visitor", data);
+      const response = await axios.post("/api/visitors/add-visitor", {
+        ...data,
+        department: selectedDepartment === "na" ? null : selectedDepartment,
+        toMeet: selectedDepartment === "na" ? null : data.toMeet,
+      });
       return response.data;
     },
     onSuccess: (data) => {
@@ -76,23 +121,32 @@ const AddVisitor = () => {
           <span className="text-content font-pmedium">
             {data.message || "Visitor Added Successfully"}
           </span>
-          {/* <PrimaryButton
-            title={"Book a Meeting"}
-            handleSubmit={() => {
-              toast.dismiss(t);
-              navigate("/app/meetings/book-meeting");
-            }}
-          /> */}
         </div>
       ));
       reset();
     },
-    onError: (data) => {
-      toast.error(data.message || "Error Adding Visitor");
+    onError: (error) => {
+      toast.error(error.message || "Error Adding Visitor");
     },
   });
   const onSubmit = (data) => {
-    addVisitor(data);
+    const isBiznest = data.clientCompany === "6799f0cd6a01edbe1bc3fcea";
+
+    const payload = {
+      ...data,
+      department: isBiznest
+        ? data.department === "na"
+          ? null
+          : data.department
+        : null,
+      toMeet: isBiznest
+        ? data.department === "na"
+          ? null
+          : data.toMeet
+        : data.toMeet || null, // allow client member ID
+    };
+
+    addVisitor(payload);
   };
 
   const handleReset = () => {
@@ -101,7 +155,7 @@ const AddVisitor = () => {
 
   return (
     <div className=" p-4">
-      <form onSubmit={handleSubmit(onSubmit)} className="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             {/* Section: Basic Information */}
@@ -269,6 +323,38 @@ const AddVisitor = () => {
             </div>
             <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-1 gap-4 p-4 ">
               <Controller
+                name="clientCompany"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    size="small"
+                    label={"Select Company"}
+                    fullWidth
+                    onChange={(e) => {
+                      field.onChange(e);
+                      // ❌ Remove this line
+                      // setSelectedDepartment(e.target.value);
+                      setSelectedDepartment(""); // Reset department when company changes
+                    }}
+                    select
+                  >
+                    <MenuItem value="" disabled>
+                      Select Company
+                    </MenuItem>
+                    <MenuItem value="6799f0cd6a01edbe1bc3fcea">
+                      BIZNest
+                    </MenuItem>
+                    {clientCompanies.map((client) => (
+                      <MenuItem key={client._id} value={client._id}>
+                        {client.clientName}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
+
+              <Controller
                 name="department"
                 control={control}
                 rules={{ required: "Department is required" }}
@@ -278,6 +364,7 @@ const AddVisitor = () => {
                     size="small"
                     label={"Select Department"}
                     fullWidth
+                    disabled={selectedCompany !== "6799f0cd6a01edbe1bc3fcea"} // Enable only if BIZNest is selected
                     onChange={(e) => {
                       field.onChange(e);
                       setSelectedDepartment(e.target.value);
@@ -285,6 +372,12 @@ const AddVisitor = () => {
                     select
                   >
                     <MenuItem value="">Select Department</MenuItem>
+
+                    {/* Conditionally add "N/A" option if visitor type is "Meeting" */}
+                    {visitorType === "Meeting" && (
+                      <MenuItem value="na">N/A</MenuItem>
+                    )}
+
                     {uniqueDepartments.map((department) => (
                       <MenuItem key={department._id} value={department._id}>
                         {department.name}
@@ -293,32 +386,68 @@ const AddVisitor = () => {
                   </TextField>
                 )}
               />
+
               <Controller
                 name="toMeet"
                 control={control}
-                rules={{ required: "This field is required" }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    select
-                    size="small"
-                    fullWidth
-                    label={"Select Person"}
-                  >
-                    <MenuItem value="">Select the person to meet</MenuItem>
-                    {!isLoading ? (
-                      departmentEmployees.map((employee) => (
-                        <MenuItem
-                          key={employee._id}
-                          value={employee._id}
-                        >{`${employee.firstName} ${employee.lastName}`}</MenuItem>
-                      ))
-                    ) : (
-                      <CircularProgress />
-                    )}
-                  </TextField>
-                )}
+                render={({ field }) => {
+                  const isBiznest =
+                    selectedCompany === "6799f0cd6a01edbe1bc3fcea";
+                  const showClientMembers = selectedCompany && !isBiznest;
+                  const showBiznestEmployees =
+                    isBiznest &&
+                    selectedDepartment &&
+                    selectedDepartment !== "na";
+
+                  return (
+                    <TextField
+                      {...field}
+                      select
+                      size="small"
+                      fullWidth
+                      disabled={
+                        (!showClientMembers && !showBiznestEmployees) ||
+                        (isBiznest && selectedDepartment === "na")
+                      }
+                      label={"Select Person"}
+                    >
+                      <MenuItem value="">Select the person to meet</MenuItem>
+
+                      {/* Show client members if a non-BIZNest company is selected */}
+                      {showClientMembers && !clientMembersIsLoading ? (
+                        clientMembers.map((member) => (
+                          <MenuItem key={member._id} value={member._id}>
+                            {member.employeeName}
+                          </MenuItem>
+                        ))
+                      ) : showClientMembers && clientMembersIsLoading ? (
+                        <MenuItem disabled>
+                          <CircularProgress size={20} />
+                        </MenuItem>
+                      ) : null}
+
+                      {/* Show BIZNest employees from selected department */}
+                      {showBiznestEmployees && !isLoading ? (
+                        departmentEmployees.map((emp) => (
+                          <MenuItem key={emp._id} value={emp._id}>
+                            {emp.firstName} {emp.lastName}
+                          </MenuItem>
+                        ))
+                      ) : showBiznestEmployees && isLoading ? (
+                        <MenuItem disabled>
+                          <CircularProgress size={20} />
+                        </MenuItem>
+                      ) : null}
+                    </TextField>
+                  );
+                }}
               />
+            </div>
+
+            <div className="py-4 border-b-default border-borderGray">
+              <span className="text-subtitle font-pmedium">Verfication</span>
+            </div>
+            <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-1 gap-4 p-4 ">
               <Controller
                 name="idProof.idType"
                 control={control}
@@ -345,74 +474,184 @@ const AddVisitor = () => {
               <Controller
                 name="idProof.idNumber"
                 control={control}
-                rules={{ required: "ID Number is required" }}
+                rules={{
+                  required: "ID Number is required",
+                  validate: (value) => {
+                    if (selectedIdType === "aadhar") {
+                      const regex = /^\d{4}-\d{4}-\d{4}$/;
+                      if (!regex.test(value))
+                        return "Aadhar must be in 1234-5678-9012 format";
+                    }
+                    if (selectedIdType === "pan") {
+                      const regex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+                      if (!regex.test(value))
+                        return "PAN must be in format: ABCDE1234F";
+                    }
+                    if (selectedIdType === "drivingLicense") {
+                      const regex = /^[A-Z]{2}[0-9]{2}\s?[0-9]{11}$/;
+                      if (!regex.test(value))
+                        return "DL must be like MH12 12345678901";
+                    }
+                    return true;
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     size="small"
                     label="ID Number"
+                    fullWidth
                     error={!!errors.idProof?.idNumber}
                     helperText={errors.idProof?.idNumber?.message}
-                    fullWidth
+                    onChange={(e) => {
+                      let value = e.target.value;
+
+                      if (selectedIdType === "aadhar") {
+                        // Remove non-digit characters first
+                        value = value.replace(/\D/g, "").slice(0, 12);
+
+                        // Auto-insert hyphens after every 4 digits
+                        const parts = value.match(/.{1,4}/g);
+                        if (parts) value = parts.join("-");
+                      }
+
+                      field.onChange(value);
+                    }}
+                    value={field.value}
                   />
                 )}
               />
             </div>
-             <div>
+
             <div className="py-4 border-b-default border-borderGray">
-              <span className="text-subtitle font-pmedium">Timings</span>
+              <span className="text-subtitle font-pmedium">Payment</span>
             </div>
             <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-1 gap-4 p-4 ">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Controller
-                  name="dateOfVisit"
-                  control={control}
-                  rules={{ required: "Date of visit is required" }}
-                  render={({ field }) => (
-                    <DatePicker
-                      {...field}
-                      format="DD-MM-YYYY"
-                      label={"Date of Visit"}
-                      value={field.value || null}
-                      onChange={(e) => field.onChange(e)}
-                      slotProps={{
-                        textField: {
-                          fullWidth: true,
-                          size: "small",
-                          error: !!errors.dateOfVisit,
-                          helperText: errors.dateOfVisit?.message,
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Controller
-                  name="checkIn"
-                  control={control}
-                  rules={{ required: "Check-In time is required" }}
-                  render={({ field }) => (
-                    <TimePicker
-                      {...field}
-                      label={"Check-In Time"}
-                      slotProps={{ textField: { size: "small" } }}
-                      render={(params) => (
-                        <TextField
-                          {...params}
-                          fullWidth
-                          error={!!errors.checkIn}
-                          helperText={errors.checkIn?.message}
-                        />
-                      )}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <Controller
+                name="paymentAmount"
+                control={control}
+                // rules={{
+                //   required: "Payment amount is required",
+                // }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    size="small"
+                    disabled
+                    label="Payment Amount"
+                    fullWidth
+                    error={!!errors.paymentAmount}
+                    helperText={errors.paymentAmount?.message}
+                    onChange={(e) => {
+                      let value = e.target.value;
+                      field.onChange(value);
+                    }}
+                    value={field.value}
+                  />
+                )}
+              />
+              <Controller
+                name="paymentStatus"
+                control={control}
+                // rules={{ required: "Payment status is required" }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    size="small"
+                    label="Payment Status"
+                    disabled
+                    select
+                    error={!!errors.paymentStatus}
+                    helperText={errors.paymentStatus?.message}
+                    fullWidth
+                  >
+                    <MenuItem value="" disabled>
+                      Select Payment Status
+                    </MenuItem>
+                    <MenuItem value="paid">Paid</MenuItem>
+                    <MenuItem value="unpaid">Unpaid</MenuItem>
+                    {/* <MenuItem value="drivingLicense">Driving License</MenuItem> */}
+                  </TextField>
+                )}
+              />
+            </div>
+
+            <div>
+              <div className="py-4 border-b-default border-borderGray">
+                <span className="text-subtitle font-pmedium">Timings</span>
+              </div>
+              <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-1 gap-4 p-4 ">
+                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <Controller
+                    name="dateOfVisit"
+                    control={control}
+                    rules={{ required: "Date of visit is required" }}
+                    render={({ field }) => (
+                      <DatePicker
+                        {...field}
+                        format="DD-MM-YYYY"
+                        label={"Date of Visit"}
+                        value={field.value || null}
+                        onChange={(e) => field.onChange(e)}
+                        slotProps={{
+                          textField: {
+                            fullWidth: true,
+                            size: "small",
+                            error: !!errors.dateOfVisit,
+                            helperText: errors.dateOfVisit?.message,
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider> */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <Controller
+                    name="checkIn"
+                    control={control}
+                    rules={{ required: "Check-In time is required" }}
+                    render={({ field }) => (
+                      <TimePicker
+                        {...field}
+                        label={"Check-In Time"}
+                        slotProps={{ textField: { size: "small" } }}
+                        render={(params) => (
+                          <TextField
+                            {...params}
+                            fullWidth
+                            error={!!errors.checkIn}
+                            helperText={errors.checkIn?.message}
+                          />
+                        )}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <Controller
+                    name="checkOut"
+                    control={control}
+                    rules={{ required: "Check-Out time is required" }}
+                    render={({ field }) => (
+                      <TimePicker
+                        {...field}
+                        label={"Check-Out Time"}
+                        slotProps={{ textField: { size: "small" } }}
+                        render={(params) => (
+                          <TextField
+                            {...params}
+                            fullWidth
+                            error={!!errors.checkOut}
+                            helperText={errors.checkOut?.message}
+                          />
+                        )}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
             </div>
           </div>
-          </div>
-         
         </div>
 
         {/* Submit Button */}

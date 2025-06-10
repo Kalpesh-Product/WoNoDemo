@@ -13,6 +13,10 @@ const CustomError = require("../../utils/customErrorlogs");
 const Visitor = require("../../models/visitor/Visitor");
 const Review = require("../../models/meetings/Reviews");
 const CoworkingMembers = require("../../models/sales/CoworkingMembers");
+const UserData = require("../../models/hr/UserData");
+const Company = require("../../models/hr/Company");
+const CoworkingClient = require("../../models/sales/CoworkingClient");
+const ExternalCompany = require("../../models/meetings/ExternalCompany");
 
 const addMeetings = async (req, res, next) => {
   const logPath = "meetings/MeetingLog";
@@ -360,7 +364,7 @@ const getAvaliableUsers = async (req, res, next) => {
 
 const getMeetings = async (req, res, next) => {
   try {
-    const { user, company } = req;
+    const { user, company, roles, departments } = req;
 
     const meetings = await Meeting.find({
       company,
@@ -378,7 +382,7 @@ const getMeetings = async (req, res, next) => {
         },
       })
       .populate([
-        { path: "bookedBy" },
+        { path: "bookedBy", select: "departments firstName lastName email" },
         { path: "clientBookedBy", select: "employeeName email" },
         { path: "receptionist", select: "firstName lastName" },
         { path: "client", select: "clientName" },
@@ -388,13 +392,28 @@ const getMeetings = async (req, res, next) => {
         { path: "externalParticipants", select: "firstName lastName email" },
       ]);
 
-    const departments = await User.findById({ _id: user }).select(
-      "departments"
-    );
+    const departmentIds = departments.map((dept) => dept._id);
 
-    const department = await Department.findById({
-      _id: departments.departments[0],
+    const department = await Department.find({
+      _id: { $in: departmentIds },
     });
+
+    let filteredMeetings = meetings;
+    if (
+      !roles.includes("Administration Admin") &&
+      !roles.includes("Administration Employee")
+    ) {
+      filteredMeetings = meetings.filter((meeting) => {
+        if (!meeting.bookedBy || !Array.isArray(meeting.bookedBy.departments))
+          return false;
+
+        const bookedDeptIds = meeting.bookedBy.departments.map((dept) =>
+          dept._id?.toString()
+        );
+
+        return bookedDeptIds.some((deptId) => departmentIds.includes(deptId));
+      });
+    }
 
     const reviews = await Review.find().select(
       "-createdAt -updatedAt -__v -company"
@@ -404,14 +423,14 @@ const getMeetings = async (req, res, next) => {
       return res.status(400).json({ message: "No reviews found" });
     }
 
-    const internalParticipants = meetings.map((meeting) =>
+    const internalParticipants = filteredMeetings.map((meeting) =>
       meeting.internalParticipants.map((participant) => participant)
     );
-    const clientParticipants = meetings.map((meeting) =>
+    const clientParticipants = filteredMeetings.map((meeting) =>
       meeting.clientParticipants.map((participant) => participant)
     );
 
-    const transformedMeetings = meetings.map((meeting, index) => {
+    const transformedMeetings = filteredMeetings.map((meeting, index) => {
       let totalParticipants = [];
       if (
         internalParticipants[index].length &&
@@ -497,34 +516,72 @@ const getMeetings = async (req, res, next) => {
 
 const getMyMeetings = async (req, res, next) => {
   try {
-    const { user, company } = req;
+    const { user, company, roles } = req;
 
-    const meetings = await Meeting.find({
-      company,
-      $or: [{ bookedBy: user }, { internalParticipants: { $in: [user] } }],
-    })
-      .populate({
-        path: "bookedRoom",
-        select: "name housekeepingStatus",
-        populate: {
-          path: "location",
-          select: "unitName unitNo",
-          populate: {
-            path: "building",
-            select: "buildingName",
-          },
-        },
+    let meetings = [];
+    if (
+      !roles.includes("Administration Admin") &&
+      !roles.includes("Administration Employee")
+    ) {
+      meetings = await Meeting.find({
+        company,
+        $or: [{ bookedBy: user }, { internalParticipants: { $in: [user] } }],
       })
-      .populate([
-        { path: "bookedBy", selected: "firstName lastName email" },
-        { path: "clientBookedBy", select: "employeeName email" },
-        { path: "receptionist", select: "firstName lastName" },
-        { path: "client", select: "clientName" },
-        { path: "externalClient", select: "companyName pocName mobileNumber" },
-        { path: "internalParticipants", select: "firstName lastName email" },
-        { path: "clientParticipants", select: "employeeName email" },
-        { path: "externalParticipants", select: "firstName lastName email" },
-      ]);
+        .populate({
+          path: "bookedRoom",
+          select: "name housekeepingStatus",
+          populate: {
+            path: "location",
+            select: "unitName unitNo",
+            populate: {
+              path: "building",
+              select: "buildingName",
+            },
+          },
+        })
+        .populate([
+          { path: "bookedBy", selected: "firstName lastName email" },
+          { path: "clientBookedBy", select: "employeeName email" },
+          { path: "receptionist", select: "firstName lastName" },
+          { path: "client", select: "clientName" },
+          {
+            path: "externalClient",
+            select: "companyName pocName mobileNumber",
+          },
+          { path: "internalParticipants", select: "firstName lastName email" },
+          { path: "clientParticipants", select: "employeeName email" },
+          { path: "externalParticipants", select: "firstName lastName email" },
+        ]);
+    } else {
+      meetings = await Meeting.find({
+        company,
+      })
+        .populate({
+          path: "bookedRoom",
+          select: "name housekeepingStatus",
+          populate: {
+            path: "location",
+            select: "unitName unitNo",
+            populate: {
+              path: "building",
+              select: "buildingName",
+            },
+          },
+        })
+        .populate([
+          { path: "bookedBy", selected: "firstName lastName email" },
+          { path: "clientBookedBy", select: "employeeName email" },
+          { path: "receptionist", select: "firstName lastName" },
+          { path: "client", select: "clientName" },
+          {
+            path: "externalClient",
+            select: "companyName pocName mobileNumber",
+          },
+          { path: "internalParticipants", select: "firstName lastName email" },
+          { path: "clientParticipants", select: "employeeName email" },
+          { path: "externalParticipants", select: "firstName lastName email" },
+        ]);
+    }
 
     const departments = await User.findById({ _id: user }).select(
       "departments"
@@ -1156,6 +1213,90 @@ const updateMeetingStatus = async (req, res, next) => {
     .json({ message: "Meeting status updated successfully" });
 };
 
+const getAllCompanies = async (req, res, next) => {
+  const { company } = req;
+
+  //Fetching all the companies
+  const foundCompany = await Company.find({ _id: company }).select(
+    "companyName"
+  );
+  const coworkingCompanies = await CoworkingClient.find({ company }).select(
+    "clientName"
+  );
+  const visitorCompanies = await ExternalCompany.find().select("companyName");
+
+  if (!foundCompany) {
+    return res.status(404).json({ message: "No company found" });
+  }
+
+  if (!coworkingCompanies) {
+    return res.status(404).json({ message: "No coworking company found" });
+  }
+
+  if (!visitorCompanies) {
+    return res.status(404).json({ message: "No visitor company found" });
+  }
+
+  //Fetching all the members
+
+  const companyEmployees = await UserData.find({ company })
+    .populate([{ path: "company", select: "companyName" }])
+    .select("firstName middleName lastName email")
+    .lean()
+    .exec();
+
+  const coworkingMembers = await CoworkingMembers.find({ company })
+    .populate([{ path: "client", select: "clientName email" }])
+    .select("employeeName email")
+    .lean()
+    .exec();
+
+  const visitorMembers = await Visitor.find({ company })
+    .select("firstName middleName lastName email visitorCompany")
+    .lean()
+    .exec();
+
+  //Adding members to each company data
+
+  const companyWithMembers = foundCompany.map((client) => {
+    return {
+      ...client._doc,
+      members: companyEmployees.filter(
+        (member) => member?.company._id.toString() === client?._id.toString()
+      ),
+    };
+  });
+
+  const coworkingWithMembers = coworkingCompanies.map((client) => {
+    return {
+      ...client._doc,
+      members: coworkingMembers.filter(
+        (member) => member?.client._id.toString() === client?._id.toString()
+      ),
+    };
+  });
+
+  const visitorWithMembers = visitorCompanies.map((client) => {
+    return {
+      ...client._doc,
+      members: visitorMembers.filter((member) => {
+        return (
+          member?.visitorCompany &&
+          member?.visitorCompany === client.companyName
+        );
+      }),
+    };
+  });
+
+  const allCompanies = [
+    ...companyWithMembers,
+    ...coworkingWithMembers,
+    ...visitorWithMembers,
+  ];
+
+  return res.status(200).json(allCompanies);
+};
+
 module.exports = {
   addMeetings,
   getMeetings,
@@ -1166,6 +1307,7 @@ module.exports = {
   getMeetingsByTypes,
   cancelMeeting,
   getAvaliableUsers,
+  getAllCompanies,
   getSingleRoomMeetings,
   updateMeetingStatus,
 };

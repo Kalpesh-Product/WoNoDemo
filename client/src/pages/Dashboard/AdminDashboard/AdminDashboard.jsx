@@ -17,7 +17,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import TreemapGraph from "../../../components/graphs/TreemapGraph";
 import { LuHardDriveUpload } from "react-icons/lu";
 import { CgWebsite } from "react-icons/cg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BudgetGraph from "../../../components/graphs/BudgetGraph";
 import { useSidebar } from "../../../context/SideBarContext";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -25,10 +25,13 @@ import { useQuery } from "@tanstack/react-query";
 import { transformBudgetData } from "../../../utils/transformBudgetData";
 import { Box, Skeleton } from "@mui/material";
 import YearlyGraph from "../../../components/graphs/YearlyGraph";
+import useAuth from "../../../hooks/useAuth";
 dayjs.extend(customParseFormat);
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const axios = useAxiosPrivate();
+
+
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["maintainance-budget"],
     queryFn: async () => {
@@ -931,19 +934,19 @@ const AdminDashboard = () => {
         <DataCard
           route={"admin-offices"}
           title={"Total"}
-          data={"11"}
+          data={""}
           description={"Admin Offices"}
         />,
         <DataCard
           route={"/app/tasks"}
           title={"Total"}
-          data={"38"}
+          data={""}
           description={"Monthly Due Tasks"}
         />,
         <DataCard
           route={"admin-expenses"}
           title={"Average"}
-          data={"INR 90,000"}
+          data={""}
           description={"Monthly Expense"}
         />,
       ],
@@ -954,13 +957,13 @@ const AdminDashboard = () => {
         <DataCard
           route={"per-sq-ft-expense"}
           title={"Total"}
-          data={"INR 14"}
+          data={""}
           description={"Expense Per Sq. Ft."}
         />,
         <DataCard
           route={"per-sq-ft-electricity-expense"}
           title={"Total"}
-          data={"INR 8"}
+          data={""}
           description={"Electricity Expense Per Sq. Ft."}
         />,
         <DataCard
@@ -975,14 +978,14 @@ const AdminDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Unit Wise Due Tasks"}>
-          <PieChartMui data={unitWisePieData} options={unitPieChartOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Executive Wise Due Tasks"}>
           <DonutChart
             centerLabel="Tasks"
-            labels={labels}
+            labels={[]}
             colors={colors}
-            series={pieExecutiveData}
+            series={[]}
             tooltipValue={executiveTasksCount}
           />
         </WidgetSection>,
@@ -992,13 +995,10 @@ const AdminDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Total Desks Company Wise"}>
-          <PieChartMui
-            data={pieCompanyWiseDeskData}
-            options={pieCompanyWiseDeskOptions}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Biometrics Gender Data"}>
-          <PieChartMui data={pieGenderData} options={pieGenderOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
@@ -1006,10 +1006,10 @@ const AdminDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Overall Gender Data"}>
-          <PieChartMui data={pieGenderData} options={pieGenderOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Biometrics Gender Data"}>
-          <PieChartMui data={pieGenderData} options={pieGenderOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
@@ -1017,11 +1017,11 @@ const AdminDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Department Gender Data"}>
-          <PieChartMui data={pieGenderData} options={pieGenderOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
 
         <WidgetSection border title={"House Keeping Staff Gender Data"}>
-          <PieChartMui data={pieGenderData} options={pieGenderOptions} />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
@@ -1033,13 +1033,7 @@ const AdminDashboard = () => {
           rowsToDisplay={4}
           scroll
           rows={[
-            ...houseKeepingMemberData.map((item, index) => ({
-              id: index + 1,
-              name: item.name,
-              dateOfJoin: item.dateOfJoin,
-              building: item.building,
-              unitNo: item.unitNo,
-            })),
+            
           ]}
           columns={houseKeepingMemberColumns}
         />,
@@ -1052,20 +1046,15 @@ const AdminDashboard = () => {
           scroll
           Title={"Executive Weekly Shift Table"}
           rowsToDisplay={3}
-          rows={executiveShiftData}
-          columns={executiveShiftColumns}
+          rows={[]}
+          columns={[]}
         />,
         <MuiTable
           scroll
           Title={"Upcoming Events List"}
           rowsToDisplay={3}
           rows={[
-            ...upcomingEventsData.map((item, index) => ({
-              id: index + 1,
-              event: item.event,
-              date: item.date,
-              location: item.location,
-            })),
+            
           ]}
           columns={upcomingEventsColumns}
         />,
@@ -1075,15 +1064,7 @@ const AdminDashboard = () => {
           rowsToDisplay={3}
           Title={"Upcoming Client Member Birthdays"}
           rows={[
-            ...upcomingBirthdays
-              .sort((a, b) => a.upComingIn - b.upComingIn)
-              .map((item, index) => ({
-                srNo: index + 1,
-                name: item.name,
-                upComingIn: item.upComingIn === 0 ? "Today" : item.upComingIn,
-                company: item.company,
-                dateOfBirth: item.dateOfBirth,
-              })),
+         
           ]}
         />,
         <MuiTable
@@ -1092,16 +1073,7 @@ const AdminDashboard = () => {
           rowsToDisplay={3}
           Title={"Upcoming Client Anniversaries"}
           rows={[
-            ...clientAnniversaryData
-              .sort((a, b) => a.upComingIn - b.upComingIn)
-              .map((item, index) => ({
-                srNo: index + 1,
-                client: item.client,
-                dateOfJoin: item.dateOfJoin,
-                upComingIn:
-                  item.upComingIn === 0 ? "Today" : `${item.upComingIn} days`,
-                completedYears: `${item.completedYears} years`,
-              })),
+          
           ]}
         />,
       ],

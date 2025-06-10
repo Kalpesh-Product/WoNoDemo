@@ -49,6 +49,21 @@ const MeetingFormLayout = () => {
   const [events, setEvents] = useState([]);
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
+  let showExternalType = false;
+
+  // console.log("employee",auth.user)
+
+  const roles = auth.user.role.map((role) => role.roleTitle);
+
+  if (
+    roles.includes("Master Admin") ||
+    roles.includes("Super Admin") ||
+    roles.includes("Administration Admin") ||
+    roles.includes("Administration Employee")
+  ) {
+    showExternalType = true;
+  }
+
   // Inside your component, add this state
   const [participantCount, setParticipantCount] = useState(1);
 
@@ -173,23 +188,22 @@ const MeetingFormLayout = () => {
 
   // Transform data inside useEffect
 
-const transformEvents = (bookings) => {
-  if (!Array.isArray(bookings)) return;
+  const transformEvents = (bookings) => {
+    if (!Array.isArray(bookings)) return;
 
-  const formattedEvents = bookings.map((booking) => ({
-    id: booking._id,
-    title: "Booked",
-    start: new Date(booking.startTime), // ⬅️ already full datetime
-    end: new Date(booking.endTime),     // ⬅️ already full datetime
-    backgroundColor: "#d3d3d3",
-    borderColor: "#a9a9a9",
-    textColor: "#555",
-    editable: false,
-  }));
+    const formattedEvents = bookings.map((booking) => ({
+      id: booking._id,
+      title: "Booked",
+      start: new Date(booking.startTime), // ⬅️ already full datetime
+      end: new Date(booking.endTime), // ⬅️ already full datetime
+      backgroundColor: "#d3d3d3",
+      borderColor: "#a9a9a9",
+      textColor: "#555",
+      editable: false,
+    }));
 
-  setEvents(formattedEvents);
-};
-
+    setEvents(formattedEvents);
+  };
 
   useEffect(() => {
     transformEvents(checkAvailability);
@@ -221,7 +235,7 @@ const transformEvents = (bookings) => {
       navigate("/app/meetings/calendar");
     },
     onError: (error) => {
-      console.log("error",error)
+      console.log("error", error);
       toast.error(error.response.data.message || "ERROR");
     },
   });
@@ -263,6 +277,7 @@ const transformEvents = (bookings) => {
           </div>
         ) : (
           <FullCalendar
+            allDaySlot={false} // 🔴 This removes the "All-day" tab in timeGrid views
             key={events.length}
             headerToolbar={{
               left: "prev title next",
@@ -281,7 +296,7 @@ const transformEvents = (bookings) => {
               minute: "2-digit",
               meridiem: "lowercase",
             }}
-            allDayText="Full Day"
+            allDayText=""
             select={handleDateClick}
             selectAllow={({ start }) => {
               const now = new Date();
@@ -312,29 +327,24 @@ const transformEvents = (bookings) => {
       <MuiModal
         open={open}
         onClose={() => setOpen(false)}
-        title={`${meetingType} Meeting`}
-      >
+        title={`${meetingType} Meeting`}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full gap-4"
-        >
-          <div className="w-full flex justify-between items-center">
-            <span className="text-content">
-              Selected Date : {humanDate(startDate)}
-            </span>
-            <span className="text-content">
-              End Date : {humanDate(endDate)}
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-8 px-2 pb-4 mb-4 border-b-default border-borderGray">
-            <div className="flex items-center justify-between">
-              <span className="text-content">Location</span>
-              <span className="text-content text-gray-500">{locationName}</span>
+          className="flex flex-col w-full gap-4">
+            <div className="w-full flex gap-8 justify-center items-center">
+              <span className="text-content">
+                 Date : {humanDate(startDate)}
+              </span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-content">Selected Room</span>
-              <span className="text-content text-gray-500">
-                {meetingRoomName}
+          <div className="grid grid-cols-2 gap-8 px-2 pb-4 mb-4 border-b-default border-black">
+            
+            
+            <div className="w-fit flex gap-8 items-center">
+              <span className="text-content">Location : {locationName}</span>
+            </div>
+            <div className="w-full flex gap-8 items-center justify-end">
+              <span className="text-content">
+                Selected Room : {meetingRoomName}
               </span>
             </div>
           </div>
@@ -349,13 +359,15 @@ const transformEvents = (bookings) => {
                     label="Meeting Type"
                     select
                     fullWidth
-                    size="small"
-                  >
+                    disabled={!showExternalType}
+                    size="small">
                     <MenuItem value="" disabled>
                       Select a Meeting Type
                     </MenuItem>
                     <MenuItem value="Internal">Internal</MenuItem>
-                    <MenuItem value="External">External</MenuItem>
+                    {showExternalType && (
+                      <MenuItem value="External">External</MenuItem>
+                    )}
                   </TextField>
                 )}
               />
@@ -427,8 +439,7 @@ const transformEvents = (bookings) => {
                           label="Company"
                           select
                           size="small"
-                          fullWidth
-                        >
+                          fullWidth>
                           <MenuItem value="" disabled>
                             Select a company
                           </MenuItem>
@@ -581,8 +592,7 @@ const transformEvents = (bookings) => {
                         select
                         label="Select External Company"
                         size="small"
-                        fullWidth
-                      >
+                        fullWidth>
                         <MenuItem value="" disabled>
                           Select a company
                         </MenuItem>
@@ -591,8 +601,7 @@ const transformEvents = (bookings) => {
                           .map((user) => (
                             <MenuItem
                               key={user._id}
-                              value={user.visitorCompany?._id}
-                            >
+                              value={user.visitorCompany?._id}>
                               {user.visitorCompany?.companyName ?? ""}
                             </MenuItem>
                           ))}

@@ -18,11 +18,14 @@ const TicketDashboard = () => {
   const axios = useAxiosPrivate();
   const { auth } = useAuth();
 
+  const roles = auth.user.role.map((role)=>  role.roleTitle )
+  const depts = auth.user.departments.map((dept)=>  dept.name )
+
   const { data: ticketsData = [], isLoading } = useQuery({
     queryKey: ["tickets-data"],
     queryFn: async () => {
       try {
-        const response = await axios.get(`/api/tickets/department-tickets/${auth.user?.departments.map((item)=>item._id)[0]}`);
+        const response = await axios.get(`/api/tickets/get-all-tickets`);
 
         return response.data;
       } catch (error) {
@@ -54,7 +57,7 @@ const TicketDashboard = () => {
     pendingTickets: ticketsData.filter((item) => item.status === "Pending")
       .length,
     acceptedTickets: ticketsData
-      .filter((item) => item.acceptedBy?._id === auth.user?._id)
+      .filter((item) => item?.accepted?.acceptedBy?._id === auth.user?._id)
       .filter((item) => item.status === "In Progress").length,
     assignedTickets: ticketsData.filter((item) => item.assignees?.length > 0)
       .length,
@@ -63,11 +66,29 @@ const TicketDashboard = () => {
         auth.user.departments.includes(item.raisedToDepartment) &&
         item.status === "Escalated"
     ).length,
+    averagePerformance: ((ticketsData.filter((item) => item.status === "Closed")
+      .length / ticketsData.length)*100).toFixed(0)
   };
 
-  const masterDepartments = !departmentsIsLoading
+  const avg = ((ticketsData.filter((item) => item.status === "Closed")
+      .length / ticketsData.length)*100).toFixed(0)
+
+
+  let masterDepartments = []
+
+  if(roles.includes("Master Admin") || roles.includes("Super Admin")){
+     masterDepartments = !departmentsIsLoading
     ? departments.map((dept) => dept.name)
     : [];
+  }
+  else{
+   masterDepartments = !departmentsIsLoading
+  ? departments
+      .filter((dept) => depts.includes(dept.name))
+      .map((dept) => dept.name)
+  : [];
+
+  }
 
   const departmentCountMap = {};
 
@@ -118,7 +139,7 @@ const TicketDashboard = () => {
   const priorityCountMap = {};
 
   lastMonthTickets.forEach((item) => {
-    const priority = item.priority;
+    const priority = item.priority.toLowerCase();
     if (priority) {
       priorityCountMap[priority] = (priorityCountMap[priority] || 0) + 1;
     }
@@ -133,7 +154,7 @@ const TicketDashboard = () => {
   const todayPriorityCountMap = {};
 
   todayTickets.forEach((item) => {
-    const priority = item.priority;
+    const priority = item.priority.toLowerCase();
     if (priority) {
       todayPriorityCountMap[priority] =
         (todayPriorityCountMap[priority] || 0) + 1;
@@ -144,6 +165,7 @@ const TicketDashboard = () => {
   const todayTicketseries = todayPriorityOrder.map(
     (priority) => todayPriorityCountMap[priority] || 0
   );
+  
 
   const filterDepartmentTickts = (department) => {
     const tickets = currentMonthTickets.filter(
@@ -160,7 +182,7 @@ const TicketDashboard = () => {
           layout={1}
           border
           padding
-          title={"Annual Tickets Raised"}
+          title={"Overall Department Raised Tickets"}
           TitleAmount={`TOTAL TICKETS : ${totalTickets}`}
         >
           {!isLoading ? (
@@ -279,7 +301,7 @@ const TicketDashboard = () => {
             descriptionData={[
               {
                 title: "MT. AV. Performance",
-                value: `${((ticketsFilteredData.closedTickets/ticketsData.length)*100).toFixed(0)}%`,
+                value: `${ticketsFilteredData.averagePerformance}%`,
                 route: "/app/tickets/manage-tickets",
               },
               {
@@ -337,8 +359,7 @@ const TicketDashboard = () => {
             },
             {
               title: "Assigned Tickets",
-              // value: ticketsFilteredData.assignedTickets ? ticketsFilteredData.assignedTickets : 0,
-              value: 0,
+              value: ticketsFilteredData.assignedTickets ? ticketsFilteredData.assignedTickets : 0,
               route: "/app/tickets/manage-tickets",
             },
             {

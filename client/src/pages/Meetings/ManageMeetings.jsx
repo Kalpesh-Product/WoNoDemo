@@ -37,7 +37,6 @@ const ManageMeetings = () => {
   const [newItem, setNewItem] = useState("");
   const [modalMode, setModalMode] = useState("update"); // 'update', or 'view'
   const [selectedMeeting, setSelectedMeeting] = useState(null);
-  useEffect(() => console.log(selectedMeeting), [selectedMeeting]);
   const [detailsModal, setDetailsModal] = useState(false);
   const [submittedChecklists, setSubmittedChecklists] = useState({});
 
@@ -109,18 +108,17 @@ const ManageMeetings = () => {
       date: meeting.date,
     }));
 
-const transformedMeetings = filteredMeetings.map((meeting, index) => ({
-  ...meeting,
-  date: meeting.date,
-  bookedBy: meeting.bookedBy
-    ? `${meeting.bookedBy.firstName} ${meeting.bookedBy.lastName}`
-    : meeting.clientBookedBy?.employeeName || "Unknown",
-  startTime: meeting.startTime,
-  endTime: meeting.endTime,
-  srNo: index + 1,
-}));
-
-
+  const transformedMeetings = filteredMeetings.map((meeting, index) => ({
+    ...meeting,
+    date: meeting.date,
+    bookedBy: meeting.bookedBy
+      ? `${meeting.bookedBy.firstName} ${meeting.bookedBy.lastName}`
+      : meeting.clientBookedBy?.employeeName || "Unknown",
+    startTime: meeting.startTime,
+    endTime: meeting.endTime,
+    extendTime: meeting.extendTime,
+    srNo: index + 1,
+  }));
 
   // API mutation for submitting housekeeping tasks
   const housekeepingMutation = useMutation({
@@ -144,7 +142,6 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
 
   const { mutate: cancelMeeting, isPending: isCancelPending } = useMutation({
     mutationFn: async (data) => {
-      console.log(data);
       const respone = await axios.patch(
         `/api/meetings/cancel-meeting/${selectedMeetingId}`,
         data
@@ -160,15 +157,14 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
 
   const { mutate: extendMeeting, isPending: isExtendPending } = useMutation({
     mutationFn: async (data) => {
-      console.log(data);
       const respone = await axios.patch(`/api/meetings/extend-meeting`, data);
       queryClient.invalidateQueries({ queryKey: ["meetings"] });
       return respone.data;
     },
     onSuccess: (data) => {
       toast.success(data.message);
-      setDetailsModal(false)
-      resetExtendMeeting()
+      setDetailsModal(false);
+      resetExtendMeeting();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -335,10 +331,6 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
 
     housekeepingMutation.mutate(payload);
   };
-  useEffect(()=>{
-
-      console.log("meeting",selectedMeeting)
-  },[selectedMeeting])
 
   //---------------------------------Event handlers----------------------------------------//
 
@@ -400,7 +392,6 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
       field: "participants",
       headerName: "Participants",
       cellRenderer: (params) => {
-          console.log("meeting",params.data)
         const participants = Array.isArray(params.data?.participants)
           ? params.data?.participants
           : [];
@@ -423,64 +414,62 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
         );
       },
     },
-{
-  field: "action",
-  headerName: "Action",
-  pinned: "right",
-  cellRenderer: (params) => {
-    const status = params.data.meetingStatus;
-    const housekeepingStatus = params.data.housekeepingStatus;
+    {
+      field: "action",
+      headerName: "Action",
+      pinned: "right",
+      cellRenderer: (params) => {
+        const status = params.data.meetingStatus;
+        const housekeepingStatus = params.data.housekeepingStatus;
 
-    const isUpcoming = status === "Upcoming";
-    const isOngoing = status === "Ongoing";
-    const isCompleted = status === "Completed";
-    const isHousekeepingPending = housekeepingStatus === "Pending";
-    const isHousekeepingCompleted = housekeepingStatus === "Completed";
+        const isUpcoming = status === "Upcoming";
+        const isCancelled = status === "Cancelled";
+        const isOngoing = status === "Ongoing";
+        const isCompleted = status === "Completed";
+        const isHousekeepingPending = housekeepingStatus === "Pending";
+        const isHousekeepingCompleted = housekeepingStatus === "Completed";
 
-    const menuItems = [
-      // Show only if not ongoing and housekeeping is not completed
-      !isOngoing && !isHousekeepingCompleted && {
-        label: "Update Checklist",
-        onClick: () => handleOpenChecklistModal("update", params.data._id),
-      },
-      // Show only if not ongoing and housekeeping is not pending
-      !isOngoing && !isHousekeepingPending && {
-        label: "Mark As Ongoing",
-        onClick: () => handleOngoing("ongoing", params.data._id),
-      },
-      // Show only if not upcoming
-      !isUpcoming && {
-        label: "Mark As Completed",
-        onClick: () => handleCompleted("complete", params.data._id),
-      },
-      // Show only if not upcoming
-      !isUpcoming && {
-        label: "Extend Meeting",
-        onClick: () => handleExtendMeetingModal("extend", params.data),
-      },
-      {
-        label: "Cancel",
-        onClick: () => handleSelectedMeeting("cancel", params.data),
-      },
-    ].filter(Boolean); // Remove any false/null values
+        const menuItems = [
+          !isOngoing &&
+            !isHousekeepingCompleted && {
+              label: "Update Checklist",
+              onClick: () =>
+                handleOpenChecklistModal("update", params.data._id),
+            },
+          !isOngoing &&
+            !isHousekeepingPending && {
+              label: "Mark As Ongoing",
+              onClick: () => handleOngoing("ongoing", params.data._id),
+            },
+          !isUpcoming && {
+            label: "Mark As Completed",
+            onClick: () => handleCompleted("complete", params.data._id),
+          },
+          !isUpcoming && {
+            label: "Extend Meeting",
+            onClick: () => handleExtendMeetingModal("extend", params.data),
+          },
+          !isCancelled && {
+            label: "Cancel",
+            onClick: () => handleSelectedMeeting("cancel", params.data),
+          },
+        ].filter(Boolean);
 
-    return (
-      <div className="flex gap-2 items-center">
-        <div
-          onClick={() => handleSelectedMeeting("viewDetails", params.data)}
-          className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all"
-        >
-          <span className="text-subtitle">
-            <MdOutlineRemoveRedEye />
-          </span>
-        </div>
+        return (
+          <div className="flex gap-2 items-center">
+            <div
+              onClick={() => handleSelectedMeeting("viewDetails", params.data)}
+              className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all">
+              <span className="text-subtitle">
+                <MdOutlineRemoveRedEye />
+              </span>
+            </div>
 
-        <ThreeDotMenu menuItems={menuItems} />
-      </div>
-    );
-  },
-}
-
+            {!isCancelled && <ThreeDotMenu menuItems={menuItems} />}
+          </div>
+        );
+      },
+    },
   ];
 
   return (
@@ -501,8 +490,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
       <MuiModal
         open={checklistModalOpen}
         onClose={handleCloseChecklistModal}
-        title={"Checklist"}
-      >
+        title={"Checklist"}>
         <Box
           sx={{
             maxHeight: "80vh",
@@ -511,8 +499,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
             overflow: "hidden",
             justifyContent: "start",
             alignItems: "start",
-          }}
-        >
+          }}>
           {/* Scrollable Checklist Section */}
           <div className="h-[60vh] overflow-y-auto w-full">
             <span className="text-subtitle text-primary font-pmedium">
@@ -559,8 +546,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
                             {modalMode === "update" && (
                               <IconButton
                                 onClick={() => handleRemoveChecklistItem(index)}
-                                color="error"
-                              >
+                                color="error">
                                 <Delete />
                               </IconButton>
                             )}
@@ -599,8 +585,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
               <Button
                 variant="contained"
                 disabled={isSubmitDisabled()}
-                onClick={handleSubmitChecklist}
-              >
+                onClick={handleSubmitChecklist}>
                 Submit
               </Button>
             </div>
@@ -619,18 +604,53 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
             : ""
         }
         open={detailsModal}
-        onClose={() => setDetailsModal(false)}
-      >
+        onClose={() => setDetailsModal(false)}>
         {modalMode === "viewDetails" && (
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 w-full">
+            <div className="font-bold">Basic Info</div>
             <DetalisFormatted
-              title={"Room Name"}
-              detail={selectedMeeting?.roomName}
-              upperCase
+              title="Title"
+              detail={selectedMeeting?.title || "Title"}
             />
             <DetalisFormatted
+              title="Agenda"
+              detail={selectedMeeting.agenda || "N/A"}
+            />
+            <DetalisFormatted
+              title="Date"
+              detail={humanDate(selectedMeeting?.date)}
+            />
+            <DetalisFormatted
+              title="Time"
+              detail={`${humanTime(selectedMeeting.startTime)} - ${humanTime(
+                selectedMeeting.endTime
+              )}`}
+            />
+            <DetalisFormatted
+              title="Duration"
+              detail={selectedMeeting.duration || "N/A"}
+            />
+            <DetalisFormatted
+              title="Status"
+              detail={selectedMeeting.meetingStatus || "N/A"}
+            />
+            <DetalisFormatted
+              title="Type"
+              detail={selectedMeeting.meetingType || "N/A"}
+            />
+            <DetalisFormatted
+              title="Company"
+              detail={selectedMeeting.client || "N/A"}
+            />
+            {/* fffff */}
+
+            {/* <DetalisFormatted
               title={"Booked By"}
-              detail={selectedMeeting?.bookedBy || selectedMeeting?.clientBookedBy}
+              detail={
+                selectedMeeting?.bookedBy ||
+                selectedMeeting?.clientBookedBy ||
+                "N/A"
+              }
             />
             <DetalisFormatted
               title={"Client Name"}
@@ -648,7 +668,15 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
               title={"End Time"}
               detail={humanTime(selectedMeeting?.endTime)}
             />
-            <div className="col-span-1 ">
+            {selectedMeeting.extendTime && (
+              <DetalisFormatted
+                title={"Extended Time"}
+                detail={humanTime(selectedMeeting?.extendTime)}
+              />
+            )} */}
+            <br />
+            <div className="font-bold">People Involved</div>
+            {/* <div className="col-span-1 ">
               <DetalisFormatted
                 title={"Participants"}
                 detail={selectedMeeting?.participants.map((item) => (
@@ -658,11 +686,61 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
                 ))}
               />
             </div>
-            <div></div>
             <DetalisFormatted
               title={"House Keeping Status"}
               detail={selectedMeeting?.housekeepingStatus}
+            /> */}
+
+            {/* dddd */}
+
+            {selectedMeeting.participants?.length > 0 && (
+              <DetalisFormatted
+                title="Participants"
+                detail={
+                  selectedMeeting.participants
+                    .map((p) => `${p.firstName} ${p.lastName}`)
+                    .join(", ") || "N/A"
+                }
+              />
+            )}
+
+            <DetalisFormatted
+              title="Booked By"
+              detail={selectedMeeting.bookedBy}
             />
+            <DetalisFormatted
+              title="Receptionist"
+              // detail={selectedMeeting.receptionist}
+              detail={`N/A`}
+            />
+            <DetalisFormatted
+              title="Department"
+              detail={selectedMeeting.department || "Top Management"}
+            />
+
+            <br />
+            <div className="font-bold">Venue Details</div>
+            {/* <DetalisFormatted
+              title={"Room Name"}
+              detail={selectedMeeting?.roomName}
+              upperCase
+            /> */}
+
+            {/* vvvv */}
+            <DetalisFormatted title="Room" detail={selectedMeeting.roomName} />
+            <DetalisFormatted
+              title="Location"
+              detail={`${selectedMeeting.location?.unitNo} (${selectedMeeting.location?.unitName})`}
+            />
+            <DetalisFormatted
+              title="Building"
+              detail={selectedMeeting.location?.building?.buildingName}
+            />
+            <DetalisFormatted
+              title="Housekeeping Status"
+              detail={selectedMeeting.housekeepingStatus}
+            />
+
             {/* <DetalisFormatted
               title={"Department"}
               detail={selectedMeeting?.department}
@@ -680,8 +758,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
                 });
                 resetCancelMeeting();
                 setDetailsModal(false);
-              })}
-            >
+              })}>
               <Controller
                 name="reason"
                 control={cancelMeetingControl}
@@ -720,8 +797,7 @@ const transformedMeetings = filteredMeetings.map((meeting, index) => ({
                   meetingId: selectedMeeting?._id,
                   newEndTime: data.newEndTime,
                 });
-              })}
-            >
+              })}>
               <div className="flex flex-col gap-4">
                 <span className="text-content">Meeting Details</span>
                 <hr />

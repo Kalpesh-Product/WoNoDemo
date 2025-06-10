@@ -21,20 +21,19 @@ import { MdDelete, MdOutlineRemoveRedEye } from "react-icons/md";
 import MuiModal from "../../components/MuiModal";
 import { queryClient } from "../../main";
 import DetalisFormatted from "../../components/DetalisFormatted";
+import humanTime from "../../utils/humanTime";
 
 const RaiseTicket = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [preview, setPreview] = useState(null);
   const [ticketIssues, setTicketIssues] = useState([]); // State for ticket issues
   const [openModal, setOpenModal] = useState(false);
-  const [viewTicketDetails, setViewTicketDetails] = useState({})
-  const [viewDetails,setViewDetails] = useState()
+  const [viewTicketDetails, setViewTicketDetails] = useState({});
+  const [viewDetails, setViewDetails] = useState();
   const axios = useAxiosPrivate();
   const imageRef = useRef();
 
   // Fetch departments and ticket issues in the same useEffect
-
-
 
   const fetchDepartments = async () => {
     try {
@@ -115,7 +114,7 @@ const RaiseTicket = () => {
   const { data: tickets, isPending: ticketsLoading } = useQuery({
     queryKey: ["my-tickets"],
     queryFn: async function () {
-      const response = await axios.get("/api/tickets/today");
+      const response = await axios.get("/api/tickets/my-tickets");
       return response.data;
     },
   });
@@ -142,13 +141,14 @@ const RaiseTicket = () => {
     setViewDetails(true);
   };
 
-
   const recievedTicketsColumns = [
     { field: "id", headerName: "Sr No", width: 80, sort: "desc" },
     { field: "raisedBy", headerName: "Raised By", width: 150 },
     { field: "raisedTo", headerName: "To Department", width: 150 },
     { field: "ticketTitle", headerName: "Ticket Title", width: 250 },
     { field: "description", headerName: "Description", width: 300 },
+    { field: "acceptedBy", headerName: "Accepted By", width: 300 },
+    { field: "acceptedAt", headerName: "Accepted Time", width: 300 },
 
     {
       field: "priority",
@@ -161,7 +161,9 @@ const RaiseTicket = () => {
           Low: { backgroundColor: "#ADD8E6", color: "#00008B" },
         };
 
-        const { backgroundColor, color } = statusColorMap[params.value === "high" ? "High" : params.value] || {
+        const { backgroundColor, color } = statusColorMap[
+          params.value === "high" ? "High" : params.value
+        ] || {
           backgroundColor: "gray",
           color: "white",
         };
@@ -209,6 +211,7 @@ const RaiseTicket = () => {
     {
       field: "actions",
       headerName: "Actions",
+      pinned: "right",
       width: 100,
       cellRenderer: (params) => (
         <div className="p-2 mb-2 flex gap-2">
@@ -223,6 +226,9 @@ const RaiseTicket = () => {
     },
   ];
 
+  useEffect(() => {
+    console.log("details", viewDetails);
+  }, [viewDetails]);
 
   return (
     <div className="p-4 flex flex-col gap-4">
@@ -257,12 +263,32 @@ const RaiseTicket = () => {
                       {departmentLoading ? (
                         <CircularProgress color="black" />
                       ) : (
-                        fetchedDepartments?.map((dept) => (
-                          <MenuItem value={dept.department._id}>
-                            {dept.department.name}
-                          </MenuItem>
-                        ))
+                        // fetchedDepartments?.map((dept) => (
+                        //   <MenuItem value={dept.department._id}>
+                        //     {dept.department.name}
+                        //   </MenuItem>
+                        // ))
+                        fetchedDepartments
+                          ?.filter(
+                            (dept) =>
+                              dept.department.name !== "Cafe" &&
+                              dept.department.name !== "Marketing"
+                          )
+                          .map((dept) => (
+                            <MenuItem
+                              key={dept.department._id}
+                              value={dept.department._id}
+                            >
+                              {dept.department.name}
+                            </MenuItem>
+                          ))
                       )}
+                      <MenuItem value="Cafe" disabled>
+                        Cafe
+                      </MenuItem>
+                      <MenuItem value="Marketing" disabled>
+                        Marketing
+                      </MenuItem>
                     </TextField>
                   </>
                 )}
@@ -356,7 +382,9 @@ const RaiseTicket = () => {
                         const file = e.target.files[0];
                         if (file) {
                           onChange(file);
+
                           setPreview(URL.createObjectURL(file)); // Set preview
+                          imageRef.current.value = null;
                         }
                       }}
                     />
@@ -442,7 +470,7 @@ const RaiseTicket = () => {
       </div>
       <div className="rounded-md bg-white p-4 border-2 ">
         <div className="flex flex-row justify-between mb-4">
-          <div className="text-[20px]">My today&apos;s tickets</div>
+          <div className="text-[20px]">My tickets</div>
         </div>
         <div className=" w-full">
           {ticketsLoading ? (
@@ -453,6 +481,7 @@ const RaiseTicket = () => {
             <AgTable
               key={tickets?.length}
               search
+              dropdownColumns={["status", "priority"]}
               data={tickets?.map((ticket, index) => ({
                 id: index + 1,
                 raisedBy: ticket.raisedBy.firstName,
@@ -460,7 +489,14 @@ const RaiseTicket = () => {
                 description: ticket.description,
                 ticketTitle: ticket.ticket,
                 status: ticket.status,
+                acceptedBy: ticket?.acceptedBy
+                  ? `${ticket.acceptedBy.firstName} ${ticket.acceptedBy.lastName}`
+                  : "None",
+                acceptedAt: ticket.acceptedAt
+                  ? humanTime(ticket.acceptedAt)
+                  : "None",
                 priority: ticket.priority,
+                image: ticket.image ? ticket.image.url : null,
               }))}
               columns={recievedTicketsColumns}
               paginationPageSize={10}
@@ -474,15 +510,46 @@ const RaiseTicket = () => {
         title={"View Ticket Details"}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          <DetalisFormatted title="Raised By" detail={viewTicketDetails?.raisedBy} />
-          <DetalisFormatted title="Raised To" detail={viewTicketDetails?.raisedTo} />
-          <DetalisFormatted title="Ticket Title" detail={viewTicketDetails?.ticketTitle} />
-          <DetalisFormatted title="Description" detail={viewTicketDetails?.description} />
+          <DetalisFormatted
+            title="Raised By"
+            detail={viewTicketDetails?.raisedBy}
+          />
+          <DetalisFormatted
+            title="Raised To"
+            detail={viewTicketDetails?.raisedTo}
+          />
+          <DetalisFormatted
+            title="Ticket Title"
+            detail={viewTicketDetails?.ticketTitle}
+          />
+          <DetalisFormatted
+            title="Description"
+            detail={viewTicketDetails?.description}
+          />
           <DetalisFormatted title="Status" detail={viewTicketDetails?.status} />
-          <DetalisFormatted title="Priority" detail={viewTicketDetails?.priority} />
+          <DetalisFormatted
+            title="Priority"
+            detail={viewTicketDetails?.priority}
+          />
+          <DetalisFormatted
+            title="Accepted by"
+            detail={viewTicketDetails?.acceptedBy}
+          />
+          <DetalisFormatted
+            title="Accepted at"
+            detail={viewTicketDetails?.acceptedAt}
+          />
+          {viewTicketDetails.image && (
+            <div className="lg:col-span-2">
+              <img
+                src={viewTicketDetails.image}
+                alt="Ticket Attachment"
+                className="max-w-full max-h-96 rounded border"
+              />
+            </div>
+          )}
         </div>
       </MuiModal>
-
     </div>
   );
 };

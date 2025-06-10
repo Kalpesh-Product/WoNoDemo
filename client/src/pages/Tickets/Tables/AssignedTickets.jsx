@@ -17,6 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { IoMdClose } from "react-icons/io";
 import DetalisFormatted from "../../../components/DetalisFormatted";
+import humanDate from "../../../utils/humanDateForamt";
 
 const AssignedTickets = ({ title, departmentId }) => {
   const [openModal, setopenModal] = useState(false);
@@ -42,7 +43,7 @@ const AssignedTickets = ({ title, departmentId }) => {
       }
     },
   });
-  console.log("Selected Ticket ID : ", selectedTicket);
+
   const handleOpenAssignModal = (ticketId) => {
     setSelectedTicketId(ticketId);
     setopenModal(true);
@@ -79,7 +80,7 @@ const AssignedTickets = ({ title, departmentId }) => {
                 ? ticket.raisedBy.departments.map((dept) => dept.name)
                 : ["N/A"],
 
-            ticketTitle: ticket.reason || "No Title",
+            ticketTitle: ticket.ticket || "No Title",
             assignees: `${ticket.assignees.map((item) => item.firstName)[0]}`,
             tickets:
               ticket.assignees.length > 0
@@ -102,45 +103,73 @@ const AssignedTickets = ({ title, departmentId }) => {
       headerName: "From Department",
       width: 100,
     },
+    { field: "ticketTitle", headerName: "Ticket Title", flex: 1 },
     { field: "assignees", headerName: "Assigned To", width: 300 },
-    // { field: "ticketTitle", headerName: "Ticket Title", flex: 1 },
-    {
-      field: "tickets",
-      headerName: "Tickets",
-      cellRenderer: (params) => {
-        const statusColorMap = {
-          "Assigned Ticket": { backgroundColor: "#ffbac2", color: "#ed0520" }, // Light orange bg, dark orange font
-          "Accepted Ticket": { backgroundColor: "#90EE90", color: "#02730a" }, // Light green bg, dark green font
-        };
+    // {
+    //   field: "tickets",
+    //   headerName: "Tickets",
+    //   cellRenderer: (params) => {
+    //     const statusColorMap = {
+    //       "Assigned Ticket": { backgroundColor: "#ffbac2", color: "#ed0520" }, // Light orange bg, dark orange font
+    //       "Accepted Ticket": { backgroundColor: "#90EE90", color: "#02730a" }, // Light green bg, dark green font
+    //     };
 
-        const { backgroundColor, color } = statusColorMap[params.value] || {
-          backgroundColor: "gray",
-          color: "white",
-        };
-        return (
-          <div className="flex flex-col gap-1 p-2">
-            <Chip
-              label={params.value}
-              style={{
-                backgroundColor,
-                color,
-              }}
-            />
-            <span className="text-small text-borderGray text-center h-full">
-              {params.data.acceptedBy}
-            </span>
-          </div>
-        );
-      },
-    },
+    //     const { backgroundColor, color } = statusColorMap[params.value] || {
+    //       backgroundColor: "gray",
+    //       color: "white",
+    //     };
+    //     return (
+    //       <div className="flex flex-col gap-1 p-2">
+    //         <Chip
+    //           label={params.value}
+    //           style={{
+    //             backgroundColor,
+    //             color,
+    //           }}
+    //         />
+    //         <span className="text-small text-borderGray text-center h-full">
+    //           {params.data?.acceptedBy}
+    //         </span>
+    //       </div>
+    //     );
+    //   },
+    // },
+    // {
+    //   field: "status",
+    //   headerName: "Status",
+    //   cellRenderer: (params) => {
+    //     const statusColorMap = {
+    //       Pending: { backgroundColor: "#FFECC5", color: "#CC8400" }, // Light orange bg, dark orange font
+    //       "In Progress": { backgroundColor: "#ADD8E6", color: "#00008B" }, // Light blue bg, dark blue font
+    //       Closed: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
+    //       Open: { backgroundColor: "#E6E6FA", color: "#4B0082" }, // Light purple bg, dark purple font
+    //       Completed: { backgroundColor: "#D3D3D3", color: "#696969" }, // Light gray bg, dark gray font
+    //     };
+
+    //     const { backgroundColor, color } = statusColorMap[params.value] || {
+    //       backgroundColor: "gray",
+    //       color: "white",
+    //     };
+    //     return (
+    //       <div className="flex flex-col justify-center pt-4">
+    //         <Chip
+    //           label={params.value}
+    //           style={{
+    //             backgroundColor,
+    //             color,
+    //           }}
+    //         />
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       field: "status",
       headerName: "Status",
       cellRenderer: (params) => {
-        console.log(params.data);
         const statusColorMap = {
           Pending: { backgroundColor: "#FFECC5", color: "#CC8400" }, // Light orange bg, dark orange font
-          "In Progress": { backgroundColor: "#ADD8E6", color: "#00008B" }, // Light blue bg, dark blue font
+          "In Progress": { backgroundColor: "#FFECC5", color: "#CC8400" }, // Light orange bg, dark orange font
           Closed: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
           Open: { backgroundColor: "#E6E6FA", color: "#4B0082" }, // Light purple bg, dark purple font
           Completed: { backgroundColor: "#D3D3D3", color: "#696969" }, // Light gray bg, dark gray font
@@ -151,7 +180,7 @@ const AssignedTickets = ({ title, departmentId }) => {
           color: "white",
         };
         return (
-          <div className="flex flex-col justify-center pt-4">
+          <>
             <Chip
               label={params.value}
               style={{
@@ -159,7 +188,7 @@ const AssignedTickets = ({ title, departmentId }) => {
                 color,
               }}
             />
-          </div>
+          </>
         );
       },
     },
@@ -358,8 +387,7 @@ const AssignedTickets = ({ title, departmentId }) => {
       <MuiModal
         open={openModal}
         onClose={() => setopenModal(false)}
-        title="Assign Tickets"
-      >
+        title="Assign Tickets">
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             {!isSubOrdinates ? (
@@ -394,8 +422,7 @@ const AssignedTickets = ({ title, departmentId }) => {
         <div>
           <form
             onSubmit={handleEscalateTicketSubmit(onEscalate)}
-            className="grid grid-cols-1 gap-4"
-          >
+            className="grid grid-cols-1 gap-4">
             <Controller
               name="departmentIds"
               control={escalateFormControl}
@@ -471,10 +498,9 @@ const AssignedTickets = ({ title, departmentId }) => {
       <MuiModal
         open={openView}
         onClose={() => setOpenView(false)}
-        title="View Assigned Ticket"
-      >
+        title="View Assigned Ticket">
         {selectedTicket && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
             <DetalisFormatted
               title="Ticket"
               detail={selectedTicket.ticketTitle || "N/A"}
@@ -488,6 +514,10 @@ const AssignedTickets = ({ title, departmentId }) => {
               detail={selectedTicket.raisedBy || "Unknown"}
             />
             <DetalisFormatted
+              title="Raised At"
+              detail={humanDate(new Date(selectedTicket.raisedDate))}
+            />
+            <DetalisFormatted
               title="From Department"
               detail={
                 selectedTicket.selectedDepartment
@@ -495,7 +525,23 @@ const AssignedTickets = ({ title, departmentId }) => {
                   .join(", ") || "N/A"
               }
             />
+            <DetalisFormatted
+              title="Raised To Department"
+              detail={selectedTicket.raisedToDepartment || "N/A"}
+            />
             <DetalisFormatted title="Status" detail={selectedTicket.status} />
+            <DetalisFormatted
+              title="Priority"
+              detail={selectedTicket?.priority || "N/A"}
+            />
+            <DetalisFormatted
+              title="Accepted by"
+              detail={selectedTicket?.acceptedBy || "N/A"}
+            />
+            <DetalisFormatted
+              title="Accepted at"
+              detail={selectedTicket?.acceptedAt || "N/A"}
+            />
           </div>
         )}
       </MuiModal>

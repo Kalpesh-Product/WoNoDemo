@@ -41,7 +41,6 @@ const visitorSchema = new mongoose.Schema(
       idNumber: {
         type: String,
         required: true,
-        unique: true,
       },
     },
     dateOfVisit: {
@@ -61,6 +60,14 @@ const visitorSchema = new mongoose.Schema(
     toMeet: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserData",
+    },
+    clientToMeet: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CoworkingMember",
+    },
+    clientCompany: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CoworkingClient",
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,

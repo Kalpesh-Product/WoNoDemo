@@ -776,8 +776,10 @@ const getAssignees = async (req, res, next) => {
     const departmentIds = departments.map((dept) => dept._id);
 
     const team = await User.find({
+      _id: { $ne: user },
       company,
       departments: { $in: departmentIds },
+      isActive: true,
     })
       .select("_id firstName lastName")
       .populate({
@@ -786,7 +788,7 @@ const getAssignees = async (req, res, next) => {
       });
 
     if (!team?.length) {
-      return res.status(400).json({ message: "No assigness found" });
+      return res.status(200).json([]);
     }
 
     const transformAssignees = team.map((assignee) => {

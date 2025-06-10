@@ -22,7 +22,6 @@ const CheckAvailability = () => {
   const address = useLocation();
   const axios = useAxiosPrivate();
   const clientsData = useSelector((state) => state.sales.clientsData);
-  console.log("CLIENTS DATA : ", clientsData);
 
   //-------------  Remove Duplicates----------------------//
   // STEP 2: Build unique units map by unitNo (to ensure uniqueness)
@@ -47,7 +46,7 @@ const CheckAvailability = () => {
     }
     groupedByBuilding.get(buildingName).push(unit);
   });
-  console.log(uniqueUnits);
+  console.log("GROUPED BY BUILDING : ", groupedByBuilding);
 
   const chartData = Array.from(groupedByBuilding.entries()).map(
     ([buildingName, units]) => {
@@ -212,7 +211,12 @@ const CheckAvailability = () => {
     ).entries()
   );
   const formatUnitDisplay = (unitNo, buildingName) => {
-    const match = unitNo.match(/^(\d+)\(?([A-Za-z]*)\)?$/);
+    if (typeof unitNo !== "string")
+      return `${unitNo || "Unknown"} ${buildingName}`;
+
+    // Match format like "501A", "302", "302(A)", or "ST 501 A"
+    const match = unitNo.match(/(\d+)[\s-]?([A-Za-z]*)$/); // extract trailing number + optional letter
+
     if (!match) return `${unitNo} ${buildingName}`;
     const [_, number, letter] = match;
     return `${number}${letter ? ` - ${letter}` : ""} ${buildingName}`;
@@ -220,18 +224,24 @@ const CheckAvailability = () => {
 
   // Sorting function
   const sortByUnitNo = (a, b) => {
-    const matchA = a.unitNo.match(/^(\d+)\(?([A-Za-z]*)\)?$/);
-    const matchB = b.unitNo.match(/^(\d+)\(?([A-Za-z]*)\)?$/);
+    const matchA =
+      typeof a.unitNo === "string"
+        ? a.unitNo.match(/(\d+)[\s-]?([A-Za-z]*)$/)
+        : null;
+    const matchB =
+      typeof b.unitNo === "string"
+        ? b.unitNo.match(/(\d+)[\s-]?([A-Za-z]*)$/)
+        : null;
+
+    if (!matchA || !matchB) return 0;
 
     const numberA = parseInt(matchA[1], 10);
     const numberB = parseInt(matchB[1], 10);
     const letterA = matchA[2] || "";
     const letterB = matchB[2] || "";
 
-    if (numberA !== numberB) {
-      return numberA - numberB; // Compare numbers first
-    }
-    return letterA.localeCompare(letterB); // Compare letters if numbers are equal
+    if (numberA !== numberB) return numberA - numberB;
+    return letterA.localeCompare(letterB);
   };
 
   const onSubmit = (data) => {
@@ -261,6 +271,77 @@ const CheckAvailability = () => {
           height={400}
         />
         {/* <WidgetSection layout={3}><FinanceCard /></WidgetSection> */}
+      </WidgetSection>
+      <WidgetSection layout={3} padding>
+        <FinanceCard
+          cardTitle="Inventory"
+          titleCenter
+          highlightNegativePositive={true}
+          disableColorChange
+          descriptionData={[
+            {
+              title: "ST Inventory",
+              value: "400",
+              route: "#",
+            },
+            {
+              title: "DTC Inventory",
+              value: "200",
+              route: "#",
+            },
+            {
+              title: "Total Inventory",
+              value: "600",
+              route: "#",
+            },
+          ]}
+        />
+        <FinanceCard
+          cardTitle="Occupancy"
+          titleCenter
+          highlightNegativePositive={true}
+          disableColorChange
+          descriptionData={[
+            {
+              title: "ST Occupancy",
+              value: "350",
+              route: "#",
+            },
+            {
+              title: "DTC Occupancy",
+              value: "150",
+              route: "#",
+            },
+            {
+              title: "Total Occupancy",
+              value: "500",
+              route: "#",
+            },
+          ]}
+        />
+        <FinanceCard
+          cardTitle="Free Inventory"
+          titleCenter
+          highlightNegativePositive={true}
+          disableColorChange
+          descriptionData={[
+            {
+              title: "ST Free Inventory",
+              value: "50",
+              route: "#",
+            },
+            {
+              title: "DTC Free Inventory",
+              value: "50",
+              route: "#",
+            },
+            {
+              title: "Total Free Inventory",
+              value: "100",
+              route: "#",
+            },
+          ]}
+        />
       </WidgetSection>
       <div className="border-default border-borderGray p-4 rounded-md text-center">
         <h2 className="font-pregular text-title text-primary mt-20 mb-10 uppercase">

@@ -192,11 +192,6 @@ const DeptWiseBudget = () => {
       toolbar: { show: false },
       stacked: true,
       fontFamily: "Poppins-Regular, Arial, sans-serif",
-      events: {
-        dataPointSelection: () => {
-          navigate("finance/budget");
-        },
-      },
     },
     colors: ["#54C4A7", "#EB5C45"],
     plotOptions: {
@@ -266,41 +261,6 @@ const DeptWiseBudget = () => {
         title={"BIZ Nest DEPARTMENT WISE EXPENSE"}
         titleAmount={`INR ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
       />
-
-      <div>
-        <WidgetSection layout={3} padding>
-          <DataCard
-            data={"INR 50,00,000"}
-            title={"Projected"}
-            description={`Current Month: ${new Date().toLocaleString(
-              "default",
-              {
-                month: "short",
-              }
-            )}-25`}
-          />
-          <DataCard
-            data={"INR 45,00,000"}
-            title={"Actual"}
-            description={`Current Month: ${new Date().toLocaleString(
-              "default",
-              {
-                month: "short",
-              }
-            )}-25`}
-          />
-          <DataCard
-            data={"INR 7,000"}
-            title={"Requested"}
-            description={`Current Month: ${new Date().toLocaleString(
-              "default",
-              {
-                month: "short",
-              }
-            )}-25`}
-          />
-        </WidgetSection>
-      </div>
 
       <AllocatedBudget financialData={financialData} noFilter hideTitle />
     </div>

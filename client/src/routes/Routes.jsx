@@ -103,8 +103,6 @@ import TasksLayout from "../pages/Tasks/TasksLayout";
 import TasksDashboard from "../pages/Tasks/TasksDashboard";
 import MyTaskListLayout from "../pages/Tasks/My-Tasklist/MyTaskListLayout";
 import DailyTasks from "../pages/Tasks/My-Tasklist/DailyTasks";
-import MonthlyTasks from "../pages/Tasks/My-Tasklist/MonthlyTasks";
-import AdditionalTasks from "../pages/Tasks/My-Tasklist/AdditionalTasks";
 import TeamMember from "../pages/Tasks/TeamMembers/TeamMember";
 import ProjectList from "../pages/Tasks/ProjectList/ProjectList";
 import EditProject from "../pages/Tasks/ProjectList/EditProject";
@@ -330,6 +328,7 @@ import TasksDepartmentLayout from "../pages/Tasks/DepartmentTasks/TasksDepartmen
 import TasksViewDepartment from "../pages/Tasks/DepartmentTasks/TasksViewDepartment";
 import ManageTicketLayout from "../pages/Tickets/Tables/ManageTicketLayout";
 import ManageTicketsHome from "../pages/Tickets/ManageTicketsHome";
+import Reimbursement from "../components/Pages/Reimbursement";
 
 export const routes = createBrowserRouter([
   {
@@ -461,19 +460,19 @@ export const routes = createBrowserRouter([
                         element: <MixBag />,
                       },
                       {
-                        path: "mix-bag/directors-company-KYC",
+                        path: "mix-bag/company-KYC",
                         element: <DirectorsCompany />,
                       },
                       {
-                        path: "directors-company-KYC",
+                        path: "company-KYC",
                         element: <DirectorsCompany />,
                       },
                       {
-                        path: "mix-bag/directors-company-KYC/:id",
+                        path: "mix-bag/company-KYC/:name",
                         element: <DirectorData />,
                       },
                       {
-                        path: "directors-company-KYC/:id",
+                        path: "company-KYC/:name",
                         element: <DirectorData />,
                       },
                       {
@@ -563,6 +562,14 @@ export const routes = createBrowserRouter([
                             element: <ViewTemplate />,
                           },
                           {
+                            path: "finance-monthly-vouchers",
+                            element: <FinanceMonthlyVouchers />,
+                          },
+                          {
+                            path: "finance-monthly-vouchers/:id",
+                            element: <FinanceViewVoucher />,
+                          },
+                          {
                             path: "voucher-creation",
                             element: <VoucherCreation />,
                           },
@@ -579,6 +586,10 @@ export const routes = createBrowserRouter([
                           {
                             path: "budget",
                             element: <FinanceBudget />,
+                          },
+                          {
+                            path: "reimbursement",
+                            element: <Reimbursement />,
                           },
                           {
                             path: "dept-wise-budget",

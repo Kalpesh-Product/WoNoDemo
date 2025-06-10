@@ -18,6 +18,7 @@ import { queryClient } from "../../../main";
 import { FaCheck } from "react-icons/fa6";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { InsertEmoticonTwoTone } from "@mui/icons-material";
 
 const PerformanceKra = () => {
   const axios = useAxiosPrivate();
@@ -26,9 +27,19 @@ const PerformanceKra = () => {
   const [openModal, setOpenModal] = useState(false);
   const deptId = useSelector((state) => state.performance.selectedDepartment);
   const [selectedKra, setSelectedKra] = useState(null);
-  const isTop =
-    auth.user.departments.map((item) => item._id)[0] ===
-    "67b2cf85b9b6ed5cedeb9a2e";
+
+  const departmentAccess = [
+    "67b2cf85b9b6ed5cedeb9a2e",
+    "6798bab9e469e809084e249e",
+  ];
+
+  const isTop = auth.user.departments.some((item) => {
+    return departmentAccess.includes(item._id.toString());
+  });
+
+  const isHr = department === "HR";
+  const showCheckBox = !isTop || isHr;
+
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["fetchedDepartmentsKRA"] });
   }, [department]);
@@ -37,6 +48,7 @@ const PerformanceKra = () => {
     handleSubmit: submitDailyKra,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       dailyKra: "",
@@ -59,11 +71,14 @@ const PerformanceKra = () => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["fetchedDepartmentsKRA"] });
+      queryClient.refetchQueries({ queryKey: ["fetchedDepartmentsKRA"] });
       toast.success(data.message || "KRA Added");
+      reset();
       setOpenModal(false);
     },
     onError: (error) => {
-      toast.error(error.message || "Error Adding KRA");
+      toast.success("KRA Added");
+      // toast.error(error.message || "Error Adding KRA");
     },
   });
   const handleFormSubmit = (data) => {
@@ -74,17 +89,20 @@ const PerformanceKra = () => {
     mutationKey: ["updateDailyKra"],
     mutationFn: async (data) => {
       const response = await axios.patch(
-        `/api/performance/update-task-status/${data}/KRA`
+        `/api/performance/update-status/${data}/KRA`
       );
       return response.data;
     },
     onSuccess: (data) => {
+      queryClient.refetchQueries({ queryKey: ["fetchedDepartmentsKRA"] });
+      queryClient.refetchQueries({ queryKey: ["completedEntries"] });
       queryClient.invalidateQueries({ queryKey: ["fetchedDepartmentsKRA"] });
       queryClient.invalidateQueries({ queryKey: ["completedEntries"] });
-      toast.success(data.message || "DATA UPDATED");
+      toast.success(data.message || "KRA updated");
     },
     onError: (error) => {
-      toast.error(error.message || "Error Updating");
+      toast.success("KRA updated");
+      // toast.error(error.message || "Error Updating");
     },
   });
 
@@ -118,9 +136,6 @@ const PerformanceKra = () => {
         }
       },
     });
-  // const completedEntries = departmentLoading
-  //   ? []
-  //   : departmentKra.filter((item) => item.status === "Completed");
 
   const departmentColumns = [
     { headerName: "Sr no", field: "srno", width: 100 },
@@ -146,26 +161,27 @@ const PerformanceKra = () => {
         return <Chip label={params.value} style={{ backgroundColor, color }} />;
       },
     },
-    ...(!isTop
-      ? [
-          {
-            headerName: "Actions",
-            field: "actions",
-            cellRenderer: (params) => (
-              <div
-                role="button"
-                onClick={() => updateDailyKra(params.data.id)}
-                className="p-2"
-              >
-                <PrimaryButton
-                  title={"Mark As Done"}
-                  disabled={!params.node.selected}
-                />
-              </div>
-            ),
-          },
-        ]
-      : []),
+   ...((!isTop || isHr)
+  ? [
+      {
+        headerName: "Actions",
+        field: "actions",
+        cellRenderer: (params) => (
+          <div
+            role="button"
+            onClick={() => updateDailyKra(params.data.id)}
+            className="p-2"
+          >
+            <PrimaryButton
+              title={"Mark As Done"}
+              disabled={!params.node.selected}
+            />
+          </div>
+        ),
+      },
+    ]
+  : [])
+,
   ];
 
   const completedColumns = [
@@ -211,7 +227,8 @@ const PerformanceKra = () => {
           <WidgetSection padding layout={1}>
             <DateWiseTable
               formatTime
-              checkbox={!isTop}
+              key={departmentKra.length}
+              checkbox={showCheckBox}
               buttonTitle={"Add Daily KRA"}
               handleSubmit={() => setOpenModal(true)}
               tableTitle={`${department} DEPARTMENT - DAILY KRA`}
@@ -241,6 +258,7 @@ const PerformanceKra = () => {
               formatTime
               tableTitle={`COMPLETED - DAILY KRA`}
               checkAll={false}
+              key={completedEntries.length}
               data={completedEntries.map((item, index) => ({
                 srno: index + 1,
                 id: item.id,

@@ -27,6 +27,7 @@ import DetalisFormatted from "../../../components/DetalisFormatted";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { setSelectedDepartment } from "../../../redux/slices/performanceSlice";
 import useAuth from "../../../hooks/useAuth";
+import DateWiseTable from "../../../components/Tables/DateWiseTable";
 
 const DailyTasks = () => {
   const axios = useAxiosPrivate();
@@ -54,6 +55,29 @@ const DailyTasks = () => {
       startDate: null,
       endDate: null,
       description: "",
+    },
+  });
+
+  const { data: departmentKra = [], isPending: departmentLoading } = useQuery({
+    queryKey: ["fetchMyTask"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("api/tasks/my-tasks?flag=pending");
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+  });
+  const { data: completedEntries, isLoading: isCompletedLoading } = useQuery({
+    queryKey: ["completedTasks"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get(`/api/tasks/get-my-completed-tasks`);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
@@ -89,16 +113,19 @@ const DailyTasks = () => {
   //--------------POST REQUEST FOR MONTHLY KPA-----------------//
   //--------------UPDATE REQUEST FOR MONTHLY KPA-----------------//
   const { mutate: updateMonthlyKpa, isPending: isUpdatePending } = useMutation({
-    mutationKey: ["updateMonthlyKpa"],
+    mutationKey: ["updateMyTasks"],
     mutationFn: async (data) => {
+      console.log("mark done", data);
       const response = await axios.patch(
         `/api/tasks/update-task-status/${data}`
       );
       return response.data;
     },
     onSuccess: (data) => {
+      queryClient.refetchQueries({ queryKey: ["fetchMyTask"] });
       queryClient.invalidateQueries({ queryKey: ["fetchMyTask"] });
-      toast.success("KPA updated");
+      queryClient.invalidateQueries({ queryKey: ["completedTasks"] });
+      toast.success(data.message || "Task updated");
     },
     onError: (error) => {
       toast.error(error.message || "Error Updating");
@@ -106,35 +133,9 @@ const DailyTasks = () => {
   });
   //--------------UPDATE REQUEST FOR MONTHLY KPA-----------------//
 
-  const fetchDepartments = async () => {
-    try {
-      const response = await axios.get("api/tasks/my-tasks");
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  const { data: departmentKra = [], isPending: departmentLoading } = useQuery({
-    queryKey: ["fetchMyTask"],
-    queryFn: fetchDepartments,
-  });
-  const { data: completedEntries, isLoading: isCompletedLoading } = useQuery({
-    queryKey: ["completedTasks"],
-    queryFn: async () => {
-      try {
-        const response = await axios.get(
-          `/api/performance/get-completed-tasks?dept=${deptId}&type=KPA`
-        );
-        return response.data;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  });
-
   //--------Column configs----------------//
   const departmentColumns = [
-    { headerName: "Sr no", field: "srno", width: 100 },
+    { headerName: "Sr no", field: "srno", width: 100, sort: "desc" },
     {
       headerName: "Task List",
       field: "taskList",
@@ -148,6 +149,7 @@ const DailyTasks = () => {
       ),
     },
     { headerName: "Assigned Date", field: "assignedDate" },
+    // { headerName: "Assigned Time", field: "createdAt" },
     { headerName: "Due Date", field: "dueDate" },
     { headerName: "Due Time", field: "dueTime" },
     {
@@ -189,8 +191,7 @@ const DailyTasks = () => {
           <div
             role="button"
             onClick={() => updateMonthlyKpa(params.data.id)}
-            className="p-2"
-          >
+            className="p-2">
             <PrimaryButton
               disabled={!params.node.selected}
               title={"Mark As Done"}
@@ -224,11 +225,11 @@ const DailyTasks = () => {
     // },
   ];
   const completedColumns = [
-    { headerName: "Sr no", field: "srno", width : 100, sort: "desc" },
+    { headerName: "Sr no", field: "srno", width: 100, sort: "desc" },
     {
       headerName: "Task List",
       field: "taskList",
-      flex : 1,
+      flex: 1,
       cellRenderer: (params) => (
         <div
           role="button"
@@ -237,14 +238,18 @@ const DailyTasks = () => {
             setSelectedTask(params.data);
             setOpenModal(true);
           }}
-          className="text-primary underline cursor-pointer"
-        >
+          className="text-primary underline cursor-pointer">
           {params.value}
         </div>
       ),
     },
-    // { headerName: "Assigned Time", field: "assignedDate" },
-    { headerName: "Due Date", field: "dueDate" },
+    // { headerName: "Assigned Date", field: "assignedDate" },
+    // { headerName: "Due Date", field: "dueDate" },
+    // { headerName: "Due Time", field: "dueTime" },
+    // { headerName: "Department", field: "department" },
+    { headerName: "Completed By", field: "completedBy" },
+    // { headerName: "Completed Date", field: "completedDate" },
+    { headerName: "Completed Time", field: "completedTime" },
     {
       field: "status",
       headerName: "Status",
@@ -285,11 +290,28 @@ const DailyTasks = () => {
   };
   //----------function handlers-------------//
 
+  const completedData = isCompletedLoading
+    ? []
+    : completedEntries.map((item, index) => ({
+        srno: index + 1,
+        mongoId: item._id,
+        taskList: item.taskName,
+        department: item.department?.name,
+        completedBy: item.completedBy,
+        assignedDate: humanDate(item.assignedDate),
+        dueDate: humanDate(item.dueDate),
+        dueTime: humanTime(item.dueTime),
+        completedDate: humanDate(item.completedDate),
+        completedTime: humanTime(item.completedDate),
+        status: item.status,
+      }));
+
   return (
     <>
       <div className="flex flex-col gap-4">
         <WidgetSection padding layout={1}>
-          <MonthWiseTable
+          <DateWiseTable
+            key={departmentKra.length}
             checkbox
             tableTitle={`MY TASKS`}
             buttonTitle={"Add Task"}
@@ -308,6 +330,7 @@ const DailyTasks = () => {
                   dueDate: item.dueDate,
                   status: item.status,
                   dueTime: humanTime(item.dueTime),
+                  // createdAt: humanTime(item.createdAt),
                   assignedBy: `${item.assignedBy.firstName} ${item.assignedBy.lastName}`,
                 })),
             ]}
@@ -317,28 +340,17 @@ const DailyTasks = () => {
         </WidgetSection>
         {!isCompletedLoading ? (
           <WidgetSection padding layout={1}>
-            <MonthWiseTable
+            <DateWiseTable
+              key={completedEntries.length}
               tableTitle={`MY COMPLETED TASKS`}
-              data={[
-                ...departmentKra
-                  .filter((item) => item.status === "Completed")
-                  .map((item, index) => ({
-                    srno: index + 1,
-                    id: item._id,
-                    taskList: item.taskName,
-                    assignedDate: item.assignedDate,
-                    status: item.status,
-                    dueTime: humanTime(item.dueDate),
-                    assignedBy: `${item.assignedBy.firstName} ${item.assignedBy.lastName}`,
-                  })),
-              ]}
-              dateColumn={"dueDate"}
+              data={completedData}
+              dateColumn={"completionDate"}
               columns={completedColumns}
             />
           </WidgetSection>
         ) : (
           <div className="h-72 flex items-center justify-center">
-            <CircularProgress />
+            <CircularProgress color="black" />
           </div>
         )}
       </div>
@@ -346,13 +358,17 @@ const DailyTasks = () => {
       <MuiModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        title={"Add Task"}
-      >
+        title={
+          modalMode === "add-task"
+            ? "Add My Task"
+            : modalMode === "view"
+            ? "Completed task"
+            : "View Task"
+        }>
         {modalMode === "add-task" && (
           <form
             onSubmit={submitDailyKra(handleFormSubmit)}
-            className="grid grid-cols-1 lg:grid-cols-1 gap-4"
-          >
+            className="grid grid-cols-1 lg:grid-cols-1 gap-4">
             <Controller
               name="taskName"
               control={control}
@@ -498,19 +514,27 @@ const DailyTasks = () => {
             <DetalisFormatted title={"Task"} detail={selectedTask?.taskList} />
             <DetalisFormatted
               title={"Assigned Date"}
-              detail={humanDate(selectedTask?.assignedDate)}
+              detail={selectedTask?.assignedDate}
+            />
+            <DetalisFormatted
+              title={"Completed Date"}
+              detail={selectedTask?.completedDate}
+            />
+            <DetalisFormatted
+              title={"Completed Time"}
+              detail={selectedTask?.completedDate}
             />
             <DetalisFormatted
               title={"Due Date"}
-              detail={humanDate(selectedTask?.dueDate)}
+              detail={selectedTask?.dueDate}
             />
             <DetalisFormatted
               title={"Due Time"}
               detail={selectedTask?.dueTime}
             />
             <DetalisFormatted
-              title={"Assigned By"}
-              detail={selectedTask?.assignedBy}
+              title={"Completed By"}
+              detail={selectedTask?.completedBy}
             />
 
             <DetalisFormatted title={"Status"} detail={selectedTask?.status} />

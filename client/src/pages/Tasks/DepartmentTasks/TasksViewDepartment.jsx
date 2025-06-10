@@ -94,6 +94,7 @@ const TasksViewDepartment = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["fetchedTasks"] });
       queryClient.invalidateQueries({ queryKey: ["fetchedDepartmentsTasks"] });
+      queryClient.invalidateQueries({ queryKey: ["fetchedCompletedTasks"] });
       toast.success(data.message || "DATA UPDATED");
     },
     onError: (error) => {
@@ -133,7 +134,7 @@ const TasksViewDepartment = () => {
       queryFn: fetchCompletedTasks,
     });
   const departmentColumns = [
-    { headerName: "Sr no", field: "srno", width: 100 },
+    { headerName: "Sr no", field: "srno", width: 100, sort: "desc" },
     {
       headerName: "Task List",
       field: "taskName",
@@ -146,15 +147,16 @@ const TasksViewDepartment = () => {
             setSelectedTask(params.data);
             setOpenMultiModal(true);
           }}
-          className="text-primary underline cursor-pointer"
-        >
+          className="text-primary underline cursor-pointer">
           {params.value}
         </div>
       ),
     },
     { headerName: "Assigned By", field: "assignedBy", width: 300 },
     { headerName: "Assigned Date", field: "assignedDate" },
+    // { headerName: "Assigned Time", field: "createdAt" },
     { headerName: "Due Date", field: "dueDate" },
+    { headerName: "Due Time", field: "dueTime" },
     {
       field: "status",
       headerName: "Status",
@@ -193,8 +195,7 @@ const TasksViewDepartment = () => {
           <div
             role="button"
             onClick={() => updateDailyKra(params.data.id)}
-            className="p-2"
-          >
+            className="p-2">
             <PrimaryButton
               title={"Mark As Done"}
               disabled={!params.node.selected}
@@ -205,15 +206,32 @@ const TasksViewDepartment = () => {
     },
   ];
   const completedColumns = [
-    { headerName: "Sr no", field: "srno", width: 100 },
-    { headerName: "Task List", field: "taskName", width: 300 },
+    { headerName: "Sr no", field: "srno", width: 100, sort: "desc" },
+    {
+      headerName: "Task List",
+      field: "taskName",
+      width: 300,
+      cellRenderer: (params) => (
+        <div
+          role="button"
+          onClick={() => {
+            setModalMode("completed");
+            setSelectedTask(params.data);
+            setOpenMultiModal(true);
+          }}
+          className="text-primary underline cursor-pointer">
+          {params.value}
+        </div>
+      ),
+    },
     // { headerName: "Assigned Time", field: "assignedDate" },
+    // { headerName: "Assigned Date", field: "assignedDate" },
     { headerName: "Completed By", field: "completedBy", width: 300 },
-    { headerName: "Assigned Date", field: "assignedDate" },
-    { headerName: "Completed Date", field: "completedDate" },
+    // { headerName: "Completed Date", field: "completedDate" },
     { headerName: "Completed Time", field: "completedTime" },
     // { headerName: "Due Time", field: "dueTime" },
-    { headerName: "Due Date", field: "dueDate" },
+    // { headerName: "Due Date", field: "dueDate" },
+    // { headerName: "Due Time", field: "dueTime" },
     {
       field: "status",
       headerName: "Status",
@@ -252,6 +270,7 @@ const TasksViewDepartment = () => {
           <WidgetSection padding layout={1}>
             <DateWiseTable
               checkbox
+              key={departmentKra.length}
               buttonTitle={"Add Task"}
               handleSubmit={() => setOpenModal(true)}
               tableTitle={`${department} DEPARTMENT TASKS`}
@@ -282,15 +301,17 @@ const TasksViewDepartment = () => {
           <WidgetSection padding>
             <DateWiseTable
               tableTitle={`COMPLETED TASKS`}
+              key={completedTasks.length}
               data={
                 completedTasksFetchPending
                   ? []
                   : completedTasks.map((item, index) => ({
-                      srno: index + 1,
                       id: item._id,
                       taskName: item.taskName,
                       completedBy: item.completedBy,
-                      assignedDate: item.assignedDate,
+                      assignedDate: humanDate(item.assignedDate),
+                      dueDate: humanDate(item.dueDate),
+                      dueTime: humanTime(item.dueTime),
                       completedDate: humanDate(item.completedDate),
                       completedTime: humanTime(item.completedDate),
                       status: item.status,
@@ -310,12 +331,10 @@ const TasksViewDepartment = () => {
       <MuiModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        title={"Add Task"}
-      >
+        title={"Add Department Task"}>
         <form
           onSubmit={submitDailyKra(handleFormSubmit)}
-          className="grid grid-cols-1 lg:grid-cols-1 gap-4"
-        >
+          className="grid grid-cols-1 lg:grid-cols-1 gap-4">
           <Controller
             name="taskName"
             control={control}
@@ -465,8 +484,13 @@ const TasksViewDepartment = () => {
       <MuiModal
         open={openMultiModal}
         onClose={() => setOpenMultiModal(false)}
-        title={"Add Task"}
-      >
+        title={
+          modalMode === "view"
+            ? "View Task"
+            : modalMode === "completed"
+            ? "Completed Tasks"
+            : ""
+        }>
         {modalMode === "view" && selectedTask && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="col-span-2">
@@ -501,24 +525,32 @@ const TasksViewDepartment = () => {
             <DetalisFormatted title={"Status"} detail={selectedTask?.status} />
           </div>
         )}
-        {modalMode === "view-completed" && selectedTask && (
+        {modalMode === "completed" && selectedTask && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <DetalisFormatted title={"Task"} detail={selectedTask?.taskList} />
+            <DetalisFormatted title={"Task"} detail={selectedTask?.taskName} />
             <DetalisFormatted
               title={"Assigned Date"}
-              detail={humanDate(selectedTask?.assignedDate)}
+              detail={selectedTask?.assignedDate}
+            />
+            <DetalisFormatted
+              title={"Completed Date"}
+              detail={selectedTask?.completedDate}
+            />
+            <DetalisFormatted
+              title={"Completed Time"}
+              detail={selectedTask?.completedTime}
+            />
+            <DetalisFormatted
+              title={"Comleted By"}
+              detail={selectedTask?.completedBy}
             />
             <DetalisFormatted
               title={"Due Date"}
-              detail={humanDate(selectedTask?.dueDate)}
+              detail={selectedTask?.dueDate}
             />
             <DetalisFormatted
               title={"Due Time"}
               detail={selectedTask?.dueTime}
-            />
-            <DetalisFormatted
-              title={"Assigned By"}
-              detail={selectedTask?.assignedBy}
             />
 
             <DetalisFormatted title={"Status"} detail={selectedTask?.status} />

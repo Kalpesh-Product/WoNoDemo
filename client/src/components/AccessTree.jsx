@@ -7,26 +7,47 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Abrar from "../assets/abrar.jpeg"
 
-const AccessTree = ({clickState}) => {
+const AccessTree = ({ clickState, autoExpandFirst = false }) => {
   const location = useLocation();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const axios = useAxiosPrivate();
   const currentPath = location.pathname;
 
-  useEffect(() => {
-    console.log("Selected Users Stack: ", selectedUsers);
-  }, [selectedUsers]);
+  const filterHierarchy = (node) => {
+  if (!node) return null;
 
-  const fetchHierarchy = async () => {
-    try {
-      const response = await axios.get("/api/company/company-hierarchy");
+  const filteredSubordinates = (node.subordinates || [])
+    .map(filterHierarchy)
+    .filter(Boolean);
 
-      return response.data.generateHierarchy;
-    } catch (error) {
-      toast.error(error.message);
-      throw new Error(error);
-    }
-  };
+  const isAllowed = allowedUserIds.includes(node._id);
+
+  if (isAllowed || filteredSubordinates.length > 0) {
+    return {
+      ...node,
+      subordinates: filteredSubordinates,
+    };
+  }
+
+  return null;
+};
+
+
+ const fetchHierarchy = async () => {
+  try {
+    const response = await axios.get("/api/company/company-hierarchy");
+
+    const rawHierarchy = response.data.generateHierarchy;
+    const filtered = filterHierarchy(rawHierarchy);
+
+    return filtered;
+  } catch (error) {
+    toast.error(error.message);
+    throw new Error(error);
+  }
+};
+
+  
 
   const {
     data: hierarchy,
@@ -36,6 +57,24 @@ const AccessTree = ({clickState}) => {
     queryKey: ["hierarchy"],
     queryFn: fetchHierarchy,
   });
+
+  const allowedUserIds = [
+  "67b83885daad0f7bab2f184f", // Abrar
+  "67b83885daad0f7bab2f1852", // Kashif
+  "681a10b13fc9dc666ede401c", // Nigel
+  "67b83885daad0f7bab2f1864", // Kalpesh
+  "68400714c51ffdef8b5e7e04", // Sanjay
+  "67f761c45e8224c532f8fa80", // Rajesh
+  "67b83885daad0f7bab2f188b", // Mac
+  "67b83885daad0f7bab2f1870", // Nehal
+];
+
+
+    useEffect(() => {
+    if (autoExpandFirst && hierarchy) {
+      setSelectedUsers([hierarchy]);
+    }
+  }, [autoExpandFirst, hierarchy]);
 
   const handleSelectUser = (user, level) => {
     setSelectedUsers((prev) => {
@@ -99,13 +138,14 @@ const AccessTree = ({clickState}) => {
           key={user.empId}
           className="w-full mt-6 p-4 border-t border-gray-300 rounded-lg">
           <div className="flex items-center mb-10">
-            <div className="w-[10%]">
-              <PrimaryButton title={"Back"} handleSubmit={handleBack} />
-            </div>
+           
             <div className="w-full text-center">
               <span className="text-subtitle font-semibold mr-20">
                 Subordinates of {user.name}
               </span>
+            </div>
+             <div className="w-[10%]">
+              <PrimaryButton title={"Close"} handleSubmit={handleBack} />
             </div>
           </div>
 
@@ -139,13 +179,13 @@ const HierarchyCard = ({ user, handleSelectUser, isTopLevel, click = true }) => 
 
   return (
     <div
-      className={`bg-white flex flex-col shadow-md border border-gray-300 rounded-lg p-4 pt-0 px-0 text-center cursor-pointer relative w-60 transition ${
+      className={`bg-white flex flex-col shadow-md border border-gray-300 rounded-lg p-4 pt-0 px-0 text-center  relative w-60 transition ${
         isTopLevel ? "border-2 border-primary" : ""
       }`}
     >
       <div
         onClick={() => {click ? navigate("permissions", { state: { user } }) : ''} }
-        className="bg-primary text-white p-2 pt-4 rounded-t-md"
+        className="bg-primary text-white p-2 pt-4 rounded-t-md cursor-pointer"
       >
         <div className="w-full flex flex-col justify-center">
           <div className="absolute -top-7 left-[6rem] flex items-center justify-center text-black font-semibold border-default border-primary rounded-full w-12 h-12 bg-red-50 overflow-hidden">
@@ -165,15 +205,15 @@ const HierarchyCard = ({ user, handleSelectUser, isTopLevel, click = true }) => 
       </span>
       <span className="text-small text-primary">{user.email}</span>
 
-      {user.subordinates && user.subordinates.length > 0 && (
+      {/* {user.subordinates && user.subordinates.length > 0 && (
         <p
           onClick={() => handleSelectUser(user)}
-          className="mt-2 text-xs text-gray-500 hover:underline"
+          className="mt-2 text-xs text-primary hover:underline cursor-pointer"
         >
           {user.subordinates.length} Subordinate
           {user.subordinates.length > 1 ? "s" : ""}
         </p>
-      )}
+      )} */}
     </div>
   );
 };

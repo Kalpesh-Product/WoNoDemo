@@ -36,6 +36,7 @@ const kraColumn = [
     { field: "department", headerName: "Department", flex: 1 },
     { field: "date", headerName: "Date", flex: 1 },
     { field: "amount", headerName: "Amount (INR)", flex: 1 },
+    { field: "paymentType", headerName: "Payment Type ", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
@@ -53,44 +54,44 @@ const kraColumn = [
     },
   ];
 
-  const rows = [
-    {id: 1,
-    department: "Tech",
-    date: "10-04-2025",
-    amount: "18,50,000",
-  },
-  {
-    id: 2,
-    department: "Admin",
-    date: "12-04-2025",
-    amount: "21,75,000",
-  },
-  {
-    id: 3,
-    department: "HR",
-    date: "14-04-2025",
-    amount: "19,60,000",
-  },
-    {
-      id: 4,
-      department: "IT",
-      date: "18-08-2024",
-      amount: "27,00,000",
-    },
-    {
-      id: 5,
-      department: "Sales",
-      date: "20-08-2024",
-      amount: "20,00,000",
-    },
-  ];
+  // const rows = [
+  //   {id: 1,
+  //   department: "Tech",
+  //   date: "10-04-2025",
+  //   amount: "18,50,000",
+  // },
+  // {
+  //   id: 2,
+  //   department: "Admin",
+  //   date: "12-04-2025",
+  //   amount: "21,75,000",
+  // },
+  // {
+  //   id: 3,
+  //   department: "HR",
+  //   date: "14-04-2025",
+  //   amount: "19,60,000",
+  // },
+  //   {
+  //     id: 4,
+  //     department: "IT",
+  //     date: "18-08-2024",
+  //     amount: "27,00,000",
+  //   },
+  //   {
+  //     id: 5,
+  //     department: "Sales",
+  //     date: "20-08-2024",
+  //     amount: "20,00,000",
+  //   },
+  // ];
 
-const transformedData = rows.map((viewDetail)=>(
-  {...viewDetail,amount:Number(
-    viewDetail.amount.toLocaleString("en-IN").replace(/,/g, "")
-  ).toLocaleString("en-IN", { maximumFractionDigits: 0 })
-  }
-))
+// const transformedData = rows.map((viewDetail)=>(
+//   {...viewDetail,amount:Number(
+//     viewDetail.amount.toLocaleString("en-IN").replace(/,/g, "")
+//   ).toLocaleString("en-IN", { maximumFractionDigits: 0 })
+//   }
+// ))
 
   return (
     <div>
@@ -98,7 +99,7 @@ const transformedData = rows.map((viewDetail)=>(
         <AgTable
           search={true}
           tableTitle={"Pending Approvals"}
-          data={transformedData}
+          data={[]}
           columns={kraColumn}
         />
       </div>

@@ -1,16 +1,17 @@
 const { default: mongoose } = require("mongoose");
 const UserData = require("../../models/hr/UserData");
-const kraKpaRole = require("../../models/performance/kraKpaRole");
-const kraKpaTask = require("../../models/performance/kraKpaTask");
+const kraKpaRole = require("../../models/performances/kraKpaRole");
+const kraKpaTask = require("../../models/performances/kraKpaTask");
 const CustomError = require("../../utils/customErrorlogs");
 const { createLog } = require("../../utils/moduleLogs");
 
 const createDeptBasedTask = async (req, res, next) => {
   const { user, ip, company } = req;
-  const logPath = "performance/PerformanceLog";
+  const logPath = "performances/PerformanceLog";
   const logAction = "Create Task";
   const logSourceKey = "kraKpaRoles";
 
+  console.log("error");
   try {
     const { task, taskType, department, dueDate, assignedDate, kpaDuration } =
       req.body;
@@ -142,29 +143,29 @@ const createDeptBasedTask = async (req, res, next) => {
 
 const updateTaskStatus = async (req, res, next) => {
   const { user, ip, company } = req;
-  const logPath = "performance/PerformanceLog";
-  const logAction = "Update KRA/KPA status";
-  const logSourceKey = "kraKpaTasks";
+
 
   try {
     const { taskId, taskType } = req.params;
 
     if (!taskId) {
-      throw new CustomError(
-        "Missing required fields",
-        logPath,
-        logAction,
-        logSourceKey
-      );
+      // throw new CustomError(
+      //   "Missing required fields",
+      //   logPath,
+      //   logAction,
+      //   logSourceKey
+      // );
+      return res.send(400).status({ message: "Missing required fields" });
     }
 
     if (!mongoose.Types.ObjectId.isValid(taskId)) {
-      throw new CustomError(
-        "Invalid task ID provided",
-        logPath,
-        logAction,
-        logSourceKey
-      );
+      // throw new CustomError(
+      //   "Invalid task ID provided",
+      //   logPath,
+      //   logAction,
+      //   logSourceKey
+      // );
+      return res.send(400).status({ message: "Invalid task ID provided" });
     }
 
     const completionDate = new Date();
@@ -190,12 +191,13 @@ const updateTaskStatus = async (req, res, next) => {
     );
 
     if (!updatedStatus) {
-      throw new CustomError(
-        "Failed to update the status",
-        logPath,
-        logAction,
-        logSourceKey
-      );
+      // throw new CustomError(
+      //   "Failed to update the status",
+      //   logPath,
+      //   logAction,
+      //   logSourceKey
+      // );
+      return res.send(400).status({ message: "Failed to update the status" });
     }
 
     const newKraKpaTask = new kraKpaTask({
@@ -208,32 +210,33 @@ const updateTaskStatus = async (req, res, next) => {
 
     const savedNewKraKpaTask = await newKraKpaTask.save();
 
-    await createLog({
-      path: logPath,
-      action: logAction,
-      remarks: `${taskType}  marked completed`,
-      status: "Success",
-      user: user,
-      ip: ip,
-      company: company,
-      sourceKey: logSourceKey,
-      sourceId: savedNewKraKpaTask._id,
-      changes: {
-        status: "Completed",
-        prevStatus: "Pending",
-        completionDate,
-      },
-    });
+    // await createLog({
+    //   path: logPath,
+    //   action: logAction,
+    //   remarks: `${taskType}  marked completed`,
+    //   status: "Success",
+    //   user: user,
+    //   ip: ip,
+    //   company: company,
+    //   sourceKey: logSourceKey,
+    //   sourceId: savedNewKraKpaTask._id,
+    //   changes: {
+    //     status: "Completed",
+    //     prevStatus: "Pending",
+    //     completionDate,
+    //   },
+    // });
 
     return res.status(201).json({ message: `${taskType} marked completed` });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-    } else {
-      next(
-        new CustomError(error.message, logPath, logAction, logSourceKey, 500)
-      );
-    }
+    // if (error instanceof CustomError) {
+    //   next(error);
+    // } else {
+    //   next(
+    //     new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+    //   );
+    // }
+    next(error);
   }
 };
 

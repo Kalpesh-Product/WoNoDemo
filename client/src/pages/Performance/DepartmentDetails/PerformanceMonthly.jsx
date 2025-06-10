@@ -26,14 +26,21 @@ const PerformanceMonthly = () => {
   const { department } = useParams();
   const [openModal, setOpenModal] = useState(false);
   const deptId = useSelector((state) => state.performance.selectedDepartment);
+
+    const departmentAccess = ["67b2cf85b9b6ed5cedeb9a2e","6798bab9e469e809084e249e"]
+
   const isTop =
-    auth.user.departments.map((item) => item._id)[0] ===
-    "67b2cf85b9b6ed5cedeb9a2e";
+    auth.user.departments.some((item) =>{ 
+      return departmentAccess.includes(item._id.toString())})
+  
+  const isHr =  department === "HR"
+  const showCheckBox = !isTop || isHr
 
   const {
     handleSubmit: submitDailyKra,
     control,
     formState: { errors },
+    reset
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -60,13 +67,16 @@ const PerformanceMonthly = () => {
       return response.data;
     },
     onSuccess: (data) => {
+      queryClient.refetchQueries({ queryKey: ["fetchedMonthlyKPA"] });
       queryClient.invalidateQueries({ queryKey: ["fetchedMonthlyKPA"] });
-      toast.success(data.message || "KRA Added");
+      toast.success(data.message || "KPA Added");
+      reset()
       setOpenModal(false);
     },
     onError: (error) => {
       queryClient.invalidateQueries({ queryKey: ["fetchedMonthlyKra"] });
-      toast.success("DATA UPDATED");
+      queryClient.refetchQueries({ queryKey: ["fetchedMonthlyKPA"] });
+      toast.success("KPA Added");
       setOpenModal(false);
     },
   });
@@ -79,18 +89,22 @@ const PerformanceMonthly = () => {
   const { mutate: updateMonthlyKpa, isPending: isUpdatePending } = useMutation({
     mutationKey: ["updateMonthlyKpa"],
     mutationFn: async (data) => {
+      console.log("Data inside query",data)
       const response = await axios.patch(
-        `/api/performance/update-task-status/${data}/KPA`
+        `/api/performance/update-status/${data}/KPA`
       );
       return response.data;
     },
     onSuccess: (data) => {
+      queryClient.refetchQueries({ queryKey: ["fetchedMonthlyKPA"] });
+      queryClient.refetchQueries({ queryKey: ["completedEntriesKPA"] });
       queryClient.invalidateQueries({ queryKey: ["fetchedMonthlyKPA"] });
       queryClient.invalidateQueries({ queryKey: ["completedEntriesKPA"] });
       toast.success(data.message || "KPA updated");
     },
     onError: (error) => {
-      toast.error(error.message || "Error Updating");
+      toast.success("KPA updated");
+      // toast.error(error.message || "Error Updating");
     },
   });
   //--------------UPDATE REQUEST FOR MONTHLY KPA-----------------//
@@ -123,7 +137,7 @@ const PerformanceMonthly = () => {
     },
   });
   const departmentColumns = [
-    { headerName: "Sr no", field: "srno", width: 100 },
+    { headerName: "Sr no", field: "srno", width: 100,sort:"desc" },
     { headerName: "KPA List", field: "taskName", flex: 1 },
     // { headerName: "Assigned Time", field: "assignedDate" },
     { headerName: "Due Date", field: "dueDate" },
@@ -156,32 +170,33 @@ const PerformanceMonthly = () => {
         );
       },
     },
-    ...(!isTop
-      ? [
-          {
-            headerName: "Actions",
-            field: "actions",
-            cellRenderer: (params) => (
-              <div
-                role="button"
-                onClick={() => updateMonthlyKpa(params.data.id)}
-                className="p-2"
-              >
-                <PrimaryButton
-                  disabled={!params.node.selected}
-                  title={"Mark As Done"}
-                />
-              </div>
-            ),
-          },
-        ]
-      : []),
+    ...((!isTop || isHr)
+  ? [
+      {
+        headerName: "Actions",
+        field: "actions",
+        cellRenderer: (params) => (
+          <div
+            role="button"
+            onClick={() => updateMonthlyKpa(params.data.id)}
+            className="p-2"
+          >
+            <PrimaryButton
+              title={"Mark As Done"}
+              disabled={!params.node.selected}
+            />
+          </div>
+        ),
+      },
+    ]
+  : [])
+,
   ];
   const completedColumns = [
     { headerName: "Sr no", field: "srno", width: 100, sort: "desc" },
     { headerName: "KPA List", field: "taskName", width: 300 },
     { headerName: "Completed Time", field: "completionTime", flex: 1 },
-    { headerName: "Completed Date", field: "completionDate" },
+    { headerName: "Completed By", field: "completedBy" },
     {
       field: "status",
       headerName: "Status",
@@ -218,16 +233,17 @@ const PerformanceMonthly = () => {
         {!isCompletedLoading && !isUpdatePending ? (
           <WidgetSection padding layout={1}>
             <MonthWiseTable
-              checkbox={!isTop}
+              checkbox={showCheckBox}
               tableTitle={`${department} DEPARTMENT - MONTHLY KPA`}
               buttonTitle={"Add Monthly KPA"}
               handleSubmit={() => setOpenModal(true)}
+              key={departmentKra.length}
               data={[
                 ...departmentKra
                   .filter((item) => item.status !== "Completed")
                   .map((item, index) => ({
                     srno: index + 1,
-                    id: item.id,
+                    mongoId: item.id,
                     taskName: item.taskName,
                     assignedDate: item.assignedDate,
                     dueDate: item.dueDate,
@@ -247,14 +263,16 @@ const PerformanceMonthly = () => {
           <WidgetSection padding layout={1}>
             <MonthWiseTable
               tableTitle={`COMPLETED - MONTHLY KPA`}
+              key={completedEntries.length}
               data={[
                 ...completedEntries.map((item, index) => ({
-                  srno: index + 1,
+                   
                   taskName: item.taskName,
                   assignedDate: item.assignedDate,
                   completionDate: humanDate(item.completionDate),
                   completionTime: humanTime(item.completionDate),
-                  status: item.status,
+                  completedBy: item.completedBy, 
+                   status: item.status,
                 })),
               ]}
               dateColumn={"dueDate"}

@@ -4,6 +4,7 @@ const CustomError = require("../../utils/customErrorlogs");
 const { createLog } = require("../../utils/moduleLogs");
 const ExternalCompany = require("../../models/meetings/ExternalCompany");
 const UserData = require("../../models/hr/UserData");
+const CoworkingMember = require("../../models/sales/CoworkingMembers");
 
 const fetchVisitors = async (req, res, next) => {
   const { company } = req;
@@ -60,6 +61,14 @@ const fetchVisitors = async (req, res, next) => {
             path: "toMeet",
             select: "firstName lastName email",
           },
+          {
+            path: "clientToMeet",
+            select: "employeeName email",
+          },
+          {
+            path: "clientCompany",
+            select: "clientName email",
+          },
         ]);
         break;
 
@@ -76,6 +85,14 @@ const fetchVisitors = async (req, res, next) => {
           {
             path: "visitorCompany",
             select: "companyName pocName",
+          },
+          {
+            path: "clientToMeet",
+            select: "employeeName email",
+          },
+          {
+            path: "clientCompany",
+            select: "clientName email",
           },
         ]);
     }
@@ -103,31 +120,32 @@ const addVisitor = async (req, res, next) => {
       phoneNumber,
       purposeOfVisit,
       idProof,
-      dateOfVisit,
+      // dateOfVisit,
       checkIn,
       checkOut,
       scheduledTime,
       toMeet,
+      clientToMeet,
+      clientCompany,
       department,
       visitorType,
       visitorCompany,
       visitorCompanyId,
     } = req.body;
 
-    //Validate date format
-
-    const visitDate = new Date(dateOfVisit);
+    // Validate date format
+    const visitDate = new Date();
     const clockIn = new Date(checkIn);
     const clockOut = checkOut ? new Date(checkOut) : null;
 
-    if (isNaN(visitDate.getTime()) || isNaN(clockIn.getTime())) {
-      throw new CustomError(
-        "Invalid date format",
-        logPath,
-        logAction,
-        logSourceKey
-      );
-    }
+    // if (isNaN(visitDate.getTime()) || isNaN(clockIn.getTime())) {
+    //   throw new CustomError(
+    //     "Invalid date format",
+    //     logPath,
+    //     logAction,
+    //     logSourceKey
+    //   );
+    // }
 
     if (
       visitorCompanyId &&
@@ -150,6 +168,15 @@ const addVisitor = async (req, res, next) => {
         company,
       });
 
+      if (clientToMeet && !mongoose.Types.ObjectId.isValid(clientToMeet)) {
+        throw new CustomError(
+          "Invalid client member Id provided",
+          logPath,
+          logAction,
+          logSourceKey
+        );
+      }
+
       if (existingVisitor) {
         throw new CustomError(
           "A scheduled visitor is already meeting this person at the same time.",
@@ -160,7 +187,31 @@ const addVisitor = async (req, res, next) => {
       }
     }
 
+    let foundClientMember = null;
+    if (clientToMeet) {
+      if (!mongoose.Types.ObjectId.isValid(clientToMeet)) {
+        throw new CustomError(
+          "Invalid client member Id provided",
+          logPath,
+          logAction,
+          logSourceKey
+        );
+      }
+
+      foundClientMember = await CoworkingMember.findById(clientToMeet);
+      if (!foundClientMember) {
+        throw new CustomError(
+          "No client member found",
+          logPath,
+          logAction,
+          logSourceKey
+        );
+      }
+    }
+
     let externalCompany = null;
+
+    // Save new external company if provided in request
     if (visitorCompany) {
       const newExternalCompany = new ExternalCompany({
         ...visitorCompany,
@@ -168,7 +219,8 @@ const addVisitor = async (req, res, next) => {
       });
       externalCompany = await newExternalCompany.save();
     }
-    //Add company chekc after bulk insertion
+
+    // Lookup existing external company if ID provided
     if (visitorCompanyId) {
       externalCompany = await ExternalCompany.findById({
         _id: visitorCompanyId,
@@ -183,6 +235,12 @@ const addVisitor = async (req, res, next) => {
       }
     }
 
+    // Handle empty department and clear toMeet if department is empty
+    const isDepartmentEmpty =
+      department === null ||
+      department === undefined ||
+      (typeof department === "string" && department.trim() === "");
+
     const newVisitor = new Visitor({
       firstName,
       middleName,
@@ -192,6 +250,8 @@ const addVisitor = async (req, res, next) => {
       address,
       phoneNumber,
       purposeOfVisit,
+      clientToMeet: clientToMeet ? clientToMeet : null,
+      clientCompany: clientCompany ? clientCompany : null,
       idProof: {
         idType: idProof.idType,
         idNumber: idProof.idNumber,
@@ -199,11 +259,13 @@ const addVisitor = async (req, res, next) => {
       dateOfVisit: visitDate,
       checkIn: clockIn,
       checkOut: clockOut,
-      toMeet,
+      toMeet: isDepartmentEmpty ? null : toMeet,
       company,
-      department,
+      department: isDepartmentEmpty ? null : department,
       visitorType,
+      company,
     });
+
     if (externalCompany) {
       newVisitor.visitorCompany = externalCompany._id;
     }
@@ -288,7 +350,6 @@ const updateVisitor = async (req, res, next) => {
 
     return res.status(200).json({
       message: "Visitor updated successfully",
-      visitor: updatedVisitor,
     });
   } catch (error) {
     if (error instanceof CustomError) {

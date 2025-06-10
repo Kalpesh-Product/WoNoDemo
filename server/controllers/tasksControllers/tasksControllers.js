@@ -361,6 +361,7 @@ const getTasks = async (req, res, next) => {
 
     if (dept) {
       query.department = dept;
+      query.status = "Pending";
     }
 
     const tasks = await Task.find(query)
@@ -559,9 +560,9 @@ const getMyCompletedTasks = async (req, res, next) => {
         : "";
       return {
         ...task,
-        dueDate: formatDate(task.dueDate),
+        dueDate: task.dueDate,
         dueTime: task.dueTime ? task.dueTime : "06:30 PM",
-        assignedDate: formatDate(task.assignedDate),
+        assignedDate: task.assignedDate,
         completedBy,
       };
     });

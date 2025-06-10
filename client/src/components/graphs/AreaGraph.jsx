@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import SecondaryButton from "../SecondaryButton";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 dayjs.extend(utc);
 
@@ -27,6 +29,28 @@ const AreaGraph = ({ responseData }) => {
       : currentDate.year();
     const fyStart = dayjs(`${fyStartYear}-04-01`);
     const fyEnd = fyStart.add(1, "year").subtract(1, "day");
+    const daysInMonth = currentDate.daysInMonth();
+    const monthlySeriesTemplate = [
+      {
+        name: "Total Tickets",
+        data: Array(daysInMonth).fill(0),
+        color: "#007bff",
+      },
+      {
+        name: "Closed Tickets",
+        data: Array(daysInMonth).fill(0),
+        color: "#28a745",
+      },
+      {
+        name: "Open Tickets",
+        data: Array(daysInMonth).fill(0),
+        color: "#ff4d4d",
+      },
+    ];
+    const monthlyCategories = Array.from(
+      { length: daysInMonth },
+      (_, index) => String(index + 1).padStart(2, "0") // e.g., '01', '02', ...
+    );
 
     const transformed = {
       Yearly: {
@@ -51,20 +75,8 @@ const AreaGraph = ({ responseData }) => {
         ],
       },
       Monthly: {
-        series: [
-          { name: "Total Tickets", data: Array(7).fill(0), color: "#007bff" },
-          { name: "Closed Tickets", data: Array(7).fill(0), color: "#28a745" },
-          { name: "Open Tickets", data: Array(7).fill(0), color: "#ff4d4d" },
-        ],
-        categories: [
-          "Week 1",
-          "Week 2",
-          "Week 3",
-          "Week 4",
-          "Week 5",
-          "Week 6",
-          "Week 7",
-        ],
+        series: monthlySeriesTemplate,
+        categories: monthlyCategories,
       },
       Weekly: {
         series: [
@@ -113,7 +125,7 @@ const AreaGraph = ({ responseData }) => {
         const month = createdAt.month(); // 0-11
         categoryIndex = (month + 12 - 3) % 12; // April is 3 → 0
       } else if (filter === "Monthly") {
-        categoryIndex = Math.min(Math.floor((createdAt.date() - 1) / 7), 6);
+        categoryIndex = createdAt.date() - 1;
       } else if (filter === "Weekly") {
         categoryIndex = (createdAt.day() + 6) % 7; // Mon = 0
       }
@@ -176,10 +188,9 @@ const AreaGraph = ({ responseData }) => {
       shared: true,
       intersect: false,
     },
-    legend: {
-      position: "top",
-      horizontalAlign: "right",
-    },
+   legend: {
+  show: false,  
+},
     grid: {
       borderColor: "#f1f1f1",
     },
@@ -190,45 +201,6 @@ const AreaGraph = ({ responseData }) => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-title font-pregular"></h2>
 
-        {/* <div className="flex items-center gap-2">
-          <button
-            className="text-sm px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200"
-            onClick={() => {
-              if (timeFilter === "Yearly") {
-                setCurrentDate((prev) => prev.subtract(1, "year"));
-              } else if (timeFilter === "Monthly") {
-                setCurrentDate((prev) => prev.subtract(1, "month"));
-              } else if (timeFilter === "Weekly") {
-                setCurrentDate((prev) => prev.subtract(1, "week"));
-              }
-            }}
-          >
-            Prev
-          </button>
-
-          <span className="text-sm font-medium text-gray-700">
-            {timeFilter === "Yearly" && currentDate.format("YYYY")}
-            {timeFilter === "Monthly" && currentDate.format("MMMM YYYY")}
-            {timeFilter === "Weekly" &&
-              `Week of ${currentDate.startOf("week").format("MMM D")}`}
-          </span>
-
-          <button
-            className="text-sm px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200"
-            onClick={() => {
-              if (timeFilter === "Yearly") {
-                setCurrentDate((prev) => prev.add(1, "year"));
-              } else if (timeFilter === "Monthly") {
-                setCurrentDate((prev) => prev.add(1, "month"));
-              } else if (timeFilter === "Weekly") {
-                setCurrentDate((prev) => prev.add(1, "week"));
-              }
-            }}
-          >
-            Next
-          </button>
-        </div> */}
-
         <div className="flex gap-2">
           {["Yearly", "Monthly", "Weekly"].map((filter) => (
             <button
@@ -238,7 +210,8 @@ const AreaGraph = ({ responseData }) => {
                   ? "bg-primary text-white"
                   : "bg-gray-200 text-black"
               }`}
-              onClick={() => setTimeFilter(filter)}>
+              onClick={() => setTimeFilter(filter)}
+            >
               {filter}
             </button>
           ))}
@@ -250,6 +223,54 @@ const AreaGraph = ({ responseData }) => {
         type="area"
         height={350}
       />
+
+      <div className="flex justify-center w-full items-center gap-2">
+        <SecondaryButton
+          title={<MdNavigateBefore />}
+          handleSubmit={() => {
+            if (timeFilter === "Yearly") {
+              setCurrentDate((prev) => prev.subtract(1, "year"));
+            } else if (timeFilter === "Monthly") {
+              setCurrentDate((prev) => prev.subtract(1, "month"));
+            } else if (timeFilter === "Weekly") {
+              setCurrentDate((prev) => prev.subtract(1, "week"));
+            }
+          }}
+        />
+
+        <span className="text-sm font-medium text-gray-700">
+          {timeFilter === "Yearly" &&
+            `FY ${
+              currentDate.month() < 3
+                ? currentDate.year() - 1
+                : currentDate.year()
+            }-${(currentDate.month() < 3
+              ? currentDate.year()
+              : currentDate.year() + 1
+            )
+              .toString()
+              .slice(-2)}`}
+
+          {timeFilter === "Monthly" && currentDate.format("MMMM YYYY")}
+          {timeFilter === "Weekly" &&
+            `Week ${Math.ceil(currentDate.date() / 7)} - ${currentDate.format(
+              "MMMM"
+            )}`}
+        </span>
+
+        <SecondaryButton
+          title={<MdNavigateNext />}
+          handleSubmit={() => {
+            if (timeFilter === "Yearly") {
+              setCurrentDate((prev) => prev.add(1, "year"));
+            } else if (timeFilter === "Monthly") {
+              setCurrentDate((prev) => prev.add(1, "month"));
+            } else if (timeFilter === "Weekly") {
+              setCurrentDate((prev) => prev.add(1, "week"));
+            }
+          }}
+        />
+      </div>
     </div>
   );
 };
