@@ -329,6 +329,17 @@ import TasksViewDepartment from "../pages/Tasks/DepartmentTasks/TasksViewDepartm
 import ManageTicketLayout from "../pages/Tickets/Tables/ManageTicketLayout";
 import ManageTicketsHome from "../pages/Tickets/ManageTicketsHome";
 import Reimbursement from "../components/Pages/Reimbursement";
+import AddClient from "../pages/Visitors/Forms/AddClient";
+import IncomeDetails from "../pages/Dashboard/FinanceDashboard/IncomeDetails/IncomeDetails";
+import ComplianceDocuments from "../pages/Dashboard/FinanceDashboard/MixBag/ComplianceDocuments";
+import LandlordAgreements from "../pages/Dashboard/FinanceDashboard/MixBag/LandlordAgreements";
+import ClientAgreements from "../pages/Dashboard/FinanceDashboard/MixBag/ClientAgreements";
+import ReviewRequest from "../pages/Dashboard/FinanceDashboard/Billing/ReviewRequest";
+import ManageVisitorLayout from "../pages/Visitors/ManageVisitorLayout";
+import ExternalClients from "../pages/Visitors/ExternalClients";
+import ManageMeetingsLayout from "../pages/Meetings/ManageMeetingsLayout";
+import ExternalMeetingClients from "../pages/Meetings/ExternalMeetingClients";
+import CoWorkingDetails from "../pages/Dashboard/SalesDashboard/CoWorkingSeats/CoWorkingDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -427,6 +438,10 @@ export const routes = createBrowserRouter([
                             path: "payment-schedule",
                             element: <FrontendPayment />,
                           },
+                          {
+                            path: "voucher",
+                            element: <Reimbursement />,
+                          },
                         ],
                       },
                     ],
@@ -462,6 +477,18 @@ export const routes = createBrowserRouter([
                       {
                         path: "mix-bag/company-KYC",
                         element: <DirectorsCompany />,
+                      },
+                      {
+                        path: "mix-bag/compliance-documents",
+                        element: <ComplianceDocuments />,
+                      },
+                      {
+                        path: "mix-bag/landlord-agreements",
+                        element: <LandlordAgreements />,
+                      },
+                      {
+                        path: "mix-bag/client-agreements",
+                        element: <ClientAgreements />,
                       },
                       {
                         path: "company-KYC",
@@ -538,13 +565,26 @@ export const routes = createBrowserRouter([
                         element: <MonthlyProfitLoss />,
                       },
                       {
+                        path: "monthly-profit-loss/income-details",
+                        element: <IncomeDetails />,
+                      },
+                      {
                         path: "annual-average-profit-loss",
                         element: <AverageProfitLoss />,
+                      },
+                      {
+                        path: "annual-average-profit-loss/income-details",
+                        element: <IncomeDetails />,
                       },
                       {
                         path: "overall-profit-loss",
                         element: <OverallProfitLoss />,
                       },
+                      {
+                        path: "overall-profit-loss/income-details",
+                        element: <IncomeDetails />,
+                      },
+
                       {
                         path: "sqft-wise-data",
                         element: <SqWiseData />,
@@ -554,12 +594,8 @@ export const routes = createBrowserRouter([
                         element: <BillingsLayout />,
                         children: [
                           {
-                            path: "invoice-creation",
+                            path: "invoice",
                             element: <InvoiceCreation />,
-                          },
-                          {
-                            path: "invoice-creation/:id",
-                            element: <ViewTemplate />,
                           },
                           {
                             path: "finance-monthly-vouchers",
@@ -570,12 +606,16 @@ export const routes = createBrowserRouter([
                             element: <FinanceViewVoucher />,
                           },
                           {
-                            path: "voucher-creation",
+                            path: "voucher",
                             element: <VoucherCreation />,
                           },
                           {
                             path: "pending-approvals",
                             element: <PendingApprovals />,
+                          },
+                          {
+                            path: "pending-approvals/review-request",
+                            element: <ReviewRequest />,
                           },
                         ],
                       },
@@ -588,7 +628,7 @@ export const routes = createBrowserRouter([
                             element: <FinanceBudget />,
                           },
                           {
-                            path: "reimbursement",
+                            path: "voucher",
                             element: <Reimbursement />,
                           },
                           {
@@ -654,6 +694,10 @@ export const routes = createBrowserRouter([
                           {
                             path: "payment-schedule",
                             element: <AdminPayment />,
+                          },
+                          {
+                            path: "voucher",
+                            element: <Reimbursement />,
                           },
                         ],
                       },
@@ -834,6 +878,10 @@ export const routes = createBrowserRouter([
                             path: "payment-schedule",
                             element: <MaintenancePayment />,
                           },
+                          {
+                            path: "voucher",
+                            element: <Reimbursement />,
+                          },
                         ],
                       },
                       {
@@ -951,6 +999,10 @@ export const routes = createBrowserRouter([
                           {
                             path: "payment-schedule",
                             element: <ItPayment />,
+                          },
+                          {
+                            path: "voucher",
+                            element: <Reimbursement />,
                           },
                         ],
                       },
@@ -1075,6 +1127,10 @@ export const routes = createBrowserRouter([
                             path: "payment-schedule",
                             element: <SalesPayment />,
                           },
+                          {
+                            path: "voucher",
+                            element: <Reimbursement />,
+                          },
                         ],
                       },
                       {
@@ -1085,9 +1141,17 @@ export const routes = createBrowserRouter([
                         path: "mix-bag/co-working-seats",
                         element: <CoWorkingSeats />,
                       },
+                       {
+                        path: "mix-bag/co-working-seats/:id",
+                        element: <CoWorkingDetails />,
+                      },
                       {
                         path: "co-working-seats",
                         element: <CoWorkingSeats />,
+                      },
+                      {
+                        path: "co-working-seats/:id",
+                        element: <CoWorkingDetails />,
                       },
                       {
                         path: "mix-bag/co-working-seats/check-availability",
@@ -1435,6 +1499,10 @@ export const routes = createBrowserRouter([
                             element: <HrPayment />,
                           },
                           {
+                            path: "voucher",
+                            element: <Reimbursement />,
+                          },
+                          {
                             path: "payroll",
                             element: <HrPayroll />,
                           },
@@ -1631,8 +1699,19 @@ export const routes = createBrowserRouter([
                   },
                   {
                     path: "manage-meetings",
-                    element: <ManageMeetings />,
+                    element: <ManageMeetingsLayout />,
+                    children: [
+                      {
+                        path: "internal-meetings",
+                        element: <ManageMeetings />,
+                      },
+                      {
+                        path: "external-clients",
+                        element: <ExternalMeetingClients />,
+                      },
+                    ],
                   },
+
                   {
                     path: "settings",
                     element: <MeetingSettings />,
@@ -1887,9 +1966,26 @@ export const routes = createBrowserRouter([
                     element: <AddVisitor />,
                   },
                   {
-                    path: "manage-visitors", // Page with table showing a list of all visitors
-                    element: <ManageVisitors />,
+                    path: "add-client", // Page with form to Add a new Visitor
+                    element: <AddClient />,
                   },
+                  {
+                    path: "manage-visitors",
+                    element: <ManageVisitorLayout />,
+                    children: [
+                      {
+                        path: "internal-visitors", // Page with table showing a list of all visitors
+                        element: <ManageVisitors />,
+                        index: true,
+                      },
+                      {
+                        path: "external-clients", // Page with table showing a list of all visitors
+                        element: <ExternalClients />,
+                        index: true,
+                      },
+                    ],
+                  },
+
                   {
                     path: "team-members", // Page with table showing a list of all the team members(receptionists)
                     element: <VisitorTeamMembers />,

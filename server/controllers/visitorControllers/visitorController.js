@@ -5,6 +5,8 @@ const { createLog } = require("../../utils/moduleLogs");
 const ExternalCompany = require("../../models/meetings/ExternalCompany");
 const UserData = require("../../models/hr/UserData");
 const CoworkingMember = require("../../models/sales/CoworkingMembers");
+const CoworkingClient = require("../../models/sales/CoworkingClient");
+const Company = require("../../models/hr/Company");
 
 const fetchVisitors = async (req, res, next) => {
   const { company } = req;
@@ -69,6 +71,9 @@ const fetchVisitors = async (req, res, next) => {
             path: "clientCompany",
             select: "clientName email",
           },
+          {
+            path: "meeting",
+          },
         ]);
         break;
 
@@ -94,6 +99,9 @@ const fetchVisitors = async (req, res, next) => {
             path: "clientCompany",
             select: "clientName email",
           },
+          {
+            path: "meeting",
+          },
         ]);
     }
 
@@ -116,11 +124,13 @@ const addVisitor = async (req, res, next) => {
       lastName,
       email,
       gender,
-      address,
+      // address,
       phoneNumber,
       purposeOfVisit,
       idProof,
-      // dateOfVisit,
+      sector,
+      city,
+      state,
       checkIn,
       checkOut,
       scheduledTime,
@@ -129,8 +139,8 @@ const addVisitor = async (req, res, next) => {
       clientCompany,
       department,
       visitorType,
-      visitorCompany,
       visitorCompanyId,
+      visitorFlag,
     } = req.body;
 
     // Validate date format
@@ -162,8 +172,7 @@ const addVisitor = async (req, res, next) => {
     if (visitorType === "Scheduled") {
       const existingVisitor = await Visitor.findOne({
         toMeet,
-        dateOfVisit,
-        scheduledTime,
+        dateOfVisit: visitDate,
         visitorType: "Scheduled",
         company,
       });
@@ -209,25 +218,41 @@ const addVisitor = async (req, res, next) => {
       }
     }
 
-    let externalCompany = null;
+    let visitorCompany = null;
 
     // Save new external company if provided in request
-    if (visitorCompany) {
-      const newExternalCompany = new ExternalCompany({
-        ...visitorCompany,
-        company,
-      });
-      externalCompany = await newExternalCompany.save();
-    }
+    // if (visitorCompany) {
+    // const newExternalCompany = new ExternalCompany({
+    //   ...visitorCompany,
+    //   company,
+    // });
+    // externalCompany = await newExternalCompany.save();
+
+    // }
 
     // Lookup existing external company if ID provided
-    if (visitorCompanyId) {
-      externalCompany = await ExternalCompany.findById({
+    isClient = company !== visitorCompanyId ? true : false;
+    if (visitorCompanyId && isClient) {
+      visitorCompany = await CoworkingClient.findById({
         _id: visitorCompanyId,
       });
-      if (!externalCompany) {
+
+      if (!visitorCompany) {
         throw new CustomError(
-          "Visitor's Company not found",
+          "Company not found",
+          logPath,
+          logAction,
+          logSourceKey
+        );
+      }
+    } else if (visitorCompanyId) {
+      visitorCompany = await Company.findById({
+        _id: visitorCompanyId,
+      });
+
+      if (!visitorCompany) {
+        throw new CustomError(
+          "Company not found",
           logPath,
           logAction,
           logSourceKey
@@ -247,28 +272,29 @@ const addVisitor = async (req, res, next) => {
       lastName,
       email,
       gender,
-      address,
+      // address,
       phoneNumber,
       purposeOfVisit,
       clientToMeet: clientToMeet ? clientToMeet : null,
       clientCompany: clientCompany ? clientCompany : null,
       idProof: {
-        idType: idProof.idType,
-        idNumber: idProof.idNumber,
+        idType: idProof ? idProof.idType : "",
+        idNumber: idProof ? idProof.idNumber : "",
       },
       dateOfVisit: visitDate,
       checkIn: clockIn,
       checkOut: clockOut,
+      sector,
+      city,
+      state,
       toMeet: isDepartmentEmpty ? null : toMeet,
       company,
       department: isDepartmentEmpty ? null : department,
       visitorType,
+      visitorCompany: visitorCompany ? visitorCompany : null,
       company,
+      visitorFlag,
     });
-
-    if (externalCompany) {
-      newVisitor.visitorCompany = externalCompany._id;
-    }
 
     const savedVisitor = await newVisitor.save();
 

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import {
   Tabs,
@@ -21,43 +21,80 @@ import WidgetSection from "../WidgetSection";
 import MuiModal from "../MuiModal"; // if not already
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import UploadImageInput from "../UploadImageInput";
+import UploadImageInput from "../UploadFileInput";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "../../main";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import UploadFileInput from "../UploadFileInput";
+import usePageDepartment from "../../hooks/usePageDepartment";
 
 const AllocatedBudget = ({
   financialData,
   isLoading,
   variant,
   hideTitle,
+  noInvoice=false,
   noFilter = false,
 }) => {
+  const axios = useAxiosPrivate();
   const [selectedTab, setSelectedTab] = useState(0);
   const fiscalYears = ["FY 2024-25", "FY 2025-26"];
   const [selectedFYIndex, setSelectedFYIndex] = useState(0);
   const selectedFY = fiscalYears[selectedFYIndex];
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState([]);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
-      invoice: null,
+      invoiceImage: null,
     },
   });
 
-  const onUpload = (data) => {
-    const file = data.invoiceImage[0];
-    console.log("Uploading invoice for:", selectedRow);
-    console.log("Selected file:", file);
+  const department = usePageDepartment();
+  const onUpload = (data, row) => {
+    const file = data.invoiceImage;
 
-    // You can use FormData to upload the file here
-    // const formData = new FormData();
-    // formData.append("invoice", file);
-    // formData.append("rowId", selectedRow.id);
-    // axios.post("/upload-invoice", formData)...
+    if (!file || !row?.id) {
+      toast.error("Missing file or selected row.");
+      return;
+    }
 
-    toast.success("Invoice uploaded!");
-    reset();
-    setUploadModalOpen(false);
+    const formData = new FormData();
+    formData.append("invoice", file);
+    formData.append("rowId", row.id);
+    formData.append("departmentName", department?.name || ""); // ✅ append it here
+
+    uploadInvoiceMutation(formData); // ✅ pass just FormData
   };
+
+  const { mutate: uploadInvoiceMutation, isPending: isUploadPending } =
+    useMutation({
+      mutationFn: async (formData) => {
+        const rowId = formData.get("rowId");
+        formData.delete("rowId"); // optional
+        const response = await axios.patch(
+          `/api/budget/upload-budget-invoice/${rowId}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        return response.data;
+      },
+
+      onSuccess: (data) => {
+        toast.success(data.message || "BUDGET UPDATED");
+        reset();
+        setUploadModalOpen(false);
+        queryClient.invalidateQueries({ queryKey: ["financeBudget"] });
+      },
+      onError: (error) => {
+        toast.error("Failed to upload invoice.");
+        console.error(error);
+      },
+    });
 
   const allTypes = useMemo(() => {
     const types = new Set();
@@ -145,35 +182,60 @@ const AllocatedBudget = ({
     noFilter,
   ]);
 
+  // const totalProjectedAmountForFY = useMemo(() => {
+  //   return filteredMonths.reduce((sum, month) => {
+  //     const data = groupedData["All"]?.[month];
+  //     return sum + (data?.projectedAmount || 0);
+  //   }, 0);
+  // }, [filteredMonths, groupedData]);
+
   const totalProjectedAmountForFY = useMemo(() => {
-    return filteredMonths.reduce((sum, month) => {
-      const data = groupedData["All"]?.[month];
-      return sum + (data?.projectedAmount || 0);
-    }, 0);
-  }, [filteredMonths, groupedData]);
+    const data = groupedData["All"]?.[filteredMonths[selectedMonthIndex]];
+    return data?.projectedAmount || 0;
+  }, [filteredMonths, selectedMonthIndex, groupedData]);
 
   const enhancedColumns = useMemo(() => {
-    return [
-      ...monthDataForSelectedType.columns,
-      {
+    const baseColumns = [...monthDataForSelectedType.columns];
+
+    if (!noInvoice) {
+      baseColumns.push({
         field: "actions",
         headerName: "Actions",
         pinned: "right",
-        cellRenderer: (params) => (
-          <div className="p-2">
-            <PrimaryButton
-              title="Upload Invoice"
-              externalStyles={"p-2"}
-              handleSubmit={() => {
-                setSelectedRow(params.row);
-                setUploadModalOpen(true);
-              }}
-            />
-          </div>
-        ),
-      },
-    ];
-  }, [monthDataForSelectedType.columns]);
+        cellRenderer: (params) => {
+          const { invoiceAttached, status } = params.data;
+          const isRejected = status === "Rejected";
+
+          return (
+            <div className="p-2">
+              {!invoiceAttached && !isRejected ? (
+                <PrimaryButton
+                  title="Upload Invoice"
+                  externalStyles="p-2"
+                  handleSubmit={() => {
+                    setSelectedRow(params.data);
+                    setUploadModalOpen(true);
+                  }}
+                />
+              ) : (
+                <span className="text-content">
+                  {invoiceAttached
+                    ? "Invoice Uploaded"
+                    : isRejected
+                    ? "Rejected"
+                    : ""}
+                </span>
+              )}
+            </div>
+          );
+        },
+      });
+    }
+
+    return baseColumns;
+  }, [monthDataForSelectedType.columns, noInvoice]);
+
+  console.log("Enhanced columns : ", enhancedColumns);
 
   if (isLoading) return <CircularProgress />;
 
@@ -229,7 +291,7 @@ const AllocatedBudget = ({
                 </div>
               )} */}
             </div>
-            <div className="flex gap-4 justify-end items-center w-3/4 ">
+            <div className="flex gap-4 justify-start items-center w-full ">
               <div className="">
                 {/* Month Switcher */}
                 {filteredMonths.length > 0 && (
@@ -305,20 +367,29 @@ const AllocatedBudget = ({
         onClose={() => setUploadModalOpen(false)}
         title="Upload Invoice"
       >
-        <form onSubmit={handleSubmit(onUpload)} className="space-y-4">
+        <form
+          onSubmit={handleSubmit((data) => onUpload(data, selectedRow))}
+          className="space-y-4"
+        >
           <Controller
             name="invoiceImage"
             control={control}
             render={({ field }) => (
-              <UploadImageInput
+              <UploadFileInput
                 value={field.value}
                 onChange={field.onChange}
-                label="Invoice"
+                allowedExtensions={["pdf"]}
+                previewType="pdf"
               />
             )}
           />
           <div className="text-right">
-            <PrimaryButton title="Submit" type="submit" />
+            <PrimaryButton
+              title="Submit"
+              type="submit"
+              isLoading={isUploadPending}
+              disabled={isUploadPending}
+            />
           </div>
         </form>
       </MuiModal>

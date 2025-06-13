@@ -1,13 +1,28 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
-import { TextField, MenuItem, Box, IconButton } from "@mui/material";
+import {
+  TextField,
+  MenuItem,
+  Box,
+  IconButton,
+  FormControl,
+  CircularProgress,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import PrimaryButton from "../PrimaryButton";
 import MuiModal from "../MuiModal";
 import usePageDepartment from "../../hooks/usePageDepartment";
 import { MdDelete } from "react-icons/md";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import humanDate from "../../utils/humanDateForamt";
+import { toast } from "sonner";
+import PageFrame from "./PageFrame";
 
 // Tailwind classes
 const cellClasses = "border border-black p-2 text-xs align-top";
@@ -28,36 +43,126 @@ const Reimbursement = () => {
   const formRef = useRef(null);
   const [openPreview, setOpenPreview] = useState(false);
   const department = usePageDepartment();
-
-  const { control, watch, setValue } = useForm({
+  const axios = useAxiosPrivate();
+  const { control, watch, setValue, getValues, reset } = useForm({
     defaultValues: {
-      department: department?.id || "",
-      sNo: "001",
-      date: "10/04/2025",
-      invoiceAttached: "No",
-      preApproved: "No",
-      emergencyApproval: "No",
-      budgetApproval: "No",
-      l1Approval: "No",
-      invoiceDate: "",
+      department: "",
+      srNo: "001",
+      expanseName: "",
+      expanseType: "Reimbursement",
+      unitId: "",
+      location: "",
+      invoiceAttached: false,
+      preApproved: false,
+      emergencyApproval: false,
+      budgetApproval: false,
+      l1Approval: false,
+      reimbursementDate: null,
+      particulars: [],
       invoiceNo: "",
-      deliveryDate: "",
-      financeSNo: "",
-      financeDate: "",
-      modeOfPayment: "Cash",
-      chequeNo: "",
-      chequeDate: "",
-      amount: "",
-      expectedDate: "",
-      expenses: [],
+      gstIn: "",
+    },
+  });
+  const { data: departmentBudget = [], isPending: isDepartmentLoading } =
+    useQuery({
+      queryKey: ["departmentBudget"],
+      queryFn: async () => {
+        try {
+          const response = await axios.get(
+            `/api/budget/company-budget?departmentId=${department._id}`
+          );
+          const budgets = response.data.allBudgets;
+          return Array.isArray(budgets) ? budgets : [];
+        } catch (error) {
+          console.error("Error fetching budget:", error);
+          return [];
+        }
+      },
+    });
+  const reimbursedBudget = isDepartmentLoading
+    ? []
+    : departmentBudget.filter((item) => item.expanseType === "Reimbursement")
+        .length;
+
+  useEffect(() => {
+    if (department?.name && reimbursedBudget >= 0) {
+      const prefix = department.name.slice(0, 3).toUpperCase();
+      const number = String(reimbursedBudget + 1).padStart(3, "0");
+      const generatedSNo = `${prefix}-${number}`;
+      setValue("srNo", generatedSNo);
+    }
+  }, [department?.name, reimbursedBudget, setValue]);
+
+  const selectedLocation = watch("location");
+  const selectedUnit = watch("unitId");
+
+  const {
+    data: units = [],
+    isLoading: locationsLoading,
+    error: locationsError,
+  } = useQuery({
+    queryKey: ["units"],
+    queryFn: async () => {
+      const response = await axios.get("/api/company/fetch-units");
+
+      return response.data;
     },
   });
 
+  const selectedUnitId = useMemo(() => {
+    if (!selectedUnit || !selectedLocation) return null;
+
+    const unit = units.find(
+      (unit) =>
+        unit._id === selectedUnit &&
+        unit.building.buildingName === selectedLocation
+    );
+    return unit._id;
+  }, [selectedUnit, selectedLocation, units]);
+
+  const uniqueBuildings = Array.from(
+    new Map(
+      units.length > 0
+        ? units.map((loc) => [
+            loc.building._id, // use building._id as unique key
+            loc.building.buildingName,
+          ])
+        : []
+    ).entries()
+  );
+
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "expenses",
+    name: "particulars",
   });
   const values = watch();
+
+  const onUpload = () => {
+    const values = getValues();
+    // If you are using useFieldArray for "particulars"
+    values.particulars = fields;
+    submitRequest(values);
+  };
+
+  const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
+    mutationKey: ["reimbursement"],
+    mutationFn: async (data) => {
+      console.log("Data ;", data);
+      const response = await axios.post(
+        `/api/budget/request-budget/${department._id}`,
+        data
+      );
+      return response.data;
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setOpenPreview(false);
+      reset();
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
 
   const exportToPDF = async () => {
     const canvas = await html2canvas(formRef.current, {
@@ -73,241 +178,332 @@ const Reimbursement = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="w-full space-y-4">
-        <div className="flex justify-between items-center">
-          <span className="text-title text-primary font-pbold mb-4 uppercase">
-            Reimbursement Form
-          </span>
-          <PrimaryButton
-            title="Preview"
-            externalStyles={"w-1/4"}
-            handleSubmit={() => setOpenPreview(true)}
-          />
-        </div>
+    <div className="flex flex-col gap-4 ">
+      <PageFrame>
+        <div className="w-full space-y-4">
+          <div className="flex justify-between items-center">
+            <span className="text-title text-primary font-pbold mb-4 uppercase">
+              {department?.name} Department - Voucher Form
+            </span>
+          </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Render department separately */}
-            <Controller
-              name="department"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  size="small"
-                  disabled
-                  label="Department"
-                  value={department?.name || ""} // ✅ Display this in the field
-                />
-              )}
-            />
-
-            {/* Render the rest of the fields */}
-            {["sNo", "date"].map((fieldName) => (
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <Controller
-                key={fieldName}
-                name={fieldName}
+                name="location"
                 control={control}
                 render={({ field }) => (
                   <TextField
+                    size="small"
+                    select
+                    {...field}
+                    label="Select Location">
+                    <MenuItem value="" disabled>
+                      Select Building
+                    </MenuItem>
+                    {locationsLoading ? (
+                      <MenuItem disabled>
+                        <CircularProgress size={20} />
+                      </MenuItem>
+                    ) : locationsError ? (
+                      <MenuItem disabled>Error fetching units</MenuItem>
+                    ) : (
+                      uniqueBuildings.map(([id, name]) => (
+                        <MenuItem key={id} value={name}>
+                          {name}
+                        </MenuItem>
+                      ))
+                    )}
+                  </TextField>
+                )}
+              />
+
+              <Controller
+                name="unitId"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    select
+                    size="small"
+                    label="Select Unit"
+                    disabled={!selectedLocation}
+                    {...field} // ✅ handles value and onChange
+                  >
+                    <MenuItem value="">Select Unit</MenuItem>
+                    {locationsLoading ? (
+                      <MenuItem disabled>
+                        <CircularProgress size={20} />
+                      </MenuItem>
+                    ) : (
+                      units
+                        .filter(
+                          (unit) =>
+                            unit.building?.buildingName === selectedLocation
+                        )
+                        .map((unit) => (
+                          <MenuItem key={unit._id} value={unit._id}>
+                            {unit.unitNo}
+                          </MenuItem>
+                        ))
+                    )}
+                  </TextField>
+                )}
+              />
+
+              {/* Hidden field to store department ID */}
+              <Controller
+                name="department"
+                control={control}
+                render={({ field }) => <input type="hidden" {...field} />}
+              />
+
+              {/* Display department name separately */}
+              <TextField
+                fullWidth
+                size="small"
+                disabled
+                label="Department"
+                value={department?.name || ""}
+              />
+              {["srNo"].map((fieldName) => (
+                <Controller
+                  key={fieldName}
+                  name={fieldName}
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      size="small"
+                      disabled
+                      label={fieldName
+                        .replace(/([A-Z])/g, " $1")
+                        .replace(/^./, (str) => str.toUpperCase())}
+                      {...field}
+                    />
+                  )}
+                />
+              ))}
+
+              <Controller
+                name="reimbursementDate"
+                control={control}
+                rules={{
+                  required: "Date is required",
+                  validate: (value) => {
+                    if (!value) return true; // already handled by required
+                    const today = dayjs().startOf("day");
+                    const selected = dayjs(value);
+                    if (selected.isBefore(today)) {
+                      return "Date cannot be in the past.";
+                    }
+                    return true;
+                  },
+                }}
+                render={({ field, fieldState }) => (
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      {...field}
+                      label="Reimbursement Date"
+                      format="DD-MM-YYYY"
+                      disablePast
+                      value={field.value ? dayjs(field.value) : null}
+                      onChange={(date) =>
+                        field.onChange(date ? date.toISOString() : null)
+                      }
+                      slotProps={{
+                        textField: {
+                          fullWidth: true,
+                          size: "small",
+                        },
+                      }}
+                    />
+                  </LocalizationProvider>
+                )}
+              />
+
+              {/* Render the rest of the fields */}
+
+              <Controller
+                name="expanseName"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
                     fullWidth
                     size="small"
-                    label={fieldName
-                      .replace(/([A-Z])/g, " $1")
-                      .replace(/^./, (str) => str.toUpperCase())}
+                    label="Expense Name"
+                  />
+                )}
+              />
+            </div>
+
+            <span className="text-subtitle font-pmedium text-primary">
+              Add Expenses
+            </span>
+            <div className="flex gap-2">
+              <Controller
+                name="particularName"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    label="Particulars"
+                    size="small"
+                    fullWidth
                     {...field}
                   />
                 )}
               />
+              <Controller
+                name="particularAmount"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    label="Amount"
+                    size="small"
+                    type="number"
+                    fullWidth
+                    {...field}
+                  />
+                )}
+              />
+              <div className="flex flex-col justify-center items-center">
+                {/* UI-only List of Added Particulars */}
+
+                <PrimaryButton
+                  title="Add"
+                  externalStyles={"w-1/4"}
+                  handleSubmit={() => {
+                    const { particularName, particularAmount } = watch();
+                    if (particularName && particularAmount) {
+                      append({
+                        particularName: particularName,
+                        particularAmount: parseFloat(particularAmount),
+                      });
+                      setValue("particularName", "");
+                      setValue("particularAmount", "");
+                    }
+                  }}
+                />
+              </div>
+            </div>
+            {fields.length > 0 && (
+              <div className="mt-4 border border-gray-300 rounded p-3 bg-gray-50">
+                <p className="text-sm font-semibold text-gray-800 mb-2">
+                  Added Particulars (UI Preview Only):
+                </p>
+                <ul className="text-xs space-y-1">
+                  {fields.map((item, index) => (
+                    <li
+                      key={index}
+                      className="flex justify-between items-center border-b py-1">
+                      <div className="flex flex-col">
+                        <span>{item.particularName}</span>
+                        <span className="font-medium text-gray-600">
+                          INR {item.particularAmount?.toFixed(2)}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => remove(index)}
+                        className="text-red-500 hover:text-red-700"
+                        title="Delete">
+                        <MdDelete size={20} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Total Section */}
+                <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
+                  <span>Total</span>
+                  <span>
+                    INR{" "}
+                    {fields
+                      .reduce(
+                        (acc, item) =>
+                          acc + (parseFloat(item.particularAmount) || 0),
+                        0
+                      )
+                      .toFixed(0)}
+                  </span>
+                </div>
+
+                <p className="text-[10px] text-gray-500 mt-2 italic">
+                  * This list is for UI purposes only. The actual voucher
+                  remains unchanged.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <Controller
+              name="gstIn"
+              control={control}
+              render={({ field }) => (
+                <TextField label="GSTIN" size="small" fullWidth {...field} />
+              )}
+            />
+            {[
+              {
+                name: "invoiceAttached",
+                label: "Invoice Attached ",
+                values: options,
+              },
+              {
+                name: "preApproved",
+                label: "Pre Approved in Budget ",
+                values: options,
+              },
+              {
+                name: "emergencyApproval",
+                label: "Emergency Approval ",
+                values: options,
+              },
+              {
+                name: "budgetApproval",
+                label: "Budget Approval (Finance)",
+                values: options,
+              },
+              {
+                name: "l1Approval",
+                label: "L1 Authority Approval",
+                values: options,
+              },
+            ].map(({ name, label, values }) => (
+              <Controller
+                key={name}
+                name={name}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    select
+                    fullWidth
+                    size="small"
+                    label={label}
+                    value={field.value ? "Yes" : "No"}
+                    onChange={(e) => field.onChange(e.target.value === "Yes")}>
+                    {["Yes", "No"].map((opt) => (
+                      <MenuItem key={opt} value={opt}>
+                        {opt}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
             ))}
           </div>
-
-          <span className="text-subtitle font-pmedium">Add Particulars</span>
-          <div className="flex gap-2">
-            <Controller
-              name="newParticular"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  label="Particulars"
-                  size="small"
-                  fullWidth
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name="newAmount"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  label="Amount"
-                  size="small"
-                  type="number"
-                  fullWidth
-                  {...field}
-                />
-              )}
-            />
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            {/* UI-only List of Added Particulars */}
-
+          <div className="place-items-center">
             <PrimaryButton
-              title="Add"
+              title="Preview"
               externalStyles={"w-1/4"}
-              handleSubmit={() => {
-                const { newParticular, newAmount } = watch();
-                if (newParticular && newAmount) {
-                  append({
-                    particular: newParticular,
-                    amount: parseFloat(newAmount),
-                  });
-                  setValue("newParticular", "");
-                  setValue("newAmount", "");
-                }
-              }}
+              handleSubmit={() => setOpenPreview(true)}
             />
           </div>
-          {fields.length > 0 && (
-            <div className="mt-4 border border-gray-300 rounded p-3 bg-gray-50">
-              <p className="text-sm font-semibold text-gray-800 mb-2">
-                Added Particulars (UI Preview Only):
-              </p>
-              <ul className="text-xs space-y-1">
-                {fields.map((item, index) => (
-                  <li
-                    key={index}
-                    className="flex justify-between items-center border-b py-1"
-                  >
-                    <div className="flex flex-col">
-                      <span>{item.particular}</span>
-                      <span className="font-medium text-gray-600">
-                        INR {item.amount?.toFixed(2)}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => remove(index)}
-                      className="text-red-500 hover:text-red-700"
-                      title="Delete"
-                    >
-                      <MdDelete size={20} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Total Section */}
-              <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
-                <span>Total</span>
-                <span>
-                  INR{" "}
-                  {fields
-                    .reduce(
-                      (acc, item) => acc + (parseFloat(item.amount) || 0),
-                      0
-                    )
-                    .toFixed(2)}
-                </span>
-              </div>
-
-              <p className="text-[10px] text-gray-500 mt-2 italic">
-                * This list is for UI purposes only. The actual voucher remains
-                unchanged.
-              </p>
-            </div>
-          )}
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {[
-            {
-              name: "invoiceAttached",
-              label: "Invoice Attached ",
-              values: options,
-            },
-            {
-              name: "preApproved",
-              label: "Pre Approved in Budget ",
-              values: options,
-            },
-            {
-              name: "emergencyApproval",
-              label: "Emergency Approval ",
-              values: options,
-            },
-            {
-              name: "budgetApproval",
-              label: "Budget Approval (Finance)",
-              values: options,
-            },
-            {
-              name: "l1Approval",
-              label: "L1 Authority Approval",
-              values: options,
-            },
-            // {
-            //   name: "modeOfPayment",
-            //   label: "Mode of Payment",
-            //   values: paymentModes,
-            // },
-          ].map(({ name, label, values }) => (
-            <Controller
-              key={name}
-              name={name}
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  select
-                  fullWidth
-                  size="small"
-                  label={label}
-                  {...field}
-                >
-                  {values.map((opt) => (
-                    <MenuItem key={opt} value={opt}>
-                      {opt}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
-          ))}
-        </div>
-
-        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {[
-            "invoiceDate",
-            "invoiceNo",
-            "deliveryDate",
-            "chequeNo",
-            "chequeDate",
-            "amount",
-            "expectedDate",
-          ].map((fieldName) => (
-            <Controller
-              key={fieldName}
-              name={fieldName}
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  fullWidth
-                  size="small"
-                  label={fieldName
-                    .replace(/([A-Z])/g, " $1")
-                    .replace(/^./, (str) => str.toUpperCase())}
-                  {...field}
-                />
-              )}
-            />
-          ))}
-        </div> */}
-      </div>
+      </PageFrame>
 
       <MuiModal open={openPreview} onClose={() => setOpenPreview(false)}>
         <Box className="absolute top-1/2 left-1/2 bg-white p-4 rounded shadow max-h-screen overflow-y-auto w-[53%] -translate-x-1/2 -translate-y-1/2">
@@ -344,7 +540,7 @@ const Reimbursement = () => {
 
             {/* Department Info */}
             <div className="text-center text-sm mt-2">
-              DEPARTMENT - {values.department}
+              DEPARTMENT - {department?.name}
             </div>
             <div className="flex w-full justify-end items-end flex-col gap-2 text-sm my-2">
               <div className="flex gap-2 items-end">
@@ -356,7 +552,7 @@ const Reimbursement = () => {
               <div className="flex gap-2 items-end">
                 <p>Date</p>
                 <span className="w-28 border-b-default border-black py-1">
-                  {values.date}
+                  {humanDate(values.reimbursementDate)}
                 </span>
               </div>
             </div>
@@ -375,13 +571,13 @@ const Reimbursement = () => {
                 </tr>
               </thead>
               <tbody>
-                {values.expenses?.map((item, idx) => (
+                {values.particulars?.map((item, idx) => (
                   <tr key={idx}>
                     <td className={cellClasses} colSpan={6}>
-                      {item.particular}
+                      {item.particularName}
                     </td>
                     <td className={cellClasses} colSpan={2}>
-                      {item.amount}
+                      {item.particularAmount}
                     </td>
                   </tr>
                 ))}
@@ -390,10 +586,12 @@ const Reimbursement = () => {
                     Total
                   </td>
                   <td className={cellClasses + " font-bold"} colSpan={2}>
-                    ₹
-                    {values.expenses
-                      ?.reduce((sum, item) => sum + Number(item.amount || 0), 0)
-                      .toFixed(2)}
+                    {values.particulars
+                      ?.reduce(
+                        (sum, item) => sum + Number(item.particularAmount || 0),
+                        0
+                      )
+                      .toFixed(0)}
                   </td>
                 </tr>
               </tbody>
@@ -405,13 +603,17 @@ const Reimbursement = () => {
                   <td className={cellClasses}>
                     Original Invoice is Attached with Voucher
                   </td>
-                  <td className={cellClasses}>{values.invoiceAttached}</td>
+                  <td className={cellClasses}>
+                    {values.invoiceAttached ? "Yes" : "No"}
+                  </td>
                 </tr>
                 <tr>
                   <td className={cellClasses}>
                     Expenses is Pre Approved in Budget
                   </td>
-                  <td className={cellClasses}>{values.preApproved}</td>
+                  <td className={cellClasses}>
+                    {values.preApproved ? "Yes" : "No"}
+                  </td>
                 </tr>
                 <tr>
                   <td className={cellClasses}>Date of Invoice Received</td>
@@ -445,14 +647,18 @@ const Reimbursement = () => {
                   <td className={cellClasses}>
                     Expenses is Approved in Budget or other Approval
                   </td>
-                  <td className={cellClasses}>{values.emergencyApproval}</td>
+                  <td className={cellClasses}>
+                    {values.emergencyApproval ? "Yes" : "No"}
+                  </td>
                 </tr>
                 <tr>
                   <td className={cellClasses + " font-semibold"}>
                     If expenses is not Approved/Emergency Expenses (NEED
                     APPROVAL OF L1 Authority)
                   </td>
-                  <td className={cellClasses}>{values.budgetApproval}</td>
+                  <td className={cellClasses}>
+                    {values.budgetApproval ? "Yes" : "No"}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -464,96 +670,15 @@ const Reimbursement = () => {
               </div>
               <div>(Signature) & Dept. Stamp</div>
             </div>
-
-            {/* Finance Area */}
-            {/* <hr className="border border-black mb-1" />
-            <div className="text-center font-bold text-sm mb-1">
-              Finance Area
-            </div>
-            <div className="flex w-full justify-end items-end flex-col gap-2 text-sm my-2">
-              <div className="flex gap-2 items-end">
-                <p>S.No.</p>
-                <span className="w-28 border-b-default border-black py-1">
-                  {values.sNo}
-                </span>
-              </div>
-              <div className="flex gap-2 items-end">
-                <p>Date</p>
-                <span className="w-28 border-b-default border-black py-1">
-                  {values.date}
-                </span>
-              </div>
-            </div>
-
-            <div className="text-center font-bold text-base mb-2">VOUCHER</div>
-            <table className={tableClasses}>
-              <thead>
-                <tr>
-                  <td className={cellClasses}>PARTICULARS</td>
-                  <td className={cellClasses}>Rs.</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className={cellClasses}>DEBIT</td>
-                  <td className={cellClasses}></td>
-                </tr>
-                <tr>
-                  <td className={cellClasses}>CREDIT</td>
-                  <td className={cellClasses}></td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table className={tableClasses}>
-              <tbody>
-                <tr>
-                  <td className={cellClasses}>Mode of Payment </td>
-                  <td className={cellClasses}>{values.modeOfPayment}</td>
-                </tr>
-                <tr>
-                  <td className={cellClasses}>Cheque No / UTR No</td>
-                  <td className={cellClasses}>{values.chequeNo}</td>
-                </tr>
-                <tr>
-                  <td className={cellClasses}>Cheque / UTR Date</td>
-                  <td className={cellClasses}>{values.chequeDate}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="text-center font-medium text-sm mb-4">
-              Payment Term (IF PAYMENT MADE IN ADVANCE)
-            </div>
-            <table className={tableClasses}>
-              <tbody>
-                <tr>
-                  <td className={cellClasses}>Amount (Rs)</td>
-                  <td className={cellClasses}>{values.amount}</td>
-                </tr>
-                <tr>
-                  <td className={cellClasses}>
-                    Expected Date of receipt of Invoice
-                  </td>
-                  <td className={cellClasses}>{values.expectedDate}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="flex justify-between text-xs mt-6">
-              <div className="text-center my-4 mt-10">
-                (Accounts executive)
-                <br />
-                (Signature)
-              </div>
-              <div className="text-center my-4 mt-10">
-                (Finance Manager)
-                <br />
-                (Signature) & Stamp
-              </div>
-            </div> */}
           </div>
-          <div className="mt-4 text-right">
+          <div className="mt-4 text-right flex gap-4 items-center justify-center">
+            <PrimaryButton
+              title="Submit"
+              handleSubmit={onUpload}
+              disabled={isSubmitRequest}
+              isLoading={isSubmitRequest}
+            />
+
             <PrimaryButton title="Export to PDF" handleSubmit={exportToPDF} />
           </div>
         </Box>

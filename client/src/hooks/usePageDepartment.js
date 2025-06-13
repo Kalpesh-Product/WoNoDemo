@@ -16,8 +16,9 @@ const usePageDepartment = () => {
   if (section === "frontend") {
     section = "tech";
   }
-
-  console.log("SECTION FROM HOOK", section)
+  if (section === "HR") {
+    section = "hr";
+  }
 
   const department = auth?.user?.departments?.find((dept) =>
     dept.name.toLowerCase().includes(section)

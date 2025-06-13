@@ -55,6 +55,7 @@ const MeetingFormLayout = () => {
 
   const roles = auth.user.role.map((role) => role.roleTitle);
 
+
   if (
     roles.includes("Master Admin") ||
     roles.includes("Super Admin") ||
@@ -84,11 +85,13 @@ const MeetingFormLayout = () => {
   });
   const { fields, append } = useFieldArray({
     control,
-    name: "externalParticipants",
+    name: "manualExternalParticipants", // ⬅️ changed here
   });
-  const isReceptionist = auth.user?.role?.some(
-    (item) => item._id === "6798c034e469e809084e2514"
-  );
+
+  const isReceptionist = auth.user?.role?.some((item) => {
+    item.roleTitle.startsWith("Administration");
+  });
+
   useEffect(() => {
     if (!isReceptionist) {
       setValue("company", "6799f0cd6a01edbe1bc3fcea");
@@ -327,18 +330,16 @@ const MeetingFormLayout = () => {
       <MuiModal
         open={open}
         onClose={() => setOpen(false)}
-        title={`${meetingType} Meeting`}>
+        title={`${meetingType} Meeting`}
+      >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full gap-4">
-            <div className="w-full flex gap-8 justify-center items-center">
-              <span className="text-content">
-                 Date : {humanDate(startDate)}
-              </span>
-            </div>
+          className="flex flex-col w-full gap-4"
+        >
+          <div className="w-full flex gap-8 justify-center items-center">
+            <span className="text-content">Date : {humanDate(startDate)}</span>
+          </div>
           <div className="grid grid-cols-2 gap-8 px-2 pb-4 mb-4 border-b-default border-black">
-            
-            
             <div className="w-fit flex gap-8 items-center">
               <span className="text-content">Location : {locationName}</span>
             </div>
@@ -348,7 +349,7 @@ const MeetingFormLayout = () => {
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-1 gap-4 gap-y-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 gap-y-6">
             <div className="col-span-2 sm:col-span-1 md:col-span-2">
               <Controller
                 name="meetingType"
@@ -360,7 +361,8 @@ const MeetingFormLayout = () => {
                     select
                     fullWidth
                     disabled={!showExternalType}
-                    size="small">
+                    size="small"
+                  >
                     <MenuItem value="" disabled>
                       Select a Meeting Type
                     </MenuItem>
@@ -439,7 +441,8 @@ const MeetingFormLayout = () => {
                           label="Company"
                           select
                           size="small"
-                          fullWidth>
+                          fullWidth
+                        >
                           <MenuItem value="" disabled>
                             Select a company
                           </MenuItem>
@@ -592,17 +595,16 @@ const MeetingFormLayout = () => {
                         select
                         label="Select External Company"
                         size="small"
-                        fullWidth>
+                        fullWidth
+                      >
                         <MenuItem value="" disabled>
                           Select a company
                         </MenuItem>
                         {externalUsers
-                          .filter((item) => item.visitorCompany)
+                          .filter((item) => item.visitorFlag === "Client")
                           .map((user) => (
-                            <MenuItem
-                              key={user._id}
-                              value={user.visitorCompany?._id}>
-                              {user.visitorCompany?.companyName ?? ""}
+                            <MenuItem key={user._id} value={user._id}>
+                              {user.clientCompany ?? ""}
                             </MenuItem>
                           ))}
                       </TextField>
@@ -617,9 +619,16 @@ const MeetingFormLayout = () => {
                       <Autocomplete
                         multiple
                         options={externalUsers.filter(
-                          (item) => item.visitorCompany?._id === externalCompany
-                        )} // The user list
-                        getOptionLabel={(user) => `${user.firstName}`} // Display names
+                          (item) =>
+                            item.visitorFlag === "Client" &&
+                            item.clientCompany ===
+                              externalUsers.find(
+                                (v) => v._id === externalCompany
+                              )?.clientCompany
+                        )}
+                        getOptionLabel={(user) =>
+                          `${user.firstName} ${user.lastName}`
+                        } // Display names
                         onChange={(_, newValue) =>
                           field.onChange(newValue.map((user) => user.firstName))
                         } // Sync selected users with form state
@@ -680,13 +689,53 @@ const MeetingFormLayout = () => {
                   </React.Fragment>
                 ))}
 
-                <PrimaryButton
-                  title="Add Participant"
-                  type="button"
-                  handleSubmit={() => append({ name: "", mobileNumber: "" })}
-                />
+                <div className="col-span-2 place-items-center">
+                  <PrimaryButton
+                    title="Add Participant"
+                    type="button"
+                    handleSubmit={() => append({ name: "", mobileNumber: "" })}
+                  />
+                </div>
               </>
             )}
+            {/* {meetingType === "External" && (
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-4 p-2 col-span-2">
+                <Controller
+                  name="paymentAmount"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      size="small"
+                      label="Payment Amount"
+                      fullWidth
+                      onChange={(e) => field.onChange(e.target.value)}
+                      value={field.value}
+                    />
+                  )}
+                />
+                <Controller
+                  name="paymentStatus"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      size="small"
+                      label="Payment Status"
+                      select
+                      fullWidth
+                    >
+                      <MenuItem value="" disabled>
+                        Select Payment Status
+                      </MenuItem>
+                      <MenuItem value="paid">Paid</MenuItem>
+                      <MenuItem value="unpaid">Unpaid</MenuItem>
+                    </TextField>
+                  )}
+                />
+               
+              </div>
+            )} */}
 
             {/* New End */}
             <div className="col-span-2 sm:col-span-1 md:col-span-2">

@@ -25,7 +25,6 @@ const budgetSchema = new mongoose.Schema({
   },
   projectedAmount: {
     type: Number,
-    required: true,
   },
   actualAmount: {
     type: Number,
@@ -59,28 +58,45 @@ const budgetSchema = new mongoose.Schema({
   //   type: String,
   //   required: true,
   // },
-  invoiceAttached: {
+  invoice: {
+    name: {
+      type: String,
+    },
+    link: {
+      type: String,
+    },
+    id: {
+      type: String,
+    },
+    invoiceNo: {
+      type: String,
+    },
+    date: {
+      type: Date,
+    },
+  },
+  gstIn: {
     type: String,
+  },
+  invoiceAttached: {
+    type: Boolean,
     default: false,
   },
   preApproved: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   emergencyApproval: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   budgetApproval: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   l1Approval: {
-    type: String,
+    type: Boolean,
     default: false,
-  },
-  invoiceDate: {
-    type: Date, //Invoice received date
   },
   reimbursementDate: {
     //Reimbursement request date
@@ -99,6 +115,46 @@ const budgetSchema = new mongoose.Schema({
       },
     },
   ],
+  finance: {
+    fSrNo: {
+      type: String,
+    },
+    // debitEntries: [
+    //   {
+    //     particulars: { type: String, required: true },
+    //     amount: { type: Number, required: true },
+    //   },
+    // ],
+    // creditEntries: [
+    //   {
+    //     particulars: { type: String, required: true },
+    //     amount: { type: Number, required: true },
+    //   },
+    // ],
+    particulars: [
+      {
+        particularName: { type: String },
+        particularAmount: { type: Number },
+      },
+    ],
+    modeOfPayment: {
+      type: String,
+      enum: ["Cash", "Cheque", "NEFT", "RTGS", "IMPS", "Credit Card", "ETC"],
+    },
+
+    // chequeOrUTRNumber: String,
+    // chequeOrUTRDate: Date,
+
+    // Dates and other string inputs
+    chequeNo: String,
+    chequeDate: Date,
+    // Advance payment section
+    amount: Number,
+    expectedDateInvoice: Date,
+    approvedAt: {
+      type: Date,
+    },
+  },
 });
 
 const Budget = mongoose.model("Budget", budgetSchema);
