@@ -68,7 +68,7 @@ const MeetingRevenue = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`,
+        formatter: (val) => `USD ${val.toLocaleString()}`,
       },
     },
     plotOptions: {
@@ -88,28 +88,32 @@ const MeetingRevenue = () => {
   );
 
   const tableData = meetingsData.map((monthData, index) => {
-    const actual = monthData?.revenue?.reduce((sum, c) => sum + (c.totalAmount || 0), 0);
+    const actual = monthData?.revenue?.reduce(
+      (sum, c) => sum + (c.totalAmount || 0),
+      0
+    );
     return {
       id: index,
       month: monthData.month || "N/A",
-      actual: `INR ${actual?.toLocaleString()}`,
-      revenue: monthData?.revenue?.map((client, i) => ({
-        id: i + 1,
-        particulars: client.particulars || "-",
-        unitsOrHours: client.unitsOrHours ?? "-",
-        taxable: client.taxable ?? 0,
-        gst: client.gst ?? 0,
-        totalAmount: client.totalAmount ?? 0,
-        date: humanDate(client.date),
-        paymentDate: humanDate(client.paymentDate),
-        remarks: client.remarks || "-",
-      })) ?? [],
+      actual: `USD ${actual?.toLocaleString()}`,
+      revenue:
+        monthData?.revenue?.map((client, i) => ({
+          id: i + 1,
+          particulars: client.particulars || "-",
+          unitsOrHours: client.unitsOrHours ?? "-",
+          taxable: client.taxable ?? 0,
+          gst: client.gst ?? 0,
+          totalAmount: client.totalAmount ?? 0,
+          date: humanDate(client.date),
+          paymentDate: humanDate(client.paymentDate),
+          remarks: client.remarks || "-",
+        })) ?? [],
     };
   });
 
   return (
     <div className="flex flex-col gap-4">
-      { isMeetingsLoading ? (
+      {isMeetingsLoading ? (
         <div className="flex h-72 justify-center items-center">
           <CircularProgress />
         </div>
@@ -126,9 +130,8 @@ const MeetingRevenue = () => {
           <WidgetSection
             title={"Annual Monthly Meetings Revenues"}
             titleLabel={"FY 2024-25"}
-            TitleAmount={`INR ${inrFormat(totalActual)}`}
-            border
-          >
+            TitleAmount={`USD ${inrFormat(totalActual)}`}
+            border>
             <BarGraph data={series} options={options} height={400} />
           </WidgetSection>
 

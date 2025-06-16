@@ -97,7 +97,7 @@ const HistoricalPnl = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`,
+        formatter: (val) => `USD ${val.toLocaleString()}`,
       },
     },
   };

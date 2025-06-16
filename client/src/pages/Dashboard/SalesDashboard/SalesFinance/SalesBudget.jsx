@@ -232,6 +232,7 @@ const SalesBudget = () => {
       const transoformedRows = data.tableData.rows.map((row, index) => ({
         ...row,
         srNo: index + 1,
+        invoiceAttached: row?.invoiceAttached,
         projectedAmount: Number(
           row.projectedAmount.toLocaleString("en-IN").replace(/,/g, "")
         ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
@@ -270,13 +271,12 @@ const SalesBudget = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }
-          >
+            }>
             <YearlyGraph
               data={expenseRawSeries}
               options={expenseOptions}
               title={"BIZ Nest SALES DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -304,8 +304,7 @@ const SalesBudget = () => {
         <MuiModal
           title="Request Budget"
           open={openModal}
-          onClose={() => setOpenModal(false)}
-        >
+          onClose={() => setOpenModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Expense Name */}
             <Controller

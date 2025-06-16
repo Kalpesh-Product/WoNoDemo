@@ -1582,7 +1582,7 @@ const AdminExpenses = () => {
     yaxis: { title: { text: "Number Of Offices" } },
     tooltip: {
       y: {
-        formatter: (val) => `INR ${inrFormat(val)}`,
+        formatter: (val) => `USD ${inrFormat(val)}`,
       },
     },
     plotOptions: {
@@ -1592,7 +1592,7 @@ const AdminExpenses = () => {
       formatter: (val) => `${inrFormat(val)}`,
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (

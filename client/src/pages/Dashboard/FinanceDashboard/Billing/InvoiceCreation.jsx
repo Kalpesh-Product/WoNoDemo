@@ -15,6 +15,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { queryClient } from "../../../../main";
 import ThreeDotMenu from "../../../../components/ThreeDotMenu";
+import PageFrame from "../../../../components/Pages/PageFrame";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 
 const InvoiceCreation = () => {
   const navigate = useNavigate();
@@ -108,6 +110,11 @@ const InvoiceCreation = () => {
 
   const invoiceCreationColumns = [
     {
+      headerName: "Sr. No",
+      field: "srno",
+      width: 100,
+    },
+    {
       headerName: "Client",
       field: "clientName",
       flex: 1,
@@ -158,8 +165,7 @@ const InvoiceCreation = () => {
             onClick={() => {
               setViewDetails(params.data);
               setViewModal(true);
-            }}
-          >
+            }}>
             <MdOutlineRemoveRedEye />
           </span>
           <ThreeDotMenu
@@ -178,25 +184,29 @@ const InvoiceCreation = () => {
     },
   ];
 
-  const rows = invoiceData.map((item) => ({
+  const rows = invoiceData.map((item, index) => ({
+    srno: index + 1,
     id: item._id,
     clientName: item?.client?.clientName || "N/A",
     invoiceName: item?.invoice?.name || "N/A",
-    uploadDate: dayjs(item?.invoiceUploadedAt).format("DD-MM-YYYY"),
+    uploadDate: (item?.invoiceUploadedAt),
     status: item?.paidStatus || item?.paymentStatus ? "Paid" : "Unpaid",
     ...item,
   }));
 
   return (
     <div className="flex flex-col gap-4">
-      <AgTable
-        data={rows}
-        columns={invoiceCreationColumns}
-        search
-        tableTitle="Invoice"
-        buttonTitle="Add Invoice"
-        handleClick={() => setViewAddTemplateModal(true)}
-      />
+      <PageFrame>
+        <YearWiseTable
+          data={rows}
+          columns={invoiceCreationColumns}
+          search
+          dateColumn={"uploadDate"}
+          tableTitle="Client-Invoice"
+          buttonTitle="Add Invoice"
+          handleSubmit={() => setViewAddTemplateModal(true)}
+        />
+      </PageFrame>
 
       {/* View Details Modal */}
       {viewModal && viewDetails && (
@@ -206,9 +216,9 @@ const InvoiceCreation = () => {
             setViewModal(false);
             setViewDetails(null);
           }}
-          title="Invoice Details"
-        >
+          title="Invoice Details">
           <div className="space-y-3">
+            <div className="font-bold">Invoice Information</div>
             <DetalisFormatted
               title="Client Name"
               detail={viewDetails?.client?.clientName || "N/A"}
@@ -223,9 +233,9 @@ const InvoiceCreation = () => {
                 viewDetails?.invoice?.link ? (
                   <a
                     href={viewDetails.invoice.link}
+                    className="text-primary underline cursor-pointer"
                     target="_blank"
-                    rel="noreferrer"
-                  >
+                    rel="noreferrer">
                     View PDF
                   </a>
                 ) : (
@@ -256,12 +266,10 @@ const InvoiceCreation = () => {
         <MuiModal
           open={viewAddTemplateModal}
           onClose={() => setViewAddTemplateModal(false)}
-          title="Add New Invoice"
-        >
+          title="Add New Invoice">
           <form
             onSubmit={handleSubmit(onSubmitTemplate)}
-            className="flex flex-col gap-4 mt-2"
-          >
+            className="flex flex-col gap-4 mt-2">
             <Controller
               name="invoiceFile"
               control={control}
@@ -285,8 +293,7 @@ const InvoiceCreation = () => {
                   select
                   size="small"
                   fullWidth
-                  label="Select Client"
-                >
+                  label="Select Client">
                   <MenuItem value="" disabled>
                     Select Client
                   </MenuItem>

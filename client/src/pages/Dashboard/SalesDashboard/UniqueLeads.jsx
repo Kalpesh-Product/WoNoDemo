@@ -196,8 +196,7 @@ const UniqueLeads = () => {
             value={viewType}
             onChange={handleViewTypeChange}
             label={"Select Year"}
-            sx={{ width: 200 }}
-          >
+            sx={{ width: 200 }}>
             <MenuItem value="month">Monthly</MenuItem>
             <MenuItem value="year">Yearly</MenuItem>
           </Select>
@@ -210,8 +209,7 @@ const UniqueLeads = () => {
               value={selectedMonth}
               onChange={handleMonthChange}
               label="Select Month"
-              sx={{ width: 200 }}
-            >
+              sx={{ width: 200 }}>
               {availableMonths.map((month) => (
                 <MenuItem key={month} value={month}>
                   {month}
@@ -227,16 +225,14 @@ const UniqueLeads = () => {
         border
         padding
         title={"Unique Leads"}
-        TitleAmount={`Total Leads : ${totalLeads}`}
-      >
+        TitleAmount={`Total Leads : ${totalLeads}`}>
         <NormalBarGraph data={graphData} options={graphOptions} height={400} />
       </WidgetSection>
 
       <WidgetSection
         border
         title={"Unique Leads details"}
-        TitleAmount={`Total Leads : ${totalLeads}`}
-      >
+        TitleAmount={`Total Leads : ${totalLeads}`}>
         <div>
           <YearWiseTable
             data={leadsData.map((item) => ({
@@ -268,8 +264,7 @@ const UniqueLeads = () => {
                       onClick={() => {
                         setSelectedLead(params.data);
                         setModalOpen(true);
-                      }}
-                    >
+                      }}>
                       {params.value}
                     </span>
                   );
@@ -286,7 +281,7 @@ const UniqueLeads = () => {
               // { headerName: "Remarks", field: "remarksComments" },
             ]}
             dateColumn="dateOfContact"
-            initialMonth={selectedMonth} 
+            initialMonth={selectedMonth}
             key="leads-table"
           />
         </div>
@@ -294,8 +289,7 @@ const UniqueLeads = () => {
       <MuiModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        title={"Lead details"}
-      >
+        title={"Lead details"}>
         <div className="flex flex-col gap-2">
           {selectedLead ? (
             <>
@@ -331,7 +325,7 @@ const UniqueLeads = () => {
               />
               <DetalisFormatted
                 title="Client Budget"
-                detail={`INR ${selectedLead.clientBudget}`}
+                detail={`USD ${selectedLead.clientBudget}`}
               />
               <DetalisFormatted
                 title="Date of Contact"

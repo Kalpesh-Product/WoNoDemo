@@ -33,7 +33,7 @@ const AllocatedBudget = ({
   isLoading,
   variant,
   hideTitle,
-  noInvoice=false,
+  noInvoice = false,
   noFilter = false,
 }) => {
   const axios = useAxiosPrivate();
@@ -203,12 +203,17 @@ const AllocatedBudget = ({
         headerName: "Actions",
         pinned: "right",
         cellRenderer: (params) => {
-          const { invoiceAttached, status } = params.data;
+          const invoiceAttached =
+            params.data.invoiceAttached === true ||
+            params.data.invoiceAttached === "true";
+          const status = params.data.status;
+
+          const isApproved = status === "Approved";
           const isRejected = status === "Rejected";
 
           return (
             <div className="p-2">
-              {!invoiceAttached && !isRejected ? (
+              {isApproved && !invoiceAttached ? (
                 <PrimaryButton
                   title="Upload Invoice"
                   externalStyles="p-2"
@@ -243,9 +248,8 @@ const AllocatedBudget = ({
     <>
       <WidgetSection
         title={"BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"}
-        TitleAmount={`INR ${inrFormat(totalProjectedAmountForFY)}`}
-        border
-      >
+        TitleAmount={`USD ${inrFormat(totalProjectedAmountForFY)}`}
+        border>
         <div className="flex flex-col gap-4 rounded-md ">
           {!hideTitle ? (
             <div className="flex justify-between items-center">
@@ -365,12 +369,10 @@ const AllocatedBudget = ({
       <MuiModal
         open={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}
-        title="Upload Invoice"
-      >
+        title="Upload Invoice">
         <form
           onSubmit={handleSubmit((data) => onUpload(data, selectedRow))}
-          className="space-y-4"
-        >
+          className="space-y-4">
           <Controller
             name="invoiceImage"
             control={control}

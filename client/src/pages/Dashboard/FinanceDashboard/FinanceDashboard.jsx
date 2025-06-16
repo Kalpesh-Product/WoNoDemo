@@ -236,7 +236,6 @@ const FinanceDashboard = () => {
   const sortedExpenses = transformedExpenses.sort((a, b) =>
     dayjs(a.month, "MMM-YY").isAfter(dayjs(b.month, "MMM-YY")) ? 1 : -1
   );
-
   // Build map of month => actualExpense
   const expenseMap = {};
   sortedExpenses.forEach((item) => {
@@ -350,22 +349,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthDataIncome)}`,
+        value: `USD ${inrFormat(lastMonthDataIncome)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat(totalIncomeAmount / 12)}`,
+        value: `USD ${inrFormat(totalIncomeAmount / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalIncomeAmount)}`,
+        value: `USD ${inrFormat(totalIncomeAmount)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(totalIncomeAmount / totalSqft)}`,
+        value: `USD ${inrFormat(totalIncomeAmount / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -377,22 +376,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthData)}`,
+        value: `USD ${inrFormat(lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat(totalExpense / 12)}`,
+        value: `USD ${inrFormat(totalExpense / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalExpense)}`,
+        value: `USD ${inrFormat(totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(totalExpense / totalSqft)}`,
+        value: `USD ${inrFormat(totalExpense / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -404,22 +403,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
+        value: `USD ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
+        value: `USD ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalIncomeAmount - totalExpense)}`,
+        value: `USD ${inrFormat(totalIncomeAmount - totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(
+        value: `USD ${inrFormat(
           (totalIncomeAmount - totalExpense) / totalSqft
         )}`,
         route: "sqft-wise-data",
@@ -432,12 +431,20 @@ const FinanceDashboard = () => {
   const availableMonths = sortedExpenses.map((e) => e.month);
   const todayMonth = dayjs().format("MMM-YY");
 
-  // 2. Determine the latest applicable month
+  // 1. Filter available months where actualAmount > 0 exists
+  const monthsWithPositiveAmount = sortedExpenses
+    .filter((monthData) =>
+      (monthData.expenses || []).some((exp) => Number(exp.actualAmount) > 0)
+    )
+    .map((e) => e.month);
+
+  // 2. Determine the latest applicable month (closest to today)
   let selectedMonth = todayMonth;
-  if (!availableMonths.includes(todayMonth)) {
-    const todayIndex = availableMonths.indexOf(todayMonth);
+  if (!monthsWithPositiveAmount.includes(todayMonth)) {
+    const todayIndex = monthsWithPositiveAmount.indexOf(todayMonth);
     selectedMonth =
-      availableMonths[Math.max(0, todayIndex - 1)] || availableMonths.at(-1);
+      monthsWithPositiveAmount[Math.max(0, todayIndex - 1)] ||
+      monthsWithPositiveAmount.at(-1);
   }
 
   // 3. Get that month's data
@@ -449,7 +456,7 @@ const FinanceDashboard = () => {
 
   const clientPayouts = (selectedMonthData?.expenses || []).map((expense) => ({
     clientName: expense.expanseName,
-    amount: expense.actualAmount,
+    amount: expense.actualAmount || 0,
     status: expense.status === "Approved" ? "paid" : "unpaid",
     date: dayjs(expense.dueDate).format("DD-MMM-YYYY"), // e.g., "15-May-2024"
   }));
@@ -474,6 +481,24 @@ const FinanceDashboard = () => {
   const pieMonthlyPayoutOptions = {
     chart: {
       fontFamily: "Poppins-Regular",
+      events: {
+        dataPointSelection: function (event, chartContext, config) {
+          const dataPointIndex = config.dataPointIndex;
+          const selectedCategory = pieMonthlyPayoutData[dataPointIndex];
+
+          // Perform navigation or logic
+          if (selectedCategory) {
+            // Example: navigate or log the label/value
+            console.log(
+              "Selected:",
+              selectedCategory.label,
+              selectedCategory.value
+            );
+            // Replace with actual navigation logic
+            navigate(`finance`);
+          }
+        },
+      },
     },
     colors: ["#4CAF50", "#F44336"],
     labels: pieMonthlyPayoutData.map((item) => item.label),
@@ -491,8 +516,13 @@ const FinanceDashboard = () => {
       y: {
         formatter: function (value, { seriesIndex }) {
           const category = pieMonthlyPayoutData[seriesIndex];
-          return `INR  ${category?.value?.toLocaleString("en-IN") || 0}`;
+          return `USD ${category?.value?.toLocaleString("en-IN") || 0}`;
         },
+      },
+    },
+    plotOptions: {
+      pie: {
+        expandOnClick: true,
       },
     },
   };
@@ -562,7 +592,7 @@ const FinanceDashboard = () => {
     tooltip: {
       y: {
         formatter: function (value) {
-          return `INR ${inrFormat(value.toFixed(0))}`;
+          return `USD ${inrFormat(value.toFixed(0))}`;
         },
       },
     },
@@ -802,8 +832,8 @@ const FinanceDashboard = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)} `}
-          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)} `}
+          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
         />,
       ],
     },

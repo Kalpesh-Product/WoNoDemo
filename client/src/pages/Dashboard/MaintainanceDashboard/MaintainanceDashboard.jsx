@@ -44,7 +44,7 @@ const MaintainanceDashboard = () => {
     0
   );
 
-   const expenseOptions = {
+  const expenseOptions = {
     chart: {
       type: "bar",
       animations: { enabled: false },
@@ -650,8 +650,7 @@ const MaintainanceDashboard = () => {
               <Skeleton variant="text" width={200} height={30} />
               <Skeleton variant="rectangular" width="100%" height={300} />
             </Box>
-          }
-        >
+          }>
           <WidgetSection normalCase layout={1} padding>
             <YearlyGraph
               data={expenseRawSeries}
@@ -659,7 +658,7 @@ const MaintainanceDashboard = () => {
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
               title={"BIZ Nest MAINTENANCE DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -749,10 +748,7 @@ const MaintainanceDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Category Wise Maintenance"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Due Maintenance"}>
           <DonutChart
@@ -770,16 +766,10 @@ const MaintainanceDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Unit Wise Maintenance"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Maintenance Execution Channel"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
@@ -787,16 +777,10 @@ const MaintainanceDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Average Monthly Due Maintenance"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Average Yearly Due Maintenance"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
@@ -808,17 +792,13 @@ const MaintainanceDashboard = () => {
           scroll
           rowsToDisplay={4}
           Title={"Top 10 High Priority Due Tasks"}
-          rows={[
-           
-          ]}
+          rows={[]}
           columns={priorityTasksColumns}
         />,
         <MuiTable
           key={executiveTimings.length}
           Title={"Weekly Executive Shift Timing"}
-          rows={[
-          
-          ]}
+          rows={[]}
           columns={executiveTimingsColumns}
           scroll
           rowsToDisplay={4}

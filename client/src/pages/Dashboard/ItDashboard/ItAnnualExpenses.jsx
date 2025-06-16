@@ -139,7 +139,7 @@ const ItAnnualExpenses = () => {
           <DetalisFormatted
             title="Amount (INR)"
             gap={"w-full"}
-            detail={`INR ${data?.amount}`}
+            detail={`USD ${data?.amount}`}
           />
         </div>
       </MuiModal>

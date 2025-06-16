@@ -416,14 +416,14 @@ const ItExpenses = () => {
     yaxis: { title: { text: "Number Of Offices" } },
     tooltip: {
       y: {
-        formatter: (val) => `INR ${inrFormat(val)}`,
+        formatter: (val) => `USD ${inrFormat(val)}`,
       },
     },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (

@@ -9,14 +9,14 @@ const AdminData = () => {
   // Map routes to tabs
   const tabs = [
     { label: "Asset List", path: "asset-list" },
-    { label: "Vendor Database", path: "vendor-database" },
-    {
-      label: "Electricity Consumption & Expenses",
-      path: "electricity-expenses",
-    },
+    { label: "Vendor", path: "vendor" },
     {
       label: "Monthly Invoice Reports",
       path: "monthly-invoice-reports",
+    },
+    {
+      label: "Electricity Consumption & Expenses",
+      path: "electricity-expenses",
     },
   ];
 

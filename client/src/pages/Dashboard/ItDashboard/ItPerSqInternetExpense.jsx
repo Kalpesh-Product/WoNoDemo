@@ -586,11 +586,11 @@ const ItPerSqInternetExpense = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `INR ${inrFormat(val)}`,
+        formatter: (val) => `USD ${inrFormat(val)}`,
       },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (

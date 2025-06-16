@@ -401,7 +401,7 @@ const FrontendDashboard = () => {
     },
   };
 
-    const totalUtilised =
+  const totalUtilised =
     budgetBar?.utilisedBudget?.reduce((acc, val) => acc + val, 0) || 0;
 
   const techWidgets = [
@@ -412,8 +412,7 @@ const FrontendDashboard = () => {
           layout={1}
           border
           title={"Site Visitors"}
-          titleLabel={"FY 2024-25"}
-        >
+          titleLabel={"FY 2024-25"}>
           <BarGraph data={[]} options={siteVisitorOptions} />
         </WidgetSection>,
       ],
@@ -467,13 +466,12 @@ const FrontendDashboard = () => {
               <Skeleton variant="text" width={200} height={30} />
               <Skeleton variant="rectangular" width="100%" height={300} />
             </Box>
-          }
-        >
+          }>
           <YearlyGraph
             data={expenseRawSeries}
             options={expenseOptions}
             title={"BIZ Nest TECH DEPARTMENT EXPENSE"}
-            titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+            titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
               "en-IN"
             )}`}
           />

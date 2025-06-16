@@ -112,7 +112,7 @@ const TotalRevenue = () => {
       y: {
         formatter: function (val, { seriesIndex, dataPointIndex }) {
           const actualVal = filteredByYear[seriesIndex]?.data?.[dataPointIndex];
-          return actualVal ? `INR ${actualVal.toLocaleString()}` : "No data";
+          return actualVal ? `USD ${actualVal.toLocaleString()}` : "No data";
         },
       },
     },
@@ -162,7 +162,7 @@ const TotalRevenue = () => {
           layout={1}
           title={"Annual Monthly Mix Revenues FY 2024-25"}
           border
-          TitleAmount={`INR ${inrFormat(totalAnnualRevenue)}`}>
+          TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}>
           <BarGraph height={400} data={normalizedData} options={options} />
         </WidgetSection>
       )}
@@ -171,7 +171,7 @@ const TotalRevenue = () => {
         border
         title={"Annual Monthly Revenue Breakup"}
         padding
-        TitleAmount={`INR ${inrFormat(totalAnnualRevenue)}`}
+        TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}
       >
         <div className="flex flex-col gap-2 rounded-md p-4">
           <CollapsibleTable
@@ -265,7 +265,7 @@ const TotalRevenue = () => {
           { headerName: "Vertical", field: "vertical", flex: 1 },
           { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
         ]}
-        amount={`INR ${inrFormat(totalAnnualRevenue)}`}
+        amount={`USD ${inrFormat(totalAnnualRevenue)}`}
         financialData={financialDataForTable}
       />
     </div>

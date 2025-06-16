@@ -55,8 +55,7 @@ const DeptWiseBudget = () => {
                 return (
                   <span
                     style={{ cursor: "pointer", color: "#1E3D73" }}
-                    onClick={handleClick}
-                  >
+                    onClick={handleClick}>
                     {params.value}
                   </span>
                 );
@@ -142,8 +141,7 @@ const DeptWiseBudget = () => {
               <span
                 className="hover:underline"
                 style={{ cursor: "pointer", color: "#1E3D73" }}
-                onClick={handleClick}
-              >
+                onClick={handleClick}>
                 {params.value}
               </span>
             );
@@ -259,10 +257,15 @@ const DeptWiseBudget = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={"BIZ Nest DEPARTMENT WISE EXPENSE"}
-        titleAmount={`INR ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
+        titleAmount={`USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
       />
 
-      <AllocatedBudget financialData={financialData} noFilter hideTitle noInvoice/>
+      <AllocatedBudget
+        financialData={financialData}
+        noFilter
+        hideTitle
+        noInvoice
+      />
     </div>
   );
 };

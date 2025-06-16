@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import dayjs from "dayjs";
 import AgTable from "../AgTable";
@@ -17,6 +17,7 @@ const YearWiseTable = ({
   dateColumn,
   formatTime = false,
   formatDate = true,
+  tableHeight,
   tableTitle,
   buttonTitle,
   handleSubmit,
@@ -24,8 +25,10 @@ const YearWiseTable = ({
   checkAll,
   key,
   initialMonth, // ✅ NEW PROP
-   onMonthChange
+  onMonthChange,
+  dropdownColumns = [],
 }) => {
+  const lastEmittedMonthRef = useRef(null);
   const fiscalMap = useMemo(() => {
     const map = new Map();
     data.forEach((item) => {
@@ -76,11 +79,17 @@ const YearWiseTable = ({
   }, [initialMonth, monthsInFY]);
 
   // When selectedMonthIndex changes, notify parent
-useEffect(() => {
-  if (onMonthChange) {
-    onMonthChange(monthsInFY[selectedMonthIndex]);
-  }
-}, [selectedMonthIndex, monthsInFY, onMonthChange]);
+  useEffect(() => {
+    const currentMonth = monthsInFY[selectedMonthIndex];
+    if (
+      onMonthChange &&
+      currentMonth &&
+      currentMonth !== lastEmittedMonthRef.current
+    ) {
+      onMonthChange(currentMonth);
+      lastEmittedMonthRef.current = currentMonth;
+    }
+  }, [selectedMonthIndex, monthsInFY, onMonthChange]);
 
   const selectedMonth = monthsInFY[selectedMonthIndex] || "";
 
@@ -112,77 +121,78 @@ useEffect(() => {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex items-center w-full justify-between">
+      <span className="text-title text-primary font-pmedium uppercase">
+        {tableTitle}
+      </span>
+        {buttonTitle && (
+          <PrimaryButton title={buttonTitle} handleSubmit={handleSubmit} />
+        )}  
+      </div>
       <div className="flex items-center justify-between">
-        <span className="text-title text-primary font-pmedium uppercase">
-          {tableTitle}
-        </span>
         <div className="flex items-center gap-4 w-full justify-center">
-          {buttonTitle && (
-            <PrimaryButton title={buttonTitle} handleSubmit={handleSubmit} />
-          )}
-       
-            {filteredData.length > 0 && (
-              <>
-                {/* Month Switcher */}
-                <div className="flex items-center gap-2">
-                  <PrimaryButton
-                    title={<MdNavigateBefore />}
-                    handleSubmit={() =>
-                      setSelectedMonthIndex((prev) => Math.max(prev - 1, 0))
-                    }
-                    disabled={selectedMonthIndex === 0}
-                  />
-                  <div className="text-subtitle text-center font-pmedium w-[100px]">
-                    {selectedMonth}
-                  </div>
-                  <PrimaryButton
-                    title={<MdNavigateNext />}
-                    handleSubmit={() =>
-                      setSelectedMonthIndex((prev) =>
-                        Math.min(prev + 1, monthsInFY.length - 1)
-                      )
-                    }
-                    disabled={selectedMonthIndex === monthsInFY.length - 1}
-                  />
+          {filteredData.length > 0 && (
+            <>
+              {/* Month Switcher */}
+              <div className="flex items-center gap-2">
+                <PrimaryButton
+                  title={<MdNavigateBefore />}
+                  handleSubmit={() =>
+                    setSelectedMonthIndex((prev) => Math.max(prev - 1, 0))
+                  }
+                  disabled={selectedMonthIndex === 0}
+                />
+                <div className="text-subtitle text-center font-pmedium w-[100px]">
+                  {selectedMonth}
                 </div>
+                <PrimaryButton
+                  title={<MdNavigateNext />}
+                  handleSubmit={() =>
+                    setSelectedMonthIndex((prev) =>
+                      Math.min(prev + 1, monthsInFY.length - 1)
+                    )
+                  }
+                  disabled={selectedMonthIndex === monthsInFY.length - 1}
+                />
+              </div>
 
-                {/* FY Switcher */}
-                <div className="flex items-center gap-2">
-                  <PrimaryButton
-                    title={<MdNavigateBefore />}
-                    handleSubmit={() =>
-                      setSelectedFYIndex((prev) => Math.max(prev - 1, 0))
-                    }
-                    disabled={selectedFYIndex === 0}
-                  />
-                  <div className="text-subtitle text-center font-pmedium w-fit">
-                    {selectedFY}
-                  </div>
-                  <PrimaryButton
-                    title={<MdNavigateNext />}
-                    handleSubmit={() =>
-                      setSelectedFYIndex((prev) =>
-                        Math.min(prev + 1, fiscalYears.length - 1)
-                      )
-                    }
-                    disabled={selectedFYIndex === fiscalYears.length - 1}
-                  />
+              {/* FY Switcher */}
+              <div className="flex items-center gap-2">
+                <PrimaryButton
+                  title={<MdNavigateBefore />}
+                  handleSubmit={() =>
+                    setSelectedFYIndex((prev) => Math.max(prev - 1, 0))
+                  }
+                  disabled={selectedFYIndex === 0}
+                />
+                <div className="text-subtitle text-center font-pmedium w-fit">
+                  {selectedFY}
                 </div>
-              </>
-            )}
-      
+                <PrimaryButton
+                  title={<MdNavigateNext />}
+                  handleSubmit={() =>
+                    setSelectedFYIndex((prev) =>
+                      Math.min(prev + 1, fiscalYears.length - 1)
+                    )
+                  }
+                  disabled={selectedFYIndex === fiscalYears.length - 1}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
 
       <AgTable
         key={key}
         enableCheckbox={checkbox}
+        dropdownColumns={dropdownColumns}
         checkAll={checkAll}
-        tableHeight={300}
+        tableHeight={tableHeight ? tableHeight : 300}
         columns={formattedColumns}
         data={filteredData.map((item, index) => ({
           ...item,
-          srno: index + 1,
+          srNo: index + 1, // ✅ Resets per month view
           date: humanDate(item[dateColumn]),
         }))}
         hideFilter={filteredData.length <= 9}

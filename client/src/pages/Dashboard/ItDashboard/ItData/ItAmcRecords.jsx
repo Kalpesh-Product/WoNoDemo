@@ -534,7 +534,7 @@ const ItAmcRecords = () => {
               <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
               <DetalisFormatted
                 title="Price"
-                detail={`INR ${Number(selectedAsset.price).toLocaleString(
+                detail={`USD ${Number(selectedAsset.price).toLocaleString(
                   "en-IN"
                 )}`}
               />

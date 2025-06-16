@@ -244,7 +244,7 @@ const DeptWiseBudgetDetails = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={`BIZ Nest ${deptName.toUpperCase()} DEPARTMENT EXPENSE`}
-        titleAmount={`INR ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
+        titleAmount={`USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
       />
 
       {/* <div>

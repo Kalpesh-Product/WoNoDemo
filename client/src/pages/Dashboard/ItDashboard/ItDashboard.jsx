@@ -23,7 +23,7 @@ import { useQuery } from "@tanstack/react-query";
 const ItDashboard = () => {
   const { setIsSidebarOpen } = useSidebar();
 
-   const axios = useAxiosPrivate();
+  const axios = useAxiosPrivate();
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["it-budget"],
     queryFn: async () => {
@@ -167,7 +167,6 @@ const ItDashboard = () => {
     setIsSidebarOpen(true);
   }, []); // Empty dependency array ensures this runs once on mount
 
-
   useEffect(() => {
     setIsSidebarOpen(true);
   }, []); // Empty dependency array ensures this runs once on mount
@@ -265,7 +264,7 @@ const ItDashboard = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`, // ✅ shows actual expense
+        formatter: (val) => `USD ${val.toLocaleString()}`, // ✅ shows actual expense
       },
     },
   };
@@ -478,8 +477,7 @@ const ItDashboard = () => {
               <Skeleton variant="text" width={200} height={30} />
               <Skeleton variant="rectangular" width="100%" height={300} />
             </Box>
-          }
-        >
+          }>
           <WidgetSection normalCase layout={1} padding>
             <YearlyGraph
               data={expenseRawSeries}
@@ -487,7 +485,7 @@ const ItDashboard = () => {
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
               title={"BIZ Nest IT DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -559,11 +557,7 @@ const ItDashboard = () => {
           data={""}
           description={"Monthly Expense"}
         />,
-        <DataCard
-          data={""}
-          title={"Average"}
-          description={"Yearly Expense"}
-        />,
+        <DataCard data={""} title={"Average"} description={"Yearly Expense"} />,
       ],
     },
     {
@@ -588,10 +582,7 @@ const ItDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Unit Wise IT Expenses"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Biometrics Gender Data"}>
           <PieChartMui data={[]} options={[]} />
@@ -603,10 +594,7 @@ const ItDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Client-Wise Complaints"}>
-          <PieChartMui
-            data={[]}
-            options={[]}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection border title={"Type Of IT Complaints"}>
           <DonutChart
@@ -626,17 +614,13 @@ const ItDashboard = () => {
           scroll
           rowsToDisplay={4}
           Title={"Top 10 High Priority Due Tasks"}
-          rows={[
-           
-          ]}
+          rows={[]}
           columns={priorityTasksColumns}
         />,
         <MuiTable
           key={executiveTimings.length}
           Title={"Weekly Executive Shift Timing"}
-          rows={[
-            
-          ]}
+          rows={[]}
           columns={executiveTimingsColumns}
           scroll
           rowsToDisplay={4}

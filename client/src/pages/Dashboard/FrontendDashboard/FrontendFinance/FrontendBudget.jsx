@@ -29,8 +29,8 @@ import usePageDepartment from "../../../../hooks/usePageDepartment";
 const FrontendBudget = () => {
   const axios = useAxiosPrivate();
   const [isReady, setIsReady] = useState(false);
-  const budget = usePageDepartment()
-  console.log("Budget in frontend : ",budget)
+  const budget = usePageDepartment();
+  console.log("Budget in frontend : ", budget);
 
   const [openModal, setOpenModal] = useState(false);
   const { data: hrFinance = [], isPending: isHrLoading } = useQuery({
@@ -203,6 +203,7 @@ const FrontendBudget = () => {
         acc[month].tableData.rows.push({
           id: item._id,
           expanseName: item?.expanseName,
+          invoiceAttached: item?.invoiceAttached,
           department: item?.department,
           expanseType: item?.expanseType,
           projectedAmount: Number(item?.projectedAmount).toFixed(2),
@@ -258,13 +259,12 @@ const FrontendBudget = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }
-          >
+            }>
             <Yearlygraph
               data={expenseRawSeries}
               options={expenseOptions}
               title={"BIZ Nest TECH DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -293,8 +293,7 @@ const FrontendBudget = () => {
         <MuiModal
           title="Request Budget"
           open={openModal}
-          onClose={() => setOpenModal(false)}
-        >
+          onClose={() => setOpenModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Expense Name */}
             <Controller

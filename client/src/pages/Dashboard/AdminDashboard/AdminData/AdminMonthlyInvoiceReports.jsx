@@ -460,7 +460,7 @@ const AdminMonthlyInvoiceReports = () => {
               <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
               <DetalisFormatted
                 title="Price"
-                detail={`INR ${selectedAsset.price.toLocaleString("en-IN")}`}
+                detail={`USD ${selectedAsset.price.toLocaleString("en-IN")}`}
               />
               <DetalisFormatted
                 title="Quantity"

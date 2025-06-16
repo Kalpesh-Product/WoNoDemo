@@ -340,6 +340,11 @@ import ExternalClients from "../pages/Visitors/ExternalClients";
 import ManageMeetingsLayout from "../pages/Meetings/ManageMeetingsLayout";
 import ExternalMeetingClients from "../pages/Meetings/ExternalMeetingClients";
 import CoWorkingDetails from "../pages/Dashboard/SalesDashboard/CoWorkingSeats/CoWorkingDetails";
+import Vendor from "../components/Vendor";
+import ViewVendor from "../components/vendor/ViewVendor";
+import SalesDataCard from "../pages/Dashboard/SalesDashboard/SalesData/SalesDataCard";
+import DepartmentInvoice from "../pages/Dashboard/FinanceDashboard/Billing/DepartmentInvoice";
+import MonthlyInvoiceCommon from "../components/Pages/MonthlyInvoiceCommon";
 
 export const routes = createBrowserRouter([
   {
@@ -405,6 +410,18 @@ export const routes = createBrowserRouter([
                           {
                             path: "website-issue-reports",
                             element: <FrontendWebsiteIssueReports />,
+                          },
+                          {
+                            path: "monthly-invoice-reports",
+                            element: <MonthlyInvoiceCommon />,
+                          },
+                          {
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
                           },
                         ],
                       },
@@ -475,7 +492,7 @@ export const routes = createBrowserRouter([
                         element: <MixBag />,
                       },
                       {
-                        path: "mix-bag/company-KYC",
+                        path: "mix-bag/directors-company-KYC",
                         element: <DirectorsCompany />,
                       },
                       {
@@ -491,15 +508,15 @@ export const routes = createBrowserRouter([
                         element: <ClientAgreements />,
                       },
                       {
-                        path: "company-KYC",
+                        path: "directors-company-KYC",
                         element: <DirectorsCompany />,
                       },
                       {
-                        path: "mix-bag/company-KYC/:name",
+                        path: "mix-bag/directors-company-KYC/:name",
                         element: <DirectorData />,
                       },
                       {
-                        path: "company-KYC/:name",
+                        path: "directors-company-KYC/:name",
                         element: <DirectorData />,
                       },
                       {
@@ -521,12 +538,20 @@ export const routes = createBrowserRouter([
                         element: <FinanceData />,
                         children: [
                           {
-                            path: "finance-vendor-database",
-                            element: <FinanceVendorDatabase />,
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
                           },
                           {
                             path: "finance-asset-list",
                             element: <FinanceAssetList />,
+                          },
+                          {
+                            path: "monthly-invoice-reports",
+                            element: <MonthlyInvoiceCommon />,
                           },
                           {
                             path: "finance-monthly-invoices",
@@ -594,8 +619,12 @@ export const routes = createBrowserRouter([
                         element: <BillingsLayout />,
                         children: [
                           {
-                            path: "invoice",
+                            path: "client-invoice",
                             element: <InvoiceCreation />,
+                          },
+                          {
+                            path: "department-invoice",
+                            element: <DepartmentInvoice />,
                           },
                           {
                             path: "finance-monthly-vouchers",
@@ -767,8 +796,12 @@ export const routes = createBrowserRouter([
                             element: <AdminAssetList />,
                           },
                           {
-                            path: "vendor-database",
-                            element: <AdminVendorDatabase />,
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
                           },
                           {
                             path: "electricity-expenses",
@@ -776,7 +809,7 @@ export const routes = createBrowserRouter([
                           },
                           {
                             path: "monthly-invoice-reports",
-                            element: <AdminMonthlyInvoiceReports />,
+                            element: <MonthlyInvoiceCommon />,
                           },
                         ],
                       },
@@ -893,8 +926,12 @@ export const routes = createBrowserRouter([
                             element: <MaintenanceAssetList />,
                           },
                           {
-                            path: "vendor-database",
-                            element: <MaintenanceVendorReports />,
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
                           },
                           {
                             path: "amc-records",
@@ -1015,8 +1052,16 @@ export const routes = createBrowserRouter([
                             element: <ItAssetList />,
                           },
                           {
-                            path: "vendor-database",
-                            element: <ItVendorReports />,
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "monthly-invoice-reports",
+                            element: <MonthlyInvoiceCommon />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
                           },
                           {
                             path: "amc-records",
@@ -1141,7 +1186,7 @@ export const routes = createBrowserRouter([
                         path: "mix-bag/co-working-seats",
                         element: <CoWorkingSeats />,
                       },
-                       {
+                      {
                         path: "mix-bag/co-working-seats/:id",
                         element: <CoWorkingDetails />,
                       },
@@ -1298,7 +1343,28 @@ export const routes = createBrowserRouter([
                         path: "clients/client-onboarding",
                         element: <ClientOnboarding />,
                       },
-
+                      {
+                        path: "data",
+                        element: <SalesDataCard />,
+                        children: [
+                          {
+                            path: "sales-asset-list",
+                            element: <FinanceAssetList />, // temporary
+                          },
+                          {
+                            path: "vendor",
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "monthly-invoice-reports",
+                            element: <MonthlyInvoiceCommon />,
+                          },
+                          {
+                            path: "vendor/:id",
+                            element: <ViewVendor />,
+                          },
+                        ],
+                      },
                       {
                         path: "settings",
                         element: <SalesSettings />,
@@ -1477,11 +1543,15 @@ export const routes = createBrowserRouter([
                           },
                           {
                             path: "vendor",
-                            element: <VendorOnboard />,
+                            element: <Vendor />,
+                          },
+                          {
+                            path: "monthly-invoice-reports",
+                            element: <MonthlyInvoiceCommon />,
                           },
                           {
                             path: "vendor/:id",
-                            element: <ViewVendors />,
+                            element: <ViewVendor />,
                           },
                         ],
                       },

@@ -587,7 +587,7 @@ const ItInventory = () => {
             <DetalisFormatted title="Brand" detail={selectedAsset?.brand} />
             <DetalisFormatted
               title="Price (INR)"
-              detail={`INR ${selectedAsset?.price}`}
+              detail={`USD ${selectedAsset?.price}`}
             />
             <DetalisFormatted
               title="Quantity"

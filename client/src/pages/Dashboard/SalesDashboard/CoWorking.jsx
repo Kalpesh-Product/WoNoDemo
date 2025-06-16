@@ -90,7 +90,7 @@ const CoWorking = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`,
+        formatter: (val) => `USD ${val.toLocaleString()}`,
       },
     },
     plotOptions: {
@@ -116,7 +116,7 @@ const CoWorking = () => {
         return {
           id: index,
           month: monthData.month,
-          acutal: `INR ${totalRevenue}`,
+          acutal: `USD ${totalRevenue}`,
           revenue: monthData?.clients?.map((client, i) => ({
             id: i + 1,
             clientName: client.clientName,
@@ -140,7 +140,7 @@ const CoWorking = () => {
       {!isCoWorkingLoading ? (
         <YearlyGraph
           title={"ANNUAL MONTHLY CO WORKING REVENUES"}
-          titleAmount={`INR ${inrFormat(totalActual)}`}
+          titleAmount={`USD ${inrFormat(totalActual)}`}
           data={series}
           options={options}
         />

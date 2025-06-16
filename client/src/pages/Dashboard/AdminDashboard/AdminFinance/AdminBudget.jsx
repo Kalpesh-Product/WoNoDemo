@@ -217,6 +217,7 @@ const AdminBudget = () => {
           id: item._id,
           expanseName: item?.expanseName,
           department: item?.department,
+          invoiceAttached: item?.invoiceAttached,
           expanseType: item?.expanseType,
           projectedAmount: Number(item?.projectedAmount).toFixed(2),
           actualAmount: inrFormat(item?.actualAmount || 0), // ✅ Add this
@@ -271,13 +272,12 @@ const AdminBudget = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }
-          >
+            }>
             <Yearlygraph
               data={expenseRawSeries}
               options={expenseOptions}
               title={"BIZ Nest ADMIN DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -321,8 +321,7 @@ const AdminBudget = () => {
         <MuiModal
           title="Request Budget"
           open={openModal}
-          onClose={() => setOpenModal(false)}
-        >
+          onClose={() => setOpenModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Expense Name */}
             <Controller

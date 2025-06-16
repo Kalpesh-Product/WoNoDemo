@@ -11,9 +11,11 @@ import YearlyGraph from "../../../../components/graphs/YearlyGraph";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const SqWiseData = () => {
   const axios = useAxiosPrivate();
+  const navigate = useNavigate();
 
   //-----------------API-----------------//
   const { data: revenueExpenseData = [], isLoading: isRevenueExpenseLoading } =
@@ -41,7 +43,6 @@ const SqWiseData = () => {
     },
   });
 
-  
   //-----------------API-----------------//
 
   //-----------------------------------------------------Graph------------------------------------------------------//
@@ -226,8 +227,29 @@ const SqWiseData = () => {
   const monthlyProfitLossColumns = [
     { field: "id", headerName: "Sr No", width: 100 },
     { field: "month", headerName: "Month", flex: 1 },
-    { field: "income", headerName: "Income (INR)", flex: 1 },
-    { field: "sqft", headerName: "Sq.Ft", flex: 1, cellRenderer : (params)=>(inrFormat(params.value)) },
+    {
+      field: "income",
+      headerName: "Income (INR)",
+      flex: 1,
+      cellRenderer: (params) => (
+        <span
+          role="button"
+          onClick={() =>
+            navigate(
+              "/app/dashboard/finance-dashboard/overall-profit-loss/income-details"
+            )
+          }
+          className="text-primary underline cursor-pointer">
+          {params.value}
+        </span>
+      ),
+    },
+    {
+      field: "sqft",
+      headerName: "Sq.Ft",
+      flex: 1,
+      cellRenderer: (params) => inrFormat(params.value),
+    },
     { field: "perSqFt", headerName: "Per Sq.Ft Income (INR)", flex: 1 },
     // {
     //   field: "actions",
@@ -343,7 +365,7 @@ const SqWiseData = () => {
         id: index + 1,
         month,
         income: inrFormat(income),
-        sqft : totalSqft,
+        sqft: totalSqft,
         perSqFt: (income / totalSqft).toFixed(0),
       };
     }
@@ -363,8 +385,8 @@ const SqWiseData = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)} `}
-          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)} `}
+          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
         />,
       ],
     },
@@ -391,8 +413,7 @@ const SqWiseData = () => {
             border
             // TitleAmount={`P&L :  INR ${inrFormat(totalPnL)}`}
             titleLabel={"FY 2024-25"}
-            title={`Total Monthly P&L`}
-          >
+            title={`Total Monthly P&L`}>
             <AgTable
               data={monthlyProfitLossData}
               columns={monthlyProfitLossColumns}
@@ -411,25 +432,24 @@ const SqWiseData = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Tax Payment Detail"
-        >
+          title="Tax Payment Detail">
           <div className="space-y-3">
             <DetalisFormatted title="Month" detail={viewDetails.month} />
             <DetalisFormatted
               title="Income"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.income.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="Expense"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.expense.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="P&L"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.pnl.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />

@@ -337,7 +337,7 @@ const MaintenanceAnnualExpenses = () => {
             />
             <DetalisFormatted
               title="Amount"
-              detail={`INR ${selectedAsset.amount}`}
+              detail={`USD ${selectedAsset.amount}`}
             />
             <DetalisFormatted title="Date" detail={selectedAsset.date} />
           </div>

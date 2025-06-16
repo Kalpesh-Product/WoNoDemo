@@ -10,10 +10,14 @@ import { inrFormat } from "../../../../utils/currencyFormat";
 import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import humanDate from "../../../../utils/humanDateForamt";
+import dayjs from "dayjs";
+import { Chip } from "@mui/material";
 
 const Collections = () => {
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [viewDetails, setViewDetails] = useState(null);
+  const [selectedMonthData, setSelectedMonthData] = useState([]);
+  const [selectedMonthLabel, setSelectedMonthLabel] = useState("");
   const axios = useAxiosPrivate();
 
   const { data: coWorkingData = [], isLoading: isCoWorkingLoading } = useQuery({
@@ -49,7 +53,34 @@ const Collections = () => {
       flex: 1,
       cellRenderer: (params) => `${inrFormat(params.value)}`,
     },
-    { field: "rentStatus", headerName: "Status", flex: 1 },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      cellRenderer: (params) => {
+        const statusColorMap = {
+          Paid: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
+          Unpaid: { backgroundColor: "#FFEBEE", color: "#B71C1C" }, // Light red bg, dark red font
+        };
+
+        const { backgroundColor, color } = statusColorMap[
+          params.data.rentStatus
+        ] || {
+          backgroundColor: "gray",
+          color: "white",
+        };
+
+        return (
+          <Chip
+            label={params.data.rentStatus}
+            style={{
+              backgroundColor,
+              color,
+            }}
+          />
+        );
+      },
+    },
   ];
 
   const sortedData = useMemo(() => {
@@ -63,29 +94,46 @@ const Collections = () => {
   const barGraphData = useMemo(() => {
     const paid = [];
     const unpaid = [];
+    const tooltipMeta = [];
 
     sortedData.forEach((entry) => {
       let paidClients = 0;
       let unpaidClients = 0;
+      let paidAmount = 0;
 
       entry.clients?.forEach((c) => {
         if (c.rentStatus === "Unpaid") {
           unpaidClients++;
         } else {
           paidClients++;
+          paidAmount += c.revenue || 0;
         }
       });
 
       const total = paidClients + unpaidClients || 1;
       paid.push(Math.round((paidClients / total) * 100));
       unpaid.push(Math.round((unpaidClients / total) * 100));
+
+      tooltipMeta.push({
+        month: entry.month,
+        paidClients,
+        unpaidClients,
+        total,
+        paidAmount,
+      });
     });
 
-    return [
-      { name: "Paid", data: paid },
-      { name: "Unpaid", data: unpaid },
-    ];
+    return {
+      chartData: [
+        { name: "Paid", data: paid },
+        { name: "Unpaid", data: unpaid },
+      ],
+      tooltipMeta,
+    };
   }, [sortedData]);
+
+  const barValues = barGraphData.chartData.map((item) => item.data);
+  const completed = barValues[0].reduce((sum, item) => item + sum, 0);
 
   const barGraphOptions = {
     chart: {
@@ -137,10 +185,26 @@ const Collections = () => {
     // },
 
     tooltip: {
-      y: {
-        formatter: (val) => `${val}%`,
+      custom: function ({ seriesIndex, dataPointIndex }) {
+        const meta = barGraphData.tooltipMeta[dataPointIndex];
+        if (!meta) return "";
+
+        const { month, paidClients, unpaidClients, total, paidAmount } = meta;
+
+        return `
+      <div style="padding:10px;font-family:Poppins-Regular;font-size:13px;width:200px">
+        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Month</strong> ${month}</div>
+        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Total Clients</strong> ${total}</div>
+        <div style="color:#54C4A7; display:flex; width : 100% ; justify-content : space-between"><strong>Paid</strong> ${paidClients}</div>
+        <div style="color:#EB5C45; display:flex; width : 100% ; justify-content : space-between"><strong>Unpaid</strong> ${unpaidClients}</div>
+        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Amount</strong> INR ${inrFormat(
+          paidAmount
+        )}</div>
+      </div>
+    `;
       },
     },
+
     colors: ["#54C4A7", "#EB5C45"],
   };
 
@@ -158,6 +222,23 @@ const Collections = () => {
     (acc, client) => acc + (client.revenue || 0),
     0
   );
+  const handleMonthChange = (monthLabel) => {
+    setSelectedMonthLabel(monthLabel);
+
+    const matchingData = flatClientData.filter((item) => {
+      const itemMonth = dayjs(item.date).format("MMM-YYYY");
+      return itemMonth === monthLabel;
+    });
+
+    setSelectedMonthData(matchingData);
+  };
+
+  const currentMonthTotal = useMemo(() => {
+    return selectedMonthData.reduce(
+      (sum, client) => sum + (client.revenue || 0),
+      0
+    );
+  }, [selectedMonthData]);
 
   if (isCoWorkingLoading) {
     return <div>Loading...</div>;
@@ -169,15 +250,17 @@ const Collections = () => {
         layout={1}
         title={"COLLECTIONS"}
         titleLabel={"FY 2024-25"}
+        TitleAmount={`USD ${inrFormat(grandTotal)}`}
         border>
-        <BarGraph data={barGraphData} options={barGraphOptions} />
+        <BarGraph data={barGraphData.chartData} options={barGraphOptions} />
+
         <hr />
         <WidgetSection layout={2}>
           <DataCard
             title={"Collected"}
             // description={`Current Month: ${sortedData[0]?.month || "N/A"}`}
             description={`Total : INR ${inrFormat(grandTotal)}`}
-            data={`${barGraphData[0]?.data?.[0] || 0}%`}
+            data={`${(completed / 12).toFixed(0) || 0}%`}
           />
           <DataCard
             title={"Due"}
@@ -191,14 +274,14 @@ const Collections = () => {
       <WidgetSection
         border
         title="Collections"
-        titleLabel={"FY 2024-25"}
-        TitleAmount={`INR ${inrFormat(grandTotal)}`}
+        TitleAmount={`USD ${inrFormat(currentMonthTotal)}`}
         className="bg-white rounded-md shadow-sm">
         <YearWiseTable
           data={flatClientData}
           columns={kraColumn}
           dateColumn="date"
           handleSubmit={() => console.log("Export triggered")}
+          onMonthChange={handleMonthChange}
         />
       </WidgetSection>
 
@@ -230,11 +313,11 @@ const Collections = () => {
             />
             <DetalisFormatted
               title="Desk Rate"
-              detail={`INR ${inrFormat(viewDetails.deskRate)}`}
+              detail={`USD ${inrFormat(viewDetails.deskRate)}`}
             />
             <DetalisFormatted
               title="Revenue"
-              detail={`INR ${inrFormat(viewDetails.revenue)}`}
+              detail={`USD ${inrFormat(viewDetails.revenue)}`}
             />
             <br />
             <div className="font-bold">Rent Schedule</div>

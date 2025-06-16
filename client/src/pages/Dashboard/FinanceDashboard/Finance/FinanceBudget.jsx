@@ -101,7 +101,6 @@ const FinanceBudget = () => {
   //       : []
   //   ).entries()
   // );
-
   const uniqueBuildings = Array.from(
     new Map(
       units.length > 0
@@ -325,7 +324,7 @@ const FinanceBudget = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={"BIZ Nest FINANCE DEPARTMENT EXPENSE"}
-        titleAmount={`INR ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
+        titleAmount={`USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
       />
 
       <div className="flex justify-end">

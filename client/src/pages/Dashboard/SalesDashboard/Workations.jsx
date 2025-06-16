@@ -122,7 +122,7 @@ const Workations = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`,
+        formatter: (val) => `USD ${val.toLocaleString()}`,
       },
     },
     plotOptions: {
@@ -193,7 +193,7 @@ const Workations = () => {
     return {
       id: index,
       month: monthData.month,
-      actual: `INR ${totalRevenue.toLocaleString()}`,
+      actual: `USD ${totalRevenue.toLocaleString()}`,
       revenue: monthData.clients.map((client, i) => ({
         id: i + 1,
         clientName: client.clientName,
@@ -211,48 +211,46 @@ const Workations = () => {
         title={"Annual Monthly Workation Revenues"}
         titleLabel={"FY 2024-25"}
         border
-        TitleAmount={`INR ${inrFormat(totalActual)}`}
-      >
+        TitleAmount={`USD ${inrFormat(totalActual)}`}>
         <NormalBarGraph data={series} options={options} height={400} />
       </WidgetSection>
-        <MonthWiseAgTable
-          financialData={tableData}
-          title={"Monthly Revenue with Client Details"}
-          passedColumns={[
-            { headerName: "Sr No", field: "id", flex: 1 },
-            { headerName: "Client Name", field: "clientName", flex: 1 },
+      <MonthWiseAgTable
+        financialData={tableData}
+        title={"Monthly Revenue with Client Details"}
+        passedColumns={[
+          { headerName: "Sr No", field: "id", flex: 1 },
+          { headerName: "Client Name", field: "clientName", flex: 1 },
 
-            {
-              headerName: "Taxable (INR)",
-              field: "taxableAmount",
-              flex: 1,
-              valueFormatter: ({ value }) =>
-                typeof value === "number"
-                  ? value.toLocaleString()
-                  : `${value ?? ""}`,
-            },
-            {
-              headerName: "GST (INR)",
-              field: "gst",
-              flex: 1,
-              valueFormatter: ({ value }) =>
-                typeof value === "number"
-                  ? value.toLocaleString()
-                  : `${value ?? ""}`,
-            },
-            {
-              headerName: "Total (INR)",
-              field: "revenue",
-              flex: 1,
-              valueFormatter: ({ value }) =>
-                typeof value === "number"
-                  ? value.toLocaleString()
-                  : `${value ?? ""}`,
-            },
-            { headerName: "Status", field: "status", flex: 1, pinned : "right" },
-          ]}
-        />
-
+          {
+            headerName: "Taxable (INR)",
+            field: "taxableAmount",
+            flex: 1,
+            valueFormatter: ({ value }) =>
+              typeof value === "number"
+                ? value.toLocaleString()
+                : `${value ?? ""}`,
+          },
+          {
+            headerName: "GST (INR)",
+            field: "gst",
+            flex: 1,
+            valueFormatter: ({ value }) =>
+              typeof value === "number"
+                ? value.toLocaleString()
+                : `${value ?? ""}`,
+          },
+          {
+            headerName: "Total (INR)",
+            field: "revenue",
+            flex: 1,
+            valueFormatter: ({ value }) =>
+              typeof value === "number"
+                ? value.toLocaleString()
+                : `${value ?? ""}`,
+          },
+          { headerName: "Status", field: "status", flex: 1, pinned: "right" },
+        ]}
+      />
     </div>
   );
 };

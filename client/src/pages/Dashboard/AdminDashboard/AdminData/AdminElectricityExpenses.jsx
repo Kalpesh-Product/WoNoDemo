@@ -838,8 +838,7 @@ const AdminElectricityExpenses = () => {
       cellRenderer: (params) => (
         <span
           className="text-subtitle cursor-pointer"
-          onClick={() => handleDetailsClick(params.data)}
-        >
+          onClick={() => handleDetailsClick(params.data)}>
           <MdOutlineRemoveRedEye />
         </span>
       ),
@@ -891,8 +890,7 @@ const AdminElectricityExpenses = () => {
         layout={1}
         title={"Electricity Consumption And Expenses"}
         titleLabel={"FY 2024-25"}
-        border
-      >
+        border>
         <div className="px-4 py-2 border-b border-borderGray bg-gray-50">
           <div className="flex flex-wrap justify-between items-center py-2 text-sm text-muted font-pmedium text-title">
             <span className="w-1/2 sm:w-1/5">FINANCIAL YEAR</span>
@@ -907,8 +905,7 @@ const AdminElectricityExpenses = () => {
               <AccordionSummary
                 expandIcon={<IoIosArrowDown />}
                 aria-controls={`panel-${index}-content`}
-                id={`panel-${index}-header`}
-              >
+                id={`panel-${index}-header`}>
                 <div className="flex justify-between items-center w-full px-2">
                   <span className="text-subtitle font-pmedium  ">
                     {electricity.month}
@@ -924,9 +921,7 @@ const AdminElectricityExpenses = () => {
                   search={true}
                   searchColumn={"Asset Number"}
                   buttonTitle={"Add Expense"}
-                  data={[
-                   
-                  ]}
+                  data={[]}
                   columns={assetColumns}
                   handleClick={handleAddAsset}
                 />
@@ -961,8 +956,7 @@ const AdminElectricityExpenses = () => {
                             errors.assetImage
                               ? "border-red-500"
                               : "border-gray-300"
-                          } `}
-                        >
+                          } `}>
                           <div
                             className="w-full h-48 flex justify-center items-center relative"
                             style={{
@@ -972,8 +966,7 @@ const AdminElectricityExpenses = () => {
                               backgroundSize: "contain",
                               backgroundPosition: "center",
                               backgroundRepeat: "no-repeat",
-                            }}
-                          >
+                            }}>
                             <Button
                               variant="outlined"
                               component="label"
@@ -988,8 +981,7 @@ const AdminElectricityExpenses = () => {
                                 padding: "8px 16px",
                                 borderRadius: "8px",
                                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)",
-                              }}
-                            >
+                              }}>
                               Select Image
                               <input
                                 type="file"
@@ -1015,8 +1007,7 @@ const AdminElectricityExpenses = () => {
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
                                 margin: 0,
-                              }}
-                            >
+                              }}>
                               {errors.assetImage.message}
                             </FormHelperText>
                           )}
@@ -1033,8 +1024,7 @@ const AdminElectricityExpenses = () => {
                         {...field}
                         label="Asset Type"
                         helperText={!!errors.assetType?.message}
-                        select
-                      >
+                        select>
                         <MenuItem value="">Select an Asset Type</MenuItem>
                         <MenuItem value="Physical">Physical</MenuItem>
                         <MenuItem value="Digital">Digital</MenuItem>
@@ -1054,8 +1044,7 @@ const AdminElectricityExpenses = () => {
                         {...field}
                         select
                         label="Department"
-                        size="small"
-                      >
+                        size="small">
                         {auth.user.company.selectedDepartments?.map((dept) => (
                           <MenuItem key={dept._id} value={dept._id}>
                             {dept.name}
@@ -1076,8 +1065,7 @@ const AdminElectricityExpenses = () => {
                         fullWidth
                         select
                         label="Category"
-                        size="small"
-                      >
+                        size="small">
                         {assetsCategories.map((category) => (
                           <MenuItem key={category._id} value={category._id}>
                             {category.categoryName}
@@ -1097,13 +1085,11 @@ const AdminElectricityExpenses = () => {
                         fullWidth
                         select
                         label="Sub-Category"
-                        size="small"
-                      >
+                        size="small">
                         {assetsCategories.subCategories?.map((subCategory) => (
                           <MenuItem
                             key={subCategory._id}
-                            value={subCategory._id}
-                          >
+                            value={subCategory._id}>
                             {subCategory.categoryName}
                           </MenuItem>
                         ))}
@@ -1248,7 +1234,7 @@ const AdminElectricityExpenses = () => {
                 <DetalisFormatted title="Month" detail={selectedAsset.month} />
                 <DetalisFormatted
                   title="Total Expense"
-                  detail={`INR ${selectedAsset.totalExpense.toLocaleString(
+                  detail={`USD ${selectedAsset.totalExpense.toLocaleString(
                     "en-IN"
                   )}`}
                 />

@@ -107,7 +107,7 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
 
       <WidgetSection
         title={title}
-        TitleAmount={amount || `INR ${inrFormat(monthTotal)}`}
+        TitleAmount={amount || `USD ${inrFormat(monthTotal)}`}
         border>
         <div className="flex justify-center items-center space-x-2 px-4 pt-2 ">
           {/* Month Switcher */}

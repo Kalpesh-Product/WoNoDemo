@@ -23,9 +23,13 @@ import ParentRevenue from "./ParentRevenue";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { setClientData, setLeadsData, setUnitData } from "../../../redux/slices/salesSlice";
+import {
+  setClientData,
+  setLeadsData,
+  setUnitData,
+} from "../../../redux/slices/salesSlice";
 import { CircularProgress, Skeleton } from "@mui/material";
-import { SiCashapp } from "react-icons/si";
+import { SiCashapp, SiGoogleadsense } from "react-icons/si";
 import { useSidebar } from "../../../context/SideBarContext";
 import FinanceCard from "../../../components/FinanceCard";
 import { YearCalendar } from "@mui/x-date-pickers";
@@ -136,7 +140,7 @@ const SalesDashboard = () => {
     },
     yaxis: {
       min: 0,
-      max: 6000000,
+      max: 9000000,
       tickAmount: 4,
       title: { text: "Amount In Lakhs (INR)" },
       labels: {
@@ -150,7 +154,7 @@ const SalesDashboard = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${inrFormat(val)}`,
+        formatter: (val) => `USD ${inrFormat(val)}`,
       },
     },
   };
@@ -190,7 +194,7 @@ const SalesDashboard = () => {
     queryFn: async () => {
       try {
         const response = await axios.get("/api/sales/co-working-clients");
-        const data = response.data.filter((item)=>item.isActive)
+        const data = response.data.filter((item) => item.isActive);
         dispatch(setClientData(data));
         return data;
       } catch (error) {
@@ -231,12 +235,12 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "FY 2024-25",
-        value: `INR ${inrFormat(totalValue) || 0}`,
+        value: `USD ${inrFormat(totalValue) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
         title: "March 2025",
-        value: `INR ${inrFormat(finalRevenueGraph[11]) || 0}`,
+        value: `USD ${inrFormat(finalRevenueGraph[11]) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -258,10 +262,9 @@ const SalesDashboard = () => {
   };
   //-----------------------------------------------For Data cards-----------------------------------------------------------//
 
-  const totalOccupiedSeats = clientsData.filter((item)=>item.isActive === true).reduce(
-    (sum, item) => (item.totalDesks || 0) + sum,
-    0
-  );
+  const totalOccupiedSeats = clientsData
+    .filter((item) => item.isActive === true)
+    .reduce((sum, item) => (item.totalDesks || 0) + sum, 0);
 
   const keyStatsData = {
     cardTitle: "KEY STATS",
@@ -300,7 +303,7 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "Revenue",
-        value: `INR ${inrFormat(totalValue / 12)}`,
+        value: `USD ${inrFormat(totalValue / 12)}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -616,13 +619,13 @@ const SalesDashboard = () => {
     { id: "startDate", label: "Date of Join" },
     { id: "completedTime", label: "Completed Time" },
   ];
-  
+
   // ✅ Processed Table Data (Including Completed Time)
-  const formattedCompanyTableData = clientsData.map((company,index) => ({
+  const formattedCompanyTableData = clientsData.map((company, index) => ({
     id: index + 1,
     company: company.clientName,
-    startDate: (humanDate(company.startDate)) || "18-10-2001",
-    completedTime: calculateCompletedTime(company.startDate ),
+    startDate: humanDate(company.startDate) || "18-10-2001",
+    completedTime: calculateCompletedTime(company.startDate),
   }));
   //-----------------------------------------------Client Anniversary-----------------------------------------------------------//
   //-----------------------------------------------Client Birthday-----------------------------------------------------------//
@@ -693,7 +696,7 @@ const SalesDashboard = () => {
   //-----------------------------------------------Conversion of India-wise Pie-graph-----------------------------------------------------------//
   function getLocationWiseData(data) {
     const locationMap = {};
-  
+
     // Step 1: Count companies per hoState
     data.forEach((client) => {
       const state = client.hoState || "Unknown";
@@ -702,10 +705,10 @@ const SalesDashboard = () => {
       }
       locationMap[state] += 1;
     });
-  
+
     const processed = [];
     let othersCount = 0;
-  
+
     // Step 2: Split into main locations and 'Others'
     for (const [location, count] of Object.entries(locationMap)) {
       if (count >= 2) {
@@ -714,14 +717,14 @@ const SalesDashboard = () => {
         othersCount += count;
       }
     }
-  
+
     if (othersCount > 0) {
       processed.push({ label: "Others", value: othersCount });
     }
-  
+
     return processed;
   }
-  
+
   const locationWiseData = getLocationWiseData(clientsData);
 
   const locationPieChartOptions = {
@@ -752,7 +755,7 @@ const SalesDashboard = () => {
               data={incomeExpenseData}
               options={incomeExpenseOptions}
               title={"BIZ Nest SALES DEPARTMENT REVENUES"}
-              titleAmount={`INR ${inrFormat(totalValue)}`}
+              titleAmount={`USD ${inrFormat(totalValue)}`}
             />
           ) : (
             <div className="h-72 flex items-center justify-center">
@@ -771,7 +774,7 @@ const SalesDashboard = () => {
       ],
     },
     {
-      layout: 5,
+      layout: 6,
       widgets: [
         <Card route={"turnover"} title={"Turnover"} icon={<RiPagesLine />} />,
         <Card
@@ -786,6 +789,11 @@ const SalesDashboard = () => {
         />,
         <Card route={""} title={"Reports"} icon={<CgProfile />} />,
         <Card
+          route={"/app/dashboard/sales-dashboard/data"}
+          title={"Data"}
+          icon={<SiGoogleadsense />}
+        />,
+        <Card
           route={"/app/dashboard/sales-dashboard/settings"}
           title={"Settings"}
           icon={<MdMiscellaneousServices />}
@@ -799,8 +807,7 @@ const SalesDashboard = () => {
           layout={1}
           title={"Monthly Unique Leads"}
           titleLabel={"FY 2024-25"}
-          border
-        >
+          border>
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />
@@ -824,8 +831,7 @@ const SalesDashboard = () => {
           layout={1}
           title={"Sourcing Channels"}
           titleLabel={"FY 2024-25"}
-          border
-        >
+          border>
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />
@@ -916,11 +922,11 @@ const SalesDashboard = () => {
   return (
     <div>
       <div className="flex flex-col gap-4">
-        {meetingsWidgets.map((widget,index)=>(
+        {meetingsWidgets.map((widget, index) => (
           <LazyDashboardWidget
-          key={index}
-          layout={widget.layout}
-          widgets={widget.widgets}
+            key={index}
+            layout={widget.layout}
+            widgets={widget.widgets}
           />
         ))}
       </div>

@@ -31,7 +31,6 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const axios = useAxiosPrivate();
 
-
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["maintainance-budget"],
     queryFn: async () => {
@@ -875,8 +874,7 @@ const AdminDashboard = () => {
               <Skeleton variant="text" width={200} height={30} />
               <Skeleton variant="rectangular" width="100%" height={300} />
             </Box>
-          }
-        >
+          }>
           <WidgetSection normalCase layout={1} padding>
             <YearlyGraph
               data={expenseRawSeries}
@@ -884,7 +882,7 @@ const AdminDashboard = () => {
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
               title={"BIZ Nest ADMIN DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -1032,9 +1030,7 @@ const AdminDashboard = () => {
           Title={"Newly Joined House Keeping Members"}
           rowsToDisplay={4}
           scroll
-          rows={[
-            
-          ]}
+          rows={[]}
           columns={houseKeepingMemberColumns}
         />,
       ],
@@ -1053,9 +1049,7 @@ const AdminDashboard = () => {
           scroll
           Title={"Upcoming Events List"}
           rowsToDisplay={3}
-          rows={[
-            
-          ]}
+          rows={[]}
           columns={upcomingEventsColumns}
         />,
         <MuiTable
@@ -1063,18 +1057,14 @@ const AdminDashboard = () => {
           scroll
           rowsToDisplay={3}
           Title={"Upcoming Client Member Birthdays"}
-          rows={[
-         
-          ]}
+          rows={[]}
         />,
         <MuiTable
           columns={upComingClientAnniversaryColumns}
           scroll
           rowsToDisplay={3}
           Title={"Upcoming Client Anniversaries"}
-          rows={[
-          
-          ]}
+          rows={[]}
         />,
       ],
     },

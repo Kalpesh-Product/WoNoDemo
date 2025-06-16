@@ -121,7 +121,7 @@ const VirtualOffice = () => {
     tooltip: {
       enabled: true,
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`, // Format tooltip
+        formatter: (val) => `USD ${val.toLocaleString()}`, // Format tooltip
       },
     },
     plotOptions: {
@@ -153,8 +153,7 @@ const VirtualOffice = () => {
           title={"Annual Monthly Virtual Office Revenues"}
           titleLabel={"FY 2024-25"}
           border
-          TitleAmount={`INR ${inrFormat(totalActual)}`}
-        >
+          TitleAmount={`USD ${inrFormat(totalActual)}`}>
           <NormalBarGraph data={series} options={options} height={400} />
         </WidgetSection>
       ) : (

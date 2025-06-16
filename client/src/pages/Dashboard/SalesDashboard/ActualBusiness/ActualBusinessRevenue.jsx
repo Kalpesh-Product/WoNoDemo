@@ -141,7 +141,7 @@ const ActualBusinessRevenue = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (value) => `INR ${value.toLocaleString("en-IN")}`,
+        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`,
       },
     },
     legend: { position: "top" },
@@ -163,11 +163,10 @@ const ActualBusinessRevenue = () => {
             layout={1}
             title={"Vertical-wise Revenue"}
             titleLabel={`${selectedMonth} 2024`}
-            TitleAmount={`INR ${inrFormat(
+            TitleAmount={`USD ${inrFormat(
               selectedMonthData.reduce((sum, d) => sum + d.revenue, 0)
             )}`}
-            border
-          >
+            border>
             <NormalBarGraph data={graphData} options={options} height={400} />
           </WidgetSection>
 
@@ -184,8 +183,7 @@ const ActualBusinessRevenue = () => {
                 className="w-[100px]"
                 SelectProps={{
                   IconComponent: KeyboardArrowDownIcon,
-                }}
-              >
+                }}>
                 {months.map((month) => (
                   <MenuItem key={month} value={month}>
                     {month}
@@ -199,10 +197,9 @@ const ActualBusinessRevenue = () => {
           <WidgetSection
             border
             title={`Vertical-wise Revenue Breakdown FY 2024-25`}
-            TitleAmount={`INR ${inrFormat(
+            TitleAmount={`USD ${inrFormat(
               selectedMonthData.reduce((sum, d) => sum + d.revenue, 0)
-            )}`}
-          >
+            )}`}>
             <AgTable
               hideFilter
               tableHeight={300}
