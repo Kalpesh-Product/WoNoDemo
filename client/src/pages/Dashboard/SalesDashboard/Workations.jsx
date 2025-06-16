@@ -114,7 +114,7 @@ const Workations = () => {
       ],
     },
     yaxis: {
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -222,7 +222,7 @@ const Workations = () => {
           { headerName: "Client Name", field: "clientName", flex: 1 },
 
           {
-            headerName: "Taxable (INR)",
+            headerName: "Taxable (USD)",
             field: "taxableAmount",
             flex: 1,
             valueFormatter: ({ value }) =>
@@ -231,7 +231,7 @@ const Workations = () => {
                 : `${value ?? ""}`,
           },
           {
-            headerName: "GST (INR)",
+            headerName: "GST (USD)",
             field: "gst",
             flex: 1,
             valueFormatter: ({ value }) =>
@@ -240,7 +240,7 @@ const Workations = () => {
                 : `${value ?? ""}`,
           },
           {
-            headerName: "Total (INR)",
+            headerName: "Total (USD)",
             field: "revenue",
             flex: 1,
             valueFormatter: ({ value }) =>

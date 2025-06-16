@@ -113,7 +113,7 @@ const VirtualOffice = () => {
       categories: transformRevenuesData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => val / 100000, // Display in Thousand
       },
@@ -167,7 +167,7 @@ const VirtualOffice = () => {
           passedColumns={[
             { headerName: "Sr No", field: "id", flex: 1 },
             { headerName: "Client Name", field: "clientName", flex: 1 },
-            { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+            { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
             { headerName: "Status", field: "status", flex: 1 },
           ]}
         />

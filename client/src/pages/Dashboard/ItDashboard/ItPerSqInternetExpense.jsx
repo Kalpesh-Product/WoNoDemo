@@ -670,12 +670,12 @@ const ItPerSqInternetExpense = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Internet Expense (INR)",
+                      headerName: "Internet Expense (USD)",
                       field: "actualRevenue",
                       flex: 1,
                     },
                     {
-                      headerName: "Expense per Sq.Ft (INR)",
+                      headerName: "Expense per Sq.Ft (USD)",
                       field: "expensePerSqFt",
                       flex: 1,
                     },

@@ -617,7 +617,7 @@ const AdminPerSqFtElectricityExpense = () => {
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
-    yaxis: { title: { text: "Expense (INR)" } },
+    yaxis: { title: { text: "Expense (USD)" } },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
@@ -707,7 +707,7 @@ const AdminPerSqFtElectricityExpense = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Electricity Expense (INR)",
+                      headerName: "Electricity Expense (USD)",
                       field: "actualRevenue",
                       flex: 1,
                     },
@@ -717,7 +717,7 @@ const AdminPerSqFtElectricityExpense = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Electricity Expense per Sq.Ft (INR)",
+                      headerName: "Electricity Expense per Sq.Ft (USD)",
                       field: "expensePerSqft",
                       flex: 1,
                     },

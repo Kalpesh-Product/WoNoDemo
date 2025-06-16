@@ -109,7 +109,7 @@ const ItBudget = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -184,10 +184,10 @@ const ItBudget = () => {
                 { field: "expanseType", headerName: "Expense Type", flex: 1 },
                 {
                   field: "projectedAmount",
-                  headerName: "Projected (INR)",
+                  headerName: "Projected (USD)",
                   flex: 1,
                 },
-                { field: "actualAmount", headerName: "Actual (INR)", flex: 1 }, // ✅ add this
+                { field: "actualAmount", headerName: "Actual (USD)", flex: 1 }, // ✅ add this
                 { field: "dueDate", headerName: "Due Date", flex: 1 },
                 { field: "status", headerName: "Status", flex: 1 },
               ],

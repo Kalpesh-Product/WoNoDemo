@@ -10,9 +10,9 @@ const ClientRevenue = () => {
       field: "employeeName",
       headerName: "Month",
     },
-    { field: "employmentID", headerName: "Paid Amount (INR)" },
-    { field: "email", headerName: "Due Amount (INR)", flex: 1 },
-    { field: "role", headerName: "Total Amount (INR)", flex: 1 },
+    { field: "employmentID", headerName: "Paid Amount (USD)" },
+    { field: "email", headerName: "Due Amount (USD)", flex: 1 },
+    { field: "role", headerName: "Total Amount (USD)", flex: 1 },
     {
       field: "status",
       headerName: "Status",

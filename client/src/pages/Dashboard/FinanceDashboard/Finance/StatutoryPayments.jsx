@@ -165,8 +165,8 @@ const StatutoryPayments = () => {
   const kraColumn = [
     { field: "srNo", headerName: "Sr No", width: 100 },
     { field: "expanseName", headerName: "Client", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected Amount (INR)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual Amount (INR)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
     { field: "dueDate", headerName: "Due Date", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
     {

@@ -127,7 +127,7 @@ const SalesBudget = () => {
     },
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },

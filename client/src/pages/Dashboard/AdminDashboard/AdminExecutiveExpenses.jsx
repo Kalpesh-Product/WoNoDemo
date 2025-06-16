@@ -630,7 +630,7 @@ const AdminExecutiveExpenses = () => {
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
-    yaxis: { title: { text: "Revenue (INR)" } },
+    yaxis: { title: { text: "Revenue (USD)" } },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
@@ -715,7 +715,7 @@ const AdminExecutiveExpenses = () => {
                     },
                     { headerName: "Admin Lead", field: "adminLead", flex: 1 },
                     {
-                      headerName: "Expense (INR)",
+                      headerName: "Expense (USD)",
                       field: "actualRevenue",
                       flex: 1,
                     },

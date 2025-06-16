@@ -177,7 +177,7 @@ const TotalRevenue = () => {
           <CollapsibleTable
             columns={[
               { headerName: "Vertical", field: "vertical" },
-              { headerName: "Revenue (INR)", field: "revenue" },
+              { headerName: "Revenue (USD)", field: "revenue" },
               {
                 headerName: "Percentage Of Business (%)",
                 field: "contribution",
@@ -245,7 +245,7 @@ const TotalRevenue = () => {
                   { headerName: "Sr No", field: "srNo", flex: 1 },
                   { headerName: "Month", field: "month", flex: 1 },
                   { headerName: "Year", field: "year", flex: 1 },
-                  { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+                  { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
                 ]}
                 tableHeight={300}
                 hideFilter
@@ -263,7 +263,7 @@ const TotalRevenue = () => {
         passedColumns={[
           { headerName: "Sr No", field: "srNo", flex: 1 },
           { headerName: "Vertical", field: "vertical", flex: 1 },
-          { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+          { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
         ]}
         amount={`USD ${inrFormat(totalAnnualRevenue)}`}
         financialData={financialDataForTable}

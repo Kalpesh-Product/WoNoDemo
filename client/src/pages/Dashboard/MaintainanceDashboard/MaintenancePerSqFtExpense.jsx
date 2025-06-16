@@ -252,7 +252,7 @@ const MaintenancePerSqFtExpense = () => {
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
-    yaxis: { title: { text: "Expense (INR)" } },
+    yaxis: { title: { text: "Expense (USD)" } },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
@@ -328,12 +328,12 @@ const MaintenancePerSqFtExpense = () => {
                     { headerName: "Occupant", field: "occupant", flex: 1 },
                     { headerName: "Square Feet", field: "squareFeet", flex: 1 },
                     {
-                      headerName: "Actual Expense (INR)",
+                      headerName: "Actual Expense (USD)",
                       field: "actualExpense",
                       flex: 1,
                     },
                     {
-                      headerName: "Expense / Sq Ft (INR)",
+                      headerName: "Expense / Sq Ft (USD)",
                       field: "expensePerSqFt",
                       flex: 1,
                       valueFormatter: (params) =>

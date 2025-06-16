@@ -573,7 +573,7 @@ const ItExpenses = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Actual Expense (INR)",
+                      headerName: "Actual Expense (USD)",
                       field: "actualRevenue",
                       flex: 1,
                     },

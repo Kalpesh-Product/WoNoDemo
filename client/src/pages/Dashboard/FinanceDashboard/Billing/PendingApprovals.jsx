@@ -81,7 +81,7 @@ const PendingApprovals = () => {
     { field: "expanseName", headerName: "Expense Name ", width: 200 },
     { field: "department", headerName: "Department", width: 150 },
     { field: "expanseType", headerName: "Expense Type " },
-    { field: "projectedAmount", headerName: "Amount (INR)" },
+    { field: "projectedAmount", headerName: "Amount (USD)" },
     { field: "reimbursementDate", headerName: "Date" },
     {
       field: "actions",
@@ -153,13 +153,11 @@ const PendingApprovals = () => {
         <MuiModal
           open={modalOpen}
           onClose={() => setModalOpen(false)}
-          title={"Reject request"}
-        >
+          title={"Reject request"}>
           {modalType === "reject" && (
             <form
               onSubmit={reasonSubmit(onSubmit)}
-              className="flex flex-col gap-4"
-            >
+              className="flex flex-col gap-4">
               <Controller
                 name="reason"
                 control={control}
@@ -197,7 +195,7 @@ const PendingApprovals = () => {
                 detail={selectedBudget.expanseType}
               />
               <DetalisFormatted
-                title="Amount (INR)"
+                title="Amount (USD)"
                 detail={selectedBudget.projectedAmount?.toLocaleString()}
               />
               <DetalisFormatted title="Status" detail={selectedBudget.status} />
@@ -240,8 +238,7 @@ const PendingApprovals = () => {
                     href={selectedBudget.invoice?.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 underline"
-                  >
+                    className="text-blue-600 underline">
                     View Invoice
                   </a>
                 }
@@ -322,7 +319,7 @@ const PendingApprovals = () => {
                         PARTICULARS (Details of Expenses)
                       </td>
                       <td className={cellClasses} colSpan={2}>
-                        INR.
+                        USD.
                       </td>
                     </tr>
                   </thead>

@@ -312,14 +312,14 @@ const AltRevenues = () => {
       categories: monthlyRevenueData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
     },
     tooltip: {
       y: {
-        formatter: (val) => `${val.toLocaleString()} INR`,
+        formatter: (val) => `${val.toLocaleString()} USD`,
       },
     },
     plotOptions: {

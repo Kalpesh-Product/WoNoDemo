@@ -619,7 +619,7 @@ const AdminPerSqFtExpense = () => {
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
-    yaxis: { title: { text: "Revenue (INR)" } },
+    yaxis: { title: { text: "Revenue (USD)" } },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
@@ -712,7 +712,7 @@ const AdminPerSqFtExpense = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Expense (INR)",
+                      headerName: "Expense (USD)",
                       field: "actualRevenue",
                       flex: 1,
                     },
@@ -722,7 +722,7 @@ const AdminPerSqFtExpense = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Expense per Sq.Ft (INR)",
+                      headerName: "Expense per Sq.Ft (USD)",
                       field: "expensePerSqft",
                       flex: 1,
                     },

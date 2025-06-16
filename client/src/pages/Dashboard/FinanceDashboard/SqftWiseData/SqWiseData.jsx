@@ -229,7 +229,7 @@ const SqWiseData = () => {
     { field: "month", headerName: "Month", flex: 1 },
     {
       field: "income",
-      headerName: "Income (INR)",
+      headerName: "Income (USD)",
       flex: 1,
       cellRenderer: (params) => (
         <span
@@ -250,7 +250,7 @@ const SqWiseData = () => {
       flex: 1,
       cellRenderer: (params) => inrFormat(params.value),
     },
-    { field: "perSqFt", headerName: "Per Sq.Ft Income (INR)", flex: 1 },
+    { field: "perSqFt", headerName: "Per Sq.Ft Income (USD)", flex: 1 },
     // {
     //   field: "actions",
     //   headerName: "Actions",
@@ -310,7 +310,7 @@ const SqWiseData = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,

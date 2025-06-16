@@ -106,7 +106,7 @@ const AdminMonthlyInvoiceReports = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (INR)" },
+    { field: "price", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -350,7 +350,7 @@ const AdminMonthlyInvoiceReports = () => {
                     <TextField
                       size="small"
                       {...field}
-                      label="Price (INR)"
+                      label="Price (USD)"
                       type="number"
                       error={!!errors.price}
                       helperText={errors.price?.message}

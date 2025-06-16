@@ -115,7 +115,7 @@ const FinanceMonthlyInvoices = () => {
     { field: "service", headerName: "Service" },
     { field: "invoiceDate", headerName: "Invoice Date" },
     { field: "dueDate", headerName: "Due Date" },
-    { field: "amount", headerName: "Amount (INR)" },
+    { field: "amount", headerName: "Amount (USD)" },
     {
       field: "status",
       headerName: "Status",

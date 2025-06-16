@@ -451,7 +451,7 @@ const MaintenanceExpenses = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Actual Expense (INR)",
+                      headerName: "Actual Expense (USD)",
                       field: "actualExpense",
                       flex: 1,
                     },

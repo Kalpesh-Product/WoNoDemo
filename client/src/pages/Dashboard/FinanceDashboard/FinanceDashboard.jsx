@@ -297,7 +297,7 @@ const FinanceDashboard = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -790,7 +790,7 @@ const FinanceDashboard = () => {
     { id: "expanseType", label: "Type", width: 150 },
     {
       id: "actualAmount",
-      label: "Actual Amount (INR)",
+      label: "Actual Amount (USD)",
       width: 150,
       renderCell: (row) => `${row.actualAmount.toLocaleString("en-IN")}`,
     },

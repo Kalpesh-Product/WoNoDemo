@@ -61,7 +61,7 @@ const DeptWiseBudget = () => {
                 );
               },
             },
-            { field: "amount", headerName: "Amount (INR)", flex: 1 },
+            { field: "amount", headerName: "Amount (USD)", flex: 1 },
           ],
         },
       };
@@ -147,8 +147,8 @@ const DeptWiseBudget = () => {
             );
           },
         },
-        { field: "projectedAmount", headerName: "Projected (INR)", flex: 1 },
-        { field: "actualAmount", headerName: "Actual (INR)", flex: 1 },
+        { field: "projectedAmount", headerName: "Projected (USD)", flex: 1 },
+        { field: "actualAmount", headerName: "Actual (USD)", flex: 1 },
       ];
 
       return {
@@ -213,7 +213,7 @@ const DeptWiseBudget = () => {
       offsetY: -22,
     },
     yaxis: {
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },

@@ -830,7 +830,7 @@ const AdminElectricityExpenses = () => {
   const assetColumns = [
     { field: "id", headerName: "Sr No" },
     { field: "location", headerName: "Location" },
-    { field: "totalExpense", headerName: "Expense (INR)" },
+    { field: "totalExpense", headerName: "Expense (USD)" },
     { field: "paid", headerName: "Status", flex: "1" },
     {
       field: "actions",

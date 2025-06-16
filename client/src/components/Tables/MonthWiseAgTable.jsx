@@ -68,17 +68,17 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
   const columns = [
     { headerName: "Particulars", field: "particulars" },
     {
-      headerName: "Taxable Amount (INR)",
+      headerName: "Taxable Amount (USD)",
       field: "taxableAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "GST (INR)",
+      headerName: "GST (USD)",
       field: "gst",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "Invoice Amount (INR)",
+      headerName: "Invoice Amount (USD)",
       field: "invoiceAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
