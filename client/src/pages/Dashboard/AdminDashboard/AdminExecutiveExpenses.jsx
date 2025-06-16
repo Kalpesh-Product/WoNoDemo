@@ -692,7 +692,7 @@ const AdminExecutiveExpenses = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    {/* INR {domain.revenue.toLocaleString()} */}
+                    {/* USD{domain.revenue.toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -728,7 +728,7 @@ const AdminExecutiveExpenses = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      {/* INR {domain.revenue.toLocaleString()} */}
+                      {/* USD{domain.revenue.toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

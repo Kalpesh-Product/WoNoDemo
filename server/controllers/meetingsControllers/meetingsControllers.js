@@ -1225,7 +1225,7 @@ const updateMeeting = async (req, res, next) => {
 
     // if (!isValidAmount) {
     //   throw new CustomError(
-    //     `Actual amount is INR ${amountToBePaid}`,
+    //     `Actual amount is USD${amountToBePaid}`,
     //     logPath,
     //     logAction,
     //     logSourceKey

@@ -359,7 +359,12 @@ const MaintenanceAssets = () => {
 
   // Graph Options
   const options = {
-    chart: { type: "bar", toolbar: false, stacked: false, fontFamily: "Poppins-Regular" },
+    chart: {
+      type: "bar",
+      toolbar: false,
+      stacked: false,
+      fontFamily: "Poppins-Regular",
+    },
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
@@ -368,7 +373,7 @@ const MaintenanceAssets = () => {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (
@@ -398,7 +403,7 @@ const MaintenanceAssets = () => {
 
       {/* Accordion Section for Domain-wise Revenue Breakdown */}
       <div className="flex flex-col gap-2 border-default border-borderGray rounded-md p-4">
-      <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
+        <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
           <div className="flex justify-between items-center w-full px-4 py-2">
             <span className="text-sm text-muted font-pmedium text-title">
               LOCATION
@@ -406,7 +411,6 @@ const MaintenanceAssets = () => {
             <span className="text-sm text-muted font-pmedium text-title flex items-center gap-1">
               EXPENSE
             </span>
-            
           </div>
         </div>
         {selectedMonthData.domains.map((domain, index) => {
@@ -421,7 +425,7 @@ const MaintenanceAssets = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                  {/* INR {domain.revenue.toLocaleString()}  */}
+                    {/* USD{domain.revenue.toLocaleString()}  */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -437,7 +441,11 @@ const MaintenanceAssets = () => {
                       field: "representative",
                       flex: 1,
                     },
-                    { headerName: "Register Date", field: "registerDate", flex: 1 },
+                    {
+                      headerName: "Register Date",
+                      field: "registerDate",
+                      flex: 1,
+                    },
                     {
                       headerName: "Actual Expense (INR)",
                       field: "actualRevenue",
@@ -452,7 +460,7 @@ const MaintenanceAssets = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      INR {domain.revenue.toLocaleString()}
+                      USD{domain.revenue.toLocaleString()}
                     </span>{" "}
                   </div>
                 </div>

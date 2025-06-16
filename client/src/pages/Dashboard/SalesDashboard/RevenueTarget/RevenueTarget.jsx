@@ -499,7 +499,7 @@ const RevenueTarget = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    INR {domain.revenue.toLocaleString()}
+                    USD{domain.revenue.toLocaleString()}
                   </span>
                 </div>
               </AccordionSummary>

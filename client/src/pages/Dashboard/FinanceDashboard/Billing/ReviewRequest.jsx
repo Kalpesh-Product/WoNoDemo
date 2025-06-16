@@ -42,16 +42,16 @@ const paymentModes = [
 
 const ReviewRequest = () => {
   const formRef = useRef(null);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const voucherDetails = useSelector((state) => state.finance.voucherDetails);
-  console.log("Voucher REdux" , voucherDetails)
+  console.log("Voucher REdux", voucherDetails);
   const [openPreview, setOpenPreview] = useState(false);
   const department = usePageDepartment();
   const axios = useAxiosPrivate();
   const { control, watch, setValue, getValues, reset } = useForm({
     defaultValues: {
-      fSrNo : '',
-      budgetId : '',
+      fSrNo: "",
+      budgetId: "",
       modeOfPayment: "",
       chequeNo: "",
       chequeDate: null,
@@ -88,7 +88,7 @@ const ReviewRequest = () => {
       const number = String(reimbursedBudget + 1).padStart(3, "0");
       const generatedSNo = `${prefix}-${number}`;
       setValue("srNo", generatedSNo);
-      setValue("budgetId",voucherDetails._id)
+      setValue("budgetId", voucherDetails._id);
     }
   }, [department?.name, reimbursedBudget, setValue, voucherDetails]);
 
@@ -136,70 +136,65 @@ const ReviewRequest = () => {
   });
   const values = watch();
 
-const onUpload = async () => {
-  const values = getValues();
-  values.particulars = fields;
+  const onUpload = async () => {
+    const values = getValues();
+    values.particulars = fields;
 
-  // Step 1: Generate canvas with lower resolution
-  const canvas = await html2canvas(formRef.current, {
-    scale: 1, // lower scale for compression
+    // Step 1: Generate canvas with lower resolution
+    const canvas = await html2canvas(formRef.current, {
+      scale: 1, // lower scale for compression
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+
+    // Step 2: Create compressed PDF
+    const pdf = new jsPDF("p", "mm", "a4", true); // true enables internal compression
+    const imgWidth = 210;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
+
+    const pdfBlob = pdf.output("blob");
+
+    // Step 3: Create FormData
+    const formData = new FormData();
+    formData.append("voucher", pdfBlob, "Voucher_Form.pdf");
+    formData.append("budgetId", voucherDetails._id);
+    formData.append("fSrNo", values.fSrNo || "");
+    formData.append("modeOfPayment", values.modeOfPayment || "");
+    formData.append("chequeNo", values.chequeNo || "");
+    formData.append("chequeDate", values.chequeDate || "");
+    formData.append("amount", values.amount?.toString() || "0");
+    formData.append("expectedDateInvoice", values.expectedDateInvoice || "");
+    formData.append("particulars", JSON.stringify(values.particulars || []));
+
+    // Step 4: Upload
+    submitRequest(formData);
+  };
+
+  const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
+    mutationKey: ["approve"],
+    mutationFn: async (formData) => {
+      const response = await axios.patch(
+        `/api/budget/approve-budget`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response.data;
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setOpenPreview(false);
+      reset();
+      navigate("/app/dashboard/finance-dashboard/billing/pending-approvals");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
-
-  const imgData = canvas.toDataURL("image/png");
-
-  // Step 2: Create compressed PDF
-  const pdf = new jsPDF("p", "mm", "a4", true); // true enables internal compression
-  const imgWidth = 210;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
-
-  const pdfBlob = pdf.output("blob");
-
-  // Step 3: Create FormData
-  const formData = new FormData();
-  formData.append("voucher", pdfBlob, "Voucher_Form.pdf");
-  formData.append("budgetId", voucherDetails._id);
-  formData.append("fSrNo", values.fSrNo || "");
-  formData.append("modeOfPayment", values.modeOfPayment || "");
-  formData.append("chequeNo", values.chequeNo || "");
-  formData.append("chequeDate", values.chequeDate || "");
-  formData.append("amount", values.amount?.toString() || "0");
-  formData.append("expectedDateInvoice", values.expectedDateInvoice || "");
-  formData.append("particulars", JSON.stringify(values.particulars || []));
-
-  // Step 4: Upload
-  submitRequest(formData);
-};
-
-
-
-
-
-const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
-  mutationKey: ["approve"],
-  mutationFn: async (formData) => {
-    const response = await axios.patch(
-      `/api/budget/approve-budget`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    return response.data;
-  },
-  onSuccess: (data) => {
-    toast.success(data.message);
-    setOpenPreview(false);
-    reset();
-    navigate('/app/dashboard/finance-dashboard/billing/pending-approvals')
-  },
-  onError: (error) => {
-    toast.error(error.message);
-  },
-});
-
 
   const exportToPDF = async () => {
     const canvas = await html2canvas(formRef.current, {
@@ -332,20 +327,18 @@ const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
                 {fields.map((item, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center border-b py-1"
-                  >
+                    className="flex justify-between items-center border-b py-1">
                     <div className="flex flex-col">
                       <span>{item.particularName}</span>
                       <span className="font-medium text-gray-600">
-                        INR {item.particularAmount?.toFixed(2)}
+                        USD{item.particularAmount?.toFixed(2)}
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => remove(index)}
                       className="text-red-500 hover:text-red-700"
-                      title="Delete"
-                    >
+                      title="Delete">
                       <MdDelete size={20} />
                     </button>
                   </li>
@@ -392,8 +385,7 @@ const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}
-                >
+                  {...field}>
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}

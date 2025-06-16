@@ -344,7 +344,7 @@ const MaintenanceExpenses = () => {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (
@@ -396,7 +396,7 @@ const MaintenanceExpenses = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    {/* INR {Number(domain.expense).toLocaleString()} */}
+                    {/* USD{Number(domain.expense).toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -464,7 +464,7 @@ const MaintenanceExpenses = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      {/* INR {Number(domain.expense).toLocaleString()} */}
+                      {/* USD{Number(domain.expense).toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

@@ -142,9 +142,9 @@ const SalesDashboard = () => {
       min: 0,
       max: 9000000,
       tickAmount: 4,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
-        formatter: (val) => val / 100000, // Converts value to Lakhs
+        formatter: (val) => val / 100000, // Converts value to Thousand
       },
     },
 

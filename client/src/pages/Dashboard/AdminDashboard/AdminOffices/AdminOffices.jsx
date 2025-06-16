@@ -20,183 +20,183 @@ const AdminOffices = () => {
 
   const mockBusinessRevenueData = [
     {
-      "month": "April",
-      "domains": [
+      month: "April",
+      domains: [
         {
-          "name": "ST-701A",
-          "revenue": 22000,
-          "clients": [
+          name: "ST-701A",
+          revenue: 22000,
+          clients: [
             {
-              "client": "Nykaa",
-              "representative": "Liam Green",
-              "registerDate": "2024-02-20",
-              "actualRevenue": 7061
+              client: "Nykaa",
+              representative: "Liam Green",
+              registerDate: "2024-02-20",
+              actualRevenue: 7061,
             },
             {
-              "client": "Flipkart",
-              "representative": "Emily White",
-              "registerDate": "2024-02-20",
-              "actualRevenue": 6772
+              client: "Flipkart",
+              representative: "Emily White",
+              registerDate: "2024-02-20",
+              actualRevenue: 6772,
             },
             {
-              "client": "Uber",
-              "representative": "Jane Smith",
-              "registerDate": "2024-02-11",
-              "actualRevenue": 7458
+              client: "Uber",
+              representative: "Jane Smith",
+              registerDate: "2024-02-11",
+              actualRevenue: 7458,
             },
             {
-              "client": "BigBasket",
-              "representative": "Oliver Grey",
-              "registerDate": "2024-03-12",
-              "actualRevenue": 5371
-            }
-          ]
+              client: "BigBasket",
+              representative: "Oliver Grey",
+              registerDate: "2024-03-12",
+              actualRevenue: 5371,
+            },
+          ],
         },
         {
-          "name": "ST-701B",
-          "revenue": 26000,
-          "clients": [
+          name: "ST-701B",
+          revenue: 26000,
+          clients: [
             {
-              "client": "Myntra",
-              "representative": "Chloe Grey",
-              "registerDate": "2024-02-12",
-              "actualRevenue": 4775
+              client: "Myntra",
+              representative: "Chloe Grey",
+              registerDate: "2024-02-12",
+              actualRevenue: 4775,
             },
             {
-              "client": "PhonePe",
-              "representative": "Henry Ford",
-              "registerDate": "2024-02-28",
-              "actualRevenue": 5378
+              client: "PhonePe",
+              representative: "Henry Ford",
+              registerDate: "2024-02-28",
+              actualRevenue: 5378,
             },
             {
-              "client": "Snapdeal",
-              "representative": "Chris Blue",
-              "registerDate": "2024-01-09",
-              "actualRevenue": 7274
+              client: "Snapdeal",
+              representative: "Chris Blue",
+              registerDate: "2024-01-09",
+              actualRevenue: 7274,
             },
             {
-              "client": "Amazon",
-              "representative": "Michael Brown",
-              "registerDate": "2024-03-16",
-              "actualRevenue": 5388
+              client: "Amazon",
+              representative: "Michael Brown",
+              registerDate: "2024-03-16",
+              actualRevenue: 5388,
             },
             {
-              "client": "Meesho",
-              "representative": "Yash Shah",
-              "registerDate": "2024-03-11",
-              "actualRevenue": 5476
-            }
-          ]
+              client: "Meesho",
+              representative: "Yash Shah",
+              registerDate: "2024-03-11",
+              actualRevenue: 5476,
+            },
+          ],
         },
         {
-          "name": "ST-601A",
-          "revenue": 19000,
-          "clients": [
+          name: "ST-601A",
+          revenue: 19000,
+          clients: [
             {
-              "client": "PhonePe",
-              "representative": "Henry Ford",
-              "registerDate": "2024-01-07",
-              "actualRevenue": 6451
+              client: "PhonePe",
+              representative: "Henry Ford",
+              registerDate: "2024-01-07",
+              actualRevenue: 6451,
             },
             {
-              "client": "Snapdeal",
-              "representative": "Chris Blue",
-              "registerDate": "2024-02-09",
-              "actualRevenue": 5549
+              client: "Snapdeal",
+              representative: "Chris Blue",
+              registerDate: "2024-02-09",
+              actualRevenue: 5549,
             },
             {
-              "client": "Nykaa",
-              "representative": "Liam Green",
-              "registerDate": "2024-02-10",
-              "actualRevenue": 7104
+              client: "Nykaa",
+              representative: "Liam Green",
+              registerDate: "2024-02-10",
+              actualRevenue: 7104,
             },
             {
-              "client": "Lenskart",
-              "representative": "Rohit Sen",
-              "registerDate": "2024-03-17",
-              "actualRevenue": 7128
+              client: "Lenskart",
+              representative: "Rohit Sen",
+              registerDate: "2024-03-17",
+              actualRevenue: 7128,
             },
             {
-              "client": "Apple",
-              "representative": "Siddharth Mehra",
-              "registerDate": "2024-03-27",
-              "actualRevenue": 5346
+              client: "Apple",
+              representative: "Siddharth Mehra",
+              registerDate: "2024-03-27",
+              actualRevenue: 5346,
             },
             {
-              "client": "Dell",
-              "representative": "Shreya Naik",
-              "registerDate": "2024-03-16",
-              "actualRevenue": 6930
-            }
-          ]
+              client: "Dell",
+              representative: "Shreya Naik",
+              registerDate: "2024-03-16",
+              actualRevenue: 6930,
+            },
+          ],
         },
         {
-          "name": "ST-601B",
-          "revenue": 12000,
-          "clients": [
+          name: "ST-601B",
+          revenue: 12000,
+          clients: [
             {
-              "client": "Flipkart",
-              "representative": "Emily White",
-              "registerDate": "2024-02-20",
-              "actualRevenue": 6407
+              client: "Flipkart",
+              representative: "Emily White",
+              registerDate: "2024-02-20",
+              actualRevenue: 6407,
             },
             {
-              "client": "Paytm",
-              "representative": "Rachel Black",
-              "registerDate": "2024-01-10",
-              "actualRevenue": 5981
+              client: "Paytm",
+              representative: "Rachel Black",
+              registerDate: "2024-01-10",
+              actualRevenue: 5981,
             },
             {
-              "client": "Snapdeal",
-              "representative": "Chris Blue",
-              "registerDate": "2024-02-14",
-              "actualRevenue": 6845
+              client: "Snapdeal",
+              representative: "Chris Blue",
+              registerDate: "2024-02-14",
+              actualRevenue: 6845,
             },
             {
-              "client": "Lenovo",
-              "representative": "Tanvi Agarwal",
-              "registerDate": "2024-03-11",
-              "actualRevenue": 6842
-            }
-          ]
+              client: "Lenovo",
+              representative: "Tanvi Agarwal",
+              registerDate: "2024-03-11",
+              actualRevenue: 6842,
+            },
+          ],
         },
         {
-          "name": "ST-501A",
-          "revenue": 25000,
-          "clients": [
+          name: "ST-501A",
+          revenue: 25000,
+          clients: [
             {
-              "client": "Swiggy",
-              "representative": "Sophie Turner",
-              "registerDate": "2024-01-19",
-              "actualRevenue": 5907
+              client: "Swiggy",
+              representative: "Sophie Turner",
+              registerDate: "2024-01-19",
+              actualRevenue: 5907,
             },
             {
-              "client": "Ola",
-              "representative": "Alice Johnson",
-              "registerDate": "2024-02-14",
-              "actualRevenue": 6900
+              client: "Ola",
+              representative: "Alice Johnson",
+              registerDate: "2024-02-14",
+              actualRevenue: 6900,
             },
             {
-              "client": "Flipkart",
-              "representative": "Emily White",
-              "registerDate": "2024-02-24",
-              "actualRevenue": 7219
+              client: "Flipkart",
+              representative: "Emily White",
+              registerDate: "2024-02-24",
+              actualRevenue: 7219,
             },
             {
-              "client": "Meesho",
-              "representative": "Yash Shah",
-              "registerDate": "2024-03-04",
-              "actualRevenue": 6620
+              client: "Meesho",
+              representative: "Yash Shah",
+              registerDate: "2024-03-04",
+              actualRevenue: 6620,
             },
             {
-              "client": "Apple",
-              "representative": "Siddharth Mehra",
-              "registerDate": "2024-03-18",
-              "actualRevenue": 5209
-            }
-          ]
-        }
-      ]
+              client: "Apple",
+              representative: "Siddharth Mehra",
+              registerDate: "2024-03-18",
+              actualRevenue: 5209,
+            },
+          ],
+        },
+      ],
     },
     {
       month: "May",
@@ -473,7 +473,7 @@ const AdminOffices = () => {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (
@@ -509,7 +509,7 @@ const AdminOffices = () => {
               LOCATION
             </span>
             <span className="text-sm text-muted font-pmedium text-title flex items-center gap-1">
-            EXPENSE
+              EXPENSE
             </span>
           </div>
         </div>
@@ -525,29 +525,29 @@ const AdminOffices = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    {/* INR {domain.revenue.toLocaleString()} */}
+                    {/* USD{domain.revenue.toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
               <AccordionDetails sx={{ borderTop: "1px solid  #d1d5db" }}>
                 {/* Details Start */}
-                  <div className="flex justify-between items-center w-full p-4">
-                    <span
-                      className="text-subtitle font-pmedium underline text-primary
+                <div className="flex justify-between items-center w-full p-4">
+                  <span
+                    className="text-subtitle font-pmedium underline text-primary
                       cursor-pointer"
-                      onClick={() => {
-                        localStorage.setItem("client", domain.name);
-                        navigate(
-                          `/app/dashboard/admin-dashboard/admin-offices/${domain.name}`
-                        );
-                      }}>
-                      View Layout {domain.name}
-                    </span>
-                    {/* <span className="text-subtitle font-pmedium">
+                    onClick={() => {
+                      localStorage.setItem("client", domain.name);
+                      navigate(
+                        `/app/dashboard/admin-dashboard/admin-offices/${domain.name}`
+                      );
+                    }}>
+                    View Layout {domain.name}
+                  </span>
+                  {/* <span className="text-subtitle font-pmedium">
                       {domain.revenue.toLocaleString()}
                     </span> */}
 
-                  <div >
+                  <div>
                     <p className="text-subtitle text-primary ">
                       <span className="font-bold">Admin Lead: </span>
                       Machindranath Parkar
@@ -609,7 +609,7 @@ const AdminOffices = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      INR {domain.revenue.toLocaleString()}
+                      USD{domain.revenue.toLocaleString()}
                     </span>{" "}
                   </div>
                 </div>

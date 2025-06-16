@@ -196,14 +196,7 @@ const MaintenancePerSqFtExpense = () => {
       ],
     },
   ];
-  
 
-  
-  
-  
-  
-  
-  
   const [selectedMonth, setSelectedMonth] = useState(
     mockExpensePerSqFtData[0].month
   ); // Default to first month
@@ -218,14 +211,13 @@ const MaintenancePerSqFtExpense = () => {
     (data) => data.month === selectedMonth
   );
 
-
   if (selectedMonthData) {
     selectedMonthData.domains = selectedMonthData.domains.map((domain) => {
       const updatedClients = domain.clients.map((client, index) => {
         const expense = Number(client.actualExpense);
         const sqft = Number(client.squareFeet);
         const expensePerSqFt = sqft ? expense / sqft : 0;
-  
+
         return {
           ...client,
           srNo: index + 1,
@@ -233,15 +225,13 @@ const MaintenancePerSqFtExpense = () => {
           expensePerSqFt: expensePerSqFt.toFixed(0), // Rounded value
         };
       });
-  
+
       return {
         ...domain,
         clients: updatedClients,
       };
     });
   }
-  
-  
 
   // Prepare Bar Graph Data
   const graphData = [
@@ -253,7 +243,12 @@ const MaintenancePerSqFtExpense = () => {
 
   // Graph Options
   const options = {
-    chart: { type: "bar", toolbar: false, stacked: false, fontFamily: "Poppins-Regular"},
+    chart: {
+      type: "bar",
+      toolbar: false,
+      stacked: false,
+      fontFamily: "Poppins-Regular",
+    },
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
@@ -262,7 +257,7 @@ const MaintenancePerSqFtExpense = () => {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-     colors: ["#54C4A7", "#EB5C45"],
+    colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (
@@ -292,7 +287,7 @@ const MaintenancePerSqFtExpense = () => {
 
       {/* Accordion Section for Domain-wise Revenue Breakdown */}
       <div className="flex flex-col gap-2 border-default border-borderGray rounded-md p-4">
-      <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
+        <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
           <div className="flex justify-between items-center w-full px-4 py-2">
             <span className="text-sm text-muted font-pmedium text-title">
               LOCATION
@@ -300,7 +295,6 @@ const MaintenancePerSqFtExpense = () => {
             <span className="px-4 text-sm text-muted font-pmedium text-title flex items-center gap-1">
               EXPENSE
             </span>
-            
           </div>
         </div>
         {selectedMonthData.domains.map((domain, index) => {
@@ -315,7 +309,7 @@ const MaintenancePerSqFtExpense = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                  {/* INR {Number(domain.expense).toLocaleString()} */}
+                    {/* USD{Number(domain.expense).toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -325,11 +319,19 @@ const MaintenancePerSqFtExpense = () => {
                   hideFilter
                   columns={[
                     { headerName: "Sr No", field: "srNo", flex: 1 },
-                    { headerName: "Building Name", field: "buildingName", flex: 1 },
+                    {
+                      headerName: "Building Name",
+                      field: "buildingName",
+                      flex: 1,
+                    },
                     { headerName: "Unit No", field: "unitNo", flex: 1 },
                     { headerName: "Occupant", field: "occupant", flex: 1 },
                     { headerName: "Square Feet", field: "squareFeet", flex: 1 },
-                    { headerName: "Actual Expense (INR)", field: "actualExpense", flex: 1 },
+                    {
+                      headerName: "Actual Expense (INR)",
+                      field: "actualExpense",
+                      flex: 1,
+                    },
                     {
                       headerName: "Expense / Sq Ft (INR)",
                       field: "expensePerSqFt",
@@ -346,7 +348,7 @@ const MaintenancePerSqFtExpense = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                    {/* INR {Number(domain.expense).toLocaleString()} */}
+                      {/* USD{Number(domain.expense).toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

@@ -138,7 +138,7 @@ const VoucherForm = () => {
                   <li key={index} className="flex justify-between">
                     <span>{item.particular}</span>
                     <span className="font-medium">
-                      INR {item.amount?.toFixed(2)}
+                      USD{item.amount?.toFixed(2)}
                     </span>
                   </li>
                 ))}
@@ -229,8 +229,7 @@ const VoucherForm = () => {
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}
-                >
+                  {...field}>
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}

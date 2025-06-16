@@ -213,7 +213,7 @@ const DeptWiseBudget = () => {
       offsetY: -22,
     },
     yaxis: {
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -229,7 +229,7 @@ const DeptWiseBudget = () => {
             <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
               <div><strong>Total Expense:</strong></div>
               <div style="width: 10px;"></div>
-              <div style="text-align: left;">INR ${Math.round(
+              <div style="text-align: left;">USD${Math.round(
                 rawData
               ).toLocaleString("en-IN")}</div>
             </div>

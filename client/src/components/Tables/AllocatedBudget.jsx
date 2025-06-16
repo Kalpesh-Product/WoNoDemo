@@ -257,7 +257,7 @@ const AllocatedBudget = ({
                 Actual Budget:
               </span> */}
               {/* <span className="text-title font-pmedium">
-                INR {inrFormat(totalProjectedAmountForFY)}
+                USD{inrFormat(totalProjectedAmountForFY)}
               </span> */}
             </div>
           ) : (

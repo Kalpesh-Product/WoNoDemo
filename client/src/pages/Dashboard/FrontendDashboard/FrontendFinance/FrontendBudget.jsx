@@ -112,7 +112,7 @@ const FrontendBudget = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -130,7 +130,7 @@ const FrontendBudget = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
             <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -138,7 +138,7 @@ const FrontendBudget = () => {
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>HR Expense:</strong></div>
                 <div style="width: 10px;"></div>
-             <div style="text-align: left;">INR ${Math.round(
+             <div style="text-align: left;">USD${Math.round(
                rawData
              ).toLocaleString("en-IN")}</div>
 
