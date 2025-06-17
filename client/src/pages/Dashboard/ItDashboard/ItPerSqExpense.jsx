@@ -472,7 +472,7 @@ const ItPerSqExpense = () => {
                     {/* {domain.totalSqFt} */}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    {/* USD{domain.revenue.toLocaleString()} */}
+                    {/* USD {domain.revenue.toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -513,7 +513,7 @@ const ItPerSqExpense = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      {/* USD{domain.revenue.toLocaleString()} */}
+                      {/* USD {domain.revenue.toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

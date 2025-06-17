@@ -396,7 +396,7 @@ const MaintenanceExpenses = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    {/* USD{Number(domain.expense).toLocaleString()} */}
+                    {/* USD {Number(domain.expense).toLocaleString()} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -464,7 +464,7 @@ const MaintenanceExpenses = () => {
                       Total Expense for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      {/* USD{Number(domain.expense).toLocaleString()} */}
+                      {/* USD {Number(domain.expense).toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

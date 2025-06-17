@@ -310,7 +310,7 @@ const SqWiseData = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (USD)",
+        text: "Amount In Lakhs (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -341,11 +341,11 @@ const SqWiseData = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>USD${income?.toLocaleString() || "0"}</span>
+                <span>USD ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>USD${inrFormat(expense) || "0"}</span>
+                <span>USD ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -411,7 +411,7 @@ const SqWiseData = () => {
         {monthlyProfitLossData.length > 0 ? (
           <WidgetSection
             border
-            // TitleAmount={`P&L :  USD${inrFormat(totalPnL)}`}
+            // TitleAmount={`P&L :  USD ${inrFormat(totalPnL)}`}
             titleLabel={"FY 2024-25"}
             title={`Total Monthly P&L`}>
             <AgTable

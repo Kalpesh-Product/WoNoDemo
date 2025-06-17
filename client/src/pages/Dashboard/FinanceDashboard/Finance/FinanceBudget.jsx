@@ -275,7 +275,7 @@ const FinanceBudget = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -293,7 +293,7 @@ const FinanceBudget = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -301,7 +301,7 @@ const FinanceBudget = () => {
                 <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
-               <div style="text-align: left;">USD${Math.round(
+               <div style="text-align: left;">USD ${Math.round(
                  rawData
                ).toLocaleString("en-IN")}</div>
   

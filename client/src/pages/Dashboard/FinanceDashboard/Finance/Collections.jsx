@@ -197,7 +197,7 @@ const Collections = () => {
         <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Total Clients</strong> ${total}</div>
         <div style="color:#54C4A7; display:flex; width : 100% ; justify-content : space-between"><strong>Paid</strong> ${paidClients}</div>
         <div style="color:#EB5C45; display:flex; width : 100% ; justify-content : space-between"><strong>Unpaid</strong> ${unpaidClients}</div>
-        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Amount</strong> USD${inrFormat(
+        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Amount</strong> USD ${inrFormat(
           paidAmount
         )}</div>
       </div>
@@ -259,13 +259,13 @@ const Collections = () => {
           <DataCard
             title={"Collected"}
             // description={`Current Month: ${sortedData[0]?.month || "N/A"}`}
-            description={`Total : USD${inrFormat(grandTotal)}`}
+            description={`Total : USD ${inrFormat(grandTotal)}`}
             data={`${(completed / 12).toFixed(0) || 0}%`}
           />
           <DataCard
             title={"Due"}
             // description={`Current Month: ${sortedData[0]?.month || "N/A"}`}
-            description={`Total : USD0`}
+            description={`Total : USD 0`}
             data={`${barGraphData[1]?.data?.[0] || 0}%`}
           />
         </WidgetSection>

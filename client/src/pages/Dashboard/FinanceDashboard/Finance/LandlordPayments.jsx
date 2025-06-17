@@ -130,7 +130,7 @@ const LandlordPayments = () => {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
       title: {
-        text: "Amount in USD(Thousand)",
+        text: "Amount in USD (Lakhs)",
       },
     },
     legend: {

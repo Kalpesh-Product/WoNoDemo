@@ -911,7 +911,7 @@ const AdminElectricityExpenses = () => {
                     {electricity.month}
                   </span>
                   <span className="w-1/2 sm:w-1/5 px-4 text-subtitle font-pmedium">
-                    {/* USD{inrFormat(electricity.totalExpense)} */}
+                    {/* USD {inrFormat(electricity.totalExpense)} */}
                   </span>
                 </div>
               </AccordionSummary>
@@ -931,7 +931,7 @@ const AdminElectricityExpenses = () => {
                       {/* Total Expense for {electricity.month}:{" "} */}
                     </span>
                     <span className="text-black font-pmedium">
-                      {/* USD{electricity.totalExpense.toLocaleString()} */}
+                      {/* USD {electricity.totalExpense.toLocaleString()} */}
                     </span>{" "}
                   </div>
                 </div>

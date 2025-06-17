@@ -138,7 +138,7 @@ const VoucherForm = () => {
                   <li key={index} className="flex justify-between">
                     <span>{item.particular}</span>
                     <span className="font-medium">
-                      USD{item.amount?.toFixed(2)}
+                      USD {item.amount?.toFixed(2)}
                     </span>
                   </li>
                 ))}

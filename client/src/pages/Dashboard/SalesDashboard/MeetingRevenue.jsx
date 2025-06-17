@@ -60,7 +60,7 @@ const MeetingRevenue = () => {
       categories: meetingsData.map((item) => item.month ?? "N/A"),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (USD)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },

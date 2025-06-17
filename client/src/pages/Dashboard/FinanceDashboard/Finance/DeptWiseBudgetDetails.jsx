@@ -195,7 +195,7 @@ const DeptWiseBudgetDetails = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -213,7 +213,7 @@ const DeptWiseBudgetDetails = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -221,7 +221,7 @@ const DeptWiseBudgetDetails = () => {
                 <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
-               <div style="text-align: left;">USD${Math.round(
+               <div style="text-align: left;">USD ${Math.round(
                  rawData
                ).toLocaleString("en-IN")}</div>
   
@@ -250,7 +250,7 @@ const DeptWiseBudgetDetails = () => {
       {/* <div>
         <WidgetSection layout={3} padding>
           <DataCard
-            data={"USD50,00,000"}
+            data={"USD 50,00,000"}
             title={"Projected"}
             description={`Current Month: ${new Date().toLocaleString(
               "default",
@@ -260,7 +260,7 @@ const DeptWiseBudgetDetails = () => {
             )}-25`}
           />
           <DataCard
-            data={"USD45,00,000"}
+            data={"USD 45,00,000"}
             title={"Actual"}
             description={`Current Month: ${new Date().toLocaleString(
               "default",
@@ -270,7 +270,7 @@ const DeptWiseBudgetDetails = () => {
             )}-25`}
           />
           <DataCard
-            data={"USD12,000"}
+            data={"USD 12,000"}
             title={"Requested"}
             description={`Current Month: ${new Date().toLocaleString(
               "default",

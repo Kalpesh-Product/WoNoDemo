@@ -147,7 +147,7 @@ const StatutoryPayments = () => {
         <div style="display:flex; justify-content:space-between;"><strong>Total Payments</strong> ${
           item.total
         }</div>
-        <div style="display:flex; justify-content:space-between;"><strong>Amount</strong> USD${item.amount.toLocaleString()}</div>
+        <div style="display:flex; justify-content:space-between;"><strong>Amount</strong> USD ${item.amount.toLocaleString()}</div>
         <div style="color:#54C4A7; display:flex; justify-content:space-between;"><strong>Approved</strong> ${
           item.approved
         }</div>

@@ -440,7 +440,7 @@ const Reimbursement = () => {
                       <div className="flex flex-col">
                         <span>{item.particularName}</span>
                         <span className="font-medium text-gray-600">
-                          USD{item.particularAmount?.toFixed(2)}
+                          USD {item.particularAmount?.toFixed(2)}
                         </span>
                       </div>
                       <button

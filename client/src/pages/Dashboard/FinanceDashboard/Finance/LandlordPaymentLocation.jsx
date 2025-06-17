@@ -144,7 +144,7 @@ const LandlordPaymentLocation = () => {
         formatter: (val) => `${Math.round(val / 100000)}L`,
       },
       title: {
-        text: "Amount in USD(Thousand)",
+        text: "Amount in USD (Lakhs)",
       },
     },
     tooltip: {

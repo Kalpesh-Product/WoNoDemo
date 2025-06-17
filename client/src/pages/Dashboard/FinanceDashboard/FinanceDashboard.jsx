@@ -297,7 +297,7 @@ const FinanceDashboard = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (USD)",
+        text: "Amount In Lakhs (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -328,11 +328,11 @@ const FinanceDashboard = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>USD${income?.toLocaleString() || "0"}</span>
+                <span>USD ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>USD${inrFormat(expense) || "0"}</span>
+                <span>USD ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -624,7 +624,7 @@ const FinanceDashboard = () => {
   //           (client) =>
   //             `<div style="display: flex; justify-content: space-between;">
   //             <span>${client.clientName}</span>
-  //             <span>USD${client.amount.toLocaleString()}</span>
+  //             <span>USD ${client.amount.toLocaleString()}</span>
   //           </div>`
   //         )
   //         .join("");
@@ -730,8 +730,8 @@ const FinanceDashboard = () => {
   const donutRentalLabels = ["Paid", "Unpaid"];
   const donutRentalSeries = [totalPaid, totalUnpaid];
   const donutRentalTooltipValue = [
-    ` USD${totalPaid.toLocaleString()}`,
-    ` USD${totalUnpaid.toLocaleString()}`,
+    ` USD ${totalPaid.toLocaleString()}`,
+    ` USD ${totalUnpaid.toLocaleString()}`,
   ];
   const donutRentalColors = ["#4CAF50", "#F44336"];
 
