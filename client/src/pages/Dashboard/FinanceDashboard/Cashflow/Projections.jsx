@@ -122,7 +122,7 @@ const Projections = () => {
     },
     yaxis: {
       title: {
-        text: "Amount in Lakhs (USD)",
+        text: "Amount in Thousand (USD)",
       },
       min: 1,
       max: 10_00_000, // Adjust based on expected scale (e.g., 10 lakhs)

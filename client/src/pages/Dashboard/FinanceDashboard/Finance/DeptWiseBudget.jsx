@@ -213,7 +213,7 @@ const DeptWiseBudget = () => {
       offsetY: -22,
     },
     yaxis: {
-      title: { text: "Amount In Lakhs (USD)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },

@@ -297,7 +297,7 @@ const FinanceDashboard = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Lakhs (USD)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
