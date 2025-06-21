@@ -16,7 +16,7 @@ import DetalisFormatted from "../../../../components/DetalisFormatted";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import PageFrame from "../../../../components/Pages/PageFrame";
 
-const MaintenanceAmcRecords = () => {
+const MaintenanceAmcRecords = (disabled) => {
   const { auth } = useAuth();
   const axios = useAxiosPrivate();
   const [modalMode, setModalMode] = useState("add");
@@ -105,7 +105,7 @@ const MaintenanceAmcRecords = () => {
     { field: "inventoryNumber", headerName: "Inventory Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -258,6 +258,7 @@ const MaintenanceAmcRecords = () => {
           searchColumn={"Asset Number"}
           tableTitle={"AMC Records"}
           buttonTitle={"Add Record"}
+          disabled={disabled}
           data={[]}
           columns={assetColumns}
           handleClick={handleAddAsset}

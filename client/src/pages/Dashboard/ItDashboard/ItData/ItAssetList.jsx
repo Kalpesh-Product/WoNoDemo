@@ -208,7 +208,7 @@ const ItAssetList = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -280,10 +280,11 @@ const ItAssetList = () => {
           search={true}
           searchColumn={"Asset Number"}
           tableTitle={"Asset List"}
+          disabled={true}
           buttonTitle={"Add Asset"}
           data={[]}
           columns={assetColumns}
-          handleClick={handleAddAsset}
+          // handleClick={handleAddAsset}
         />
       </PageFrame>
 

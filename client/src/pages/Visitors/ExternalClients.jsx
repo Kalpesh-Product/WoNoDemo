@@ -114,7 +114,7 @@ const ExternalClients = () => {
         />
       ),
     },
-    { field: "paymentAmount", headerName: "Amount (USD)" },
+    { field: "paymentAmount", headerName: "Amount (INR)" },
     { field: "paymentMode", headerName: "Mode" },
 
     {
@@ -242,7 +242,7 @@ const ExternalClients = () => {
         <div className="flex flex-col gap-4">
           <form onSubmit={handleSubmit(submit)}>
             {!isVisitorsData ? (
-              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
                 {/* First Name */}
                 {isEditing ? (
                   <Controller
@@ -378,70 +378,74 @@ const ExternalClients = () => {
                     />
                   )}
                 </LocalizationProvider>
+                {/* </div>
+            ) : (
+              []
+            )} */}
+                {isEditing ? (
+                  <Controller
+                    name="paymentStatus"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        size="small"
+                        label="Payment Status"
+                        fullWidth
+                      />
+                    )}
+                  />
+                ) : (
+                  <DetalisFormatted
+                    title="Payment Status"
+                    detail={selectedVisitor?.paymentStatus}
+                  />
+                )}
+                {/* Payment Amount */}
+                {isEditing ? (
+                  <Controller
+                    name="paymentAmount"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        size="small"
+                        label="Payment Amount"
+                        type="number"
+                        fullWidth
+                      />
+                    )}
+                  />
+                ) : (
+                  <DetalisFormatted
+                    title="Payment Amount"
+                    detail={inrFormat(selectedVisitor?.paymentAmount || 0)}
+                  />
+                )}
+
+                {/* Payment Mode */}
+                {isEditing ? (
+                  <Controller
+                    name="paymentMode"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        size="small"
+                        label="Payment Mode"
+                        fullWidth
+                      />
+                    )}
+                  />
+                ) : (
+                  <DetalisFormatted
+                    title="Payment Mode"
+                    detail={selectedVisitor?.paymentMode || "N/A"}
+                  />
+                )}
               </div>
             ) : (
               []
-            )}
-            {isEditing ? (
-              <Controller
-                name="paymentStatus"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    size="small"
-                    label="Payment Status"
-                    fullWidth
-                  />
-                )}
-              />
-            ) : (
-              <DetalisFormatted
-                title="Payment Status"
-                detail={selectedVisitor?.paymentStatus}
-              />
-            )}
-            {/* Payment Amount */}
-            {isEditing ? (
-              <Controller
-                name="paymentAmount"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    size="small"
-                    label="Payment Amount"
-                    type="number"
-                    fullWidth
-                  />
-                )}
-              />
-            ) : (
-              <DetalisFormatted
-                title="Payment Amount"
-                detail={inrFormat(selectedVisitor?.paymentAmount || 0)}
-              />
-            )}
-
-            {/* Payment Mode */}
-            {isEditing ? (
-              <Controller
-                name="paymentMode"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    size="small"
-                    label="Payment Mode"
-                    fullWidth
-                  />
-                )}
-              />
-            ) : (
-              <DetalisFormatted
-                title="Payment Mode"
-                detail={selectedVisitor?.paymentMode || "N/A"}
-              />
             )}
 
             {isEditing && (

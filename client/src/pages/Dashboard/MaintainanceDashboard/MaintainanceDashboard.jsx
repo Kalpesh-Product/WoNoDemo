@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import Card from "../../../components/Card";
 import {
   MdFormatListBulleted,
@@ -20,10 +20,16 @@ import YearlyGraph from "../../../components/graphs/YearlyGraph";
 import { transformBudgetData } from "../../../utils/transformBudgetData";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import usePageDepartment from "../../../hooks/usePageDepartment";
+import humanTime from "../../../utils/humanTime";
+import humanDate from "../../../utils/humanDateForamt";
 
 const MaintainanceDashboard = () => {
   const { setIsSidebarOpen } = useSidebar();
+  const department = usePageDepartment();
   const axios = useAxiosPrivate();
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["maintainance-budget"],
     queryFn: async () => {
@@ -38,19 +44,95 @@ const MaintainanceDashboard = () => {
       }
     },
   });
+
+  const { data: tasks = [], isLoading: isTasksLoading } = useQuery({
+    queryKey: ["tasks"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get(
+          `/api/tasks/get-tasks?dept=${department._id}`
+        );
+        return response.data;
+      } catch (error) {
+        throw new Error("Error fetching data");
+      }
+    },
+  });
+
+  const { data: weeklySchedule = [], isLoading: isWeeklyScheduleLoading } =
+    useQuery({
+      queryKey: ["weeklySchedule"],
+      queryFn: async () => {
+        try {
+          const response = await axios.get(
+            `/api/weekly-unit/fetch-weekly-unit/${department._id}`
+          );
+          return response.data;
+        } catch (error) {
+          throw new Error("Error fetching data");
+        }
+      },
+    });
+
   const hrBarData = transformBudgetData(!isHrFinanceLoading ? hrFinance : []);
   const totalExpense = hrBarData?.projectedBudget?.reduce(
     (sum, val) => sum + (val || 0),
     0
   );
 
+  const expenseRawSeries = useMemo(() => {
+    // Initialize monthly buckets
+    const months = Array.from({ length: 12 }, (_, index) =>
+      dayjs(`2024-04-01`).add(index, "month").format("MMM")
+    );
+
+    const fyData = {
+      "FY 2024-25": Array(12).fill(0),
+      "FY 2025-26": Array(12).fill(0),
+    };
+
+    hrFinance.forEach((item) => {
+      const date = dayjs(item.dueDate);
+      const year = date.year();
+      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+
+      if (year === 2024 && monthIndex >= 3) {
+        // Apr 2024 to Dec 2024 (month 3 to 11)
+        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+      } else if (year === 2025) {
+        if (monthIndex <= 2) {
+          // Jan to Mar 2025 (months 0–2)
+          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+        } else if (monthIndex >= 3) {
+          // Apr 2025 to Dec 2025 (months 3–11)
+          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
+        }
+      } else if (year === 2026 && monthIndex <= 2) {
+        // Jan to Mar 2026
+        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+      }
+    });
+
+    return [
+      {
+        name: "total",
+        group: "FY 2024-25",
+        data: fyData["FY 2024-25"],
+      },
+      {
+        name: "total",
+        group: "FY 2025-26",
+        data: fyData["FY 2025-26"],
+      },
+    ];
+  }, [hrFinance]);
+
   const expenseOptions = {
     chart: {
       type: "bar",
-      animations: { enabled: false },
       toolbar: { show: false },
 
-      stacked: true,
+      stacked: false,
       fontFamily: "Poppins-Regular, Arial, sans-serif",
       events: {
         dataPointSelection: () => {
@@ -72,21 +154,8 @@ const MaintainanceDashboard = () => {
     },
     dataLabels: {
       enabled: true,
-      // formatter: (val) => inrFormat(val),
-      // formatter: (val) => {
-      //   const scaled = val / 100000; // Scale from actual to "xx.xx" format
-      //   return scaled.toFixed(2); // Keep two digits after decimal
-      // },
-      // formatter: (val) => {
-      //   const scaled = Math.round((val / 100000) * 100) / 100;
-      //   return Number.isInteger(scaled) ? scaled.toFixed(0) : scaled.toFixed(2);
-      // },
-
-      // formatter: (val) => {
-      //   return val.toLocaleString("en-IN"); // Formats number with commas (Indian style)
-      // },
       formatter: (val) => {
-        return Math.round(val).toLocaleString("en-IN");
+        return inrFormat(val);
       },
 
       style: {
@@ -95,16 +164,12 @@ const MaintainanceDashboard = () => {
       },
       offsetY: -22,
     },
-    xaxis: {
-      title: {
-        text: "  ",
-      },
-    },
+
     yaxis: {
-      // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      max: 200000,
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
-        formatter: (val) => `${Math.round(val / 100000)}`,
+        formatter: (val) => `${val / 100000}`,
       },
     },
     fill: {
@@ -117,51 +182,38 @@ const MaintainanceDashboard = () => {
 
     tooltip: {
       enabled: false,
-      // y: {
-      //   formatter: (val, { seriesIndex, dataPointIndex }) => {
-      //     const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
-      //     // return `${rawData} Tasks`;
-      //     return `HR Expense: USD ${rawData.toLocaleString("en-IN")}`;
-      //   },
-      // },
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
         //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
-            <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
-        
-              <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
-                <div><strong>HR Expense:</strong></div>
-                <div style="width: 10px;"></div>
-             <div style="text-align: left;">USD ${Math.round(
-               rawData
-             ).toLocaleString("en-IN")}</div>
-
+              <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
+          
+                <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
+                  <div><strong>Finance Expense:</strong></div>
+                  <div style="width: 10px;"></div>
+               <div style="text-align: left;">USD ${Math.round(
+                 rawData
+               ).toLocaleString("en-IN")}</div>
+  
+                </div>
+       
               </div>
-     
-            </div>
-          `;
+            `;
       },
     },
   };
 
-  const expenseRawSeries = [
-    {
-      name: "Expense",
-      group: "FY 2024-25",
-      data: hrBarData?.utilisedBudget,
-    },
-    {
-      name: "Expense",
-      group: "FY 2025-26",
-      data: [1000054, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    },
-  ];
-
+  const budgetBar = useMemo(() => {
+    if (isHrFinanceLoading || !Array.isArray(hrFinance)) return null;
+    return transformBudgetData(isHrFinanceLoading ? [] : hrFinance);
+  }, [isHrFinanceLoading, hrFinance]);
   const totalUtilised =
-    hrBarData?.utilisedBudget?.reduce((acc, val) => acc + val, 0) || 0;
+    budgetBar?.[selectedFiscalYear]?.utilisedBudget?.reduce(
+      (acc, val) => acc + val,
+      0
+    ) || 0;
   useEffect(() => {
     setIsSidebarOpen(true);
   }, []); // Empty dependency array ensures this runs once on mount
@@ -459,6 +511,15 @@ const MaintainanceDashboard = () => {
   };
   //----------------------------------------------------------------------------------------------------------//
 
+  const transformedTasks = tasks.map((task, index) => {
+    return {
+      id: index + 1,
+      taskName: task.taskName,
+      status: task.status,
+      endTime: humanTime(task.dueTime),
+    };
+  });
+
   const priorityTasks = [
     { taskName: "Check Lights", type: "Daily", endTime: "12:00 PM" },
     {
@@ -488,12 +549,12 @@ const MaintainanceDashboard = () => {
     { id: "id", label: "Sr No", align: "left" },
     { id: "taskName", label: "Task Name", align: "left" },
     {
-      id: "type",
-      label: "Type",
+      id: "status",
+      label: "Status",
       renderCell: (data) => {
         return (
           <>
-            <Chip sx={{ color: "#1E3D73" }} label={data.type} />
+            <Chip sx={{ color: "#1E3D73" }} label={data.status} />
           </>
         );
       },
@@ -582,8 +643,8 @@ const MaintainanceDashboard = () => {
     { id: "name", label: "Name", align: "left" },
     { id: "building", label: "Building", align: "left" },
     { id: "unitNo", label: "Unit No", align: "left" },
-    { id: "startTime", label: "Start Time", align: "left" },
-    { id: "endTime", label: "End Time", align: "left" },
+    { id: "startDate", label: "Start Date", align: "left" },
+    { id: "endDate", label: "End Date", align: "left" },
   ];
   //----------------------------------------------------------------------------------------------------------//
   const clientComplaints = [
@@ -639,6 +700,20 @@ const MaintainanceDashboard = () => {
 
   //----------------------------------------------------------------------------------------------------------//
 
+  const transformedWeeklyShifts = useMemo(() => {
+    if (isWeeklyScheduleLoading || !weeklySchedule.length) return [];
+
+    return weeklySchedule.map((emp, index) => ({
+      srNo: index + 1,
+      id: index + 1,
+      name: `${emp.employee.id.firstName} ${emp.employee.id.lastName}`,
+      startDate: humanDate(emp.startDate),
+      endDate: humanDate(emp.endDate),
+      building: emp.location.building.buildingName,
+      unitNo: emp.location.unitNo,
+    }));
+  }, [weeklySchedule, isWeeklyScheduleLoading]);
+
   const techWidgets = [
     {
       layout: 1,
@@ -657,6 +732,7 @@ const MaintainanceDashboard = () => {
               responsiveResize
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
+              onYearChange={setSelectedFiscalYear}
               title={"BIZ Nest MAINTENANCE DEPARTMENT EXPENSE"}
               titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
@@ -684,7 +760,11 @@ const MaintainanceDashboard = () => {
           title="Finance"
           route={"/app/dashboard/maintenance-dashboard/finance"}
         />,
-        <Card icon={<MdFormatListBulleted />} title="Mix-Bag" />,
+        <Card
+          icon={<MdFormatListBulleted />}
+          title="Mix-Bag"
+          route={"/app/dashboard/maintenance-dashboard/mix-bag"}
+        />,
         <Card
           icon={<SiGoogleadsense />}
           title="Data"
@@ -730,7 +810,7 @@ const MaintainanceDashboard = () => {
           description={"Expense Per Sq. Ft."}
         />,
         <DataCard
-          route={"maintenance-assets"}
+          // route={"maintenance-assets"}
           title={"Total"}
           data={""}
           description={"Assets Under Management"}
@@ -740,6 +820,27 @@ const MaintainanceDashboard = () => {
           title={"Free"}
           data={""}
           description={"Yearly Expense"}
+        />,
+      ],
+    },
+    {
+      layout: 2,
+      widgets: [
+        <MuiTable
+          key={priorityTasks.length}
+          scroll
+          rowsToDisplay={4}
+          Title={"Top 10 High Priority Due Tasks"}
+          rows={transformedTasks}
+          columns={priorityTasksColumns}
+        />,
+        <MuiTable
+          key={executiveTimings.length}
+          Title={"Weekly Executive Shift Timing"}
+          rows={transformedWeeklyShifts}
+          columns={executiveTimingsColumns}
+          scroll
+          rowsToDisplay={4}
         />,
       ],
     },
@@ -782,27 +883,6 @@ const MaintainanceDashboard = () => {
         <WidgetSection border title={"Average Yearly Due Maintenance"}>
           <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
-      ],
-    },
-    {
-      layout: 2,
-      widgets: [
-        <MuiTable
-          key={priorityTasks.length}
-          scroll
-          rowsToDisplay={4}
-          Title={"Top 10 High Priority Due Tasks"}
-          rows={[]}
-          columns={priorityTasksColumns}
-        />,
-        <MuiTable
-          key={executiveTimings.length}
-          Title={"Weekly Executive Shift Timing"}
-          rows={[]}
-          columns={executiveTimingsColumns}
-          scroll
-          rowsToDisplay={4}
-        />,
       ],
     },
   ];

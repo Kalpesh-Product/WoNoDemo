@@ -125,7 +125,7 @@ const AdminBudget = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -200,10 +200,10 @@ const AdminBudget = () => {
                 { field: "expanseType", headerName: "Expense Type", flex: 1 },
                 {
                   field: "projectedAmount",
-                  headerName: "Projected (USD)",
+                  headerName: "Projected (INR)",
                   flex: 1,
                 },
-                { field: "actualAmount", headerName: "Actual (USD)", flex: 1 }, // ✅ add this
+                { field: "actualAmount", headerName: "Actual (INR)", flex: 1 }, // ✅ add this
                 { field: "dueDate", headerName: "Due Date", flex: 1 },
                 { field: "status", headerName: "Status", flex: 1 },
               ],

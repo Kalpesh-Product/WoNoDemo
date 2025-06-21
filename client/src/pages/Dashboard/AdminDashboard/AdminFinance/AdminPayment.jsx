@@ -120,7 +120,8 @@ const AdminPayment = () => {
                           fontSize: "0.875rem",
                           fontWeight: "bold",
                           textTransform: "capitalize",
-                        }}>
+                        }}
+                      >
                         {status}
                       </span>
                     }
@@ -145,9 +146,8 @@ const AdminPayment = () => {
                     <div key={index} className="flex gap-2 items-start mb-2">
                       <div
                         className="w-3 h-3 rounded-full mt-[0.3rem]"
-                        style={{
-                          backgroundColor: event.backgroundColor,
-                        }}></div>
+                        style={{ backgroundColor: event.backgroundColor }}
+                      ></div>
                       <div className="flex flex-col">
                         <span className="text-content font-medium">
                           {event.title}
@@ -198,7 +198,8 @@ const AdminPayment = () => {
           selectedEvent
             ? statusColorMap[selectedEvent.extendedProps.status]
             : ""
-        }>
+        }
+      >
         {selectedEvent && (
           <div>
             <div className="flex flex-col gap-2">
@@ -230,7 +231,7 @@ const AdminPayment = () => {
                   {Number(selectedEvent.extendedProps.amount).toLocaleString(
                     "en-IN"
                   )}
-                  &nbsp;USD
+                  &nbsp;INR
                 </span>
               </span>
             </div>

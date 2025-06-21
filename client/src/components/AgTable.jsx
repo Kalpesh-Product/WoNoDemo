@@ -31,7 +31,8 @@ const AgTableComponent = React.memo(
     tableHeight,
     enableCheckbox, // ✅ New prop to enable checkboxes
     getRowStyle,
-    checkAll
+    checkAll,
+    disabled,
   }) => {
     const [filteredData, setFilteredData] = useState(data);
     const [searchQuery, setSearchQuery] = useState("");
@@ -161,11 +162,88 @@ const AgTableComponent = React.memo(
     return (
       <div className="border-b-[1px] border-borderGray">
         {tableTitle && (
-          <div className="flex items-center justify-between pb-4">
-            <span className="font-pmedium text-title text-primary uppercase">
-              {tableTitle}
-            </span>
-            <div className="flex items-center gap-4">
+          <>
+            <div className="flex items-center justify-between ">
+              <div className="flex items-center justify-between pb-4">
+                <span className="font-pmedium text-title text-primary uppercase">
+                  {tableTitle}
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                {exportData ? (
+                  <PrimaryButton
+                    title={"Export"}
+                    handleSubmit={() => {
+                      if (gridRef.current) {
+                        gridRef.current.api.exportDataAsCsv({
+                          fileName: `${tableTitle || "table-data"}.csv`,
+                        });
+                      }
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+                {buttonTitle ? (
+                  <PrimaryButton
+                    title={buttonTitle}
+                    handleSubmit={handleClick}
+                    disabled={disabled}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        <div
+          className={`flex ${
+            search ? "justify-between" : "justify-end"
+          }  items-center py-2`}>
+          {search ? (
+            <TextField
+              label="Search"
+              variant="outlined"
+              size="small"
+              value={searchQuery}
+              onChange={handleSearch}
+              placeholder="Search"
+              InputProps={{
+                startAdornment: (
+                  <IoIosSearch size={20} style={{ marginRight: 8 }} />
+                ),
+              }}
+            />
+          ) : (
+            <></>
+          )}
+          <div className="flex items-center gap-4">
+            {hideFilter ? (
+              ""
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="flex justify-end items-center w-full">
+                  <PrimaryButton
+                    title={<MdFilterAlt />}
+                    handleSubmit={() => setFilterDrawerOpen(true)}
+                    externalStyles={"rounded-r-none"}
+                  />
+                  <SecondaryButton
+                    title={<MdFilterAltOff />}
+                    externalStyles={"rounded-l-none"}
+                    handleSubmit={() => {
+                      setFilters({});
+                      setAppliedFilters({});
+                      setSearchQuery("");
+                      setFilteredData(data);
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+            {/* <div className="flex items-center gap-4">
               {exportData ? (
                 <PrimaryButton
                   title={"Export"}
@@ -185,50 +263,8 @@ const AgTableComponent = React.memo(
               ) : (
                 ""
               )}
-            </div>
+            </div> */}
           </div>
-        )}
-        <div className="flex justify-between items-center py-2">
-          {search ? (
-            <TextField
-              label="Search"
-              variant="outlined"
-              size="small"
-              value={searchQuery}
-              onChange={handleSearch}
-              placeholder="Search"
-              InputProps={{
-                startAdornment: (
-                  <IoIosSearch size={20} style={{ marginRight: 8 }} />
-                ),
-              }}
-            />
-          ) : (
-            <></>
-          )}
-          {hideFilter ? (
-            ""
-          ) : (
-            <div className="flex items-center gap-4">
-              <div className="flex justify-end items-center w-full">
-                <PrimaryButton
-                  title={<MdFilterAlt />}
-                  handleSubmit={() => setFilterDrawerOpen(true)}
-                  externalStyles={"rounded-r-none"}
-                />
-                <SecondaryButton
-                  title={<MdFilterAltOff />}
-                  externalStyles={"rounded-l-none"}
-                  handleSubmit={() => {
-                    setFilters({});
-                    setAppliedFilters({});
-                    setSearchQuery("");
-                    setFilteredData(data);
-                  }}
-                />
-              </div>
-            </div>
-          )}
         </div>
         <div className="flex gap-2">
           {Object.keys(appliedFilters).map((field) =>
@@ -245,8 +281,7 @@ const AgTableComponent = React.memo(
         <MuiAside
           open={isFilterDrawerOpen}
           onClose={() => setFilterDrawerOpen(false)}
-          title="Advanced Filter"
-        >
+          title="Advanced Filter">
           {columns.map((column) =>
             dropdownColumns.includes(column.field) ? (
               <TextField
@@ -260,8 +295,7 @@ const AgTableComponent = React.memo(
                 value={filters[column.field] || ""}
                 onChange={(e) =>
                   handleFilterChange(column.field, e.target.value)
-                }
-              >
+                }>
                 <MenuItem value="">All</MenuItem>
                 {columnOptions[column.field]?.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -291,8 +325,7 @@ const AgTableComponent = React.memo(
         <div
           ref={tableRef}
           className="ag-theme-quartz border-none w-full font-pregular"
-          style={{ height: tableHeight || 500 }}
-        >
+          style={{ height: tableHeight || 500 }}>
           <AgGridReact
             ref={gridRef}
             rowData={filteredData}

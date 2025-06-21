@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -148,7 +148,7 @@ const VoucherForm = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  USD{" "}
+                  INR{" "}
                   {fields
                     .reduce(
                       (acc, item) => acc + (parseFloat(item.amount) || 0),
@@ -327,7 +327,7 @@ const VoucherForm = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    USD.
+                    INR.
                   </td>
                 </tr>
               </thead>

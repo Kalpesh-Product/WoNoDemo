@@ -430,7 +430,7 @@ const RevenueTarget = () => {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
     yaxis: {
-      title: { text: "Revenue (USD)" },
+      title: { text: "Revenue (INR)" },
       labels: {
         formatter: (value) => `USD ${value.toLocaleString("en-IN")}`,
       },
@@ -527,7 +527,7 @@ const RevenueTarget = () => {
                       flex: 1,
                     },
                     {
-                      headerName: "Actual Revenue (USD)",
+                      headerName: "Actual Revenue (INR)",
                       field: "actualRevenue",
                       flex: 1,
                     },
@@ -538,7 +538,7 @@ const RevenueTarget = () => {
                   Total Revenue for {domain.name}:{" "}
                 </span>
                 <span className="text-black font-pmedium">
-                  USD&nbsp;{domain.revenue.toLocaleString("en-IN")}
+                  INR&nbsp;{domain.revenue.toLocaleString("en-IN")}
                 </span>{" "}
               </AccordionDetails>
             </Accordion>

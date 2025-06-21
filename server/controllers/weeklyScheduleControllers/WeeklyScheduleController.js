@@ -4,7 +4,6 @@ const { createLog } = require("../../utils/moduleLogs");
 const WeeklySchedule = require("../../models/WeeklySchedule");
 const { default: mongoose } = require("mongoose");
 const Unit = require("../../models/locations/Unit");
-const Role = require("../../models/roles/Roles");
 
 const assignWeeklyUnit = async (req, res, next) => {
   const logPath = "administration/AdministrationLog";
@@ -58,6 +57,20 @@ const assignWeeklyUnit = async (req, res, next) => {
 
     if (!foundUnit) {
       throw new CustomError("Unit not found", logPath, logAction, logSourceKey);
+    }
+
+    const isAlreadyAssigned = await WeeklySchedule.findOne({
+      "employee.id": foundUser._id,
+      startDate: { $lte: endDate },
+      endDate: { $gte: startDate },
+    })
+      .lean()
+      .exec();
+
+    if (isAlreadyAssigned) {
+      return res.status(400).json({
+        message: "Employee is already assigned to this location",
+      });
     }
 
     // Create a new WeeklyUnit document
@@ -261,7 +274,67 @@ const addSubstitute = async (req, res, next) => {
       (sub) => sub.isActive
     );
     if (lastActiveIndex !== -1) {
-      schedule.substitutions[lastActiveIndex].isActive = false;
+      // const substitute = schedule.substitutions[lastActiveIndex];
+      // substitute.endDate = parsedFromDate;
+
+      // if (
+      //   substitute.fromDate.getTime() === parsedFromDate.getTime() &&
+      //   substitute.toDate.getTime() === parsedToDate.getTime()
+      // ) {
+      //   substitute.isActive = false;
+      // }
+
+      const parsedFromDate = new Date(fromDate);
+      const parsedToDate = new Date(toDate);
+
+      // Deactivate or modify existing active substitutions that overlap
+      schedule.substitutions.forEach((sub) => {
+        if (sub.isActive) {
+          const subFrom = new Date(sub.fromDate);
+          const subTo = new Date(sub.toDate);
+
+          const isExactMatch =
+            subFrom.getTime() === parsedFromDate.getTime() &&
+            subTo.getTime() === parsedToDate.getTime();
+
+          const isOverlap = parsedFromDate <= subTo && parsedToDate >= subFrom; // checks overlap
+
+          if (isExactMatch) {
+            sub.isActive = false;
+          } else if (isOverlap) {
+            const subEndBeforeNew = new Date(parsedFromDate);
+            subEndBeforeNew.setDate(subEndBeforeNew.getDate() - 1);
+
+            const subStartAfterNew = new Date(parsedToDate);
+            subStartAfterNew.setDate(subStartAfterNew.getDate() + 1);
+
+            const originalSubTo = new Date(sub.toDate); // backup original end
+
+            // Case: overlap in middle → split into two entries
+            if (sub.fromDate < parsedFromDate && originalSubTo > parsedToDate) {
+              // Modify current to be first half
+              sub.toDate = subEndBeforeNew;
+
+              // Push second half as a new substitution
+              schedule.substitutions.push({
+                substitute: sub.substitute,
+                fromDate: subStartAfterNew,
+                toDate: originalSubTo,
+                isActive: true,
+              });
+            } else {
+              // Simple overlap: just trim the date range
+              if (sub.fromDate < parsedFromDate) {
+                sub.toDate = subEndBeforeNew;
+              } else if (sub.toDate > parsedToDate) {
+                sub.fromDate = subStartAfterNew;
+              } else {
+                sub.isActive = false;
+              }
+            }
+          }
+        }
+      });
     }
 
     schedule.substitutions.push({
@@ -348,7 +421,24 @@ const fetchWeeklyUnits = async (req, res, next) => {
       .populate({
         path: "location",
         select: "unitName unitNo",
-        populate: { path: "building", select: "buildingName" },
+        populate: [
+          { path: "building", select: "buildingName" },
+          {
+            path: "adminLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+          {
+            path: "maintenanceLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+          {
+            path: "itLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+        ],
       });
 
     const transformedData = weeklySchedules.map((schedule) => ({
@@ -362,9 +452,209 @@ const fetchWeeklyUnits = async (req, res, next) => {
   }
 };
 
+const fetchTeamMembersSchedule = async (req, res, next) => {
+  try {
+    const { unitId, department } = req.query;
+    const { company } = req;
+
+    if (!mongoose.Types.ObjectId.isValid(unitId)) {
+      return res.status(400).json({ message: "Invalid user Id provided" });
+    }
+
+    const foundUsers = await UserData.find({
+      departments: { $in: [department] },
+      isActive: true,
+    })
+      .populate([
+        {
+          path: "role",
+          select: "roleTitle",
+        },
+        { path: "departments", select: "name" },
+      ])
+      .select("firstName middleName lastName");
+
+    if (foundUsers.length < 0) {
+      return res.status(400).json({
+        message: "User not found",
+      });
+    }
+
+    const foundManager = foundUsers.find((user) => {
+      const foundDepartment = user.departments.find((dept) => {
+        return dept._id.toString() === department.toString();
+      });
+
+      const userRole = user.role.find((role) => {
+        return (
+          role.roleTitle.startsWith(
+            foundDepartment ? foundDepartment.name : ""
+          ) && role.roleTitle.endsWith("Admin")
+        );
+      });
+      return userRole;
+    });
+
+    let manager = "N/A";
+    if (foundManager) {
+      manager = `${foundManager.firstName} ${foundManager.lastName}`;
+    }
+
+    const weeklySchedules = await WeeklySchedule.find({
+      company,
+      location: unitId,
+      department,
+    })
+      .populate({
+        path: "employee.id",
+        select: "firstName lastName departments",
+        populate: { path: "departments" },
+      })
+      .populate("substitutions.substitute", "firstName lastName")
+      .populate({
+        path: "location",
+        select: "unitName unitNo",
+        populate: [
+          { path: "building", select: "buildingName" },
+          {
+            path: "adminLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+          {
+            path: "maintenanceLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+          {
+            path: "itLead",
+            select: "firstName middleName lastName departments",
+            populate: { path: "departments", select: "name" },
+          },
+        ],
+      });
+
+    const transformedData = weeklySchedules.map((schedule) => ({
+      ...schedule._doc,
+      manager,
+    }));
+
+    res.status(200).json(transformedData);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const fetchPrimaryUnits = async (req, res, next) => {
+  try {
+    const { id, name } = req.query;
+    const { company } = req;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res
+        .status(400)
+        .json({ message: "Invalid department Id provided" });
+    }
+    const foundUsers = await UserData.find({
+      departments: { $in: [id] },
+      isActive: true,
+    })
+      .populate([
+        {
+          path: "role",
+          select: "roleTitle",
+        },
+        { path: "departments", select: "name" },
+      ])
+      .select("firstName middleName lastName");
+
+    if (foundUsers.length < 0) {
+      return res.status(400).json({
+        message: "User not found",
+      });
+    }
+
+    const units = await Unit.find({ company })
+      .populate([
+        {
+          path: "adminLead",
+          select: "firstName middleName lastName departments",
+          populate: { path: "departments", select: "name" },
+        },
+        {
+          path: "maintenanceLead",
+          select: "firstName middleName lastName departments",
+          populate: { path: "departments", select: "name" },
+        },
+        {
+          path: "itLead",
+          select: "firstName middleName lastName departments",
+          populate: { path: "departments", select: "name" },
+        },
+      ])
+      .select("unitNo unitName building isActive");
+
+    if (!units) {
+      return res.status(400).json({ message: "Units not found" });
+    }
+
+    const foundManager = foundUsers.find((user) => {
+      const foundDepartment = user.departments.find((dept) => {
+        return dept.name === name;
+      });
+
+      const userRole = user.role.find((role) => {
+        return (
+          role.roleTitle.startsWith(
+            foundDepartment ? foundDepartment.name : ""
+          ) && role.roleTitle.endsWith("Admin")
+        );
+      });
+      return userRole;
+    });
+
+    let manager = "N/A";
+    if (foundManager) {
+      manager = `${foundManager.firstName} ${foundManager.lastName}`;
+    }
+
+    const filteredUsers = foundUsers.map((user) => {
+      const dept =
+        name === "Administration"
+          ? "adminLead"
+          : name === "Maintenance"
+          ? "maintenanceLead"
+          : name === "IT"
+          ? "itLead"
+          : "";
+
+      const primaryUnit = units.find((unit) => {
+        return unit[dept] && unit[dept]._id.toString() === user._id.toString();
+      });
+
+      return {
+        ...user._doc,
+        primaryUnit: primaryUnit ? primaryUnit : {},
+        manager,
+      };
+    });
+
+    const transformedData = units.map((unit) => ({
+      ...unit._doc,
+      manager,
+    }));
+
+    res.status(200).json(filteredUsers);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   assignWeeklyUnit,
   updateWeeklyUnit,
   addSubstitute,
   fetchWeeklyUnits,
+  fetchPrimaryUnits,
+  fetchTeamMembersSchedule,
 };

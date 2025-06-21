@@ -75,8 +75,8 @@ const Attendance = () => {
     },
   });
   const attendanceColumns = [
-    // { field: "id", headerName: "Sr No", width: 100 },
-    { field: "date", headerName: "Date", width: 200, sort:'asc' },
+    { field: "srNo", headerName: "Sr No", width: 100 },
+    { field: "date", headerName: "Date", width: 200, sort: "asc" },
     { field: "inTime", headerName: "In Time" },
     { field: "outTime", headerName: "Out Time" },
     { field: "workHours", headerName: "Work Hours" },
@@ -338,10 +338,14 @@ const Attendance = () => {
         {!isLoading ? (
           <WidgetSection layout={1} title={`${name}'s Attendance Table`} border>
             <MonthWiseTable
+              buttonTitle={"Correction Request"}
+              handleSubmit={() => {
+                setOpenModal(true);
+              }}
               data={
                 !isLoading
                   ? attendance?.map((record, index) => ({
-                      id: index + 1,
+                      // id: index + 1,
                       date: record.inTime,
                       inTime: humanTime(record.inTime),
                       outTime: humanTime(record.outTime),
@@ -389,6 +393,7 @@ const Attendance = () => {
                     {...field}
                     label={"Select Date"}
                     format="DD-MM-YYYY"
+                    slotProps={{ textField: { size: "small" } }}
                     value={field.value ? dayjs(field.value) : null}
                     onChange={(date) => {
                       field.onChange(date ? date.toISOString() : null);

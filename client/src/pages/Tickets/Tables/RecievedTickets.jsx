@@ -251,11 +251,25 @@ const RecievedTickets = ({ title, departmentId }) => {
           <ThreeDotMenu
             rowId={params.data.id}
             menuItems={[
-              {
+              // Conditionally add "Accept"
+               ...(auth.user.role.length > 0 &&
+              (auth.user.role[0].roleTitle !== "Master Admin" &&
+                auth.user.role[0].roleTitle !== "Super Admin" 
+                ? [
+                    {
                 label: "Accept",
                 onClick: () => acceptMutate(params.data),
                 isLoading: isLoading,
               },
+                   
+                  ]
+                : [])
+               ),
+              // {
+              //   label: "Accept",
+              //   onClick: () => acceptMutate(params.data),
+              //   isLoading: isLoading,
+              // },
               // Conditionally add "Assign"
               ...(auth.user.role.length > 0 &&
               (auth.user.role[0].roleTitle === "Master Admin" ||

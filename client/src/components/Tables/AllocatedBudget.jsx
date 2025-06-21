@@ -35,6 +35,8 @@ const AllocatedBudget = ({
   hideTitle,
   noInvoice = false,
   noFilter = false,
+  annaualExpense = false,
+  newTitle,
 }) => {
   const axios = useAxiosPrivate();
   const [selectedTab, setSelectedTab] = useState(0);
@@ -240,61 +242,29 @@ const AllocatedBudget = ({
     return baseColumns;
   }, [monthDataForSelectedType.columns, noInvoice]);
 
-  console.log("Enhanced columns : ", enhancedColumns);
-
   if (isLoading) return <CircularProgress />;
 
   return (
     <>
       <WidgetSection
-        title={"BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"}
+        title={
+          annaualExpense
+            ? "Annual Expenses"
+            : newTitle
+            ? newTitle
+            : "BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"
+        }
         TitleAmount={`USD ${inrFormat(totalProjectedAmountForFY)}`}
         border>
         <div className="flex flex-col gap-4 rounded-md ">
           {!hideTitle ? (
-            <div className="flex justify-between items-center">
-              {/* <span className="text-title font-pmedium text-primary uppercase">
-                Actual Budget:
-              </span> */}
-              {/* <span className="text-title font-pmedium">
-                USD {inrFormat(totalProjectedAmountForFY)}
-              </span> */}
-            </div>
+            <div className="flex justify-between items-center"></div>
           ) : (
             ""
           )}
 
           <div className="flex items-center justify-between gap-4">
-            <div className="w-1/3">
-              {/* {filteredMonths.length > 0 && !noFilter && (
-                <div>
-                  <FormControl fullWidth>
-                    <Autocomplete
-                      value={allTypes[selectedTab]}
-                      onChange={(e, newValue) => {
-                        const selectedIndex = allTypes.findIndex(
-                          (type) => type === newValue
-                        );
-                        setSelectedTab(selectedIndex);
-                      }}
-                      options={allTypes}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Select Category"
-                          size="small"
-                          fullWidth
-                        />
-                      )}
-                      getOptionLabel={(option) =>
-                        option === "External" ? "Vendor" : option
-                      }
-                      isOptionEqualToValue={(option, value) => option === value}
-                    />
-                  </FormControl>
-                </div>
-              )} */}
-            </div>
+            <div className="w-1/3"></div>
             <div className="flex gap-4 justify-start items-center w-full ">
               <div className="">
                 {/* Month Switcher */}
@@ -359,8 +329,9 @@ const AllocatedBudget = ({
             </div>
           ) : (
             <div className="h-96 flex justify-center items-center text-muted">
-              No data available for this category in{" "}
-              {monthDataForSelectedType.monthFormatted}
+              {/* No data available for this category in{" "}
+              {monthDataForSelectedType.monthFormatted} */}
+              No data available
             </div>
           )}
         </div>

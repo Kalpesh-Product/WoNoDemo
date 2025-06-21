@@ -1,40 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
-import LayerBarGraph from "../../../../components/graphs/LayerBarGraph";
-import WidgetSection from "../../../../components/WidgetSection";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import { IoIosArrowDown } from "react-icons/io";
-import AgTable from "../../../../components/AgTable";
 import PrimaryButton from "../../../../components/PrimaryButton";
-import DataCard from "../../../../components/DataCard";
-import { MdTrendingUp } from "react-icons/md";
-import { BsCheckCircleFill } from "react-icons/bs";
 import AllocatedBudget from "../../../../components/Tables/AllocatedBudget";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import BudgetGraph from "../../../../components/graphs/BudgetGraph";
 import MuiModal from "../../../../components/MuiModal";
 import { Controller, useForm } from "react-hook-form";
-import {
-  Button,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { toast } from "sonner";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { inrFormat } from "../../../../utils/currencyFormat";
-import BarGraph from "../../../../components/graphs/BarGraph";
 import { transformBudgetData } from "../../../../utils/transformBudgetData";
 import YearlyGraph from "../../../../components/graphs/YearlyGraph";
 import useAuth from "../../../../hooks/useAuth";
@@ -45,6 +22,14 @@ const FinanceBudget = () => {
   const { auth } = useAuth();
   const location = useLocation();
   const department = usePageDepartment();
+  const departmentAccess = [
+    "67b2cf85b9b6ed5cedeb9a2e",
+    "6798bab9e469e809084e249e",
+  ];
+
+  const isTop = auth.user.departments.some((item) => {
+    return departmentAccess.includes(item._id.toString());
+  });
 
   const [openModal, setOpenModal] = useState(false);
   const { control, handleSubmit, reset, watch } = useForm({
@@ -226,19 +211,51 @@ const FinanceBudget = () => {
   }, [isHrLoading]);
 
   const expenseRawSeries = useMemo(() => {
+    // Initialize monthly buckets
+    const months = Array.from({ length: 12 }, (_, index) =>
+      dayjs(`2024-04-01`).add(index, "month").format("MMM")
+    );
+
+    const fyData = {
+      "FY 2024-25": Array(12).fill(0),
+      "FY 2025-26": Array(12).fill(0),
+    };
+
+    hrFinance.forEach((item) => {
+      const date = dayjs(item.dueDate);
+      const year = date.year();
+      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+
+      if (year === 2024 && monthIndex >= 3) {
+        // Apr 2024 to Dec 2024 (month 3 to 11)
+        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+      } else if (year === 2025) {
+        if (monthIndex <= 2) {
+          // Jan to Mar 2025 (months 0–2)
+          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+        } else if (monthIndex >= 3) {
+          // Apr 2025 to Dec 2025 (months 3–11)
+          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
+        }
+      } else if (year === 2026 && monthIndex <= 2) {
+        // Jan to Mar 2026
+        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+      }
+    });
+
     return [
       {
         name: "total",
         group: "FY 2024-25",
-        data: budgetBar?.utilisedBudget || [],
+        data: fyData["FY 2024-25"],
       },
       {
         name: "total",
         group: "FY 2025-26",
-        data: [1000054, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: fyData["FY 2025-26"],
       },
     ];
-  }, [budgetBar]);
+  }, [hrFinance]);
 
   const expenseOptions = {
     chart: {
@@ -274,8 +291,8 @@ const FinanceBudget = () => {
     },
 
     yaxis: {
-      // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      max: 5000000,
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -324,17 +341,19 @@ const FinanceBudget = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={"BIZ Nest FINANCE DEPARTMENT EXPENSE"}
-        titleAmount={`USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`}
+        titleAmount={`USD ${inrFormat(totalUtilised)}`}
       />
 
-      <div className="flex justify-end">
-        <PrimaryButton
-          title={"Request Budget"}
-          padding="px-5 py-2"
-          fontSize="text-base"
-          handleSubmit={() => setOpenModal(true)}
-        />
-      </div>
+      {!isTop && (
+        <div className="flex justify-end">
+          <PrimaryButton
+            title={"Request Budget"}
+            padding="px-5 py-2"
+            fontSize="text-base"
+            handleSubmit={() => setOpenModal(true)}
+          />
+        </div>
+      )}
 
       <AllocatedBudget financialData={financialData} />
       <MuiModal

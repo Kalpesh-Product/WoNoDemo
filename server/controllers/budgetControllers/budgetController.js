@@ -47,6 +47,15 @@ const requestBudget = async (req, res, next) => {
       );
     }
 
+    if (expanseType === "Reimbursement" && !req.file) {
+      throw new CustomError(
+        "Voucher file isn't uploaded",
+        logPath,
+        logAction,
+        logSourceKey
+      );
+    }
+
     if (!mongoose.Types.ObjectId.isValid(departmentId)) {
       throw new CustomError(
         "Invalid department Id provided",
@@ -98,7 +107,7 @@ const requestBudget = async (req, res, next) => {
       budgetApproval,
       l1Approval,
       srNo,
-      particulars : JSON.parse(particulars),
+      particulars: particulars ? JSON.parse(particulars) : [],
       gstIn: gstIn || "",
     };
 
@@ -335,10 +344,6 @@ const fetchLandlordPayments = async (req, res, next) => {
   }
 };
 
-//Problem Statement: Should I add voucher file in Finance collections or Budget collection
-//Will there be a voucher file uploaded
-//Fetch all approved budgets in voucher table
-
 const approveBudget = async (req, res, next) => {
   const logPath = "budget/BudgetLog";
   const logAction = "Approve Budget";
@@ -400,7 +405,7 @@ const approveFinanceBudget = async (req, res, next) => {
       modeOfPayment,
       chequeNo,
       chequeDate,
-      amount,
+      advanceAmount,
       expectedDateInvoice,
       particulars,
     } = req.body;
@@ -411,7 +416,7 @@ const approveFinanceBudget = async (req, res, next) => {
       modeOfPayment,
       chequeNo,
       chequeDate,
-      amount,
+      advanceAmount,
       expectedDateInvoice,
     };
 
@@ -493,7 +498,7 @@ const approveFinanceBudget = async (req, res, next) => {
       fSrNo,
       chequeNo,
       chequeDate,
-      amount,
+      advanceAmount,
       expectedDateInvoice,
       modeOfPayment,
       particulars: JSON.parse(particulars),
@@ -522,7 +527,7 @@ const approveFinanceBudget = async (req, res, next) => {
         fSrNo,
         chequeNo,
         chequeDate,
-        amount,
+        advanceAmount,
         expectedDateInvoice,
         modeOfPayment,
         particulars,

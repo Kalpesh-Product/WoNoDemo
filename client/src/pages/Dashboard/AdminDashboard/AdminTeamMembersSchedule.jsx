@@ -16,6 +16,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import humanDate from "../../../utils/humanDateForamt";
 import { queryClient } from "../../../main";
 import PageFrame from "../../../components/Pages/PageFrame";
+import usePageDepartment from "../../../hooks/usePageDepartment";
 
 const AdminTeamMembersSchedule = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const AdminTeamMembersSchedule = () => {
     endDate: new Date(),
     key: "selection",
   });
+  const department = usePageDepartment();
   const {
     handleSubmit,
     control,
@@ -60,7 +62,9 @@ const AdminTeamMembersSchedule = () => {
     queryFn: async () => {
       try {
         const response = await axios.get("/api/company/fetch-units");
-        return response.data;
+
+        const filteredUnits = response.data.filter((unit)=> unit.isOnlyBudget)
+        return filteredUnits;
       } catch (error) {
         console.error("Error fetching clients data:", error);
       }
@@ -71,10 +75,9 @@ const AdminTeamMembersSchedule = () => {
     queryKey: ["employees"],
     queryFn: async () => {
       try {
-        const adminDepId = "6798bae6e469e809084e24a4";
         const response = await axios.get(`/api/users/fetch-users`, {
           params: {
-            deptId: adminDepId,
+            deptId: department._id,
           },
         });
         return response.data;
@@ -87,9 +90,8 @@ const AdminTeamMembersSchedule = () => {
     queryKey: ["unitAssignees"],
     queryFn: async () => {
       try {
-        const adminDepId = "6798bae6e469e809084e24a4";
         const response = await axios.get(
-          `/api/administration/fetch-weekly-unit/${adminDepId}`
+          `/api/administration/fetch-weekly-unit/${department._id}`
         );
         return response.data;
       } catch (error) {
@@ -104,7 +106,7 @@ const AdminTeamMembersSchedule = () => {
       mutationFn: async (data) => {
         const response = await axios.post(
           "/api/administration/assign-weekly-unit",
-          data
+          { ...data, department: department?._id }
         );
         return response.data;
       },
@@ -121,7 +123,7 @@ const AdminTeamMembersSchedule = () => {
 
   //----------------------------------------API---------------------------------------//
   const memberColumns = [
-    { field: "id", headerName: "Sr No", width: 100 },
+    { field: "srNo", headerName: "Sr No", width: 100 },
     { field: "name", headerName: "Name" },
     { field: "manager", headerName: "Manager" },
     { field: "unitNo", headerName: "Unit", flex: "1" },
@@ -132,12 +134,14 @@ const AdminTeamMembersSchedule = () => {
         <div className="flex items-center gap-4 py-2">
           <span
             onClick={() => handleViewUser(params.data)}
-            className="text-subtitle hover:bg-gray-300 rounded-full cursor-pointer p-1">
+            className="text-subtitle hover:bg-gray-300 rounded-full cursor-pointer p-1"
+          >
             <MdOutlineRemoveRedEye />
           </span>
           <span
             onClick={() => handleEditUser(params.data)}
-            className="text-subtitle hover:bg-gray-300 rounded-full cursor-pointer p-1">
+            className="text-subtitle hover:bg-gray-300 rounded-full cursor-pointer p-1"
+          >
             <HiOutlinePencilSquare />
           </span>
         </div>
@@ -182,7 +186,15 @@ const AdminTeamMembersSchedule = () => {
             search={true}
             tableTitle={"Team Members Schedule"}
             buttonTitle={"Assign Member"}
-            data={[]}
+            data={unitAssignees.map((assignee, index) => {
+              return {
+                ...assignee,
+                srNo: index + 1,
+                name: `${assignee.employee.id.firstName} ${assignee.employee.id.lastName}`,
+                unitNo: assignee.primaryUnit.unitNo,
+                substitutions: assignee.substitutions,
+              };
+            })}
             columns={memberColumns}
             handleClick={handleAddUser}
           />
@@ -196,12 +208,14 @@ const AdminTeamMembersSchedule = () => {
       <MuiModal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={"Assign Substitute"}>
+        title={"Assign Substitute"}
+      >
         {modalMode === "add" && (
           <div>
             <form
               onSubmit={handleSubmit(handleFormSubmit)}
-              className="flex flex-col gap-4">
+              className="flex flex-col gap-4"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="col-span-2">
                   <Controller
@@ -216,7 +230,8 @@ const AdminTeamMembersSchedule = () => {
                         size="small"
                         select
                         error={!!errors.employee}
-                        helperText={errors.employee?.message}>
+                        helperText={errors.employee?.message}
+                      >
                         <MenuItem value="" disabled>
                           Select a Member
                         </MenuItem>
@@ -253,7 +268,8 @@ const AdminTeamMembersSchedule = () => {
                         fullWidth
                         error={!!errors.location}
                         helperText={errors.unitId?.message}
-                        select>
+                        select
+                      >
                         <MenuItem value="" disabled>
                           Select Unit
                         </MenuItem>
@@ -293,12 +309,12 @@ const AdminTeamMembersSchedule = () => {
             />
             <DetalisFormatted
               title="Unit Name"
-              detail={selectedUser.unitName}
+              detail={selectedUser.location?.unitNo}
             />
             <DetalisFormatted
               title="Building Name"
               gap={"w-full"}
-              detail={selectedUser.buildingName}
+              detail={selectedUser.location?.building?.buildingName}
             />
 
             {/* DateRange picker view-only */}
@@ -332,20 +348,21 @@ const AdminTeamMembersSchedule = () => {
               </h3>
               {selectedUser.substitutions?.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
-                  {selectedUser.substitutions.map((sub, index) => (
+                  {selectedUser.substitutions?.map((sub, index) => (
                     <div
-                      key={sub.substitutionId}
-                      className="flex flex-col gap-2 border border-borderGray rounded-2xl p-4">
+                      key={sub.substitute?._id}
+                      className="flex flex-col gap-2 border border-borderGray rounded-2xl p-4"
+                    >
                       <h4 className="text-subtitle font-pmedium text-primary mb-2">
                         Substitute {index + 1}
                       </h4>
                       <DetalisFormatted
                         title="First Name"
-                        detail={sub.substituteFirstName}
+                        detail={sub.substitute?.firstName}
                       />
                       <DetalisFormatted
                         title="Last Name"
-                        detail={sub.substituteLastName}
+                        detail={sub.substitute?.lastName}
                       />
                       <DetalisFormatted
                         title="From"

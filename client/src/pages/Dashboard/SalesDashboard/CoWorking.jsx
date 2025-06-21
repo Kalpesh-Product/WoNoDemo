@@ -82,7 +82,7 @@ const CoWorking = () => {
       categories: sortedCoWorkingData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -158,7 +158,7 @@ const CoWorking = () => {
             { headerName: "Sr No", field: "id", width: 100 },
             { headerName: "Client Name", field: "clientName", width: 350 },
             { headerName: "Channel", field: "channel" },
-            { headerName: "Revenue (USD)", field: "revenue" },
+            { headerName: "Revenue (INR)", field: "revenue" },
             { headerName: "No. of Desks", field: "noOfDesks" },
             { headerName: "Desk Rate", field: "deskRate" },
             { headerName: "Total Term", field: "totalTerm" },

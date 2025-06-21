@@ -296,8 +296,9 @@ const FinanceDashboard = () => {
       colors: ["transparent"],
     },
     yaxis: {
+      max: 8000000,
       title: {
-        text: "Amount In Thousand (USD)",
+        text: "Amount In Lakhs (INR)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -468,12 +469,16 @@ const FinanceDashboard = () => {
   const pieMonthlyPayoutData = [
     {
       label: "Paid",
-      value: paidClients.reduce((sum, client) => sum + client.amount, 0),
+      value: Math.round(
+        paidClients.reduce((sum, client) => sum + client.amount, 0)
+      ),
       clients: paidClients,
     },
     {
       label: "Unpaid",
-      value: unpaidClients.reduce((sum, client) => sum + client.amount, 0),
+      value: Math.round(
+        unpaidClients.reduce((sum, client) => sum + client.amount, 0)
+      ),
       clients: unpaidClients,
     },
   ];
@@ -681,10 +686,21 @@ const FinanceDashboard = () => {
   );
 
   const statutoryDonutSeries = [
-    approvedPayments.reduce((sum, item) => sum + item.actualAmount, 0),
-    pendingPayments.reduce((sum, item) => sum + item.actualAmount, 0),
+    Math.round(
+      approvedPayments.reduce(
+        (sum, item) => sum + Number(item.actualAmount || 0),
+        0
+      )
+    ),
+    Math.round(
+      pendingPayments.reduce(
+        (sum, item) => sum + Number(item.actualAmount || 0),
+        0
+      )
+    ),
   ];
 
+  console.log("statuto", statutoryDonutSeries);
   const statutoryDonutLabels = ["Approved", "Pending"];
   const statutoryDonutColors = ["#4CAF50", "#FF9800"];
   const statutoryTooltipValues = statutoryDonutSeries.map(
@@ -790,7 +806,7 @@ const FinanceDashboard = () => {
     { id: "expanseType", label: "Type", width: 150 },
     {
       id: "actualAmount",
-      label: "Actual Amount (USD)",
+      label: "Actual Amount (INR)",
       width: 150,
       renderCell: (row) => `${row.actualAmount.toLocaleString("en-IN")}`,
     },

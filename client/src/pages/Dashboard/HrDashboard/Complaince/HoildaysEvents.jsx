@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AgTable from "../../../../components/AgTable";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
@@ -11,6 +11,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import PageFrame from "../../../../components/Pages/PageFrame";
+import humanDate from "../../../../utils/humanDateForamt";
 
 const HoildaysEvents = ({ title }) => {
   const axios = useAxiosPrivate();
@@ -19,10 +20,14 @@ const HoildaysEvents = ({ title }) => {
   const [localEvents, setLocalEvents] = useState([]);
 
   const columns = [
-    { field: "id", headerName: "SR No", width: 100 },
+    { field: "srNo", headerName: "SR No", width: 100 },
     { field: "title", headerName: "Holiday", flex: 1 },
+    {
+      field: "start",
+      headerName: "Date",
+      cellRenderer: (params) => humanDate(params.value),
+    },
     { field: "day", headerName: "Day" },
-    { field: "start", headerName: "Date" },
   ];
 
   const { data: holidayEvents = [] } = useQuery({
@@ -37,11 +42,12 @@ const HoildaysEvents = ({ title }) => {
   const combinedEvents = [...holidayEvents, ...localEvents].map(
     (holiday, index) => {
       const date = dayjs(holiday.start);
+      console.log("Date : ", humanDate(date));
       return {
         id: index + 1,
         title: holiday.title,
         day: date.format("dddd"), // e.g., "Monday"
-        start: date.format("DD-MM-YYYY"),
+        start: date,
       };
     }
   );
@@ -62,13 +68,10 @@ const HoildaysEvents = ({ title }) => {
   return (
     <PageFrame>
       <div>
-        <div className="flex justify-between items-center pb-4">
-          <span className="text-title font-pmedium text-primary">{title}</span>
-        </div>
-
-        <AgTable
+        <YearWiseTable
           key={combinedEvents.length}
           search={true}
+          dateColumn={"start"}
           tableTitle={"Holidays"}
           columns={columns}
           buttonTitle="Add Holiday"
@@ -79,7 +82,8 @@ const HoildaysEvents = ({ title }) => {
         <MuiModal
           open={modalOpen}
           onClose={() => setModalOpen(false)}
-          title="Add Holiday">
+          title="Add Holiday"
+        >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <TextField

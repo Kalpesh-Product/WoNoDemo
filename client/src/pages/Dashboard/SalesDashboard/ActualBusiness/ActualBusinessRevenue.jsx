@@ -114,7 +114,7 @@ const ActualBusinessRevenue = () => {
       title: { text: "Verticals" },
     },
     yaxis: {
-      title: { text: "Revenue in Thousand (USD)" },
+      title: { text: "Revenue in Lakhs (INR)" },
       labels: {
         formatter: (value) => `${(value / 100000).toLocaleString("en-IN")}`,
       },
@@ -206,7 +206,7 @@ const ActualBusinessRevenue = () => {
               columns={[
                 { headerName: "Sr No", field: "id", width: 100 },
                 { headerName: "Vertical", field: "vertical", flex: 1 },
-                { headerName: "Revenue (USD)", field: "revenue", width: 400 },
+                { headerName: "Revenue (INR)", field: "revenue", width: 400 },
               ]}
               data={tableData}
             />

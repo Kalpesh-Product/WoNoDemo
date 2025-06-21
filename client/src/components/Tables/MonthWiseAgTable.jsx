@@ -7,6 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import WidgetSection from "../WidgetSection";
 import { parseAmount } from "../../utils/parseAmount";
 import { inrFormat } from "../../utils/currencyFormat";
+import { useEffect } from "react";
 
 dayjs.extend(customParseFormat);
 
@@ -59,26 +60,56 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
     };
   }, [filteredMonths, selectedMonthIndex]);
 
+  //   const parseAmount = (amount) => {
+  //   if (!amount) return 0;
+  //   if (typeof amount === "number") return amount;
+  //   return parseFloat(amount.replace(/,/g, "")) || 0;
+  // };
+
+  // const monthTotal = monthData.rows
+  //   .map((item) =>{
+  //     console.log("item",parseAmount(item.revenue))
+  //      return parseAmount(item.revenue) ||
+  //      item.totalAmount ||
+  //      item.invoiceAmount
+  //   }
+
+  //   )
+  //   .reduce((sum, item) => { console.log("total",item)
+  //     return sum + item
+  //   }, 0);
+
+  const parseAmount = (amount) => {
+    if (!amount) return 0;
+    if (typeof amount === "number") return amount;
+    return parseFloat(amount.replace(/,/g, "")) || 0;
+  };
+
   const monthTotal = monthData.rows
-    .map(
-      (item) =>
-        parseAmount(item.revenue) || item.totalAmount || item.invoiceAmount
-    )
-    .reduce((sum, item) => item + sum, 0);
+    .map((item) => {
+      const revenue = parseAmount(item.revenue);
+      const total = parseAmount(item.totalAmount);
+      const invoice = parseAmount(item.invoiceAmount);
+
+      // Prefer revenue > total > invoice
+      return revenue || total || invoice || 0;
+    })
+    .reduce((sum, item) => sum + item, 0);
+
   const columns = [
     { headerName: "Particulars", field: "particulars" },
     {
-      headerName: "Taxable Amount (USD)",
+      headerName: "Taxable Amount (INR)",
       field: "taxableAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "GST (USD)",
+      headerName: "GST (INR)",
       field: "gst",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "Invoice Amount (USD)",
+      headerName: "Invoice Amount (INR)",
       field: "invoiceAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },

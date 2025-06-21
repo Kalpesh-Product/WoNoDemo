@@ -161,9 +161,9 @@ const IncomeDetails = () => {
         passedColumns={[
           { headerName: "Sr No", field: "srNo", flex: 1 },
           { headerName: "Vertical", field: "vertical", flex: 1 },
-          { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
+          { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
         ]}
-        amount={`USD ${inrFormat(totalAnnualRevenue)}`}
+        // amount={`USD ${inrFormat(totalAnnualRevenue)}`}
         financialData={financialDataForTable}
       />
     </div>

@@ -103,7 +103,7 @@ const MaintenanceAnnualExpenses = () => {
     { field: "id", headerName: "Sr No", width: 100 },
     { field: "category", headerName: "Category" },
     { field: "expenseName", headerName: "Expense Name", flex: 1 },
-    { field: "amount", headerName: "Amount (USD)" },
+    { field: "amount", headerName: "Amount (INR)" },
     { field: "date", headerName: "Date" },
     {
       field: "actions",
@@ -221,7 +221,7 @@ const MaintenanceAnnualExpenses = () => {
           search={true}
           searchColumn={"Asset Number"}
           tableTitle={"Annual Expenses"}
-          buttonTitle={"Add Expense"}
+          // buttonTitle={"Add Expense"}
           data={[]}
           columns={assetColumns}
           handleClick={handleAddAsset}

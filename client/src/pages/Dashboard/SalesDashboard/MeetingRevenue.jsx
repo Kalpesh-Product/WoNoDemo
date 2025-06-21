@@ -60,7 +60,7 @@ const MeetingRevenue = () => {
       categories: meetingsData.map((item) => item.month ?? "N/A"),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -143,7 +143,7 @@ const MeetingRevenue = () => {
               { headerName: "Particulars", field: "particulars", width: 200 },
               { headerName: "Units / Hours", field: "unitsOrHours" },
               {
-                headerName: "Taxable (USD)",
+                headerName: "Taxable (INR)",
                 field: "taxable",
                 valueFormatter: ({ value }) =>
                   typeof value === "number"
@@ -151,7 +151,7 @@ const MeetingRevenue = () => {
                     : `${value ?? ""}`,
               },
               {
-                headerName: "GST (USD)",
+                headerName: "GST (INR)",
                 field: "gst",
                 valueFormatter: ({ value }) =>
                   typeof value === "number"
@@ -159,7 +159,7 @@ const MeetingRevenue = () => {
                     : `${value ?? ""}`,
               },
               {
-                headerName: "Total Amount (USD)",
+                headerName: "Total Amount (INR)",
                 field: "totalAmount",
                 valueFormatter: ({ value }) =>
                   typeof value === "number"

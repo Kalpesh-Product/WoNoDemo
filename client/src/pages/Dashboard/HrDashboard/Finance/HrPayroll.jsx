@@ -95,7 +95,7 @@ const HrPayroll = () => {
     // { field: "date", headerName: "Date" },
     // { field: "role", headerName: "Role" },
     // { field: "time", headerName: "Time" },
-    { field: "totalSalary", headerName: "Total Salary (USD)" },
+    { field: "totalSalary", headerName: "Total Salary (INR)" },
     // { field: "reimbursment", headerName: "Total Salary" },
     {
       field: "status",
@@ -351,7 +351,7 @@ const HrPayroll = () => {
                           <TextField
                             {...field}
                             size="small"
-                            label="Total Salary (USD)"
+                            label="Total Salary (INR)"
                             type="tel"
                             fullWidth
                           />
@@ -359,7 +359,7 @@ const HrPayroll = () => {
                       />
                     ) : (
                       <DetalisFormatted
-                        title="Total Salary (USD)"
+                        title="Total Salary (INR)"
                         // detail={selectedVisitor.phoneNumber}
                         detail=" 40,000"
                       />

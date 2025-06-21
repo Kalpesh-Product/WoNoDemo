@@ -86,7 +86,7 @@ const HistoricalPnl = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Crores (USD)",
+        text: "Amount In Crores (INR)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 10000000)}`,
@@ -148,11 +148,11 @@ const HistoricalPnl = () => {
           columns={[
             { field: "srNo", headerName: "Sr No", sort: "desc" },
             { field: "name", headerName: "Financial Year", flex: 1 },
-            { field: "totalIncome", headerName: "Total Income (USD)" },
-            { field: "totalExpense", headerName: "Total Expense (USD)" },
+            { field: "totalIncome", headerName: "Total Income (INR)" },
+            { field: "totalExpense", headerName: "Total Expense (INR)" },
             {
               field: "totalProfitLoss",
-              headerName: "Total Profit / Loss (USD)",
+              headerName: "Total Profit / Loss (INR)",
             },
           ]}
           hideFilter

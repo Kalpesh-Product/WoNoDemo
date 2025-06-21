@@ -55,7 +55,7 @@ const ReviewRequest = () => {
       modeOfPayment: "",
       chequeNo: "",
       chequeDate: null,
-      amount: 0,
+      advanceAmount: 0,
       expectedDateInvoice: null,
       particulars: [],
     },
@@ -67,7 +67,7 @@ const ReviewRequest = () => {
       queryFn: async () => {
         try {
           const response = await axios.get(
-            `/api/budget/company-budget?departmentId=${department._id}`
+            `/api/budget/company-budget?departmentId=${department?._id}`
           );
           const budgets = response.data.allBudgets;
           return Array.isArray(budgets) ? budgets : [];
@@ -163,7 +163,7 @@ const ReviewRequest = () => {
     formData.append("modeOfPayment", values.modeOfPayment || "");
     formData.append("chequeNo", values.chequeNo || "");
     formData.append("chequeDate", values.chequeDate || "");
-    formData.append("amount", values.amount?.toString() || "0");
+    formData.append("advanceAmount", values.advanceAmount?.toString() || "0");
     formData.append("expectedDateInvoice", values.expectedDateInvoice || "");
     formData.append("particulars", JSON.stringify(values.particulars || []));
 
@@ -348,7 +348,7 @@ const ReviewRequest = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  USD{" "}
+                  INR{" "}
                   {fields
                     .reduce(
                       (acc, item) =>
@@ -396,7 +396,7 @@ const ReviewRequest = () => {
             />
           ))}
 
-          {["chequeNo", "amount"].map((fieldName) => (
+          {["chequeNo", "advanceAmount"].map((fieldName) => (
             <Controller
               key={fieldName}
               name={fieldName}
@@ -558,7 +558,7 @@ const ReviewRequest = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    USD.
+                    INR.
                   </td>
                 </tr>
               </thead>
@@ -692,8 +692,8 @@ const ReviewRequest = () => {
                   <td className={cellClasses} colSpan={2}>
                     PARTICULARS
                   </td>
-                  <td className={cellClasses}>USD</td>
-                  {/* <td className={cellClasses}>USD</td> */}
+                  <td className={cellClasses}>INR</td>
+                  {/* <td className={cellClasses}>INR</td> */}
                 </tr>
               </thead>
               <tbody>
@@ -749,7 +749,7 @@ const ReviewRequest = () => {
               <tbody>
                 <tr>
                   <td className={cellClasses}>Amount (Rs)</td>
-                  <td className={cellClasses}>{values.amount}</td>
+                  <td className={cellClasses}>{values.advanceAmount}</td>
                 </tr>
                 <tr>
                   <td className={cellClasses}>

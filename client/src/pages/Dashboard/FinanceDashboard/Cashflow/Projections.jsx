@@ -122,7 +122,7 @@ const Projections = () => {
     },
     yaxis: {
       title: {
-        text: "Amount in Thousand (USD)",
+        text: "Amount in Lakhs (INR)",
       },
       min: 1,
       max: 10_00_000, // Adjust based on expected scale (e.g., 10 lakhs)
@@ -145,9 +145,9 @@ const Projections = () => {
   //-----------------------------------------------------Table columns/Data------------------------------------------------------//
   const monthlyProfitLossColumns = [
     { field: "id", headerName: "Sr No", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected (USD)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual (USD)", flex: 1 },
-    { field: "pnl", headerName: "P&L (USD)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected (INR)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual (INR)", flex: 1 },
+    { field: "pnl", headerName: "P&L (INR)", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",

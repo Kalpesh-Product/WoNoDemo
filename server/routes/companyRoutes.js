@@ -10,7 +10,13 @@ const {
   getCompanyLogo,
   getHierarchy,
   getCompanyAttandances,
+  updateCompanySubItem,
 } = require("../controllers/companyControllers/companyControllers");
+
+const {
+  addNewHouseKeepingMember,
+  getHouseKeepingStaff,
+} = require("../controllers/companyControllers/houseKeepingController");
 
 const {
   uploadCompanyDocument,
@@ -36,6 +42,7 @@ const {
   addUnit,
   fetchUnits,
   fetchBuildings,
+  assignPrimaryUnit,
 } = require("../controllers/companyControllers/workLocationControllers");
 const {
   createDepartment,
@@ -52,11 +59,13 @@ router.get("/get-companies", getCompanies);
 router.get("/company-hierarchy", getHierarchy);
 router.get("/company-attandances", getCompanyAttandances);
 router.post("/add-department", createDepartment);
+router.patch("/update-company-data", updateCompanySubItem);
 router.post("/add-employee-type", addEmployeeType);
 router.post("/add-leave-type", addLeaveType);
 router.post("/add-building", addBuilding);
 router.get("/buildings", fetchBuildings);
 router.post("/add-unit", addUnit);
+router.patch("/assign-primary-unit", assignPrimaryUnit);
 router.get("/fetch-units", fetchUnits);
 router.post("/bulk-add-locations", upload.single("units"), bulkInsertUnits);
 router.get("/get-company-data", getCompanyData);
@@ -74,6 +83,9 @@ router.post(
 
 router.post("/add-job-application", createJobApplication);
 router.get("/get-job-applications", getJobApplications);
+
+router.post("/add-housekeeping-member", addNewHouseKeepingMember);
+router.get("/housekeeping-members", getHouseKeepingStaff);
 
 router.post(
   "/upload-company-document",

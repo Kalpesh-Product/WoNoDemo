@@ -496,8 +496,14 @@ const RaiseTicket = () => {
                 acceptedBy: ticket?.acceptedBy
                   ? `${ticket.acceptedBy.firstName} ${ticket.acceptedBy.lastName}`
                   : "None",
+                closedBy: ticket?.closedBy
+                  ? `${ticket.closedBy.firstName} ${ticket.closedBy.lastName}`
+                  : "None",
                 acceptedAt: ticket.acceptedAt
                   ? humanTime(ticket.acceptedAt)
+                  : "None",
+                closedAt: ticket.closedAt
+                  ? humanTime(ticket.closedAt)
                   : "None",
                 priority: ticket.priority,
                 image: ticket.image ? ticket.image.url : null,
@@ -512,7 +518,7 @@ const RaiseTicket = () => {
         open={viewDetails && viewTicketDetails}
         onClose={() => setViewDetails(false)}
         title={"Ticket Details"}>
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 overflow-y-auto max-h-[70vh]">
           <DetalisFormatted
             title="Ticket Title"
             detail={viewTicketDetails?.ticketTitle}
@@ -547,8 +553,12 @@ const RaiseTicket = () => {
             title="Accepted at"
             detail={viewTicketDetails?.acceptedAt}
           />
+          <DetalisFormatted
+            title="Closed by"
+            detail={viewTicketDetails?.closedBy}
+          />
           {viewTicketDetails.image && (
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-1">
               <img
                 src={viewTicketDetails.image}
                 alt="Ticket Attachment"

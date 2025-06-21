@@ -1,8 +1,4 @@
-import BarGraph from "../../../components/graphs/BarGraph";
 import WidgetSection from "../../../components/WidgetSection";
-import AgTable from "../../../components/AgTable";
-import CollapsibleTable from "../../../components/Tables/MuiCollapsibleTable";
-import dayjs from "dayjs";
 import { inrFormat } from "../../../utils/currencyFormat";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
@@ -114,7 +110,7 @@ const Workations = () => {
       ],
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -222,7 +218,7 @@ const Workations = () => {
           { headerName: "Client Name", field: "clientName", flex: 1 },
 
           {
-            headerName: "Taxable (USD)",
+            headerName: "Taxable (INR)",
             field: "taxableAmount",
             flex: 1,
             valueFormatter: ({ value }) =>
@@ -231,7 +227,7 @@ const Workations = () => {
                 : `${value ?? ""}`,
           },
           {
-            headerName: "GST (USD)",
+            headerName: "GST (INR)",
             field: "gst",
             flex: 1,
             valueFormatter: ({ value }) =>
@@ -240,7 +236,7 @@ const Workations = () => {
                 : `${value ?? ""}`,
           },
           {
-            headerName: "Total (USD)",
+            headerName: "Total (INR)",
             field: "revenue",
             flex: 1,
             valueFormatter: ({ value }) =>

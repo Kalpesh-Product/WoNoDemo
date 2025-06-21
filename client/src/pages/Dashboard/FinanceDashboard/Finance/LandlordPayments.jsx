@@ -126,11 +126,12 @@ const LandlordPayments = () => {
       categories: [], // Injected via YearlyGraph
     },
     yaxis: {
+      max: 2000000,
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
       title: {
-        text: "Amount in USD (Thousand)",
+        text: "Amount in USD (Lakhs)",
       },
     },
     legend: {

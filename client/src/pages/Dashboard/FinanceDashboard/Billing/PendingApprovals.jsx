@@ -81,7 +81,7 @@ const PendingApprovals = () => {
     { field: "expanseName", headerName: "Expense Name ", width: 200 },
     { field: "department", headerName: "Department", width: 150 },
     { field: "expanseType", headerName: "Expense Type " },
-    { field: "projectedAmount", headerName: "Amount (USD)" },
+    { field: "projectedAmount", headerName: "Amount (INR)" },
     { field: "reimbursementDate", headerName: "Date" },
     {
       field: "actions",
@@ -106,7 +106,7 @@ const PendingApprovals = () => {
                     },
                   },
                   {
-                    label: "Review",
+                    label: "Approve",
                     onClick: () => {
                       dispatch(setVoucherDetails(params.data)); // dispatching to redux
                       setSelectedBudget(params.data);
@@ -153,11 +153,13 @@ const PendingApprovals = () => {
         <MuiModal
           open={modalOpen}
           onClose={() => setModalOpen(false)}
-          title={"Reject request"}>
+          title={"Invoice Details"}
+        >
           {modalType === "reject" && (
             <form
               onSubmit={reasonSubmit(onSubmit)}
-              className="flex flex-col gap-4">
+              className="flex flex-col gap-4"
+            >
               <Controller
                 name="reason"
                 control={control}
@@ -195,7 +197,7 @@ const PendingApprovals = () => {
                 detail={selectedBudget.expanseType}
               />
               <DetalisFormatted
-                title="Amount (USD)"
+                title="Amount (INR)"
                 detail={selectedBudget.projectedAmount?.toLocaleString()}
               />
               <DetalisFormatted title="Status" detail={selectedBudget.status} />
@@ -234,13 +236,16 @@ const PendingApprovals = () => {
               <DetalisFormatted
                 title="Invoice Link"
                 detail={
+             
                   <a
                     href={selectedBudget.invoice?.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 underline">
+                    className="text-blue-600 underline"
+                  >
                     View Invoice
                   </a>
+                  
                 }
               />
               <DetalisFormatted
@@ -319,7 +324,7 @@ const PendingApprovals = () => {
                         PARTICULARS (Details of Expenses)
                       </td>
                       <td className={cellClasses} colSpan={2}>
-                        USD.
+                        INR.
                       </td>
                     </tr>
                   </thead>

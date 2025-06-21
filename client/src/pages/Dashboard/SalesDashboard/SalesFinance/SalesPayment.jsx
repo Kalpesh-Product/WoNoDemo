@@ -231,7 +231,7 @@ const SalesPayment = () => {
                    {Number(selectedEvent.extendedProps.amount).toLocaleString(
                      "en-IN"
                    )}
-                 &nbsp;USD</span>
+                 &nbsp;INR</span>
                </span>
              </div>
            </div>

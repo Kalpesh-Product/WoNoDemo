@@ -12,15 +12,15 @@ const AdminMixBag = () => {
   const routes = [
     {
       title: "Team Members Schedule",
-      route: "/app/dashboard/admin-dashboard/team-members-schedule",
+      route: "/app/dashboard/admin-dashboard/mix-bag/team-members-schedule",
     },
     {
-      title: "Housekeeping Members Schedule",
-      route: "/app/dashboard/admin-dashboard/housekeeping-members-schedule",
+      title: "Housekeeping Members",
+      route: "/app/dashboard/admin-dashboard/mix-bag/housekeeping-members-schedule",
     },
     {
       title: "Holidays & Events",
-      route: "/app/dashboard/admin-dashboard/holidays-events",
+      route: "#",
     },
     {
       title: "Client Members",

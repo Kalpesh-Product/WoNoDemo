@@ -51,13 +51,13 @@ const WorkLocations = () => {
     useMutation({
       mutationKey: ["mutateWorkLocation"],
       mutationFn: async (data) => {
-        console.log(data);
         const response = await axios.post("/api/company/add-building", {
           buildingName: data.workLocation,
           address: data.address,
           city: data.city,
-          state: data.state,
-          country: data.country,
+          // state: data.state,
+          state: states?.find((c) => c.isoCode === data.state).name,
+          country: countries.find((c) => c.isoCode === data.country).name,
           pincode: data.pincode,
         });
         return response.data;
@@ -87,8 +87,6 @@ const WorkLocations = () => {
       }
     },
   });
-
-  console.log("WORK LOCATIONS : ", workLocations);
 
   const departmentsColumn = [
     { field: "id", headerName: "Sr No" },
@@ -188,11 +186,13 @@ const WorkLocations = () => {
       <MuiModal
         open={openModal}
         onClose={handleCloseModal}
-        title={"Add Work Location"}>
+        title={"Add Work Location"}
+      >
         <div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-4">
+            className="flex flex-col gap-4"
+          >
             <Controller
               name="workLocation"
               rules={{ required: "Work location is required" }}
@@ -244,7 +244,8 @@ const WorkLocations = () => {
                     // Reset dependent fields
                     control.setValue("state", "");
                     control.setValue("city", "");
-                  }}>
+                  }}
+                >
                   <MenuItem value="">Select a Country</MenuItem>
                   {countries.map((item) => (
                     <MenuItem key={item.isoCode} value={item.isoCode}>
@@ -274,7 +275,8 @@ const WorkLocations = () => {
                       e.target.value
                     );
                     control.setValue("city", "");
-                  }}>
+                  }}
+                >
                   <MenuItem value="">Select a State</MenuItem>
                   {states.map((item) => (
                     <MenuItem value={item.isoCode} key={item.isoCode}>
@@ -296,12 +298,14 @@ const WorkLocations = () => {
                   select
                   label="City"
                   fullWidth
-                  disabled={!control._formValues.state}>
+                  disabled={!control._formValues.state}
+                >
                   <MenuItem value="">Select a City</MenuItem>
                   {cities.map((item) => (
                     <MenuItem
                       value={item.name}
-                      key={`${item.name}-${item.stateCode}-${item.latitude}`}>
+                      key={`${item.name}-${item.stateCode}-${item.latitude}`}
+                    >
                       {item.name}
                     </MenuItem>
                   ))}

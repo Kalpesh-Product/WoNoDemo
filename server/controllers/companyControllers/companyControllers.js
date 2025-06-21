@@ -290,6 +290,7 @@ const getCompanyData = async (req, res, next) => {
 
           const manager = await UserData.findOne({
             role: { $in: [dep.admin] },
+            isActive: true,
           }).select("firstName lastName role");
 
           return {
@@ -473,6 +474,74 @@ const getCompanyAttandances = async (req, res, next) => {
   }
 };
 
+const updateCompanySubItem = async (req, res) => {
+  const { user, company, ip } = req;
+  const logPath = "hr/HrLog";
+  const logAction = "Update Company Data";
+  const logSourceKey = "companyData";
+  try {
+    const { type, itemId, name, isActive, startTime, endTime, isDeleted } =
+      req.body;
+    if (!type || !itemId)
+      return res.status(400).json({ message: "type, and itemId are required" });
+
+    if (!["policies", "sop", "shifts", "employeeTypes"].includes(type)) {
+      throw new CustomError(
+        "Invalid document type. Allowed values: sop, policy, shift,employeeTypes",
+        logPath,
+        logAction,
+        logSourceKey
+      );
+    }
+
+    const foundCompany = await Company.findById(company);
+    if (!foundCompany)
+      return res.status(404).json({ message: "Company not found" });
+
+    let item,
+      updated = false;
+
+    const typeMap = {
+      sop: "sop",
+      policies: "policies",
+      shifts: "shifts",
+      employeeTypes: "employeeTypes",
+    };
+
+    const key = typeMap[type];
+
+    item = foundCompany[key].id(itemId);
+    console.log("isdeleted", foundCompany[key].id(itemId));
+    if (item) {
+      if (name !== undefined) item.name = name;
+      if (isActive !== undefined) item.isActive = isActive;
+
+      if (isDeleted !== undefined) item.isDeleted = isDeleted;
+      if (type === "shifts") {
+        if (startTime) {
+          const parsedStartTime = new Date(startTime);
+          item.startTime = parsedStartTime;
+        }
+        if (endTime) {
+          const parsedEndTime = new Date(endTime);
+          item.endTime = parsedEndTime;
+        }
+      }
+      updated = true;
+    }
+
+    if (!updated)
+      return res.status(404).json({ message: `${type} item not found` });
+
+    await foundCompany.save();
+    res.status(200).json({ message: `${type} updated successfully` });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+};
+
 module.exports = {
   addCompany,
   addCompanyLogo,
@@ -482,4 +551,5 @@ module.exports = {
   getCompanyLogo,
   getHierarchy,
   getCompanyAttandances,
+  updateCompanySubItem,
 };

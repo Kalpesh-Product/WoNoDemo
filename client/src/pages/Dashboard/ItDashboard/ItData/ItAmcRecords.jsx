@@ -67,8 +67,6 @@ const ItAmcRecords = () => {
     },
   });
 
-  console.log(vendorDetials);
-
   const { mutate: addAsset, isPending: isAddingAsset } = useMutation({
     mutationKey: ["addAsset"],
     mutationFn: async (data) => {
@@ -108,7 +106,7 @@ const ItAmcRecords = () => {
     { field: "category", headerName: "Category" },
     { field: "subCategory", headerName: "Sub-Category" }, // Optional
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -283,6 +281,7 @@ const ItAmcRecords = () => {
           searchColumn={"Asset Number"}
           tableTitle={"AMC Records"}
           buttonTitle={"Add Record"}
+          disabled={true}
           data={[]}
           columns={assetColumns}
           handleClick={handleAddAsset}
@@ -430,7 +429,7 @@ const ItAmcRecords = () => {
                   render={({ field }) => (
                     <TextField
                       {...field}
-                      label="Price (USD)"
+                      label="Price (INR)"
                       type="number"
                       size="small"
                       fullWidth

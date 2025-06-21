@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState, useMemo } from "react";
 import Card from "../../../components/Card";
 import {
   MdFormatListBulleted,
@@ -23,13 +23,19 @@ import { useSidebar } from "../../../context/SideBarContext";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import { transformBudgetData } from "../../../utils/transformBudgetData";
-import { Box, Skeleton } from "@mui/material";
+import { Box, CircularProgress, Skeleton } from "@mui/material";
 import YearlyGraph from "../../../components/graphs/YearlyGraph";
 import useAuth from "../../../hooks/useAuth";
+import { inrFormat } from "../../../utils/currencyFormat";
+import usePageDepartment from "../../../hooks/usePageDepartment";
+import humanDate from "../../../utils/humanDateForamt";
+import humanTime from "../../../utils/humanTime";
 dayjs.extend(customParseFormat);
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const axios = useAxiosPrivate();
+  const department = usePageDepartment();
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
 
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["maintainance-budget"],
@@ -45,19 +51,108 @@ const AdminDashboard = () => {
       }
     },
   });
+
+  const { data: clientsData = [], isPending: isClientsDataPending } = useQuery({
+    queryKey: ["clientsData"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("/api/sales/co-working-clients");
+        const data = response.data.filter((item) => item.isActive);
+        return data;
+      } catch (error) {
+        console.error("Error fetching clients data:", error);
+      }
+    },
+  });
+
   const hrBarData = transformBudgetData(!isHrFinanceLoading ? hrFinance : []);
   const totalExpense = hrBarData?.projectedBudget?.reduce(
     (sum, val) => sum + (val || 0),
     0
   );
 
+  const { data: tasks = [], isLoading: isTasksLoading } = useQuery({
+    queryKey: ["tasks"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get(
+          `/api/tasks/get-tasks?dept=${department._id}`
+        );
+        return response.data;
+      } catch (error) {
+        throw new Error("Error fetching data");
+      }
+    },
+  });
+
+  const { data: weeklySchedule = [], isLoading: isWeeklyScheduleLoading } =
+    useQuery({
+      queryKey: ["weeklySchedule"],
+      queryFn: async () => {
+        try {
+          const response = await axios.get(
+            `/api/weekly-unit/fetch-weekly-unit/${department._id}`
+          );
+          return response.data;
+        } catch (error) {
+          throw new Error("Error fetching data");
+        }
+      },
+    });
+
+  const expenseRawSeries = useMemo(() => {
+    // Initialize monthly buckets
+    const months = Array.from({ length: 12 }, (_, index) =>
+      dayjs(`2024-04-01`).add(index, "month").format("MMM")
+    );
+
+    const fyData = {
+      "FY 2024-25": Array(12).fill(0),
+      "FY 2025-26": Array(12).fill(0),
+    };
+
+    hrFinance.forEach((item) => {
+      const date = dayjs(item.dueDate);
+      const year = date.year();
+      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+
+      if (year === 2024 && monthIndex >= 3) {
+        // Apr 2024 to Dec 2024 (month 3 to 11)
+        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+      } else if (year === 2025) {
+        if (monthIndex <= 2) {
+          // Jan to Mar 2025 (months 0–2)
+          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+        } else if (monthIndex >= 3) {
+          // Apr 2025 to Dec 2025 (months 3–11)
+          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
+        }
+      } else if (year === 2026 && monthIndex <= 2) {
+        // Jan to Mar 2026
+        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+      }
+    });
+
+    return [
+      {
+        name: "total",
+        group: "FY 2024-25",
+        data: fyData["FY 2024-25"],
+      },
+      {
+        name: "total",
+        group: "FY 2025-26",
+        data: fyData["FY 2025-26"],
+      },
+    ];
+  }, [hrFinance]);
+
   const expenseOptions = {
     chart: {
       type: "bar",
-      animations: { enabled: false },
       toolbar: { show: false },
 
-      stacked: true,
+      stacked: false,
       fontFamily: "Poppins-Regular, Arial, sans-serif",
       events: {
         dataPointSelection: () => {
@@ -79,21 +174,8 @@ const AdminDashboard = () => {
     },
     dataLabels: {
       enabled: true,
-      // formatter: (val) => inrFormat(val),
-      // formatter: (val) => {
-      //   const scaled = val / 100000; // Scale from actual to "xx.xx" format
-      //   return scaled.toFixed(2); // Keep two digits after decimal
-      // },
-      // formatter: (val) => {
-      //   const scaled = Math.round((val / 100000) * 100) / 100;
-      //   return Number.isInteger(scaled) ? scaled.toFixed(0) : scaled.toFixed(2);
-      // },
-
-      // formatter: (val) => {
-      //   return val.toLocaleString("en-IN"); // Formats number with commas (Indian style)
-      // },
       formatter: (val) => {
-        return Math.round(val).toLocaleString("en-IN");
+        return inrFormat(val);
       },
 
       style: {
@@ -102,16 +184,12 @@ const AdminDashboard = () => {
       },
       offsetY: -22,
     },
-    xaxis: {
-      title: {
-        text: "  ",
-      },
-    },
+
     yaxis: {
-      // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      max: 600000,
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
-        formatter: (val) => `${Math.round(val / 100000)}`,
+        formatter: (val) => `${val / 100000}`,
       },
     },
     fill: {
@@ -124,51 +202,39 @@ const AdminDashboard = () => {
 
     tooltip: {
       enabled: false,
-      // y: {
-      //   formatter: (val, { seriesIndex, dataPointIndex }) => {
-      //     const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
-      //     // return `${rawData} Tasks`;
-      //     return `HR Expense: USD ${rawData.toLocaleString("en-IN")}`;
-      //   },
-      // },
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
         //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
-            <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
-        
-              <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
-                <div><strong>HR Expense:</strong></div>
-                <div style="width: 10px;"></div>
-             <div style="text-align: left;">USD ${Math.round(
-               rawData
-             ).toLocaleString("en-IN")}</div>
-
+              <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
+          
+                <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
+                  <div><strong>Finance Expense:</strong></div>
+                  <div style="width: 10px;"></div>
+               <div style="text-align: left;">USD ${Math.round(
+                 rawData
+               ).toLocaleString("en-IN")}</div>
+  
+                </div>
+       
               </div>
-     
-            </div>
-          `;
+            `;
       },
     },
   };
 
-  const expenseRawSeries = [
-    {
-      name: "Expense",
-      group: "FY 2024-25",
-      data: hrBarData?.utilisedBudget,
-    },
-    {
-      name: "Expense",
-      group: "FY 2025-26",
-      data: [1000054, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    },
-  ];
+  const budgetBar = useMemo(() => {
+    if (isHrFinanceLoading || !Array.isArray(hrFinance)) return null;
+    return transformBudgetData(isHrFinanceLoading ? [] : hrFinance);
+  }, [isHrFinanceLoading, hrFinance]);
 
   const totalUtilised =
-    hrBarData?.utilisedBudget?.reduce((acc, val) => acc + val, 0) || 0;
+    budgetBar?.[selectedFiscalYear]?.utilisedBudget?.reduce(
+      (acc, val) => acc + val,
+      0
+    ) || 0;
   useEffect(() => {
     setIsSidebarOpen(true);
   }, []); // Empty dependency array ensures this runs once on mount
@@ -714,31 +780,60 @@ const AdminDashboard = () => {
     { id: "company", label: "Company", align: "left" },
   ];
 
-  const today = dayjs();
+  const today = dayjs.utc().startOf("day");
   const cutOff = today.add(15, "day");
 
-  const upcomingBirthdays = clientMemberBirthdays
-    .map((item) => {
-      const dob = dayjs(item.dateOfBirth, "YYYY-MM-DD");
-      const thisYearBirthday = dob.set("year", today.year());
+  // const upcomingBirthdays = clientsData
+  //   .map((item) => {
+  //     const dob = dayjs(item.dateOfBirth, "YYYY-MM-DD");
+  //     const thisYearBirthday = dob.set("year", today.year());
 
-      const birthday = thisYearBirthday.isBefore(today)
-        ? thisYearBirthday.add(1, "year")
-        : thisYearBirthday;
+  //     const birthday = thisYearBirthday.isBefore(today)
+  //       ? thisYearBirthday.add(1, "year")
+  //       : thisYearBirthday;
 
-      const doj = dayjs(item.dateOfJoin, "YYYY-MM-DD");
-      const completedYears = today.diff(doj, "year");
-      const upComingIn = birthday.diff(today, "days");
+  //     const doj = dayjs(item.dateOfJoin, "YYYY-MM-DD");
+  //     const completedYears = today.diff(doj, "year");
+  //     const upComingIn = birthday.diff(today, "days");
 
-      return {
-        ...item,
-        dateOfBirth: dayjs(item.dateOfBirth, "YYYY-MM-DD").format("DD-MM-YYYY"),
-        upComingIn: `${upComingIn} days`,
-        isUpcoming:
-          birthday.isBefore(cutOff) &&
-          birthday.isAfter(today.subtract(1, "day")),
-      };
-    })
+  //     return {
+  //       ...item,
+  //       dateOfBirth: dayjs(item.dateOfBirth, "YYYY-MM-DD").format("DD-MM-YYYY"),
+  //       upComingIn: `${upComingIn} days`,
+  //       isUpcoming:
+  //         birthday.isBefore(cutOff) &&
+  //         birthday.isAfter(today.subtract(1, "day")),
+  //     };
+  //   })
+  //   .filter((item) => item.isUpcoming);
+
+  const upcomingBirthdays = clientsData
+    .flatMap((client) =>
+      (client.members || [])
+        .filter((member) => member.dob && dayjs(member.dob).isValid())
+        .map((member) => {
+          const dob = dayjs.utc(member.dob).startOf("day");
+          const thisYearBirthday = dob.set("year", today.year());
+
+          const birthday = thisYearBirthday.isBefore(today)
+            ? thisYearBirthday.add(1, "year")
+            : thisYearBirthday;
+
+          const birthdayStart = birthday.startOf("day");
+          const upComingIn = birthdayStart.diff(today, "day");
+
+          return {
+            company: client.clientName,
+            name: member.employeeName,
+            email: member.email,
+            dateOfBirth: dob.format("DD-MM-YYYY"),
+            upComingIn: upComingIn === 0 ? "Today" : `${upComingIn} days`,
+            isUpcoming:
+              birthdayStart.isBefore(cutOff) &&
+              birthdayStart.isAfter(today.subtract(1, "day")),
+          };
+        })
+    )
     .filter((item) => item.isUpcoming);
 
   //-----------------------------------------------------------------------------------------------------------------//
@@ -815,22 +910,70 @@ const AdminDashboard = () => {
     },
   ];
 
-  const upComingClientAnniversary = clientAnniversaryData
+  // const upComingClientAnniversary = clientsData
+  //   .map((item, index) => {
+  //     const doj = dayjs(item.dateOfJoin, "DD-MM-YYYY");
+  //     const thisYearAnniversary = doj.set("year", today.year());
+  //     const anniversary = thisYearAnniversary.isBefore(today)
+  //       ? thisYearAnniversary.add(1, "year")
+  //       : thisYearAnniversary;
+
+  //     const completedYears = today.diff(doj, "year");
+  //     const upComingInDays = anniversary.diff(today, "day");
+
+  //     return {
+  //       srNo: index + 1,
+  //       client: item.client,
+  //       dateOfJoin: item.dateOfJoin,
+  //       completedYears: completedYears,
+  //       upComingIn:
+  //         upComingInDays === 0
+  //           ? "Today"
+  //           : upComingInDays === 1
+  //           ? "Tomorrow"
+  //           : `${upComingInDays} days`,
+  //       isUpcoming:
+  //         anniversary.isBefore(cutOff) &&
+  //         anniversary.isAfter(today.subtract(1, "day")),
+  //     };
+  //   })
+  //   .filter((item) => item.isUpcoming);
+
+  const calculateCompletedTime = (startDate) => {
+    const start = dayjs(startDate);
+    const today = dayjs();
+    const totalMonths = today.diff(start, "month", true);
+
+    if (totalMonths < 1) {
+      const totalDays = today.diff(start, "day");
+      return `${totalDays} Days`;
+    } else if (totalMonths < 12) {
+      return `${Math.floor(totalMonths)} Months`;
+    } else {
+      const years = totalMonths / 12;
+      return `${years.toFixed(1)} Years`;
+    }
+  };
+
+  const upComingClientAnniversary = clientsData
+    .filter((item) => !!item.startDate)
     .map((item, index) => {
-      const doj = dayjs(item.dateOfJoin, "DD-MM-YYYY");
+      const doj = dayjs.utc(item.startDate).startOf("day");
+
       const thisYearAnniversary = doj.set("year", today.year());
+
       const anniversary = thisYearAnniversary.isBefore(today)
         ? thisYearAnniversary.add(1, "year")
         : thisYearAnniversary;
 
-      const completedYears = today.diff(doj, "year");
-      const upComingInDays = anniversary.diff(today, "day");
+      const completedYears = calculateCompletedTime(item.startDate);
 
+      const upComingInDays = anniversary.diff(today, "day");
       return {
         srNo: index + 1,
-        client: item.client,
-        dateOfJoin: item.dateOfJoin,
-        completedYears: completedYears,
+        client: item.clientName,
+        dateOfJoin: doj.format("DD-MM-YYYY"),
+        completedYears,
         upComingIn:
           upComingInDays === 0
             ? "Today"
@@ -846,10 +989,19 @@ const AdminDashboard = () => {
 
   const upComingClientAnniversaryColumns = [
     { id: "srNo", label: "Sr No", align: "left" },
-    { id: "client", label: "Client", align: "left" },
+    { id: "client", label: "Company", align: "left" },
     { id: "dateOfJoin", label: "Date of Join", align: "left" },
     { id: "completedYears", label: "Completed Years", align: "left" },
     { id: "upComingIn", label: "Upcoming in", align: "left" },
+  ];
+
+  const executiveTimingsColumns = [
+    { id: "id", label: "Sr No", align: "left" },
+    { id: "name", label: "Name", align: "left" },
+    { id: "building", label: "Building", align: "left" },
+    { id: "unitNo", label: "Unit No", align: "left" },
+    { id: "startDate", label: "Start Date", align: "left" },
+    { id: "endDate", label: "End Date", align: "left" },
   ];
 
   const utilisedData = [
@@ -861,6 +1013,100 @@ const AdminDashboard = () => {
     100000, 120000, 100000, 100000, 80000, 60000, 85000, 95000, 100000, 70000,
     60000, 110000,
   ];
+
+  const transformedWeeklyShifts = useMemo(() => {
+    if (isWeeklyScheduleLoading || !weeklySchedule.length) return [];
+
+    return weeklySchedule.map((emp, index) => ({
+      srNo: index + 1,
+      id: index + 1,
+      name: `${emp.employee.id.firstName} ${emp.employee.id.lastName}`,
+      startDate: humanDate(emp.startDate),
+      endDate: humanDate(emp.endDate),
+      building: emp.location.building.buildingName,
+      unitNo: emp.location.unitNo,
+    }));
+  }, [weeklySchedule, isWeeklyScheduleLoading]);
+
+  const transformedTasks = tasks.map((task, index) => {
+    return {
+      id: index + 1,
+      taskName: task.taskName,
+      status: task.status,
+      endTime: humanTime(task.dueTime),
+    };
+  });
+
+  let simplifiedClientsPie = [];
+
+  if (!isClientsDataPending && Array.isArray(clientsData)) {
+    let otherTotalDesks = 0;
+
+    simplifiedClientsPie = clientsData.reduce((acc, item) => {
+      const { clientName: companyName, totalDesks } = item;
+
+      if (totalDesks < 15) {
+        otherTotalDesks += totalDesks;
+        return acc;
+      }
+
+      acc.push({ companyName, totalDesks });
+      return acc;
+    }, []);
+
+    if (otherTotalDesks > 0) {
+      simplifiedClientsPie.push({
+        companyName: "Other",
+        totalDesks: otherTotalDesks,
+      });
+    }
+  }
+
+  const totalClientsDesks = simplifiedClientsPie.reduce(
+    (sum, item) => sum + item.totalDesks,
+    0
+  );
+
+  const totalDeskPercent = simplifiedClientsPie.map((item) => ({
+    label: `${item.companyName} ${(
+      (item.totalDesks / totalClientsDesks) *
+      100
+    ).toFixed(1)}%`,
+    value: item.totalDesks,
+  }));
+  const clientsDesksPieOptions = {
+    labels: simplifiedClientsPie.map((item) => {
+      const label = item?.companyName ? `${item.companyName}` : "Unknown";
+      return label.length > 10 ? label.slice(0, 15) + "..." : label;
+    }),
+    chart: {
+      fontFamily: "Poppins-Regular",
+      toolbar: false,
+    },
+    colors: [
+      "#0F172A", // deep navy blue
+      "#1E293B", // dark slate blue
+      "#1D4ED8", // vibrant blue (slightly electric)
+      "#2563EB", // crisp blue
+      "#3B82F6", // standard vivid blue
+      "#0284C7", // cyan-leaning blue
+      "#0369A1", // oceanic deep blue
+      "#0EA5E9", // bright cool blue
+      "#3A60B5", // bold steel blue
+      "#4C51BF", // indigo-tinged blue
+    ],
+
+    tooltip: {
+      y: {
+        formatter: (val) => {
+          return `${val} Desks`; // Explicitly return the formatted value
+        },
+      },
+    },
+    legend: {
+      position: "right",
+    },
+  };
 
   //-----------------------------------------------------------------------------------------------------------------//
   const techWidgets = [
@@ -881,6 +1127,7 @@ const AdminDashboard = () => {
               responsiveResize
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
+              onYearChange={setSelectedFiscalYear}
               title={"BIZ Nest ADMIN DEPARTMENT EXPENSE"}
               titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
@@ -975,6 +1222,45 @@ const AdminDashboard = () => {
     {
       layout: 2,
       widgets: [
+        <MuiTable
+          scroll
+          Title={"Weekly Executive Shift Timing"}
+          rowsToDisplay={3}
+          rows={transformedWeeklyShifts}
+          columns={executiveTimingsColumns}
+        />,
+        <MuiTable
+          scroll
+          Title={"Upcoming Events List"}
+          rowsToDisplay={3}
+          rows={[]}
+          columns={upcomingEventsColumns}
+        />,
+        <MuiTable
+          columns={clientMemberBirthdaysColumns}
+          scroll
+          rowsToDisplay={3}
+          Title={"Upcoming Client Member Birthdays"}
+          rows={upcomingBirthdays.map((item, index) => ({
+            ...item,
+            srNo: index + 1,
+          }))}
+        />,
+        <MuiTable
+          columns={upComingClientAnniversaryColumns}
+          scroll
+          rowsToDisplay={3}
+          Title={"Upcoming Client Anniversaries"}
+          rows={upComingClientAnniversary.map((item, index) => ({
+            ...item,
+            srNo: index + 1,
+          }))}
+        />,
+      ],
+    },
+    {
+      layout: 2,
+      widgets: [
         <WidgetSection border title={"Unit Wise Due Tasks"}>
           <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
@@ -993,36 +1279,44 @@ const AdminDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection border title={"Total Desks Company Wise"}>
-          <PieChartMui data={[]} options={[]} />
+          {!isClientsDataPending ? (
+            <PieChartMui
+              data={totalDeskPercent}
+              options={clientsDesksPieOptions}
+              width={"100%"}
+            />
+          ) : (
+            <CircularProgress color="#1E3D73" />
+          )}
         </WidgetSection>,
         <WidgetSection border title={"Biometrics Gender Data"}>
           <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
       ],
     },
-    {
-      layout: 2,
-      widgets: [
-        <WidgetSection border title={"Overall Gender Data"}>
-          <PieChartMui data={[]} options={[]} />
-        </WidgetSection>,
-        <WidgetSection border title={"Biometrics Gender Data"}>
-          <PieChartMui data={[]} options={[]} />
-        </WidgetSection>,
-      ],
-    },
-    {
-      layout: 2,
-      widgets: [
-        <WidgetSection border title={"Department Gender Data"}>
-          <PieChartMui data={[]} options={[]} />
-        </WidgetSection>,
+    // {
+    //   layout: 2,
+    //   widgets: [
+    //     <WidgetSection border title={"Overall Gender Data"}>
+    //       <PieChartMui data={[]} options={[]} />
+    //     </WidgetSection>,
+    //     <WidgetSection border title={"Biometrics Gender Data"}>
+    //       <PieChartMui data={[]} options={[]} />
+    //     </WidgetSection>,
+    //   ],
+    // },
+    // {
+    //   layout: 2,
+    //   widgets: [
+    //     <WidgetSection border title={"Department Gender Data"}>
+    //       <PieChartMui data={[]} options={[]} />
+    //     </WidgetSection>,
 
-        <WidgetSection border title={"House Keeping Staff Gender Data"}>
-          <PieChartMui data={[]} options={[]} />
-        </WidgetSection>,
-      ],
-    },
+    //     <WidgetSection border title={"House Keeping Staff Gender Data"}>
+    //       <PieChartMui data={[]} options={[]} />
+    //     </WidgetSection>,
+    //   ],
+    // },
     {
       layout: 1,
       widgets: [
@@ -1032,39 +1326,6 @@ const AdminDashboard = () => {
           scroll
           rows={[]}
           columns={houseKeepingMemberColumns}
-        />,
-      ],
-    },
-    {
-      layout: 2,
-      widgets: [
-        <MuiTable
-          scroll
-          Title={"Executive Weekly Shift Table"}
-          rowsToDisplay={3}
-          rows={[]}
-          columns={[]}
-        />,
-        <MuiTable
-          scroll
-          Title={"Upcoming Events List"}
-          rowsToDisplay={3}
-          rows={[]}
-          columns={upcomingEventsColumns}
-        />,
-        <MuiTable
-          columns={clientMemberBirthdaysColumns}
-          scroll
-          rowsToDisplay={3}
-          Title={"Upcoming Client Member Birthdays"}
-          rows={[]}
-        />,
-        <MuiTable
-          columns={upComingClientAnniversaryColumns}
-          scroll
-          rowsToDisplay={3}
-          Title={"Upcoming Client Anniversaries"}
-          rows={[]}
         />,
       ],
     },
