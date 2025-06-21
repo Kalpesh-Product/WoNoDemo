@@ -310,7 +310,7 @@ const ItExpenses = () => {
 
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

@@ -125,7 +125,7 @@ const AdminBudget = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },

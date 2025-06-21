@@ -252,7 +252,7 @@ const DeptWiseBudget = () => {
 
     yaxis: {
       max: 7000000,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

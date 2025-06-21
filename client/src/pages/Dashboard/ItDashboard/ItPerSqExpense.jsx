@@ -126,7 +126,7 @@ const ItPerSqExpense = () => {
     },
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount in Lakhs" },
+      title: { text: "Amount in Thousand" },
     },
     xaxis: {
       categories: chartData.map((item) => item.unitNo),

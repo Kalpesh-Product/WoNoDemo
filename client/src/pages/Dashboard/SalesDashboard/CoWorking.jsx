@@ -82,7 +82,7 @@ const CoWorking = () => {
       categories: sortedCoWorkingData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
