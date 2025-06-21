@@ -186,7 +186,7 @@ const AdminDashboard = () => {
     },
 
     yaxis: {
-      max: 600000,
+      max: 3000000,
       title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,

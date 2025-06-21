@@ -150,7 +150,7 @@ const FrontendDashboard = () => {
     },
 
     yaxis: {
-      max: 50000,
+      max: 1000000,
       title: { text: "Amount In Thousand (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
