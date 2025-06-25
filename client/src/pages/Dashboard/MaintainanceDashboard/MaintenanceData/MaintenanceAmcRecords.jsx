@@ -105,7 +105,7 @@ const MaintenanceAmcRecords = (disabled) => {
     { field: "inventoryNumber", headerName: "Inventory Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (INR)" },
+    { field: "price", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },

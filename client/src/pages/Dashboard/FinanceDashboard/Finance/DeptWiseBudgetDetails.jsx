@@ -32,7 +32,6 @@ const DeptWiseBudgetDetails = () => {
   const deptId = location.state?.deptId;
   const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
   const deptName = location.state?.deptName;
-  console.log("dEPST", deptName);
   const { data: departmentBudget = [], isPending: isBudgetLoading } = useQuery({
     queryKey: ["departmentBudget"],
     queryFn: async () => {
@@ -223,7 +222,7 @@ const DeptWiseBudgetDetails = () => {
 
     yaxis: {
       max: 5000000,
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

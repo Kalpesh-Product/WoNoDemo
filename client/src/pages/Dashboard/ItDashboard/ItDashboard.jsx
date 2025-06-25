@@ -179,8 +179,8 @@ const ItDashboard = () => {
     },
 
     yaxis: {
-      max: 1000000,
-      title: { text: "Amount In Thousand (INR)" },
+      max: 600000,
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -472,7 +472,6 @@ const ItDashboard = () => {
   const executiveTimingsColumns = [
     { id: "id", label: "Sr No", align: "left" },
     { id: "name", label: "Name", align: "left" },
-    { id: "building", label: "Building", align: "left" },
     { id: "unitNo", label: "Unit No", align: "left" },
     { id: "startDate", label: "Start Date", align: "left" },
     { id: "endDate", label: "End Date", align: "left" },

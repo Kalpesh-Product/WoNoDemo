@@ -168,8 +168,8 @@ const LandlordPaymentLocation = () => {
   const paymentColumns = [
     { field: "srNo", headerName: "Sr No", width: 100, flex: 1 },
     { field: "expanseName", headerName: "Expanse Name", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected Amount (INR)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual Amount (INR)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
     { field: "dueDate", headerName: "Due Date", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
     {

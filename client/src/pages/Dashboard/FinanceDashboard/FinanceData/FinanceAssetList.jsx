@@ -107,7 +107,7 @@ const FinanceAssetList = () => {
     { field: "category", headerName: "Category" },
     { field: "tangibleIntangibleAsset", headerName: "Classification" },
     { field: "brandName", headerName: "Brand" },
-    { field: "totalPrice", headerName: "Price (INR)" },
+    { field: "totalPrice", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warrantyInMonths", headerName: "Warranty (Months)" },

@@ -298,7 +298,7 @@ const FinanceDashboard = () => {
     yaxis: {
       max: 8000000,
       title: {
-        text: "Amount In Thousand (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -494,11 +494,7 @@ const FinanceDashboard = () => {
           // Perform navigation or logic
           if (selectedCategory) {
             // Example: navigate or log the label/value
-            console.log(
-              "Selected:",
-              selectedCategory.label,
-              selectedCategory.value
-            );
+
             // Replace with actual navigation logic
             navigate(`finance`);
           }
@@ -700,7 +696,6 @@ const FinanceDashboard = () => {
     ),
   ];
 
-  console.log("statuto", statutoryDonutSeries);
   const statutoryDonutLabels = ["Approved", "Pending"];
   const statutoryDonutColors = ["#4CAF50", "#FF9800"];
   const statutoryTooltipValues = statutoryDonutSeries.map(
@@ -802,11 +797,12 @@ const FinanceDashboard = () => {
   ];
 
   const marchPaymentColumns = [
+    { id: "srNo", label: "Sr No", width: 100 },
     { id: "expanseName", label: "Expense Name", width: 200 },
     { id: "expanseType", label: "Type", width: 150 },
     {
       id: "actualAmount",
-      label: "Actual Amount (INR)",
+      label: "Actual Amount (USD)",
       width: 150,
       renderCell: (row) => `${row.actualAmount.toLocaleString("en-IN")}`,
     },
@@ -951,7 +947,10 @@ const FinanceDashboard = () => {
         <MuiTable
           Title="Payouts Mar-25"
           columns={marchPaymentColumns}
-          rows={march2025Payments}
+          rows={march2025Payments.map((item, index) => ({
+            srNo: index + 1,
+            ...item,
+          }))}
           rowKey="_id"
           scroll={true}
           rowsToDisplay={march2025Payments.length}

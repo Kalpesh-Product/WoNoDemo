@@ -106,7 +106,7 @@ const ItAmcRecords = () => {
     { field: "category", headerName: "Category" },
     { field: "subCategory", headerName: "Sub-Category" }, // Optional
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (INR)" },
+    { field: "price", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -429,7 +429,7 @@ const ItAmcRecords = () => {
                   render={({ field }) => (
                     <TextField
                       {...field}
-                      label="Price (INR)"
+                      label="Price (USD)"
                       type="number"
                       size="small"
                       fullWidth

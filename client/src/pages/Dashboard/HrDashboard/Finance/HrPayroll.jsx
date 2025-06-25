@@ -1,11 +1,11 @@
 import React from "react";
 import AgTable from "../../../../components/AgTable";
-import { Chip } from "@mui/material";
+import { Chip, selectClasses } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import AgTable from "../../components/AgTable";
 import PrimaryButton from "../../../../components/PrimaryButton";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 // import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 // import humanTime from "../../utils/humanTime";
 // import DetalisFormatted from "../../../../components/DetalisFormatted";
@@ -18,6 +18,13 @@ import DetalisFormatted from "../../../../components/DetalisFormatted";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import MuiModal from "../../../../components/MuiModal";
 import PageFrame from "../../../../components/Pages/PageFrame";
+import { inrFormat } from "../../../../utils/currencyFormat";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
+import WidgetSection from "../../../../components/WidgetSection";
+import { toast } from "sonner";
+import PayslipTemplate from "../../../../components/HrTemplate/PayslipTemplate";
+import html2pdf from "html2pdf.js";
+import ReactDOMServer from "react-dom/server";
 
 const HrPayroll = () => {
   const navigate = useNavigate();
@@ -28,14 +35,17 @@ const HrPayroll = () => {
   const [selectedVisitor, setSelectedVisitor] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { data: visitorsData = [], isPending: isVisitorsData } = useQuery({
-    queryKey: ["visitors"],
+  const { data: payrollData, isLoading } = useQuery({
+    queryKey: ["payrollData"],
     queryFn: async () => {
       try {
-        const response = await axios.get("/api/visitors/fetch-visitors");
+        const response = await axios.get("/api/payroll/get-payrolls");
+
         return response.data;
       } catch (error) {
-        throw new Error(error.response.data.message);
+        throw new Error(
+          error.response?.data?.message || "Failed to fetch employees"
+        );
       }
     },
   });
@@ -68,9 +78,35 @@ const HrPayroll = () => {
     setIsEditing(!isEditing);
   };
 
+  const handleDetailsClick = (asset) => {
+    setSelectedVisitor(asset);
+    setModalMode("view");
+    setIsModalOpen(true);
+  };
+
+  const handleAddAsset = () => {
+    setModalMode("add");
+    setSelectedVisitor(null);
+    setIsModalOpen(true);
+  };
+
+  const handleSumit = async (assetData) => {
+    if (modalMode === "add") {
+      try {
+      } catch (error) {
+        console.error("Error adding asset:", error);
+      }
+    } else if (modalMode === "edit") {
+      try {
+      } catch (error) {
+        console.error("Error updating asset:", error);
+      }
+    }
+  };
+
   const payrollColumn = [
-    { field: "id", headerName: "Sr No" },
-    { field: "payrollId", headerName: "Employee ID" },
+    { field: "srNo", headerName: "Sr No", width: 100 },
+    { field: "empId", headerName: "Employee ID" },
     {
       field: "employeeName",
       headerName: "Employee Name",
@@ -83,7 +119,8 @@ const HrPayroll = () => {
           }}
           onClick={() =>
             navigate(
-              `/app/dashboard/HR-dashboard/finance/payroll/view-payroll/${params.data.payrollId}`
+              `/app/dashboard/HR-dashboard/finance/payroll/${params.value}`,
+              { state: { empId: params.data.id } }
             )
           }>
           {params.value}
@@ -91,15 +128,20 @@ const HrPayroll = () => {
       ),
     },
     { field: "email", headerName: "Employee Email" },
-    { field: "department", headerName: "Department" },
-    // { field: "date", headerName: "Date" },
+    { field: "departmentName", headerName: "Department" },
+    // { field: "month", headerName: "Date" },
     // { field: "role", headerName: "Role" },
     // { field: "time", headerName: "Time" },
-    { field: "totalSalary", headerName: "Total Salary (INR)" },
+    {
+      field: "totalSalary",
+      headerName: "Total Salary (USD)",
+      cellRenderer: (params) => inrFormat(params.value),
+    },
     // { field: "reimbursment", headerName: "Total Salary" },
     {
       field: "status",
       headerName: "Status",
+      pinned: "right",
       cellRenderer: (params) => {
         const statusColorMap = {
           Completed: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
@@ -136,336 +178,151 @@ const HrPayroll = () => {
     //     </>
     //   ),
     // },
-    {
-      field: "actions",
-      headerName: "Actions",
-      cellRenderer: (params) => (
-        <div className="p-2">
-          <PrimaryButton
-            title={"View"}
-            handleSubmit={() => handleDetailsClick(params.data)}
-          />
-        </div>
-      ),
-    },
+    // {
+    //   field: "actions",
+    //   headerName: "Actions",
+
+    //   cellRenderer: (params) => (
+    //     <div className="p-2">
+    //       <PrimaryButton
+    //         title={"View"}
+    //         handleSubmit={() => handleDetailsClick(params.data)}
+    //       />
+    //     </div>
+    //   ),
+    // },
   ];
-  const handleDetailsClick = (asset) => {
-    setSelectedVisitor(asset);
-    setModalMode("view");
-    setIsModalOpen(true);
-  };
 
-  const handleAddAsset = () => {
-    setModalMode("add");
-    setSelectedVisitor(null);
-    setIsModalOpen(true);
-  };
+  const tableData = isLoading
+    ? []
+    : payrollData
+        .map((item) => ({
+          ...item,
+          id: item.employeeId,
+          employeeName: item.name,
+          status: item.months?.map((item) => item.status),
+          totalSalary: item.months?.map((item) => item.totalSalary),
+          departmentName: item.departments?.map((item) => item.name || "null"),
+          month: item.months?.map((item) => item.month),
+        }))
+        .sort((a, b) =>
+          a.employeeName?.localeCompare(b.employeeName, undefined, {
+            sensitivity: "base",
+          })
+        );
 
-  const handleSumit = async (assetData) => {
-    if (modalMode === "add") {
-      try {
-      } catch (error) {
-        console.error("Error adding asset:", error);
-      }
-    } else if (modalMode === "edit") {
-      try {
-      } catch (error) {
-        console.error("Error updating asset:", error);
+  const { mutate: payrollMutate, isPending: isPayrollPending } = useMutation({
+    mutationKey: ["batchPayrollMutate"],
+    mutationFn: async (data) => {
+      const response = await axios.post("/api/payroll/generate-payroll", data);
+      return response.data;
+    },
+    onSuccess: (data) => {
+      toast.success(data.message || "BATCH SENT");
+    },
+    onError: (error) => {
+      toast.error(error.message || "BATCH FAILED");
+    },
+  });
+  const handleBatchAction = async (selectedRows) => {
+    const preparedData = await Promise.all(
+      selectedRows.map(async (item) => {
+        const monthData = item.months?.[0] || {};
+        const payload = {
+          name: item.employeeName,
+          userId: item.employeeId,
+          email: item.email,
+          month: item.month?.[0],
+          totalSalary: monthData.totalSalary,
+          deductions: monthData.deductions,
+          departmentName: item.departmentName?.[0],
+          empId: item.empId,
+        };
+
+        const html = ReactDOMServer.renderToStaticMarkup(
+          <PayslipTemplate data={payload} />
+        );
+
+        const pdfBlob = await html2pdf()
+          .set({
+            margin: 10, // small margin is enough
+            filename: `Payslip_${payload.userId}_${payload.month}.pdf`,
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2 }, // higher quality
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          })
+          .from(html)
+          .output("blob");
+
+        return {
+          ...payload,
+          payslipPdf: new File(
+            [pdfBlob],
+            `Payslip_${payload.userId}_${payload.month}.pdf`,
+            { type: "application/pdf" }
+          ),
+        };
+      })
+    );
+
+    // ✅ Prepare FormData
+    const formData = new FormData();
+
+    const metadataArray = preparedData.map((entry) => {
+      return {
+        name: entry.name,
+        userId: entry.userId,
+        email: entry.email,
+        month: entry.month,
+        totalSalary: entry.totalSalary,
+        deductions: entry.deductions || 0,
+        departmentName: entry.departmentName,
+        empId: entry.empId,
+      };
+    });
+
+    // ✅ Append metadata as JSON stringified array
+    formData.append("payrolls", JSON.stringify(metadataArray));
+
+    // ✅ Append files in the same order
+    preparedData.forEach((entry) => {
+      formData.append("payslips", entry.payslipPdf);
+    });
+
+    // ✅ (Optional) Log to confirm
+    for (let [key, value] of formData.entries()) {
+      if (key === "metadata") {
+      } else {
       }
     }
-  };
 
-  // const rows = [
-  //   {
-  //     id: 1,
-  //     payrollId: "PAY001",
-  //     employeeName: "Aiwinraj KS",
-  //     role: "Software Engineer",
-  //     date: "2025-01-01",
-  //     time: "10:00 AM",
-  //     totalSalary: " 45,000",
-  //     reimbursment: 5000,
-  //     status: "Completed",
-  //     email: "aiwinraj.wono@gmail.com",
-  //     department: "Tech",
-  //   },
-  //   {
-  //     id: 2,
-  //     payrollId: "PAY002",
-  //     employeeName: "Kalpesh Naik",
-  //     role: "Project Manager",
-  //     date: "2025-01-15",
-  //     time: "11:00 AM",
-  //     totalSalary: " 95,000",
-  //     reimbursment: 8000,
-  //     status: "Pending",
-  //     email: "kalpesh@biznest.co.in",
-  //     department: "Tech",
-  //   },
-  //   {
-  //     id: 3,
-  //     payrollId: "PAY003",
-  //     employeeName: "Sankalp Kalangutkar",
-  //     role: "HR Manager",
-  //     date: "2025-02-01",
-  //     time: "09:30 AM",
-  //     totalSalary: " 45,000",
-  //     reimbursment: 7000,
-  //     status: "Completed",
-  //     email: "sankalp.wono@gmail.com",
-  //     department: "Tech",
-  //   },
-  //   {
-  //     id: 4,
-  //     payrollId: "PAY004",
-  //     employeeName: "Allan Silveira",
-  //     role: "QA Analyst",
-  //     date: "2025-02-15",
-  //     time: "02:00 PM",
-  //     totalSalary: " 45,000",
-  //     reimbursment: 4500,
-  //     status: "Pending",
-  //     email: "allan.wono@gmail.com",
-  //     department: "Tech",
-  //   },
-  //   // {
-  //   //   id: 5,
-  //   //   payrollId: "PAY005",
-  //   //   employeeName: "Anushri",
-  //   //   role: "Business Analyst",
-  //   //   date: "2025-03-01",
-  //   //   time: "01:30 PM",
-  //   //   totalSalary: 95000,
-  //   //   reimbursment: 6000,
-  //   //   status: "Completed",
-  //   // },
-  //   {
-  //     id: 5,
-  //     payrollId: "PAY007",
-  //     employeeName: "Muskan Dodmani",
-  //     role: "Business Analyst",
-  //     date: "2025-03-01",
-  //     time: "01:30 PM",
-  //     totalSalary: " 45,000",
-  //     reimbursment: 6000,
-  //     status: "Completed",
-  //     email: "muskan.wono@gmail.com",
-  //     department: "Tech",
-  //   },
-  // ];
+    // ✅ Trigger mutation
+    payrollMutate(formData);
+  };
 
   return (
     <div className="flex flex-col gap-8">
-      <PageFrame>
-        <div>
-          <AgTable
-            search={true}
-            searchColumn={"Employee Name"}
-            tableTitle={""}
-            data={[]}
-            columns={payrollColumn}
-          />
-          <MuiModal
-            open={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            title={"Employee Details"}>
-            <div className="flex flex-col gap-4">
-              <div className="flex justify-end">
-                <PrimaryButton handleSubmit={handleEditToggle} title={"Edit"} />
-              </div>
-              <form>
-                {!isVisitorsData ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
-                    {/* First Name */}
-                    {isEditing ? (
-                      <Controller
-                        name="firstName"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="First Name"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="First Name"
-                        // detail={selectedVisitor.firstName}
-                        detail="Aiwinraj"
-                      />
-                    )}
-
-                    {/* Last Name */}
-                    {isEditing ? (
-                      <Controller
-                        name="lastName"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Last Name"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Last Name"
-                        // detail={selectedVisitor.lastName}
-                        detail="KS"
-                      />
-                    )}
-
-                    {/* Address */}
-                    {isEditing ? (
-                      <Controller
-                        name="address"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Role"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Role"
-                        // detail={selectedVisitor.address}
-                        detail="Associate Software Engineer"
-                      />
-                    )}
-
-                    {/* Phone Number */}
-                    {isEditing ? (
-                      <Controller
-                        name="phoneNumber"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Total Salary (INR)"
-                            type="tel"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Total Salary (INR)"
-                        // detail={selectedVisitor.phoneNumber}
-                        detail=" 40,000"
-                      />
-                    )}
-
-                    {/* Email */}
-                    {isEditing ? (
-                      <Controller
-                        name="email"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Email"
-                            type="email"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Email"
-                        // detail={selectedVisitor.email}
-                        detail="aiwinraj.wono@gmail.com"
-                      />
-                    )}
-
-                    {/* Purpose of Visit */}
-                    {isEditing ? (
-                      <Controller
-                        name="purposeOfVisit"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Employee ID"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Employee ID"
-                        // detail={selectedVisitor.purposeOfVisit}
-                        detail="EMP007"
-                      />
-                    )}
-
-                    {/* To Meet */}
-                    {isEditing ? (
-                      <Controller
-                        name="toMeet"
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            size="small"
-                            label="Tenure"
-                            fullWidth
-                          />
-                        )}
-                      />
-                    ) : (
-                      <DetalisFormatted
-                        title="Tenure"
-                        // detail={selectedVisitor?.toMeet}
-                        detail="36 Months"
-                      />
-                    )}
-
-                    {/* Check In */}
-                    {/* {isEditing ? (
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Controller
-                      name="checkIn"
-                      control={control}
-                      render={({ field }) => (
-                        <TimePicker
-                          {...field}
-                          size="small"
-                          label="Check In"
-                          slotProps={{
-                            textField: { fullWidth: true, size: "small" },
-                          }}
-                          render={(params) => <TextField {...params} />}
-                        />
-                      )}
-                    />
-                  </LocalizationProvider>
-                ) : (
-                  <DetalisFormatted
-                    title="Check In"
-                    detail={selectedVisitor.checkIn}
-                  />
-                )} */}
-                  </div>
-                ) : (
-                  []
-                )}
-              </form>
-            </div>
-          </MuiModal>
-        </div>
-      </PageFrame>
+      <WidgetSection layout={1} title={"Employee payroll"} border>
+        <YearWiseTable
+          search={true}
+          dateColumn={"month"}
+          checkAll={true}
+          checkbox
+          isRowSelectable={(rowNode) => {
+            const status = Array.isArray(rowNode.data.status)
+              ? rowNode.data.status[0]
+              : rowNode.data.status;
+            return status !== "Completed";
+          }}
+          batchButton={"Generate"}
+          searchColumn={"Employee Name"}
+          tableTitle={""}
+          handleBatchAction={handleBatchAction}
+          data={tableData}
+          columns={payrollColumn}
+          exportData={true}
+        />
+      </WidgetSection>
     </div>
   );
 };

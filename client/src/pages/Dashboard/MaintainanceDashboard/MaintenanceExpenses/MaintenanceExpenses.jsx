@@ -146,7 +146,7 @@ const MaintenanceExpenses = () => {
             { field: "expanseName", headerName: "Expense Name", flex: 1 },
             // { field: "department", headerName: "Department", flex: 200 },
             { field: "expanseType", headerName: "Expense Type", flex: 1 },
-            { field: "projectedAmount", headerName: "Amount (INR)", flex: 1 },
+            { field: "projectedAmount", headerName: "Amount (USD)", flex: 1 },
             { field: "dueDate", headerName: "Due Date", flex: 1 },
             { field: "status", headerName: "Status", flex: 1 },
           ],
@@ -310,7 +310,7 @@ const MaintenanceExpenses = () => {
 
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

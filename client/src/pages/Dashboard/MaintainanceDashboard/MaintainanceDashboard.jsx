@@ -166,8 +166,8 @@ const MaintainanceDashboard = () => {
     },
 
     yaxis: {
-      max: 1000000,
-      title: { text: "Amount In Thousand (INR)" },
+      max: 200000,
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -784,7 +784,7 @@ const MaintainanceDashboard = () => {
           route={"maintenance-offices"}
           title={"Total"}
           data={""}
-          description={"Offices Under Maintenance"}
+          description={"Offices Under Management"}
         />,
         <DataCard
           route={"/app/tasks"}

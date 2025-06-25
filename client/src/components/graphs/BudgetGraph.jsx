@@ -87,17 +87,17 @@ const BudgetGraph = ({ utilisedData, maxBudget, route }) => {
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #e0f2ff; color: #0d47a1; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>Allocated Budget</strong></div>
                 <div style="width: 20px;"></div>
-                <div style="text-align: right;">${budget.toLocaleString()} INR</div>
+                <div style="text-align: right;">${budget.toLocaleString()} USD</div>
               </div>
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d0f0dc; color: #1b5e20; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>Utilised Budget</strong></div>
                 <div style="width: 20px;"></div>
-                <div style="text-align: right;">${utilised.toLocaleString()} INR</div>
+                <div style="text-align: right;">${utilised.toLocaleString()} USD</div>
               </div>
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #ffebee; color: #b71c1c; padding: 6px 8px; border-radius: 4px;">
                 <div><strong>Exceeded Budget</strong></div>
                 <div style="width: 20px;"></div>
-                <div style="text-align: right;">${exceeded.toLocaleString()} INR</div>
+                <div style="text-align: right;">${exceeded.toLocaleString()} USD</div>
               </div>
             </div>
           `;

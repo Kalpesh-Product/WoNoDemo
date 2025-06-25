@@ -8,6 +8,9 @@ const {
   endBreak,
   getAllAttendance,
   bulkInsertAttendance,
+  approveCorrectionRequest,
+  rejectCorrectionRequest,
+  getAttendanceRequests,
 } = require("../controllers/attendanceControllers");
 const upload = require("../config/multerConfig");
 
@@ -16,7 +19,16 @@ router.post("/clock-in", clockIn);
 router.patch("/clock-out", clockOut);
 router.patch("/start-break", startBreak);
 router.patch("/end-break", endBreak);
-router.patch("/correct-attendance", correctAttendance);
+router.post("/correct-attendance", correctAttendance);
+router.patch(
+  "/approve-correct-attendance/:attendanceId",
+  approveCorrectionRequest
+);
+router.patch(
+  "/reject-correct-attendance/:attendanceId",
+  rejectCorrectionRequest
+);
+router.get("/get-attendance-requests", getAttendanceRequests);
 router.get("/get-all-attendance", getAllAttendance);
 router.get("/get-attendance/:id", getAttendance);
 router.post(

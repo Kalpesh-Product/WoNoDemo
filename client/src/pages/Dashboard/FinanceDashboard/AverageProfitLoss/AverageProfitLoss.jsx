@@ -228,7 +228,7 @@ const AverageProfitLoss = () => {
     { field: "month", headerName: "Month", flex: 1 },
     {
       field: "income",
-      headerName: "Income (INR)",
+      headerName: "Income (USD)",
       flex: 1,
       cellRenderer: (params) => (
         <span
@@ -245,7 +245,7 @@ const AverageProfitLoss = () => {
     },
     {
       field: "expense",
-      headerName: "Expense (INR)",
+      headerName: "Expense (USD)",
       flex: 1,
       cellRenderer: (params) => (
         <span
@@ -260,7 +260,7 @@ const AverageProfitLoss = () => {
         </span>
       ),
     },
-    { field: "pnl", headerName: "P&L (INR)", flex: 1 },
+    { field: "pnl", headerName: "P&L (USD)", flex: 1 },
     // {
     //   field: "actions",
     //   headerName: "Actions",
@@ -320,7 +320,7 @@ const AverageProfitLoss = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,

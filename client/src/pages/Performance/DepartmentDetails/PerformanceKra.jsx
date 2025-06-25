@@ -78,7 +78,7 @@ const PerformanceKra = () => {
       setOpenModal(false);
     },
     onError: (error) => {
-      toast.success("KRA Added");
+      toast.error("Adding failed");
       // toast.error(error.message || "Error Adding KRA");
     },
   });
@@ -103,6 +103,7 @@ const PerformanceKra = () => {
     },
     onError: (error) => {
       toast.success("KRA updated");
+      reset();
       // toast.error(error.message || "Error Updating");
     },
   });

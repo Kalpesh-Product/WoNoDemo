@@ -66,19 +66,6 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
   //   return parseFloat(amount.replace(/,/g, "")) || 0;
   // };
 
-  // const monthTotal = monthData.rows
-  //   .map((item) =>{
-  //     console.log("item",parseAmount(item.revenue))
-  //      return parseAmount(item.revenue) ||
-  //      item.totalAmount ||
-  //      item.invoiceAmount
-  //   }
-
-  //   )
-  //   .reduce((sum, item) => { console.log("total",item)
-  //     return sum + item
-  //   }, 0);
-
   const parseAmount = (amount) => {
     if (!amount) return 0;
     if (typeof amount === "number") return amount;
@@ -99,17 +86,17 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
   const columns = [
     { headerName: "Particulars", field: "particulars" },
     {
-      headerName: "Taxable Amount (INR)",
+      headerName: "Taxable Amount (USD)",
       field: "taxableAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "GST (INR)",
+      headerName: "GST (USD)",
       field: "gst",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "Invoice Amount (INR)",
+      headerName: "Invoice Amount (USD)",
       field: "invoiceAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },

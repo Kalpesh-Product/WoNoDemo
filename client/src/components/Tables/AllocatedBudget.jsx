@@ -33,9 +33,10 @@ const AllocatedBudget = ({
   isLoading,
   variant,
   hideTitle,
-  noInvoice = false,
+  noInvoice = true,
   noFilter = false,
   annaualExpense = false,
+  showInvoice = false,
   newTitle,
 }) => {
   const axios = useAxiosPrivate();

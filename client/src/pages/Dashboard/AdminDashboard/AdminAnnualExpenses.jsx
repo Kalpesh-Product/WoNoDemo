@@ -102,7 +102,7 @@ const AdminAnnualExpenses = () => {
     { field: "category", headerName: "Category" },
     { field: "expenseName", headerName: "Expense Name", flex: 1 },
     { field: "date", headerName: "Date" },
-    { field: "amount", headerName: "Amount (INR)" },
+    { field: "amount", headerName: "Amount (USD)" },
   ];
 
   const { data: assetsList = [] } = useQuery({

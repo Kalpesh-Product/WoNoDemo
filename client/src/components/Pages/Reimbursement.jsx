@@ -474,7 +474,7 @@ const Reimbursement = () => {
                 <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                   <span>Total</span>
                   <span>
-                    INR{" "}
+                    USD{" "}
                     {fields
                       .reduce(
                         (acc, item) =>
@@ -671,7 +671,7 @@ const Reimbursement = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    INR.
+                    USD.
                   </td>
                 </tr>
               </thead>

@@ -44,7 +44,6 @@ const ReviewRequest = () => {
   const formRef = useRef(null);
   const navigate = useNavigate();
   const voucherDetails = useSelector((state) => state.finance.voucherDetails);
-  console.log("Voucher REdux", voucherDetails);
   const [openPreview, setOpenPreview] = useState(false);
   const department = usePageDepartment();
   const axios = useAxiosPrivate();
@@ -348,7 +347,7 @@ const ReviewRequest = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  INR{" "}
+                  USD{" "}
                   {fields
                     .reduce(
                       (acc, item) =>
@@ -558,7 +557,7 @@ const ReviewRequest = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    INR.
+                    USD.
                   </td>
                 </tr>
               </thead>
@@ -692,8 +691,8 @@ const ReviewRequest = () => {
                   <td className={cellClasses} colSpan={2}>
                     PARTICULARS
                   </td>
-                  <td className={cellClasses}>INR</td>
-                  {/* <td className={cellClasses}>INR</td> */}
+                  <td className={cellClasses}>USD</td>
+                  {/* <td className={cellClasses}>USD</td> */}
                 </tr>
               </thead>
               <tbody>

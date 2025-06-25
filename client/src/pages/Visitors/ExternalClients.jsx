@@ -114,7 +114,7 @@ const ExternalClients = () => {
         />
       ),
     },
-    { field: "paymentAmount", headerName: "Amount (INR)" },
+    { field: "paymentAmount", headerName: "Amount (USD)" },
     { field: "paymentMode", headerName: "Mode" },
 
     {
@@ -176,7 +176,6 @@ const ExternalClients = () => {
   };
 
   const submit = async (data) => {
-    console.log(data);
     if (isEditing && selectedVisitor) {
       const updatePayload = {
         ...data,

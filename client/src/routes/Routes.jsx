@@ -359,6 +359,15 @@ import MaintenancOfficesNew from "../pages/Dashboard/MaintainanceDashboard/Maint
 import PaymentScheduleCommon from "../components/Pages/PaymentScheduleCommon";
 import ItOfficesNew from "../pages/Dashboard/ItDashboard/ItOffices/ItOfficessNew";
 import AdminOfficesNew from "../pages/Dashboard/AdminDashboard/AdminOffices/AdminOfficesNew";
+import PayrollReports from "../pages/Dashboard/HrDashboard/Data/PayrollReports";
+import ComplianceData from "../pages/Dashboard/FinanceDashboard/MixBag/ComplianceData";
+import HrMixBag from "../pages/Dashboard/HrDashboard/HrMixBag";
+import AttendanceRequests from "../pages/Dashboard/HrDashboard/Mixbag/AttendanceRequests";
+import AttendanceLayout from "../pages/Dashboard/HrDashboard/Mixbag/AttendanceLayout";
+import LeavesLayout from "../pages/Dashboard/HrDashboard/Mixbag/LeavesLayout";
+import PendingLeaveRequests from "../pages/Dashboard/HrDashboard/Mixbag/PendingLeaveRequests";
+import CompletedLeaveRequests from "../pages/Dashboard/HrDashboard/Mixbag/CompletedLeaveRequests";
+import AttendanceCompleted from "../pages/Dashboard/HrDashboard/Mixbag/AttendanceCompleted";
 
 export const routes = createBrowserRouter([
   {
@@ -511,7 +520,12 @@ export const routes = createBrowserRouter([
                       },
                       {
                         path: "mix-bag/compliance-documents",
-                        element: <ComplianceDocuments />,
+                        // element: <ComplianceDocuments />,
+                        element: <ComplianceData />,
+                      },
+                      {
+                        path: "mix-bag/compliance-documents/:name",
+                        element: <ComplianceData />,
                       },
                       {
                         path: "mix-bag/landlord-agreements",
@@ -980,7 +994,7 @@ export const routes = createBrowserRouter([
                             path: "amc-records",
                             element: <MaintenanceAmcRecords />,
                           },
-                           {
+                          {
                             path: "monthly-invoice-reports",
                             element: <MonthlyInvoiceCommon />,
                           },
@@ -1471,6 +1485,36 @@ export const routes = createBrowserRouter([
                           },
                         ],
                       },
+                      {
+                        path: "mix-bag",
+                        element: <HrMixBag />,
+                      },
+                      {
+                        path: "mix-bag/attendance",
+                        element: <AttendanceLayout />,
+                        children: [
+                          {
+                            path: "pending-approvals",
+                            element: <AttendanceRequests />,
+                            index: true,
+                          },
+                        ],
+                      },
+                      {
+                        path: "mix-bag/leaves",
+                        element: <LeavesLayout />,
+                        children: [
+                          {
+                            path: "pending-approvals",
+                            element: <PendingLeaveRequests />,
+                            index: true,
+                          },
+                          {
+                            path: "completed-approvals",
+                            element: <CompletedLeaveRequests />,
+                          },
+                        ],
+                      },
 
                       {
                         path: "company",
@@ -1613,6 +1657,10 @@ export const routes = createBrowserRouter([
                             element: <MonthlyInvoiceCommon />,
                           },
                           {
+                            path: "payroll-reports",
+                            element: <PayrollReports />,
+                          },
+                          {
                             path: "vendor/:id",
                             element: <ViewVendor />,
                           },
@@ -1640,11 +1688,7 @@ export const routes = createBrowserRouter([
                             element: <HrPayroll />,
                           },
                           {
-                            path: "payroll/view-payroll",
-                            element: <HrPayroll />,
-                          },
-                          {
-                            path: "payroll/view-payroll/:id",
+                            path: "payroll/:id",
                             element: <ViewPayroll />,
                           },
                         ],

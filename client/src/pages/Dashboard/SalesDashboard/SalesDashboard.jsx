@@ -142,7 +142,7 @@ const SalesDashboard = () => {
       min: 0,
       max: 9000000,
       tickAmount: 4,
-      title: { text: "Amount In Thousand (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => val / 100000, // Converts value to Thousand
       },
@@ -620,13 +620,19 @@ const SalesDashboard = () => {
     { id: "completedTime", label: "Completed Time" },
   ];
 
-  // ✅ Processed Table Data (Including Completed Time)
-  const formattedCompanyTableData = clientsData.map((company, index) => ({
-    id: index + 1,
-    company: company.clientName,
-    startDate: humanDate(company.startDate) || "18-10-2001",
-    completedTime: calculateCompletedTime(company.startDate),
-  }));
+  const currentMonth = new Date().getMonth(); // 0-based index (0 = Jan, 5 = June, etc.)
+
+  const formattedCompanyTableData = clientsData
+    .filter((company) => {
+      const start = new Date(company.startDate);
+      return start.getMonth() === currentMonth;
+    })
+    .map((company, index) => ({
+      id: index + 1,
+      company: company.clientName,
+      startDate: humanDate(company.startDate) || "18-10-2001",
+      completedTime: calculateCompletedTime(company.startDate),
+    }));
   //-----------------------------------------------Client Anniversary-----------------------------------------------------------//
   //-----------------------------------------------Client Birthday-----------------------------------------------------------//
 
@@ -896,7 +902,7 @@ const SalesDashboard = () => {
       widgets: [
         <WidgetSection layout={1} padding>
           <MuiTable
-            Title="Client Anniversary"
+            Title="Current Month Client Anniversary"
             columns={companyTableColumns}
             rows={formattedCompanyTableData}
             rowKey="id"
