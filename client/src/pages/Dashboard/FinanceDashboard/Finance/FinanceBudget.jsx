@@ -210,52 +210,53 @@ const FinanceBudget = () => {
     }
   }, [isHrLoading]);
 
-  const expenseRawSeries = useMemo(() => {
-    // Initialize monthly buckets
-    const months = Array.from({ length: 12 }, (_, index) =>
-      dayjs(`2024-04-01`).add(index, "month").format("MMM")
-    );
+const expenseRawSeries = useMemo(() => {
+  // Initialize monthly buckets
+  const months = Array.from({ length: 12 }, (_, index) =>
+    dayjs(`2024-04-01`).add(index, "month").format("MMM")
+  );
 
-    const fyData = {
-      "FY 2024-25": Array(12).fill(0),
-      "FY 2025-26": Array(12).fill(0),
-    };
+  const fyData = {
+    "FY 2024-25": Array(12).fill(0),
+    "FY 2025-26": Array(12).fill(0),
+  };
 
-    hrFinance.forEach((item) => {
-      const date = dayjs(item.dueDate);
-      const year = date.year();
-      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+  hrFinance.forEach((item) => {
+    const date = dayjs(item.dueDate);
+    const year = date.year();
+    const monthIndex = date.month(); // 0 = Jan, 11 = Dec
 
-      if (year === 2024 && monthIndex >= 3) {
-        // Apr 2024 to Dec 2024 (month 3 to 11)
-        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
-      } else if (year === 2025) {
-        if (monthIndex <= 2) {
-          // Jan to Mar 2025 (months 0–2)
-          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
-        } else if (monthIndex >= 3) {
-          // Apr 2025 to Dec 2025 (months 3–11)
-          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
-        }
-      } else if (year === 2026 && monthIndex <= 2) {
-        // Jan to Mar 2026
-        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+    if (year === 2024 && monthIndex >= 3) {
+      // Apr 2024 to Dec 2024 (month 3 to 11)
+      fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+    } else if (year === 2025) {
+      if (monthIndex <= 2) {
+        // Jan to Mar 2025 (months 0–2)
+        fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+      } else if (monthIndex >= 3) {
+        // Apr 2025 to Dec 2025 (months 3–11)
+        fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
       }
-    });
+    } else if (year === 2026 && monthIndex <= 2) {
+      // Jan to Mar 2026
+      fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+    }
+  });
 
-    return [
-      {
-        name: "total",
-        group: "FY 2024-25",
-        data: fyData["FY 2024-25"],
-      },
-      {
-        name: "total",
-        group: "FY 2025-26",
-        data: fyData["FY 2025-26"],
-      },
-    ];
-  }, [hrFinance]);
+  return [
+    {
+      name: "total",
+      group: "FY 2024-25",
+      data: fyData["FY 2024-25"],
+    },
+    {
+      name: "total",
+      group: "FY 2025-26",
+      data: fyData["FY 2025-26"],
+    },
+  ];
+}, [hrFinance]);
+
 
   const expenseOptions = {
     chart: {
@@ -292,7 +293,7 @@ const FinanceBudget = () => {
 
     yaxis: {
       max: 5000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -310,7 +311,7 @@ const FinanceBudget = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -318,7 +319,7 @@ const FinanceBudget = () => {
                 <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
-               <div style="text-align: left;">USD ${Math.round(
+               <div style="text-align: left;">INR ${Math.round(
                  rawData
                ).toLocaleString("en-IN")}</div>
   
@@ -341,7 +342,7 @@ const FinanceBudget = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={"BIZ Nest FINANCE DEPARTMENT EXPENSE"}
-        titleAmount={`USD ${inrFormat(totalUtilised)}`}
+        titleAmount={`INR ${inrFormat(totalUtilised)}`}
       />
 
       {!isTop && (
@@ -359,7 +360,8 @@ const FinanceBudget = () => {
       <MuiModal
         title="Request Budget"
         open={openModal}
-        onClose={() => setOpenModal(false)}>
+        onClose={() => setOpenModal(false)}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Expense Name */}
           <Controller

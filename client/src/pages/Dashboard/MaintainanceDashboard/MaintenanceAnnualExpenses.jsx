@@ -103,7 +103,7 @@ const MaintenanceAnnualExpenses = () => {
     { field: "id", headerName: "Sr No", width: 100 },
     { field: "category", headerName: "Category" },
     { field: "expenseName", headerName: "Expense Name", flex: 1 },
-    { field: "amount", headerName: "Amount (USD)" },
+    { field: "amount", headerName: "Amount (INR)" },
     { field: "date", headerName: "Date" },
     {
       field: "actions",
@@ -337,7 +337,7 @@ const MaintenanceAnnualExpenses = () => {
             />
             <DetalisFormatted
               title="Amount"
-              detail={`USD ${selectedAsset.amount}`}
+              detail={`INR ${selectedAsset.amount}`}
             />
             <DetalisFormatted title="Date" detail={selectedAsset.date} />
           </div>

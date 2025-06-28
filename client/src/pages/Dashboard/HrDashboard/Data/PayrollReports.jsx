@@ -10,6 +10,7 @@ import MuiModal from "../../../../components/MuiModal";
 import DetalisFormatted from "../../../../components/DetalisFormatted";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { inrFormat } from "../../../../utils/currencyFormat";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 
 const PayrollReports = () => {
   const axios = useAxiosPrivate();
@@ -36,7 +37,7 @@ const PayrollReports = () => {
     { field: "empId", headerName: "Employee ID", width: 200 },
     { field: "name", headerName: "Name" },
     { field: "email", headerName: "Email", flex: 1 },
-    { field: "totalSalary", headerName: "Total Salary (USD)" },
+    { field: "totalSalary", headerName: "Total Salary (INR)" },
     {
       field: "actions",
       headerName: "Actions",
@@ -46,7 +47,8 @@ const PayrollReports = () => {
         <div className="p-2 mb-2 flex gap-2">
           <span
             className="text-subtitle cursor-pointer"
-            onClick={() => handleViewApplicationDetails(params.data)}>
+            onClick={() => handleViewApplicationDetails(params.data)}
+          >
             <MdOutlineRemoveRedEye />
           </span>
         </div>
@@ -87,17 +89,19 @@ const PayrollReports = () => {
   return (
     <div>
       <PageFrame>
-        <MonthWiseTable
+        <YearWiseTable
           data={isLoading ? [] : transformedData}
           columns={payrollColumns}
           exportData={true}
           tableTitle={"Payroll Reports"}
+          hideTitle
         />
       </PageFrame>
       <MuiModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        title={"Payroll Details"}>
+        title={"Payroll Details"}
+      >
         {!isLoading && selectedEmployee ? (
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             <DetalisFormatted title="Name" detail={selectedEmployee?.name} />
@@ -116,7 +120,7 @@ const PayrollReports = () => {
             />
             <DetalisFormatted
               title="Total Salary"
-              detail={`USD ${inrFormat(selectedEmployee?.totalSalary?.[0])}`}
+              detail={`INR ${inrFormat(selectedEmployee?.totalSalary?.[0])}`}
             />
             <DetalisFormatted
               title="Status"
@@ -130,7 +134,8 @@ const PayrollReports = () => {
                     className="text-primary underline cursor-pointer"
                     href={selectedEmployee.payslip[0]}
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                  >
                     View Payslip
                   </a>
                 ) : (

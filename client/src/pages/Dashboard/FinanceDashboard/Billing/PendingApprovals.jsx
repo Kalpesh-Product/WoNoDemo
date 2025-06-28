@@ -81,7 +81,7 @@ const PendingApprovals = () => {
     { field: "expanseName", headerName: "Expense Name ", width: 200 },
     { field: "department", headerName: "Department", width: 150 },
     { field: "expanseType", headerName: "Expense Type " },
-    { field: "projectedAmount", headerName: "Amount (USD)" },
+    { field: "projectedAmount", headerName: "Amount (INR)" },
     { field: "reimbursementDate", headerName: "Date" },
     {
       field: "actions",
@@ -106,7 +106,7 @@ const PendingApprovals = () => {
                     },
                   },
                   {
-                    label: "Approve",
+                    label: "Review",
                     onClick: () => {
                       dispatch(setVoucherDetails(params.data)); // dispatching to redux
                       setSelectedBudget(params.data);
@@ -195,7 +195,7 @@ const PendingApprovals = () => {
                 detail={selectedBudget.expanseType}
               />
               <DetalisFormatted
-                title="Amount (USD)"
+                title="Amount (INR)"
                 detail={selectedBudget.projectedAmount?.toLocaleString()}
               />
               <DetalisFormatted title="Status" detail={selectedBudget.status} />
@@ -319,7 +319,7 @@ const PendingApprovals = () => {
                         PARTICULARS (Details of Expenses)
                       </td>
                       <td className={cellClasses} colSpan={2}>
-                        USD.
+                        INR.
                       </td>
                     </tr>
                   </thead>

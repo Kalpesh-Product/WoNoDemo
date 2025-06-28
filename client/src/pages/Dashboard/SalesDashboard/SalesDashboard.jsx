@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { RiArchiveDrawerLine, RiPagesLine } from "react-icons/ri";
 import { MdFormatListBulleted, MdMiscellaneousServices } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -39,6 +39,7 @@ import LazyDashboardWidget from "../../../components/Optimization/LazyDashboardW
 
 const SalesDashboard = () => {
   const { setIsSidebarOpen } = useSidebar();
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
 
   useEffect(() => {
     setIsSidebarOpen(true);
@@ -78,7 +79,6 @@ const SalesDashboard = () => {
   });
 
   const finalRevenueGraph = aggregateMonthlyRevenue(totalRevenue);
-  const totalValue = finalRevenueGraph.reduce((sum, item) => item + sum, 0);
 
   const incomeExpenseData = [
     {
@@ -87,6 +87,15 @@ const SalesDashboard = () => {
       data: finalRevenueGraph,
     },
   ];
+
+  const selectedSeries = incomeExpenseData.find(
+    (item) => item.group === selectedFiscalYear
+  );
+
+  const totalValue = useMemo(() => {
+    if (!selectedSeries) return 0;
+    return selectedSeries.data.reduce((sum, val) => sum + val, 0);
+  }, [selectedSeries]);
   const incomeExpenseOptions = {
     chart: {
       id: "income-vs-expense-bar",
@@ -140,11 +149,11 @@ const SalesDashboard = () => {
     },
     yaxis: {
       min: 0,
-      max: 9000000,
+      max: 6000000,
       tickAmount: 4,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
-        formatter: (val) => val / 100000, // Converts value to Thousand
+        formatter: (val) => val / 100000, // Converts value to Lakhs
       },
     },
 
@@ -154,7 +163,7 @@ const SalesDashboard = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `USD ${inrFormat(val)}`,
+        formatter: (val) => `INR ${inrFormat(val)}`,
       },
     },
   };
@@ -235,12 +244,12 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "FY 2024-25",
-        value: `USD ${inrFormat(totalValue) || 0}`,
+        value: `INR ${inrFormat(totalValue) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
         title: "March 2025",
-        value: `USD ${inrFormat(finalRevenueGraph[11]) || 0}`,
+        value: `INR ${inrFormat(finalRevenueGraph[11]) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -303,7 +312,7 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "Revenue",
-        value: `USD ${inrFormat(totalValue / 12)}`,
+        value: `INR ${inrFormat(totalValue / 12)}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -590,7 +599,7 @@ const SalesDashboard = () => {
     }),
     tooltip: {
       y: {
-        formatter: (val) => `${((val / totalClients) * 100).toFixed(1)}%`, // Show as percentage
+        formatter: (val) => `${val} Clients`,
       },
     },
     colors: [
@@ -612,6 +621,14 @@ const SalesDashboard = () => {
   };
 
   //-----------------------------------------------Conversion of Sector-wise Pie-graph-----------------------------------------------------------//
+  //-----------------------------------------------Conversion of Gender-wise Pie-graph-----------------------------------------------------------//
+  const clientMembersData = isClientsDataPending
+    ? []
+    : clientsData
+        .filter((item) => item.members?.length > 0)
+        .map((item) => item.members)
+        .flat();
+  //-----------------------------------------------Conversion of Gender-wise Pie-graph-----------------------------------------------------------//
   //-----------------------------------------------Client Anniversary-----------------------------------------------------------//
   const companyTableColumns = [
     { id: "id", label: "Sr No" },
@@ -761,7 +778,8 @@ const SalesDashboard = () => {
               data={incomeExpenseData}
               options={incomeExpenseOptions}
               title={"BIZ Nest SALES DEPARTMENT REVENUES"}
-              titleAmount={`USD ${inrFormat(totalValue)}`}
+              titleAmount={`INR ${inrFormat(totalValue)}`}
+              onYearChange={setSelectedFiscalYear}
             />
           ) : (
             <div className="h-72 flex items-center justify-center">
@@ -813,7 +831,8 @@ const SalesDashboard = () => {
           layout={1}
           title={"Monthly Unique Leads"}
           titleLabel={"FY 2024-25"}
-          border>
+          border
+        >
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />
@@ -837,7 +856,8 @@ const SalesDashboard = () => {
           layout={1}
           title={"Sourcing Channels"}
           titleLabel={"FY 2024-25"}
-          border>
+          border
+        >
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />
@@ -884,10 +904,7 @@ const SalesDashboard = () => {
       layout: 2,
       widgets: [
         <WidgetSection layout={1} title={"Gender-wise data"} border>
-          <PieChartMui
-            data={clientGenderData}
-            options={clientGenderPieChartOptions}
-          />
+          <PieChartMui data={[]} options={[]} />
         </WidgetSection>,
         <WidgetSection layout={1} title={"India-wise Members"} border>
           <PieChartMui

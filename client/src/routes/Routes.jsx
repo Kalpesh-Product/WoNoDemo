@@ -63,7 +63,6 @@ import ViewVendors from "../pages/Dashboard/HrDashboard/Complaince/ViewVendors";
 import HrPayroll from "../pages/Dashboard/HrDashboard/Finance/HrPayroll";
 import ViewPayroll from "../pages/Dashboard/HrDashboard/Finance/ViewPayroll";
 import HrReports from "../pages/Dashboard/HrDashboard/Data/Reports";
-import BulkUpload from "../pages/Dashboard/HrDashboard/HrSettings/BulkUpload";
 import ComapanyHandbook from "../pages/Dashboard/HrDashboard/Complaince/CompanyHandbook";
 import MeetingLayout from "../pages/Meetings/MeetingLayout";
 import MeetingDashboard from "../pages/Meetings/MeetingDashboard";
@@ -368,6 +367,13 @@ import LeavesLayout from "../pages/Dashboard/HrDashboard/Mixbag/LeavesLayout";
 import PendingLeaveRequests from "../pages/Dashboard/HrDashboard/Mixbag/PendingLeaveRequests";
 import CompletedLeaveRequests from "../pages/Dashboard/HrDashboard/Mixbag/CompletedLeaveRequests";
 import AttendanceCompleted from "../pages/Dashboard/HrDashboard/Mixbag/AttendanceCompleted";
+import DepartmentAssetCommon from "../components/Pages/DepartmentAssetCommon";
+import DepartmentSOP from "../pages/Dashboard/HrDashboard/Complaince/DepartmentSOP";
+import SopUpload from "../components/Pages/SopUpload";
+import ManageUnit from "../pages/Dashboard/SalesDashboard/ManageUnit";
+import PolicyUpload from "../components/Pages/PolicyUpload";
+import MainDashboard from "../pages/Dashboard/MainDashboard/MainDashboard";
+import DepartmentWiseBulkUpload from "../components/Pages/BulkUpload";
 
 export const routes = createBrowserRouter([
   {
@@ -389,6 +395,11 @@ export const routes = createBrowserRouter([
                 path: "dashboard",
                 element: <DashboardLayout />,
                 children: [
+                  {
+                    path: "",
+                    element: <MainDashboard />,
+                    index: true,
+                  },
                   {
                     path: "frontend-dashboard",
                     element: <FrontendLayout />,
@@ -431,6 +442,10 @@ export const routes = createBrowserRouter([
                             element: <FrontendLeads />,
                           },
                           {
+                            path: "asset-list",
+                            element: <DepartmentAssetCommon />,
+                          },
+                          {
                             path: "website-issue-reports",
                             element: <FrontendWebsiteIssueReports />,
                           },
@@ -454,15 +469,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <FrontendBulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <Sops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <Policies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -582,8 +597,8 @@ export const routes = createBrowserRouter([
                             element: <ViewVendor />,
                           },
                           {
-                            path: "department-asset-list",
-                            element: <FinanceAssetList />,
+                            path: "asset-list",
+                            element: <DepartmentAssetCommon />,
                           },
                           {
                             path: "monthly-invoice-reports",
@@ -609,15 +624,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <FinanceBulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <FinanceSops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <FinancePolicies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -833,7 +848,7 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "asset-list",
-                            element: <AdminAssetList />,
+                            element: <DepartmentAssetCommon />,
                           },
                           {
                             path: "vendor",
@@ -859,15 +874,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <AdminBulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <AdminSops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <AdminPolicies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -980,7 +995,7 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "asset-list",
-                            element: <MaintenanceAssetList />,
+                            element: <DepartmentAssetCommon />,
                           },
                           {
                             path: "vendor",
@@ -1010,15 +1025,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <MaintenanceBulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <MaintenanceSops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <MaintenancePolicies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -1110,7 +1125,7 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "asset-list",
-                            element: <ItAssetList />,
+                            element: <DepartmentAssetCommon />,
                           },
                           {
                             path: "vendor",
@@ -1156,15 +1171,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <ItBulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <ItSops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <ItPolicies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -1421,20 +1436,24 @@ export const routes = createBrowserRouter([
                         element: <ClientOnboarding />,
                       },
                       {
+                        path: "mix-bag/manage-units",
+                        element: <ManageUnit />,
+                      },
+                      {
                         path: "data",
                         element: <SalesDataCard />,
                         children: [
                           {
-                            path: "sales-asset-list",
-                            element: <FinanceAssetList />, // temporary
-                          },
-                          {
-                            path: "vendor",
-                            element: <Vendor />,
+                            path: "asset-list",
+                            element: <DepartmentAssetCommon />,
                           },
                           {
                             path: "monthly-invoice-reports",
                             element: <MonthlyInvoiceCommon />,
+                          },
+                          {
+                            path: "vendor",
+                            element: <Vendor />,
                           },
                           {
                             path: "vendor/:id",
@@ -1448,15 +1467,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <BulkUploadSales />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
                             path: "sops",
-                            element: <SalesSops />,
+                            element: <SopUpload />,
                           },
                           {
                             path: "policies",
-                            element: <SalesPolicies />,
+                            element: <PolicyUpload />,
                           },
                         ],
                       },
@@ -1497,6 +1516,10 @@ export const routes = createBrowserRouter([
                             path: "pending-approvals",
                             element: <AttendanceRequests />,
                             index: true,
+                          },
+                          {
+                            path: "completed",
+                            element: <AttendanceCompleted />,
                           },
                         ],
                       },
@@ -1543,6 +1566,10 @@ export const routes = createBrowserRouter([
                           {
                             path: "company-handbook",
                             element: <ComapanyHandbook />,
+                          },
+                          {
+                            path: "company-handbook/:department",
+                            element: <DepartmentSOP />,
                           },
                           {
                             path: "policies",
@@ -1642,6 +1669,10 @@ export const routes = createBrowserRouter([
                             index: true,
                             element: <JobApplicationList />,
                           },
+                          {
+                            path: "asset-list",
+                            element: <DepartmentAssetCommon />,
+                          },
 
                           {
                             path: "reports",
@@ -1699,15 +1730,15 @@ export const routes = createBrowserRouter([
                         children: [
                           {
                             path: "bulk-upload",
-                            element: <BulkUpload />,
+                            element: <DepartmentWiseBulkUpload />,
                           },
                           {
-                            path: "hr-sops",
-                            element: <HrSops />,
+                            path: "sops",
+                            element: <SopUpload />,
                           },
                           {
-                            path: "hr-policies",
-                            element: <HrPolicies />,
+                            path: "policies",
+                            element: <PolicyUpload />,
                           },
                         ],
                       },

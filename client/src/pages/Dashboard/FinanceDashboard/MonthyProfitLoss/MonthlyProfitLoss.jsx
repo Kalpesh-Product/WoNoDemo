@@ -228,7 +228,7 @@ const MonthlyProfitLoss = () => {
     { field: "month", headerName: "Month", flex: 1 },
     {
       field: "income",
-      headerName: "Income (USD)",
+      headerName: "Income (INR)",
       flex: 1,
       cellRenderer: (params) => (
         <span
@@ -238,14 +238,15 @@ const MonthlyProfitLoss = () => {
               "/app/dashboard/finance-dashboard/monthly-profit-loss/income-details"
             )
           }
-          className="text-primary underline cursor-pointer">
+          className="text-primary underline cursor-pointer"
+        >
           {params.value}
         </span>
       ),
     },
     {
       field: "expense",
-      headerName: "Expense (USD)",
+      headerName: "Expense (INR)",
       flex: 1,
       cellRenderer: (params) => (
         <span
@@ -255,12 +256,13 @@ const MonthlyProfitLoss = () => {
               "/app/dashboard/finance-dashboard/finance/dept-wise-budget"
             )
           }
-          className="text-primary underline cursor-pointer">
+          className="text-primary underline cursor-pointer"
+        >
           {params.value}
         </span>
       ),
     },
-    { field: "pnl", headerName: "P&L (USD)", flex: 1 },
+    { field: "pnl", headerName: "P&L (INR)", flex: 1 },
     // {
     //   field: "actions",
     //   headerName: "Actions",
@@ -320,7 +322,7 @@ const MonthlyProfitLoss = () => {
     },
     yaxis: {
       title: {
-        text: "Amount In Thousand (USD)",
+        text: "Amount In Lakhs (INR)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -351,11 +353,11 @@ const MonthlyProfitLoss = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>USD ${income?.toLocaleString() || "0"}</span>
+                <span>INR ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>USD ${inrFormat(expense) || "0"}</span>
+                <span>INR ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -395,8 +397,8 @@ const MonthlyProfitLoss = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)} `}
-          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)} `}
+          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
         />,
       ],
     },
@@ -421,9 +423,10 @@ const MonthlyProfitLoss = () => {
         {monthlyProfitLossData.length > 0 ? (
           <WidgetSection
             border
-            TitleAmount={`P&L :  USD ${inrFormat(totalPnL)}`}
+            TitleAmount={`P&L :  INR ${inrFormat(totalPnL)}`}
             titleLabel={"FY 2024-25"}
-            title={`Total Monthly P&L`}>
+            title={`Total Monthly P&L`}
+          >
             <AgTable
               data={monthlyProfitLossData}
               columns={monthlyProfitLossColumns}
@@ -442,24 +445,25 @@ const MonthlyProfitLoss = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Tax Payment Detail">
+          title="Tax Payment Detail"
+        >
           <div className="space-y-3">
             <DetalisFormatted title="Month" detail={viewDetails.month} />
             <DetalisFormatted
               title="Income"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.income.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="Expense"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.expense.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="P&L"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.pnl.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />

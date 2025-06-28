@@ -31,6 +31,8 @@ import { TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import UploadFileInput from "../../components/UploadFileInput";
 import { inrFormat } from "../../utils/currencyFormat";
+import PageFrame from "../../components/Pages/PageFrame";
+import MonthWiseTable from "../../components/Tables/MonthWiseTable";
 
 const ExternalMeetingCLients = () => {
   const axios = useAxiosPrivate();
@@ -427,7 +429,7 @@ const ExternalMeetingCLients = () => {
     },
     {
       field: "paymentAmount",
-      headerName: "Amount (USD)",
+      headerName: "Amount (INR)",
     },
     {
       field: "paymentMode",
@@ -555,7 +557,8 @@ const ExternalMeetingCLients = () => {
           <div className="flex gap-2 items-center">
             <div
               onClick={() => handleSelectedMeeting("viewDetails", params.data)}
-              className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all">
+              className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all"
+            >
               <span className="text-subtitle">
                 <MdOutlineRemoveRedEye />
               </span>
@@ -569,24 +572,35 @@ const ExternalMeetingCLients = () => {
   ];
 
   return (
-    <div className="p-4 flex flex-col gap-4">
-      {!isMeetingsLoading ? (
-        <AgTable
-          key={transformedMeetings.length}
-          search
-          tableTitle={"Manage Meetings"}
-          data={transformedMeetings || []}
-          columns={columns}
-        />
-      ) : (
-        <CircularProgress />
-      )}
+    <div className="flex-col gap-4">
+      <PageFrame>
+        {!isMeetingsLoading ? (
+          <MonthWiseTable
+            key={transformedMeetings.length}
+            search
+            dateColumn={"date"}
+            tableTitle={"Manage Meetings"}
+            data={transformedMeetings || []}
+            columns={columns}
+          />
+          // <AgTable
+          //   key={transformedMeetings.length}
+          //   search
+          //   tableTitle={"Manage Meetings"}
+          //   data={transformedMeetings || []}
+          //   columns={columns}
+          // />
+        ) : (
+          <CircularProgress />
+        )}
+      </PageFrame>
 
       {/* Checklist Modal */}
       <MuiModal
         open={checklistModalOpen}
         onClose={handleCloseChecklistModal}
-        title={"Checklist"}>
+        title={"Checklist"}
+      >
         <Box
           sx={{
             maxHeight: "80vh",
@@ -595,7 +609,8 @@ const ExternalMeetingCLients = () => {
             overflow: "hidden",
             justifyContent: "start",
             alignItems: "start",
-          }}>
+          }}
+        >
           {/* Scrollable Checklist Section */}
           <div className="h-[60vh] overflow-y-auto w-full">
             <span className="text-subtitle text-primary font-pmedium">
@@ -642,7 +657,8 @@ const ExternalMeetingCLients = () => {
                             {modalMode === "update" && (
                               <IconButton
                                 onClick={() => handleRemoveChecklistItem(index)}
-                                color="error">
+                                color="error"
+                              >
                                 <Delete />
                               </IconButton>
                             )}
@@ -681,7 +697,8 @@ const ExternalMeetingCLients = () => {
               <Button
                 variant="contained"
                 disabled={isSubmitDisabled()}
-                onClick={handleSubmitChecklist}>
+                onClick={handleSubmitChecklist}
+              >
                 Submit
               </Button>
             </div>
@@ -700,7 +717,8 @@ const ExternalMeetingCLients = () => {
             : ""
         }
         open={detailsModal}
-        onClose={() => setDetailsModal(false)}>
+        onClose={() => setDetailsModal(false)}
+      >
         {modalMode === "viewDetails" && (
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 w-full">
             <div className="font-bold">Basic Info</div>
@@ -868,7 +886,8 @@ const ExternalMeetingCLients = () => {
                     href={selectedMeeting.paymentProofUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 underline">
+                    className="text-blue-600 underline"
+                  >
                     View File
                   </a>
                 }
@@ -887,7 +906,8 @@ const ExternalMeetingCLients = () => {
                 });
                 resetCancelMeeting();
                 setDetailsModal(false);
-              })}>
+              })}
+            >
               <Controller
                 name="reason"
                 control={cancelMeetingControl}
@@ -926,7 +946,8 @@ const ExternalMeetingCLients = () => {
                   meetingId: selectedMeeting?._id,
                   newEndTime: data.newEndTime,
                 });
-              })}>
+              })}
+            >
               <div className="flex flex-col gap-4">
                 <span className="text-content">Meeting Details</span>
                 <hr />
@@ -991,7 +1012,8 @@ const ExternalMeetingCLients = () => {
       <MuiModal
         open={openPaymentModal}
         onClose={handleClosePaymentModal}
-        title={"Update Payment Details"}>
+        title={"Update Payment Details"}
+      >
         <form
           className="flex flex-col gap-4"
           onSubmit={handlePaymentSubmit((data) => {
@@ -1001,7 +1023,8 @@ const ExternalMeetingCLients = () => {
               paymentStatus: data?.paymentStatus,
               meetingId: paymentMeeting?._id,
             });
-          })}>
+          })}
+        >
           <Controller
             name="amount"
             control={paymentControl}
@@ -1027,7 +1050,8 @@ const ExternalMeetingCLients = () => {
                 size="small"
                 label="Payment Type"
                 select
-                fullWidth>
+                fullWidth
+              >
                 <MenuItem value="" disabled>
                   Select Payment Type
                 </MenuItem>
@@ -1049,7 +1073,8 @@ const ExternalMeetingCLients = () => {
                 size="small"
                 fullWidth
                 error={!!paymentErrors.paymentStatus}
-                helperText={paymentErrors.paymentStatus?.message}>
+                helperText={paymentErrors.paymentStatus?.message}
+              >
                 <MenuItem value="Paid">Paid</MenuItem>
                 <MenuItem value="Unpaid">Unpaid</MenuItem>
               </TextField>

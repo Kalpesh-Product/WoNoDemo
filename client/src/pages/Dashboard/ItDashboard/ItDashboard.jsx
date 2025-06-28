@@ -26,8 +26,8 @@ import humanTime from "../../../utils/humanTime";
 
 const ItDashboard = () => {
   const { setIsSidebarOpen } = useSidebar();
-  const department = usePageDepartment();
-  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
+  const department = usePageDepartment()
+   const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
   const axios = useAxiosPrivate();
   const { data: hrFinance = [], isLoading: isHrFinanceLoading } = useQuery({
     queryKey: ["it-budget"],
@@ -44,27 +44,12 @@ const ItDashboard = () => {
     },
   });
 
-  const { data: tasks = [], isLoading: isTasksLoading } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: async () => {
-      try {
-        const response = await axios.get(
-          `/api/tasks/get-tasks?dept=${department._id}`
-        );
-        return response.data;
-      } catch (error) {
-        throw new Error("Error fetching data");
-      }
-    },
-  });
-
-  const { data: weeklySchedule = [], isLoading: isWeeklyScheduleLoading } =
-    useQuery({
-      queryKey: ["weeklySchedule"],
+    const { data: tasks = [], isLoading: isTasksLoading } = useQuery({
+      queryKey: ["tasks"],
       queryFn: async () => {
         try {
           const response = await axios.get(
-            `/api/weekly-unit/fetch-weekly-unit/${department._id}`
+            `/api/tasks/get-tasks?dept=${department._id}`
           );
           return response.data;
         } catch (error) {
@@ -72,20 +57,37 @@ const ItDashboard = () => {
         }
       },
     });
+  
+    const { data: weeklySchedule = [], isLoading: isWeeklyScheduleLoading } =
+      useQuery({
+        queryKey: ["weeklySchedule"],
+        queryFn: async () => {
+          try {
+            const response = await axios.get(
+              `/api/weekly-unit/fetch-weekly-unit/${department._id}`
+            );
+            return response.data;
+          } catch (error) {
+            throw new Error("Error fetching data");
+          }
+        },
+      });
 
-  const { data: tickets = [], isLoading: isTicketsLoading } = useQuery({
-    queryKey: ["ticketIssues"],
-    queryFn: async () => {
-      try {
-        const response = await axios.get(
-          `/api/tickets/department-tickets/${department._id}`
-        );
-        return response.data;
-      } catch (error) {
-        throw new Error("Error fetching data");
-      }
-    },
-  });
+
+    const { data: tickets = [], isLoading: isTicketsLoading } =
+      useQuery({
+        queryKey: ["ticketIssues"],
+        queryFn: async () => {
+          try {
+            const response = await axios.get(
+              `/api/tickets/department-tickets/${department._id}`
+            );
+            return response.data;
+          } catch (error) {
+            throw new Error("Error fetching data");
+          }
+        },
+      });
 
   const hrBarData = transformBudgetData(!isHrFinanceLoading ? hrFinance : []);
   const totalExpense = hrBarData?.projectedBudget?.reduce(
@@ -180,7 +182,7 @@ const ItDashboard = () => {
 
     yaxis: {
       max: 600000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -198,7 +200,7 @@ const ItDashboard = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -206,7 +208,7 @@ const ItDashboard = () => {
                 <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
-               <div style="text-align: left;">USD ${Math.round(
+               <div style="text-align: left;">INR ${Math.round(
                  rawData
                ).toLocaleString("en-IN")}</div>
   
@@ -327,7 +329,7 @@ const ItDashboard = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `USD ${val.toLocaleString()}`, // ✅ shows actual expense
+        formatter: (val) => `INR ${val.toLocaleString()}`, // ✅ shows actual expense
       },
     },
   };
@@ -517,22 +519,23 @@ const ItDashboard = () => {
   //   { type: "Others", count: 12 },
   // ];
 
-  const complaintMap = {};
+const complaintMap = {};
 
-  tickets.forEach((ticket) => {
-    const type = ticket.ticket.trim(); // use exact ticket name as type
+tickets.forEach((ticket) => {
+  const type = ticket.ticket.trim(); // use exact ticket name as type
 
-    if (!complaintMap[type]) {
-      complaintMap[type] = 0;
-    }
+  if (!complaintMap[type]) {
+    complaintMap[type] = 0;
+  }
 
-    complaintMap[type]++;
-  });
+  complaintMap[type]++;
+});
 
-  const complaintTypes = Object.entries(complaintMap).map(([type, count]) => ({
-    type,
-    count,
-  }));
+const complaintTypes = Object.entries(complaintMap).map(([type, count]) => ({
+  type,
+  count,
+}));
+
 
   const totalComplaintTypes = complaintTypes.reduce(
     (sum, item) => sum + item.count,
@@ -544,28 +547,28 @@ const ItDashboard = () => {
   const complaintCounts = complaintTypes.map((item) => item.count);
   const complaintTypeLabels = complaintTypes.map((item) => item.type);
 
-  const transformedWeeklyShifts = useMemo(() => {
-    if (isWeeklyScheduleLoading || !weeklySchedule.length) return [];
-
-    return weeklySchedule.map((emp, index) => ({
-      srNo: index + 1,
-      id: index + 1,
-      name: `${emp.employee.id.firstName} ${emp.employee.id.lastName}`,
-      startDate: humanDate(emp.startDate),
-      endDate: humanDate(emp.endDate),
-      building: emp.location.building.buildingName,
-      unitNo: emp.location.unitNo,
-    }));
-  }, [weeklySchedule, isWeeklyScheduleLoading]);
-
-  const transformedTasks = tasks.map((task, index) => {
-    return {
-      id: index + 1,
-      taskName: task.taskName,
-      status: task.status,
-      endTime: humanTime(task.dueTime),
-    };
-  });
+    const transformedWeeklyShifts = useMemo(() => {
+      if (isWeeklyScheduleLoading || !weeklySchedule.length) return [];
+  
+      return weeklySchedule.map((emp, index) => ({
+        srNo: index + 1,
+        id: index + 1,
+        name: `${emp.employee.id.firstName} ${emp.employee.id.lastName}`,
+        startDate: humanDate(emp.startDate),
+        endDate: humanDate(emp.endDate),
+        building: emp.location.building.buildingName,
+        unitNo: emp.location.unitNo,
+      }));
+    }, [weeklySchedule, isWeeklyScheduleLoading]);
+  
+    const transformedTasks = tasks.map((task, index) => {
+      return {
+        id: index + 1,
+        taskName: task.taskName,
+        status: task.status,
+        endTime: humanTime(task.dueTime),
+      };
+    });
 
   //
   // ----------------------------------------------------------------------------------------------------------//
@@ -581,7 +584,8 @@ const ItDashboard = () => {
               <Skeleton variant="text" width={200} height={30} />
               <Skeleton variant="rectangular" width="100%" height={300} />
             </Box>
-          }>
+          }
+        >
           <WidgetSection normalCase layout={1} padding>
             <YearlyGraph
               data={expenseRawSeries}
@@ -590,7 +594,7 @@ const ItDashboard = () => {
               options={expenseOptions}
               onYearChange={setSelectedFiscalYear}
               title={"BIZ Nest IT DEPARTMENT EXPENSE"}
-              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -669,7 +673,7 @@ const ItDashboard = () => {
         <DataCard data={""} title={"Average"} description={"Yearly Expense"} />,
       ],
     },
-    {
+     {
       layout: 2,
       widgets: [
         <MuiTable
@@ -736,6 +740,7 @@ const ItDashboard = () => {
         </WidgetSection>,
       ],
     },
+   
   ];
 
   return (

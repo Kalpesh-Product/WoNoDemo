@@ -106,7 +106,7 @@ const AdminMonthlyInvoiceReports = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -346,7 +346,7 @@ const AdminMonthlyInvoiceReports = () => {
                     <TextField
                       size="small"
                       {...field}
-                      label="Price (USD)"
+                      label="Price (INR)"
                       type="number"
                       error={!!errors.price}
                       helperText={errors.price?.message}
@@ -456,7 +456,7 @@ const AdminMonthlyInvoiceReports = () => {
               <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
               <DetalisFormatted
                 title="Price"
-                detail={`USD ${selectedAsset.price.toLocaleString("en-IN")}`}
+                detail={`INR ${selectedAsset.price.toLocaleString("en-IN")}`}
               />
               <DetalisFormatted
                 title="Quantity"

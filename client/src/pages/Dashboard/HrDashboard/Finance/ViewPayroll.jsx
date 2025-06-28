@@ -125,7 +125,8 @@ const ViewPayroll = () => {
         border
         title={"Attendance"}
         button={true}
-        buttonTitle={"Edit"}>
+        buttonTitle={"Edit"}
+      >
         <YearWiseTable
           key={attendanceData.map((item) => item.id)}
           search={true}
@@ -140,7 +141,8 @@ const ViewPayroll = () => {
         border
         title={"Leaves List"}
         button={true}
-        buttonTitle={"Edit"}>
+        buttonTitle={"Edit"}
+      >
         <YearWiseTable
           key={leavesData.length}
           dateColumn={"fromDate"}
@@ -156,7 +158,8 @@ const ViewPayroll = () => {
         button
         buttonTitle={"Edit"}
         layout={1}
-        title={"Payslip Generator"}>
+        title={"Payslip Generator"}
+      >
         <div className="flex flex-col gap-4 justify-center items-center">
           <div className="border-default border-borderGray p-6 rounded-xl">
             <span className="text-center text-title font-pmedium mb-4">
@@ -195,10 +198,7 @@ const ViewPayroll = () => {
               <div className="flex flex-col w-full">
                 <span className="text-content">Month</span>{" "}
                 <span className="text-content text-gray-600">
-                  {new Date().toLocaleString("default", {
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  {new Date().toLocaleString("default",{month : 'long', year:'numeric'})}
                 </span>
               </div>
             </div>
@@ -216,15 +216,15 @@ const ViewPayroll = () => {
                 </div>
                 {/* <div className="flex justify-between py-1 border-b-[1px] border-borderGray">
                   <span>House Rent Allowance (HRA)</span>
-                  <span>USD 15,000</span>
+                  <span>INR 15,000</span>
                 </div>
                 <div className="flex justify-between py-1 border-b-[1px] border-borderGray">
                   <span>Other Allowances</span>
-                  <span>USD 10,000</span>
+                  <span>INR 10,000</span>
                 </div>
                 <div className="flex justify-between py-1 font-semibold">
                   <span>Total Earnings</span>
-                  <span>USD 95,000</span>
+                  <span>INR 95,000</span>
                 </div> */}
               </div>
             </div>

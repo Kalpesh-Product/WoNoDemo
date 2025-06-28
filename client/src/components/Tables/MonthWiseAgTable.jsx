@@ -60,43 +60,46 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
     };
   }, [filteredMonths, selectedMonthIndex]);
 
-  //   const parseAmount = (amount) => {
-  //   if (!amount) return 0;
-  //   if (typeof amount === "number") return amount;
-  //   return parseFloat(amount.replace(/,/g, "")) || 0;
-  // };
+//   const parseAmount = (amount) => {
+//   if (!amount) return 0;
+//   if (typeof amount === "number") return amount;
+//   return parseFloat(amount.replace(/,/g, "")) || 0;
+// };
 
-  const parseAmount = (amount) => {
-    if (!amount) return 0;
-    if (typeof amount === "number") return amount;
-    return parseFloat(amount.replace(/,/g, "")) || 0;
-  };
+const parseAmount = (amount) => {
+  if (!amount) return 0;
+  if (typeof amount === "number") return amount;
+  return parseFloat(amount.replace(/,/g, "")) || 0;
+};
 
-  const monthTotal = monthData.rows
-    .map((item) => {
-      const revenue = parseAmount(item.revenue);
-      const total = parseAmount(item.totalAmount);
-      const invoice = parseAmount(item.invoiceAmount);
+const monthTotal = monthData.rows
+  .map((item) => {
+    const revenue = parseAmount(item.revenue);
+    const total = parseAmount(item.totalAmount);
+    const invoice = parseAmount(item.invoiceAmount);
 
-      // Prefer revenue > total > invoice
-      return revenue || total || invoice || 0;
-    })
-    .reduce((sum, item) => sum + item, 0);
+    // Prefer revenue > total > invoice
+    return revenue || total || invoice || 0;
+  })
+  .reduce((sum, item) => sum + item, 0);
+
+
 
   const columns = [
+    { headerName: "Sr No", field: "srNo",width:100 },
     { headerName: "Particulars", field: "particulars" },
     {
-      headerName: "Taxable Amount (USD)",
+      headerName: "Taxable Amount (INR)",
       field: "taxableAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "GST (USD)",
+      headerName: "GST (INR)",
       field: "gst",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
     {
-      headerName: "Invoice Amount (USD)",
+      headerName: "Invoice Amount (INR)",
       field: "invoiceAmount",
       valueFormatter: ({ value }) => `${value?.toLocaleString()}`,
     },
@@ -125,8 +128,8 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
 
       <WidgetSection
         title={title}
-        TitleAmount={amount || `USD ${inrFormat(monthTotal)}`}
-        border>
+        TitleAmount={amount || `INR ${inrFormat(monthTotal)}`}
+         border>
         <div className="flex justify-center items-center space-x-2 px-4 pt-2 ">
           {/* Month Switcher */}
           {filteredMonths.length > 0 && (

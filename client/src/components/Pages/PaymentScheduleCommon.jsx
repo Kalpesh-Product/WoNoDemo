@@ -23,7 +23,7 @@ import { inrFormat } from "../../utils/currencyFormat";
 const PaymentScheduleCommon = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const department = usePageDepartment();
+  const department = usePageDepartment()
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
@@ -144,7 +144,8 @@ const PaymentScheduleCommon = () => {
                           fontSize: "0.875rem",
                           fontWeight: "bold",
                           textTransform: "capitalize",
-                        }}>
+                        }}
+                      >
                         {status}
                       </span>
                     }
@@ -171,7 +172,8 @@ const PaymentScheduleCommon = () => {
                         className="w-3 h-3 rounded-full mt-[0.3rem]"
                         style={{
                           backgroundColor: event.backgroundColor,
-                        }}></div>
+                        }}
+                      ></div>
                       <div className="flex flex-col">
                         <span className="text-content font-medium">
                           {event.title}
@@ -227,7 +229,8 @@ const PaymentScheduleCommon = () => {
           selectedEvent
             ? statusColorMap[selectedEvent.extendedProps.status]
             : ""
-        }>
+        }
+      >
         {selectedEvent && (
           <div className="flex flex-col gap-3">
             <div className="font-bold">General Information</div>
@@ -247,9 +250,7 @@ const PaymentScheduleCommon = () => {
               title="Projected Amount"
               detail={
                 selectedEvent.extendedProps.projectedAmount
-                  ? `USD ${inrFormat(
-                      selectedEvent.extendedProps.projectedAmount
-                    )}`
+                  ? `INR ${inrFormat(selectedEvent.extendedProps.projectedAmount)}`
                   : "Not Available"
               }
             />
@@ -257,7 +258,7 @@ const PaymentScheduleCommon = () => {
               title="Actual Amount"
               detail={
                 selectedEvent.extendedProps.amount
-                  ? `USD ${inrFormat(selectedEvent.extendedProps.amount)}`
+                  ? `INR ${inrFormat(selectedEvent.extendedProps.amount)}`
                   : "Not Available"
               }
             />

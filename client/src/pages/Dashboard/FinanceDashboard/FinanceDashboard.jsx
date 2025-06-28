@@ -33,6 +33,7 @@ const FinanceDashboard = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   const navigate = useNavigate();
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
 
   const axios = useAxiosPrivate();
   const { data: revenueExpenseData = [], isLoading: isRevenueExpenseLoading } =
@@ -51,12 +52,8 @@ const FinanceDashboard = () => {
   const { data: budgetData = [], isLoading: isBudgetDataLoading } = useQuery({
     queryKey: ["budgetData"],
     queryFn: async () => {
-      try {
-        const response = await axios.get("/api/budget/company-budget");
-        return response.data?.allBudgets;
-      } catch (error) {
-        console.error(error);
-      }
+      const res = await axios.get("/api/budget/company-budget");
+      return res.data?.allBudgets;
     },
   });
 
@@ -64,7 +61,7 @@ const FinanceDashboard = () => {
     ? []
     : budgetData.filter((item) => {
         const due = new Date(item.dueDate);
-        return due.getFullYear() === 2025 && due.getMonth() === 2; // Month is 0-indexed: 2 = March
+        return due.getFullYear() === 2025 && due.getMonth() === 2;
       });
 
   const financeBudgetsRaw = isBudgetDataLoading
@@ -72,6 +69,7 @@ const FinanceDashboard = () => {
     : budgetData.filter(
         (item) => item.department?._id === "6798bab0e469e809084e249a"
       );
+
   const financeBudgets = financeBudgetsRaw.filter(
     (item) => item.expanseType === "Statutory Payments"
   );
@@ -79,36 +77,15 @@ const FinanceDashboard = () => {
   const testExpense = revenueExpenseData
     .filter((item) => item.expense)
     .flatMap((item) => item.expense);
+
   const testIncome = revenueExpenseData.filter((item) => item.income);
+
   const testUnits = revenueExpenseData
     .filter((item) => item.units)
     .flatMap((item) => item.units);
+
   const totalSqft = testUnits.reduce((sum, item) => (item.sqft || 0) + sum, 0);
-  const totalExpense = testExpense.reduce(
-    (sum, item) => (item.actualAmount || 0) + sum,
-    0
-  );
-  const totalIncomeAmount = testIncome.reduce((grandTotal, item, index) => {
-    const incomeSources = item.income || {};
 
-    const incomeValues = Object.values(incomeSources);
-
-    const allRevenues = incomeValues.flat();
-
-    const sourceTotals = allRevenues.reduce((sum, revenueItem, i) => {
-      const value = revenueItem.taxableAmount ?? revenueItem.revenue ?? 0;
-      return sum + value;
-    }, 0);
-
-    return grandTotal + sourceTotals;
-  }, 0);
-
-  dispatch(setTotalExpense(isRevenueExpenseLoading ? 0 : totalExpense));
-  dispatch(setTotalIncome(isRevenueExpenseLoading ? 0 : totalIncomeAmount));
-
-  //----------INCOME-EXPENSE GRAPH conversion------------------//
-  const excludedMonths = ["Jan-24", "Feb-24", "Mar-24"];
-  const monthWiseExpenses = {};
   const yearCategories = {
     "FY 2024-25": [
       "Apr-24",
@@ -139,10 +116,8 @@ const FinanceDashboard = () => {
       "Mar-26",
     ],
   };
-  //-----------------IncomeData---------------//
-  const monthWiseIncome = {};
+  const excludedMonths = ["Jan-24", "Feb-24", "Mar-24"];
 
-  // Flatten all income arrays from all sources
   const incomeSources = revenueExpenseData.flatMap((item) => {
     const income = item.income || {};
     return [
@@ -154,23 +129,15 @@ const FinanceDashboard = () => {
     ];
   });
 
-  // Process each income item
+  const monthWiseIncome = {};
   incomeSources.forEach((income) => {
-    // Pick the most relevant date for grouping by month
     const rawDate =
       income.date || income.rentDate || income.invoiceCreationDate;
-    // income.paDueDate ||
-    // income.dueTerm;
-
     if (!rawDate) return;
-
     const monthKey = dayjs(rawDate).format("MMM-YY");
-
-    // Skip excluded months
     if (excludedMonths.includes(monthKey)) return;
 
     const amount = income.taxableAmount || income.revenue || 0;
-
     if (!monthWiseIncome[monthKey]) {
       monthWiseIncome[monthKey] = {
         month: monthKey,
@@ -178,18 +145,12 @@ const FinanceDashboard = () => {
         incomes: [],
       };
     }
-
     monthWiseIncome[monthKey].actualIncome += amount;
     monthWiseIncome[monthKey].incomes.push(income);
   });
 
-  // Convert to array and sort
-  const transformedIncomes = Object.values(monthWiseIncome).sort((a, b) =>
-    dayjs(a.month, "MMM-YY").isAfter(dayjs(b.month, "MMM-YY")) ? 1 : -1
-  );
-
   const incomeMap = {};
-  transformedIncomes.forEach((item) => {
+  Object.values(monthWiseIncome).forEach((item) => {
     incomeMap[item.month] = item.actualIncome;
   });
 
@@ -208,13 +169,9 @@ const FinanceDashboard = () => {
     (item) => item.data[item.data.length - 1]
   );
 
-  //-----------------IncomeData---------------//
-
-  //------------------Expensedata----------------------//
+  const monthWiseExpenses = {};
   testExpense.forEach((exp) => {
-    const monthKey = dayjs(exp.dueDate).format("MMM-YY"); // e.g., "Apr-24"
-
-    // Skip excluded months
+    const monthKey = dayjs(exp.dueDate).format("MMM-YY");
     if (excludedMonths.includes(monthKey)) return;
 
     if (!monthWiseExpenses[monthKey]) {
@@ -230,19 +187,16 @@ const FinanceDashboard = () => {
     monthWiseExpenses[monthKey].projectedExpense += exp.projectedAmount || 0;
     monthWiseExpenses[monthKey].expenses.push(exp);
   });
-
   const transformedExpenses = Object.values(monthWiseExpenses);
-
   const sortedExpenses = transformedExpenses.sort((a, b) =>
     dayjs(a.month, "MMM-YY").isAfter(dayjs(b.month, "MMM-YY")) ? 1 : -1
   );
-  // Build map of month => actualExpense
+
   const expenseMap = {};
-  sortedExpenses.forEach((item) => {
+  Object.values(monthWiseExpenses).forEach((item) => {
     expenseMap[item.month] = item.actualExpense;
   });
 
-  // Generate expenseData for all fiscal years defined in `yearCategories`
   const expenseData = Object.entries(yearCategories).map(
     ([fiscalYear, months]) => ({
       name: "Expense",
@@ -250,6 +204,23 @@ const FinanceDashboard = () => {
       data: months.map((month) => expenseMap[month] || 0),
     })
   );
+
+  const currentIncomeSeries = incomeData.find(
+    (item) => item.group === selectedFiscalYear
+  );
+
+  const currentExpenseSeries = expenseData.find(
+    (item) => item.group === selectedFiscalYear
+  );
+
+  const totalIncomeAmount = currentIncomeSeries
+    ? currentIncomeSeries.data.reduce((acc, val) => acc + val, 0)
+    : 0;
+
+  const totalExpense = currentExpenseSeries
+    ? currentExpenseSeries.data.reduce((acc, val) => acc + val, 0)
+    : 0;
+
   //------------------Expensedata----------------------//
 
   const lastMonthRaw = expenseData.filter(
@@ -298,7 +269,7 @@ const FinanceDashboard = () => {
     yaxis: {
       max: 8000000,
       title: {
-        text: "Amount In Thousand (USD)",
+        text: "Amount In Lakhs (INR)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -329,11 +300,11 @@ const FinanceDashboard = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>USD ${income?.toLocaleString() || "0"}</span>
+                <span>INR ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>USD ${inrFormat(expense) || "0"}</span>
+                <span>INR ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -350,22 +321,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `USD ${inrFormat(lastMonthDataIncome)}`,
+        value: `INR ${inrFormat(lastMonthDataIncome)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `USD ${inrFormat(totalIncomeAmount / 12)}`,
+        value: `INR ${inrFormat(totalIncomeAmount / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `USD ${inrFormat(totalIncomeAmount)}`,
+        value: `INR ${inrFormat(totalIncomeAmount)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `USD ${inrFormat(totalIncomeAmount / totalSqft)}`,
+        value: `INR ${inrFormat(totalIncomeAmount / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -377,22 +348,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `USD ${inrFormat(lastMonthData)}`,
+        value: `INR ${inrFormat(lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `USD ${inrFormat(totalExpense / 12)}`,
+        value: `INR ${inrFormat(totalExpense / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `USD ${inrFormat(totalExpense)}`,
+        value: `INR ${inrFormat(totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `USD ${inrFormat(totalExpense / totalSqft)}`,
+        value: `INR ${inrFormat(totalExpense / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -404,22 +375,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `USD ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
+        value: `INR ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `USD ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
+        value: `INR ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `USD ${inrFormat(totalIncomeAmount - totalExpense)}`,
+        value: `INR ${inrFormat(totalIncomeAmount - totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `USD ${inrFormat(
+        value: `INR ${inrFormat(
           (totalIncomeAmount - totalExpense) / totalSqft
         )}`,
         route: "sqft-wise-data",
@@ -517,7 +488,7 @@ const FinanceDashboard = () => {
       y: {
         formatter: function (value, { seriesIndex }) {
           const category = pieMonthlyPayoutData[seriesIndex];
-          return `USD ${category?.value?.toLocaleString("en-IN") || 0}`;
+          return `INR ${category?.value?.toLocaleString("en-IN") || 0}`;
         },
       },
     },
@@ -593,7 +564,7 @@ const FinanceDashboard = () => {
     tooltip: {
       y: {
         formatter: function (value) {
-          return `USD ${inrFormat(value.toFixed(0))}`;
+          return `INR ${inrFormat(value.toFixed(0))}`;
         },
       },
     },
@@ -625,7 +596,7 @@ const FinanceDashboard = () => {
   //           (client) =>
   //             `<div style="display: flex; justify-content: space-between;">
   //             <span>${client.clientName}</span>
-  //             <span>USD ${client.amount.toLocaleString()}</span>
+  //             <span>INR ${client.amount.toLocaleString()}</span>
   //           </div>`
   //         )
   //         .join("");
@@ -741,8 +712,8 @@ const FinanceDashboard = () => {
   const donutRentalLabels = ["Paid", "Unpaid"];
   const donutRentalSeries = [totalPaid, totalUnpaid];
   const donutRentalTooltipValue = [
-    ` USD ${totalPaid.toLocaleString()}`,
-    ` USD ${totalUnpaid.toLocaleString()}`,
+    ` INR ${totalPaid.toLocaleString()}`,
+    ` INR ${totalUnpaid.toLocaleString()}`,
   ];
   const donutRentalColors = ["#4CAF50", "#F44336"];
 
@@ -802,7 +773,7 @@ const FinanceDashboard = () => {
     { id: "expanseType", label: "Type", width: 150 },
     {
       id: "actualAmount",
-      label: "Actual Amount (USD)",
+      label: "Actual Amount (INR)",
       width: 150,
       renderCell: (row) => `${row.actualAmount.toLocaleString("en-IN")}`,
     },
@@ -844,8 +815,9 @@ const FinanceDashboard = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)} `}
-          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)}`}
+          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
+          onYearChange={setSelectedFiscalYear}
         />,
       ],
     },

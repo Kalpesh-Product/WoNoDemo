@@ -106,7 +106,7 @@ const AdminAssetList = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -594,7 +594,7 @@ const AdminAssetList = () => {
               />
               <DetalisFormatted
                 title="Price"
-                detail={`USD ${Number(selectedAsset.price).toLocaleString(
+                detail={`INR ${Number(selectedAsset.price).toLocaleString(
                   "en-IN"
                 )}`}
               />

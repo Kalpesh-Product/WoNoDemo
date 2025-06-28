@@ -428,9 +428,9 @@ const RevenueTarget = () => {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
     yaxis: {
-      title: { text: "Revenue (USD)" },
+      title: { text: "Revenue (INR)" },
       labels: {
-        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`
+        formatter: (value) => `INR ${value.toLocaleString("en-IN")}`
       }
     },
     plotOptions: {
@@ -468,7 +468,7 @@ const RevenueTarget = () => {
         padding
         title={"Vertical-wise Revenue Targets"}
         titleLabel={dayjs().format("MMMM YYYY")}
-        TitleAmount={`USD ${inrFormat("6800000")}`}>
+        TitleAmount={`INR ${inrFormat("6800000")}`}>
         <BarGraph data={graphData} options={options} height={400} />
       </WidgetSection>
 
@@ -498,7 +498,7 @@ const RevenueTarget = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                  USD {domain.revenue.toLocaleString()} 
+                  INR {domain.revenue.toLocaleString()} 
                   </span>
                 </div>
               </AccordionSummary>
@@ -520,7 +520,7 @@ const RevenueTarget = () => {
                     },
                     { headerName: "Register Date", field: "registerDate", flex: 1 },
                     {
-                      headerName: "Actual Revenue (USD)",
+                      headerName: "Actual Revenue (INR)",
                       field: "actualRevenue",
                       flex: 1,
                     },
@@ -532,7 +532,7 @@ const RevenueTarget = () => {
                       Total Revenue for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      USD&nbsp;{domain.revenue.toLocaleString("en-IN")}
+                      INR&nbsp;{domain.revenue.toLocaleString("en-IN")}
                     </span>{" "}
               </AccordionDetails>
             </Accordion>

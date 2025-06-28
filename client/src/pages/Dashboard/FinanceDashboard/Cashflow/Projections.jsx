@@ -15,7 +15,7 @@ import YearlyGraph from "../../../../components/graphs/YearlyGraph";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import YearWiseTable from "../../../../components/Tables/YearWiseTable";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable"
 import { CircularProgress } from "@mui/material";
 
 const Projections = () => {
@@ -121,10 +121,10 @@ const Projections = () => {
     },
     yaxis: {
       title: {
-        text: "Amount in Thousand (USD)",
+        text: "Amount in Lakhs (INR)",
       },
       min: 1,
-      max: 10_00_000, // Adjust based on expected scale (e.g., 10 lakhs)
+        max: 10_00_000, // Adjust based on expected scale (e.g., 10 lakhs)
       labels: {
         formatter: (val) => (val / 100000).toFixed(0),
       },
@@ -135,7 +135,7 @@ const Projections = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `USD ${inrFormat(val)}`,
+        formatter: (val) => `INR ${inrFormat(val)}`,
       },
     },
   };
@@ -144,9 +144,9 @@ const Projections = () => {
   //-----------------------------------------------------Table columns/Data------------------------------------------------------//
   const monthlyProfitLossColumns = [
     { field: "id", headerName: "Sr No", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected (USD)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual (USD)", flex: 1 },
-    { field: "pnl", headerName: "P&L (USD)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected (INR)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual (INR)", flex: 1 },
+    { field: "pnl", headerName: "P&L (INR)", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
@@ -154,7 +154,8 @@ const Projections = () => {
         <div className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all mb-2 inline-flex gap-2">
           <span
             className="text-subtitle cursor-pointer"
-            onClick={() => handleViewModal(params.data)}>
+            onClick={() => handleViewModal(params.data)}
+          >
             <MdOutlineRemoveRedEye />
           </span>
         </div>
@@ -162,18 +163,16 @@ const Projections = () => {
     },
   ];
 
-  const monthlyProfitLossData = isBudgetDataLoading
-    ? []
-    : budgetData.map((item, index) => {
-        const pnl = item.projectedAmount - item.actualAmount;
-        return {
-          ...item,
-          id: index + 1,
-          projectedAmount: inrFormat(item.projectedAmount),
-          actualAmount: inrFormat(item.actualAmount),
-          pnl: inrFormat(pnl),
-        };
-      });
+  const monthlyProfitLossData = isBudgetDataLoading ? [] : budgetData.map((item,index) => {
+    const pnl = item.projectedAmount - item.actualAmount;
+    return {
+      ...item,
+      id : index + 1,
+      projectedAmount: inrFormat(item.projectedAmount),
+      actualAmount: inrFormat(item.actualAmount),
+      pnl: inrFormat(pnl),
+    };
+  });
 
   const handleViewModal = (rowData) => {
     setViewDetails(rowData);
@@ -212,49 +211,49 @@ const Projections = () => {
       ))}
 
       {!isBudgetDataLoading ? (
-        <div>
-          <WidgetSection
-            border
-            title={`Total Monthly P&L`}
-            titleLabel={"FY 2024-25"}
-            // TitleAmount={`USD ${totalPnL.toLocaleString()}`}
-            TitleAmount={`USD 0`}>
-            <YearWiseTable
-              dateColumn={"dueDate"}
-              data={[]}
-              columns={monthlyProfitLossColumns}
-            />
-            {/* <YearWiseTable dateColumn={"dueDate"} data={monthlyProfitLossData} columns={monthlyProfitLossColumns}  /> */}
-          </WidgetSection>
-        </div>
+
+      <div>
+        <WidgetSection
+          border
+          title={`Total Monthly P&L`}
+          titleLabel={"FY 2024-25"}
+          // TitleAmount={`INR ${totalPnL.toLocaleString()}`}
+          TitleAmount={`INR 0`}
+        >
+          <YearWiseTable dateColumn={"dueDate"} data={[]} columns={monthlyProfitLossColumns}  />
+          {/* <YearWiseTable dateColumn={"dueDate"} data={monthlyProfitLossData} columns={monthlyProfitLossColumns}  /> */}
+        </WidgetSection>
+      </div>
       ) : (
         <div className="h-72 flex items-center justify-center">
           <CircularProgress />
         </div>
       )}
 
+
       {viewDetails && (
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Monthly P&L Detail">
+          title="Monthly P&L Detail"
+        >
           <div className="space-y-3">
             <DetalisFormatted title="Month" detail={viewDetails.month} />
             <DetalisFormatted
               title="Income"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.income.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="Expense"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.expense.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="P&L"
-              detail={`USD ${Number(
+              detail={`INR ${Number(
                 viewDetails.pnl.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />

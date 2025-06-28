@@ -105,7 +105,7 @@ const MaintenanceAmcRecords = (disabled) => {
     { field: "inventoryNumber", headerName: "Inventory Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (USD)" },
+    { field: "price", headerName: "Price (INR)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -569,7 +569,7 @@ const MaintenanceAmcRecords = (disabled) => {
             <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
             <DetalisFormatted
               title="Price"
-              detail={`USD ${selectedAsset.price}`}
+              detail={`INR ${selectedAsset.price}`}
             />
             <DetalisFormatted
               title="Quantity"

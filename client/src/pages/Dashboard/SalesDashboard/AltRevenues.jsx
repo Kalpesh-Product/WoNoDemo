@@ -23,6 +23,7 @@ const AltRevenues = () => {
         }
       },
     });
+
   const monthlyRevenueData = [
     {
       month: "Apr-24",
@@ -312,14 +313,15 @@ const AltRevenues = () => {
       categories: monthlyRevenueData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
     },
     tooltip: {
+      enabled: false,
       y: {
-        formatter: (val) => `${val.toLocaleString()} USD`,
+        formatter: (val) => `${val.toLocaleString()} INR`,
       },
     },
     plotOptions: {
@@ -357,7 +359,7 @@ const AltRevenues = () => {
     return {
       id: index,
       month: monthData.month,
-      revenue: `USD ${totalRevenue.toLocaleString()}`,
+      revenue: `INR ${totalRevenue.toLocaleString()}`,
       clients: monthData.revenue.map((client, i) => ({
         id: i + 1,
         revenueSource: client.particulars,
@@ -366,6 +368,22 @@ const AltRevenues = () => {
       })),
     };
   });
+
+  const transformedData = isLoadingAlternateRevenue
+    ? []
+    : alternateRevenue.map((item, index) => {
+        const revenue = item?.revenue.map((rev) => ({
+          ...rev,
+          taxableAmount: inrFormat(rev?.taxableAmount),
+          invoiceAmount: inrFormat(rev?.invoiceAmount),
+          gst: inrFormat(rev?.gst),
+        }));
+
+        return {
+          ...item,
+          revenue,
+        };
+      });
 
   return (
     <div className="flex flex-col gap-4">
@@ -377,13 +395,14 @@ const AltRevenues = () => {
         <WidgetSection
           title={"Annual Monthly Alternate Revenues"}
           titleLabel={"FY 2024-25"}
-          TitleAmount={`USD ${inrFormat(totalActual)}`}
-          border>
+          TitleAmount={`INR ${inrFormat(totalActual)}`}
+          border
+        >
           <BarGraph
             data={series}
             options={options}
             height={400}
-            // TitleAmount={`USD ${inrFormat(totalActual)}`}
+            // TitleAmount={`INR ${inrFormat(totalActual)}`}
           />
         </WidgetSection>
       )}
@@ -391,7 +410,7 @@ const AltRevenues = () => {
       {!isLoadingAlternateRevenue ? (
         <MonthWiseAgTable
           title={"Monthly Revenue with Source Details"}
-          financialData={alternateRevenue}
+          financialData={transformedData}
           noFilter
         />
       ) : (

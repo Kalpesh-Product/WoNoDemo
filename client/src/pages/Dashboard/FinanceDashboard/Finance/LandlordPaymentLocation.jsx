@@ -144,12 +144,12 @@ const LandlordPaymentLocation = () => {
         formatter: (val) => `${Math.round(val / 100000)}L`,
       },
       title: {
-        text: "Amount in USD (Thousand)",
+        text: "Amount in INR (Lakhs)",
       },
     },
     tooltip: {
       y: {
-        formatter: (val) => `USD ${val.toLocaleString("en-IN")}`,
+        formatter: (val) => `INR ${val.toLocaleString("en-IN")}`,
       },
     },
     colors: ["#54C4A7"],
@@ -168,8 +168,8 @@ const LandlordPaymentLocation = () => {
   const paymentColumns = [
     { field: "srNo", headerName: "Sr No", width: 100, flex: 1 },
     { field: "expanseName", headerName: "Expanse Name", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected Amount (INR)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual Amount (INR)", flex: 1 },
     { field: "dueDate", headerName: "Due Date", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
     {
@@ -213,13 +213,13 @@ const LandlordPaymentLocation = () => {
             chartId="unit-wise-rent"
             data={graphData}
             options={barGraphOptions}
-            titleAmount={`USD ${inrFormat(totalUnitRent)}`}
+            titleAmount={`INR ${inrFormat(totalUnitRent)}`}
           />
 
           <WidgetSection
             layout={1}
             title={`Landlord Payments (${unit})`}
-            TitleAmount={`USD ${inrFormat(currentMonthTotal)}`}
+            TitleAmount={`INR ${inrFormat(currentMonthTotal)}`}
             border>
             <MonthWiseTable
               dateColumn={"dueDate"}
@@ -259,11 +259,11 @@ const LandlordPaymentLocation = () => {
             <div className="font-bold">Financial Details</div>
             <DetalisFormatted
               title="Projected Amount"
-              detail={`USD ${viewDetails.projectedAmount}`}
+              detail={`INR ${viewDetails.projectedAmount}`}
             />
             <DetalisFormatted
               title="Actual Amount"
-              detail={`USD ${viewDetails.actualAmount}`}
+              detail={`INR ${viewDetails.actualAmount}`}
             />
             <DetalisFormatted
               title="Due Date"

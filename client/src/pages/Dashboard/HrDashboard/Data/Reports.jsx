@@ -36,8 +36,8 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
     { field: "employeename", headerName: "Employee Name", flex: 1 },
     { field: "role", headerName: "Role" },
     { field: "dateandtime", headerName: "Date & Time", width: "200" },
-    { field: "totalsalary", headerName: "Total Salary (USD)", flex: 1 },
-    { field: "reimbursment", headerName: "Reimbursment (USD)", flex: 1 },
+    { field: "totalsalary", headerName: "Total Salary (INR)", flex: 1 },
+    { field: "reimbursment", headerName: "Reimbursment (INR)", flex: 1 },
     {
       field: "status",
       headerName: "Status",
@@ -69,7 +69,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
 
   const rows = [
     {
-      srNo: 1,
+      srNo:1,
       payrollid: "PYRL120124",
       employeename: "Kalpesh Naik",
       role: "Lead UI/UX Developer",
@@ -79,7 +79,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
       status: "completed",
     },
     {
-      srNo: 2,
+      srNo:2,
       payrollid: "PYRL120130",
       employeename: "AiwinRaj",
       role: "Jr UI/UX Developer",
@@ -89,7 +89,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
       status: "completed",
     },
     {
-      srNo: 3,
+      srNo:3,
       payrollid: "PYRL120131",
       employeename: "Ashwin Karthik",
       role: "Jr UI/UX Developer",
@@ -99,7 +99,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
       status: "Pending",
     },
     {
-      srNo: 4,
+      srNo:4,
       payrollid: "PYRL120132",
       employeename: "Allen Silvera",
       role: "Jr UI/UX Developer",
@@ -109,7 +109,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
       status: "Pending",
     },
     {
-      srNo: 5,
+      srNo:5,
       payrollid: "PYRL120133",
       employeename: "Sankalp Kalangutkar",
       role: "Jr backed Develper",
@@ -119,7 +119,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
       status: "completed",
     },
     {
-      srNo: 6,
+      srNo:6,
       payrollid: "PYRL120134",
       employeename: "Muskan Dodmani",
       role: "Jr backend Developer",
@@ -131,7 +131,7 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
   ];
   return (
     <div>
-      <Box sx={{ width: "20vw" }}>
+      <Box sx={{width:'20vw'}}>
         <FormControl fullWidth>
           <InputLabel id="dropdown-label">Select Option</InputLabel>
           <Select
@@ -139,7 +139,8 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
             value={selected}
             label="Select Option"
             size="small"
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             <MenuItem value="Payroll">Payroll</MenuItem>
             <MenuItem value="Attendance">Attendance</MenuItem>
           </Select>

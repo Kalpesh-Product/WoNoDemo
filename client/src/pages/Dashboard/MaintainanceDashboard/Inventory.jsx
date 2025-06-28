@@ -139,13 +139,23 @@ const Inventory = () => {
       cellRenderer: (params) => inrFormat(params.value),
     },
     {
+      field: "openingPerUnitPrice",
+      headerName: "Opening Per Unit Price",
+      cellRenderer: (params) => inrFormat(params.value),
+    },
+    {
       field: "openingInventoryValue",
-      headerName: "Opening Value (USD)",
+      headerName: "Opening Value (INR)",
       cellRenderer: (params) => inrFormat(params.value),
     },
     {
       field: "newPurchaseUnits",
       headerName: "New Purchase Units",
+      cellRenderer: (params) => inrFormat(params.value),
+    },
+    {
+      field: "newPurchasePerUnitPrice",
+      headerName: "New Purchase Per Unit Price",
       cellRenderer: (params) => inrFormat(params.value),
     },
     {
@@ -157,6 +167,10 @@ const Inventory = () => {
       field: "closingInventoryUnits",
       headerName: "Closing Units",
       cellRenderer: (params) => inrFormat(params.value),
+    },
+    {
+      field: "Category",
+      headerName: "Category",
     },
     {
       field: "date",
@@ -191,6 +205,7 @@ const Inventory = () => {
           hideTitle={true}
           buttonTitle={"Add Inventory"}
           data={inventoryData || []}
+          tableHeight={450}
           dateColumn={"date"}
           columns={inventoryColumns}
           handleSubmit={handleAddAsset}
@@ -423,21 +438,21 @@ const Inventory = () => {
             <br />
             <div className="font-bold">Inventory Value</div>
             <DetalisFormatted
-              title="Opening Value (USD)"
-              detail={`USD ${
+              title="Opening Value (INR)"
+              detail={`INR ${
                 inrFormat(selectedAsset.openingInventoryValue) ?? "N/A"
               }`}
             />
 
             <DetalisFormatted
               title="New Purchase Value"
-              detail={`USD ${
+              detail={`INR ${
                 inrFormat(selectedAsset.newPurchaseInventoryValue) ?? "N/A"
               }`}
             />
             <DetalisFormatted
               title="Price"
-              detail={`USD ${
+              detail={`INR ${
                 inrFormat(selectedAsset.newPurchasePerUnitPrice) ?? "N/A"
               }`}
             />

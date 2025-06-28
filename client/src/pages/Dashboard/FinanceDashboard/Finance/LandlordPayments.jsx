@@ -10,11 +10,7 @@ import { inrFormat } from "../../../../utils/currencyFormat";
 const LandlordPayments = () => {
   const axios = useAxiosPrivate();
 
-  const {
-    data: hrFinance = [],
-    isPending: isHrLoading,
-    isError,
-  } = useQuery({
+  const { data: hrFinance = [], isPending: isHrLoading, isError } = useQuery({
     queryKey: ["allBudgets"],
     queryFn: async () => {
       try {
@@ -33,32 +29,12 @@ const LandlordPayments = () => {
   const excludedMonths = ["Jan-24", "Feb-24", "Mar-24"];
   const yearCategories = {
     "FY 2024-25": [
-      "Apr-24",
-      "May-24",
-      "Jun-24",
-      "Jul-24",
-      "Aug-24",
-      "Sep-24",
-      "Oct-24",
-      "Nov-24",
-      "Dec-24",
-      "Jan-25",
-      "Feb-25",
-      "Mar-25",
+      "Apr-24", "May-24", "Jun-24", "Jul-24", "Aug-24", "Sep-24",
+      "Oct-24", "Nov-24", "Dec-24", "Jan-25", "Feb-25", "Mar-25",
     ],
     "FY 2025-26": [
-      "Apr-25",
-      "May-25",
-      "Jun-25",
-      "Jul-25",
-      "Aug-25",
-      "Sep-25",
-      "Oct-25",
-      "Nov-25",
-      "Dec-25",
-      "Jan-26",
-      "Feb-26",
-      "Mar-26",
+      "Apr-25", "May-25", "Jun-25", "Jul-25", "Aug-25", "Sep-25",
+      "Oct-25", "Nov-25", "Dec-25", "Jan-26", "Feb-26", "Mar-26",
     ],
   };
 
@@ -84,11 +60,13 @@ const LandlordPayments = () => {
     });
 
     // Build graph data per fiscal year
-    graphData = Object.entries(yearCategories).map(([fiscalYear, months]) => ({
-      name: "Monthly Rent",
-      group: fiscalYear,
-      data: months.map((month) => monthlyRentMap[month] || 0),
-    }));
+    graphData = Object.entries(yearCategories).map(
+      ([fiscalYear, months]) => ({
+        name: "Monthly Rent",
+        group: fiscalYear,
+        data: months.map((month) => monthlyRentMap[month] || 0),
+      })
+    );
 
     totalRent = landLordData.reduce(
       (sum, item) => sum + (item.actualAmount || 0),
@@ -126,12 +104,12 @@ const LandlordPayments = () => {
       categories: [], // Injected via YearlyGraph
     },
     yaxis: {
-      max: 2000000,
+      max : 2000000,
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
       title: {
-        text: "Amount in USD (Thousand)",
+        text: "Amount in INR (Lakhs)",
       },
     },
     legend: {
@@ -139,7 +117,7 @@ const LandlordPayments = () => {
     },
     tooltip: {
       y: {
-        formatter: (val) => `USD ${val.toLocaleString("en-IN")}`,
+        formatter: (val) => `INR ${val.toLocaleString("en-IN")}`,
       },
     },
     colors: ["#54C4A7"],
@@ -158,15 +136,10 @@ const LandlordPayments = () => {
   return (
     <div className="flex flex-col gap-4">
       {isError ? (
-        <div className="text-red-500 text-center">
-          Failed to load landlord payments.
-        </div>
+        <div className="text-red-500 text-center">Failed to load landlord payments.</div>
       ) : isHrLoading ? (
-        <div className="text-center text-gray-500">
-          Loading landlord payments...
-        </div>
-      ) : graphData.length === 0 ||
-        graphData.every((g) => g.data.every((val) => val === 0)) ? (
+        <div className="text-center text-gray-500">Loading landlord payments...</div>
+      ) : graphData.length === 0 || graphData.every((g) => g.data.every((val) => val === 0)) ? (
         <WidgetSection title="LANDLORD MONTHLY RENT" border>
           <div className="text-center text-gray-500 py-8">
             No rent payment data available.
@@ -178,7 +151,7 @@ const LandlordPayments = () => {
           chartId="landlord-rent-bar"
           data={graphData}
           options={barGraphOptions}
-          titleAmount={`USD ${inrFormat(totalRent)}`}
+          titleAmount={`INR ${inrFormat(totalRent)}`}
         />
       )}
 

@@ -24,6 +24,7 @@ import humanDate from "../../utils/humanDateForamt";
 import { toast } from "sonner";
 import PageFrame from "./PageFrame";
 import UploadFileInput from "../UploadFileInput";
+import  html2pdf  from "html2pdf.js";
 
 // Tailwind classes
 const cellClasses = "border border-black p-2 text-xs align-top";
@@ -203,17 +204,18 @@ const Reimbursement = () => {
     },
   });
 
-  const exportToPDF = async () => {
-    const canvas = await html2canvas(formRef.current, {
-      scale: window.devicePixelRatio,
-    });
+  const exportToPDF = () => {
+    if (!formRef.current) return;
 
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4");
-    const imgWidth = 210;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-    pdf.save("Voucher_Form.pdf");
+    const options = {
+      margin: 0.2,
+      filename: "Voucher_Form.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 1, useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+
+    html2pdf().set(options).from(formRef.current).save();
   };
 
   return (
@@ -239,7 +241,8 @@ const Reimbursement = () => {
                     {...field}
                     label="Select Location"
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     <MenuItem value="" disabled>
                       Select Building
                     </MenuItem>
@@ -271,7 +274,8 @@ const Reimbursement = () => {
                     disabled={!selectedLocation}
                     {...field}
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     <MenuItem value="">Select Unit</MenuItem>
                     {locationsLoading ? (
                       <MenuItem disabled>
@@ -452,18 +456,20 @@ const Reimbursement = () => {
                   {fields.map((item, index) => (
                     <li
                       key={index}
-                      className="flex justify-between items-center border-b py-1">
+                      className="flex justify-between items-center border-b py-1"
+                    >
                       <div className="flex flex-col">
                         <span>{item.particularName}</span>
                         <span className="font-medium text-gray-600">
-                          USD {item.particularAmount?.toFixed(2)}
+                          INR {item.particularAmount?.toFixed(2)}
                         </span>
                       </div>
                       <button
                         type="button"
                         onClick={() => remove(index)}
                         className="text-red-500 hover:text-red-700"
-                        title="Delete">
+                        title="Delete"
+                      >
                         <MdDelete size={20} />
                       </button>
                     </li>
@@ -474,7 +480,7 @@ const Reimbursement = () => {
                 <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                   <span>Total</span>
                   <span>
-                    USD{" "}
+                    INR{" "}
                     {fields
                       .reduce(
                         (acc, item) =>
@@ -528,7 +534,8 @@ const Reimbursement = () => {
                   value={field.value ? "Yes" : "No"}
                   onChange={(e) => field.onChange(e.target.value === "Yes")}
                   error={!!fieldState.error}
-                  helperText={fieldState.error?.message}>
+                  helperText={fieldState.error?.message}
+                >
                   {["Yes", "No"].map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -588,7 +595,8 @@ const Reimbursement = () => {
                     value={field.value ? "Yes" : "No"}
                     onChange={(e) => field.onChange(e.target.value === "Yes")}
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     {["Yes", "No"].map((opt) => (
                       <MenuItem key={opt} value={opt}>
                         {opt}
@@ -671,7 +679,7 @@ const Reimbursement = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    USD.
+                    INR.
                   </td>
                 </tr>
               </thead>

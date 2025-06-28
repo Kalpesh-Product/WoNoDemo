@@ -16,8 +16,8 @@ import { Chip } from "@mui/material";
 const Collections = () => {
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [viewDetails, setViewDetails] = useState(null);
-  const [selectedMonthData, setSelectedMonthData] = useState([]);
-  const [selectedMonthLabel, setSelectedMonthLabel] = useState("");
+const [selectedMonthData, setSelectedMonthData] = useState([]);
+const [selectedMonthLabel, setSelectedMonthLabel] = useState("");
   const axios = useAxiosPrivate();
 
   const { data: coWorkingData = [], isLoading: isCoWorkingLoading } = useQuery({
@@ -42,7 +42,8 @@ const Collections = () => {
       cellRenderer: (params) => (
         <span
           className="text-primary underline cursor-pointer"
-          onClick={() => handleViewModal(params.data)}>
+          onClick={() => handleViewModal(params.data)}
+        >
           {params.value}
         </span>
       ),
@@ -53,34 +54,33 @@ const Collections = () => {
       flex: 1,
       cellRenderer: (params) => `${inrFormat(params.value)}`,
     },
-    {
-      field: "status",
-      headerName: "Status",
-      flex: 1,
-      cellRenderer: (params) => {
-        const statusColorMap = {
-          Paid: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
-          Unpaid: { backgroundColor: "#FFEBEE", color: "#B71C1C" }, // Light red bg, dark red font
-        };
-
-        const { backgroundColor, color } = statusColorMap[
-          params.data.rentStatus
-        ] || {
-          backgroundColor: "gray",
-          color: "white",
-        };
-
-        return (
-          <Chip
-            label={params.data.rentStatus}
-            style={{
-              backgroundColor,
-              color,
-            }}
-          />
-        );
-      },
-    },
+     {
+          field: "status",
+          headerName: "Status",
+          flex: 1,
+          cellRenderer: (params) => {
+          
+            const statusColorMap = {
+             Paid: { backgroundColor: "#90EE90", color: "#006400" }, // Light green bg, dark green font
+             Unpaid: { backgroundColor: "#FFEBEE", color: "#B71C1C" }, // Light red bg, dark red font
+            };
+    
+            const { backgroundColor, color } = statusColorMap[params.data.rentStatus] || {
+              backgroundColor: "gray",
+              color: "white",
+            };
+    
+            return (
+              <Chip
+                label={params.data.rentStatus}
+                style={{
+                  backgroundColor,
+                  color,
+                }}
+              />
+            );
+          },
+        },
   ];
 
   const sortedData = useMemo(() => {
@@ -132,8 +132,8 @@ const Collections = () => {
     };
   }, [sortedData]);
 
-  const barValues = barGraphData.chartData.map((item) => item.data);
-  const completed = barValues[0].reduce((sum, item) => item + sum, 0);
+  const barValues = barGraphData.chartData.map((item)=>item.data)
+ const completed=  barValues[0].reduce((sum,item)=>(item + sum),0);
 
   const barGraphOptions = {
     chart: {
@@ -197,7 +197,7 @@ const Collections = () => {
         <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Total Clients</strong> ${total}</div>
         <div style="color:#54C4A7; display:flex; width : 100% ; justify-content : space-between"><strong>Paid</strong> ${paidClients}</div>
         <div style="color:#EB5C45; display:flex; width : 100% ; justify-content : space-between"><strong>Unpaid</strong> ${unpaidClients}</div>
-        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Amount</strong> USD ${inrFormat(
+        <div style="display:flex; width : 100% ; justify-content : space-between"><strong>Amount</strong> INR ${inrFormat(
           paidAmount
         )}</div>
       </div>
@@ -222,23 +222,21 @@ const Collections = () => {
     (acc, client) => acc + (client.revenue || 0),
     0
   );
-  const handleMonthChange = (monthLabel) => {
-    setSelectedMonthLabel(monthLabel);
+const handleMonthChange = (monthLabel) => {
+  setSelectedMonthLabel(monthLabel);
 
-    const matchingData = flatClientData.filter((item) => {
-      const itemMonth = dayjs(item.date).format("MMM-YYYY");
-      return itemMonth === monthLabel;
-    });
+  const matchingData = flatClientData.filter((item) => {
+    const itemMonth = dayjs(item.date).format("MMM-YYYY");
+    return itemMonth === monthLabel;
+  });
 
-    setSelectedMonthData(matchingData);
-  };
+  setSelectedMonthData(matchingData);
+};
 
-  const currentMonthTotal = useMemo(() => {
-    return selectedMonthData.reduce(
-      (sum, client) => sum + (client.revenue || 0),
-      0
-    );
-  }, [selectedMonthData]);
+const currentMonthTotal = useMemo(() => {
+  return selectedMonthData.reduce((sum, client) => sum + (client.revenue || 0), 0);
+}, [selectedMonthData]);
+
 
   if (isCoWorkingLoading) {
     return <div>Loading...</div>;
@@ -250,8 +248,9 @@ const Collections = () => {
         layout={1}
         title={"COLLECTIONS"}
         titleLabel={"FY 2024-25"}
-        TitleAmount={`USD ${inrFormat(grandTotal)}`}
-        border>
+        TitleAmount={`INR ${inrFormat(grandTotal)}`}
+        border
+      >
         <BarGraph data={barGraphData.chartData} options={barGraphOptions} />
 
         <hr />
@@ -259,13 +258,13 @@ const Collections = () => {
           <DataCard
             title={"Collected"}
             // description={`Current Month: ${sortedData[0]?.month || "N/A"}`}
-            description={`Total : USD ${inrFormat(grandTotal)}`}
-            data={`${(completed / 12).toFixed(0) || 0}%`}
+            description={`Total : INR ${inrFormat(grandTotal)}`}
+            data={`${(completed/12).toFixed(0) || 0}%`}
           />
           <DataCard
             title={"Due"}
             // description={`Current Month: ${sortedData[0]?.month || "N/A"}`}
-            description={`Total : USD 0`}
+            description={`Total : INR 0`}
             data={`${barGraphData[1]?.data?.[0] || 0}%`}
           />
         </WidgetSection>
@@ -274,8 +273,9 @@ const Collections = () => {
       <WidgetSection
         border
         title="Collections"
-        TitleAmount={`USD ${inrFormat(currentMonthTotal)}`}
-        className="bg-white rounded-md shadow-sm">
+        TitleAmount={`INR ${inrFormat(currentMonthTotal)}`}
+        className="bg-white rounded-md shadow-sm"
+      >
         <YearWiseTable
           data={flatClientData}
           columns={kraColumn}
@@ -289,7 +289,8 @@ const Collections = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Collection Details">
+          title="Collection Details"
+        >
           <div className="space-y-3">
             <div className="font-bold">Client & Contract Info</div>
             <DetalisFormatted
@@ -313,11 +314,11 @@ const Collections = () => {
             />
             <DetalisFormatted
               title="Desk Rate"
-              detail={`USD ${inrFormat(viewDetails.deskRate)}`}
+              detail={`INR ${inrFormat(viewDetails.deskRate)}`}
             />
             <DetalisFormatted
               title="Revenue"
-              detail={`USD ${inrFormat(viewDetails.revenue)}`}
+              detail={`INR ${inrFormat(viewDetails.revenue)}`}
             />
             <br />
             <div className="font-bold">Rent Schedule</div>

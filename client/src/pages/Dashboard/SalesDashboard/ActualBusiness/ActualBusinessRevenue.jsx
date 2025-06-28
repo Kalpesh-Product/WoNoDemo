@@ -114,7 +114,7 @@ const ActualBusinessRevenue = () => {
       title: { text: "Verticals" },
     },
     yaxis: {
-      title: { text: "Revenue in Thousand (USD)" },
+      title: { text: "Revenue in Lakhs (INR)" },
       labels: {
         formatter: (value) => `${(value / 100000).toLocaleString("en-IN")}`,
       },
@@ -141,7 +141,7 @@ const ActualBusinessRevenue = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`,
+        formatter: (value) => `INR ${value.toLocaleString("en-IN")}`,
       },
     },
     legend: { position: "top" },
@@ -163,10 +163,11 @@ const ActualBusinessRevenue = () => {
             layout={1}
             title={"Vertical-wise Revenue"}
             titleLabel={`${selectedMonth} 2024`}
-            TitleAmount={`USD ${inrFormat(
+            TitleAmount={`INR ${inrFormat(
               selectedMonthData.reduce((sum, d) => sum + d.revenue, 0)
             )}`}
-            border>
+            border
+          >
             <NormalBarGraph data={graphData} options={options} height={400} />
           </WidgetSection>
 
@@ -183,7 +184,8 @@ const ActualBusinessRevenue = () => {
                 className="w-[100px]"
                 SelectProps={{
                   IconComponent: KeyboardArrowDownIcon,
-                }}>
+                }}
+              >
                 {months.map((month) => (
                   <MenuItem key={month} value={month}>
                     {month}
@@ -197,16 +199,17 @@ const ActualBusinessRevenue = () => {
           <WidgetSection
             border
             title={`Vertical-wise Revenue Breakdown FY 2024-25`}
-            TitleAmount={`USD ${inrFormat(
+            TitleAmount={`INR ${inrFormat(
               selectedMonthData.reduce((sum, d) => sum + d.revenue, 0)
-            )}`}>
+            )}`}
+          >
             <AgTable
               hideFilter
               tableHeight={300}
               columns={[
                 { headerName: "Sr No", field: "id", width: 100 },
                 { headerName: "Vertical", field: "vertical", flex: 1 },
-                { headerName: "Revenue (USD)", field: "revenue", width: 400 },
+                { headerName: "Revenue (INR)", field: "revenue", width: 400 },
               ]}
               data={tableData}
             />

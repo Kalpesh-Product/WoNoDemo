@@ -72,7 +72,7 @@ const HrExpenseGraph = ({ utilisedData, maxBudget, route }) => {
       labels: {
         formatter: (val) => `${Math.round(val)}%`,
       },
-      title: { text: "Amount In Lakns (USD)" },
+      title: { text: "Amount In Lakns (INR)" },
     },
     tooltip: {
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
@@ -88,7 +88,7 @@ const HrExpenseGraph = ({ utilisedData, maxBudget, route }) => {
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d0f0dc; color: #1b5e20; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>Utilised Budget</strong></div>
                 <div style="width: 20px;"></div>
-                <div style="text-align: right;">${utilised.toLocaleString()} USD</div>
+                <div style="text-align: right;">${utilised.toLocaleString()} INR</div>
               </div>
        
             </div>

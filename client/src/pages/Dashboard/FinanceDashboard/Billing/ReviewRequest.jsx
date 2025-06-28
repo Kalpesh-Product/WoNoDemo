@@ -24,6 +24,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import html2pdf from "html2pdf.js";
 
 // Tailwind classes
 const cellClasses = "border border-black p-2 text-xs align-top";
@@ -139,35 +140,45 @@ const ReviewRequest = () => {
     const values = getValues();
     values.particulars = fields;
 
-    // Step 1: Generate canvas with lower resolution
-    const canvas = await html2canvas(formRef.current, {
-      scale: 1, // lower scale for compression
-    });
+    try {
+      // Step 1: Generate the PDF Blob directly using html2pdf
+      const element = formRef.current;
 
-    const imgData = canvas.toDataURL("image/png");
+      const opt = {
+        margin: [0.2, 0.2, 0.2, 0.2], // top, left, bottom, right (in inches)
+        filename: "Voucher_Form.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 1, // lower scale for smaller size
+          useCORS: true,
+        },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      };
 
-    // Step 2: Create compressed PDF
-    const pdf = new jsPDF("p", "mm", "a4", true); // true enables internal compression
-    const imgWidth = 210;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
+      const worker = html2pdf().set(opt).from(element).toPdf();
 
-    const pdfBlob = pdf.output("blob");
+      const pdfBlob = await new Promise((resolve) =>
+        worker.outputPdf("blob").then(resolve)
+      );
 
-    // Step 3: Create FormData
-    const formData = new FormData();
-    formData.append("voucher", pdfBlob, "Voucher_Form.pdf");
-    formData.append("budgetId", voucherDetails._id);
-    formData.append("fSrNo", values.fSrNo || "");
-    formData.append("modeOfPayment", values.modeOfPayment || "");
-    formData.append("chequeNo", values.chequeNo || "");
-    formData.append("chequeDate", values.chequeDate || "");
-    formData.append("advanceAmount", values.advanceAmount?.toString() || "0");
-    formData.append("expectedDateInvoice", values.expectedDateInvoice || "");
-    formData.append("particulars", JSON.stringify(values.particulars || []));
+      // Step 2: Prepare FormData
+      const formData = new FormData();
+      formData.append("voucher", pdfBlob, "Voucher_Form.pdf");
+      formData.append("budgetId", voucherDetails._id);
+      formData.append("fSrNo", values.fSrNo || "");
+      formData.append("modeOfPayment", values.modeOfPayment || "");
+      formData.append("chequeNo", values.chequeNo || "");
+      formData.append("chequeDate", values.chequeDate || "");
+      formData.append("advanceAmount", values.advanceAmount?.toString() || "0");
+      formData.append("expectedDateInvoice", values.expectedDateInvoice || "");
+      formData.append("particulars", JSON.stringify(values.particulars || []));
 
-    // Step 4: Upload
-    submitRequest(formData);
+      // Step 3: Upload
+      submitRequest(formData);
+    } catch (error) {
+      toast.error("Failed to generate PDF.");
+      console.error("html2pdf error", error);
+    }
   };
 
   const { mutate: submitRequest, isPending: isSubmitRequest } = useMutation({
@@ -195,17 +206,16 @@ const ReviewRequest = () => {
     },
   });
 
-  const exportToPDF = async () => {
-    const canvas = await html2canvas(formRef.current, {
-      scale: window.devicePixelRatio,
-    });
+  const exportToPDF = () => {
+    const opt = {
+      margin: 0.2,
+      filename: "Voucher_Form.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 1, useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
 
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4");
-    const imgWidth = 210;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-    pdf.save("Voucher_Form.pdf");
+    html2pdf().set(opt).from(formRef.current).save();
   };
 
   return (
@@ -326,18 +336,20 @@ const ReviewRequest = () => {
                 {fields.map((item, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center border-b py-1">
+                    className="flex justify-between items-center border-b py-1"
+                  >
                     <div className="flex flex-col">
                       <span>{item.particularName}</span>
                       <span className="font-medium text-gray-600">
-                        USD {item.particularAmount?.toFixed(2)}
+                        INR {item.particularAmount?.toFixed(2)}
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => remove(index)}
                       className="text-red-500 hover:text-red-700"
-                      title="Delete">
+                      title="Delete"
+                    >
                       <MdDelete size={20} />
                     </button>
                   </li>
@@ -347,7 +359,7 @@ const ReviewRequest = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  USD{" "}
+                  INR{" "}
                   {fields
                     .reduce(
                       (acc, item) =>
@@ -384,7 +396,8 @@ const ReviewRequest = () => {
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}>
+                  {...field}
+                >
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -557,7 +570,7 @@ const ReviewRequest = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    USD.
+                    INR.
                   </td>
                 </tr>
               </thead>
@@ -691,8 +704,8 @@ const ReviewRequest = () => {
                   <td className={cellClasses} colSpan={2}>
                     PARTICULARS
                   </td>
-                  <td className={cellClasses}>USD</td>
-                  {/* <td className={cellClasses}>USD</td> */}
+                  <td className={cellClasses}>INR</td>
+                  {/* <td className={cellClasses}>INR</td> */}
                 </tr>
               </thead>
               <tbody>

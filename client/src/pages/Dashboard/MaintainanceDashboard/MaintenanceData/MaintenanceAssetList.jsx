@@ -569,7 +569,7 @@ const MaintenanceAssetList = (disabled) => {
             <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
             <DetalisFormatted
               title="Price"
-              detail={`USD ${selectedAsset.price}`}
+              detail={`INR ${selectedAsset.price}`}
             />
             <DetalisFormatted
               title="Quantity"

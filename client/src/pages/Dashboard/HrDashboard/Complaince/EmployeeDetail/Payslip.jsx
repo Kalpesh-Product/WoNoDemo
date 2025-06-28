@@ -119,11 +119,11 @@ const Payslip = () => {
             <DetalisFormatted title="Month" detail={viewPayslip.payslips} />
             <DetalisFormatted
               title="Net Pay"
-              detail={`USD ${inrFormat(viewPayslip.netPay) || "N/A"}`}
+              detail={`INR ${inrFormat(viewPayslip.netPay) || "N/A"}`}
             />
             <DetalisFormatted
               title="Deductions"
-              detail={`USD ${inrFormat(viewPayslip.deductions) || "N/A"}`}
+              detail={`INR ${inrFormat(viewPayslip.deductions) || "N/A"}`}
             />
             <DetalisFormatted
               title="Issued By"

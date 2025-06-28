@@ -20,7 +20,7 @@ const ItAnnualExpenses = () => {
     { field: "category", headerName: "Category" },
     { field: "expenseName", headerName: "Expense Name" },
     { field: "date", headerName: "Date" },
-    { field: "amount", headerName: "Amount (USD)", flex: 1 },
+    { field: "amount", headerName: "Amount (INR)", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
@@ -137,9 +137,9 @@ const ItAnnualExpenses = () => {
           />
           <DetalisFormatted title="Date" detail={data?.date} />
           <DetalisFormatted
-            title="Amount (USD)"
+            title="Amount (INR)"
             gap={"w-full"}
-            detail={`USD ${data?.amount}`}
+            detail={`INR ${data?.amount}`}
           />
         </div>
       </MuiModal>

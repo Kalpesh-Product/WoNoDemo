@@ -255,7 +255,7 @@ const AllocatedBudget = ({
             ? newTitle
             : "BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"
         }
-        TitleAmount={`USD ${inrFormat(totalProjectedAmountForFY)}`}
+        TitleAmount={`INR ${inrFormat(totalProjectedAmountForFY)}`}
         border>
         <div className="flex flex-col gap-4 rounded-md ">
           {!hideTitle ? (
@@ -316,7 +316,7 @@ const AllocatedBudget = ({
               </div>
             </div>
           </div>
-          <hr className="mt-4" />
+          {/* <hr className="mt-4" /> */}
 
           {/* AgTable */}
           {monthDataForSelectedType.rows.length > 0 ? (

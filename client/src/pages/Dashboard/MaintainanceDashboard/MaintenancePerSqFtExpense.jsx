@@ -89,8 +89,10 @@ const MaintenancePerSqFtExpense = () => {
     occupied: unit.clientsCount,
   }));
 
+
   const maxY = Math.max(...chartData.map((item) => item.occupied), 5);
   const roundedMax = Math.ceil(maxY / 5) * 5;
+
 
   const inrFormat = (val) => val.toLocaleString("en-IN");
 
@@ -100,7 +102,7 @@ const MaintenancePerSqFtExpense = () => {
       data: chartData.map((item) => item.occupied),
     },
   ];
-  const totalOffices = chartData.reduce((sum, item) => item.occupied + sum, 0);
+  const totalOffices = chartData.reduce((sum,item)=>(item.occupied + sum),0)
 
   const expenseOptions = {
     chart: {
@@ -126,7 +128,7 @@ const MaintenancePerSqFtExpense = () => {
     },
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount in Thousand" },
+      title: { text: "Amount in Lakhs" },
     },
     xaxis: {
       categories: chartData.map((item) => item.unitNo),
@@ -142,12 +144,7 @@ const MaintenancePerSqFtExpense = () => {
 
   return (
     <div className="p-4 flex flex-col gap-4">
-      <WidgetSection
-        layout={1}
-        border
-        padding
-        title={"maintenance expense per sq. ft"}
-        TitleAmount={`USD 0`}>
+      <WidgetSection layout={1} border padding title={"maintenance expense per sq. ft"} TitleAmount={`INR 0`}>
         <NormalBarGraph data={[]} options={expenseOptions} />
       </WidgetSection>
       <PageFrame>

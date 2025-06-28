@@ -113,15 +113,15 @@ const VirtualOffice = () => {
       categories: transformRevenuesData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount In Lakhs (INR)" },
       labels: {
-        formatter: (val) => val / 100000, // Display in Thousand
+        formatter: (val) => val / 100000, // Display in Lakhs
       },
     },
     tooltip: {
-      enabled: true,
+      enabled: false,
       y: {
-        formatter: (val) => `USD ${val.toLocaleString()}`, // Format tooltip
+        formatter: (val) => `INR ${val.toLocaleString()}`, // Format tooltip
       },
     },
     plotOptions: {
@@ -153,7 +153,8 @@ const VirtualOffice = () => {
           title={"Annual Monthly Virtual Office Revenues"}
           titleLabel={"FY 2024-25"}
           border
-          TitleAmount={`USD ${inrFormat(totalActual)}`}>
+          TitleAmount={`INR ${inrFormat(totalActual)}`}
+        >
           <NormalBarGraph data={series} options={options} height={400} />
         </WidgetSection>
       ) : (
@@ -167,7 +168,7 @@ const VirtualOffice = () => {
           passedColumns={[
             { headerName: "Sr No", field: "id", flex: 1 },
             { headerName: "Client Name", field: "clientName", flex: 1 },
-            { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
+            { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
             { headerName: "Status", field: "status", flex: 1 },
           ]}
         />
