@@ -112,70 +112,79 @@ const TotalRevenue = () => {
     //   y: {
     //     formatter: function (val, { seriesIndex, dataPointIndex }) {
     //       const actualVal = filteredByYear[seriesIndex]?.data?.[dataPointIndex];
-    //       return actualVal ? `INR ${actualVal.toLocaleString()}` : "No data";
+    //       return actualVal ? `USD ${actualVal.toLocaleString()}` : "No data";
     //     },
     //   },
     // },
-   tooltip: {
-  shared: true,
-  intersect: false,
-  custom: function ({ dataPointIndex, w }) {
-    const monthLabel = w.globals.labels[dataPointIndex];
+    tooltip: {
+      shared: true,
+      intersect: false,
+      custom: function ({ dataPointIndex, w }) {
+        const monthLabel = w.globals.labels[dataPointIndex];
 
-    const coworking = filteredByYear[0]?.data?.[dataPointIndex] ?? 0;
-    const meetings = filteredByYear[1]?.data?.[dataPointIndex] ?? 0;
-    const virtualOffice = filteredByYear[2]?.data?.[dataPointIndex] ?? 0;
-    const workation = filteredByYear[3]?.data?.[dataPointIndex] ?? 0;
-    const altRevenue = filteredByYear[4]?.data?.[dataPointIndex] ?? 0;
+        const coworking = filteredByYear[0]?.data?.[dataPointIndex] ?? 0;
+        const meetings = filteredByYear[1]?.data?.[dataPointIndex] ?? 0;
+        const virtualOffice = filteredByYear[2]?.data?.[dataPointIndex] ?? 0;
+        const workation = filteredByYear[3]?.data?.[dataPointIndex] ?? 0;
+        const altRevenue = filteredByYear[4]?.data?.[dataPointIndex] ?? 0;
 
-    return `
+        return `
       <div style="padding: 10px; width: 300px">
         <div class="apexcharts-tooltip-title" style="margin-bottom: 8px; font-weight: bold;">${monthLabel}</div>
 
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${w.globals.colors[0]}; display: inline-block;"></span>
+          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${
+            w.globals.colors[0]
+          }; display: inline-block;"></span>
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span>Co-Working</span>
-            <span>INR ${coworking.toLocaleString("en-IN")}</span>
+            <span>USD ${coworking.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${w.globals.colors[1]}; display: inline-block;"></span>
+          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${
+            w.globals.colors[1]
+          }; display: inline-block;"></span>
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span>Meetings</span>
-            <span>INR ${meetings.toLocaleString("en-IN")}</span>
+            <span>USD ${meetings.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${w.globals.colors[2]}; display: inline-block;"></span>
+          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${
+            w.globals.colors[2]
+          }; display: inline-block;"></span>
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span>Virtual Office</span>
-            <span>INR ${virtualOffice.toLocaleString("en-IN")}</span>
+            <span>USD ${virtualOffice.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${w.globals.colors[3]}; display: inline-block;"></span>
+          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${
+            w.globals.colors[3]
+          }; display: inline-block;"></span>
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span>Workation</span>
-            <span>INR ${workation.toLocaleString("en-IN")}</span>
+            <span>USD ${workation.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${w.globals.colors[4]}; display: inline-block;"></span>
+          <span style="height: 10px; width: 10px; border-radius: 50%; background-color: ${
+            w.globals.colors[4]
+          }; display: inline-block;"></span>
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span>Alt Revenues</span>
-            <span>INR ${altRevenue.toLocaleString("en-IN")}</span>
+            <span>USD ${altRevenue.toLocaleString("en-IN")}</span>
           </div>
         </div>
       </div>
     `;
-  },
-},
-
+      },
+    },
 
     plotOptions: {
       bar: {
@@ -223,8 +232,7 @@ const TotalRevenue = () => {
           layout={1}
           title={"Annual Monthly Mix Revenues FY 2024-25"}
           border
-          TitleAmount={`INR ${inrFormat(totalAnnualRevenue)}`}
-        >
+          TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}>
           <BarGraph height={400} data={normalizedData} options={options} />
         </WidgetSection>
       )}
@@ -233,13 +241,13 @@ const TotalRevenue = () => {
         border
         title={"Annual Monthly Revenue Breakup"}
         padding
-        TitleAmount={`INR ${inrFormat(totalAnnualRevenue)}`}
+        TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}
       >
         <div className="flex flex-col gap-2 rounded-md p-4">
           <CollapsibleTable
             columns={[
               { headerName: "Vertical", field: "vertical" },
-              { headerName: "Revenue (INR)", field: "revenue" },
+              { headerName: "Revenue (USD)", field: "revenue" },
               {
                 headerName: "Percentage Of Business (%)",
                 field: "contribution",
@@ -307,7 +315,7 @@ const TotalRevenue = () => {
                   { headerName: "Sr No", field: "srNo", flex: 1 },
                   { headerName: "Month", field: "month", flex: 1 },
                   { headerName: "Year", field: "year", flex: 1 },
-                  { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+                  { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
                 ]}
                 tableHeight={300}
                 hideFilter
@@ -325,9 +333,9 @@ const TotalRevenue = () => {
         passedColumns={[
           { headerName: "Sr No", field: "srNo", flex: 1 },
           { headerName: "Vertical", field: "vertical", flex: 1 },
-          { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+          { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
         ]}
-        amount={`INR ${inrFormat(totalAnnualRevenue)}`}
+        amount={`USD ${inrFormat(totalAnnualRevenue)}`}
         financialData={financialDataForTable}
       />
     </div>

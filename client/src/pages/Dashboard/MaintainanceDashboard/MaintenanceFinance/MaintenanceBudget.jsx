@@ -29,7 +29,7 @@ import usePageDepartment from "../../../../hooks/usePageDepartment";
 const Maintenance = () => {
   const axios = useAxiosPrivate();
   const [isReady, setIsReady] = useState(false);
-  const department = usePageDepartment()
+  const department = usePageDepartment();
 
   const [openModal, setOpenModal] = useState(false);
   const { data: hrFinance = [], isPending: isHrLoading } = useQuery({
@@ -37,7 +37,7 @@ const Maintenance = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          `/api/budget/company-budget?${department?._id}`  
+          `/api/budget/company-budget?${department?._id}`
         );
         const budgets = response.data.allBudgets;
         return Array.isArray(budgets) ? budgets : [];
@@ -49,25 +49,25 @@ const Maintenance = () => {
   });
 
   const { mutate: requestBudget, isPending: requestBudgetPending } =
-      useMutation({
-        mutationFn: async (data) => {
-          const response = await axios.post(
-            `/api/budget/request-budget/${department._id}`,
-            {
-              ...data,
-            }
-          );
-          return response.data;
-        },
-        onSuccess: function (data) {
-          setOpenModal(false);
-          toast.success(data.message);
-          reset();
-        },
-        onError: function (error) {
-          toast.error(error.response.data.message);
-        },
-      });
+    useMutation({
+      mutationFn: async (data) => {
+        const response = await axios.post(
+          `/api/budget/request-budget/${department._id}`,
+          {
+            ...data,
+          }
+        );
+        return response.data;
+      },
+      onSuccess: function (data) {
+        setOpenModal(false);
+        toast.success(data.message);
+        reset();
+      },
+      onError: function (error) {
+        toast.error(error.response.data.message);
+      },
+    });
 
   const budgetBar = useMemo(() => {
     if (isHrLoading || !Array.isArray(hrFinance)) return null;
@@ -132,7 +132,7 @@ const Maintenance = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -150,7 +150,7 @@ const Maintenance = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
             <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -158,7 +158,7 @@ const Maintenance = () => {
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>HR Expense:</strong></div>
                 <div style="width: 10px;"></div>
-             <div style="text-align: left;">INR ${Math.round(
+             <div style="text-align: left;">USD ${Math.round(
                rawData
              ).toLocaleString("en-IN")}</div>
 
@@ -184,7 +184,7 @@ const Maintenance = () => {
   });
 
   const onSubmit = (data) => {
-     requestBudget(data);
+    requestBudget(data);
     setOpenModal(false);
     reset();
   };
@@ -207,10 +207,10 @@ const Maintenance = () => {
                 { field: "expanseType", headerName: "Expense Type", flex: 1 },
                 {
                   field: "projectedAmount",
-                  headerName: "Projected (INR)",
+                  headerName: "Projected (USD)",
                   flex: 1,
                 },
-                { field: "actualAmount", headerName: "Actual (INR)", flex: 1 }, // ✅ add this
+                { field: "actualAmount", headerName: "Actual (USD)", flex: 1 }, // ✅ add this
                 { field: "dueDate", headerName: "Due Date", flex: 1 },
                 { field: "status", headerName: "Status", flex: 1 },
               ],
@@ -225,7 +225,7 @@ const Maintenance = () => {
           expanseName: item?.expanseName,
           department: item?.department,
           expanseType: item?.expanseType,
-          invoiceAttached : item?.invoiceAttached,
+          invoiceAttached: item?.invoiceAttached,
           projectedAmount: Number(item?.projectedAmount).toFixed(2),
           actualAmount: inrFormat(item?.actualAmount || 0), // ✅ Add this
           dueDate: dayjs(item.dueDate).format("DD-MM-YYYY"),
@@ -279,13 +279,12 @@ const Maintenance = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }
-          >
+            }>
             <Yearlygraph
               data={expenseRawSeries}
               options={expenseOptions}
               title={"BIZ Nest MAINTENANCE DEPARTMENT EXPENSE"}
-              titleAmount={`INR ${Math.round(totalUtilised).toLocaleString(
+              titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
                 "en-IN"
               )}`}
             />
@@ -294,7 +293,7 @@ const Maintenance = () => {
         <div>
           <WidgetSection layout={2} padding>
             {/* <DataCard
-              data={"INR " + inrFormat("2000000")}
+              data={"USD " + inrFormat("2000000")}
               title={"Projected"}
               route={"/app/dashboard/hr-dashboard/finance/budget"}
               description={`Current Month: ${new Date().toLocaleString(
@@ -329,8 +328,7 @@ const Maintenance = () => {
         <MuiModal
           title="Request Budget"
           open={openModal}
-          onClose={() => setOpenModal(false)}
-        >
+          onClose={() => setOpenModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Expense Name */}
             <Controller
@@ -367,23 +365,23 @@ const Maintenance = () => {
               )}
             />
 
- {/* Payment Type */}
- <Controller
-            name="paymentType"
-            control={control}
-            rules={{ required: "Payment type is required" }}
-            render={({ field, fieldState }) => (
-              <FormControl fullWidth error={!!fieldState.error}>
-                <Select {...field} size="small" displayEmpty>
-                  <MenuItem value="" disabled>
-                    Select Payment Type
-                  </MenuItem>
-                  <MenuItem value="One Time">One Time</MenuItem>
-                  <MenuItem value="Recurring">Recurring</MenuItem>
-                </Select>
-              </FormControl>
-            )}
-          />
+            {/* Payment Type */}
+            <Controller
+              name="paymentType"
+              control={control}
+              rules={{ required: "Payment type is required" }}
+              render={({ field, fieldState }) => (
+                <FormControl fullWidth error={!!fieldState.error}>
+                  <Select {...field} size="small" displayEmpty>
+                    <MenuItem value="" disabled>
+                      Select Payment Type
+                    </MenuItem>
+                    <MenuItem value="One Time">One Time</MenuItem>
+                    <MenuItem value="Recurring">Recurring</MenuItem>
+                  </Select>
+                </FormControl>
+              )}
+            />
             {/* Amount */}
             <Controller
               name="amount"

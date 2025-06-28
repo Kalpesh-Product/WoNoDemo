@@ -149,11 +149,11 @@ const SalesDashboard = () => {
     },
     yaxis: {
       min: 0,
-      max: 6000000,
+      max: 9000000,
       tickAmount: 4,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
-        formatter: (val) => val / 100000, // Converts value to Lakhs
+        formatter: (val) => val / 100000, // Converts value to Thousand
       },
     },
 
@@ -163,7 +163,7 @@ const SalesDashboard = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${inrFormat(val)}`,
+        formatter: (val) => `USD ${inrFormat(val)}`,
       },
     },
   };
@@ -244,12 +244,12 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "FY 2024-25",
-        value: `INR ${inrFormat(totalValue) || 0}`,
+        value: `USD ${inrFormat(totalValue) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
         title: "March 2025",
-        value: `INR ${inrFormat(finalRevenueGraph[11]) || 0}`,
+        value: `USD ${inrFormat(finalRevenueGraph[11]) || 0}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -312,7 +312,7 @@ const SalesDashboard = () => {
     descriptionData: [
       {
         title: "Revenue",
-        value: `INR ${inrFormat(totalValue / 12)}`,
+        value: `USD ${inrFormat(totalValue / 12)}`,
         route: "/app/dashboard/sales-dashboard/revenue/total-revenue",
       },
       {
@@ -778,7 +778,7 @@ const SalesDashboard = () => {
               data={incomeExpenseData}
               options={incomeExpenseOptions}
               title={"BIZ Nest SALES DEPARTMENT REVENUES"}
-              titleAmount={`INR ${inrFormat(totalValue)}`}
+              titleAmount={`USD ${inrFormat(totalValue)}`}
               onYearChange={setSelectedFiscalYear}
             />
           ) : (
@@ -831,8 +831,7 @@ const SalesDashboard = () => {
           layout={1}
           title={"Monthly Unique Leads"}
           titleLabel={"FY 2024-25"}
-          border
-        >
+          border>
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />
@@ -856,8 +855,7 @@ const SalesDashboard = () => {
           layout={1}
           title={"Sourcing Channels"}
           titleLabel={"FY 2024-25"}
-          border
-        >
+          border>
           {isLeadsPending ? (
             <div className="space-y-4">
               <Skeleton variant="rectangular" width="100%" height={40} />

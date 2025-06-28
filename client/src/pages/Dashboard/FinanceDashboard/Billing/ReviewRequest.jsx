@@ -336,20 +336,18 @@ const ReviewRequest = () => {
                 {fields.map((item, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center border-b py-1"
-                  >
+                    className="flex justify-between items-center border-b py-1">
                     <div className="flex flex-col">
                       <span>{item.particularName}</span>
                       <span className="font-medium text-gray-600">
-                        INR {item.particularAmount?.toFixed(2)}
+                        USD {item.particularAmount?.toFixed(2)}
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => remove(index)}
                       className="text-red-500 hover:text-red-700"
-                      title="Delete"
-                    >
+                      title="Delete">
                       <MdDelete size={20} />
                     </button>
                   </li>
@@ -359,7 +357,7 @@ const ReviewRequest = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  INR{" "}
+                  USD{" "}
                   {fields
                     .reduce(
                       (acc, item) =>
@@ -396,8 +394,7 @@ const ReviewRequest = () => {
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}
-                >
+                  {...field}>
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -570,7 +567,7 @@ const ReviewRequest = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    INR.
+                    USD.
                   </td>
                 </tr>
               </thead>
@@ -704,8 +701,8 @@ const ReviewRequest = () => {
                   <td className={cellClasses} colSpan={2}>
                     PARTICULARS
                   </td>
-                  <td className={cellClasses}>INR</td>
-                  {/* <td className={cellClasses}>INR</td> */}
+                  <td className={cellClasses}>USD</td>
+                  {/* <td className={cellClasses}>USD</td> */}
                 </tr>
               </thead>
               <tbody>

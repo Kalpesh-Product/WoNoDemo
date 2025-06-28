@@ -133,7 +133,7 @@ const AdminExecutiveExpenses = () => {
             { field: "expanseName", headerName: "Expense Name", flex: 1 },
             // { field: "department", headerName: "Department", flex: 200 },
             { field: "expanseType", headerName: "Expense Type", flex: 1 },
-            { field: "projectedAmount", headerName: "Amount (INR)", flex: 1 },
+            { field: "projectedAmount", headerName: "Amount (USD)", flex: 1 },
             { field: "dueDate", headerName: "Due Date", flex: 1 },
             { field: "status", headerName: "Status", flex: 1 },
           ],
@@ -297,7 +297,7 @@ const AdminExecutiveExpenses = () => {
 
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${val / 100000}`,
       },
@@ -315,7 +315,7 @@ const AdminExecutiveExpenses = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
                 <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -323,7 +323,7 @@ const AdminExecutiveExpenses = () => {
                   <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                     <div><strong>Finance Expense:</strong></div>
                     <div style="width: 10px;"></div>
-                 <div style="text-align: left;">INR ${Math.round(
+                 <div style="text-align: left;">USD ${Math.round(
                    rawData
                  ).toLocaleString("en-IN")}</div>
     
@@ -350,19 +350,15 @@ const AdminExecutiveExpenses = () => {
           data={expenseRawSeries}
           options={expenseOptions}
           title={`BIZ Nest ${department?.name} DEPARTMENT EXPENSE`}
-          titleAmount={`INR ${inrFormat(totalUtilised)}`}
+          titleAmount={`USD ${inrFormat(totalUtilised)}`}
           onYearChange={setSelectedFiscalYear}
         /> */}
 
-      <AllocatedBudget
-        financialData={[]}
-        newTitle="Admin Executive Expense"
-      />
+      <AllocatedBudget financialData={[]} newTitle="Admin Executive Expense" />
       <MuiModal
         title="Request Budget"
         open={openModal}
-        onClose={() => setOpenModal(false)}
-      >
+        onClose={() => setOpenModal(false)}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Expense Name */}
           <Controller

@@ -313,7 +313,7 @@ const AltRevenues = () => {
       categories: monthlyRevenueData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -321,7 +321,7 @@ const AltRevenues = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `${val.toLocaleString()} INR`,
+        formatter: (val) => `${val.toLocaleString()} USD`,
       },
     },
     plotOptions: {
@@ -359,7 +359,7 @@ const AltRevenues = () => {
     return {
       id: index,
       month: monthData.month,
-      revenue: `INR ${totalRevenue.toLocaleString()}`,
+      revenue: `USD ${totalRevenue.toLocaleString()}`,
       clients: monthData.revenue.map((client, i) => ({
         id: i + 1,
         revenueSource: client.particulars,
@@ -395,14 +395,13 @@ const AltRevenues = () => {
         <WidgetSection
           title={"Annual Monthly Alternate Revenues"}
           titleLabel={"FY 2024-25"}
-          TitleAmount={`INR ${inrFormat(totalActual)}`}
-          border
-        >
+          TitleAmount={`USD ${inrFormat(totalActual)}`}
+          border>
           <BarGraph
             data={series}
             options={options}
             height={400}
-            // TitleAmount={`INR ${inrFormat(totalActual)}`}
+            // TitleAmount={`USD ${inrFormat(totalActual)}`}
           />
         </WidgetSection>
       )}

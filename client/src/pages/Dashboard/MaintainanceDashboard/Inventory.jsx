@@ -145,7 +145,7 @@ const Inventory = () => {
     },
     {
       field: "openingInventoryValue",
-      headerName: "Opening Value (INR)",
+      headerName: "Opening Value (USD)",
       cellRenderer: (params) => inrFormat(params.value),
     },
     {
@@ -438,21 +438,21 @@ const Inventory = () => {
             <br />
             <div className="font-bold">Inventory Value</div>
             <DetalisFormatted
-              title="Opening Value (INR)"
-              detail={`INR ${
+              title="Opening Value (USD)"
+              detail={`USD ${
                 inrFormat(selectedAsset.openingInventoryValue) ?? "N/A"
               }`}
             />
 
             <DetalisFormatted
               title="New Purchase Value"
-              detail={`INR ${
+              detail={`USD ${
                 inrFormat(selectedAsset.newPurchaseInventoryValue) ?? "N/A"
               }`}
             />
             <DetalisFormatted
               title="Price"
-              detail={`INR ${
+              detail={`USD ${
                 inrFormat(selectedAsset.newPurchasePerUnitPrice) ?? "N/A"
               }`}
             />

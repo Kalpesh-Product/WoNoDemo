@@ -126,7 +126,7 @@ const AdminPerSqFtElectricityExpense = () => {
     },
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount in Lakhs" },
+      title: { text: "Amount in Thousand" },
     },
     xaxis: {
       categories: chartData.map((item) => item.unitNo),
@@ -147,8 +147,7 @@ const AdminPerSqFtElectricityExpense = () => {
         border
         padding
         title={"admin expense per sq. ft"}
-        TitleAmount={`INR 0`}
-      >
+        TitleAmount={`USD 0`}>
         <NormalBarGraph data={[]} options={expenseOptions} />
       </WidgetSection>
       <PageFrame>

@@ -218,7 +218,7 @@ const HrDashboard = () => {
     },
     yaxis: {
       max: 5000000,
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
       },
@@ -237,13 +237,13 @@ const HrDashboard = () => {
       //   formatter: (val, { seriesIndex, dataPointIndex }) => {
       //     const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
       //     // return `${rawData} Tasks`;
-      //     return `HR Expense: INR ${rawData.toLocaleString("en-IN")}`;
+      //     return `HR Expense: USD ${rawData.toLocaleString("en-IN")}`;
       //   },
       // },
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: INR ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
         //     </div>`;
         return `
             <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -251,7 +251,7 @@ const HrDashboard = () => {
               <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
                 <div><strong>HR Expense:</strong></div>
                 <div style="width: 10px;"></div>
-             <div style="text-align: left;">INR ${Math.round(
+             <div style="text-align: left;">USD ${Math.round(
                rawData
              ).toLocaleString("en-IN")}</div>
 
@@ -726,15 +726,15 @@ const HrDashboard = () => {
     descriptionData: [
       {
         title: `${selectedHrFiscalYear}`,
-        // value: `INR ${Math.round(totalUtilised).toLocaleString("en-IN")}`,
-        value: `INR ${inrFormat(totalUtilised)}`,
+        // value: `USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`,
+        value: `USD ${inrFormat(totalUtilised)}`,
         route: "finance",
       },
       {
         title: `${
           selectedHrFiscalYear === "FY 2024-25" ? "March 2025" : "March 2026"
         }`,
-        value: `INR ${inrFormat(march2025Expense)}`,
+        value: `USD ${inrFormat(march2025Expense)}`,
         route: "finance",
       },
       {
@@ -744,7 +744,7 @@ const HrDashboard = () => {
             : "March 2026 Budget"
         }`,
         // value: "N/A",
-        value: `INR ${inrFormat(march2025Expense)}`,
+        value: `USD ${inrFormat(march2025Expense)}`,
         route: "finance",
       },
       {
@@ -754,7 +754,7 @@ const HrDashboard = () => {
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(totalUtilised / totalSqft)}`,
+        value: `USD ${inrFormat(totalUtilised / totalSqft)}`,
         route: "finance",
       },
     ],
@@ -766,13 +766,13 @@ const HrDashboard = () => {
     descriptionData: [
       {
         title: "Annual Average Expense",
-        // value: `INR ${inrFormat(totalExpense / 12)}`,
-        value: `INR ${inrFormat(totalUtilised / 12)}`,
+        // value: `USD ${inrFormat(totalExpense / 12)}`,
+        value: `USD ${inrFormat(totalUtilised / 12)}`,
         route: "finance",
       },
       {
         title: "Average Salary",
-        value: `INR ${inrFormat(totalSalary / totalEmployees)}`,
+        value: `USD ${inrFormat(totalSalary / totalEmployees)}`,
         route: "employee/view-employees",
       },
       {
@@ -870,7 +870,7 @@ const HrDashboard = () => {
               chartId={"bargraph-hr-expense"}
               options={expenseOptions}
               title={`BIZ Nest HR DEPARTMENT EXPENSE`}
-              titleAmount={`INR ${inrFormat(totalUtilised)}`}
+              titleAmount={`USD ${inrFormat(totalUtilised)}`}
               onYearChange={setSelectedHrFiscalYear}
             />
           </WidgetSection>

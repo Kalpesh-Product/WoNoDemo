@@ -10,7 +10,6 @@ import MonthWiseAgTable from "../../../../components/Tables/MonthWiseAgTable";
 const IncomeDetails = () => {
   const axios = useAxiosPrivate();
   const [selectedYear, setSelectedYear] = useState("2024-25");
-  
 
   const { data: totalRevenue = [], isLoading: isTotalLoading } = useQuery({
     queryKey: ["totalRevenue"],
@@ -102,7 +101,7 @@ const IncomeDetails = () => {
       y: {
         formatter: function (val, { seriesIndex, dataPointIndex }) {
           const actualVal = filteredByYear[seriesIndex]?.data?.[dataPointIndex];
-          return actualVal ? `INR ${actualVal.toLocaleString()}` : "No data";
+          return actualVal ? `USD ${actualVal.toLocaleString()}` : "No data";
         },
       },
     },
@@ -152,8 +151,7 @@ const IncomeDetails = () => {
           layout={1}
           title={"Annual Monthly Mix Income FY 2024-25"}
           border
-          TitleAmount={`INR ${inrFormat(totalAnnualRevenue)}`}
-        >
+          TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}>
           <BarGraph height={400} data={normalizedData} options={options} />
         </WidgetSection>
       )}
@@ -163,9 +161,9 @@ const IncomeDetails = () => {
         passedColumns={[
           { headerName: "Sr No", field: "srNo", flex: 1 },
           { headerName: "Vertical", field: "vertical", flex: 1 },
-          { headerName: "Revenue (INR)", field: "revenue", flex: 1 },
+          { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
         ]}
-        // amount={`INR ${inrFormat(totalAnnualRevenue)}`}
+        // amount={`USD ${inrFormat(totalAnnualRevenue)}`}
         financialData={financialDataForTable}
       />
     </div>

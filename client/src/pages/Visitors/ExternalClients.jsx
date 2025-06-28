@@ -115,7 +115,7 @@ const ExternalClients = () => {
         />
       ),
     },
-    { field: "paymentAmount", headerName: "Amount (INR)" },
+    { field: "paymentAmount", headerName: "Amount (USD)" },
     { field: "paymentMode", headerName: "Mode" },
 
     {
@@ -156,8 +156,7 @@ const ExternalClients = () => {
             onClick={(e) => {
               e.stopPropagation(); // Prevent row selection on click
             }}
-            className="rounded-full w-fit hover:bg-borderGray"
-          >
+            className="rounded-full w-fit hover:bg-borderGray">
             <ThreeDotMenu menuItems={menuItems} />
           </div>
         );
@@ -241,8 +240,7 @@ const ExternalClients = () => {
       <MuiModal
         open={isModalOpen}
         onClose={handleCloseModal}
-        title={"Visitor Detail"}
-      >
+        title={"Visitor Detail"}>
         <div className="flex flex-col gap-4">
           <form onSubmit={handleSubmit(submit)}>
             {!isVisitorsData ? (

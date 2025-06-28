@@ -122,8 +122,7 @@ const HrPayroll = () => {
               `/app/dashboard/HR-dashboard/finance/payroll/${params.value}`,
               { state: { empId: params.data.id } }
             )
-          }
-        >
+          }>
           {params.value}
         </span>
       ),
@@ -135,7 +134,7 @@ const HrPayroll = () => {
     // { field: "time", headerName: "Time" },
     {
       field: "totalSalary",
-      headerName: "Total Salary (INR)",
+      headerName: "Total Salary (USD)",
       cellRenderer: (params) => inrFormat(params.value),
     },
     // { field: "reimbursment", headerName: "Total Salary" },

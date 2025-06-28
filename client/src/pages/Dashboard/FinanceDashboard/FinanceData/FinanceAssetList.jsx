@@ -107,7 +107,7 @@ const FinanceAssetList = () => {
     { field: "category", headerName: "Category" },
     { field: "tangibleIntangibleAsset", headerName: "Classification" },
     { field: "brandName", headerName: "Brand" },
-    { field: "totalPrice", headerName: "Price (INR)" },
+    { field: "totalPrice", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warrantyInMonths", headerName: "Warranty (Months)" },
@@ -121,8 +121,7 @@ const FinanceAssetList = () => {
             <div className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all">
               <span
                 className="text-subtitle cursor-pointer"
-                onClick={() => handleViewModal(params.data)}
-              >
+                onClick={() => handleViewModal(params.data)}>
                 <MdOutlineRemoveRedEye />
               </span>
             </div>
@@ -131,8 +130,6 @@ const FinanceAssetList = () => {
       ),
     },
   ];
-
- 
 
   const handleDetailsClick = (asset) => {
     setSelectedAsset(asset);
@@ -165,9 +162,7 @@ const FinanceAssetList = () => {
         searchColumn={"Asset Number"}
         tableTitle={"Department Asset List"}
         // buttonTitle={"Add Asset"}
-        data={[
-         
-        ]}
+        data={[]}
         columns={assetColumns}
         handleClick={handleAddAsset}
       />
@@ -176,14 +171,13 @@ const FinanceAssetList = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Asset Detail"
-        >
+          title="Asset Detail">
           <div className="space-y-3">
             <DetalisFormatted title="Category" detail={viewDetails.category} />
             <DetalisFormatted title="Brand" detail={viewDetails.brand} />
             <DetalisFormatted
               title="Price"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.price?.toString().replace(/,/g, "")
               ).toLocaleString("en-IN", {
                 maximumFractionDigits: 0,
@@ -219,8 +213,7 @@ const FinanceAssetList = () => {
                           errors.assetImage
                             ? "border-red-500"
                             : "border-gray-300"
-                        } `}
-                      >
+                        } `}>
                         <div
                           className="w-full h-48 flex justify-center items-center relative"
                           style={{
@@ -230,8 +223,7 @@ const FinanceAssetList = () => {
                             backgroundSize: "contain",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
-                          }}
-                        >
+                          }}>
                           <Button
                             variant="outlined"
                             component="label"
@@ -246,8 +238,7 @@ const FinanceAssetList = () => {
                               padding: "8px 16px",
                               borderRadius: "8px",
                               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)",
-                            }}
-                          >
+                            }}>
                             Select Image
                             <input
                               type="file"
@@ -273,8 +264,7 @@ const FinanceAssetList = () => {
                               left: "50%",
                               transform: "translate(-50%, -50%)",
                               margin: 0,
-                            }}
-                          >
+                            }}>
                             {errors.assetImage.message}
                           </FormHelperText>
                         )}
@@ -291,8 +281,7 @@ const FinanceAssetList = () => {
                       {...field}
                       label="Asset Type"
                       helperText={!!errors.assetType?.message}
-                      select
-                    >
+                      select>
                       <MenuItem value="">Select an Asset Type</MenuItem>
                       <MenuItem value="Physical">Physical</MenuItem>
                       <MenuItem value="Digital">Digital</MenuItem>
@@ -312,8 +301,7 @@ const FinanceAssetList = () => {
                       {...field}
                       select
                       label="Department"
-                      size="small"
-                    >
+                      size="small">
                       {auth.user.company.selectedDepartments?.map((dept) => (
                         <MenuItem key={dept._id} value={dept._id}>
                           {dept.name}
@@ -334,8 +322,7 @@ const FinanceAssetList = () => {
                       fullWidth
                       select
                       label="Category"
-                      size="small"
-                    >
+                      size="small">
                       {assetsCategories.map((category) => (
                         <MenuItem key={category._id} value={category._id}>
                           {category.categoryName}
@@ -355,8 +342,7 @@ const FinanceAssetList = () => {
                       fullWidth
                       select
                       label="Sub-Category"
-                      size="small"
-                    >
+                      size="small">
                       {assetsCategories.subCategories?.map((subCategory) => (
                         <MenuItem key={subCategory._id} value={subCategory._id}>
                           {subCategory.categoryName}

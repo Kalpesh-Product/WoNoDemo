@@ -235,7 +235,7 @@ const ItInventory = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (INR)" },
+    { field: "price", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -586,8 +586,8 @@ const ItInventory = () => {
             />
             <DetalisFormatted title="Brand" detail={selectedAsset?.brand} />
             <DetalisFormatted
-              title="Price (INR)"
-              detail={`INR ${selectedAsset?.price}`}
+              title="Price (USD)"
+              detail={`USD ${selectedAsset?.price}`}
             />
             <DetalisFormatted
               title="Quantity"

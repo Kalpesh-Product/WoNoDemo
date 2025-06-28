@@ -63,7 +63,6 @@ const VoucherForm = () => {
     pdf.save("Voucher_Form.pdf");
   };
 
-
   return (
     <div className="flex flex-col gap-4">
       <div className="w-full space-y-4">
@@ -139,7 +138,7 @@ const VoucherForm = () => {
                   <li key={index} className="flex justify-between">
                     <span>{item.particular}</span>
                     <span className="font-medium">
-                      INR {item.amount?.toFixed(2)}
+                      USD {item.amount?.toFixed(2)}
                     </span>
                   </li>
                 ))}
@@ -149,7 +148,7 @@ const VoucherForm = () => {
               <div className="flex justify-between border-t border-gray-300 pt-2 mt-2 text-xs font-semibold text-gray-700">
                 <span>Total</span>
                 <span>
-                  INR{" "}
+                  USD{" "}
                   {fields
                     .reduce(
                       (acc, item) => acc + (parseFloat(item.amount) || 0),
@@ -230,8 +229,7 @@ const VoucherForm = () => {
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}
-                >
+                  {...field}>
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -329,7 +327,7 @@ const VoucherForm = () => {
                     PARTICULARS (Details of Expenses)
                   </td>
                   <td className={cellClasses} colSpan={2}>
-                    INR.
+                    USD.
                   </td>
                 </tr>
               </thead>

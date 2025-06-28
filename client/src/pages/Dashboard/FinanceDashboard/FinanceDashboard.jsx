@@ -269,7 +269,7 @@ const FinanceDashboard = () => {
     yaxis: {
       max: 8000000,
       title: {
-        text: "Amount In Lakhs (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -300,11 +300,11 @@ const FinanceDashboard = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>INR ${income?.toLocaleString() || "0"}</span>
+                <span>USD ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>INR ${inrFormat(expense) || "0"}</span>
+                <span>USD ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -321,22 +321,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthDataIncome)}`,
+        value: `USD ${inrFormat(lastMonthDataIncome)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat(totalIncomeAmount / 12)}`,
+        value: `USD ${inrFormat(totalIncomeAmount / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalIncomeAmount)}`,
+        value: `USD ${inrFormat(totalIncomeAmount)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(totalIncomeAmount / totalSqft)}`,
+        value: `USD ${inrFormat(totalIncomeAmount / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -348,22 +348,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthData)}`,
+        value: `USD ${inrFormat(lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat(totalExpense / 12)}`,
+        value: `USD ${inrFormat(totalExpense / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalExpense)}`,
+        value: `USD ${inrFormat(totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(totalExpense / totalSqft)}`,
+        value: `USD ${inrFormat(totalExpense / totalSqft)}`,
         route: "sqft-wise-data",
       },
     ],
@@ -375,22 +375,22 @@ const FinanceDashboard = () => {
     descriptionData: [
       {
         title: "March 2025",
-        value: `INR ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
+        value: `USD ${inrFormat(lastMonthDataIncome - lastMonthData)}`,
         route: "monthly-profit-loss",
       },
       {
         title: "Annual Average",
-        value: `INR ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
+        value: `USD ${inrFormat((totalIncomeAmount - totalExpense) / 12)}`,
         route: "annual-average-profit-loss",
       },
       {
         title: "Overall",
-        value: `INR ${inrFormat(totalIncomeAmount - totalExpense)}`,
+        value: `USD ${inrFormat(totalIncomeAmount - totalExpense)}`,
         route: "overall-profit-loss",
       },
       {
         title: "Per Sq. Ft.",
-        value: `INR ${inrFormat(
+        value: `USD ${inrFormat(
           (totalIncomeAmount - totalExpense) / totalSqft
         )}`,
         route: "sqft-wise-data",
@@ -488,7 +488,7 @@ const FinanceDashboard = () => {
       y: {
         formatter: function (value, { seriesIndex }) {
           const category = pieMonthlyPayoutData[seriesIndex];
-          return `INR ${category?.value?.toLocaleString("en-IN") || 0}`;
+          return `USD ${category?.value?.toLocaleString("en-IN") || 0}`;
         },
       },
     },
@@ -564,7 +564,7 @@ const FinanceDashboard = () => {
     tooltip: {
       y: {
         formatter: function (value) {
-          return `INR ${inrFormat(value.toFixed(0))}`;
+          return `USD ${inrFormat(value.toFixed(0))}`;
         },
       },
     },
@@ -596,7 +596,7 @@ const FinanceDashboard = () => {
   //           (client) =>
   //             `<div style="display: flex; justify-content: space-between;">
   //             <span>${client.clientName}</span>
-  //             <span>INR ${client.amount.toLocaleString()}</span>
+  //             <span>USD ${client.amount.toLocaleString()}</span>
   //           </div>`
   //         )
   //         .join("");
@@ -712,8 +712,8 @@ const FinanceDashboard = () => {
   const donutRentalLabels = ["Paid", "Unpaid"];
   const donutRentalSeries = [totalPaid, totalUnpaid];
   const donutRentalTooltipValue = [
-    ` INR ${totalPaid.toLocaleString()}`,
-    ` INR ${totalUnpaid.toLocaleString()}`,
+    ` USD ${totalPaid.toLocaleString()}`,
+    ` USD ${totalUnpaid.toLocaleString()}`,
   ];
   const donutRentalColors = ["#4CAF50", "#F44336"];
 
@@ -773,7 +773,7 @@ const FinanceDashboard = () => {
     { id: "expanseType", label: "Type", width: 150 },
     {
       id: "actualAmount",
-      label: "Actual Amount (INR)",
+      label: "Actual Amount (USD)",
       width: 150,
       renderCell: (row) => `${row.actualAmount.toLocaleString("en-IN")}`,
     },
@@ -815,8 +815,8 @@ const FinanceDashboard = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)}`}
-          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)}`}
+          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
           onYearChange={setSelectedFiscalYear}
         />,
       ],

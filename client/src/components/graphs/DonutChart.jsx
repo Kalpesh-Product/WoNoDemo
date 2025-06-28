@@ -20,16 +20,16 @@ const DonutChart = ({
   };
   const { chartKey, containerRef } = useResponsiveChart();
 
- const fullLabels = chartData.labels;
-const truncatedLabels = fullLabels.map(label =>
-  label.length > 7 ? label.slice(0, 7) + "..." : label
-);
+  const fullLabels = chartData.labels;
+  const truncatedLabels = fullLabels.map((label) =>
+    label.length > 7 ? label.slice(0, 7) + "..." : label
+  );
 
   const chartOptions = {
     chart: {
       type: "donut",
-      animations : {
-        enabled : false
+      animations: {
+        enabled: false,
       },
       fontFamily: "Poppins-Regular",
       events: {
@@ -53,12 +53,12 @@ const truncatedLabels = fullLabels.map(label =>
     },
     tooltip: {
       enabled: true,
-        custom: function({ seriesIndex }) {
-    const fullLabel = chartData.labels[seriesIndex]; // ✅ Full label only
-    return `<div style="padding: 8px">
+      custom: function ({ seriesIndex }) {
+        const fullLabel = chartData.labels[seriesIndex]; // ✅ Full label only
+        return `<div style="padding: 8px">
               <strong>${fullLabel}</strong>
             </div>`;
-  },
+      },
       y: {
         formatter: (val, { seriesIndex }) => `${tooltipValue[seriesIndex]}`,
       },
@@ -76,7 +76,7 @@ const truncatedLabels = fullLabels.map(label =>
               formatter: function (val) {
                 const numericVal = parseFloat(val);
                 return isMonetary
-                  ? `INR ${numericVal.toLocaleString("en-IN")}`
+                  ? `USD ${numericVal.toLocaleString("en-IN")}`
                   : `${numericVal.toLocaleString("en-IN")}`;
               },
             },
@@ -88,7 +88,7 @@ const truncatedLabels = fullLabels.map(label =>
               formatter: function (w) {
                 const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
                 return isMonetary
-                  ? `INR ${total.toLocaleString("en-IN")}`
+                  ? `USD ${total.toLocaleString("en-IN")}`
                   : `${total.toLocaleString("en-IN")}`;
               },
             },
@@ -96,7 +96,6 @@ const truncatedLabels = fullLabels.map(label =>
         },
       },
     },
-    
   };
 
   return (

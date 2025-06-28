@@ -250,7 +250,7 @@ const PaymentScheduleCommon = () => {
               title="Projected Amount"
               detail={
                 selectedEvent.extendedProps.projectedAmount
-                  ? `INR ${inrFormat(selectedEvent.extendedProps.projectedAmount)}`
+                  ? `USD ${inrFormat(selectedEvent.extendedProps.projectedAmount)}`
                   : "Not Available"
               }
             />
@@ -258,7 +258,7 @@ const PaymentScheduleCommon = () => {
               title="Actual Amount"
               detail={
                 selectedEvent.extendedProps.amount
-                  ? `INR ${inrFormat(selectedEvent.extendedProps.amount)}`
+                  ? `USD ${inrFormat(selectedEvent.extendedProps.amount)}`
                   : "Not Available"
               }
             />

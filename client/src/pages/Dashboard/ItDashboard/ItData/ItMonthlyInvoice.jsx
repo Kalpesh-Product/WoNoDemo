@@ -105,7 +105,7 @@ const ItMonthlyInvoice = () => {
     // { field: "assetNumber", headerName: "Asset Number" },
     { field: "category", headerName: "Category" },
     { field: "brand", headerName: "Brand" },
-    { field: "price", headerName: "Price (INR)" },
+    { field: "price", headerName: "Price (USD)" },
     { field: "quantity", headerName: "Quantity" },
     { field: "purchaseDate", headerName: "Purchase Date" },
     { field: "warranty", headerName: "Warranty (Months)" },
@@ -455,7 +455,7 @@ const ItMonthlyInvoice = () => {
               <DetalisFormatted title="Brand" detail={selectedAsset.brand} />
               <DetalisFormatted
                 title="Price"
-                detail={`INR ${selectedAsset.price.toLocaleString("en-IN")}`}
+                detail={`USD ${selectedAsset.price.toLocaleString("en-IN")}`}
               />
               <DetalisFormatted
                 title="Quantity"

@@ -237,7 +237,7 @@ const HrPayment = () => {
                 <span>:</span>
                 <span className="text-content  w-full justify-start pl-4">
                   {selectedEvent.extendedProps?.projectedAmount}
-                  &nbsp;INR
+                  &nbsp;USD
                 </span>
               </span>
               <span className="text-content flex items-center">
@@ -245,7 +245,7 @@ const HrPayment = () => {
                 <span>:</span>
                 <span className="text-content  w-full justify-start pl-4">
                   {selectedEvent.extendedProps?.actualAmount || 0}
-                  &nbsp;INR
+                  &nbsp;USD
                 </span>
               </span>
             </div>

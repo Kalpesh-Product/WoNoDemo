@@ -82,7 +82,7 @@ const CoWorking = () => {
       categories: sortedCoWorkingData.map((item) => item.month),
     },
     yaxis: {
-      title: { text: "Amount In Lakhs (INR)" },
+      title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${(val / 100000).toLocaleString()}`,
       },
@@ -90,7 +90,7 @@ const CoWorking = () => {
     tooltip: {
       enabled: false,
       y: {
-        formatter: (val) => `INR ${val.toLocaleString()}`,
+        formatter: (val) => `USD ${val.toLocaleString()}`,
       },
     },
     plotOptions: {
@@ -116,7 +116,7 @@ const CoWorking = () => {
         return {
           id: index,
           month: monthData.month,
-          acutal: `INR ${totalRevenue}`,
+          acutal: `USD ${totalRevenue}`,
           revenue: monthData?.clients?.map((client, i) => ({
             id: i + 1,
             clientName: client.clientName,
@@ -140,7 +140,7 @@ const CoWorking = () => {
       {!isCoWorkingLoading ? (
         <YearlyGraph
           title={"ANNUAL MONTHLY CO WORKING REVENUES"}
-          titleAmount={`INR ${inrFormat(totalActual)}`}
+          titleAmount={`USD ${inrFormat(totalActual)}`}
           data={series}
           options={options}
         />
@@ -158,7 +158,7 @@ const CoWorking = () => {
             { headerName: "Sr No", field: "id", width: 100 },
             { headerName: "Client Name", field: "clientName", width: 350 },
             { headerName: "Channel", field: "channel" },
-            { headerName: "Revenue (INR)", field: "revenue" },
+            { headerName: "Revenue (USD)", field: "revenue" },
             { headerName: "No. of Desks", field: "noOfDesks" },
             { headerName: "Desk Rate", field: "deskRate" },
             { headerName: "Total Term", field: "totalTerm" },

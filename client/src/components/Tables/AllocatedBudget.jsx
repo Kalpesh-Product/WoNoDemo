@@ -255,7 +255,7 @@ const AllocatedBudget = ({
             ? newTitle
             : "BIZ Nest DEPARTMENT WISE EXPENSE DETAILS"
         }
-        TitleAmount={`INR ${inrFormat(totalProjectedAmountForFY)}`}
+        TitleAmount={`USD ${inrFormat(totalProjectedAmountForFY)}`}
         border>
         <div className="flex flex-col gap-4 rounded-md ">
           {!hideTitle ? (

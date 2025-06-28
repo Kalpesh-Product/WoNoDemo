@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const SqWiseData = () => {
   const axios = useAxiosPrivate();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //-----------------API-----------------//
   const { data: revenueExpenseData = [], isLoading: isRevenueExpenseLoading } =
@@ -43,7 +43,6 @@ const SqWiseData = () => {
     },
   });
 
-  
   //-----------------API-----------------//
 
   //-----------------------------------------------------Graph------------------------------------------------------//
@@ -228,7 +227,11 @@ const SqWiseData = () => {
   const monthlyProfitLossColumns = [
     { field: "id", headerName: "Sr No", width: 100 },
     { field: "month", headerName: "Month", flex: 1 },
-    { field: "income", headerName: "Income (INR)", flex: 1 ,cellRenderer: (params) => (
+    {
+      field: "income",
+      headerName: "Income (USD)",
+      flex: 1,
+      cellRenderer: (params) => (
         <span
           role="button"
           onClick={() =>
@@ -236,13 +239,18 @@ const SqWiseData = () => {
               "/app/dashboard/finance-dashboard/overall-profit-loss/income-details"
             )
           }
-          className="text-primary underline cursor-pointer"
-        >
+          className="text-primary underline cursor-pointer">
           {params.value}
         </span>
-      ) },
-    { field: "sqft", headerName: "Sq.Ft", flex: 1, cellRenderer : (params)=>(inrFormat(params.value)) },
-    { field: "perSqFt", headerName: "Per Sq.Ft Income (INR)", flex: 1 },
+      ),
+    },
+    {
+      field: "sqft",
+      headerName: "Sq.Ft",
+      flex: 1,
+      cellRenderer: (params) => inrFormat(params.value),
+    },
+    { field: "perSqFt", headerName: "Per Sq.Ft Income (USD)", flex: 1 },
     // {
     //   field: "actions",
     //   headerName: "Actions",
@@ -301,9 +309,9 @@ const SqWiseData = () => {
       colors: ["transparent"],
     },
     yaxis: {
-      max : 8000000,
+      max: 8000000,
       title: {
-        text: "Amount In Lakhs (INR)",
+        text: "Amount In Thousand (USD)",
       },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -334,11 +342,11 @@ const SqWiseData = () => {
             <div style="margin-top: 6px;">
               <div style="display: flex; justify-content: space-between;">
                 <strong>Income</strong>
-                <span>INR ${income?.toLocaleString() || "0"}</span>
+                <span>USD ${income?.toLocaleString() || "0"}</span>
               </div>
               <div style="display: flex; justify-content: space-between;">
                 <strong>Expense</strong>
-                <span>INR ${inrFormat(expense) || "0"}</span>
+                <span>USD ${inrFormat(expense) || "0"}</span>
               </div>
             </div>
           </div>
@@ -358,7 +366,7 @@ const SqWiseData = () => {
         id: index + 1,
         month,
         income: inrFormat(income),
-        sqft : totalSqft,
+        sqft: totalSqft,
         perSqFt: (income / totalSqft).toFixed(0),
       };
     }
@@ -378,8 +386,8 @@ const SqWiseData = () => {
           options={incomeExpenseOptions}
           chartId={"bargraph-finance-income"}
           title={"BIZNest FINANCE INCOME V/S EXPENSE"}
-          TitleAmountGreen={`INR ${inrFormat(totalIncomeAmount)} `}
-          TitleAmountRed={`INR ${inrFormat(totalExpense)}`}
+          TitleAmountGreen={`USD ${inrFormat(totalIncomeAmount)} `}
+          TitleAmountRed={`USD ${inrFormat(totalExpense)}`}
         />,
       ],
     },
@@ -404,10 +412,9 @@ const SqWiseData = () => {
         {monthlyProfitLossData.length > 0 ? (
           <WidgetSection
             border
-            // TitleAmount={`P&L :  INR ${inrFormat(totalPnL)}`}
+            // TitleAmount={`P&L :  USD ${inrFormat(totalPnL)}`}
             titleLabel={"FY 2024-25"}
-            title={`Total Monthly P&L`}
-          >
+            title={`Total Monthly P&L`}>
             <AgTable
               data={monthlyProfitLossData}
               columns={monthlyProfitLossColumns}
@@ -426,25 +433,24 @@ const SqWiseData = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Tax Payment Detail"
-        >
+          title="Tax Payment Detail">
           <div className="space-y-3">
             <DetalisFormatted title="Month" detail={viewDetails.month} />
             <DetalisFormatted
               title="Income"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.income.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="Expense"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.expense.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />
             <DetalisFormatted
               title="P&L"
-              detail={`INR ${Number(
+              detail={`USD ${Number(
                 viewDetails.pnl.replace(/,/g, "")
               ).toLocaleString("en-IN")}`}
             />

@@ -147,7 +147,7 @@ const StatutoryPayments = () => {
         <div style="display:flex; justify-content:space-between;"><strong>Total Payments</strong> ${
           item.total
         }</div>
-        <div style="display:flex; justify-content:space-between;"><strong>Amount</strong> INR ${item.amount.toLocaleString()}</div>
+        <div style="display:flex; justify-content:space-between;"><strong>Amount</strong> USD ${item.amount.toLocaleString()}</div>
         <div style="color:#54C4A7; display:flex; justify-content:space-between;"><strong>Approved</strong> ${
           item.approved
         }</div>
@@ -165,8 +165,8 @@ const StatutoryPayments = () => {
   const kraColumn = [
     { field: "srNo", headerName: "Sr No", width: 100 },
     { field: "expanseName", headerName: "Client", flex: 1 },
-    { field: "projectedAmount", headerName: "Projected Amount (INR)", flex: 1 },
-    { field: "actualAmount", headerName: "Actual Amount (INR)", flex: 1 },
+    { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
+    { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
     { field: "dueDate", headerName: "Due Date", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
     {
@@ -178,8 +178,7 @@ const StatutoryPayments = () => {
             <div className="p-2 mb-2 flex gap-2">
               <span
                 className="text-subtitle cursor-pointer"
-                onClick={() => handleViewModal(params.data)}
-              >
+                onClick={() => handleViewModal(params.data)}>
                 <MdOutlineRemoveRedEye />
               </span>
             </div>
@@ -234,8 +233,7 @@ const StatutoryPayments = () => {
       <WidgetSection
         border
         title={"Statutory Payments FY 2024-25"}
-        TitleAmount={`INR ${inrFormat(grandTotal)}`}
-      >
+        TitleAmount={`USD ${inrFormat(grandTotal)}`}>
         <BarGraph data={barGraphData} options={barGraphOptions} />
       </WidgetSection>
       {/* <YearlyGraph title={"Statutory Payments".toUpperCase()} /> */}
@@ -244,8 +242,7 @@ const StatutoryPayments = () => {
         title={"Statutory Payments FY 2024-25"}
         border
         // titleLabel={`Month: ${selectedMonthLabel || "N/A"}`}
-        TitleAmount={`INR ${inrFormat(currentMonthTotal)}`}
-      >
+        TitleAmount={`USD ${inrFormat(currentMonthTotal)}`}>
         <YearWiseTable
           data={formattedRows}
           dateColumn={"dueDate"}
@@ -258,8 +255,7 @@ const StatutoryPayments = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Statutory Payment Detail"
-        >
+          title="Statutory Payment Detail">
           <div className="space-y-3">
             <div className="font-bold">General Information</div>
             <DetalisFormatted
@@ -286,11 +282,11 @@ const StatutoryPayments = () => {
             <div className="font-bold">Financial Overview</div>
             <DetalisFormatted
               title="Projected Amount"
-              detail={`INR ${viewDetails.projectedAmount}`}
+              detail={`USD ${viewDetails.projectedAmount}`}
             />
             <DetalisFormatted
               title="Actual Amount Paid"
-              detail={`INR ${viewDetails.actualAmount}`}
+              detail={`USD ${viewDetails.actualAmount}`}
             />
             <br />
             <div className="font-bold">Payment Timeline</div>
