@@ -8,16 +8,17 @@ const OnBoarding = () => {
 
   // Map routes to tabs
   const tabs = [
-    { label: "Employee On-Boarding", path: "employee-onboarding" },
-    { label: "View Employees", path: "view-employees" },
+    { label: "Employee-List", path: "employee-list" },
+    { label: "Past-Employees", path: "past-employees" },
     { label: "Attendance", path: "attendance" },
     { label: "Leaves", path: "leaves" },
+    { label: "Employee On-Boarding", path: "employee-onboarding" },
   ];
 
   // Redirect to "view-employees" if the current path is "/hr-dashboard/compliances"
   useEffect(() => {
     if (location.pathname === "/app/dashboard/HR-dashboard/employee") {
-      navigate("/app/dashboard/HR-dashboard/employee/employee-onboarding", {
+      navigate("/app/dashboard/HR-dashboard/employee/employee-list", {
         replace: true,
       });
     }
@@ -25,7 +26,7 @@ const OnBoarding = () => {
 
   // Determine whether to show the tabs
   const showTabs = !location.pathname.includes(
-    "view-employees/"
+    "employee-list/"
   );
 
   // Determine active tab based on location

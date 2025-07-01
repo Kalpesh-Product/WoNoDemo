@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import AgTable from "../../../../components/AgTable";
 import { Chip } from "@mui/material";
@@ -8,17 +7,17 @@ import { useDispatch } from "react-redux";
 import { setSelectedEmployee } from "../../../../redux/slices/hrSlice";
 import PageFrame from "../../../../components/Pages/PageFrame";
 
-const ViewEmployees = () => {
+export default function PastEmployees() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const axios = useAxiosPrivate();
   const { data: employees, isLoading } = useQuery({
-    queryKey: ["employees"],
+    queryKey: ["past-employees"],
     queryFn: async () => {
       try {
         const response = await axios.get("/api/users/fetch-users");
         const filteredData = response.data.filter(
-          (employee) => employee.isActive
+          (employee) => employee.isActive === false
         );
         return filteredData;
       } catch (error) {
@@ -49,7 +48,8 @@ const ViewEmployees = () => {
               `/app/dashboard/HR-dashboard/employee/employee-list/${params.data.employeeName}/edit-details`
             );
             dispatch(setSelectedEmployee(params.data.employmentID));
-          }}>
+          }}
+        >
           {params.value}
         </span>
       ),
@@ -61,10 +61,10 @@ const ViewEmployees = () => {
       field: "status",
       headerName: "Status",
       cellRenderer: (params) => {
-        const statusText = params.value ? "Active" : "InActive";
+        const statusText = params.value ? "Active" : "In Active";
         const statusColorMap = {
-          Active: { backgroundColor: "#90EE90", color: "#006400" },
-          InActive: { backgroundColor: "#D3D3D3", color: "#696969" },
+          Active: { backgroundColor: "#90EE90", color: "#006400" }, 
+          "In Active": { backgroundColor: "#F8D7DA", color: "#721C24" }, 
         };
 
         const { backgroundColor, color } = statusColorMap[statusText] || {
@@ -117,6 +117,4 @@ const ViewEmployees = () => {
       </PageFrame>
     </div>
   );
-};
-
-export default ViewEmployees;
+}

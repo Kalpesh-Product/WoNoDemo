@@ -374,6 +374,8 @@ import ManageUnit from "../pages/Dashboard/SalesDashboard/ManageUnit";
 import PolicyUpload from "../components/Pages/PolicyUpload";
 import MainDashboard from "../pages/Dashboard/MainDashboard/MainDashboard";
 import DepartmentWiseBulkUpload from "../components/Pages/BulkUpload";
+import HrCommonAttandenceRequests from "../pages/HR/HrCommonAttandenceRequests";
+import PastEmployees from "../pages/Dashboard/HrDashboard/OnBoarding/PastEmployees";
 
 export const routes = createBrowserRouter([
   {
@@ -1603,9 +1605,18 @@ export const routes = createBrowserRouter([
                         element: <OnBoarding />,
                         children: [
                           {
-                            path: "employee-onboarding",
+                            path: "employee-list",
+                            element: <ViewEmployees />,
                             index: true,
+                          },
+                          {
+                            path: "employee-onboarding",
+
                             element: <EmployeeOnboard />,
+                          },
+                          {
+                            path: "past-employees",
+                            element: <PastEmployees />, // 🛠 Make sure this component exists
                           },
                           {
                             path: "attendance",
@@ -1615,12 +1626,9 @@ export const routes = createBrowserRouter([
                             path: "leaves",
                             element: <HrLeaves />,
                           },
+
                           {
-                            path: "view-employees",
-                            element: <ViewEmployees />,
-                          },
-                          {
-                            path: "view-employees/:firstName/",
+                            path: "employee-list/:firstName/",
                             element: <EmployeeDetail />,
                             children: [
                               {
@@ -1653,7 +1661,6 @@ export const routes = createBrowserRouter([
                               },
                             ],
                           },
-
                           {
                             path: "member-onboarding",
                             element: <MemberOnboard />,
@@ -1804,6 +1811,10 @@ export const routes = createBrowserRouter([
                       {
                         path: "attendance",
                         element: <HrCommonAttendance />,
+                      },
+                      {
+                        path: "attendance-correction-requests",
+                        element: <HrCommonAttandenceRequests />,
                       },
                       {
                         path: "leaves",

@@ -13,11 +13,11 @@ import { inrFormat } from "../../../../utils/currencyFormat";
 import { toast } from "sonner";
 import { queryClient } from "../../../../main";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setVoucherDetails } from "../../../../redux/slices/financeSlice"; // adjust path as needed
 import PageFrame from "../../../../components/Pages/PageFrame";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 
 const PendingApprovals = () => {
   const navigate = useNavigate();
@@ -135,7 +135,8 @@ const PendingApprovals = () => {
   return (
     <div>
       <PageFrame>
-        <AgTable
+        <YearWiseTable
+          dateColumn={"date"}
           search={true}
           tableTitle={"Pending Approvals"}
           data={pendingApprovals.map((item, index) => {
@@ -200,6 +201,7 @@ const PendingApprovals = () => {
                 title="Amount (USD)"
                 detail={selectedBudget.projectedAmount?.toLocaleString()}
               />
+              <DetalisFormatted title="GSTIN" detail={selectedBudget.gstIn} />
               <DetalisFormatted title="Status" detail={selectedBudget.status} />
               <DetalisFormatted
                 title="Paid Status"
@@ -265,6 +267,7 @@ const PendingApprovals = () => {
                   </a>
                 }
               />
+
               <DetalisFormatted
                 title="Reimbursement Date"
                 detail={selectedBudget.reimbursementDate}
