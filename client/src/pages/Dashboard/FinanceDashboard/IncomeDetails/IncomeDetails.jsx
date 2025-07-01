@@ -43,7 +43,7 @@ const IncomeDetails = () => {
       ? []
       : totalRevenue.map((category) => ({
           vertical: category.name,
-          revenue: inrFormat(category.data["2024-25"][i]),
+          revenue: inrFormat(category.data?.["2024-25"]?.[i] ?? 0),
           percentage: `${100}%`,
         }));
 
