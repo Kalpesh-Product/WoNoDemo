@@ -37,7 +37,9 @@ const UniqueLeads = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedLead, setSelectedLead] = useState([]);
 
-  const [selectedMonth, setSelectedMonth] = useState(queryMonth || "April");
+  const [selectedFY, setSelectedFY] = useState("FY 2024-25");
+  const [selectedMonth, setSelectedMonth] = useState(queryMonth || "Apr-24");
+
   const [viewType, setViewType] = useState("month"); // 'month' or 'year'
 
   useEffect(() => {
@@ -67,14 +69,44 @@ const UniqueLeads = () => {
   const handleViewTypeChange = (event) => {
     setViewType(event.target.value);
   };
+
+  const availableFinancialYears = useMemo(() => {
+    const yearsSet = new Set();
+
+    leadsData.forEach((lead) => {
+      const date = dayjs(lead.startDate);
+      const year = date.month() >= 3 ? date.year() : date.year() - 1; // FY starts in April
+      const fyLabel = `FY ${year}-${(year + 1).toString().slice(-2)}`;
+      yearsSet.add(fyLabel);
+    });
+
+    return Array.from(yearsSet).sort(); // optional: sort FYs ascending
+  }, [leadsData]);
+
   const selectedMonthData = useMemo(() => {
-    if (!selectedMonth || leadsData.length === 0) return null;
+    if (!selectedMonth || !selectedFY || leadsData.length === 0) return null;
+
+    const [fyStart] = selectedFY.match(/\d{4}/); // e.g. "2024"
+    const fyStartYear = parseInt(fyStart);
+    const fyEndYear = fyStartYear + 1;
 
     const domainsMap = {};
 
     leadsData.forEach((lead) => {
-      const leadMonth = dayjs(lead?.startDate).format("MMMM");
-      if (leadMonth !== selectedMonth) return;
+      const leadDate = dayjs(lead?.startDate);
+      const leadMonthIndex = leadDate.month();
+      const leadYear = leadDate.year();
+
+      const isInFY =
+        leadMonthIndex >= 3 ? leadYear === fyStartYear : leadYear === fyEndYear;
+
+      const formattedLeadMonth = leadDate.format("MMM-YY");
+
+      if (
+        !isInFY ||
+        (selectedMonth !== "All" && formattedLeadMonth !== selectedMonth)
+      )
+        return;
 
       const domainName = lead?.serviceCategory?.serviceName || "Unknown";
 
@@ -101,7 +133,8 @@ const UniqueLeads = () => {
         ...data,
       })),
     };
-  }, [selectedMonth, leadsData]);
+  }, [selectedMonth, selectedFY, leadsData]);
+
   const totalLeads = selectedMonthData?.domains?.reduce((sum, item) => {
     return (item.clients?.length || 0) + sum;
   }, 0);
@@ -140,13 +173,27 @@ const UniqueLeads = () => {
     setSelectedLead(selectedLeadData);
     setModalOpen(true);
   };
+  // const graphData = [
+  //   {
+  //     name: "Leads",
+  //     data:
+  //       viewType === "month"
+  //         ? selectedMonthData?.domains.map((domain) => domain.clients.length) ||
+  //           []
+  //         : Object.values(yearlyRevenueData).map(
+  //             (domain) => domain.clients.length
+  //           ),
+  //   },
+  // ];
+
   const graphData = [
     {
       name: "Leads",
       data:
         viewType === "month"
-          ? selectedMonthData?.domains.map((domain) => domain.clients.length) ||
-            []
+          ? (selectedMonthData?.domains || []).map(
+              (domain) => domain.clients.length
+            )
           : Object.values(yearlyRevenueData).map(
               (domain) => domain.clients.length
             ),
@@ -177,45 +224,100 @@ const UniqueLeads = () => {
     colors: ["#00cdd1"],
   };
 
+  const monthOrder = [
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+  ];
   const availableMonths = useMemo(() => {
     const uniqueMonths = new Set(
-      leadsData.map((lead) => dayjs(lead.startDate).format("MMMM"))
+      leadsData
+        .map((lead) => dayjs(lead.startDate).format("MMMM"))
+        .filter((m) => m !== "Invalid Date")
     );
-    return Array.from(uniqueMonths);
+
+    return Array.from(uniqueMonths).sort(
+      (a, b) => monthOrder.indexOf(a) - monthOrder.indexOf(b)
+    );
   }, [leadsData]);
+
+  const formatMonths = useMemo(() => {
+    const fyMatch = selectedFY.match(/\d{4}/);
+    if (!fyMatch) return null;
+
+    const fyStartYear = parseInt(fyMatch[0]);
+
+    return monthOrder.map((month, index) => {
+      const actualMonthIndex = (index + 3) % 12;
+      const actualYear = actualMonthIndex <= 2 ? fyStartYear + 1 : fyStartYear;
+
+      return dayjs(new Date(actualYear, actualMonthIndex)).format("MMM-YY");
+    });
+  }, [selectedFY]);
 
   return (
     <div className="p-4 flex flex-col gap-4">
       {/* View Type Selection */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 w-full justify-end">
         <FormControl size="small">
-          <InputLabel>Select Year</InputLabel>
+          <InputLabel>Select Financial Year</InputLabel>
           <Select
-            value={viewType}
-            onChange={handleViewTypeChange}
-            label={"Select Year"}
-            sx={{ width: 200 }}>
-            <MenuItem value="month">Monthly</MenuItem>
-            <MenuItem value="year">Yearly</MenuItem>
-          </Select>
-        </FormControl>
+            value={selectedFY}
+            onChange={(e) => {
+              const newFY = e.target.value;
+              setSelectedFY(newFY);
 
-        {viewType === "month" && (
-          <FormControl size="small">
-            <InputLabel>Select Month</InputLabel>
-            <Select
-              value={selectedMonth}
-              onChange={handleMonthChange}
-              label="Select Month"
-              sx={{ width: 200 }}>
-              {availableMonths.map((month) => (
-                <MenuItem key={month} value={month}>
-                  {month}
+              const [startYear] = newFY.match(/\d{4}/) || [];
+              if (!startYear) {
+                setSelectedMonth("All");
+                return;
+              }
+
+              const defaultMonth = dayjs(
+                new Date(parseInt(startYear), 3)
+              ).format("MMM-YY");
+              setSelectedMonth(defaultMonth);
+              navigate(
+                `/app/dashboard/sales-dashboard/unique-leads?month=${encodeURIComponent(
+                  defaultMonth
+                )}`
+              );
+            }}
+            label="Select Financial Year"
+            sx={{ width: 200 }}>
+            {availableFinancialYears
+              .filter((year) => year !== "FY NaN-aN")
+              .map((fy) => (
+                <MenuItem key={fy} value={fy}>
+                  {fy}
                 </MenuItem>
               ))}
-            </Select>
-          </FormControl>
-        )}
+          </Select>
+        </FormControl>
+        <FormControl size="small">
+          <InputLabel>Select Month</InputLabel>
+          <Select
+            value={selectedMonth}
+            onChange={handleMonthChange}
+            label="Select Month"
+            sx={{ width: 200 }}>
+            <MenuItem value="All">All</MenuItem>
+            {formatMonths.map((month) => (
+              <MenuItem key={month} value={month}>
+                {month}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </div>
 
       <WidgetSection

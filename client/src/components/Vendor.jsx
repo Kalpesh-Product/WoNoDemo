@@ -17,13 +17,23 @@ import DetalisFormatted from "./DetalisFormatted";
 import PageFrame from "./Pages/PageFrame";
 import { useQueryClient } from "@tanstack/react-query";
 import humanDate from "../utils/humanDateForamt";
+import {
+  isAlphanumeric,
+  isValidBankAccount,
+  isValidEmail,
+  isValidGSTIN,
+  isValidIFSC,
+  noOnlyWhitespace,
+} from "../utils/validators";
 
 const Vendor = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
   const axios = useAxiosPrivate();
   const queryClient = useQueryClient();
-  const { control, handleSubmit, reset } = useForm();
+  const { control, handleSubmit, reset } = useForm({
+    mode: "onChange",
+  });
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -71,6 +81,7 @@ const Vendor = () => {
       return response.data;
     },
     onSuccess: function (data) {
+      reset();
       toast.success(data.message);
       queryClient.invalidateQueries({
         queryKey: ["vendors", department._id],
@@ -141,28 +152,28 @@ const Vendor = () => {
         />
       ),
     },
-    {
-      headerName: "Action",
-      field: "action",
-      width: 150,
-      cellRenderer: (params) => (
-        <>
-          <div className="flex gap-2 items-center">
-            <div
-              onClick={() => {
-                setOpenModal(true);
-                setSelectedVendor(params.data);
-              }}
-              className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all"
-            >
-              <span className="text-subtitle">
-                <MdOutlineRemoveRedEye />
-              </span>
-            </div>
-          </div>
-        </>
-      ),
-    },
+    // {
+    //   headerName: "Action",
+    //   field: "action",
+    //   width: 150,
+    //   cellRenderer: (params) => (
+    //     <>
+    //       <div className="flex gap-2 items-center">
+    //         <div
+    //           onClick={() => {
+    //             setOpenModal(true);
+    //             setSelectedVendor(params.data);
+    //           }}
+    //           className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all"
+    //         >
+    //           <span className="text-subtitle">
+    //             <MdOutlineRemoveRedEye />
+    //           </span>
+    //         </div>
+    //       </div>
+    //     </>
+    //   ),
+    // },
   ];
 
   const rows = isVendorFetchingPending
@@ -227,7 +238,13 @@ const Vendor = () => {
                     name="name"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Vendor Name is required" }}
+                    rules={{
+                      required: "Vendor Name is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isAlphanumeric,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -243,7 +260,13 @@ const Vendor = () => {
                     name="email"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Email is required" }}
+                    rules={{
+                      required: "Email is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isValidEmail,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -259,7 +282,12 @@ const Vendor = () => {
                     name="mobile"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Mobile No is required" }}
+                    rules={{
+                      required: "Mobile No is required",
+                      validate: {
+                        noOnlyWhitespace,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -275,7 +303,12 @@ const Vendor = () => {
                     name="address"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Address is required" }}
+                    rules={{
+                      required: "Address is required",
+                      validate: {
+                        noOnlyWhitespace,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -377,6 +410,9 @@ const Vendor = () => {
                     defaultValue=""
                     rules={{
                       required: "Pin Code is required",
+                      validate: {
+                        noOnlyWhitespace,
+                      },
                       pattern: {
                         value: /^[1-9][0-9]{5}$/,
                         message: "Invalid Pin Code (e.g., 560001)",
@@ -493,7 +529,13 @@ const Vendor = () => {
                     name="companyName"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Company Name is required" }}
+                    rules={{
+                      required: "Company Name is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isAlphanumeric,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -511,10 +553,9 @@ const Vendor = () => {
                     control={control}
                     defaultValue=""
                     rules={{
-                      pattern: {
-                        value:
-                          /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/,
-                        message: "Invalid GST IN",
+                      validate: {
+                        noOnlyWhitespace,
+                        isValidGSTIN,
                       },
                     }}
                     render={({ field, fieldState: { error } }) => (
@@ -533,6 +574,9 @@ const Vendor = () => {
                     control={control}
                     defaultValue=""
                     rules={{
+                      validate: {
+                        noOnlyWhitespace,
+                      },
                       pattern: {
                         value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
                         message: "Invalid PAN (e.g., ABCDE1234F)",
@@ -561,7 +605,13 @@ const Vendor = () => {
                     name="ifscCode"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "IFSC Code is required" }}
+                    rules={{
+                      required: "IFSC Code is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isValidIFSC,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -577,7 +627,13 @@ const Vendor = () => {
                     name="bankName"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Bank Name is required" }}
+                    rules={{
+                      required: "Bank Name is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isAlphanumeric,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -593,7 +649,13 @@ const Vendor = () => {
                     name="branchName"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Branch Name is required" }}
+                    rules={{
+                      required: "Branch Name is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isAlphanumeric,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -610,7 +672,13 @@ const Vendor = () => {
                     name="nameOnAccount"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Name On Account is required" }}
+                    rules={{
+                      required: "Name On Account is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isAlphanumeric,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}
@@ -626,7 +694,13 @@ const Vendor = () => {
                     name="accountNumber"
                     control={control}
                     defaultValue=""
-                    rules={{ required: "Account Number is required" }}
+                    rules={{
+                      required: "Account Number is required",
+                      validate: {
+                        noOnlyWhitespace,
+                        isValidBankAccount,
+                      },
+                    }}
                     render={({ field, fieldState: { error } }) => (
                       <TextField
                         {...field}

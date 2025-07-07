@@ -14,6 +14,12 @@ import YearWiseTable from "../../../components/Tables/YearWiseTable";
 import usePageDepartment from "../../../hooks/usePageDepartment";
 import { queryClient } from "../../../main";
 import { inrFormat } from "../../../utils/currencyFormat";
+import {
+  isAlphanumeric,
+  isValidEmail,
+  noOnlyWhitespace,
+  isValidPhoneNumber,
+} from "../../../utils/validators";
 
 const maintainanceCategories = [
   { id: 1, name: "Electrical" },
@@ -41,6 +47,7 @@ const Inventory = () => {
     control,
     formState: { errors },
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       itemName: "",
       department: "",
@@ -222,9 +229,47 @@ const Inventory = () => {
               onSubmit={handleSubmit(handleFormSubmit)}
               className="grid grid-cols-2 gap-4">
               <Controller
+                name="category"
+                control={control}
+                rules={{ required: "Category required" }}
+                render={({ field }) => (
+                  <TextField
+                    className="col-span-2"
+                    {...field}
+                    label="Category"
+                    size="small"
+                    fullWidth
+                    select
+                    error={!!errors.category}
+                    helperText={errors.category?.message}>
+                    {/* Replace with your actual options */}
+                    <MenuItem value="">Select category</MenuItem>
+                    {department.name === "Administration"
+                      ? adminCategories.map((m) => (
+                          <MenuItem key={m.id} value={m.name}>
+                            {m.name}
+                          </MenuItem>
+                        ))
+                      : department.name === "Maintenance"
+                      ? maintainanceCategories.map((m) => (
+                          <MenuItem key={m.id} value={m.name}>
+                            {m.name}
+                          </MenuItem>
+                        ))
+                      : []}
+                  </TextField>
+                )}
+              />
+              <Controller
                 name="itemName"
                 control={control}
-                rules={{ required: "Item name is required" }}
+                rules={{
+                  required: "Item name is required",
+                  validate: {
+                    isAlphanumeric,
+                    noOnlyWhitespace,
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -353,39 +398,6 @@ const Inventory = () => {
                     error={!!errors.closingInventoryUnits}
                     helperText={errors.closingInventoryUnits?.message}
                   />
-                )}
-              />
-
-              <Controller
-                name="category"
-                control={control}
-                rules={{ required: "Category required" }}
-                render={({ field }) => (
-                  <TextField
-                    className="col-span-2"
-                    {...field}
-                    label="Category"
-                    size="small"
-                    fullWidth
-                    select
-                    error={!!errors.category}
-                    helperText={errors.category?.message}>
-                    {/* Replace with your actual options */}
-                    <MenuItem value="">Select category</MenuItem>
-                    {department.name === "Administration"
-                      ? adminCategories.map((m) => (
-                          <MenuItem key={m.id} value={m.name}>
-                            {m.name}
-                          </MenuItem>
-                        ))
-                      : department.name === "Maintenance"
-                      ? maintainanceCategories.map((m) => (
-                          <MenuItem key={m.id} value={m.name}>
-                            {m.name}
-                          </MenuItem>
-                        ))
-                      : []}
-                  </TextField>
                 )}
               />
 

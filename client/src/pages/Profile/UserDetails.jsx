@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
@@ -22,6 +22,13 @@ import { toast } from "sonner";
 import PageFrame from "../../components/Pages/PageFrame";
 import PrimaryButton from "../../components/PrimaryButton";
 import SecondaryButton from "../../components/SecondaryButton";
+import {
+  isAlphanumeric,
+  noOnlyWhitespace,
+  isValidEmail,
+  isValidPhoneNumber,
+  isValidPinCode,
+} from "../../utils/validators";
 
 const UserDetails = () => {
   const axios = useAxiosPrivate();
@@ -103,9 +110,22 @@ const UserDetails = () => {
     },
   });
 
-  const { control, handleSubmit, reset } = useForm({
-    values: userDetails || {},
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {},
   });
+
+  // Reset when data is loaded
+  useEffect(() => {
+    if (userDetails) {
+      reset(userDetails);
+    }
+  }, [userDetails, reset]);
 
   const mutation = useMutation({
     mutationFn: async (updatedData) => {
@@ -250,11 +270,11 @@ const UserDetails = () => {
 
   return (
     <div className="flex flex-col gap-4">
-         <div>
-          <span className="text-title font-pmedium text-primary uppercase">
-            My Profile
-          </span>
-        </div>
+      <div>
+        <span className="text-title font-pmedium text-primary uppercase">
+          My Profile
+        </span>
+      </div>
       <div className="flex items-center gap-8 w-full border-2 border-gray-200 p-4 rounded-xl">
         <div className="flex gap-6 items-center w-full">
           <div className="w-40 h-40">
@@ -275,7 +295,8 @@ const UserDetails = () => {
                 height: "100%",
                 fontSize: "5rem",
               }}
-              src={previewUrl || auth?.user?.profilePicture?.url}>
+              src={previewUrl || auth?.user?.profilePicture?.url}
+            >
               {!previewUrl &&
                 !auth?.user?.profilePicture?.url &&
                 user.name?.charAt(0)}
@@ -292,7 +313,8 @@ const UserDetails = () => {
             <label
               htmlFor="fileUpload"
               // className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 p-6 rounded-md cursor-pointer transition">
-              className="flex flex-col items-start justify-center   rounded-md cursor-pointer transition">
+              className="flex flex-col items-start justify-center   rounded-md cursor-pointer transition"
+            >
               {previewUrl ? (
                 // <img
                 //   src={previewUrl}
@@ -320,7 +342,8 @@ const UserDetails = () => {
               <div className=" flex flex-col items-start gap-2">
                 <label
                   htmlFor="fileUpload"
-                  className="text-primary cursor-pointer underline">
+                  className="text-primary cursor-pointer underline"
+                >
                   Change Image
                 </label>
                 <button
@@ -330,7 +353,8 @@ const UserDetails = () => {
                     uploading
                       ? "bg-gray-400"
                       : "bg-primary hover:scale-[1.05] transition"
-                  }`}>
+                  }`}
+                >
                   {uploading ? "Uploading..." : "Save Image"}
                 </button>
               </div>
@@ -372,27 +396,6 @@ const UserDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-end">
-     
-        {!editMode ? (
-          <div className="flex justify-end">
-            <PrimaryButton
-              title={"Edit"}
-              handleSubmit={() => {
-                if (userDetails) reset(userDetails);
-                setEditMode(true);
-              }}
-            />
-          </div>
-        ) : (
-          <div className="flex justify-end">
-            <SecondaryButton
-              title={"Cancel"}
-              handleSubmit={() => setEditMode(false)}
-            />
-          </div>
-        )}
-      </div>
 
       <PageFrame>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -430,12 +433,16 @@ const UserDetails = () => {
                             <Controller
                               name={name}
                               control={control}
-                              render={({ field }) => (
+                              rules={{ required: `${label} is required` }}
+                              render={({ field, fieldState: { error } }) => (
                                 <TextField
                                   size="small"
                                   select
                                   {...field}
-                                  label={label}>
+                                  label={label}
+                                  error={!!error}
+                                  helperText={error?.message}
+                                >
                                   {options.map((opt) => (
                                     <MenuItem key={opt} value={opt}>
                                       {opt}
@@ -459,7 +466,8 @@ const UserDetails = () => {
                           <Controller
                             name={name}
                             control={control}
-                            render={({ field }) => (
+                            rules={{ required: `${label} is required` }}
+                            render={({ field, fieldState: { error } }) => (
                               <DatePicker
                                 label={label}
                                 format="DD-MM-YYYY"
@@ -468,7 +476,12 @@ const UserDetails = () => {
                                   field.onChange(date ? date.toISOString() : "")
                                 }
                                 slotProps={{
-                                  textField: { fullWidth: true, size: "small" },
+                                  textField: {
+                                    fullWidth: true,
+                                    size: "small",
+                                    error: !!error,
+                                    helperText: error?.message,
+                                  },
                                 }}
                               />
                             )}
@@ -497,7 +510,8 @@ const UserDetails = () => {
                               href={value}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 underline ml-2">
+                              className="text-blue-600 underline ml-2"
+                            >
                               {label === "Leave Policy"
                                 ? "View Leave Policy"
                                 : label === "Holiday Policy"
@@ -510,12 +524,43 @@ const UserDetails = () => {
                         <Controller
                           name={name}
                           control={control}
-                          render={({ field }) => (
+                          rules={{
+                            ...([
+                              "firstName",
+                              "lastName",
+                              "mobilePhone",
+                              "pinCode",
+                              "email",
+                            ].includes(name)
+                              ? { required: `${label} is required` }
+                              : {}),
+
+                            validate: {
+                              // noOnlyWhitespace,
+                              ...([
+                                "firstName",
+                                // "middleName",
+                                "lastName",
+                                // "addressLine1",
+                                // "addressLine2",
+                              ].includes(name)
+                                ? { isAlphanumeric }
+                                : {}),
+                              ...(name === "email" ? { isValidEmail } : {}),
+                              ...(name === "mobilePhone"
+                                ? { isValidPhoneNumber }
+                                : {}),
+                              ...(name === "pinCode" ? { isValidPinCode } : {}),
+                            },
+                          }}
+                          render={({ field, fieldState: { error } }) => (
                             <TextField
+                              {...field}
                               size="small"
                               fullWidth
                               label={label}
-                              {...field}
+                              error={!!error}
+                              helperText={error?.message}
                             />
                           )}
                         />
@@ -535,6 +580,22 @@ const UserDetails = () => {
             </div>
           ))}
 
+          <div className="flex justify-center">
+            {!editMode ? (
+              <div className="flex justify-end">
+                <PrimaryButton
+                  title={"Edit"}
+                  handleSubmit={() => {
+                    if (userDetails) reset(userDetails);
+                    setEditMode(true);
+                  }}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
           <div className="flex items-center justify-center gap-4 mt-4">
             {editMode ? (
               <>
@@ -545,7 +606,7 @@ const UserDetails = () => {
                 />
               </>
             ) : (
-             <></>
+              <></>
             )}
           </div>
         </form>

@@ -14,6 +14,8 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useEffect } from "react";
 import ThreeDotMenu from "../../../../components/ThreeDotMenu";
 import { queryClient } from "../../../../main";
+import { noOnlyWhitespace, isAlphanumeric } from "../../../../utils/validators";
+import DangerButton from "../../../../components/DangerButton";
 
 const EmployeeType = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -21,11 +23,18 @@ const EmployeeType = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const axios = useAxiosPrivate();
 
-  const { handleSubmit, reset, control, setValue } = useForm({
+  const {
+    handleSubmit,
+    reset,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       employeeType: "",
       isActive: true,
     },
+    mode: "onChange",
   });
 
   const handleAddType = () => {
@@ -50,13 +59,17 @@ const EmployeeType = () => {
   };
 
   const handleDelete = (item) => {
-    const payload = {
-      type: "employeeTypes",
-      itemId: item._id,
-      isDeleted: true,
-    };
     setModalMode("delete");
     setSelectedItem(item);
+    setOpenModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    const payload = {
+      type: "employeeTypes",
+      itemId: selectedItem._id,
+      isDeleted: true,
+    };
     updateEmployeeTypeMutation.mutate(payload);
   };
 
@@ -234,9 +247,12 @@ const EmployeeType = () => {
               ? "Add Employee Type"
               : modalMode === "edit"
               ? "Edit Employee Type"
+              : modalMode === "delete"
+              ? "Confirm Delete"
               : "Employee Type Details"
           }
-          onClose={() => setOpenModal(false)}>
+          onClose={() => setOpenModal(false)}
+        >
           {modalMode === "view" ? (
             <div className="grid grid-cols-1 gap-4 overflow-y-auto max-h-[70vh]">
               <DetalisFormatted
@@ -248,19 +264,42 @@ const EmployeeType = () => {
                 detail={selectedItem?.status ? "Active" : "Inactive"}
               />
             </div>
+          ) : modalMode === "delete" ? (
+            <div className="space-y-4">
+              <p>
+                Are you sure you want to delete <b>{selectedItem?.name}</b>?
+              </p>
+              <div className="flex gap-4 justify-end">
+                <SecondaryButton
+                  title="Cancel"
+                  handleSubmit={() => setOpenModal(false)}
+                />
+                <DangerButton
+                  title="Confirm Delete"
+                  handleSubmit={handleConfirmDelete}
+                />
+              </div>
+            </div>
           ) : (
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-4">
+              className="flex flex-col gap-4"
+            >
               <Controller
                 name="employeeType"
                 control={control}
+                rules={{
+                  required: "please provide an employee type",
+                  validate: { isAlphanumeric, noOnlyWhitespace },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     size="small"
                     label="Enter Employee Type"
                     fullWidth
+                    error={!!errors.employeeType}
+                    helperText={errors.employeeType?.message}
                   />
                 )}
               />

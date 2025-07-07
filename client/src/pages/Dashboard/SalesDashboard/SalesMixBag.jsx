@@ -1,6 +1,5 @@
 import { useState } from "react";
 import WidgetSection from "../../../components/WidgetSection";
-import { FaExternalLinkAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { TextField } from "@mui/material";
@@ -13,7 +12,7 @@ const SalesMixBag = () => {
     {
       title: "Inventory",
       route:
-        "/app/dashboard/sales-dashboard/mix-bag/co-working-seats/check-availability",
+        "/app/dashboard/sales-dashboard/mix-bag/inventory",
     },
     {
       title: "Revenue",
@@ -25,7 +24,7 @@ const SalesMixBag = () => {
     },
     {
       title: "Desks",
-      route: "/app/dashboard/sales-dashboard/mix-bag/co-working-seats",
+      route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
     },
     {
       title:"Manage Units",

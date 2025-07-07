@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import biznestLogo from "../../../../assets/biznest/biznest_logo.jpg";
-import HierarchyTree from "../../../../components/HierarchyTree";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import AccessTree from "../../../../components/AccessTree";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { toast } from "sonner";
@@ -11,10 +9,14 @@ import Access from "../../../Access/Access";
 import { useLocation, useNavigate } from "react-router-dom";
 import usePageDepartment from "../../../../hooks/usePageDepartment";
 import useAuth from "../../../../hooks/useAuth";
+import { useTopDepartment } from "../../../../hooks/useTopDepartment";
 
 const CompanyHandbook = () => {
   const [generalDoc, setGeneralDoc] = useState(null); // initially null
   const axios = useAxiosPrivate();
+  const department = usePageDepartment();
+  const isTop = useTopDepartment();
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isProfile = pathname.includes("profile/HR/companyHandbook");
@@ -38,7 +40,7 @@ const CompanyHandbook = () => {
       enabled: !!generalDoc, // disables initial fetch until a type is selected
     });
 
-  const { data: departmentData, isLoading } = useQuery({
+  const { data: departmentData = [], isLoading } = useQuery({
     queryKey: ["departmentData"],
     queryFn: async () => {
       try {
@@ -59,7 +61,15 @@ const CompanyHandbook = () => {
         }))
         .sort((a, b) => a.title.localeCompare(b.title));
 
-  const filteredAccordionData = departmentList;
+  const userDepartmentIds = auth.user?.departments?.map((d) => d._id) || [];
+
+  const filteredAccordionData = isTop.isTop
+    ? departmentList
+    : departmentList.filter(
+        (dep) => userDepartmentIds.includes(dep.id) // assuming dep.id is the department's ID in `departmentList`
+      );
+
+  console.log("Filtered Departments:", filteredAccordionData);
 
   const accordionDataGeneral = [
     {
@@ -173,7 +183,6 @@ const CompanyHandbook = () => {
       <div className="flex">
         <div className="w-full h-full rounded-md">
           <Access />
-          {/* <AccessTree clickState={false} /> */}
         </div>
       </div>
 
@@ -235,6 +244,7 @@ const CompanyHandbook = () => {
                           state: {
                             departmentId: item.id,
                             departmentName: item.title,
+                            documentType : "sop"
                           },
                         })
                       }
@@ -245,7 +255,18 @@ const CompanyHandbook = () => {
                   {/* Policies */}
                   <div className="flex justify-between items-center">
                     <span className="text-content">Policies</span>
-                    <button className="p-2 border-default border-black rounded-md text-content">
+                    <button
+                      className="p-2 border-default border-black rounded-md text-content"
+                      onClick={() =>
+                        navigate(`${item.title}`, {
+                          state: {
+                            departmentId: item.id,
+                            departmentName: item.title,
+                            documentType : "policies"
+                          },
+                        })
+                      }
+                    >
                       <IoIosArrowForward />
                     </button>
                   </div>

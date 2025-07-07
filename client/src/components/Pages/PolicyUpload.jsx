@@ -14,6 +14,8 @@ import ThreeDotMenu from "../ThreeDotMenu";
 import YearWiseTable from "../Tables/YearWiseTable";
 import DangerButton from "../DangerButton";
 import SecondaryButton from "../SecondaryButton";
+import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
+import humanDate from "../../utils/humanDateForamt";
 
 const PolicyUpload = () => {
   const axios = useAxiosPrivate();
@@ -30,6 +32,7 @@ const PolicyUpload = () => {
     formState: { errors },
     control,
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       documentName: "",
       sop: null,
@@ -44,6 +47,7 @@ const PolicyUpload = () => {
     formState: { errors: editErrors },
     setValue: setEditValue,
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       newName: "",
     },
@@ -71,7 +75,7 @@ const PolicyUpload = () => {
       return response.data;
     },
     onSuccess: () => {
-      toast.success("SOP uploaded successfully!");
+      toast.success("Policy uploaded successfully!");
       reset(); // reset form
       setOpenModal(false); // close modal
       queryClient.invalidateQueries({
@@ -209,6 +213,7 @@ const PolicyUpload = () => {
             documentLink: item?.documentLink || "#",
             date: item.createdAt,
             status: item.isActive ? "Active" : "-",
+            updatedAt : humanDate(item.updatedAt),
           }))
           .filter((item) => item.isActive === true)
       : [];
@@ -249,7 +254,13 @@ const PolicyUpload = () => {
               <Controller
                 name="documentName"
                 control={control}
-                rules={{ required: "Document Name is Required" }}
+                rules={{
+                  required: "Document Name is Required",
+                  validate: {
+                    noOnlyWhitespace,
+                    isAlphanumeric,
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     name="documentName"
@@ -298,7 +309,13 @@ const PolicyUpload = () => {
               <Controller
                 name="newName"
                 control={controlEdit}
-                rules={{ required: "Document Name is Required" }}
+                rules={{
+                  required: "Document Name is Required",
+                  validate: {
+                    noOnlyWhitespace,
+                    isAlphanumeric,
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}

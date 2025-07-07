@@ -376,6 +376,13 @@ import MainDashboard from "../pages/Dashboard/MainDashboard/MainDashboard";
 import DepartmentWiseBulkUpload from "../components/Pages/BulkUpload";
 import HrCommonAttandenceRequests from "../pages/HR/HrCommonAttandenceRequests";
 import PastEmployees from "../pages/Dashboard/HrDashboard/OnBoarding/PastEmployees";
+import HrCommonHandbook from "../pages/HR/HrCommonHandbook";
+import DepartmentPolicies from "../pages/Dashboard/HrDashboard/Complaince/DepartmentPolicies";
+import HrCommonDocuments from "../pages/HR/HrCommonDocuments";
+import BuildingUnits from "../pages/Dashboard/SalesDashboard/CoWorkingSeats/BuildingUnits";
+import HouseKeepingMembersList from "../pages/Dashboard/AdminDashboard/HouseKeepingMembersList";
+import HouseKeepingLayout from "../pages/Dashboard/AdminDashboard/HouseKeepingLayout";
+import HouseKeepingOnboard from "../pages/Dashboard/AdminDashboard/HouseKeepingOnboard";
 
 export const routes = createBrowserRouter([
   {
@@ -668,6 +675,10 @@ export const routes = createBrowserRouter([
                         element: <SqWiseData />,
                       },
                       {
+                        path: "sqft-wise-data/income-details",
+                        element: <IncomeDetails />,
+                      },
+                      {
                         path: "billing",
                         element: <BillingsLayout />,
                         children: [
@@ -688,7 +699,7 @@ export const routes = createBrowserRouter([
                             element: <FinanceViewVoucher />,
                           },
                           {
-                            path: "voucher",
+                            path: "voucher-history",
                             element: <VoucherCreation />,
                           },
                           {
@@ -800,19 +811,34 @@ export const routes = createBrowserRouter([
                         element: <TeamMemberDetails />,
                       },
                       {
-                        path: "mix-bag/housekeeping-members-schedule",
-                        element: <HousekeepingTeamMembersSchedule />,
+                        path: "mix-bag/housekeeping-members",
+                        element: <HouseKeepingLayout />,
+                        children: [
+                          {
+                            path: "members-list",
+                            element: <HouseKeepingMembersList />,
+                          },
+                          {
+                            path: "member-onboard",
+                            element: <HouseKeepingOnboard />,
+                          },
+                          {
+                            path: "member-schedule",
+                            element: <HousekeepingTeamMembersSchedule />,
+                          },
+                          {
+                            path: "member-schedule/:id",
+                            element: <HousekeepingTeamMembersCalendar />,
+                          },
+                        ],
                       },
-                      {
-                        path: "housekeeping-members-calendar/:id",
-                        element: <HousekeepingTeamMembersCalendar />,
-                      },
+
                       {
                         path: "holidays-events",
                         element: <AdminHolidaysEvents />,
                       },
                       {
-                        path: "client-members",
+                        path: "mix-bag/client-members",
                         element: <AdminClientLayout />,
                         children: [
                           {
@@ -1277,35 +1303,49 @@ export const routes = createBrowserRouter([
                         element: <SalesMixBag />,
                       },
                       {
-                        path: "mix-bag/co-working-seats",
-                        element: <CoWorkingSeats />,
-                      },
-                      {
-                        path: "mix-bag/co-working-seats/:id",
-                        element: <CoWorkingDetails />,
-                      },
-                      {
-                        path: "co-working-seats",
-                        element: <CoWorkingSeats />,
-                      },
-                      {
-                        path: "co-working-seats/:id",
-                        element: <CoWorkingDetails />,
-                      },
-                      {
-                        path: "mix-bag/co-working-seats/check-availability",
+                        path: "mix-bag/inventory",
+                        // element: <CoWorkingSeats />,
                         element: <CheckAvailability />,
                       },
                       {
-                        path: "co-working-seats/check-availability",
-                        element: <CheckAvailability />,
+                        path: "mix-bag/inventory/:location",
+                        element: <BuildingUnits />,
                       },
                       {
-                        path: "mix-bag/co-working-seats/check-availability/view-availability",
+                        path: "mix-bag/inventory/:location/:unit",
                         element: <ViewAvailability />,
                       },
                       {
-                        path: "co-working-seats/check-availability/view-availability",
+                        path: "inventory",
+                        // element: <CoWorkingSeats />,
+                        element: <CheckAvailability />,
+                      },
+                      {
+                        path: "inventory/:id",
+                        element: <CoWorkingDetails />,
+                      },
+                      {
+                        path: "mix-bag/inventory",
+                        element: <CheckAvailability />,
+                      },
+                      {
+                        path: "inventory",
+                        element: <CheckAvailability />,
+                      },
+                      // {
+                      //   path: "mix-bag/inventory/check-availability",
+                      //   element: <CheckAvailability />,
+                      // },
+                      // {
+                      //   path: "inventory/check-availability",
+                      //   element: <CheckAvailability />,
+                      // },
+                      {
+                        path: "mix-bag/inventory/check-availability/view-availability",
+                        element: <ViewAvailability />,
+                      },
+                      {
+                        path: "inventory/check-availability/view-availability",
                         element: <ViewAvailability />,
                       },
                       {
@@ -1573,6 +1613,7 @@ export const routes = createBrowserRouter([
                             path: "company-handbook/:department",
                             element: <DepartmentSOP />,
                           },
+
                           {
                             path: "policies",
                             element: <HrSettingsPolicies />,
@@ -1825,8 +1866,12 @@ export const routes = createBrowserRouter([
                         element: <HrCommonAgreements />,
                       },
                       {
-                        path: "companyHandbook",
-                        element: <CompanyHandbook />,
+                        path: "company-handbook",
+                        element: <HrCommonHandbook />,
+                      },
+                      {
+                        path: "company-handbook/:department",
+                        element: <HrCommonDocuments />,
                       },
                       {
                         path: "payslips",

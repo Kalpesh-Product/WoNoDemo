@@ -24,6 +24,7 @@ import DetalisFormatted from "../../components/DetalisFormatted";
 import humanTime from "../../utils/humanTime";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
 import humanDate from "../../utils/humanDateForamt";
+import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
 
 const RaiseTicket = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -150,7 +151,7 @@ const RaiseTicket = () => {
     { field: "ticketTitle", headerName: "Ticket Title", width: 250 },
     { field: "description", headerName: "Description", width: 300 },
     { field: "acceptedBy", headerName: "Accepted By", width: 300 },
-    { field: "acceptedAt", headerName: "Accepted Time", width: 300 },
+    { field: "acceptedAt", headerName: "Accepted Time", width: 300, cellRenderer : (params)=>(humanDate(params.value)) },
 
     {
       field: "priority",
@@ -451,8 +452,11 @@ const RaiseTicket = () => {
               <div>
                 <Controller
                   name="message"
-                  rules={{ required: "Please specify your message" }}
                   control={control}
+                  rules={{
+                    required: "Please specify your message",
+                    validate: { noOnlyWhitespace, isAlphanumeric },
+                  }}
                   render={({ field }) => (
                     <>
                       <TextField
@@ -509,7 +513,7 @@ const RaiseTicket = () => {
                 closedBy: ticket?.closedBy
                   ? `${ticket.closedBy.firstName} ${ticket.closedBy.lastName}`
                   : "None",
-                acceptedAt: ticket.acceptedAt ? ticket.acceptedAt : "None",
+                acceptedAt: ticket.acceptedAt,
                 closedAt: ticket.closedAt ? ticket.closedAt : "None",
                 priority: ticket.priority,
                 image: ticket.image ? ticket.image.url : null,

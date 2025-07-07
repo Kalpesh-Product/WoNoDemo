@@ -180,27 +180,27 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
           </div>
         </div>
         {/* AgTable */}
-        {monthData.rows.length > 0 ? (
-          <div className="h-72 overflow-y-auto mt-4 px-4">
+        <div className="h-72 mt-4 px-4 overflow-y-auto">
+          {filteredMonths.length === 0 ? (
+            <div className="h-full flex justify-center items-center text-muted">
+              No data available for {selectedFY}
+            </div>
+          ) : monthData.rows.length === 0 ? (
+            <div className="h-full flex justify-center items-center text-muted">
+              No data available for {monthData.month || "selected month"}
+            </div>
+          ) : (
             <AgTable
-              data={
-                monthData.rows
-                  ? monthData.rows.map((item, index) => ({
-                      ...item,
-                      srNo: index + 1,
-                    }))
-                  : []
-              }
+              data={monthData.rows.map((item, index) => ({
+                ...item,
+                srNo: index + 1,
+              }))}
               columns={passedColumns ? passedColumns : columns}
               tableHeight={250}
               hideFilter
             />
-          </div>
-        ) : (
-          <div className="h-72 flex justify-center items-center text-muted">
-            {/* No revenue data for {monthData.month} */}
-          </div>
-        )}
+          )}
+        </div>
       </WidgetSection>
     </div>
   );

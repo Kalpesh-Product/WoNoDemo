@@ -18,6 +18,8 @@ import ThreeDotMenu from "../ThreeDotMenu";
 import YearWiseTable from "../Tables/YearWiseTable";
 import SecondaryButton from "../SecondaryButton";
 import DangerButton from "../DangerButton";
+import { noOnlyWhitespace, isAlphanumeric } from "../../utils/validators";
+import humanDate from "../../utils/humanDateForamt";
 
 const SopUpload = () => {
   const axios = useAxiosPrivate();
@@ -37,6 +39,7 @@ const SopUpload = () => {
     formState: { errors },
     control,
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       documentName: "",
       sop: null,
@@ -51,6 +54,7 @@ const SopUpload = () => {
     formState: { errors: editErrors },
     setValue: setEditValue,
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       newName: "",
     },
@@ -211,6 +215,7 @@ const SopUpload = () => {
             documentLink: item?.documentLink || "#",
             date: item.createdAt,
             status: item.isActive ? "Active" : "-",
+            updatedAt : humanDate(item.updatedAt),
           }))
           .filter((item) => item.isActive === true)
       : [];
@@ -251,13 +256,18 @@ const SopUpload = () => {
               <Controller
                 name="documentName"
                 control={control}
-                rules={{ required: "Document Name is Required" }}
+                rules={{
+                  required: "Document Name is required",
+                  validate: {
+                    noOnlyWhitespace,
+                    isAlphanumeric,
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
-                    name="documentName"
+                    {...field}
                     label="Document Name"
                     size="small"
-                    {...field}
                     fullWidth
                     error={!!errors.documentName}
                     helperText={errors?.documentName?.message}
@@ -300,7 +310,13 @@ const SopUpload = () => {
               <Controller
                 name="newName"
                 control={controlEdit}
-                rules={{ required: "Document Name is Required" }}
+                rules={{
+                  required: "Document Name is Required",
+                  validate: {
+                    noOnlyWhitespace,
+                    isAlphanumeric,
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}

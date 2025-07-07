@@ -64,7 +64,7 @@ const HrDashboard = () => {
     queryFn: async () => {
       try {
         const response = await axios.get("/api/users/fetch-users");
-        return response.data;
+        return response.data.filter((u) => u.isActive);
       } catch (error) {
         throw new Error(error.response.data.message);
       }

@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import PageFrame from "./PageFrame";
 import UploadFileInput from "../UploadFileInput";
 import html2pdf from "html2pdf.js";
+import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
 
 // Tailwind classes
 const cellClasses = "border border-black p-2 text-xs align-top";
@@ -64,6 +65,7 @@ const Reimbursement = () => {
       invoiceNo: "",
       gstIn: "",
     },
+    mode: "onChange",
   });
   const { data: departmentBudget = [], isPending: isDepartmentLoading } =
     useQuery({
@@ -288,7 +290,10 @@ const Reimbursement = () => {
               <Controller
                 name="location"
                 control={control}
-                rules={{ required: "Location is required" }}
+                rules={{
+                  required: "Location is required",
+                  validate: { noOnlyWhitespace },
+                }}
                 render={({ field, fieldState }) => (
                   <TextField
                     size="small"
@@ -422,7 +427,10 @@ const Reimbursement = () => {
               <Controller
                 name="expanseName"
                 control={control}
-                rules={{ required: "Expense Name is required" }}
+                rules={{
+                  required: "Expense Name is required",
+                  validate: { isAlphanumeric, noOnlyWhitespace },
+                }}
                 render={({ field, fieldState }) => (
                   <TextField
                     {...field}
@@ -443,7 +451,10 @@ const Reimbursement = () => {
               <Controller
                 name="particularName"
                 control={control}
-                rules={{ required: "Particular name is required" }}
+                rules={{
+                  required: "Particular name is required",
+                  validate: { isAlphanumeric, noOnlyWhitespace },
+                }}
                 render={({ field, fieldState }) => (
                   <TextField
                     label="Particulars"

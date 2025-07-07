@@ -35,24 +35,20 @@ const PayrollReports = () => {
   const payrollColumns = [
     { field: "srNo", headerName: "Sr No", width: 100 },
     { field: "empId", headerName: "Employee ID", width: 200 },
-    { field: "name", headerName: "Name" },
-    { field: "email", headerName: "Email", flex: 1 },
-    { field: "totalSalary", headerName: "Total Salary (USD)" },
     {
-      field: "actions",
-      headerName: "Actions",
-      pinned: "right",
-      width: 100,
+      field: "name",
+      headerName: "Name",
+      flex: 1,
       cellRenderer: (params) => (
-        <div className="p-2 mb-2 flex gap-2">
-          <span
-            className="text-subtitle cursor-pointer"
-            onClick={() => handleViewApplicationDetails(params.data)}>
-            <MdOutlineRemoveRedEye />
-          </span>
-        </div>
+        <span
+          className="text-primary underline cursor-pointer"
+          onClick={() => handleViewApplicationDetails(params.data)}>
+          {params.value}
+        </span>
       ),
     },
+    { field: "email", headerName: "Email", flex: 1 },
+    { field: "totalSalary", headerName: "Total Salary (USD)" },
   ];
 
   const transformedData = isLoading
@@ -63,15 +59,13 @@ const PayrollReports = () => {
             ...item,
             empId: item.empId,
             employeeName: item.name,
-            status: item.months?.map((item) => item.status),
-            totalSalary: inrFormat(
-              item.months?.map((item) => item.totalSalary)
-            ),
+            status: item?.status,
+            totalSalary: inrFormat(item?.totalSalary),
             departmentName: item.departments?.map(
               (item) => item.name || "null"
             ),
-            date: humanDate(item.months?.map((item) => item.month)),
-            payslip: item.months?.map((item) => item.payslip?.payslipLink),
+            date: item?.month,
+            payslip: item?.payslip?.payslipLink,
           };
         })
         .sort((a, b) =>
@@ -94,6 +88,7 @@ const PayrollReports = () => {
           exportData={true}
           tableTitle={"Payroll Reports"}
           hideTitle
+          dateColumn={"date"}
         />
       </PageFrame>
       <MuiModal
@@ -112,17 +107,14 @@ const PayrollReports = () => {
               title="Department"
               detail={selectedEmployee?.departmentName || "N/A"}
             />
-            <DetalisFormatted
-              title="Date"
-              detail={humanDate(selectedEmployee?.date)}
-            />
+            <DetalisFormatted title="Date" detail={selectedEmployee?.date} />
             <DetalisFormatted
               title="Total Salary"
-              detail={`USD ${inrFormat(selectedEmployee?.totalSalary?.[0])}`}
+              detail={`USD ${inrFormat(selectedEmployee?.totalSalary)}`}
             />
             <DetalisFormatted
               title="Status"
-              detail={selectedEmployee?.status?.[0] || "N/A"}
+              detail={selectedEmployee?.status || "N/A"}
             />
             <DetalisFormatted
               title="Payslip"

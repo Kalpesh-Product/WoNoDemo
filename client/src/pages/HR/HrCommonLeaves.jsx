@@ -3,7 +3,7 @@ import AgTable from "../../components/AgTable";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import { CircularProgress, MenuItem, TextField } from "@mui/material";
+import { Chip, CircularProgress, MenuItem, TextField } from "@mui/material";
 import { toast } from "sonner";
 import PrimaryButton from "../../components/PrimaryButton";
 import SecondaryButton from "../../components/SecondaryButton";
@@ -14,6 +14,7 @@ import MuiModal from "../../components/MuiModal";
 import dayjs from "dayjs";
 import MonthWiseTable from "../../components/Tables/MonthWiseTable";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
+import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
 
 const HrCommonLeaves = () => {
   const { auth } = useAuth();
@@ -40,7 +41,7 @@ const HrCommonLeaves = () => {
       leavePeriod: "",
       hours: 0,
       description: "",
-    },
+    },mode:'onChange'
   });
 
   const leavePeriod = watch("leavePeriod");
@@ -71,6 +72,9 @@ const HrCommonLeaves = () => {
     if (leavePeriod === "Partial" && fromDate) {
       setValue("toDate", fromDate); // 👈 Set toDate same as fromDate
     }
+    if (leavePeriod === "Single" && fromDate) {
+      setValue("toDate", fromDate); // 👈 Set toDate same as fromDate
+    }
   }, [leavePeriod, fromDate, setValue]);
 
   const leavesColumn = [
@@ -81,7 +85,38 @@ const HrCommonLeaves = () => {
     { field: "leavePeriod", headerName: "Leave Period" },
     { field: "hours", headerName: "Hours" },
     { field: "description", headerName: "Description" },
-    { field: "status", headerName: "Status" },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+      pinned: "right",
+      cellRenderer: (params) => {
+        const status = params.value;
+
+        const statusColorMap = {
+          Approved: { backgroundColor: "#DFF5E1", color: "#218739" }, // Light green bg, dark green font
+          Pending: { backgroundColor: "#FFF8E1", color: "#F5A623" }, // Light yellow bg, orange font
+          Rejected: { backgroundColor: "#FDECEA", color: "#D32F2F" }, // Light red bg, red font
+        };
+
+        const { backgroundColor, color } = statusColorMap[status] || {
+          backgroundColor: "gray",
+          color: "white",
+        };
+
+        return (
+          <Chip
+            label={status}
+            style={{
+              backgroundColor,
+              color,
+              fontWeight: 500,
+            }}
+            size="small"
+          />
+        );
+      },
+    },
   ];
 
   const { data: leaves = [], isLoading } = useQuery({
@@ -141,6 +176,49 @@ const HrCommonLeaves = () => {
       >
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           {/* Leave Type */}
+
+          <Controller
+            name="leaveType"
+            control={control}
+            rules={{ required: "Leave type is required" }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                select
+                label="Leave type"
+                size="small"
+              >
+                {leaveType.map((type, idx) => (
+                  <MenuItem key={idx} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </TextField>
+            )}
+          />
+
+          {/* Leave Period */}
+          <Controller
+            name="leavePeriod"
+            control={control}
+            rules={{ required: "Leave period is required" }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                select
+                label="Leave period"
+                size="small"
+              >
+                {leavePeriodOptions.map((option, idx) => (
+                  <MenuItem key={idx} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
+            )}
+          />
           <div className="grid grid-cols-2 gap-4">
             {/* From Date */}
             <Controller
@@ -185,48 +263,6 @@ const HrCommonLeaves = () => {
               )}
             />
           </div>
-          <Controller
-            name="leaveType"
-            control={control}
-            rules={{ required: "Leave type is required" }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                fullWidth
-                select
-                label="Leave type"
-                size="small"
-              >
-                {leaveType.map((type, idx) => (
-                  <MenuItem key={idx} value={type}>
-                    {type}
-                  </MenuItem>
-                ))}
-              </TextField>
-            )}
-          />
-
-          {/* Leave Period */}
-          <Controller
-            name="leavePeriod"
-            control={control}
-            rules={{ required: "Leave period is required" }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                fullWidth
-                select
-                label="Leave period"
-                size="small"
-              >
-                {leavePeriodOptions.map((option, idx) => (
-                  <MenuItem key={idx} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </TextField>
-            )}
-          />
 
           {/* Hours */}
           <Controller
@@ -248,7 +284,10 @@ const HrCommonLeaves = () => {
           {/* Description */}
           <Controller
             name="description"
-            rules={{ required: "Description is required" }}
+            rules={{ required: "Description is required", validate:{
+              isAlphanumeric,
+              noOnlyWhitespace
+            } }}
             control={control}
             render={({ field }) => (
               <TextField
@@ -257,6 +296,8 @@ const HrCommonLeaves = () => {
                 label="Description"
                 multiline
                 rows={4}
+                error={!!errors.description}
+                helperText={errors?.description?.message}
               />
             )}
           />

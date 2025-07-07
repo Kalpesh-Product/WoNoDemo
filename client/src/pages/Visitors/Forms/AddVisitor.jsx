@@ -15,6 +15,11 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import PageFrame from "../../../components/Pages/PageFrame";
+import {
+  isAlphanumeric,
+  isValidPhoneNumber,
+  noOnlyWhitespace,
+} from "../../../utils/validators";
 
 const AddVisitor = () => {
   const {
@@ -40,7 +45,7 @@ const AddVisitor = () => {
       toMeet: "",
       department: "",
       clientToMeet: "",
-      clientCompany: "",
+      toMeetCompany: "",
       visitorType: "",
       visitorCompany: "",
       paymentAmount: "",
@@ -49,7 +54,7 @@ const AddVisitor = () => {
     },
   });
 
-  const selectedCompany = watch("clientCompany");
+  const selectedCompany = watch("toMeetCompany");
   const selectedIdType = watch("idProof.idType");
   const visitorType = watch("visitorType");
 
@@ -134,8 +139,7 @@ const AddVisitor = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log("data", data);
-    const isBiznest = data.clientCompany === "6799f0cd6a01edbe1bc3fcea";
+    const isBiznest = data.toMeetCompany === "6799f0cd6a01edbe1bc3fcea";
 
     const payload = {
       ...data,
@@ -159,9 +163,9 @@ const AddVisitor = () => {
     reset();
   };
 
-  useEffect(()=>{
-    setValue("checkIn", dayjs(new Date()))
-  },[])
+  useEffect(() => {
+    setValue("checkIn", dayjs(new Date()));
+  }, []);
 
   return (
     <div className=" p-4">
@@ -179,7 +183,13 @@ const AddVisitor = () => {
                 <Controller
                   name="firstName"
                   control={control}
-                  rules={{ required: "First Name is required" }}
+                  rules={{
+                    required: "First Name is required",
+                    validate: {
+                      noOnlyWhitespace,
+                      isAlphanumeric,
+                    },
+                  }}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -194,7 +204,13 @@ const AddVisitor = () => {
                 <Controller
                   name="lastName"
                   control={control}
-                  rules={{ required: "Last Name is required" }}
+                  rules={{
+                    required: "Last Name is required",
+                    validate: {
+                      noOnlyWhitespace,
+                      isAlphanumeric,
+                    },
+                  }}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -209,12 +225,18 @@ const AddVisitor = () => {
                 <Controller
                   name="phoneNumber"
                   control={control}
-                  rules={{ required: "Phone Number is required" }}
+                  rules={{
+                    required: "Phone Number is required",
+                    validate: {
+                      isValidPhoneNumber,
+                    },
+                  }}
                   render={({ field }) => (
                     <TextField
                       {...field}
                       size="small"
                       label="Phone"
+                      type="number"
                       error={!!errors.phoneNumber}
                       helperText={errors.phoneNumber?.message}
                       fullWidth
@@ -281,7 +303,7 @@ const AddVisitor = () => {
                   )}
                 />
                 <Controller
-                  name="visitorComapany"
+                  name="visitorCompany"
                   control={control}
                   render={({ field }) => (
                     <TextField
@@ -296,7 +318,13 @@ const AddVisitor = () => {
                 <Controller
                   name="purposeOfVisit"
                   control={control}
-                  rules={{ required: "Purpose is required" }}
+                  rules={{
+                    required: "Purpose is required",
+                    validate: {
+                      noOnlyWhitespace,
+                      isAlphanumeric,
+                    },
+                  }}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -316,7 +344,7 @@ const AddVisitor = () => {
               </div>
               <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-3 gap-4 p-4 ">
                 <Controller
-                  name="clientCompany"
+                  name="toMeetCompany"
                   control={control}
                   render={({ field }) => (
                     <TextField
@@ -452,27 +480,30 @@ const AddVisitor = () => {
                     <Controller
                       name="scheduledDate"
                       control={control}
-                      rules={{ required: "Scheduled date is required" }}
                       render={({ field }) => {
-                        const visitType = visitorType !== "Scheduled" ? dayjs(new Date()) : field.value
+                        const visitType =
+                          visitorType !== "Scheduled"
+                            ? dayjs(new Date())
+                            : field.value;
                         return (
-                        <DatePicker
-                          {...field}
-                          format="DD-MM-YYYY"
-                          label={"Scheduled Date"}
-                          disabled={visitorType !== "Scheduled"}
-                          value={visitType}
-                          onChange={(e) => field.onChange(e)}
-                          slotProps={{
-                            textField: {
-                              fullWidth: true,
-                              size: "small",
-                              error: !!errors.scheduledDate,
-                              helperText: errors.scheduledDate?.message,
-                            },
-                          }}
-                        />
-                      )}}
+                          <DatePicker
+                            {...field}
+                            format="DD-MM-YYYY"
+                            label={"Scheduled Date"}
+                            disabled={visitorType !== "Scheduled"}
+                            value={visitType}
+                            onChange={(e) => field.onChange(e)}
+                            slotProps={{
+                              textField: {
+                                fullWidth: true,
+                                size: "small",
+                                error: !!errors.scheduledDate,
+                                helperText: errors.scheduledDate?.message,
+                              },
+                            }}
+                          />
+                        );
+                      }}
                     />
                   </LocalizationProvider>
 
@@ -488,8 +519,8 @@ const AddVisitor = () => {
                           slotProps={{
                             textField: {
                               size: "small",
-                              error: !!errors.checkOut,
-                              helperText: errors.checkOut?.message,
+                              error: !!errors.checkIn,
+                              helperText: errors.checkIn?.message,
                             },
                           }}
                           render={(params) => (

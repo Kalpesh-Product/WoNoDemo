@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AgTable from "../../../components/AgTable";
 import MuiModal from "../../../components/MuiModal";
 import {
@@ -19,6 +19,7 @@ import { IoMdClose } from "react-icons/io";
 import DetalisFormatted from "../../../components/DetalisFormatted";
 
 import humanDate from "./../../../utils/humanDateForamt";
+import { isAlphanumeric, noOnlyWhitespace } from "../../../utils/validators";
 
 const SupportTickets = ({ title, departmentId }) => {
   const [openModal, setopenModal] = useState(false);
@@ -51,17 +52,7 @@ const SupportTickets = ({ title, departmentId }) => {
 
   const handleViewTicket = (ticket) => {
     const raw = ticket || {};
-    setSelectedTicket({
-      ticketTitle: ticket.ticketTitle || "No Title",
-      raisedBy: raw.raisedBy ? raw.raisedBy : "Unknown",
-      selectedDepartment:
-        Array.isArray(raw.raisedBy?.departments) &&
-        raw.raisedBy.departments.length > 0
-          ? raw.raisedBy.departments.map((dept) => dept.name)
-          : ["N/A"],
-      status: raw.status || "Pending",
-      description: raw.description || "N/A",
-    });
+    setSelectedTicket(ticket);
     setOpenView(true);
   };
 
@@ -71,13 +62,15 @@ const SupportTickets = ({ title, departmentId }) => {
       ? []
       : tickets.map((ticket, index) => {
           const supportTicket = {
+            ...ticket,
             id: ticket.ticket?._id,
             srno: index + 1,
             raisedBy:
-              ticket.ticket.raisedBy?.firstName &&
-              ticket.ticket.raisedBy?.lastName
-                ? `${ticket.ticket.raisedBy.firstName} ${ticket.ticket.raisedBy.lastName}`
+              ticket.ticket?.raisedBy?.firstName &&
+              ticket.ticket?.raisedBy?.lastName
+                ? `${ticket.ticket?.raisedBy?.firstName} ${ticket.ticket?.raisedBy?.lastName}`
                 : "Unknown",
+            
 
             selectedDepartment:
               Array.isArray(ticket.ticket.raisedBy?.departments) &&
@@ -86,7 +79,7 @@ const SupportTickets = ({ title, departmentId }) => {
                 : ["N/A"],
 
             ticketTitle: ticket.reason || "No Title",
-            acceptedBy: `${ticket.ticket.acceptedBy?.firstName ?? ""} ${
+            acceptedBy: `${ticket.ticket?.acceptedBy?.firstName ?? ""} ${
               ticket.ticket.acceptedBy?.lastName ?? ""
             }`,
             tickets:
@@ -95,12 +88,15 @@ const SupportTickets = ({ title, departmentId }) => {
                 : ticket.ticket?.acceptedBy
                 ? "Accepted Ticket"
                 : "N/A",
+            raisedDate: ticket.createdAt || "N/A",
             status: ticket.ticket.status || "Pending",
+            raisedToDepartment : ticket.ticket?.raisedToDepartment?.name || "N/A",
           };
 
           return supportTicket;
         });
   };
+
 
   const rows = isLoading ? [] : transformTicketsData(supportedTickets);
 
@@ -252,10 +248,10 @@ const SupportTickets = ({ title, departmentId }) => {
       headerName: "From Department",
       width: 100,
     },
-    { field: "ticketTitle", headerName: "Ticket Title", flex: 1 },
+    { field: "ticketTitle", headerName: "Ticket Title", width : 250},
     {
       field: "tickets",
-      headerName: "Tickets",
+      headerName: "Ticket Type",
       cellRenderer: (params) => {
         const statusColorMap = {
           "Assigned Ticket": { backgroundColor: "#ffbac2", color: "#ed0520" }, // Light orange bg, dark orange font
@@ -267,7 +263,7 @@ const SupportTickets = ({ title, departmentId }) => {
           color: "white",
         };
         return (
-          <div className="flex flex-col gap-1 p-2">
+          <div className="flex flex-col gap-1 p-4">
             <Chip
               label={params.value}
               style={{
@@ -299,7 +295,7 @@ const SupportTickets = ({ title, departmentId }) => {
           color: "white",
         };
         return (
-          <div className="flex flex-col justify-center pt-4">
+          <div className="flex flex-col justify-center p-4">
             <Chip
               label={params.value}
               style={{
@@ -314,6 +310,7 @@ const SupportTickets = ({ title, departmentId }) => {
     {
       field: "actions",
       headerName: "Actions",
+            pinned : 'right',
       cellRenderer: (params) => (
         <ThreeDotMenu
           rowId={params.data.id}
@@ -362,7 +359,8 @@ const SupportTickets = ({ title, departmentId }) => {
       <MuiModal
         open={openModal}
         onClose={() => setopenModal(false)}
-        title="Assign Tickets">
+        title="Assign Tickets"
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             {!isSubOrdinates ? (
@@ -397,7 +395,8 @@ const SupportTickets = ({ title, departmentId }) => {
         <div>
           <form
             onSubmit={handleEscalateTicketSubmit(onEscalate)}
-            className="grid grid-cols-1 gap-4">
+            className="grid grid-cols-1 gap-4"
+          >
             <Controller
               name="departmentIds"
               control={escalateFormControl}
@@ -447,7 +446,10 @@ const SupportTickets = ({ title, departmentId }) => {
             <Controller
               name="description"
               control={escalateFormControl}
-              rules={{ required: "Escalation description is required" }}
+              rules={{
+                required: "Escalation description is required",
+                validate: { noOnlyWhitespace, isAlphanumeric },
+              }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -473,7 +475,8 @@ const SupportTickets = ({ title, departmentId }) => {
       <MuiModal
         open={openView}
         onClose={() => setOpenView(false)}
-        title="View Support Ticket">
+        title="View Support Ticket"
+      >
         {selectedTicket && (
           <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
             <DetalisFormatted
@@ -482,7 +485,7 @@ const SupportTickets = ({ title, departmentId }) => {
             />
             <DetalisFormatted
               title="Description"
-              detail={selectedTicket.description || "N/A"}
+              detail={selectedTicket.reason || "N/A"}
             />
             <DetalisFormatted
               title="Raised By"
@@ -490,7 +493,7 @@ const SupportTickets = ({ title, departmentId }) => {
             />
             <DetalisFormatted
               title="Raised At"
-              detail={humanDate(new Date(selectedTicket.raisedDate))}
+              detail={humanDate(selectedTicket.raisedDate)}
             />
             <DetalisFormatted
               title="From Department"
@@ -502,7 +505,7 @@ const SupportTickets = ({ title, departmentId }) => {
             />
             <DetalisFormatted
               title="Raised To Department"
-              detail={selectedTicket.raisedToDepartment || "N/A"}
+              detail={selectedTicket.raisedToDepartment}
             />
             <DetalisFormatted title="Status" detail={selectedTicket.status} />
             <DetalisFormatted

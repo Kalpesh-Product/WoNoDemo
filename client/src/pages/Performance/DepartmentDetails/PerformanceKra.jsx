@@ -20,6 +20,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { InsertEmoticonTwoTone } from "@mui/icons-material";
 import PageFrame from "../../../components/Pages/PageFrame";
+import { isAlphanumeric, noOnlyWhitespace } from "../../../utils/validators";
 
 const PerformanceKra = () => {
   const axios = useAxiosPrivate();
@@ -51,6 +52,7 @@ const PerformanceKra = () => {
     formState: { errors },
     reset,
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       dailyKra: "",
       description: "",
@@ -229,7 +231,6 @@ const PerformanceKra = () => {
             <WidgetSection padding layout={1}>
               <DateWiseTable
                 formatTime
-                key={departmentKra.length}
                 checkbox={showCheckBox}
                 buttonTitle={"Add Daily KRA"}
                 handleSubmit={() => setOpenModal(true)}
@@ -298,7 +299,13 @@ const PerformanceKra = () => {
           <Controller
             name="dailyKra"
             control={control}
-            rules={{ required: "Daily KRA is required" }}
+            rules={{
+              required: "Daily KRA is required",
+              validate: {
+                noOnlyWhitespace,
+                isAlphanumeric,
+              },
+            }}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -318,6 +325,8 @@ const PerformanceKra = () => {
             render={({ field, fieldState: { error } }) => (
               <DatePicker
                 label="Assigned Date"
+                disablePast
+                format="DD-MM-YYYY"
                 value={field.value ? dayjs(field.value) : null}
                 onChange={(date) =>
                   field.onChange(date ? date.toISOString() : null)

@@ -1,11 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  CircularProgress,
-} from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import PrimaryButton from "../../../../components/PrimaryButton";
 import { Controller, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import WidgetSection from "../../../../components/WidgetSection";
 import NormalBarGraph from "../../../../components/graphs/NormalBarGraph";
 import { useSelector } from "react-redux";
-import DataCard from "../../../../components/DataCard";
 import FinanceCard from "../../../../components/FinanceCard";
 
 const CheckAvailability = () => {
@@ -223,7 +216,7 @@ const CheckAvailability = () => {
     ).entries()
   );
 
-  const formatUnitDisplay = (buildingName, unitNo ) => {
+  const formatUnitDisplay = (buildingName, unitNo) => {
     if (typeof unitNo !== "string")
       return `${unitNo || "Unknown"} ${buildingName}`;
 
@@ -261,11 +254,11 @@ const CheckAvailability = () => {
     const { location, floor } = data;
     address.pathname?.includes("mix-bag")
       ? navigate(
-          `/app/dashboard/sales-dashboard/mix-bag/co-working-seats/check-availability/view-availability?location=${location}&floor=${floor}`,
+          `/app/dashboard/sales-dashboard/mix-bag/inventory/${location}/${floor}`,
           { state: { unitId: selectedUnitId[0] } }
         )
       : navigate(
-          `/app/dashboard/sales-dashboard/co-working-seats/check-availability/view-availability?location=${location}&floor=${floor}`,
+          `/app/dashboard/sales-dashboard/inventory/${location}/${floor}`,
           { state: { unitId: selectedUnitId[0] } }
         );
   };
@@ -317,12 +310,16 @@ const CheckAvailability = () => {
       {
         title: "ST Inventory",
         value: String(Number(inventoryStats.ST?.total) || 0),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Sunteck%20Kanaka",
+        stateData: "Sunteck Kanaka",
       },
       {
         title: "DTC Inventory",
         value: String(Number(inventoryStats.DTC?.total) || 0),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Dempo%20Trade%20Centre",
+        stateData: "Dempo Trade Centre",
       },
       {
         title: "Total Inventory",
@@ -337,12 +334,16 @@ const CheckAvailability = () => {
       {
         title: "ST Occupancy",
         value: String(Number(inventoryStats.ST?.occupied) || 0),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Sunteck%20Kanaka",
+        stateData: "Sunteck Kanaka",
       },
       {
         title: "DTC Occupancy",
         value: String(Number(inventoryStats.DTC?.occupied) || 0),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Dempo%20Trade%20Centre",
+        stateData: "Dempo Trade Centre",
       },
       {
         title: "Total Occupancy",
@@ -360,7 +361,9 @@ const CheckAvailability = () => {
           (Number(inventoryStats.ST?.total) || 0) -
             (Number(inventoryStats.ST?.occupied) || 0)
         ),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Sunteck%20Kanaka",
+        stateData: "Sunteck Kanaka",
       },
       {
         title: "DTC Free Inventory",
@@ -368,7 +371,9 @@ const CheckAvailability = () => {
           (Number(inventoryStats.DTC?.total) || 0) -
             (Number(inventoryStats.DTC?.occupied) || 0)
         ),
-        route: "#",
+        route:
+          "/app/dashboard/sales-dashboard/mix-bag/inventory/Dempo%20Trade%20Centre",
+        stateData: "Dempo Trade Centre",
       },
       {
         title: "Total Free Inventory",
@@ -396,6 +401,13 @@ const CheckAvailability = () => {
             data={barGraphSeries}
             options={barGraphOptions}
             height={400}
+            handleClick={(buildingName) => {
+              const encodedName = encodeURIComponent(buildingName);
+              navigate(
+                `/app/dashboard/sales-dashboard/mix-bag/inventory/${encodedName}`,
+                { state: buildingName }
+              );
+            }}
           />
         ) : (
           <div className="text-center text-gray-500 text-sm py-10">
@@ -428,6 +440,7 @@ const CheckAvailability = () => {
           descriptionData={inventoryCards.freeInventory}
         />
       </WidgetSection>
+
       <div className="border-default border-borderGray p-4 rounded-md text-center">
         <h2 className="font-pregular text-title text-primary mt-20 mb-10 uppercase">
           Check Inventory
@@ -489,7 +502,7 @@ const CheckAvailability = () => {
                           <MenuItem key={unit._id} value={unit.unitNo}>
                             {formatUnitDisplay(
                               unit.building.buildingName,
-                              unit.unitNo,
+                              unit.unitNo
                             )}
                           </MenuItem>
                         ))

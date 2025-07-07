@@ -16,6 +16,10 @@ const {
 const {
   addNewHouseKeepingMember,
   getHouseKeepingStaff,
+  softDeleteHouseKeepingMember,
+  updateHouseKeepingMember,
+  assignHouseKeepingMember,
+  getHouseKeepingAssignments,
 } = require("../controllers/companyControllers/houseKeepingController");
 
 const {
@@ -27,7 +31,7 @@ const {
   getCompanyKyc,
   getComplianceDocuments,
   uploadComplianceDocument,
-  deleteCompanyDocument,
+  toggleCompanyDocumentStatus,
   deleteDepartmentDocument,
   updateCompanyDocument,
   updateDepartmentDocument,
@@ -55,9 +59,11 @@ const {
   uploadUnitImage,
   addUnit,
   fetchUnits,
+  fetchSimpleUnits,
   fetchBuildings,
   assignPrimaryUnit,
   updateUnit,
+  editBuilding,
 } = require("../controllers/companyControllers/workLocationControllers");
 
 const {
@@ -79,6 +85,7 @@ router.get("/get-company-data", getCompanyData);
 router.post("/update-active-status/:field", updateActiveStatus);
 router.post("/add-company-logo", upload.single("logo"), addCompanyLogo);
 router.get("/get-company-logo", getCompanyLogo);
+router.post("/add-shift", addShift);
 
 // Department and roles
 router.post("/add-department", createDepartment);
@@ -90,9 +97,11 @@ router.post("/add-leave-type", addLeaveType);
 
 // Locations and units
 router.post("/add-building", addBuilding);
+router.patch("/edit-building/:buildingId", editBuilding);
 router.get("/buildings", fetchBuildings);
 router.post("/add-unit", addUnit);
 router.get("/fetch-units", fetchUnits);
+router.get("/fetch-simple-units", fetchSimpleUnits);
 router.patch(
   "/update-unit",
   upload.fields([
@@ -131,6 +140,13 @@ router.post(
 // Housekeeping
 router.post("/add-housekeeping-member", addNewHouseKeepingMember);
 router.get("/housekeeping-members", getHouseKeepingStaff);
+router.patch("/update-housekeeping-member/:id", updateHouseKeepingMember);
+router.delete(
+  "/soft-delete-housekeeping-member/:id",
+  softDeleteHouseKeepingMember
+);
+router.post("/assign-new-housekeeping-schedule", assignHouseKeepingMember);
+router.get("/get-housekeeping-schedule", getHouseKeepingAssignments);
 
 // Company Documents
 router.post(
@@ -139,7 +155,7 @@ router.post(
   uploadCompanyDocument
 );
 router.patch("/update-company-document", updateCompanyDocument);
-router.patch("/delete-company-document", deleteCompanyDocument);
+router.patch("/delete-company-document", toggleCompanyDocumentStatus);
 router.get("/get-company-documents/:type", getCompanyDocuments);
 
 // Department Documents
