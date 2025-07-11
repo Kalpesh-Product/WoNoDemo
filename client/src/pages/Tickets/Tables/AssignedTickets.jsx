@@ -19,6 +19,8 @@ import { IoMdClose } from "react-icons/io";
 import DetalisFormatted from "../../../components/DetalisFormatted";
 import humanDate from "../../../utils/humanDateForamt";
 import { isAlphanumeric, noOnlyWhitespace } from "../../../utils/validators";
+import { useTopDepartment } from "../../../hooks/useTopDepartment";
+import { DateEnv } from "@fullcalendar/core/internal";
 
 const AssignedTickets = ({ title, departmentId }) => {
   const [openModal, setopenModal] = useState(false);
@@ -28,6 +30,8 @@ const AssignedTickets = ({ title, departmentId }) => {
   const [selectedTicketId, setSelectedTicketId] = useState(null);
   const [openView, setOpenView] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
+  const topManagementDepartment = "67b2cf85b9b6ed5cedeb9a2e";
+  const { isTop } = useTopDepartment();
 
   // Fetch Supported Tickets
   const { data: supportedTickets = [], isLoading } = useQuery({
@@ -73,21 +77,23 @@ const AssignedTickets = ({ title, departmentId }) => {
               ticket.raisedBy?.firstName && ticket.raisedBy?.lastName
                 ? `${ticket.raisedBy.firstName} ${ticket.raisedBy.lastName}`
                 : "Unknown",
-
+            raisedAt: ticket.createdAt,
+            raisedToDepartment: ticket.raisedToDepartment.name,
             selectedDepartment:
               Array.isArray(ticket.raisedBy?.departments) &&
               ticket.raisedBy.departments.length > 0
                 ? ticket.raisedBy.departments.map((dept) => dept.name)
                 : ["N/A"],
-
+            priority: ticket.priority,
             ticketTitle: ticket.ticket || "No Title",
-            assignees: `${ticket.assignees.map((item) => item.firstName)[0]}`,
+            assignees: ticket.assignees.length > 0 ? `${ticket.assignees.map((item) => `${item.firstName} ${item.lastName}`)}` : "N/A" ,
             tickets:
               ticket.assignees.length > 0
                 ? "Assigned Ticket"
                 : ticket.ticket?.acceptedBy
                 ? "Accepted Ticket"
                 : "N/A",
+              assignedAt: ticket.assignedAt || "N/A",
             status: ticket.status || "Pending",
           };
 
@@ -195,17 +201,20 @@ const AssignedTickets = ({ title, departmentId }) => {
     {
       field: "actions",
       headerName: "Actions",
-            pinned : 'right',
-      cellRenderer: (params) => (
-        <>
-          <ThreeDotMenu
-            rowId={params.data.id}
-            menuItems={[
-              {
-                label: "View",
-                onClick: () => handleViewTicket(params.data),
-              },
+      pinned: "right",
+      cellRenderer: (params) => {
+        const commonItems = [
+          {
+            label: "View",
+            onClick: () => handleViewTicket(params.data),
+          },
+        ];
 
+        const showOtherActions =
+          !isTop || (isTop && departmentId === topManagementDepartment);
+
+        const conditionalItems = showOtherActions
+          ? [
               {
                 label: "Re-Assign",
                 onClick: () => handleOpenAssignModal(params.data.id),
@@ -218,10 +227,16 @@ const AssignedTickets = ({ title, departmentId }) => {
                 label: "Close",
                 onClick: () => closeTicket(params.data.id),
               },
-            ]}
+            ]
+          : [];
+
+        return (
+          <ThreeDotMenu
+            rowId={params.data.id}
+            menuItems={[...commonItems, ...conditionalItems]}
           />
-        </>
-      ),
+        );
+      },
     },
   ];
 
@@ -248,7 +263,9 @@ const AssignedTickets = ({ title, departmentId }) => {
 
   const fetchSubOrdinates = async () => {
     try {
-      const response = await axios.get("/api/users/assignees");
+      const response = await axios.get(
+        `/api/users/assignees?deptId=${departmentId}`
+      );
 
       return response.data;
     } catch (error) {
@@ -523,7 +540,7 @@ const AssignedTickets = ({ title, departmentId }) => {
             />
             <DetalisFormatted
               title="Raised At"
-              detail={humanDate(new Date(selectedTicket.raisedDate))}
+              detail={humanDate(new Date(selectedTicket.raisedAt))}
             />
             <DetalisFormatted
               title="From Department"
@@ -543,12 +560,12 @@ const AssignedTickets = ({ title, departmentId }) => {
               detail={selectedTicket?.priority || "N/A"}
             />
             <DetalisFormatted
-              title="Accepted by"
-              detail={selectedTicket?.acceptedBy || "N/A"}
+              title="Assignees"
+              detail={selectedTicket?.assignees || "N/A"}
             />
             <DetalisFormatted
-              title="Accepted at"
-              detail={selectedTicket?.acceptedAt || "N/A"}
+              title="Assigned at"
+              detail={humanDate((selectedTicket?.assignedAt)) || "N/A"}
             />
           </div>
         )}

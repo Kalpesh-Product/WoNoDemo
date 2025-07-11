@@ -20,6 +20,7 @@ import DetalisFormatted from "../../../components/DetalisFormatted";
 
 import humanDate from "./../../../utils/humanDateForamt";
 import { isAlphanumeric, noOnlyWhitespace } from "../../../utils/validators";
+import { useTopDepartment } from "../../../hooks/useTopDepartment";
 
 const SupportTickets = ({ title, departmentId }) => {
   const [openModal, setopenModal] = useState(false);
@@ -29,6 +30,8 @@ const SupportTickets = ({ title, departmentId }) => {
   const [selectedTicketId, setSelectedTicketId] = useState(null);
   const [openView, setOpenView] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
+  const topManagementDepartment = "67b2cf85b9b6ed5cedeb9a2e";
+  const { isTop } = useTopDepartment();
 
   // Fetch Supported Tickets
   const { data: supportedTickets = [], isLoading } = useQuery({
@@ -71,7 +74,7 @@ const SupportTickets = ({ title, departmentId }) => {
                 ? `${ticket.ticket?.raisedBy?.firstName} ${ticket.ticket?.raisedBy?.lastName}`
                 : "Unknown",
             
-
+            priority:ticket.priority,
             selectedDepartment:
               Array.isArray(ticket.ticket.raisedBy?.departments) &&
               ticket.ticket.raisedBy.departments.length > 0
@@ -82,6 +85,7 @@ const SupportTickets = ({ title, departmentId }) => {
             acceptedBy: `${ticket.ticket?.acceptedBy?.firstName ?? ""} ${
               ticket.ticket.acceptedBy?.lastName ?? ""
             }`,
+            acceptedAt: ticket.ticket.acceptedAt,
             tickets:
               ticket.ticket?.assignees.length > 0
                 ? "Assigned Ticket"
@@ -121,7 +125,7 @@ const SupportTickets = ({ title, departmentId }) => {
 
   const fetchSubOrdinates = async () => {
     try {
-      const response = await axios.get("/api/users/assignees");
+      const response = await axios.get(`/api/users/assignees?deptId=${departmentId}`);
 
       return response.data;
     } catch (error) {
@@ -311,29 +315,41 @@ const SupportTickets = ({ title, departmentId }) => {
       field: "actions",
       headerName: "Actions",
             pinned : 'right',
-      cellRenderer: (params) => (
-        <ThreeDotMenu
-          rowId={params.data.id}
-          menuItems={[
-            {
-              label: "Close",
-              onClick: () => closeTicket(params.data.id),
-            },
-            {
-              label: "Re-Assign",
-              onClick: () => handleOpenAssignModal(params.data.id),
-            },
-            {
-              label: "Escalate",
-              onClick: () => handleEscalateTicket(params.data),
-            },
-            {
-              label: "View",
-              onClick: () => handleViewTicket(params.data),
-            },
-          ]}
-        />
-      ),
+      cellRenderer: (params) => {
+        const commonItems = [
+          {
+            label: "View",
+            onClick: () => handleViewTicket(params.data),
+          },
+        ];
+
+        const showOtherActions =
+          !isTop || (isTop && departmentId === topManagementDepartment);
+
+        const conditionalItems = showOtherActions
+          ? [
+              {
+                label: "Close",
+                onClick: () => closeTicket(params.data.id),
+              },
+              {
+                label: "Re-Assign",
+                onClick: () => handleOpenAssignModal(params.data.id),
+              },
+              {
+                label: "Escalate",
+                onClick: () => handleEscalateTicket(params.data),
+              },
+            ]
+          : [];
+
+        return (
+          <ThreeDotMenu
+            rowId={params.data.id}
+            menuItems={[...commonItems,...conditionalItems]}
+          />
+        );
+      },
     },
   ];
 

@@ -11,6 +11,7 @@ import DetalisFormatted from "../../../../components/DetalisFormatted";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { inrFormat } from "../../../../utils/currencyFormat";
 import YearWiseTable from "../../../../components/Tables/YearWiseTable";
+import dayjs from "dayjs";
 
 const PayrollReports = () => {
   const axios = useAxiosPrivate();
@@ -23,7 +24,20 @@ const PayrollReports = () => {
       try {
         const response = await axios.get("/api/payroll/get-payrolls");
 
-        return response.data;
+        const uniquePayrollMap = new Map();
+
+        response.data?.forEach((payroll) => {
+          const monthKey = dayjs(payroll.month).format("MM-YYYY");
+
+          // Only keep the first encountered entry for that monthKey
+          if (!uniquePayrollMap.has(`${payroll.employeeId}-${monthKey}`)) {
+            uniquePayrollMap.set(`${payroll.employeeId}-${monthKey}`, payroll);
+          }
+        });
+
+        const filteredData = Array.from(uniquePayrollMap.values());
+
+        return filteredData;
       } catch (error) {
         throw new Error(
           error.response?.data?.message || "Failed to fetch employees"
@@ -60,7 +74,7 @@ const PayrollReports = () => {
             empId: item.empId,
             employeeName: item.name,
             status: item?.status,
-            totalSalary: inrFormat(item?.totalSalary),
+            totalSalary: item?.totalSalary ? inrFormat(item?.totalSalary) : 0,
             departmentName: item.departments?.map(
               (item) => item.name || "null"
             ),
@@ -119,10 +133,10 @@ const PayrollReports = () => {
             <DetalisFormatted
               title="Payslip"
               detail={
-                selectedEmployee?.payslip?.[0] ? (
+                selectedEmployee?.payslip ? (
                   <a
                     className="text-primary underline cursor-pointer"
-                    href={selectedEmployee.payslip[0]}
+                    href={selectedEmployee.payslip}
                     target="_blank"
                     rel="noopener noreferrer">
                     View Payslip

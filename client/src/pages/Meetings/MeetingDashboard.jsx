@@ -17,11 +17,14 @@ import { useNavigate } from "react-router-dom";
 import DonutChart from "../../components/graphs/DonutChart";
 import dayjs from "dayjs";
 import { useTopDepartment } from "../../hooks/useTopDepartment";
+import usePageDepartment from "../../hooks/usePageDepartment";
+import useAuth from "../../hooks/useAuth";
 const WidgetSection = lazy(() => import("../../components/WidgetSection"));
 
 const MeetingDashboard = () => {
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
+  const {auth} = useAuth()
   const [selectedFY, setSelectedFY] = useState("FY 2024-25");
   const { isTop } = useTopDepartment({
     additionalTopUserIds: [
@@ -31,6 +34,11 @@ const MeetingDashboard = () => {
     ],
     additionalTopDepartmentIds: ["6798bae6e469e809084e24a4","6798ba9de469e809084e2494"],
   });
+
+  
+   const departments =  auth.user.departments.map((dept)=>{ return dept._id.toString()})
+  const allowedDepts = ["67b2cf85b9b6ed5cedeb9a2e","6798bae6e469e809084e24a4","6798ba9de469e809084e2494"]
+  const isWidgetAllowed = departments.some((id) => allowedDepts.includes(id));  
 
   const { data: meetingsData = [], isLoading } = useQuery({
     queryKey: ["meetings"],
@@ -280,26 +288,27 @@ const MeetingDashboard = () => {
     colors: ["#08b6bc"], // Blue color bars
   };
 
-  const meetings = [
-    { meetingId: 1, meetingTime: "30min", mostUsedRoom: "Baga" },
-    { meetingId: 2, meetingTime: "1hr", mostUsedRoom: "Baga" },
-    { meetingId: 3, meetingTime: "30min", mostUsedRoom: "Aqua" },
-    { meetingId: 4, meetingTime: "2hr", mostUsedRoom: "Baga" },
-    { meetingId: 5, meetingTime: "1hr", mostUsedRoom: "Aqua" },
-    { meetingId: 6, meetingTime: "30min", mostUsedRoom: "Lagoon" },
-    { meetingId: 7, meetingTime: "2hr", mostUsedRoom: "Baga" },
-    { meetingId: 8, meetingTime: "1hr", mostUsedRoom: "Lagoon" },
-    { meetingId: 9, meetingTime: "1hr 30min", mostUsedRoom: "Lagoon" },
-    { meetingId: 10, meetingTime: "1hr 30min", mostUsedRoom: "Lagoon" },
-    { meetingId: 11, meetingTime: "3hr", mostUsedRoom: "Lagoon" },
-    { meetingId: 11, meetingTime: "3hr", mostUsedRoom: "Lagoon" },
-  ];
+  // const meetings = [
+  //   { meetingId: 1, meetingTime: "30min", mostUsedRoom: "Baga" },
+  //   { meetingId: 2, meetingTime: "1hr", mostUsedRoom: "Baga" },
+  //   { meetingId: 3, meetingTime: "30min", mostUsedRoom: "Aqua" },
+  //   { meetingId: 4, meetingTime: "2hr", mostUsedRoom: "Baga" },
+  //   { meetingId: 5, meetingTime: "1hr", mostUsedRoom: "Aqua" },
+  //   { meetingId: 6, meetingTime: "30min", mostUsedRoom: "Lagoon" },
+  //   { meetingId: 7, meetingTime: "2hr", mostUsedRoom: "Baga" },
+  //   { meetingId: 8, meetingTime: "1hr", mostUsedRoom: "Lagoon" },
+  //   { meetingId: 9, meetingTime: "1hr 30min", mostUsedRoom: "Lagoon" },
+  //   { meetingId: 10, meetingTime: "1hr 30min", mostUsedRoom: "Lagoon" },
+  //   { meetingId: 11, meetingTime: "3hr", mostUsedRoom: "Lagoon" },
+  //   { meetingId: 11, meetingTime: "3hr", mostUsedRoom: "Lagoon" },
+  // ];
 
+  const meetings = []
   // To check the number of times a meeting room is booked based on timings
   const durationCount = {};
-  meetings.forEach((meeting) => {
-    durationCount[meeting.meetingTime] =
-      (durationCount[meeting.meetingTime] || 0) + 1;
+  meetingsData.forEach((meeting) => {
+    durationCount[meeting.duration] =
+      (durationCount[meeting.duration] || 0) + 1;
   });
 
   // Convert to Pie Chart Data Format
@@ -314,13 +323,13 @@ const MeetingDashboard = () => {
     legend: {
       position: "right",
     },
-    colors: [
-      "#BBDEFB", // Light Blue (darker than before)
-      "#90CAF9", // Soft Blue
-      "#64B5F6", // Mild Blue
-      "#42A5F5", // Medium Blue
-      "#1E88E5", // Deep Blue
-      "#1565C0", // Dark Blue
+  colors: [
+      "#1E3D73", // original
+      "#34528A", // slightly lighter
+      "#4A68A1", // medium shade
+      "#608DB8", // lighter
+      "#76A2CF", // even lighter
+      "#8CB8E6", // lightest
     ],
     dataLabels: {
       enabled: true,
@@ -900,7 +909,8 @@ const heatmapData = timeSlots.map((slot, slotIndex) => ({
           />
         )),
     },
-    {
+...(isWidgetAllowed ? [ 
+  {
       layout: 3,
       widgets: [
         <DataCard
@@ -963,8 +973,7 @@ const heatmapData = timeSlots.map((slot, slotIndex) => ({
         />,
       ],
     },
-
-    {
+     {
       layout: 2,
       widgets: [
         <MuiTable
@@ -1088,6 +1097,9 @@ const heatmapData = timeSlots.map((slot, slotIndex) => ({
         </WidgetSection>,
       ],
     },
+      ] : [])
+   
+   
   ];
   return (
     <div>
