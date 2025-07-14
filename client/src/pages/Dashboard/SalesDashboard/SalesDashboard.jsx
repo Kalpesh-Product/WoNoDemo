@@ -101,6 +101,11 @@ const SalesDashboard = () => {
         enabled: false, // ✅ disables all animations
       },
       toolbar: { show: false },
+      events: {
+        dataPointSelection: () => {
+          navigate("turnover");
+        },
+      },
       fontFamily: "Poppins-Regular",
     },
     colors: ["#54C4A7", "#EB5C45"],
@@ -258,17 +263,17 @@ const SalesDashboard = () => {
       {
         title: "Closing Desks",
         value: totalCoWorkingSeats || 0,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Active Sq Ft",
         value: inrFormat(totalSqft) || 0,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Per Sq. Ft.",
         value: inrFormat((totalValue || 0) / (totalSqft || 0)),
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
     ],
   };
@@ -285,24 +290,23 @@ const SalesDashboard = () => {
       {
         title: "Opening Desks",
         value: totalCoWorkingSeats || 0,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Occupied Desks",
         value: totalOccupiedSeats || 0,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Occupancy %",
         value:
           ((totalOccupiedSeats / totalCoWorkingSeats) * 100).toFixed(0) || 0,
-        route:
-          "/app/dashboard/sales-dashboard/co-working-seats/check-availability",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Current Free Desks",
         value: totalCoWorkingSeats - totalOccupiedSeats || 0,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Unique Clients",
@@ -322,13 +326,12 @@ const SalesDashboard = () => {
       {
         title: "Occupied Desks",
         value: 553,
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/inventory",
       },
       {
         title: "Occupancy %",
         value: "93",
-        route:
-          "/app/dashboard/sales-dashboard/co-working-seats/check-availability",
+        route: "/app/dashboard/sales-dashboard/inventory",
       },
       {
         title: "Clients",
@@ -338,7 +341,7 @@ const SalesDashboard = () => {
       {
         title: "Provisioned Desks",
         value: "140",
-        route: "/app/dashboard/sales-dashboard/co-working-seats",
+        route: "/app/dashboard/sales-dashboard/inventory",
       },
     ],
   };

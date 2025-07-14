@@ -246,11 +246,11 @@ const VisitorDashboard = () => {
     chart: {
       type: "pie",
       fontFamily: "Poppins-Regular",
-      events: {
-        dataPointSelection: () => {
-          navigate("employee/view-employees");
-        },
-      },
+      // events: {
+      //   dataPointSelection: () => {
+      //     navigate("employee/view-employees");
+      //   },
+      // },
     },
     labels: ["Male", "Female"], // Labels for the pie slices
     colors: ["#0056B3", "#FD507E"], // Pass colors as an array
@@ -439,14 +439,16 @@ const VisitorDashboard = () => {
   const departmentWiseCounts = {};
 
   visitorsData.forEach((visitor) => {
-    const dept = visitor.department?.name || "Unknown";
+    const dept = visitor.department?.name;
+    if (!dept) return; // Skip if no department name
+
     departmentWiseCounts[dept] = (departmentWiseCounts[dept] || 0) + 1;
   });
 
   const pieChartData = Object.entries(departmentWiseCounts).map(
-    ([name, count]) => ({
-      label: name,
-      value: count,
+    ([label, value]) => ({
+      label,
+      value,
     })
   );
 
@@ -630,8 +632,7 @@ const VisitorDashboard = () => {
           <PieChartMui
             data={pieChartData}
             options={pieChartOptions}
-            width={438}
-            height={323}
+            height={320}
           />
         </WidgetSection>,
       ],
