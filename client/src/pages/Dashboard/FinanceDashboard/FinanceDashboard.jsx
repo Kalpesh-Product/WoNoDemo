@@ -136,7 +136,8 @@ const FinanceDashboard = () => {
     const monthKey = dayjs(rawDate).format("MMM-YY");
     if (excludedMonths.includes(monthKey)) return;
 
-    const amount = income.taxableAmount || income.revenue || 0;
+    const amount =
+      income.taxableAmount || income.revenue || income.taxable || 0;
     if (!monthWiseIncome[monthKey]) {
       monthWiseIncome[monthKey] = {
         month: monthKey,
@@ -872,8 +873,6 @@ const FinanceDashboard = () => {
           <PieChartMui
             data={pieMonthlyPayoutData}
             options={pieMonthlyPayoutOptions}
-            width={500}
-            height={350}
           />
         </WidgetSection>,
         <WidgetSection title={`Customer Collections MAR-25 `} border>

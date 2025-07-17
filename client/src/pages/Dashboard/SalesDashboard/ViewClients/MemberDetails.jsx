@@ -1,10 +1,11 @@
 import { Avatar, Button, Chip, TextField } from "@mui/material";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import PrimaryButton from "../../../../components/PrimaryButton";
 import { Controller, useForm } from "react-hook-form";
 import SecondaryButton from "../../../../components/SecondaryButton";
 import { toast } from "sonner";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MemberDetails = () => {
   const { control, handleSubmit, reset } = useForm({
@@ -45,9 +46,9 @@ const MemberDetails = () => {
       employeePF: "1500",
     },
   });
-
   const location = useLocation();
   const { memberDetails } = location.state;
+  console.log(JSON.stringify(memberDetails));
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -64,6 +65,20 @@ const MemberDetails = () => {
     reset();
   };
 
+  useEffect(() => {
+    if (memberDetails) {
+      reset({
+        dob: memberDetails.dob || "",
+        email: memberDetails.email || "",
+        mobileNo: memberDetails.mobileNo || "",
+        designation: memberDetails.designation || "",
+        bloodGroup: memberDetails.bloodGroup || "",
+        emergencyName: memberDetails.emergencyName || "",
+        emergencyNo: memberDetails.emergencyNo || "",
+        credits: memberDetails.credits || "",
+      });
+    }
+  }, [memberDetails, reset]);
   return (
     <div className="border-2 border-gray-200 p-4 rounded-md flex flex-col gap-4 ">
       <div className="flex justify-between items-center">
@@ -90,7 +105,16 @@ const MemberDetails = () => {
               {/* Section:  Customer Details */}
               <div>
                 <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-1 gap-4 p-4">
-                  {["dob", "email", "mobileNo"].map((fieldKey) => (
+                  {[
+                    "dob",
+                    "email",
+                    "mobileNo",
+                    "designation",
+                    "bloodGroup",
+                    "emergencyName",
+                    "emergencyNo",
+                    "credits",
+                  ].map((fieldKey) => (
                     <div key={fieldKey}>
                       {isEditing ? (
                         <Controller

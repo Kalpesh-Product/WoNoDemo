@@ -29,7 +29,7 @@ import humanTime from "../../utils/humanTime";
 import { TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import PageFrame from "../../components/Pages/PageFrame";
-import MonthWiseTable from "../../components/Tables/MonthWiseTable";
+import YearWiseTable from "../../components/Tables/YearWiseTable";
 
 const ManageMeetings = () => {
   const axios = useAxiosPrivate();
@@ -55,16 +55,14 @@ const ManageMeetings = () => {
   };
 
   const defaultChecklist = [
-    { name: "Clean and arrange chairs and tables", checked: false },
-    { name: "Check projector functionality", checked: false },
-    { name: "Ensure AC is working", checked: false },
-    { name: "Clean whiteboard and provide markers", checked: false },
-    { name: "Vacuum and clean the floor", checked: false },
-    { name: "Check lighting and replace bulbs if necessary", checked: false },
-    { name: "Ensure Wi-Fi connectivity", checked: false },
-    { name: "Stock water bottles and glasses", checked: false },
-    { name: "Inspect electrical sockets and outlets", checked: false },
-    { name: "Remove any trash or debris", checked: false },
+    { name: "Desk is cleaned", checked: false },
+    { name: "Chairs are clean and neatly arranged", checked: false },
+    { name: "AC is cooling", checked: false },
+    { name: "TV, HDMI cable, LAN cable are available and active", checked: false },
+    { name: "TV & AC remotes in place", checked: false },
+    { name: "Air freshener sprayed", checked: false },
+    { name: "Water bottle & glass placed", checked: false },
+    { name: "Tissue placed on the table", checked: false },
   ];
   // const meetings = useSelector((state) => state.meetings?.data);
 
@@ -103,12 +101,7 @@ const ManageMeetings = () => {
   });
   const filteredMeetings = meetings
     .filter((item) => item.meetingStatus !== "Completed")
-    .map((meeting) => ({
-      ...meeting,
-      // startTime: humanTime(meeting.startTime),
-      // endTime: humanTime(meeting.endTime),
-      date: meeting.date,
-    }));
+  
 
   const transformedMeetings = filteredMeetings.map((meeting, index) => ({
     ...meeting,
@@ -120,6 +113,7 @@ const ManageMeetings = () => {
     endTime: meeting.endTime,
     extendTime: meeting.extendTime,
     srNo: index + 1,
+    department: meeting.bookedBy && [...meeting.bookedBy.departments.map((dept)=> dept.name) ].join(",") 
   }));
 
   // API mutation for submitting housekeeping tasks
@@ -343,7 +337,7 @@ const ManageMeetings = () => {
     {
       field: "date",
       headerName: "Date",
-      cellRenderer: (params) => humanDate(params.value),
+      cellRenderer: (params) => (params.value),
     },
     {
       field: "startTime",
@@ -479,8 +473,7 @@ const ManageMeetings = () => {
     <div className="flex flex-col gap-4">
       <PageFrame>
         {!isMeetingsLoading ? (
-          <MonthWiseTable
-            key={transformedMeetings.length}
+          <YearWiseTable
             search
             dateColumn={"date"}
             tableTitle={"Manage Meetings"}
@@ -629,7 +622,7 @@ const ManageMeetings = () => {
             />
             <DetalisFormatted
               title="Date"
-              detail={humanDate(selectedMeeting?.date)}
+              detail={(selectedMeeting?.date)}
             />
             <DetalisFormatted
               title="Time"
@@ -713,9 +706,9 @@ const ManageMeetings = () => {
                       ? `${p.firstName} ${p.lastName}`
                       : p.employeeName
                       ? p.employeeName
-                      : null;
+                      :  "N/A";
                   })
-                  .join(", ")}
+                  .join(", ") || "N/A"}
               />
             )}
 
@@ -730,7 +723,11 @@ const ManageMeetings = () => {
             />
             <DetalisFormatted
               title="Department"
-              detail={selectedMeeting.department || "Top Management"}
+              detail={selectedMeeting.department || "Unknown"}
+            />
+            <DetalisFormatted
+              title="Company"
+              detail={selectedMeeting.client || "Unknown"}
             />
 
             <br />

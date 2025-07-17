@@ -71,9 +71,7 @@ const AcceptedTickets = ({ title, departmentId }) => {
     queryKey: ["departments"],
     queryFn: async () => {
       try {
-        const response = await axios.get(
-          "api/company/get-company-data?field=selectedDepartments"
-        );
+        const response = await axios.get("api/departments/get-departments");
         return response.data?.selectedDepartments;
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -81,7 +79,10 @@ const AcceptedTickets = ({ title, departmentId }) => {
     },
   });
 
-  console.log("depts : ", departments.map((item)=>item.department))
+  console.log(
+    "depts : ",
+    departments.map((item) => item.department)
+  );
 
   // Fetch Accepted Tickets
   const { data: acceptedTickets = [], isLoading } = useQuery({
@@ -186,7 +187,7 @@ const AcceptedTickets = ({ title, departmentId }) => {
 
   const recievedTicketsColumns = [
     { field: "srNo", headerName: "Sr No", width: 100 },
-    { field: "acceptedBy", headerName: "Accepted By" },
+
     { field: "raisedUser", headerName: "Raised By" },
     {
       field: "raisedToDepartment",
@@ -210,6 +211,7 @@ const AcceptedTickets = ({ title, departmentId }) => {
         return <Chip label={params.value} style={{ backgroundColor, color }} />;
       },
     },
+    { field: "acceptedBy", headerName: "Accepted By" },
     {
       field: "actions",
       headerName: "Actions",
@@ -356,7 +358,7 @@ const AcceptedTickets = ({ title, departmentId }) => {
               rules={{ required: "Department is required" }}
               render={({ field }) => (
                 <TextField
-                {...field}
+                  {...field}
                   select
                   fullWidth
                   size="small"
@@ -366,8 +368,8 @@ const AcceptedTickets = ({ title, departmentId }) => {
                     Select a Department
                   </MenuItem>
                   {departments.map((item) => (
-                    <MenuItem key={item.department?._id} value={item.department?._id}>
-                      {item.department?.name}
+                    <MenuItem key={item._id} value={item._id}>
+                      {item.name}
                     </MenuItem>
                   ))}
                 </TextField>

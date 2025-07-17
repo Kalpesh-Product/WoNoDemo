@@ -44,6 +44,28 @@ const ItDashboard = () => {
     },
   });
 
+  const totalOverallExpense = isHrFinanceLoading
+    ? []
+    : hrFinance.reduce((sum, item) => sum + item.actualAmount || 0, 0);
+
+  const monthlyGroups = {};
+
+  hrFinance.forEach((item) => {
+    const dueDate = new Date(item.dueDate);
+    const monthKey = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}`; // e.g., "2024-4"
+    if (!monthlyGroups[monthKey]) monthlyGroups[monthKey] = [];
+    monthlyGroups[monthKey].push(item.actualAmount || 0);
+  });
+
+  const monthlyTotals = Object.values(monthlyGroups).map((amounts) =>
+    amounts.reduce((sum, val) => sum + val, 0)
+  );
+
+  const averageMonthlyExpense = monthlyTotals.length
+    ? monthlyTotals.reduce((a, b) => a + b, 0) / monthlyTotals.length
+    : 0;
+
+  //----------------------------Tasks Data-------------------------------//
   const { data: tasks = [], isLoading: isTasksLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
@@ -57,6 +79,34 @@ const ItDashboard = () => {
       }
     },
   });
+
+  //----------------------------Tasks Data-------------------------------//
+  //----------------------Units data-----------------------//
+  const { data: unitsData = [], isLoading: isUnitsData } = useQuery({
+    queryKey: ["units-data"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get(
+          `/api/company/fetch-simple-units
+          `
+        );
+        return response.data;
+      } catch (error) {
+        throw new Error("Error fetching data");
+      }
+    },
+  });
+  const totalSqFt = isUnitsData
+    ? []
+    : unitsData.reduce((acc, unit) => acc + (unit.sqft || 0), 0);
+
+  const internetExpense = isHrFinanceLoading
+    ? []
+    : hrFinance
+        .filter((item) => item.expanseType === "INTERNET EXPENSES")
+        .reduce((sum, item) => sum + item.actualAmount || 0, 0);
+
+  //----------------------Units data-----------------------//
 
   const { data: weeklySchedule = [], isLoading: isWeeklyScheduleLoading } =
     useQuery({
@@ -637,25 +687,25 @@ const ItDashboard = () => {
       layout: 3,
       widgets: [
         <DataCard
-          data={""}
+          data={Array.isArray(unitsData) ? unitsData.length : 0}
           title={"Offices"}
           description={"Under Management"}
           route={"IT-offices"}
         />,
         <DataCard
           route={"/app/tasks"}
-          data={""}
+          data={tasks.length || 0}
           title={"Total"}
           description={"Due Tasks This Month"}
         />,
         <DataCard
-          data={""}
+          data={`USD ${inrFormat(internetExpense / totalSqFt)}`}
           title={"Total"}
           description={"Internet Expense per sq.ft"}
           route={"per-sq-ft-internet-expense"}
         />,
         <DataCard
-          data={""}
+          data={`USD ${inrFormat((totalOverallExpense || 0) / totalSqFt)}`}
           title={"Total"}
           description={"Expense per sq.ft"}
           route={"per-sq-ft-expense"}
@@ -663,10 +713,10 @@ const ItDashboard = () => {
         <DataCard
           route={"IT-expenses"}
           title={"Average"}
-          data={""}
+          data={`USD ${inrFormat(averageMonthlyExpense)}`}
           description={"Monthly Expense"}
         />,
-        <DataCard data={""} title={"Average"} description={"Yearly Expense"} />,
+        <DataCard data={0} title={"Average"} description={"Yearly Expense"} />,
       ],
     },
     {

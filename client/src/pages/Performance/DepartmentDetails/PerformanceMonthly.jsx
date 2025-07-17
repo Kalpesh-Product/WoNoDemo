@@ -1,7 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import AgTable from "../../../components/AgTable";
 import WidgetSection from "../../../components/WidgetSection";
-import MonthWiseTable from "../../../components/Tables/MonthWiseTable";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
@@ -51,6 +50,7 @@ const PerformanceMonthly = () => {
     handleSubmit: submitDailyKra,
     control,
     formState: { errors },
+    watch,
     reset,
   } = useForm({
     mode: "onChange",
@@ -61,6 +61,7 @@ const PerformanceMonthly = () => {
       description: "",
     },
   });
+  const startDate = watch("startDate")
 
   //--------------POST REQUEST FOR MONTHLY KPA-----------------//
   const { mutate: addMonthlyKpa, isPending: isAddKpaPending } = useMutation({
@@ -148,7 +149,7 @@ const PerformanceMonthly = () => {
     },
   });
   const departmentColumns = [
-    { headerName: "Sr no", field: "srNo", width: 100, sort: "desc" },
+    { headerName: "Sr no", field: "srNo", width: 100 },
     { headerName: "KPA List", field: "taskName", flex: 1 },
     // { headerName: "Assigned Time", field: "assignedDate" },
     { headerName: "Due Date", field: "dueDate" },
@@ -407,6 +408,7 @@ const PerformanceMonthly = () => {
                   label="End Date"
                   disablePast
                   format="DD-MM-YYYY"
+                  disabled={!startDate}
                   value={field.value ? dayjs(field.value) : null}
                   onChange={(date) =>
                     field.onChange(date ? date.toISOString() : null)

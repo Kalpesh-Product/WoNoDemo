@@ -18,6 +18,7 @@ const Company = require("../../models/hr/Company");
 const CoworkingClient = require("../../models/sales/CoworkingClient");
 const ExternalCompany = require("../../models/meetings/ExternalCompany");
 const MeetingRevenue = require("../../models/sales/MeetingRevenue");
+const emitter = require("../../utils/eventEmitter");
 const { isValid } = require("date-fns/isValid");
 
 const addMeetings = async (req, res, next) => {
@@ -265,6 +266,20 @@ const addMeetings = async (req, res, next) => {
         logSourceKey
       );
     }
+    isClient
+      ? null
+      : emitter.emit("notification", {
+          initiatorData: bookedBy,
+          users: internalParticipants.map((userId) => ({
+            userActions: {
+              whichUser: userId,
+              hasRead: false,
+            },
+          })),
+          type: "book meeting",
+          module: "Meetings",
+          message: "You have been added to a meeting",
+        });
 
     await createLog({
       path: logPath,
@@ -364,7 +379,11 @@ const getMeetings = async (req, res, next) => {
         },
       })
       .populate([
-        { path: "bookedBy", select: "departments firstName lastName email" },
+        {
+          path: "bookedBy",
+          select: "departments firstName lastName email",
+          populate: { path: "departments", select: "name" },
+        },
         { path: "clientBookedBy", select: "employeeName email" },
         { path: "receptionist", select: "firstName lastName" },
         { path: "client", select: "clientName" },
@@ -447,7 +466,7 @@ const getMeetings = async (req, res, next) => {
         receptionist: receptionist,
         bookedBy: { ...meeting.bookedBy },
         clientBookedBy: meeting.clientBookedBy,
-        department: department.name,
+        department: meeting?.bookedBy?.departments,
         roomName: meeting.bookedRoom.name,
         bookedBy: meeting.bookedBy,
         location: meeting.bookedRoom.location,
@@ -500,10 +519,21 @@ const getMyMeetings = async (req, res, next) => {
     const { user, company, roles } = req;
 
     let meetings = [];
-    if (!roles.includes("Administration Employee")) {
+    if (
+      !roles.includes("Administration Employee") ||
+      !roles.includes("Administration Admin")
+    ) {
       meetings = await Meeting.find({
         company,
-        $or: [{ bookedBy: user }, { internalParticipants: { $in: [user] } }],
+        $or: [
+          { bookedBy: user },
+          {
+            internalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
+          },
+          {
+            externalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
+          },
+        ],
       })
         .populate({
           path: "bookedRoom",
@@ -518,7 +548,11 @@ const getMyMeetings = async (req, res, next) => {
           },
         })
         .populate([
-          { path: "bookedBy", selected: "firstName lastName email" },
+          {
+            path: "bookedBy",
+            selected: "firstName lastName email departments",
+            populate: { path: "departments" },
+          },
           { path: "clientBookedBy", select: "employeeName email" },
           { path: "receptionist", select: "firstName lastName" },
           { path: "client", select: "clientName" },
@@ -547,7 +581,11 @@ const getMyMeetings = async (req, res, next) => {
           },
         })
         .populate([
-          { path: "bookedBy", selected: "firstName lastName email" },
+          {
+            path: "bookedBy",
+            selected: "firstName lastName email departments",
+            populate: { path: "departments" },
+          },
           { path: "clientBookedBy", select: "employeeName email" },
           { path: "receptionist", select: "firstName lastName" },
           { path: "client", select: "clientName" },
@@ -561,13 +599,13 @@ const getMyMeetings = async (req, res, next) => {
         ]);
     }
 
-    const departments = await User.findById({ _id: user }).select(
-      "departments"
-    );
+    // const departments = await User.findById({ _id: user }).select(
+    //   "departments"
+    // );
 
-    const department = await Department.findById({
-      _id: departments.departments[0],
-    });
+    // const department = await Department.findById({
+    //   _id: { $in: { departments } },
+    // });
 
     const reviews = await Review.find().select(
       "-createdAt -updatedAt -__v -company"
@@ -624,12 +662,14 @@ const getMyMeetings = async (req, res, next) => {
             .join(" ")
         : "";
 
+      console.log("depart meetings", meeting.bookedBy.departments);
+
       return {
         _id: meeting._id,
         receptionist: receptionist,
         bookedBy: bookedBy,
         clientBookedBy: meeting.clientBookedBy,
-        department: department.name,
+        department: meeting?.bookedBy?.departments,
         roomName: meeting.bookedRoom.name,
         location: meeting.bookedRoom.location,
         client: isClient
@@ -1167,7 +1207,7 @@ const getSingleRoomMeetings = async (req, res, next) => {
 //Update payment details
 const updateMeeting = async (req, res, next) => {
   const logPath = "meetings/MeetingLog";
-  const logAction = "Extend Meeting Time";
+  const logAction = "Update Meeting Time";
   const logSourceKey = "meeting";
 
   try {
@@ -1406,6 +1446,174 @@ const getAllCompanies = async (req, res, next) => {
   return res.status(200).json(allCompanies);
 };
 
+const updateMeetingDetails = async (req, res, next) => {
+  try {
+    const {
+      meetingId,
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+      internalParticipants,
+      externalParticipants,
+    } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(meetingId)) {
+      return res.status(400).json({ message: "Invalid meeting ID" });
+    }
+
+    const meeting = await Meeting.findById(meetingId).populate("bookedRoom");
+    if (!meeting) {
+      return res.status(404).json({ message: "Meeting not found" });
+    }
+
+    const isClient = !!meeting.clientBookedBy;
+    const BookingModel = isClient ? CoworkingMembers : User;
+    const bookedUserId = isClient ? meeting.clientBookedBy : meeting.bookedBy;
+
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+    const startTimeObj = new Date(startTime);
+    const endTimeObj = new Date(endTime);
+
+    if (
+      isNaN(startDateObj.getTime()) ||
+      isNaN(endDateObj.getTime()) ||
+      isNaN(startTimeObj.getTime()) ||
+      isNaN(endTimeObj.getTime())
+    ) {
+      return res.status(400).json({ message: "Invalid date/time format" });
+    }
+
+    const conflictingMeeting = await Meeting.findOne({
+      _id: { $ne: meetingId },
+      bookedRoom: meeting.bookedRoom._id,
+      startDate: { $lte: endDateObj },
+      endDate: { $gte: startDateObj },
+      $or: [
+        {
+          $and: [
+            { startTime: { $lte: startTimeObj } },
+            { endTime: { $gt: startTimeObj } },
+          ],
+        },
+        {
+          $and: [
+            { startTime: { $lt: endTimeObj } },
+            { endTime: { $gte: endTimeObj } },
+          ],
+        },
+        {
+          $and: [
+            { startTime: { $gte: startTimeObj } },
+            { endTime: { $lte: endTimeObj } },
+          ],
+        },
+      ],
+    });
+
+    if (conflictingMeeting) {
+      return res
+        .status(409)
+        .json({ message: "Room is already booked for the specified time" });
+    }
+
+    let internalUsers = [];
+    if (internalParticipants) {
+      const invalidIds = internalParticipants.filter(
+        (id) => !mongoose.Types.ObjectId.isValid(id)
+      );
+      if (invalidIds.length > 0) {
+        return res
+          .status(400)
+          .json({ message: "Invalid internal participant IDs" });
+      }
+
+      const users = await BookingModel.find({
+        _id: { $in: internalParticipants },
+      });
+      const unmatchedIds = internalParticipants.filter(
+        (id) => !users.find((u) => u._id.toString() === id.toString())
+      );
+
+      if (unmatchedIds.length > 0) {
+        return res.status(400).json({
+          message: "Some internal participant IDs did not match any user",
+        });
+      }
+
+      internalUsers = users.map((u) => u._id);
+    }
+
+    const oldCreditsUsed = meeting.creditsUsed || 0;
+    const durationInMs = endTimeObj - startTimeObj;
+    const durationInHours = durationInMs / (1000 * 60 * 60);
+    const creditPerHour = meeting.bookedRoom.perHourCredit || 0;
+    const newCreditsUsed = durationInHours * creditPerHour;
+    const creditDifference = newCreditsUsed - oldCreditsUsed;
+
+    if (creditDifference > 0) {
+      // Deduct extra credits
+      const updatedUser = await BookingModel.findOneAndUpdate(
+        {
+          _id: bookedUserId,
+          credits: { $gte: newCreditsUsed },
+        },
+        { $inc: { credits: -creditDifference } },
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        return res
+          .status(400)
+          .json({ message: "Insufficient credits for the update" });
+      }
+    } else if (creditDifference < 0) {
+      // Refund excess credits
+      await BookingModel.findByIdAndUpdate(bookedUserId, {
+        $inc: { credits: Math.abs(creditDifference) },
+      });
+    }
+
+    const changes = {
+      startDate: startDateObj,
+      endDate: endDateObj,
+      startTime: startTimeObj,
+      endTime: endTimeObj,
+      creditsUsed: newCreditsUsed,
+      internalParticipants: !isClient ? internalUsers : [],
+      clientParticipants: isClient ? internalUsers : [],
+      externalParticipants: externalParticipants || [],
+    };
+
+    const updatedMeeting = await Meeting.findByIdAndUpdate(
+      meetingId,
+      { $set: changes },
+      { new: true }
+    );
+
+    if (!updatedMeeting) {
+      return res.status(500).json({ message: "Failed to update meeting" });
+    }
+
+    if (!isClient && internalParticipants?.length > 0) {
+      emitter.emit("notification", {
+        initiatorData: meeting.bookedBy,
+        users: internalParticipants.map((userId) => ({
+          userActions: { whichUser: userId, hasRead: false },
+        })),
+        type: "update meeting",
+        module: "Meetings",
+        message: "You have been added to an updated meeting",
+      });
+    }
+
+    return res.status(200).json({ message: "Meeting updated successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   addMeetings,
   getMeetings,
@@ -1420,4 +1628,5 @@ module.exports = {
   getSingleRoomMeetings,
   updateMeetingStatus,
   updateMeeting,
+  updateMeetingDetails,
 };

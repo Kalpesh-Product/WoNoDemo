@@ -295,6 +295,7 @@ const BudgetPage = () => {
     yaxis: {
       max: roundedMax,
       title: { text: "Amount In Thousand (USD)" },
+
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

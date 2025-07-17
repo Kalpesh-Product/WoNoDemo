@@ -12,6 +12,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import humanDate from "../../../../utils/humanDateForamt";
 import dayjs from "dayjs";
 import { Chip } from "@mui/material";
+import WidgetTable from "../../../../components/Tables/WidgetTable";
 
 const Collections = () => {
   const [viewModalOpen, setViewModalOpen] = useState(false);
@@ -125,8 +126,8 @@ const Collections = () => {
 
     return {
       chartData: [
-        { name: "Paid", data: paid },
-        { name: "Unpaid", data: unpaid },
+        { name: "Collected", data: paid },
+        { name: "Due", data: unpaid },
       ],
       tooltipMeta,
     };
@@ -271,19 +272,14 @@ const Collections = () => {
         </WidgetSection>
       </WidgetSection>
 
-      <WidgetSection
-        border
-        title="Collections"
-        TitleAmount={`USD ${inrFormat(currentMonthTotal)}`}
-        className="bg-white rounded-md shadow-sm">
-        <YearWiseTable
-          data={flatClientData}
-          columns={kraColumn}
-          dateColumn="date"
-          handleSubmit={() => console.log("Export triggered")}
-          onMonthChange={handleMonthChange}
-        />
-      </WidgetSection>
+      <WidgetTable
+        data={flatClientData}
+        columns={kraColumn}
+        dateColumn="date"
+        totalKey="revenue"
+        tableTitle={"Collections"}
+        handleSubmit={() => console.log("Export triggered")}
+      />
 
       {viewDetails && (
         <MuiModal
