@@ -100,6 +100,59 @@ const HrDashboard = () => {
   );
 
   //--------------------HR BUDGET---------------------------//
+  //------------------------Graph round functions-------------------//
+  const expenseSeries = useMemo(() => {
+    // Initialize monthly buckets
+    const months = Array.from({ length: 12 }, (_, index) =>
+      dayjs(`2024-04-01`).add(index, "month").format("MMM")
+    );
+
+    const fyData = {
+      "FY 2024-25": Array(12).fill(0),
+      "FY 2025-26": Array(12).fill(0),
+    };
+
+    hrFinance.forEach((item) => {
+      const date = dayjs(item.dueDate);
+      const year = date.year();
+      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+
+      if (year === 2024 && monthIndex >= 3) {
+        // Apr 2024 to Dec 2024 (month 3 to 11)
+        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+      } else if (year === 2025) {
+        if (monthIndex <= 2) {
+          // Jan to Mar 2025 (months 0–2)
+          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+        } else if (monthIndex >= 3) {
+          // Apr 2025 to Dec 2025 (months 3–11)
+          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
+        }
+      } else if (year === 2026 && monthIndex <= 2) {
+        // Jan to Mar 2026
+        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+      }
+    });
+
+    return [
+      {
+        name: "total",
+        group: "FY 2024-25",
+        data: fyData["FY 2024-25"],
+      },
+      {
+        name: "total",
+        group: "FY 2025-26",
+        data: fyData["FY 2025-26"],
+      },
+    ];
+  }, [hrFinance]);
+
+  const maxExpenseValue = Math.max(
+    ...expenseSeries.flatMap((series) => series.data)
+  );
+  const roundedMax = Math.ceil((maxExpenseValue + 100000) / 100000) * 100000;
+  //------------------------Graph round functions-------------------//
   //--------------------HR BUDGET---------------------------//
 
   //-------------------HR Expense graph start--------------------//
@@ -222,7 +275,9 @@ const HrDashboard = () => {
       },
     },
     yaxis: {
-      max: 5000000,
+      min: 0,
+      max: roundedMax,
+      tickAmount: 4,
       title: { text: "Amount In Thousand (USD)" },
       labels: {
         formatter: (val) => `${Math.round(val / 100000)}`,
@@ -713,26 +768,35 @@ const HrDashboard = () => {
     { id: "day", label: "Day", align: "left" },
   ];
   //------------------Birthdays----------//
-
   const getUpcomingBirthdays = (employeeList) => {
     const today = dayjs();
 
     return employeeList
+      .filter((emp) => emp.dateOfBirth) // ✅ filter out if dateOfBirth is missing/null
       .map((emp) => {
         const birthDate = dayjs(emp.dateOfBirth);
 
+        // Prevent invalid dates like Feb 29 on non-leap years
+        const normalizedDate = dayjs(
+          `${today.year()}-${birthDate.format("MM-DD")}`,
+          "YYYY-MM-DD",
+          true // strict parsing
+        );
+
+        if (!normalizedDate.isValid()) return null;
+
         return {
           title: `${emp.firstName} ${emp.lastName}`,
-          start: birthDate
-            .year(today.year()) // keep the year consistent
-            .format("YYYY-MM-DD"),
+          start: normalizedDate.format("YYYY-MM-DD"),
         };
       })
       .filter((item) => {
+        if (!item) return false; // skip nulls from invalid date handling
         const birthday = dayjs(item.start);
-        return birthday.month() === today.month(); // filter only current month
+        return birthday.month() === today.month(); // current month only
       });
   };
+
   const birthdays = getUpcomingBirthdays(
     usersQuery.isLoading ? [] : usersQuery.data
   );
@@ -1180,10 +1244,11 @@ const HrDashboard = () => {
         !usersQuery.isLoading ? (
           <MuiTable
             key={birthdays.length}
-            Title="Current Months Birthday List"
+            Title="Current Month's Birthday List"
             columns={columns}
-            rows={[
-              ...[...birthdays].map((bd, index) => {
+            rows={birthdays
+              .filter((bd) => bd.start) // Only entries with a start date
+              .map((bd, index) => {
                 const date = dayjs(bd.start);
                 return {
                   id: index + 1,
@@ -1191,8 +1256,7 @@ const HrDashboard = () => {
                   start: date.format("DD-MM-YYYY"),
                   day: date.format("dddd"),
                 };
-              }),
-            ]}
+              })}
             rowsToDisplay={40}
             scroll={true}
             className="h-full"

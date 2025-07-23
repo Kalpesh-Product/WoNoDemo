@@ -15,6 +15,9 @@ const {
   handleFileDelete,
 } = require("../../config/cloudinaryConfig");
 const sharp = require("sharp");
+const Agreements = require("../../models/hr/Agreements");
+const TestUserData = require("../../models/hr/TestUserData");
+const TestAgreements = require("../../models/hr/TestAgreements");
 
 const createUser = async (req, res, next) => {
   const logPath = "hr/HrLog";
@@ -41,6 +44,7 @@ const createUser = async (req, res, next) => {
       startDate,
       workLocation,
       reportsTo,
+      shift,
       policies,
       homeAddress,
       bankInformation,
@@ -63,6 +67,7 @@ const createUser = async (req, res, next) => {
       !departments ||
       !designation ||
       !startDate ||
+      !shift ||
       !workLocation
     ) {
       throw new CustomError(
@@ -177,6 +182,7 @@ const createUser = async (req, res, next) => {
       startDate,
       workLocation,
       reportsTo,
+      shift,
       policies,
       homeAddress,
       bankInformation,
@@ -601,6 +607,7 @@ const bulkInsertUsers = async (req, res, next) => {
     const roleMap = new Map(roles.map((role) => [role.roleID, role._id]));
 
     const newUsers = [];
+    const newAgreements = [];
 
     const rowPromises = [];
 
@@ -613,11 +620,24 @@ const bulkInsertUsers = async (req, res, next) => {
           rowPromises.push(
             (async () => {
               try {
+                // const departmentIds = row["Department (ID)"]
+                //   ? row["Department (ID)"].split("/").map((d) => d.trim())
+                //   : [];
+                console.log("row dept", row["Department (ID)"]);
                 const departmentIds = row["Department (ID)"]
-                  ? row["Department (ID)"].split("/").map((d) => d.trim())
+                  ? row["Department (ID)"].includes("/")
+                    ? row["Department (ID)"]
+                        .split("/")
+                        .map((d) => d.trim())
+                        .filter(Boolean)
+                    : [row["Department (ID)"].trim()]
                   : [];
+
+                console.log("departIds", departmentIds);
                 const departmentObjectIds = departmentIds.map((id) => {
-                  if (!departmentMap.has(id)) {
+                  const deptId = new mongoose.Types.ObjectId(id);
+                  console.log("deptId", deptId);
+                  if (!departmentMap.has(deptId)) {
                     throw new Error(`Invalid department: ${id}`);
                   }
                   return departmentMap.get(id);
@@ -667,12 +687,13 @@ const bulkInsertUsers = async (req, res, next) => {
                   designation: row["Designation"],
                   startDate: new Date(row["Date Of Joining"]),
                   workLocation: row["Work Building"],
-                  policies: {
-                    shift: row["Shift Policy"] || "General",
-                    workSchedulePolicy: row["Work Schedule Policy"] || "",
-                    leavePolicy: row["Leave Policy"] || "",
-                    holidayPolicy: row["Holiday Policy"] || "",
-                  },
+                  shift: row["Shift Policy"] || "General",
+                  // policies: {
+                  //   shift: row["Shift Policy"] || "General",
+                  //   workSchedulePolicy: row["Work Schedule Policy"] || "",
+                  //   leavePolicy: row["Leave Policy"] || "",
+                  //   holidayPolicy: row["Holiday Policy"] || "",
+                  // },
                   homeAddress: {
                     addressLine1: row["Address"] || "",
                     addressLine2: row["Present Address"] || "",
@@ -713,6 +734,19 @@ const bulkInsertUsers = async (req, res, next) => {
                 };
 
                 newUsers.push(userObj);
+
+                //Agreements Bulk Insertion
+                let agreementObj = {
+                  name: row["Work Schedule Policy"] || "",
+                  empId: row["Emp ID"],
+                  url: row["Work Schedule Policy"] || "",
+                  id: row["Work Schedule Policy"] || "",
+                  isActive: true,
+                  isDeleted: false,
+                };
+                console.log("agreementObj", agreementObj);
+
+                newAgreements.push(agreementObj);
               } catch (error) {
                 reject(
                   new CustomError(
@@ -751,21 +785,30 @@ const bulkInsertUsers = async (req, res, next) => {
       );
     }
 
-    await User.insertMany(newUsers);
+    if (newAgreements.length === 0) {
+      return res.status(400).json({
+        message: "No valid data found in CSV while bulk inserting agreements",
+      });
+    }
 
-    // Log the successful bulk insertion
-    await createLog({
-      path: "hr/HrLog",
-      action: "Bulk Insert Users",
-      remarks: "Bulk data inserted successfully",
-      status: "Success",
-      user: req.user,
-      ip: req.ip,
-      company: req.company,
-      sourceKey: "user",
-      sourceId: null, // No single sourceId for bulk operations
-      changes: { insertedCount: newUsers.length },
+    const uploadedUserData = await TestUserData.insertMany(newUsers);
+
+    console.log("newAgreements", newAgreements);
+    const transformedAgreements = uploadedUserData.filter((user) => {
+      const foundUsers = newAgreements.map((agreement) =>
+        agreement.empId === user.empId
+          ? { ...agreement, user: user._id }
+          : agreement
+      );
+
+      return foundUsers;
     });
+
+    console.log("transformedAgreements", transformedAgreements);
+
+    const uploadedAgreements = await TestAgreements.insertMany(
+      transformedAgreements
+    );
 
     return res.status(201).json({
       message: "Bulk data inserted successfully",

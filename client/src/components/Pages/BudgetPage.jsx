@@ -293,9 +293,11 @@ const BudgetPage = () => {
     },
 
     yaxis: {
+      min: 0,
       max: roundedMax,
       title: { text: "Amount In Thousand (USD)" },
-
+      // tickAmount: Math.ceil((roundedMax / 600000).toFixed(0)) ,
+      tickAmount: 4,
       labels: {
         formatter: (val) => `${val / 100000}`,
       },

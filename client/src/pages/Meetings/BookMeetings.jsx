@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Autocomplete,
   Chip,
   CircularProgress,
   LinearProgress,
@@ -27,7 +28,10 @@ import humanDate from "../../utils/humanDateForamt";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
 import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
 import ThreeDotMenu from "../../components/ThreeDotMenu";
-import { TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { IoMdClose } from "react-icons/io";
+import StatusChip from "../../components/StatusChip";
 
 const BookMeetings = () => {
   // ------------------------------Initializations ------------------------------------//
@@ -40,6 +44,9 @@ const BookMeetings = () => {
   const [modalMode, setModalMode] = useState("");
   const locations = auth.user.company.workLocations;
   const isEmployee = auth.user.company.companyName === "BizNest";
+  const company = "6799f0cd6a01edbe1bc3fcea";
+  const isBizNest = company === "6799f0cd6a01edbe1bc3fcea";
+  const [shouldFetchParticipants, setShouldFetchParticipants] = useState(false);
 
   // ------------------------------Initializations ------------------------------------//
 
@@ -57,7 +64,6 @@ const BookMeetings = () => {
     },
   });
 
-
   const {
     handleSubmit: reviewForm,
     control: reviewControl,
@@ -74,7 +80,7 @@ const BookMeetings = () => {
     handleSubmit: handleEditSubmit,
     control: editControl,
     formState: { errors: editingErrors },
-    reset: resetEditForm
+    reset: resetEditForm,
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -82,11 +88,10 @@ const BookMeetings = () => {
       endDate: null,
       startTime: null,
       endTime: null,
-      participants: []
+      participants: [],
     },
   });
 
-  
   const watchFields = watch();
   const selectedUnit = useWatch({ control, name: "location" });
   // ------------------------------Form Control ------------------------------------//
@@ -99,11 +104,13 @@ const BookMeetings = () => {
   const handleViewDetails = (meeting) => {
     setSelectedMeeting(meeting);
     setDetailsModal(true);
+    setModalMode("view");
   };
 
   const handleMeetingDetails = (meeting) => {
     setSelectedMeeting(meeting);
-    setOpenModal(true)
+    setOpenModal(true);
+    setModalMode("edit");
   };
 
   const {
@@ -132,6 +139,32 @@ const BookMeetings = () => {
     return acc;
   }, {});
 
+  const { data: employees = [], isLoading: isEmployeesLoading } = useQuery({
+    queryKey: ["participants", company],
+    queryFn: async () => {
+      if (company === "6799f0cd6a01edbe1bc3fcea") {
+        const response = await axios.get("/api/users/fetch-users");
+        return response.data
+          .filter((user) => user._id !== auth.user?._id)
+          .filter((u) => u.isActive === true);
+      } else {
+        const response = await axios.get("/api/sales/co-working-clients");
+        const activeClients = response.data.filter((item) => item.isActive);
+        const flattened = activeClients.flatMap((client) =>
+          client.members.map((member) => ({
+            ...member,
+            clientName: client.clientName,
+          }))
+        );
+        // Flatten members and inject clientName for context
+        return flattened.filter((item) => {
+          return item.client?._id === company;
+        });
+      }
+    },
+    enabled: shouldFetchParticipants && !!company,
+  });
+
   useEffect(() => {
     setValue("meetingRoom", ""); // Reset meeting room selection
   }, [selectedUnit, setValue]);
@@ -148,24 +181,24 @@ const BookMeetings = () => {
     },
   });
 
-    const updateMutation = useMutation({
-      mutationFn: async (payload) => {
-        const response = await axios.patch(
-          "/api/meetings/update-meeting-details",
-          payload
-        );
-        return response.data;
-      },
-      onSuccess: () => {
-          toast.success("Meeting updated");
-        queryClient.invalidateQueries(["myMeetings"]);
-        setOpenModal(false);
-        resetEditForm();
-      },
-      onError: (error) => {
-        toast.error(error.response?.data?.message || "Update failed");
-      },
-    });
+  const updateMutation = useMutation({
+    mutationFn: async (payload) => {
+      const response = await axios.patch(
+        "/api/meetings/update-meeting-details",
+        payload
+      );
+      return response.data;
+    },
+    onSuccess: () => {
+      toast.success("Meeting updated");
+      queryClient.invalidateQueries(["myMeetings"]);
+      setOpenModal(false);
+      resetEditForm();
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message || "Update failed");
+    },
+  });
 
   const { mutate: addReview, isPending: isAddReviewPending } = useMutation({
     mutationKey: ["addReview"],
@@ -196,17 +229,17 @@ const BookMeetings = () => {
   const handleAddReview = (data) => {
     setSelectedMeeting(data);
     setOpenModal(true);
+    setModalMode("review");
   };
 
-   const onEditSubmit = (data) => {
-    console.log("dataa",data)
+  const onEditSubmit = (data) => {
     const payload = {
-     meetingId: selectedMeeting._id,
+      meetingId: selectedMeeting.meetingId,
       startDate: data.startTime,
       endDate: data.endTime,
       startTime: data.startTime,
       endTime: data.endTime,
-      participants: data.participants
+      participants: data.participants,
     };
     updateMutation.mutate(payload);
   };
@@ -225,86 +258,44 @@ const BookMeetings = () => {
       field: "location",
       headerName: "Location",
     },
-    // {
-    //   field: "actions",
-    //   headerName: "Actions",
-    //   cellRenderer: (params) => {
-    //     const rawReview = params.data?.reviews;
-
-    //     const meetingReviews = Array.isArray(rawReview)
-    //       ? rawReview
-    //       : rawReview
-    //       ? [rawReview]
-    //       : [];
-    //     const userName = `${auth.user?.firstName} ${auth.user?.lastName}`;
-
-    //     return (
-    //       <div className="p-2 flex items-center gap-2">
-    //         {meetingReviews.length > 0 ? (
-    //           "Review added"
-    //         ) : (
-    //           <>
-    //             {userName === params.data.bookedBy ? (
-    //               <span
-    //                 onClick={() => handleAddReview(params.data)}
-    //                 className="cursor-pointer"
-    //               >
-    //                 <MdOutlineRateReview size={20} />
-    //               </span>
-    //             ) : (
-    //               ""
-    //             )}
-    //           </>
-    //         )}
-    //         <span
-    //           className="text-subtitle cursor-pointer"
-    //           onClick={() => handleViewDetails(params.data)}
-    //         >
-    //           <MdOutlineRemoveRedEye />
-    //         </span>
-    //       </div>
-    //     );
-    //   },
-    // },
-
     {
       field: "actions",
       headerName: "Actions",
-      pinned: "right",
       cellRenderer: (params) => {
         const rawReview = params.data?.reviews;
+
         const meetingReviews = Array.isArray(rawReview)
           ? rawReview
           : rawReview
           ? [rawReview]
           : [];
-
-        const isBookedByCurrentUser =
-          `${auth.user?.firstName} ${auth.user?.lastName}` ===
-          params.data.bookedBy;
-
-        const menuItems = [
-          {
-            label: "View",
-            onClick: () => handleViewDetails(params.data),
-          },
-        ];
-
-        // Allow editing only for meetings booked by the current user
-        if (isBookedByCurrentUser) {
-          menuItems.push({
-            label: "Update",
-            onClick: () => handleMeetingDetails(params.data)
-          });
-
-          menuItems.push({
-            label: "Review",
-            onClick: () => handleAddReview(params.data),
-          });
-        }
+        const userName = `${auth.user?.firstName} ${auth.user?.lastName}`;
 
         return (
-          <ThreeDotMenu rowId={params.data.meetingId} menuItems={menuItems} />
+          <div className="p-2 flex items-center gap-2">
+            {meetingReviews.length > 0 ? (
+              "Review added"
+            ) : (
+              <>
+                {userName === params.data.bookedBy ? (
+                  <span
+                    onClick={() => handleAddReview(params.data)}
+                    className="cursor-pointer"
+                  >
+                    <MdOutlineRateReview size={20} />
+                  </span>
+                ) : (
+                  ""
+                )}
+              </>
+            )}
+            <span
+              className="text-subtitle cursor-pointer"
+              onClick={() => handleViewDetails(params.data)}
+            >
+              <MdOutlineRemoveRedEye />
+            </span>
+          </div>
         );
       },
     },
@@ -330,6 +321,9 @@ const BookMeetings = () => {
       {
         state: {
           meetingRoomId: selectedRoomId,
+          perHourCredit: selectedRoom?.perHourCredit,
+          perHourPrice: selectedRoom?.perHourPrice,
+          seats: selectedRoom?.seats,
         },
       }
     );
@@ -448,6 +442,7 @@ const BookMeetings = () => {
               dateColumn={"date"}
               data={[
                 ...myMeetings.map((meeting, index) => ({
+                  ...meeting,
                   id: index + 1,
                   meetingId: meeting._id,
                   bookedBy: meeting.bookedBy,
@@ -474,148 +469,231 @@ const BookMeetings = () => {
         )}
       </div>
 
-         <MuiModal
-            title="Update Meeting"
-            open={openModal}
-            onClose={() => setOpenModal(false)}
-          >
-              <form
-                onSubmit={handleEditSubmit(onEditSubmit)}
-                className="flex flex-col gap-4"
-              >
-
-                <Controller
-                  name="startTime"
-                  control={editControl}
-                  rules={{
-                    required: "Start time is required",
-                  }}
-                  render={({ field }) => (
-                    <TimePicker
-                      {...field}
-                      label="Select Start Time"
-                      slotProps={{
-                        textField: {
-                          size: "small",
-                          error: !!editingErrors.startTime,
-                          helperText: editingErrors.startTime?.message,
-                        },
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="endTime"
-                  control={editControl}
-                  rules={{
-                    required: "End time is required",
-                  }}
-                  render={({ field }) => (
-                    <TimePicker
-                      {...field}
-                      label="Select End Time"
-                      slotProps={{
-                        textField: {
-                          size: "small",
-                          error: !!editingErrors.endTime,
-                          helperText: editingErrors?.endTime?.message,
-                        },
-                      }}
-                    />
-                  )}
-                />
-
-                <PrimaryButton
-                  title="Update Meeting"
-                  type="submit"
-                  isLoading={updateMutation.isLoading}
-                />
-              </form>
-          </MuiModal>
-      <MuiModal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        title={"Add review"}
-      >
-        <form
-          onSubmit={reviewForm(submitReview)}
-          className="flex flex-col gap-4"
+      {modalMode === "edit" && (
+        <MuiModal
+          title="Update Meeting"
+          open={openModal}
+          onClose={() => setOpenModal(false)}
         >
-          <div className="flex gap-4 items-center">
-            <span className="text-content">
-              How was your meeting room experience ?
-            </span>
+          <form
+            onSubmit={handleEditSubmit(onEditSubmit)}
+            className="grid grid-cols-2 gap-4"
+          >
             <Controller
-              name="rating"
-              control={reviewControl}
-              rules={{ required: "Rating is required" }}
-              render={({ field }) => <CustomRating {...field} />}
+              name="startDate"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  {...field}
+                  label={"Select Start Date"}
+                  format="DD-MM-YYYY"
+                  slotProps={{ textField: { size: "small" } }}
+                  value={field.value ? dayjs(field.value) : null}
+                  onChange={(date) => {
+                    field.onChange(date ? date.toISOString() : null);
+                  }}
+                />
+              )}
             />
-            {reviewErrors.rating && (
-              <span className="text-small text-red-600">
-                {reviewErrors.rating.message}
+            <Controller
+              name="endDate"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  {...field}
+                  label={"Select End Date"}
+                  format="DD-MM-YYYY"
+                  slotProps={{ textField: { size: "small" } }}
+                  value={field.value ? dayjs(field.value) : null}
+                  onChange={(date) => {
+                    field.onChange(date ? date.toISOString() : null);
+                  }}
+                />
+              )}
+            />
+
+            <Controller
+              name="startTime"
+              control={editControl}
+              rules={{
+                required: "Start time is required",
+              }}
+              render={({ field }) => (
+                <TimePicker
+                  {...field}
+                  label="Select Start Time"
+                  slotProps={{
+                    textField: {
+                      size: "small",
+                      error: !!editingErrors.startTime,
+                      helperText: editingErrors.startTime?.message,
+                    },
+                  }}
+                />
+              )}
+            />
+
+            <Controller
+              name="endTime"
+              control={editControl}
+              rules={{
+                required: "End time is required",
+              }}
+              render={({ field }) => (
+                <TimePicker
+                  {...field}
+                  label="Select End Time"
+                  slotProps={{
+                    textField: {
+                      size: "small",
+                      error: !!editingErrors.endTime,
+                      helperText: editingErrors?.endTime?.message,
+                    },
+                  }}
+                />
+              )}
+            />
+
+            <Controller
+              name="participants"
+              control={control}
+              render={({ field }) => (
+                <Autocomplete
+                  multiple
+                  options={employees}
+                  getOptionLabel={(user) =>
+                    isBizNest
+                      ? `${user.firstName ?? ""} ${user.lastName ?? ""}`
+                      : `${user.employeeName ?? ""} (${user.clientName ?? ""}`
+                  }
+                  onFocus={() => setShouldFetchParticipants(true)}
+                  onChange={(_, newValue) =>
+                    field.onChange(newValue.map((user) => user._id))
+                  }
+                  renderTags={(selected, getTagProps) =>
+                    selected.map((user, index) => (
+                      <Chip
+                        key={user._id}
+                        label={
+                          isBizNest
+                            ? `${user.firstName ?? ""} ${user.lastName ?? ""}`
+                            : `${user.employeeName ?? ""} (${
+                                user.clientName ?? ""
+                              })`
+                        }
+                        {...getTagProps({ index })}
+                        deleteIcon={<IoMdClose />}
+                      />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select Participants"
+                      size="small"
+                      fullWidth
+                    />
+                  )}
+                />
+              )}
+            />
+
+            <PrimaryButton
+              title="Update Meeting"
+              type="submit"
+              isLoading={updateMutation.isLoading}
+              externalStyles={"col-span-2"}
+            />
+          </form>
+        </MuiModal>
+      )}
+      {modalMode === "review" && (
+        <MuiModal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          title={"Add review"}
+        >
+          <form
+            onSubmit={reviewForm(submitReview)}
+            className="flex flex-col gap-4"
+          >
+            <div className="flex gap-4 items-center">
+              <span className="text-content">
+                How was your meeting room experience ?
               </span>
-            )}
-          </div>
-          <Controller
-            name="review"
-            control={reviewControl}
-            rules={{
-              required: "Review is required",
-              validate: {
-                noOnlyWhitespace,
-                isAlphanumeric,
-              },
-            }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Review"
-                fullWidth
-                multiline
-                rows={4}
-                error={!!reviewErrors.review}
-                helperText={reviewErrors.review?.message}
+              <Controller
+                name="rating"
+                control={reviewControl}
+                rules={{ required: "Rating is required" }}
+                render={({ field }) => <CustomRating {...field} />}
               />
-            )}
-          />
-          <PrimaryButton
-            title={"Submit"}
-            type={"submit"}
-            isLoading={isAddReviewPending}
-            disabled={isAddReviewPending}
-          />
-        </form>
-      </MuiModal>
-      <MuiModal
-        open={detailsModal}
-        onClose={() => setDetailsModal(false)}
-        title={"Meeting Details"}
-      >
-        {selectedMeeting ? (
-          <div className="w-full grid grid-cols-1 gap-4">
-            <DetalisFormatted
-              title="Agenda"
-              detail={selectedMeeting?.agenda || "N/A"}
+              {reviewErrors.rating && (
+                <span className="text-small text-red-600">
+                  {reviewErrors.rating.message}
+                </span>
+              )}
+            </div>
+            <Controller
+              name="review"
+              control={reviewControl}
+              rules={{
+                required: "Review is required",
+                validate: {
+                  noOnlyWhitespace,
+                  isAlphanumeric,
+                },
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Review"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  error={!!reviewErrors.review}
+                  helperText={reviewErrors.review?.message}
+                />
+              )}
             />
-            <DetalisFormatted
-              title="Date"
-              detail={selectedMeeting?.date || "N/A"}
+            <PrimaryButton
+              title={"Submit"}
+              type={"submit"}
+              isLoading={isAddReviewPending}
+              disabled={isAddReviewPending}
             />
-            <DetalisFormatted
-              title="Room"
-              detail={selectedMeeting?.roomName || "N/A"}
-            />
-            <DetalisFormatted
-              title="Location"
-              detail={selectedMeeting?.location || "N/A"}
-            />
-          </div>
-        ) : (
-          <CircularProgress />
-        )}
-      </MuiModal>
+          </form>
+        </MuiModal>
+      )}
+      {modalMode === "view" && (
+        <MuiModal
+          open={detailsModal}
+          onClose={() => setDetailsModal(false)}
+          title={"Meeting Details"}
+        >
+          {selectedMeeting ? (
+            <div className="w-full grid grid-cols-1 gap-4">
+              <DetalisFormatted
+                title="Agenda"
+                detail={selectedMeeting?.agenda || "N/A"}
+              />
+              <DetalisFormatted
+                title="Date"
+                detail={selectedMeeting?.date || "N/A"}
+              />
+              <DetalisFormatted
+                title="Room"
+                detail={selectedMeeting?.roomName || "N/A"}
+              />
+              <DetalisFormatted
+                title="Location"
+                detail={selectedMeeting?.location || "N/A"}
+              />
+            </div>
+          ) : (
+            <CircularProgress />
+          )}
+        </MuiModal>
+      )}
     </div>
   );
 };

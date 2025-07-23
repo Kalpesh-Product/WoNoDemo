@@ -72,11 +72,13 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
       icon: <FaTasks />,
       route: "tasks",
     },
+
     {
       name: "Performance",
       icon: <FaTasks />,
       route: "performance",
     },
+   
     ...(canAccessVisitors
       ? [
           {
@@ -90,6 +92,11 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
   const generalItems = [
     { name: "Calendar", icon: <FaRegCalendarAlt />, route: "calendar" },
     { name: "Access", icon: <SiAuthelia />, route: "access" },
+        {
+      name: "Notifications",
+      icon: <IoMdNotifications />,
+      route: "notifications",
+    },
     {
       name: "Profile",
       icon: <FaUserTie />,
@@ -102,17 +109,14 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
       icon: <TbReportSearch />,
       route: "#",
     },
-    {
+            {
       name: "Assets",
       icon: <FaBoxesStacked />,
       route: "#",
     },
+ 
     { name: "Chat", icon: <HiOutlineChatAlt2 />, route: "#" },
-    {
-      name: "Notifications",
-      icon: <IoMdNotifications />,
-      route: "#",
-    },
+
   ];
 
   const defaultModules = [

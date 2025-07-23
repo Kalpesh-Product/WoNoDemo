@@ -20,6 +20,7 @@ import { useTopDepartment } from "../../hooks/useTopDepartment";
 import usePageDepartment from "../../hooks/usePageDepartment";
 import useAuth from "../../hooks/useAuth";
 import humanTime from "../../utils/humanTime";
+import StatusChip from "../../components/StatusChip";
 const WidgetSection = lazy(() => import("../../components/WidgetSection"));
 
 const MeetingDashboard = () => {
@@ -57,8 +58,6 @@ const MeetingDashboard = () => {
     },
   });
 
-  
-
   const now = dayjs();
 
   const { data: roomsData = [], isLoading: isRoomLoading } = useQuery({
@@ -69,7 +68,10 @@ const MeetingDashboard = () => {
     },
   });
 
-  console.log("rooms", roomsData.map((item)=>item.name))
+  console.log(
+    "rooms",
+    roomsData.map((item) => item.name)
+  );
 
   const { data: holidaysData = [], isLoading: isHolidaysLoading } = useQuery({
     queryKey: ["holidays"],
@@ -171,13 +173,13 @@ const MeetingDashboard = () => {
   const totalDurationInHours = calculateTotalDurationInHours(meetingsData);
   // Fetch internal meetings
   const { data: meetingsInternal = [] } = useQuery({
-    queryKey: ["meetingsInternal"],
+    queryKey: ["meetings"],
     queryFn: async () => {
-      const response = await axios.get(
-        "/api/meetings/get-meetings-type?type=Internal"
+      const response = await axios.get("/api/meetings/get-meetings");
+      const filtered = response.data.filter(
+        (item) => item.meetingType === "Internal"
       );
-
-      return response.data;
+      return filtered;
     },
   });
 
@@ -185,17 +187,24 @@ const MeetingDashboard = () => {
   const { data: meetingsExternal = [] } = useQuery({
     queryKey: ["meetingsExternal"],
     queryFn: async () => {
-      const response = await axios.get(
-        "/api/meetings/get-meetings-type?type=External"
+      const response = await axios.get("/api/meetings/get-meetings");
+      const filtered = response.data.filter(
+        (item) => item.meetingType === "External"
       );
-      return response.data;
+      return filtered;
     },
   });
 
   const meetingColumns = [
     { id: "id", label: "Sr No", align: "left" },
     { id: "roomName", label: "Meeting Rooms", align: "left" },
-    { id: "unitName", label: "Location", align: "left" },
+    {
+      id: "status",
+      label: "Status",
+      align: "left",
+      renderCell: (row) => <StatusChip status={row.status} />, // 👈 use your component
+    },
+
     { id: "endTime", label: "End Time", align: "left" },
   ];
 
@@ -303,7 +312,6 @@ const MeetingDashboard = () => {
     colors: ["#08b6bc"], // Blue color bars
   };
 
-
   const meetings = [];
   // To check the number of times a meeting room is booked based on timings
   const durationCount = {};
@@ -379,8 +387,12 @@ const MeetingDashboard = () => {
     };
   });
 
-  const availableRooms = availabilityRooms.filter((r) => r.status === "Available");
-  const unavailableRooms = availabilityRooms.filter((r) => r.status === "Unavailable");
+  const availableRooms = availabilityRooms.filter(
+    (r) => r.status === "Available"
+  );
+  const unavailableRooms = availabilityRooms.filter(
+    (r) => r.status === "Unavailable"
+  );
 
   const RoomPieData = [
     { label: "Available", value: availableRooms.length },
@@ -418,7 +430,9 @@ const MeetingDashboard = () => {
                     room.status === "Available" ? "#28a745" : "#dc3545",
                 }}
               ></span>
-              <span className="text-content text-gray-400">{room.roomName}</span>
+              <span className="text-content text-gray-400">
+                {room.roomName}
+              </span>
             </li>
           ))}
       </ul>
@@ -636,7 +650,7 @@ const MeetingDashboard = () => {
       enabled: true, // or false to disable
       y: {
         formatter: function (val) {
-          return `${(val / 100) * totalBookableHours} hrs`; // Custom text, like "12 hrs"
+          return `${((val / 100) * totalBookableHours).toFixed(0)} hrs`; // Custom text, like "12 hrs"
         },
         title: {
           formatter: () => "Total hours : ", // 🔥 Hides "Series 1"
@@ -699,14 +713,14 @@ const MeetingDashboard = () => {
         formatter: function (value, { dataPointIndex }) {
           const roomName = rooms[dataPointIndex];
           const actual = actualBookedHours[roomName];
-          return `${actual} hours booked`;
+          return `${actual.toFixed(0)} hours booked`;
         },
       },
     },
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return Math.round(val) + "%";
+        return val.toFixed(0) + "%";
       },
       style: {
         fontSize: "11px",
@@ -874,7 +888,7 @@ const MeetingDashboard = () => {
           }
         >
           <YearlyGraph
-            titleAmount={`TOTAL BOOKED HOURS : ${fyBookedHours}`}
+            titleAmount={`TOTAL BOOKED HOURS : ${fyBookedHours.toFixed(0)}`}
             title={"AVERAGE MEETING ROOM UTILIZATION"}
             data={averageBookingSeries}
             options={averageBookingOptions}
@@ -973,31 +987,41 @@ const MeetingDashboard = () => {
                 Title={"INTERNAL ONGOING MEETINGS HOURLY"}
                 // rows={meetingInternalRows}
                 rows={[
-                  ...meetingsInternal.map((item, index) => ({
-                    id: index + 1,
-                    roomName: item.roomName,
-                    meetingType: item.meetingType,
-                    endTime: humanTime(item.endTime),
-                    unitName: item.location?.unitName,
-                  })),
+                  ...meetingsInternal
+                    .filter((item) => item.meetingStatus === "Ongoing")
+                    .map((item, index) => ({
+                      id: index + 1,
+                      roomName: item.roomName,
+                      meetingType: item.meetingType,
+                      endTime: humanTime(item.endTime),
+                      unitName: item.location?.unitName,
+                      status: item.meetingStatus,
+                    })),
                 ]}
                 columns={meetingColumns}
-                rowsToDisplay={5}
+                rowsToDisplay={
+                  meetingsInternal.length > 0 ? meetingsInternal.length > 0 : 8
+                }
                 scroll={true}
               />,
               <MuiTable
                 Title={"EXTERNAL ONGOING MEETINGS HOURLY"}
                 rows={[
-                  ...meetingsExternal.map((item, index) => ({
-                    id: index + 1,
-                    roomName: item.roomName,
-                    meetingType: item.meetingType,
-                    endTime: humanTime(item.endTime),
-                    unitName: item.location?.unitName,
-                  })),
+                  ...meetingsExternal
+                    .filter((item) => item.meetingStatus === "Ongoing")
+                    .map((item, index) => ({
+                      id: index + 1,
+                      roomName: item.roomName,
+                      meetingType: item.meetingType,
+                      endTime: humanTime(item.endTime),
+                      unitName: item.location?.unitName,
+                      status: item.meetingStatus,
+                    })),
                 ]}
                 columns={meetingColumns}
-                rowsToDisplay={5}
+                rowsToDisplay={
+                  meetingsExternal.length > 0 ? meetingsExternal.length > 0 : 8
+                }
                 scroll={true}
               />,
             ],

@@ -95,6 +95,7 @@ const DailyTasks = () => {
         dueTime: data.dueTime,
         description: data.description,
         department: deptId,
+        taskType:"Self"
       });
       return response.data;
     },
@@ -434,6 +435,7 @@ const DailyTasks = () => {
                     {...field}
                     label="Start Date"
                     format="DD-MM-YYYY"
+                    disablePast
                     value={field.value ? dayjs(field.value) : null}
                     onChange={(date) =>
                       field.onChange(date ? date.toISOString() : null)

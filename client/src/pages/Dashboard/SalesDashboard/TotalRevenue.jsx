@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import MonthWiseAgTable from "../../../components/Tables/MonthWiseAgTable";
 import WidgetTable from "../../../components/Tables/WidgetTable";
+import YearlyGraph from "../../../components/graphs/YearlyGraph";
 
 const TotalRevenue = () => {
   const axios = useAxiosPrivate();
@@ -85,6 +86,7 @@ const TotalRevenue = () => {
 
   const normalizedData = filteredByYear.map((domain) => ({
     name: domain.name,
+    group: "FY 2024-25",
     data: domain.data.map((val, idx) => {
       const totalThisMonth = filteredByYear.reduce(
         (sum, item) => sum + item.data[idx],
@@ -255,7 +257,7 @@ const TotalRevenue = () => {
     simpleRevenue.virtualOfficeRevenues?.forEach((item) => {
       flatten.push({
         vertical: "Virtual Office",
-        revenue: item.revenue,
+        revenue: item.taxableAmount,
         date: item.rentDate,
       });
     });
@@ -315,13 +317,13 @@ const TotalRevenue = () => {
           <CircularProgress />
         </div>
       ) : (
-        <WidgetSection
-          layout={1}
-          title={"Annual Monthly Mix Revenues FY 2024-25"}
-          border
-          TitleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}>
-          <BarGraph height={400} data={normalizedData} options={options} />
-        </WidgetSection>
+        <YearlyGraph
+          title={"ANNUAL MONTHLY MIX REVENUES"}
+          titleAmount={`USD ${inrFormat(totalAnnualRevenue)}`}
+          data={normalizedData}
+          options={options}
+          dateKey={"dateKey"}
+        />
       )}
 
       <WidgetTable

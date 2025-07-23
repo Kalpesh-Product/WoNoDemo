@@ -47,6 +47,7 @@ const MeetingFormLayout = () => {
   const meetingRoomName = searchParams.get("meetingRoom") || "";
   const locationState = useLocation();
   const meetingRoomId = locationState.state?.meetingRoomId || "";
+  const { perHourCredit, perHourPrice } = locationState.state;
   const [events, setEvents] = useState([]);
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
@@ -95,13 +96,11 @@ const MeetingFormLayout = () => {
   const isReceptionist = auth.user?.role?.some((item) =>
     item.roleTitle.startsWith("Administration")
   );
-  console.log("check : ", auth?.user?.role);
 
   useEffect(() => {
     if (!isReceptionist) {
       setValue("company", "6799f0cd6a01edbe1bc3fcea");
     }
-    console.log("recep : ", isReceptionist);
   }, [isReceptionist, setValue]);
 
   const meetingType = watch("meetingType");
@@ -350,6 +349,16 @@ const MeetingFormLayout = () => {
                 Selected Room : {meetingRoomName}
               </span>
             </div>
+            <div className="w-full flex gap-8 items-center justify-start">
+              <span className="text-content">
+                Per Hour Credit : {perHourCredit}
+              </span>
+            </div>
+            <div className="w-full flex gap-8 items-center justify-end">
+              <span className="text-content">
+                Per Hour Price : {perHourPrice}
+              </span>
+            </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 gap-y-6">
             <div className="col-span-2 sm:col-span-1 md:col-span-2">
@@ -418,14 +427,31 @@ const MeetingFormLayout = () => {
               <Controller
                 name="endTime"
                 control={control}
-                render={({ field }) => (
+                rules={{
+                  validate: (value) => {
+                    if (!value) return "End time is required";
+
+                    const start = new Date(startTime);
+                    const end = new Date(value);
+
+                    if (end <= start) {
+                      return "End time must be after start time";
+                    }
+
+                    return true;
+                  },
+                }}
+                render={({ field, fieldState }) => (
                   <TimePicker
                     {...field}
-                    slotProps={{ textField: { size: "small" } }}
-                    label={"Select an End Time"}
-                    viewRenderers={(params) => (
-                      <TextField {...params} fullWidth size="small" />
-                    )}
+                    label="Select an End Time"
+                    slotProps={{
+                      textField: {
+                        size: "small",
+                        error: !!fieldState.error,
+                        helperText: fieldState.error?.message,
+                      },
+                    }}
                   />
                 )}
               />

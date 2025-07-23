@@ -327,12 +327,12 @@ const SalesDashboard = () => {
       {
         title: "Occupied Desks",
         value: 553,
-        route: "/app/dashboard/sales-dashboard/inventory",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Occupancy %",
         value: "93",
-        route: "/app/dashboard/sales-dashboard/inventory",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
       {
         title: "Clients",
@@ -342,7 +342,7 @@ const SalesDashboard = () => {
       {
         title: "Provisioned Desks",
         value: "140",
-        route: "/app/dashboard/sales-dashboard/inventory",
+        route: "/app/dashboard/sales-dashboard/mix-bag/inventory",
       },
     ],
   };
@@ -359,7 +359,7 @@ const SalesDashboard = () => {
       const domain = lead.serviceCategory?.serviceName;
       if (!domain) return;
 
-      const createdMonth = `${dayjs(lead.startDate).month()}`; // 0 = Jan, 11 = Dec
+      const createdMonth = `${dayjs(lead.dateOfContact).month()}`; // 0 = Jan, 11 = Dec
 
       // Initialize if domain not yet seen
       if (!domainMap[domain]) {

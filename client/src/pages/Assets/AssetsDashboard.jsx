@@ -22,8 +22,29 @@ import {
   recentAssetsColumns,
   recentAssetsData,
 } from "./AssetsData/Data";
+import usePageDepartment from "../../hooks/usePageDepartment";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import NormalBarGraph from "../../components/graphs/NormalBarGraph";
 
 const AssetsDashboard = () => {
+  const departmentId = useSelector((state) => state.assets.selectedDepartment);
+  const axios = useAxiosPrivate();
+//-----------------------MAIN API CALL------------------------------------//
+const { data: departmentAssets, isLoading: isDepartmentLoading } = useQuery({
+  queryKey: ["assets"],
+  queryFn: async () => {
+    try {
+      const response = await axios.get(
+        `/api/assets/get-assets?departmentId=${departmentId}`
+      );
+    } catch (error) {
+      console.error(error.message);
+    }
+  },
+});
+//-----------------------MAIN API CALL------------------------------------//
   const meetingsWidgets = [
     {
       layout: 1,
@@ -32,26 +53,22 @@ const AssetsDashboard = () => {
           layout={1}
           border
           title={"Assets Value"}
-          titleLabel={"FY 2024-25"}>
-          <BarGraph
+          titleLabel={"FY 2024-25"}
+        >
+          <NormalBarGraph
             height={400}
-            data={assetUtilizationSeries}
+            data={[]}
             options={assetUtilizationOptions}
           />
         </WidgetSection>,
       ],
     },
     {
-      layout: 6,
+      layout: 5,
       widgets: [
         <Card
-          route={"/app/assets/categories"}
-          title={"Categories"}
-          icon={<RiPagesLine />}
-        />,
-        <Card
-          route={"/app/assets/categories/list-of-assets"}
-          title={"Assets List"}
+          route={"/app/assets/view-assets"}
+          title={"View Assets"}
           icon={<RiPagesLine />}
         />,
         <Card
@@ -60,7 +77,7 @@ const AssetsDashboard = () => {
           icon={<MdFormatListBulleted />}
         />,
         <Card
-          route={"/app/meetings/calendar"}
+          route={"#"}
           title={"Mix Bag"}
           icon={<MdFormatListBulleted />}
         />,
@@ -110,7 +127,8 @@ const AssetsDashboard = () => {
         <WidgetSection
           layout={1}
           title={"Assigned v/s Unassigned Assets"}
-          border>
+          border
+        >
           <PieChartMui
             data={assetAvailabilityData}
             options={assetAvailabilityOptions}

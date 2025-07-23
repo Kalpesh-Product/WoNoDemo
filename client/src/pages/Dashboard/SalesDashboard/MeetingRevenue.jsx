@@ -7,6 +7,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { CircularProgress } from "@mui/material";
 import WidgetTable from "../../../components/Tables/WidgetTable";
 import StatusChip from "../../../components/StatusChip";
+import YearlyGraph from "../../../components/graphs/YearlyGraph";
 
 const MeetingRevenue = () => {
   const axios = useAxiosPrivate();
@@ -17,7 +18,7 @@ const MeetingRevenue = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["meetings"],
+    queryKey: ["meetings-revenue"],
     queryFn: async () => {
       const response = await axios.get("/api/sales/get-meeting-revenue");
       return Array.isArray(response.data) ? response.data : [];
@@ -30,6 +31,7 @@ const MeetingRevenue = () => {
     ? [
         {
           name: "Actual Revenue",
+          group: "FY 2024-25",
           data: meetingsData.map((item) =>
             item?.revenue?.reduce((sum, c) => sum + (c.taxable || 0), 0)
           ),
@@ -97,7 +99,7 @@ const MeetingRevenue = () => {
       gst: client.gst ?? 0,
       totalAmount: client.totalAmount ?? 0,
       date: client.date,
-      paymentDate: humanDate(client.paymentDate),
+      paymentDate: client.paymentDate,
       remarks: client.remarks || "-",
     })),
   }));
@@ -120,18 +122,18 @@ const MeetingRevenue = () => {
         </div>
       ) : (
         <>
-          <WidgetSection
-            title={"Annual Monthly Meetings Revenues"}
-            titleLabel={"FY 2024-25"}
-            TitleAmount={`USD ${inrFormat(totalActual)}`}
-            border>
-            <BarGraph data={series} options={options} height={400} />
-          </WidgetSection>
+          <YearlyGraph
+            title={"ANNUAL MONTHLY MEETINGS REVENUES"}
+            titleAmount={`USD ${inrFormat(totalActual)}`}
+            data={series}
+            options={options}
+          />
 
           <WidgetTable
             data={flattenedRevenueData}
             tableTitle={"Monthly Revenue with Client Details"}
             dateColumn={"date"}
+            formatDate
             totalKey="taxable"
             columns={[
               { headerName: "Sr No", field: "srNo", width: 100 },

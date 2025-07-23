@@ -20,6 +20,7 @@ const ExternalCompany = require("../../models/meetings/ExternalCompany");
 const MeetingRevenue = require("../../models/sales/MeetingRevenue");
 const emitter = require("../../utils/eventEmitter");
 const { isValid } = require("date-fns/isValid");
+const Role = require("../../models/roles/Roles");
 
 const addMeetings = async (req, res, next) => {
   const logPath = "meetings/MeetingLog";
@@ -266,10 +267,11 @@ const addMeetings = async (req, res, next) => {
         logSourceKey
       );
     }
+
     isClient
       ? null
       : emitter.emit("notification", {
-          initiatorData: bookedBy,
+          initiatorData: updatedUser._id,
           users: internalParticipants.map((userId) => ({
             userActions: {
               whichUser: userId,
@@ -278,7 +280,7 @@ const addMeetings = async (req, res, next) => {
           })),
           type: "book meeting",
           module: "Meetings",
-          message: "You have been added to a meeting",
+          message: `You have been added to a meeting by ${updatedUser.firstName} ${updatedUser.lastName}`,
         });
 
     await createLog({
@@ -385,7 +387,11 @@ const getMeetings = async (req, res, next) => {
           populate: { path: "departments", select: "name" },
         },
         { path: "clientBookedBy", select: "employeeName email" },
-        { path: "receptionist", select: "firstName lastName" },
+        {
+          path: "receptionist",
+          select: "firstName lastName departments",
+          populate: { path: "departments", select: "name" },
+        },
         { path: "client", select: "clientName" },
         // { path: "externalClient", select: "companyName pocName mobileNumber" },
         { path: "internalParticipants", select: "firstName lastName email" },
@@ -402,7 +408,9 @@ const getMeetings = async (req, res, next) => {
     let filteredMeetings = meetings;
     if (
       !roles.includes("Administration Admin") &&
-      !roles.includes("Administration Employee")
+      !roles.includes("Administration Employee") &&
+      !roles.includes("Master Admin") &&
+      !roles.includes("Super Admin")
     ) {
       filteredMeetings = meetings.filter((meeting) => {
         if (!meeting.bookedBy || !Array.isArray(meeting.bookedBy.departments))
@@ -450,21 +458,28 @@ const getMeetings = async (req, res, next) => {
 
       const isClient = meeting.client ? true : false;
 
-      const receptionist = meeting.receptionist
-        ? [
-            meeting.receptionist.firstName,
-            meeting.receptionist.middleName,
-            meeting.receptionist.lastName,
-          ]
-            .filter(Boolean)
-            .join(" ")
-        : "";
+      const isReceptionist = meeting.receptionist.departments.some(
+        (dept) => dept.name === "Administration"
+      );
+
+      let receptionist;
+      if (isReceptionist) {
+        receptionist = meeting.receptionist
+          ? [
+              meeting.receptionist.firstName,
+              meeting.receptionist.middleName,
+              meeting.receptionist.lastName,
+            ]
+              .filter(Boolean)
+              .join(" ")
+          : "";
+      }
 
       return {
         _id: meeting._id,
         name: meeting.bookedBy?.name,
-        receptionist: receptionist,
-        bookedBy: { ...meeting.bookedBy },
+        receptionist: isReceptionist ? receptionist : "N/A",
+        // bookedBy: { ...meeting.bookedBy },
         clientBookedBy: meeting.clientBookedBy,
         department: meeting?.bookedBy?.departments,
         roomName: meeting.bookedRoom.name,
@@ -519,93 +534,52 @@ const getMyMeetings = async (req, res, next) => {
     const { user, company, roles } = req;
 
     let meetings = [];
-    if (
-      !roles.includes("Administration Employee") ||
-      !roles.includes("Administration Admin")
-    ) {
-      meetings = await Meeting.find({
-        company,
-        $or: [
-          { bookedBy: user },
-          {
-            internalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
-          },
-          {
-            externalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
-          },
-        ],
-      })
-        .populate({
-          path: "bookedRoom",
-          select: "name housekeepingStatus",
-          populate: {
-            path: "location",
-            select: "unitName unitNo",
-            populate: {
-              path: "building",
-              select: "buildingName",
-            },
-          },
-        })
-        .populate([
-          {
-            path: "bookedBy",
-            selected: "firstName lastName email departments",
-            populate: { path: "departments" },
-          },
-          { path: "clientBookedBy", select: "employeeName email" },
-          { path: "receptionist", select: "firstName lastName" },
-          { path: "client", select: "clientName" },
-          // {
-          //   path: "externalClient",
-          //   select: "companyName pocName mobileNumber",
-          // },
-          { path: "internalParticipants", select: "firstName lastName email" },
-          { path: "clientParticipants", select: "employeeName email" },
-          { path: "externalParticipants", select: "firstName lastName email" },
-        ]);
-    } else {
-      meetings = await Meeting.find({
-        company,
-      })
-        .populate({
-          path: "bookedRoom",
-          select: "name housekeepingStatus",
-          populate: {
-            path: "location",
-            select: "unitName unitNo",
-            populate: {
-              path: "building",
-              select: "buildingName",
-            },
-          },
-        })
-        .populate([
-          {
-            path: "bookedBy",
-            selected: "firstName lastName email departments",
-            populate: { path: "departments" },
-          },
-          { path: "clientBookedBy", select: "employeeName email" },
-          { path: "receptionist", select: "firstName lastName" },
-          { path: "client", select: "clientName" },
-          // {
-          //   path: "externalClient",
-          //   select: "companyName pocName mobileNumber",
-          // },
-          { path: "internalParticipants", select: "firstName lastName email" },
-          { path: "clientParticipants", select: "employeeName email" },
-          { path: "externalParticipants", select: "firstName lastName email" },
-        ]);
-    }
 
-    // const departments = await User.findById({ _id: user }).select(
-    //   "departments"
-    // );
-
-    // const department = await Department.findById({
-    //   _id: { $in: { departments } },
-    // });
+    meetings = await Meeting.find({
+      company,
+      $or: [
+        { bookedBy: user },
+        {
+          internalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
+        },
+        {
+          externalParticipants: { $in: [new mongoose.Types.ObjectId(user)] },
+        },
+      ],
+    })
+      .populate({
+        path: "bookedRoom",
+        select: "name housekeepingStatus",
+        populate: {
+          path: "location",
+          select: "unitName unitNo",
+          populate: {
+            path: "building",
+            select: "buildingName",
+          },
+        },
+      })
+      .populate([
+        {
+          path: "bookedBy",
+          selected: "firstName lastName email departments",
+          populate: { path: "departments" },
+        },
+        { path: "clientBookedBy", select: "employeeName email" },
+        {
+          path: "receptionist",
+          select: "firstName lastName departments",
+          populate: { path: "departments", select: "name" },
+        },
+        { path: "client", select: "clientName" },
+        // {
+        //   path: "externalClient",
+        //   select: "companyName pocName mobileNumber",
+        // },
+        { path: "internalParticipants", select: "firstName lastName email" },
+        { path: "clientParticipants", select: "employeeName email" },
+        { path: "externalParticipants", select: "firstName lastName email" },
+      ]);
 
     const reviews = await Review.find().select(
       "-createdAt -updatedAt -__v -company"
@@ -652,17 +626,22 @@ const getMyMeetings = async (req, res, next) => {
             .join(" ")
         : "";
 
-      const receptionist = meeting.receptionist
-        ? [
-            meeting.receptionist.firstName,
-            meeting.receptionist.middleName,
-            meeting.receptionist.lastName,
-          ]
-            .filter(Boolean)
-            .join(" ")
-        : "";
+      const isReceptionist = meeting.receptionist.departments.some(
+        (dept) => dept.name === "Administration"
+      );
 
-      console.log("depart meetings", meeting.bookedBy.departments);
+      let receptionist;
+      if (isReceptionist) {
+        receptionist = meeting.receptionist
+          ? [
+              meeting.receptionist.firstName,
+              meeting.receptionist.middleName,
+              meeting.receptionist.lastName,
+            ]
+              .filter(Boolean)
+              .join(" ")
+          : "";
+      }
 
       return {
         _id: meeting._id,
@@ -719,12 +698,7 @@ const getMyMeetings = async (req, res, next) => {
 const addHousekeepingTask = async (req, res, next) => {
   try {
     const { housekeepingTasks, meetingId, roomName } = req.body;
-    const company = req.company;
     const user = req.user;
-    const ip = req.ip;
-    const logPath = "meetings/MeetingLog";
-    const logAction = "Add Housekeeping Tasks";
-    const logSourceKey = "meeting";
 
     if (!housekeepingTasks || !meetingId || !roomName) {
       throw new CustomError(
@@ -794,30 +768,52 @@ const addHousekeepingTask = async (req, res, next) => {
       );
     }
 
-    await createLog({
-      path: logPath,
-      action: logAction,
-      remarks: "Housekeeping tasks completed and room status updated",
-      status: "Success",
-      user: user,
-      ip: ip,
-      company: company,
-      sourceKey: logSourceKey,
-      sourceId: foundMeeting._id,
-      changes: { housekeepingTasks: completedTasks, roomName },
-    });
+    const adminManager = await UserData.aggregate([
+      {
+        $lookup: {
+          from: "roles",
+          localField: "role",
+          foreignField: "_id",
+          as: "roleDetails",
+        },
+      },
+      {
+        $unwind: "$roleDetails",
+      },
+      {
+        $match: {
+          "roleDetails.roleTitle": "Administration Admin",
+        },
+      },
+    ]);
+
+    if (!adminManager) {
+      return res
+        .send(400)
+        .json({ message: "Administration Admin role not found" });
+    }
+
+    const adminIds = adminManager.map((admin) => admin._id);
+
+    const isClient = foundMeeting.clientBookedBy;
+
+    if (!isClient) {
+      emitter.emit("notification", {
+        initiatorData: user,
+        users: adminIds.map((userId) => ({
+          userActions: { whichUser: userId, hasRead: false },
+        })),
+        type: "update checklist",
+        module: "Meetings",
+        message: "Housekeeping checklist is updated",
+      });
+    }
 
     return res
       .status(200)
       .json({ message: "Housekeeping tasks added successfully" });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-    } else {
-      next(
-        new CustomError(error.message, logPath, logAction, logSourceKey, 500)
-      );
-    }
+    next(error);
   }
 };
 
@@ -988,7 +984,7 @@ const cancelMeeting = async (req, res, next) => {
       { status: "Cancelled" },
       { reason },
       { new: true }
-    );
+    ).populate({ path: "bookedBy", select: "firstName lastName" });
 
     if (!cancelledMeeting) {
       throw new CustomError(
@@ -999,19 +995,20 @@ const cancelMeeting = async (req, res, next) => {
       );
     }
 
-    // Log the successful meeting cancellation
-    await createLog({
-      path: logPath,
-      action: logAction,
-      remarks: "Meeting cancelled successfully",
-      status: "Success",
-      user: user,
-      ip: ip,
-      company: company,
-      sourceKey: logSourceKey,
-      sourceId: cancelledMeeting._id,
-      changes: { meetingId },
-    });
+    const isClient = cancelledMeeting.clientBookedBy;
+
+    if (!isClient && cancelledMeeting.internalParticipants.length > 0) {
+      const bookedBy = cancelledMeeting.bookedBy;
+      emitter.emit("notification", {
+        initiatorData: user,
+        users: cancelledMeeting.internalParticipants.map((userId) => ({
+          userActions: { whichUser: userId, hasRead: false },
+        })),
+        type: "cancel meeting",
+        module: "Meetings",
+        message: `Your meeting has been cancelled by ${bookedBy.firstName} ${bookedBy.lastName}`,
+      });
+    }
 
     return res.status(200).json({ message: "Meeting cancelled successfully" });
   } catch (error) {
@@ -1051,7 +1048,10 @@ const extendMeeting = async (req, res, next) => {
       );
     }
 
-    const meeting = await Meeting.findById(meetingId).populate("bookedRoom");
+    const meeting = await Meeting.findById(meetingId).populate([
+      { path: "bookedRoom" },
+      { path: "bookedBy", select: "firstName lastName" },
+    ]);
     if (!meeting) {
       throw new CustomError(
         "Meeting not found",
@@ -1142,24 +1142,20 @@ const extendMeeting = async (req, res, next) => {
     meeting.creditsUsed = (meeting.creditsUsed || 0) + addedCredits;
     await meeting.save();
 
-    // Step 4: Log success
-    await createLog({
-      path: logPath,
-      action: logAction,
-      remarks: "Meeting extended successfully",
-      status: "Success",
-      user: user,
-      ip: ip,
-      company: company,
-      sourceKey: logSourceKey,
-      sourceId: meeting._id,
-      changes: {
-        meetingId,
-        oldEndTime,
-        newEndTime: newEndTimeObj,
-        addedCredits,
-      },
-    });
+    const isInternal = meeting.bookedBy;
+
+    if (isInternal && meeting.internalParticipants.length > 0) {
+      const bookedBy = meeting.bookedBy;
+      emitter.emit("notification", {
+        initiatorData: user,
+        users: meeting.internalParticipants.map((userId) => ({
+          userActions: { whichUser: userId, hasRead: false },
+        })),
+        type: "extend meeting",
+        module: "Meetings",
+        message: `Your meeting has been extended by ${bookedBy.firstName} ${bookedBy.lastName}`,
+      });
+    }
 
     return res.status(200).json({
       message: "Meeting extended successfully",
@@ -1232,8 +1228,6 @@ const updateMeeting = async (req, res, next) => {
       { path: "externalClient", select: "clientCompany" },
     ]);
 
-    // console.log("meeting", updatedMeeting);
-
     if (!updatedMeeting) {
       throw new CustomError(
         "Meeting not found",
@@ -1244,7 +1238,6 @@ const updateMeeting = async (req, res, next) => {
     }
 
     if (updatedMeeting.meetingType !== "External") {
-      console.log("type", updatedMeeting);
       throw new CustomError(
         "Meeting type is not external",
         logPath,
@@ -1278,7 +1271,8 @@ const updateMeeting = async (req, res, next) => {
       totalAmount: paymentAmount,
       paymentDate: updatedMeeting.startDate,
       remarks: paymentMode,
-      meetingRoomName: updatedMeeting.bookedRoom.name,
+      // meetingRoomName: updatedMeeting.bookedRoom.name,
+      meeting: updatedMeeting._id,
       hoursBooked: durationInHours,
     });
 
@@ -1311,19 +1305,6 @@ const updateMeeting = async (req, res, next) => {
       );
     }
 
-    await createLog({
-      path: logPath,
-      action: logAction,
-      remarks: "Meeting updated successfully",
-      status: "Success",
-      user: user,
-      ip: ip,
-      company: company,
-      sourceKey: logSourceKey,
-      sourceId: updatedMeeting._id,
-      changes: { meetingId },
-    });
-
     return res.status(200).json({ message: "Meeting updated successfully" });
   } catch (error) {
     if (error instanceof CustomError) {
@@ -1338,11 +1319,13 @@ const updateMeeting = async (req, res, next) => {
 
 const updateMeetingStatus = async (req, res, next) => {
   const { status, meetingId } = req.body;
+  const { user } = req;
   const updatedMeeting = await Meeting.findByIdAndUpdate(
     meetingId,
     { status },
     { new: true }
-  );
+  ).populate("bookedBy", "firstName lastName");
+
   const updateRoomStatus = await Room.findByIdAndUpdate(
     {
       _id: updatedMeeting.bookedRoom,
@@ -1357,6 +1340,26 @@ const updateMeetingStatus = async (req, res, next) => {
   if (!updateRoomStatus) {
     return res.status(404).json({ message: "Failed to update room status" });
   }
+
+  const isClient = updatedMeeting.clientBookedBy;
+
+  const statusChart = {
+    Ongoing: "Your meeting is currently ongoing",
+    Completed: "Your meeting has concluded",
+  };
+
+  if (!isClient && updatedMeeting.internalParticipants.length > 0) {
+    emitter.emit("notification", {
+      initiatorData: user,
+      users: updatedMeeting.internalParticipants.map((userId) => ({
+        userActions: { whichUser: userId, hasRead: false },
+      })),
+      type: "update status",
+      module: "Meetings",
+      message: statusChart[status],
+    });
+  }
+
   return res
     .status(200)
     .json({ message: "Meeting status updated successfully" });
@@ -1450,46 +1453,58 @@ const updateMeetingDetails = async (req, res, next) => {
   try {
     const {
       meetingId,
-      startDate,
-      endDate,
       startTime,
       endTime,
       internalParticipants,
+      clientParticipants,
       externalParticipants,
+      paymentAmount,
     } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(meetingId)) {
       return res.status(400).json({ message: "Invalid meeting ID" });
     }
 
-    const meeting = await Meeting.findById(meetingId).populate("bookedRoom");
+    // if (
+    //   externalParticipants &&
+    //   externalParticipants.length > 0 &&
+    //   !paymentAmount
+    // ) {
+    //   return res.status(400).json({ message: "Payment amount required" });
+    // }
+
+    const meeting = await Meeting.findById(meetingId).populate([
+      { path: "bookedRoom" },
+      { path: "bookedBy", select: "firstName lastName" },
+    ]);
     if (!meeting) {
       return res.status(404).json({ message: "Meeting not found" });
     }
+
+    const internalMeetingParticipants =
+      internalParticipants && internalParticipants.length > 0
+        ? internalParticipants
+        : clientParticipants && clientParticipants.length > 0
+        ? clientParticipants
+        : [];
 
     const isClient = !!meeting.clientBookedBy;
     const BookingModel = isClient ? CoworkingMembers : User;
     const bookedUserId = isClient ? meeting.clientBookedBy : meeting.bookedBy;
 
-    const startDateObj = new Date(startDate);
-    const endDateObj = new Date(endDate);
+    const currDate = new Date();
     const startTimeObj = new Date(startTime);
     const endTimeObj = new Date(endTime);
 
-    if (
-      isNaN(startDateObj.getTime()) ||
-      isNaN(endDateObj.getTime()) ||
-      isNaN(startTimeObj.getTime()) ||
-      isNaN(endTimeObj.getTime())
-    ) {
+    if (isNaN(startTimeObj.getTime()) || isNaN(endTimeObj.getTime())) {
       return res.status(400).json({ message: "Invalid date/time format" });
     }
 
     const conflictingMeeting = await Meeting.findOne({
       _id: { $ne: meetingId },
       bookedRoom: meeting.bookedRoom._id,
-      startDate: { $lte: endDateObj },
-      endDate: { $gte: startDateObj },
+      startDate: { $lte: currDate },
+      endDate: { $gte: currDate },
       $or: [
         {
           $and: [
@@ -1519,8 +1534,8 @@ const updateMeetingDetails = async (req, res, next) => {
     }
 
     let internalUsers = [];
-    if (internalParticipants) {
-      const invalidIds = internalParticipants.filter(
+    if (internalMeetingParticipants) {
+      const invalidIds = internalMeetingParticipants.filter(
         (id) => !mongoose.Types.ObjectId.isValid(id)
       );
       if (invalidIds.length > 0) {
@@ -1530,9 +1545,9 @@ const updateMeetingDetails = async (req, res, next) => {
       }
 
       const users = await BookingModel.find({
-        _id: { $in: internalParticipants },
+        _id: { $in: internalMeetingParticipants },
       });
-      const unmatchedIds = internalParticipants.filter(
+      const unmatchedIds = internalMeetingParticipants.filter(
         (id) => !users.find((u) => u._id.toString() === id.toString())
       );
 
@@ -1576,35 +1591,66 @@ const updateMeetingDetails = async (req, res, next) => {
     }
 
     const changes = {
-      startDate: startDateObj,
-      endDate: endDateObj,
       startTime: startTimeObj,
       endTime: endTimeObj,
       creditsUsed: newCreditsUsed,
       internalParticipants: !isClient ? internalUsers : [],
       clientParticipants: isClient ? internalUsers : [],
       externalParticipants: externalParticipants || [],
+      paymentAmount: externalParticipants ? paymentAmount : 0,
     };
 
     const updatedMeeting = await Meeting.findByIdAndUpdate(
       meetingId,
       { $set: changes },
       { new: true }
-    );
+    ).populate([
+      { path: "bookedRoom" },
+      { path: "externalClient", select: "clientCompany" },
+    ]);
+
+    // if (externalParticipants && externalParticipants.length > 0) {
+    //   const meetingRevenue = await MeetingRevenue.findByIdAndUpdate({
+    //     meeting: updatedMeeting._id,
+    //     totalAmount: paymentAmount,
+    //   });
+
+    //   if (!meetingRevenue) {
+    //     return res
+    //       .status(400)
+    //       .json({ message: "Failed to update the meeting revenue" });
+    //   }
+
+    //   const updatedVisitor = await Visitor.findOneAndUpdate(
+    //     {
+    //       clientCompany: updatedMeeting.externalClient.clientCompany,
+    //     },
+    //     {
+    //       meeting: updatedMeeting._id,
+    //     }
+    //   );
+
+    //   if (!updatedVisitor) {
+    //     return res
+    //       .status(400)
+    //       .json({ message: "Failed to update the visitor" });
+    //   }
+    // }
 
     if (!updatedMeeting) {
       return res.status(500).json({ message: "Failed to update meeting" });
     }
 
     if (!isClient && internalParticipants?.length > 0) {
+      const bookedBy = meeting.bookedBy;
       emitter.emit("notification", {
-        initiatorData: meeting.bookedBy,
+        initiatorData: bookedBy,
         users: internalParticipants.map((userId) => ({
           userActions: { whichUser: userId, hasRead: false },
         })),
         type: "update meeting",
         module: "Meetings",
-        message: "You have been added to an updated meeting",
+        message: `Your meeting has been updated by ${bookedBy.firstName} ${bookedBy.lastName}`,
       });
     }
 

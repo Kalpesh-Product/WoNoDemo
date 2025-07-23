@@ -34,6 +34,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { toast } from "sonner";
 import { queryClient } from "../main";
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
 
 const Header = ({
   notifications = [],
@@ -42,6 +44,7 @@ const Header = ({
   isRefreshingNotifications = false,
 }) => {
   const axios = useAxiosPrivate();
+  dayjs.extend(relativeTime);
   const [isHovered, setIsHovered] = useState(false);
   const { isSidebarOpen, setIsSidebarOpen } = useSidebar();
   const navigate = useNavigate();
@@ -307,6 +310,13 @@ const Header = ({
                       {notifications.slice(0, 9).map((n, index) => {
                         const initiator = `${n.initiatorData?.firstName} ${n.initiatorData?.lastName}`;
                         const currentUser = auth?.user?._id;
+                        const module = n.module || "";
+                        const navigations = {
+                          Meetings: "/app/meetings/calendar",
+                          Tickets: "/app/tickets/manage-tickets",
+                          Tasks: "/app/tasks/department-tasks",
+                          Performance: "/app/performance",
+                        };
 
                         const userEntry = n.users?.find(
                           (item) =>
@@ -319,27 +329,53 @@ const Header = ({
                           <li
                             key={n._id || index}
                             className={`text-sm p-2 rounded ${
-                              !n.seen
+                              !n.hasRead
                                 ? "bg-gray-200 border-borderGray border-default"
                                 : "border-default border-borderGray"
                             }`}
                           >
-                            <div className="flex justify-between w-full items-center">
-                              <div className="flex flex-col gap-1">
-                                <span className="font-pmedium">{n.module}</span>
-                                <span>
-                                  {n.message} by {initiator}
-                                </span>
-                              </div>
-                              {!hasRead  && (
-                                <button
-                                  onClick={() => updateRead(n._id)}
-                                  className="p-2 rounded-full bg-green-300 text-green-600"
-                                  title="Mark as Read"
+                            <div className="flex w-full justify-between items-center gap-4 mb-2">
+                              <div className="flex justify-between w-full items-center">
+                                <div
+                                  role="button"
+                                  onClick={() => {
+                                    if (navigations[module]) {
+                                      navigate(navigations[module]);
+                                      setNotificationAnchorEl(null);
+                                    }
+                                  }}
+                                  className="flex flex-col gap-1 w-full"
                                 >
-                                  <FaCheck />
-                                </button>
-                              )}
+                                  <div className="flex justify-between w-full">
+                                    <div className="flex justify-start w-full">
+                                      <span className="font-pmedium">
+                                        {n.module}
+                                      </span>
+                                    </div>
+
+                                    <div className="text-xs text-gray-500 w-full flex justify-end">
+                                      {dayjs(n.createdAt).fromNow()}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="w-full grid grid-cols-5">
+                              <div className="col-span-4 flex items-end">
+                                <span>{n.message}</span>
+                              </div>
+                              <div className="col-span-1 flex justify-end items-start">
+                                {!hasRead && (
+                                  <button
+                                    onClick={() => updateRead(n._id)}
+                                    className="p-2 rounded-full bg-green-300 text-green-600"
+                                    title="Mark as Read"
+                                  >
+                                    <FaCheck />
+                                  </button>
+                                )}
+                              </div>
                             </div>
                           </li>
                         );

@@ -123,11 +123,9 @@ const CoWorking = () => {
           totalTerm: client.totalTerm || 0,
           rentDate: client.rentDate,
           rentStatus: client.rentStatus,
-          pastDueDate: dayjs(client.pastDueDate).format("DD-MM-YYYY"),
+          pastDueDate: client.pastDueDate,
           annualIncrement: client.annualIncrement || 0,
-          nextIncrementDate: dayjs(client.nextIncrementDate).format(
-            "DD-MM-YYYY"
-          ),
+          nextIncrementDate: client.nextIncrementDate,
         })),
       }));
 
@@ -152,6 +150,7 @@ const CoWorking = () => {
         <WidgetTable
           data={flattenedRevenueData}
           dateColumn={"rentDate"}
+          formatDate
           tableTitle={"MONTHLY REVENUE WITH CLIENT DETAILS"}
           totalKey="revenue"
           columns={[

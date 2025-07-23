@@ -1,8 +1,3 @@
-import BarGraph from "../../../components/graphs/BarGraph";
-import WidgetSection from "../../../components/WidgetSection";
-import AgTable from "../../../components/AgTable";
-import CollapsibleTable from "../../../components/Tables/MuiCollapsibleTable";
-import dayjs from "dayjs";
 import { inrFormat } from "../../../utils/currencyFormat";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
@@ -12,6 +7,9 @@ import { parseRevenue } from "../../../utils/removeCommaInNum";
 import { Skeleton } from "@mui/material";
 import MonthWiseAgTable from "../../../components/Tables/MonthWiseAgTable";
 import WidgetTable from "../../../components/Tables/WidgetTable";
+import YearlyGraph from "../../../components/graphs/YearlyGraph";
+import StatusChip from "../../../components/StatusChip";
+import humanDate from "../../../utils/humanDateForamt";
 
 const VirtualOffice = () => {
   const axios = useAxiosPrivate();
@@ -32,14 +30,31 @@ const VirtualOffice = () => {
     },
   });
 
+  const monthShortNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   const transformRevenues = (revenues) => {
     const monthlyMap = new Map();
 
     revenues.forEach((item, index) => {
       const rentDate = new Date(item.rentDate);
-      const monthKey = `${rentDate.toLocaleString("default", {
-        month: "short",
-      })}-${rentDate.getFullYear().toString().slice(-2)}`;
+      const year = rentDate.getFullYear();
+      const month = rentDate.getMonth(); // 0-indexed
+
+      const monthKey = `${monthShortNames[month]}-${year.toString().slice(-2)}`;
+      const keyDate = new Date(year, month, 1); // Used for sorting
 
       const actual = item.taxableAmount;
 
@@ -47,6 +62,7 @@ const VirtualOffice = () => {
         monthlyMap.set(monthKey, {
           id: index + 1,
           month: monthKey,
+          keyDate, // store for sorting
           taxable: 0,
           revenue: [],
         });
@@ -57,17 +73,19 @@ const VirtualOffice = () => {
 
       monthData.revenue.push({
         id: index + 1,
-        clientName: item.client.clientName,
+        clientName: item.client?.clientName || "N/A",
         revenue: inrFormat(actual),
-        channel: item.channel,
-        status: item.status || "Paid",
+        channel: item.Channel || item.channel,
+        status: item.status === true ? "Paid" : "Unpaid",
       });
     });
 
-    return Array.from(monthlyMap.values()).map((monthData) => ({
-      ...monthData,
-      actual: inrFormat(monthData.taxable),
-    }));
+    return Array.from(monthlyMap.values())
+      .sort((a, b) => a.keyDate - b.keyDate)
+      .map(({ keyDate, ...monthData }) => ({
+        ...monthData,
+        actual: inrFormat(monthData.taxable),
+      }));
   };
 
   // Memoize or recompute transformed data only when API data is loaded
@@ -81,12 +99,17 @@ const VirtualOffice = () => {
     return parseFloat(item?.actual.replace(/,/g, ""));
   });
 
+  console.log("graph numbers : ", graphNumbers);
+
   const series = [
     {
       name: "Revenue",
+      group: "FY 2024-25",
       data: graphNumbers,
+      dateKey: virtualOfficeRevenue?.[0]?.rentDate, // 👈 add this
     },
   ];
+
   const options = {
     chart: {
       stacked: false,
@@ -154,16 +177,18 @@ const VirtualOffice = () => {
         clientName: item.client?.clientName,
       }));
 
+  console.log("tableData : ", humanDate("2025-04-10T00:00:00.000Z"));
+
   return (
     <div className="flex flex-col gap-4">
       {!isLoadingVirtualOfficeRevenue ? (
-        <WidgetSection
-          title={"Annual Monthly Virtual Office Revenues"}
-          titleLabel={"FY 2024-25"}
-          border
-          TitleAmount={`USD ${inrFormat(totalActual)}`}>
-          <NormalBarGraph data={series} options={options} height={400} />
-        </WidgetSection>
+        <YearlyGraph
+          title={"ANNUAL MONTHLY VIRTUAL OFFICE REVENUES"}
+          titleAmount={`USD ${inrFormat(totalActual)}`}
+          data={series}
+          options={options}
+          dateKey={"dateKey"}
+        />
       ) : (
         <Skeleton height={"500px"} width={"100%"} />
       )}
@@ -183,7 +208,14 @@ const VirtualOffice = () => {
               flex: 1,
               cellRenderer: (params) => inrFormat(params.value || 0),
             },
-            { headerName: "Status", field: "status", flex: 1 },
+            {
+              headerName: "Status",
+              field: "status",
+              flex: 1,
+              cellRenderer: (params) => (
+                <StatusChip status={params.value ? "Paid" : "Unpaid"} />
+              ),
+            },
           ]}
         />
       ) : (
