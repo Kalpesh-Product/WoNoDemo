@@ -112,7 +112,8 @@ const SqWiseData = () => {
     // Skip excluded months
     if (excludedMonths.includes(monthKey)) return;
 
-    const amount = income.taxableAmount || income.revenue || 0;
+    const amount =
+      income.taxableAmount || income.revenue || income.taxable || 0;
 
     if (!monthWiseIncome[monthKey]) {
       monthWiseIncome[monthKey] = {
@@ -143,6 +144,8 @@ const SqWiseData = () => {
       data: months.map((month) => (incomeMap ? incomeMap[month] || 0 : 0)),
     })
   );
+
+  console.log("income data : ", incomeData);
 
   const lastMonthRawIncome = incomeData.filter(
     (item) => item.group === "FY 2024-25"

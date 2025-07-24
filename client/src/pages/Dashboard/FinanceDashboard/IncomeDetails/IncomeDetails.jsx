@@ -3,15 +3,32 @@ import WidgetSection from "../../../../components/WidgetSection";
 import { inrFormat } from "../../../../utils/currencyFormat";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import MonthWiseAgTable from "../../../../components/Tables/MonthWiseAgTable";
+import YearWiseTable from "../../../../components/Tables/YearWiseTable";
+import WidgetTable from "../../../../components/Tables/WidgetTable";
+import FyBarGraph from "../../../../components/graphs/FyBarGraph";
 
 const IncomeDetails = () => {
   const axios = useAxiosPrivate();
   const [selectedYear, setSelectedYear] = useState("2024-25");
 
-  const { data: totalRevenue = [], isLoading: isTotalLoading } = useQuery({
+  const { data: simpleRevenue = [], isLoading: isTotalLoading } = useQuery({
+    queryKey: ["simpleRevenue"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get(
+          "/api/sales/simple-consolidated-revenue"
+        );
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+
+  const { data: totalRevenue = [], isLoading } = useQuery({
     queryKey: ["totalRevenue"],
     queryFn: async () => {
       try {
@@ -23,37 +40,55 @@ const IncomeDetails = () => {
     },
   });
 
-  const months = [
-    "Apr-24",
-    "May-24",
-    "Jun-24",
-    "Jul-24",
-    "Aug-24",
-    "Sep-24",
-    "Oct-24",
-    "Nov-24",
-    "Dec-24",
-    "Jan-25",
-    "Feb-25",
-    "Mar-25",
-  ];
+  const unifiedRevenueData = useMemo(() => {
+    if (!simpleRevenue) return [];
 
-  const financialDataForTable = months.map((monthLabel, i) => {
-    const revenue = isTotalLoading
-      ? []
-      : totalRevenue.map((category) => ({
-          vertical: category.name,
-          revenue: inrFormat(category.data?.["2024-25"]?.[i] ?? 0),
-          percentage: `${100}%`,
-        }));
+    const flatten = [];
 
-    return {
-      month: monthLabel,
-      revenue,
-    };
-  });
+    simpleRevenue.meetingRevenue?.forEach((item) => {
+      flatten.push({
+        vertical: "Meeting",
+        revenue: item.taxable,
+        date: item.date,
+      });
+    });
 
-  const filteredByYear = totalRevenue.map((item) => ({
+    simpleRevenue.alternateRevenues?.forEach((item) => {
+      flatten.push({
+        vertical: "Alternate",
+        revenue: item.taxableAmount,
+        date: item.invoiceCreationDate,
+      });
+    });
+
+    simpleRevenue.virtualOfficeRevenues?.forEach((item) => {
+      flatten.push({
+        vertical: "Virtual Office",
+        revenue: item.taxableAmount,
+        date: item.rentDate,
+      });
+    });
+
+    simpleRevenue.workationRevenues?.forEach((item) => {
+      flatten.push({
+        vertical: "Workation",
+        revenue: item.taxableAmount,
+        date: item.date,
+      });
+    });
+
+    simpleRevenue.coworkingRevenues?.forEach((item) => {
+      flatten.push({
+        vertical: "Coworking",
+        revenue: item.revenue,
+        date: item.rentDate,
+      });
+    });
+
+    return flatten;
+  }, [simpleRevenue]);
+
+  const filteredByYear = totalRevenue?.map((item) => ({
     name: item.name,
     data: item.data[selectedYear] || [],
   }));
@@ -68,6 +103,7 @@ const IncomeDetails = () => {
       return totalThisMonth ? Math.round((val / totalThisMonth) * 100) : 0;
     }),
   }));
+  console.log("graph data : ", normalizedData);
   const options = {
     chart: {
       toolbar: false,
@@ -156,15 +192,23 @@ const IncomeDetails = () => {
         </WidgetSection>
       )}
 
-      <MonthWiseAgTable
-        title={"Annual Monthly Income Breakup"}
-        passedColumns={[
+      <WidgetTable
+        tableTitle="Annual Monthly Income Breakup"
+        data={unifiedRevenueData}
+        dateColumn="date"
+        totalKey="revenue"
+        totalText="USD"
+        groupByKey="vertical" // ✅ triggers dynamic grouping by vertical
+        columns={[
           { headerName: "Sr No", field: "srNo", flex: 1 },
           { headerName: "Vertical", field: "vertical", flex: 1 },
-          { headerName: "Revenue (USD)", field: "revenue", flex: 1 },
+          {
+            headerName: "Revenue (USD)",
+            field: "revenue",
+            flex: 1,
+            cellRenderer: (params) => params.value,
+          },
         ]}
-        // amount={`USD ${inrFormat(totalAnnualRevenue)}`}
-        financialData={financialDataForTable}
       />
     </div>
   );

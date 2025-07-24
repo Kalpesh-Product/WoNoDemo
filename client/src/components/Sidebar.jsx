@@ -32,7 +32,7 @@ import useAuth from "../hooks/useAuth";
 
 const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
   const { isSidebarOpen, setIsSidebarOpen } = useSidebar();
-  const [mobileOpen,setMobileOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [expandedModule, setExpandedModule] = useState(0);
@@ -43,7 +43,6 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
     "67b2cf85b9b6ed5cedeb9a2e",
     "6798ba9de469e809084e2494",
   ];
-
 
   useEffect(() => {
     setMobileOpen(drawerOpen);
@@ -78,7 +77,7 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
       icon: <FaTasks />,
       route: "performance",
     },
-   
+
     ...(canAccessVisitors
       ? [
           {
@@ -92,10 +91,16 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
   const generalItems = [
     { name: "Calendar", icon: <FaRegCalendarAlt />, route: "calendar" },
     { name: "Access", icon: <SiAuthelia />, route: "access" },
-        {
+    { name: "Chat", icon: <HiOutlineChatAlt2 />, route: "chat" },
+    {
       name: "Notifications",
       icon: <IoMdNotifications />,
       route: "notifications",
+    },
+    {
+      name: "Reports",
+      icon: <TbReportSearch />,
+      route: "reports",
     },
     {
       name: "Profile",
@@ -103,21 +108,21 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
       route: "profile",
     },
   ];
-  const upcomingItems = [
-    {
-      name: "Reports",
-      icon: <TbReportSearch />,
-      route: "#",
-    },
-            {
-      name: "Assets",
-      icon: <FaBoxesStacked />,
-      route: "#",
-    },
- 
-    { name: "Chat", icon: <HiOutlineChatAlt2 />, route: "#" },
+  // const upcomingItems = [
+  //   {
+  //     name: "Reports",
+  //     icon: <TbReportSearch />,
+  //     route: "#",
+  //   },
+  //           {
+  //     name: "Assets",
+  //     icon: <FaBoxesStacked />,
+  //     route: "#",
+  //   },
 
-  ];
+  //   { name: "Chat", icon: <HiOutlineChatAlt2 />, route: "#" },
+
+  // ];
 
   const defaultModules = [
     {
@@ -212,7 +217,6 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
   // If none match, return the original defaultModules
   const finalModules = hasAnySubmenus ? filteredModules : defaultModules;
 
-
   const handleMenuOpen = (item) => {
     navigate(item.route);
     if (onCloseDrawer) onCloseDrawer(); // 🔁 Close drawer on menu click
@@ -230,15 +234,13 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
       <div
         className={`${
           isSidebarOpen ? "w-60" : "w-16"
-        } bg-white  text-black flex flex-shrink-0 h-[90vh] hideScrollBar overflow-y-auto transition-all duration-100 z-[1]`}
-      >
+        } bg-white  text-black flex flex-shrink-0 h-[90vh] hideScrollBar overflow-y-auto transition-all duration-100 z-[1]`}>
         <div className="flex relative w-full">
           <div className="p-0 flex flex-col gap-2 w-full">
             <div
               className={`rounded-md  ${
                 expandedModule === 0 ? "bg-gray-200" : "bg-white"
-              }`}
-            >
+              }`}>
               {finalModules.map((module, index) => (
                 <div key={index} className="">
                   <div
@@ -258,16 +260,14 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                     }`}
                     onClick={() => {
                       navigate(module.route);
-                    }}
-                  >
+                    }}>
                     <div className="flex justify-start items-center">
                       <div
                         className={`flex items-center justify-center text-sm h-9 w-9 ${
                           expandedModule === 0
                             ? "bg-primary text-white rounded-md"
                             : ""
-                        }`}
-                      >
+                        }`}>
                         {module.icon}
                       </div>
                       {isSidebarOpen && (
@@ -279,8 +279,7 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                         onClick={() => module.submenus && toggleModule(index)}
                         className={`transition-transform duration-300 ease-in-out ${
                           expandedModule === index ? "rotate-180" : "rotate-0"
-                        }`}
-                      >
+                        }`}>
                         {expandedModule === index ? (
                           <FaChevronUp />
                         ) : (
@@ -292,8 +291,7 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                   <div
                     className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
                       expandedModule === index ? "max-h-[500px]" : "max-h-0"
-                    }`}
-                  >
+                    }`}>
                     {module.submenus && (
                       <div>
                         {module.submenus.map((submenu, idx) => (
@@ -304,20 +302,17 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                                 ? "text-[#1E3D73]"
                                 : "text-gray-500"
                             }  py-3`}
-                            onClick={() => handleMenuOpen(submenu)} 
-                          >
+                            onClick={() => handleMenuOpen(submenu)}>
                             <div
                               className={`flex items-center ${
                                 isSidebarOpen
                                   ? "justify-start"
                                   : "justify-center"
-                              }`}
-                            >
+                              }`}>
                               <div
                                 className={`flex justify-center  items-center w-8 ${
                                   isSidebarOpen ? "text-sm" : "text-sm"
-                                }`}
-                              >
+                                }`}>
                                 {submenu.icon}
                               </div>
                               {isSidebarOpen && (
@@ -347,15 +342,13 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                       : "text-gray-500"
                   } flex ${
                     isSidebarOpen ? "" : "justify-center"
-                  } items-center py-0 `}
-                >
+                  } items-center py-0 `}>
                   <div
                     className={`flex justify-center items-center w-9 h-9 ${
                       isAppsActive(item.route)
                         ? "bg-primary text-white rounded-md"
                         : ""
-                    } text-sm`}
-                  >
+                    } text-sm`}>
                     {item.icon}
                   </div>
                   {isSidebarOpen && (
@@ -377,15 +370,13 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                       : "text-gray-500"
                   } flex ${
                     isSidebarOpen ? "" : "justify-center"
-                  } items-center py-0 `}
-                >
+                  } items-center py-0 `}>
                   <div
                     className={`flex justify-center items-center w-9 h-9 ${
                       isAppsActive(item.route)
                         ? "bg-primary text-white rounded-md"
                         : ""
-                    } text-sm`}
-                  >
+                    } text-sm`}>
                     {item.icon}
                   </div>
                   {isSidebarOpen && (
@@ -395,7 +386,7 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
               ))}
             </div>
             {/* coming soon */}
-            <div className="pt-2  flex flex-col gap-2 w-full">
+            {/* <div className="pt-2  flex flex-col gap-2 w-full">
               <SeperatorUnderline smallText title={"Coming-soon"} />
               {upcomingItems.map((item, index) => (
                 <div
@@ -423,7 +414,7 @@ const Sidebar = ({ drawerOpen, onCloseDrawer }) => {
                   )}
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

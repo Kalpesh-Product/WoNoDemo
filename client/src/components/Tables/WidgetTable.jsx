@@ -210,8 +210,6 @@ const WidgetTable = ({
     }));
   }, [filteredData, groupByKey, totalKey]);
 
-  console.log("data passed : ", groupedData);
-
   return (
     <div className="flex flex-col gap-4">
       {/* Header */}

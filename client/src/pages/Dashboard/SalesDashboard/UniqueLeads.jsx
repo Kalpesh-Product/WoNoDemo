@@ -377,13 +377,17 @@ const UniqueLeads = () => {
                 field: "companyName",
                 flex: 1,
                 cellRenderer: (params) => {
+                  const clientData = params.data;
                   return (
                     <span
                       className="text-primary cursor-pointer underline"
                       role="button"
                       onClick={() => {
-                        setSelectedLead(params.data);
-                        setModalOpen(true);
+                        navigate(params.value, {
+                          state: {
+                            selectedLead: params.data,
+                          },
+                        });
                       }}>
                       {params.value}
                     </span>
