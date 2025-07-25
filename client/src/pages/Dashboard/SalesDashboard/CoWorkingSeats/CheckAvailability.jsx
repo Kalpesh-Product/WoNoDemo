@@ -318,14 +318,14 @@ const CheckAvailability = () => {
   const inventoryCards = {
     inventory: [
       {
-        title: "ST Inventory",
+        title: "B1 Inventory",
         value: String(Number(inventoryStats.ST?.total) || 0),
         route:
           "/app/dashboard/sales-dashboard/mix-bag/inventory/Sunteck%20Kanaka",
         stateData: "Sunteck Kanaka",
       },
       {
-        title: "DTC Inventory",
+        title: "B2 Inventory",
         value: String(Number(inventoryStats.DTC?.total) || 0),
         route:
           "/app/dashboard/sales-dashboard/mix-bag/inventory/Dempo%20Trade%20Centre",
@@ -342,14 +342,14 @@ const CheckAvailability = () => {
     ],
     occupancy: [
       {
-        title: "ST Occupancy",
+        title: "B1 Occupancy",
         value: String(Number(inventoryStats.ST?.occupied) || 0),
         route:
           "/app/dashboard/sales-dashboard/mix-bag/inventory/Sunteck%20Kanaka",
         stateData: "Sunteck Kanaka",
       },
       {
-        title: "DTC Occupancy",
+        title: "B2 Occupancy",
         value: String(Number(inventoryStats.DTC?.occupied) || 0),
         route:
           "/app/dashboard/sales-dashboard/mix-bag/inventory/Dempo%20Trade%20Centre",
@@ -366,7 +366,7 @@ const CheckAvailability = () => {
     ],
     freeInventory: [
       {
-        title: "ST Free Inventory",
+        title: "B1 Free Inventory",
         value: String(
           (Number(inventoryStats.ST?.total) || 0) -
             (Number(inventoryStats.ST?.occupied) || 0)
@@ -376,7 +376,7 @@ const CheckAvailability = () => {
         stateData: "Sunteck Kanaka",
       },
       {
-        title: "DTC Free Inventory",
+        title: "B2 Free Inventory",
         value: String(
           (Number(inventoryStats.DTC?.total) || 0) -
             (Number(inventoryStats.DTC?.occupied) || 0)
@@ -404,8 +404,7 @@ const CheckAvailability = () => {
         layout={1}
         border
         normalCase={true}
-        title={"TOTAL v/s OCCUPIED FY 2024-25"}
-      >
+        title={"TOTAL v/s OCCUPIED FY 2024-25"}>
         {chartData.length > 0 ? (
           <NormalBarGraph
             data={barGraphSeries}
@@ -450,8 +449,7 @@ const CheckAvailability = () => {
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center"
-        >
+          className="flex flex-col items-center">
           <div className="flex justify-center gap-4 mb-10 px-20 w-full">
             {/* Location Dropdown */}
             <FormControl className="w-1/2">
@@ -490,8 +488,7 @@ const CheckAvailability = () => {
                     label="Select Floor"
                     disabled={!selectedLocation}
                     value={field.value}
-                    onChange={(event) => field.onChange(event.target.value)}
-                  >
+                    onChange={(event) => field.onChange(event.target.value)}>
                     <MenuItem value="">Select Floor</MenuItem>
                     {workLocations.length > 0 ? (
                       workLocations
