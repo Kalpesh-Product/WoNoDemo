@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useMediaQuery } from "@mui/material";
@@ -14,16 +14,18 @@ import ScrollToTop from "../components/ScrollToTop"; // Adjust path if needed
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useAuth from "../hooks/useAuth";
+import { PERMISSIONS } from "../constants/permissions";
 
 const MainLayout = () => {
   const { auth } = useAuth();
   const [showFooter, setShowFooter] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const dummyRef = useRef(null);
-  const notificationAudioRef = useRef(new Audio("/audio/notification.mp3"));
-  const prevUnreadCountRef = useRef(0);
+  const location = useLocation();
+  const navigate = useNavigate();
   const axios = useAxiosPrivate();
   const { isSidebarOpen, setIsSidebarOpen } = useSidebar();
+  const [permissionChecked, setPermissionChecked] = useState(false);
   const {
     data: notifications = [],
     isLoading: isNotificationsLoading,
@@ -42,6 +44,54 @@ const MainLayout = () => {
     refetchInterval: 15000,
   });
 
+  useEffect(() => {
+    const pathname = location.pathname;
+    console.log("🔍 Current pathname:", pathname);
+
+    const rawPermissions = auth?.user?.permissions?.permissions || [];
+    console.log("🔑 Raw permissions from auth:", rawPermissions);
+
+    const guardedRoutes = Object.values(PERMISSIONS).filter(
+      (perm) => perm.route
+    );
+    console.log(
+      "🎯 Guarded Routes:",
+      guardedRoutes.map((g) => g.route)
+    );
+
+    const currentRoutePermission = guardedRoutes.find((perm) =>
+      pathname.includes(perm.route)
+    );
+    console.log(
+      "🚦 Matched Permission Object:",
+      currentRoutePermission || "None (public route)"
+    );
+
+    if (currentRoutePermission) {
+      const userHasPermission = rawPermissions.includes(
+        currentRoutePermission.value
+      );
+      console.log("🛡️ User permission check:", {
+        requiredPermission: currentRoutePermission.value,
+        userPermissions: rawPermissions,
+        isAllowed: userHasPermission,
+      });
+
+      if (!userHasPermission) {
+        console.warn("⛔ Unauthorized access detected, redirecting...");
+        navigate("/unauthorized");
+        return; // Stop here, don't set permissionChecked
+      } else {
+        console.log("✅ User has permission for this route.");
+      }
+    } else {
+      console.log("✅ This route is public or not permission-controlled.");
+    }
+
+    // ✅ Finally mark permission check as completed
+    setPermissionChecked(true);
+  }, [location.pathname, auth, navigate]);
+
   const unreadCount = notifications.reduce((total, notification) => {
     const count = notification.users.filter(
       (user) =>
@@ -50,19 +100,6 @@ const MainLayout = () => {
     ).length;
     return total + count;
   }, 0);
-
-  // 🔊 Play sound when new unread notification is detected
-  // useEffect(() => {
-  //   const previous = prevUnreadCountRef.current;
-  //   if (unreadCount > previous) {
-  //     notificationAudioRef.current
-  //       .play()
-  //       .catch((e) => console.warn("Audio blocked or failed:", e));
-  //   }
-  //   prevUnreadCountRef.current = unreadCount;
-  // }, [unreadCount]);
-
-  // Detect mobile view
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
@@ -133,7 +170,8 @@ const MainLayout = () => {
               className="bg-white h-[80vh] overflow-y-auto flex flex-col justify-between"
             >
               <ScrollToTop />
-              <Outlet />
+              {permissionChecked ? <Outlet /> : null}
+
               <div
                 ref={dummyRef}
                 className="h-1 w-1 bg-red-500 text-red-500"

@@ -3,7 +3,13 @@ import React, { useRef, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import useResponsiveChart from "../../hooks/useResponsiveChart";
 
-const PieChartMui = ({ data, options, width = 320, height = 320 }) => {
+const PieChartMui = ({
+  data,
+  options,
+  width = 320,
+  height = 320,
+  customLegend,
+}) => {
   const chartData = data.map((item) => parseFloat(item.value));
   const { containerRef, chartKey } = useResponsiveChart();
 
@@ -19,10 +25,13 @@ const PieChartMui = ({ data, options, width = 320, height = 320 }) => {
       position: "bottom",
     },
   };
-
   return (
- <div className="w-full flex flex-col justify-between" style={{ height }}>
-      <div ref={containerRef} style={{ flex: 1 }}>
+    <div className="w-full flex flex-col justify-between " style={{ height }}>
+      <div
+        ref={containerRef}
+        style={{ flex: 1 }}
+        className={customLegend ? "flex gap-20 overflow-x-scroll" : ""}
+      >
         <ReactApexChart
           key={chartKey}
           options={updatedOptions}
@@ -30,9 +39,13 @@ const PieChartMui = ({ data, options, width = 320, height = 320 }) => {
           type="pie"
           height={height - 20} // Reserve space for built-in legend
         />
+        {customLegend && (
+          <div>
+            <div className="w-full flex justify-between">{customLegend}</div>
+          </div>
+        )}
       </div>
     </div>
-
   );
 };
 

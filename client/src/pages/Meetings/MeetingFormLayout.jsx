@@ -38,6 +38,7 @@ import humanDate from "../../utils/humanDateForamt";
 import useAuth from "../../hooks/useAuth";
 import { useFieldArray } from "react-hook-form";
 import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
+import { inrFormat } from "../../utils/currencyFormat";
 
 const MeetingFormLayout = () => {
   const { auth } = useAuth();
@@ -255,6 +256,7 @@ const MeetingFormLayout = () => {
     queryKey: ["visitors"],
     queryFn: async () => {
       const response = await axios.get("/api/visitors/fetch-visitors");
+
       return response.data;
     },
   });
@@ -331,12 +333,10 @@ const MeetingFormLayout = () => {
       <MuiModal
         open={open}
         onClose={() => setOpen(false)}
-        title={`${meetingType} Meeting`}
-      >
+        title={`${meetingType} Meeting`}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full gap-4"
-        >
+          className="flex flex-col w-full gap-4">
           <div className="w-full flex gap-8 justify-center items-center">
             <span className="text-content">Date : {humanDate(startDate)}</span>
           </div>
@@ -349,15 +349,26 @@ const MeetingFormLayout = () => {
                 Selected Room : {meetingRoomName}
               </span>
             </div>
+
             <div className="w-full flex gap-8 items-center justify-start">
-              <span className="text-content">
-                Per Hour Credit : {perHourCredit}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-content">
+                  Per Hour Credit : {perHourCredit}
+                </span>
+                <span className="text-content">
+                  Per Half Hour Credit : {perHourCredit / 2}
+                </span>
+              </div>
             </div>
             <div className="w-full flex gap-8 items-center justify-end">
-              <span className="text-content">
-                Per Hour Price : {perHourPrice}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-content">
+                  Per Hour Price : {`USD ${inrFormat(perHourPrice)}`}
+                </span>
+                <span className="text-content">
+                  Per Half Hour Price : {`USD  ${inrFormat(perHourPrice / 2)}`}
+                </span>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 gap-y-6">
@@ -372,8 +383,7 @@ const MeetingFormLayout = () => {
                     select
                     fullWidth
                     disabled={!showExternalType}
-                    size="small"
-                  >
+                    size="small">
                     <MenuItem value="" disabled>
                       Select a Meeting Type
                     </MenuItem>
@@ -469,8 +479,7 @@ const MeetingFormLayout = () => {
                           label="Company"
                           select
                           size="small"
-                          fullWidth
-                        >
+                          fullWidth>
                           <MenuItem value="" disabled>
                             Select a company
                           </MenuItem>
@@ -623,8 +632,7 @@ const MeetingFormLayout = () => {
                         select
                         label="Select External Company"
                         size="small"
-                        fullWidth
-                      >
+                        fullWidth>
                         <MenuItem value="" disabled>
                           Select a company
                         </MenuItem>
@@ -658,7 +666,9 @@ const MeetingFormLayout = () => {
                           `${user.firstName} ${user.lastName}`
                         } // Display names
                         onChange={(_, newValue) =>
-                          field.onChange(newValue.map((user) => user.firstName))
+                          field.onChange(
+                            newValue.map((user) => ({ name: user.firstName }))
+                          )
                         } // Sync selected users with form state
                         renderTags={(selected, getTagProps) =>
                           selected.map((user, index) => (

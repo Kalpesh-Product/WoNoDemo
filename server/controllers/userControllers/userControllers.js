@@ -247,7 +247,7 @@ const fetchUser = async (req, res, next) => {
           { path: "reportsTo", select: "name email" },
           { path: "departments", select: "name" },
           { path: "company", select: "name" },
-          { path: "role", select: "roleTitle modulePermissions" },
+          { path: "role", select: "roleTitle" },
         ]);
 
       return res.status(200).json(users);
@@ -259,7 +259,7 @@ const fetchUser = async (req, res, next) => {
         { path: "reportsTo", select: "_id roleTitle" },
         { path: "departments", select: "name" },
         { path: "company", select: "name" },
-        { path: "role", select: "roleTitle modulePermissions" },
+        { path: "role", select: "roleTitle" },
       ])
       .sort({ startDate: 1 })
       .lean()
@@ -620,24 +620,12 @@ const bulkInsertUsers = async (req, res, next) => {
           rowPromises.push(
             (async () => {
               try {
-                // const departmentIds = row["Department (ID)"]
-                //   ? row["Department (ID)"].split("/").map((d) => d.trim())
-                //   : [];
-                console.log("row dept", row["Department (ID)"]);
                 const departmentIds = row["Department (ID)"]
-                  ? row["Department (ID)"].includes("/")
-                    ? row["Department (ID)"]
-                        .split("/")
-                        .map((d) => d.trim())
-                        .filter(Boolean)
-                    : [row["Department (ID)"].trim()]
+                  ? row["Department (ID)"].split("/").map((d) => d.trim())
                   : [];
 
-                console.log("departIds", departmentIds);
                 const departmentObjectIds = departmentIds.map((id) => {
-                  const deptId = new mongoose.Types.ObjectId(id);
-                  console.log("deptId", deptId);
-                  if (!departmentMap.has(deptId)) {
+                  if (!departmentMap.has(id)) {
                     throw new Error(`Invalid department: ${id}`);
                   }
                   return departmentMap.get(id);
@@ -688,12 +676,6 @@ const bulkInsertUsers = async (req, res, next) => {
                   startDate: new Date(row["Date Of Joining"]),
                   workLocation: row["Work Building"],
                   shift: row["Shift Policy"] || "General",
-                  // policies: {
-                  //   shift: row["Shift Policy"] || "General",
-                  //   workSchedulePolicy: row["Work Schedule Policy"] || "",
-                  //   leavePolicy: row["Leave Policy"] || "",
-                  //   holidayPolicy: row["Holiday Policy"] || "",
-                  // },
                   homeAddress: {
                     addressLine1: row["Address"] || "",
                     addressLine2: row["Present Address"] || "",

@@ -122,19 +122,19 @@ const assetUtilizationOptions = {
           <div style="padding-bottom : 5px; border-bottom: 1px solid gray; margin-bottom:10px">
             <strong>${month}</strong><br>
           </div> 
-          Total Assets Value: ₹${totalValue} Cr<br>
-          Asset Value Used: ₹${usedValue} Cr<br>
+          Total Assets Value: USD ${totalValue} Cr<br>
+          Asset Value Used: USD ${usedValue} Cr<br>
           Under Maintenance: ₹${underMaintenance} k<br>
-          Assets Damaged: ₹${damaged} k
+          Assets Damaged: USD ${damaged} k
         </div>
       `;
     },
     fixed: {
       enabled: true,
-      position: 'bottomRight', // Or try 'bottomLeft', depending on preference
+      position: "bottomRight", // Or try 'bottomLeft', depending on preference
       offsetX: 0,
       offsetY: -10, // Adjust to move tooltip closer to base
-    }
+    },
   },
 
   plotOptions: {

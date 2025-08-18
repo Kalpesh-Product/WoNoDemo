@@ -282,7 +282,17 @@ const UniqueLeads = () => {
   return (
     <div className="p-4 flex flex-col gap-4">
       {/* View Type Selection */}
-      <div className="flex gap-4 w-full justify-end">
+
+      <WidgetSection
+        layout={1}
+        border
+        padding
+        title={"Unique Leads"}
+        TitleAmount={`Total Leads : ${totalLeads}`}>
+        <NormalBarGraph data={graphData} options={graphOptions} height={400} />
+      </WidgetSection>
+
+      <div className="flex gap-4 w-full justify-center">
         <FormControl size="small">
           <InputLabel>Select Financial Year</InputLabel>
           <Select
@@ -334,15 +344,6 @@ const UniqueLeads = () => {
           </Select>
         </FormControl>
       </div>
-
-      <WidgetSection
-        layout={1}
-        border
-        padding
-        title={"Unique Leads"}
-        TitleAmount={`Total Leads : ${totalLeads}`}>
-        <NormalBarGraph data={graphData} options={graphOptions} height={400} />
-      </WidgetSection>
 
       <WidgetSection
         border
