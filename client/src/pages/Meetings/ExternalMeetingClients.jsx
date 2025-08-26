@@ -180,6 +180,7 @@ const ExternalMeetingCLients = () => {
         paymentProofUrl: meeting?.paymentProof ?? "",
         paymentStatus: meeting.paymentStatus ?? false,
         paymentVerification: meeting.paymentVerification || "Under Review",
+        client: meeting.client || "",
       };
     });
 
@@ -940,6 +941,10 @@ const ExternalMeetingCLients = () => {
                 "Top Management"
               }
             />
+            <DetalisFormatted
+              title="Client"
+              detail={selectedMeeting.client || "Unknown"}
+            />
 
             <br />
             <div className="font-bold">Venue Details</div>
@@ -1190,7 +1195,7 @@ const ExternalMeetingCLients = () => {
             console.log("Submitting form with data:", data);
             const formData = new FormData();
 
-            formData.append("paymentAmount", data?.amount);
+            formData.append("paymentAmount", data?.finalAmount);
             formData.append("paymentMode", data?.paymentType);
             formData.append("paymentStatus", data?.paymentStatus);
             formData.append("meetingId", paymentMeeting?._id);

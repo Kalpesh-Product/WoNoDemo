@@ -72,6 +72,7 @@ const RevenueTarget = () => {
               registerDate: "2024-02-25",
               actualRevenue: inrFormat(345600),
             },
+
           ],
         },
         {
@@ -99,6 +100,7 @@ const RevenueTarget = () => {
               registerDate: "2024-04-10",
               actualRevenue: inrFormat(615000),
             },
+
           ],
         },
         {
@@ -126,6 +128,7 @@ const RevenueTarget = () => {
               registerDate: "2024-04-13",
               actualRevenue: inrFormat(830000),
             },
+
           ],
         },
         {
@@ -420,20 +423,15 @@ const RevenueTarget = () => {
 
   // Graph Options
   const options = {
-    chart: {
-      type: "bar",
-      toolbar: false,
-      stacked: false,
-      fontFamily: "Poppins-Regular",
-    },
+    chart: { type: "bar", toolbar: false, stacked: false, fontFamily: "Poppins-Regular" },
     xaxis: {
       categories: selectedMonthData.domains.map((domain) => domain.name),
     },
     yaxis: {
       title: { text: "Revenue (USD)" },
       labels: {
-        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`,
-      },
+        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`
+      }
     },
     plotOptions: {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
@@ -476,7 +474,7 @@ const RevenueTarget = () => {
 
       {/* Accordion Section for Domain-wise Revenue Breakdown */}
       <div className="flex flex-col gap-2 border-default border-borderGray rounded-md p-4">
-        <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
+      <div className="px-4 py-2 border-b-[1px] border-borderGray bg-gray-50">
           <div className="flex justify-between items-center w-full px-4 py-2">
             <span className=" text-sm text-muted font-pmedium text-title">
               VERTICAL
@@ -484,6 +482,7 @@ const RevenueTarget = () => {
             <span className="px-8 text-sm text-muted font-pmedium text-title flex items-center gap-1">
               REVENUE
             </span>
+            
           </div>
         </div>
         {selectedMonthData.domains.map((domain, index) => {
@@ -499,19 +498,17 @@ const RevenueTarget = () => {
                     {domain.name}
                   </span>
                   <span className="text-subtitle font-pmedium">
-                    USD {domain.revenue.toLocaleString()}
+                  USD {domain.revenue.toLocaleString()} 
                   </span>
                 </div>
               </AccordionSummary>
               <AccordionDetails sx={{ borderTop: "1px solid  #d1d5db" }}>
                 <AgTable
-                  data={domain.clients.map((client, index) => ({
-                    ...client,
-                    registerDate: dayjs(client.registerDate).format(
-                      "DD-MM-YYYY"
-                    ),
-                    srNo: index + 1,
-                  }))}
+                  data={domain.clients.map((client,index) => ({
+                                    ...client,
+                                    registerDate: dayjs(client.registerDate).format("DD-MM-YYYY"),
+                                    srNo:index+1
+                                  }))}
                   hideFilter
                   columns={[
                     { headerName: "Sr No", field: "srNo", flex: 1 },
@@ -521,11 +518,7 @@ const RevenueTarget = () => {
                       field: "representative",
                       flex: 1,
                     },
-                    {
-                      headerName: "Register Date",
-                      field: "registerDate",
-                      flex: 1,
-                    },
+                    { headerName: "Register Date", field: "registerDate", flex: 1 },
                     {
                       headerName: "Actual Revenue (USD)",
                       field: "actualRevenue",
@@ -534,12 +527,13 @@ const RevenueTarget = () => {
                   ]}
                   tableHeight={300}
                 />
+                
                 <span className="text-primary font-pregular">
-                  Total Revenue for {domain.name}:{" "}
-                </span>
-                <span className="text-black font-pmedium">
-                  USD&nbsp;{domain.revenue.toLocaleString("en-IN")}
-                </span>{" "}
+                      Total Revenue for {domain.name}:{" "}
+                    </span>
+                    <span className="text-black font-pmedium">
+                      USD&nbsp;{domain.revenue.toLocaleString("en-IN")}
+                    </span>{" "}
               </AccordionDetails>
             </Accordion>
           );

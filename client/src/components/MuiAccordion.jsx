@@ -39,7 +39,8 @@ const MuiAccordion = ({
       alignItems="center"
       p={1}
       border="1px solid #e0e0e0"
-      borderRadius={2}>
+      borderRadius={2}
+    >
       <Box>
         <Typography fontWeight={500}>
           {emp.firstName} {emp.lastName}
@@ -52,7 +53,8 @@ const MuiAccordion = ({
       <Permissions permissions={[PERMISSIONS.ACCESS_PERMISSIONS]}>
         <div
           onClick={() => itemClick?.(emp)}
-          className="p-2 cursor-pointer border-default border-black rounded-md text-content flex items-center bg-white text-black hover:text-white hover:bg-primary hover:border-primary">
+          className="p-2 cursor-pointer border-default border-black rounded-md text-content flex items-center bg-white text-black hover:text-white hover:bg-primary hover:border-primary"
+        >
           <IoIosArrowForward />
         </div>
       </Permissions>
@@ -87,13 +89,15 @@ const MuiAccordion = ({
         return (
           <Accordion key={section._id} disableGutters>
             <AccordionSummary
-              expandIcon={isDisabled ? null : <ExpandMoreIcon />}>
+              expandIcon={isDisabled ? null : <ExpandMoreIcon />}
+            >
               <Typography fontWeight="bold">
                 {section[titleKey]}
                 {isDisabled && (
                   <Typography
                     component="span"
-                    sx={{ fontSize: 12, color: "gray", marginLeft: 1 }}>
+                    sx={{ fontSize: 12, color: "gray", marginLeft: 1 }}
+                  >
                     (Inactive)
                   </Typography>
                 )}
