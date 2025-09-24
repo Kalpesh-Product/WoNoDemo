@@ -6,6 +6,7 @@ const {
 } = require("../../config/cloudinaryConfig");
 const Company = require("../../models/hr/Company");
 const mongoose = require("mongoose");
+const axios = require("axios");
 
 const createTemplate = async (req, res, next) => {
   const session = await mongoose.startSession();
@@ -55,7 +56,7 @@ const createTemplate = async (req, res, next) => {
       testimonialTitle: req.body.testimonialTitle,
       contactTitle: req.body.contactTitle,
       mapUrl: req.body.mapUrl,
-      email: req.body.email,
+      email: req.body.websiteEmail,
       phone: req.body.phone,
       address: req.body.address,
       registeredCompanyName: req.body.registeredCompanyName,
@@ -161,22 +162,74 @@ const createTemplate = async (req, res, next) => {
     }
 
     template.testimonials = (testimonials || []).map((t, i) => ({
-      image: tUploads[i], // may be undefined if fewer images
+      image: tUploads[i], // may be undefined if fewer images provided
       name: t.name,
       jobPosition: t.jobPosition,
       testimony: t.testimony,
       rating: t.rating,
     }));
 
-    await template.save({ session });
+    const savedTemplate = await template.save({ session });
+
     await session.commitTransaction();
     session.endSession();
 
-    res.status(201).json({ message: "Template created", template });
+    try {
+      const updatedCompany = await axios.patch(
+        "https://wononomadsbe.vercel.app/api/company/update-company",
+        {
+          companyName: req.body.companyName,
+          link: `https://${savedTemplate.searchKey}.wono.co/`,
+        }
+      );
+
+      if (!updatedCompany) {
+        return res
+          .status(400)
+          .json({ message: "Failed to add website template link" });
+      }
+      // }
+    } catch (error) {
+      if (error.response?.status !== 200) {
+        return res.status(201).json({
+          message:
+            "Website created but failed to add link.Check if the company is listed in Nomads.",
+          template,
+        });
+      }
+    }
+
+    return res.status(201).json({ message: "Template created", template });
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
     next(error);
+  }
+};
+
+//temporary controller
+const createWebsiteTemplate = async (req, res) => {
+  try {
+    const { companyName } = req.body;
+
+    const foundTemplate = await WebsiteTemplate.findOne({ companyName });
+
+    if (foundTemplate) {
+      res.status(400).json({ message: "Company already exists" });
+    }
+
+    const template = new WebsiteTemplate(req.body);
+
+    const savedTemplate = template.save();
+
+    if (!savedTemplate) {
+      return res.status(400).json();
+    }
+    return res
+      .status(201)
+      .json({ message: "Website template created successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -186,10 +239,32 @@ const getTemplate = async (req, res) => {
 
     const template = await WebsiteTemplate.findOne({
       searchKey: company,
+      isActive: true,
     });
 
     if (!template) {
-      return res.status(400).json({ message: "No such website found" });
+      return res.status(200).json([]);
+    } else {
+      if (template.searchKey === company && template.isActive) {
+        return res.json(template);
+      }
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getInActiveTemplate = async (req, res) => {
+  try {
+    const { company } = req.params;
+
+    const template = await WebsiteTemplate.findOne({
+      searchKey: company,
+      isActive: false,
+    });
+
+    if (!template) {
+      return res.status(200).json([]);
     }
     res.json(template);
   } catch (error) {
@@ -199,13 +274,49 @@ const getTemplate = async (req, res) => {
 
 const getTemplates = async (req, res) => {
   try {
-    const templates = await WebsiteTemplate.find();
+    const templates = await WebsiteTemplate.find({ isActive: true });
 
     if (!templates.length) {
-      return res.status(400).json({ message: "No websites found" });
+      return res.status(200).json([]);
     }
 
     res.json(templates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getInActiveTemplates = async (req, res) => {
+  try {
+    const templates = await WebsiteTemplate.find({ isActive: false });
+
+    if (!templates.length) {
+      return res.status(200).json([]);
+    }
+
+    res.json(templates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const activateTemplate = async (req, res) => {
+  try {
+    const { searchKey } = req.query;
+    const template = await WebsiteTemplate.findOneAndUpdate(
+      {
+        searchKey,
+      },
+      {
+        isActive: true,
+      }
+    );
+
+    if (!template) {
+      return res.status(400).json({ message: "Failed to activate website" });
+    }
+
+    return res.status(400).json({ message: "Website activated successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -299,7 +410,7 @@ const editTemplate = async (req, res, next) => {
       testimonialTitle: req.body.testimonialTitle ?? template.testimonialTitle,
       contactTitle: req.body.contactTitle ?? template.contactTitle,
       mapUrl: req.body.mapUrl ?? template.mapUrl,
-      email: req.body.email ?? template.email,
+      email: req.body.websiteEmail ?? template.websiteEmail,
       phone: req.body.phone ?? template.phone,
       address: req.body.address ?? template.address,
       registeredCompanyName:
@@ -496,7 +607,11 @@ const editTemplate = async (req, res, next) => {
 
 module.exports = {
   createTemplate,
+  createWebsiteTemplate,
   editTemplate,
   getTemplate,
   getTemplates,
+  getInActiveTemplates,
+  getInActiveTemplate,
+  activateTemplate,
 };
