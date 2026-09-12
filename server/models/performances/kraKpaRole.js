@@ -4,12 +4,17 @@ const kraKpaRolesSchema = new mongoose.Schema(
   {
     task: {
       type: String,
+      required: true,
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
     },
     assignedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserData",
+    },
+    assignTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserData",
     },
@@ -23,19 +28,30 @@ const kraKpaRolesSchema = new mongoose.Schema(
     },
     taskType: {
       type: String,
-      enum: ["KPA", "KRA"],
+      enum: [
+        "KPA",
+        "KRA",
+        "INDIVIDUALKPA",
+        "INDIVIDUALKRA",
+        "TEAMKPA",
+        "TEAMKRA",
+      ],
+      required: true,
     },
-    completedDate: [{ type: Date, required: true }],
+    completedDate: [{ type: Date }],
     kpaDuration: {
       type: String,
       enum: ["Monthly", "Annually"],
+      // required: true,
     },
     department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
+      required: true,
     },
     assignedDate: {
       type: Date,
+      required: true,
     },
     dueDate: {
       type: Date,
@@ -53,7 +69,7 @@ const kraKpaRolesSchema = new mongoose.Schema(
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const kraKpaRole = mongoose.model("kraKpaRole", kraKpaRolesSchema);

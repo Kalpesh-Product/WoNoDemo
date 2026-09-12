@@ -1,0 +1,92 @@
+[
+  {
+    "clientName": "Trailhead Collective",
+    "startDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "5094281c739c94c38b749ae6"
+    }
+  },
+  {
+    "clientName": "Coastline Creative",
+    "startDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    }
+  },
+  {
+    "clientName": "Evergreen Strategy",
+    "startDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    }
+  },
+  {
+    "clientName": "Suncrest Studio",
+    "startDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    }
+  },
+  {
+    "clientName": "Lakeside Labs",
+    "startDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "b170202ef39a035087c80b33"
+    }
+  },
+  {
+    "clientName": "Windward Partners",
+    "startDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "72728c62c4b23f311e2d98d4"
+    }
+  },
+  {
+    "clientName": "Fieldstone Design",
+    "startDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    }
+  },
+  {
+    "clientName": "Highland Analytics",
+    "startDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    }
+  },
+  {
+    "clientName": "Bayview Digital",
+    "startDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    }
+  },
+  {
+    "clientName": "Brookside Consulting",
+    "startDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    }
+  }
+]

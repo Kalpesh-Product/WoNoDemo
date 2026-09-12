@@ -1,24 +1,98 @@
-import React, { useState, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
 import WidgetSection from "../../../../components/WidgetSection";
 import BarGraph from "../../../../components/graphs/BarGraph";
-import AgTable from "../../../../components/AgTable";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
 import MuiModal from "../../../../components/MuiModal";
 import DetalisFormatted from "../../../../components/DetalisFormatted";
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import YearlyGraph from "../../../../components/graphs/YearlyGraph";
-import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import humanDate from "../../../../utils/humanDateForamt";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import WidgetTable from "../../../../components/Tables/WidgetTable";
+import SecondaryButton from "../../../../components/SecondaryButton";
+//import PrimaryButton from "../../../../components/PrimaryButton";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import StatusChip from "../../../../components/StatusChip";
+
+const fiscalYears = ["FY 2024-25", "FY 2025-26"];
+
+dayjs.extend(customParseFormat);
+
+const fiscalMonths = [
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+];
+
+const getFiscalYearStart = (date = dayjs()) => {
+  const parsedDate = dayjs(date);
+  return parsedDate.month() >= 3 ? parsedDate.year() : parsedDate.year() - 1;
+};
+
+const formatFiscalYear = (startYear) =>
+  `FY ${startYear}-${String(startYear + 1).slice(-2)}`;
+
+const getFiscalYearMonths = (startYear) =>
+  fiscalMonths.map((month, index) => {
+    const year = index < 9 ? startYear : startYear + 1;
+    return `${month}-${String(year).slice(-2)}`;
+  });
+
+const getFiscalYearStartFromMonth = (monthLabel) => {
+  const parsedMonth = dayjs(`01-${monthLabel}`, "DD-MMM-YY", true);
+
+  if (!parsedMonth.isValid()) return null;
+
+  return parsedMonth.month() >= 3 ? parsedMonth.year() : parsedMonth.year() - 1;
+};
+
+const buildCsvCell = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+
+const formatExportAmount = (value) => {
+  const numeric = Number(String(value ?? 0).replace(/,/g, ""));
+  if (Number.isNaN(numeric)) return "USD 0";
+  return `USD ${numeric.toLocaleString("en-US")}`;
+};
+
+const monthLookup = {
+  Jan: 0,
+  Feb: 1,
+  Mar: 2,
+  Apr: 3,
+  May: 4,
+  Jun: 5,
+  Jul: 6,
+  Aug: 7,
+  Sep: 8,
+  Oct: 9,
+  Nov: 10,
+  Dec: 11,
+};
 
 const StatutoryPayments = () => {
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [viewDetails, setViewDetails] = useState(null);
-  const [selectedMonthData, setSelectedMonthData] = useState([]);
+   const [selectedFiscalYearStart, setSelectedFiscalYearStart] = useState(() =>
+    getFiscalYearStart()
+  );
   const [selectedMonthLabel, setSelectedMonthLabel] = useState("");
+  const widgetTableWrapRef = useRef(null);
 
   const axios = useAxiosPrivate();
   const { data: hrFinance = [], isPending: isHrLoading } = useQuery({
@@ -26,7 +100,7 @@ const StatutoryPayments = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          `/api/budget/company-budget?departmentId=6798bab0e469e809084e249a`
+          `/api/budget/company-budget?departmentId=6798bab0e469e809084e249a`,
         );
         const budgets = response.data.allBudgets;
         return Array.isArray(budgets) ? budgets : [];
@@ -44,11 +118,17 @@ const StatutoryPayments = () => {
       const monthKey = dayjs(item.dueDate).format("MMM-YY");
 
       if (!monthMap[monthKey]) {
-        monthMap[monthKey] = { total: 0, approved: 0, amount: 0 };
+        monthMap[monthKey] = {
+          total: 0,
+          approved: 0,
+          actualAmount: 0,
+          projectedAmount: 0,
+        };
       }
 
       monthMap[monthKey].total += 1;
-      monthMap[monthKey].amount += item.projectedAmount || 0;
+      monthMap[monthKey].actualAmount += item.actualAmount || 0;
+      monthMap[monthKey].projectedAmount += item.projectedAmount || 0;
 
       if (item.status === "Approved") {
         monthMap[monthKey].approved += 1;
@@ -56,7 +136,7 @@ const StatutoryPayments = () => {
     });
 
     return Object.entries(monthMap).map(
-      ([month, { total, approved, amount }]) => {
+      ([month, { total, approved, actualAmount, projectedAmount }]) => {
         const paid = Math.round((approved / total) * 100);
         return {
           month,
@@ -65,43 +145,85 @@ const StatutoryPayments = () => {
           approved,
           unapproved: total - approved,
           total,
-          amount,
+          amount: actualAmount,
+          actualAmount,
+          projectedAmount,
         };
-      }
+      },
     );
   };
 
-  const statutoryRaw = isHrLoading
-    ? []
-    : hrFinance.filter((item) => item.expanseType === "Statutory Payments");
-  const statutoryFormatted = transformToCollectionData(statutoryRaw);
+   const statutoryRaw = useMemo(
+    () =>
+      isHrLoading
+        ? []
+        : hrFinance.filter((item) => item.expanseType === "Statutory Payments"),
+    [hrFinance, isHrLoading]
+  );
 
-  const collectionData = [
-    { month: "Apr-24", paid: 80, unpaid: 20 },
-    { month: "May-24", paid: 90, unpaid: 10 },
-    { month: "Jun-24", paid: 75, unpaid: 25 },
-    { month: "Jul-24", paid: 95, unpaid: 5 },
-    { month: "Aug-24", paid: 85, unpaid: 15 },
-    { month: "Sep-24", paid: 70, unpaid: 30 },
-    { month: "Oct-24", paid: 60, unpaid: 40 },
-    { month: "Nov-24", paid: 88, unpaid: 12 },
-    { month: "Dec-24", paid: 92, unpaid: 8 },
-    { month: "Jan-25", paid: 76, unpaid: 24 },
-    { month: "Feb-25", paid: 89, unpaid: 11 },
-    { month: "Mar-25", paid: 100, unpaid: 0 },
-  ];
+  const statutoryFormatted = useMemo(
+    () => transformToCollectionData(statutoryRaw),
+    [statutoryRaw]
+  );
 
-  const barGraphData = [
-    {
-      name: "Paid",
-      data: statutoryFormatted.map((item) => item.paid),
-    },
-    {
-      name: "Unpaid",
-      data: statutoryFormatted.map((item) => item.unpaid),
-    },
-  ];
 
+  const fiscalGraphData = useMemo(() => {
+    const fiscalYearMonths = getFiscalYearMonths(selectedFiscalYearStart);
+    const fyBuckets = fiscalYearMonths.map((month) => ({
+      month,
+      paid: 0,
+      unpaid: 0,
+      amount: 0,
+      meta: null,
+    }));
+
+    statutoryFormatted.forEach((item) => {
+      if (getFiscalYearStartFromMonth(item.month) !== selectedFiscalYearStart) {
+        return;
+      }
+
+      const targetMonthIndex = fiscalYearMonths.indexOf(item.month);
+      if (targetMonthIndex === -1) return;
+
+      fyBuckets[targetMonthIndex] = {
+        month: item.month,
+        paid: item.paid,
+        unpaid: item.unpaid,
+        amount: item.amount,
+        meta: item,
+      };
+    });
+
+     return {
+      chartData: [
+        { name: "Approved", data: fyBuckets.map((entry) => entry.paid) },
+        { name: "Pending", data: fyBuckets.map((entry) => entry.unpaid) },
+      ],
+      meta: fyBuckets.map((entry) => entry.meta),
+      totalAmount: fyBuckets.reduce((sum, entry) => sum + entry.amount, 0),
+    };
+  }, [selectedFiscalYearStart, statutoryFormatted]);
+
+  const latestDataFiscalYearStart = useMemo(() => {
+    const fiscalYearStarts = statutoryFormatted
+      .map((item) => getFiscalYearStartFromMonth(item.month))
+      .filter((yearStart) => yearStart !== null);
+
+    return fiscalYearStarts.length ? Math.max(...fiscalYearStarts) : null;
+  }, [statutoryFormatted]);
+
+   useEffect(() => {
+    if (latestDataFiscalYearStart !== null) {
+      setSelectedFiscalYearStart(latestDataFiscalYearStart);
+    }
+  }, [latestDataFiscalYearStart]);
+
+  const selectedFiscalYear = formatFiscalYear(selectedFiscalYearStart);
+  const selectedFiscalYearMonths = useMemo(
+    () => getFiscalYearMonths(selectedFiscalYearStart),
+    [selectedFiscalYearStart]
+  );
+  const selectedGraph = fiscalGraphData;
   const barGraphOptions = {
     chart: {
       type: "bar",
@@ -121,7 +243,7 @@ const StatutoryPayments = () => {
       formatter: (val) => `${val}%`,
     },
     xaxis: {
-      categories: collectionData.map((item) => item.month),
+      categories: selectedFiscalYearMonths, 
     },
     yaxis: {
       max: 100,
@@ -137,24 +259,13 @@ const StatutoryPayments = () => {
     },
     tooltip: {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
-        const item = statutoryFormatted[dataPointIndex];
+        const item = selectedGraph.meta[dataPointIndex];
         if (!item) return "";
 
         return `
       <div style="padding:10px;font-family:Poppins-Regular;font-size:13px; width: 220px">
-        <div style="display:flex; justify-content:space-between;"><strong>Month</strong> ${
-          item.month
-        }</div>
-        <div style="display:flex; justify-content:space-between;"><strong>Total Payments</strong> ${
-          item.total
-        }</div>
-        <div style="display:flex; justify-content:space-between;"><strong>Amount</strong> USD ${item.amount.toLocaleString()}</div>
-        <div style="color:#54C4A7; display:flex; justify-content:space-between;"><strong>Approved</strong> ${
-          item.approved
-        }</div>
-        <div style="color:#EB5C45; display:flex; justify-content:space-between;"><strong>Unapproved</strong> ${
-          item.unapproved
-        }</div>
+        <div style="display:flex; justify-content:space-between;"><strong style="color:#54C4A7;">Actual Amount : </strong><span style="color:#000;">USD ${item.actualAmount.toLocaleString("en-US")}</span></div>
+        <div style="display:flex; justify-content:space-between;"><strong style="color:#EB5C45;">Projected Amount :  </strong><span style="color:#000;">USD ${item.projectedAmount.toLocaleString("en-US")}</span></div>
       </div>
     `;
       },
@@ -172,7 +283,8 @@ const StatutoryPayments = () => {
       cellRenderer: (params) => (
         <span
           className="text-primary underline cursor-pointer"
-          onClick={() => handleViewModal(params.data)}>
+          onClick={() => handleViewModal(params.data)}
+        >
           {params.value}
         </span>
       ),
@@ -180,46 +292,180 @@ const StatutoryPayments = () => {
     { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
     { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
     { field: "dueDate", headerName: "Due Date", flex: 1 },
-    { field: "status", headerName: "Status", flex: 1 },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      cellRenderer: (params) => <StatusChip status={params.value} />,
+    },
   ];
 
-  const formattedRows = statutoryRaw.map((row, index) => ({
-    ...row,
-    srNo: index + 1,
-    projectedAmount: inrFormat(row.projectedAmount),
-    actualAmount: row.actualAmount,
-    dueDate: row.dueDate,
-  }));
+  //const selectedFiscalYearMonths = fiscalYearMonthMap[selectedFiscalYear] || [];
+  const selectedFiscalYearRows = useMemo(
+    () =>
+      statutoryRaw.filter((item) =>
+        selectedFiscalYearMonths.includes(dayjs(item.dueDate).format("MMM-YY")),
+      ),
+    [statutoryRaw, selectedFiscalYearMonths],
+  );
+
+  const formattedRows = useMemo(
+    () =>
+      selectedFiscalYearRows.map((row, index) => ({
+        ...row,
+        srNo: index + 1,
+        projectedAmount: usdFormat(row.projectedAmount),
+        actualAmount: usdFormat(row.actualAmount),
+        dueDate: row.dueDate,
+      })),
+    [selectedFiscalYearRows],
+  );
 
   const handleViewModal = (rowData) => {
     setViewDetails(rowData);
     setViewModalOpen(true);
   };
 
-  const handleMonthChange = (monthLabel) => {
-    setSelectedMonthLabel(monthLabel);
+  const parseDisplayDate = useCallback((label) => {
+    if (!label) return null;
+    const parts = String(label).trim().split(/\s+/);
+    if (parts.length !== 3) return null;
 
-    const monthData = statutoryRaw.filter((item) => {
-      const itemMonth = dayjs(item.dueDate).format("MMM-YYYY");
-      return itemMonth === monthLabel;
-    });
+    const [dayPart, monthPart, yearPart] = parts;
+    const day = Number(dayPart);
+    const year = Number(yearPart);
+    const month = monthLookup[monthPart];
 
-    setSelectedMonthData(monthData);
+    if (!day || Number.isNaN(year) || month === undefined) return null;
+
+    return new Date(year, month, day);
+  }, []);
+
+  const getSelectedRangeFromTable = useCallback(() => {
+    const container = widgetTableWrapRef.current;
+    if (!container) return null;
+
+    const rangeNodes = container.querySelectorAll(
+      ".text-gray-600.text-content.font-pregular",
+    );
+    if (rangeNodes.length < 2) return null;
+
+    const startDate = parseDisplayDate(rangeNodes[0]?.textContent);
+    const endDate = parseDisplayDate(rangeNodes[1]?.textContent);
+
+      if (
+      !startDate ||
+      !endDate ||
+      Number.isNaN(startDate.getTime()) ||
+      Number.isNaN(endDate.getTime())
+    ) {
+      return null;
+    }
+
+    return { startDate, endDate };
+  }, [parseDisplayDate]);
+
+  const handleMonthChange = useCallback(
+    (_total, filteredRows = [], range = null) => {
+      if (range?.startDate) {
+        setSelectedMonthLabel(dayjs(range.startDate).format("MMM-YYYY"));
+      } else if (filteredRows.length > 0) {
+        setSelectedMonthLabel(dayjs(filteredRows[0].dueDate).format("MMM-YYYY"));
+      } else {
+        setSelectedMonthLabel("");
+      }
+    },
+    []
+  );
+
+  const selectedStatutoryMonthTitle = useMemo(() => {
+    const selectedMonth = selectedMonthLabel
+      ? dayjs(selectedMonthLabel, "MMM-YYYY")
+      : dayjs();
+
+    return selectedMonth.isValid()
+      ? `Statutory Payments - ${selectedMonth.format("MMMM").toUpperCase()}`
+      : "Statutory Payments";
+  }, [selectedMonthLabel]);
+
+
+  const buildExportFileName = (range = null) => {
+    const start = range?.startDate ? dayjs(range.startDate) : null;
+    const end = range?.endDate ? dayjs(range.endDate) : null;
+
+    if (start?.isValid() && end?.isValid()) {
+      const startLabel = start.format("DD-MMM-YYYY");
+      const endLabel = end.format("DD-MMM-YYYY");
+      return `statutory-payments-${startLabel}-to-${endLabel}.csv`;
+    }
+
+    return `statutory-payments-${selectedFiscalYear
+      .replace(/\s+/g, "-")
+      .toLowerCase()}.csv`;
   };
 
-  const grandTotal = useMemo(() => {
-    return statutoryRaw.reduce(
-      (sum, item) => sum + (item.projectedAmount || 0),
-      0
-    );
-  }, [statutoryRaw]);
+  const handleExport = () => {
+    const selectedRange = getSelectedRangeFromTable();
+    const exportRows = selectedRange
+      ? statutoryRaw.filter((item) => {
+          const itemDate = dayjs(item.dueDate);
+          if (!itemDate.isValid()) return false;
+             return (
+            itemDate.isAfter(dayjs(selectedRange.startDate).subtract(1, "day")) &&
+            itemDate.isBefore(dayjs(selectedRange.endDate).add(1, "day"))
+          );
+        })
+      : selectedFiscalYearRows;
 
-  const currentMonthTotal = useMemo(() => {
-    return selectedMonthData.reduce(
-      (sum, item) => sum + (item.projectedAmount || 0),
-      0
-    );
-  }, [selectedMonthData]);
+    if (!exportRows.length) return;
+
+    const headers = [
+      "Sr No",
+      "Expense Name",
+      "Expense Type",
+      "Department",
+      "Extra Budget",
+      "Payment Status",
+      "Projected Amount (USD)",
+      "Actual Amount (USD)",
+      "Due Date",
+    ];
+
+    const rows = exportRows.map((row, index) => [
+      index + 1,
+      row.expanseName || "-",
+      row.expanseType || "-",
+      row.department?.name || "-",
+      row.isExtraBudget ? "Yes" : "No",
+      row.status || "-",
+      formatExportAmount(row.projectedAmount),
+      formatExportAmount(row.actualAmount),
+      row.dueDate ? humanDate(row.dueDate) : "-",
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) => row.map(buildCsvCell).join(",")),
+    ].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = buildExportFileName(selectedRange);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const canExport = selectedFiscalYearRows.length > 0;
+
+  // const grandTotal = useMemo(() => {
+  //   return selectedFiscalYearRows.reduce(
+  //     (sum, item) => sum + (item.projectedAmount || 0),
+  //     0,
+  //   );
+  // }, [selectedFiscalYearRows]);
 
   //--------------------------------------------------------TableData----------------------------------------------------//
 
@@ -227,25 +473,65 @@ const StatutoryPayments = () => {
     <div className="flex flex-col gap-4">
       <WidgetSection
         border
-        title={"Statutory Payments FY 2024-25"}
-        TitleAmount={`USD ${inrFormat(grandTotal)}`}>
-        <BarGraph data={barGraphData} options={barGraphOptions} />
+        title={`Statutory Payments ${selectedFiscalYear}`}
+        TitleAmount={`USD ${usdFormat(selectedGraph.totalAmount)}`}
+      >
+        <BarGraph data={selectedGraph.chartData} options={barGraphOptions} />
+
+        <div className="flex justify-center items-center mt-4">
+          <div className="flex items-center gap-4">
+            <SecondaryButton
+              title={<MdNavigateBefore />}
+              handleSubmit={() =>
+                 setSelectedFiscalYearStart((prev) => prev - 1)
+              }
+              //disabled={selectedYearIndex === 0}
+            />
+            <div className="text-primary text-content font-semibold">
+              {selectedFiscalYear}
+            </div>
+            <SecondaryButton
+              title={<MdNavigateNext />}
+              handleSubmit={() =>
+                setSelectedFiscalYearStart((prev) => prev + 1)
+              }
+              //disabled={selectedYearIndex === fiscalYears.length - 1}
+            />
+          </div>
+        </div>
       </WidgetSection>
       {/* <YearlyGraph title={"Statutory Payments".toUpperCase()} /> */}
 
-      <WidgetTable
-        data={formattedRows}
-        dateColumn={"dueDate"}
-        totalKey="actualAmount"
-        columns={kraColumn}
-        tableTitle={"Statutory Payments FY 2024-25"}
-      />
+      {/* <div className="flex justify-end">
+        <PrimaryButton
+          title="Export"
+          handleSubmit={handleExport}
+          disabled={!canExport}
+        />
+      </div> */}
+
+      <div ref={widgetTableWrapRef}>
+        <WidgetTable
+          data={formattedRows}
+          dateColumn={"dueDate"}
+          totalKey="actualAmount"
+          columns={kraColumn}
+          // tableTitle={`Statutory Payments ${selectedFiscalYear}`}
+          //  buttonTitle={canExport ? "Export" : undefined}
+           tableTitle={selectedStatutoryMonthTitle}
+          totalText="USD"
+          buttonTitle={canExport ? "Export" : undefined}
+          onMonthChange={handleMonthChange}
+          handleSubmit={handleExport}
+        />
+      </div>
 
       {viewDetails && (
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Statutory Payment Detail">
+          title="Statutory Payment Detail"
+        >
           <div className="space-y-3">
             <div className="font-bold">General Information</div>
             <DetalisFormatted

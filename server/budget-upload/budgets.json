@@ -1,0 +1,8282 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1671.4,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 1671.4,
+        "_id": {
+          "$oid": "f4b5e164c335c8ff7319a480"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7f1220a183e884934d56dddc"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1002.84,
+    "actualAmount": 822.33,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 1002.84,
+        "_id": {
+          "$oid": "be9e6c592e7ec806f9be1110"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "be65f1196469d5153dc6934e"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 668.56,
+    "actualAmount": 574.96,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 668.56,
+        "_id": {
+          "$oid": "5da99024020903052f3d9384"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7d0081a177c9a9b94a1b65da"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1485.69,
+    "actualAmount": 1218.27,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 1485.69,
+        "_id": {
+          "$oid": "f10f829c21d9411ea8b2c278"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "bdfcad9e96837fb8c040b4ff"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 891.41,
+    "actualAmount": 766.61,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 891.41,
+        "_id": {
+          "$oid": "3e759536a3ec97de9fcdd5da"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "d205f6814aa6b65dfd2537eb"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 594.27,
+    "actualAmount": 534.84,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 594.27,
+        "_id": {
+          "$oid": "8d8c24fb138ecd4cd8ac8fa3"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "45af56e71137bdecca3a2245"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 742.84,
+    "actualAmount": 638.84,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 742.84,
+        "_id": {
+          "$oid": "33b82a21812941350aadf9b8"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "489d9a80ec6c0c4808681167"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 445.7,
+    "actualAmount": 401.13,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 445.7,
+        "_id": {
+          "$oid": "d360f18325b85c193927008f"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "23dd791265db920a7c10f31c"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 297.13,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 297.13,
+        "_id": {
+          "$oid": "305a89f4f9c1a54a2f36622d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9b00fb416e3091f76f37ce99"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1299.98,
+    "actualAmount": 1169.98,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 1299.98,
+        "_id": {
+          "$oid": "4051243bb7c023d18552a121"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "28aa63f2c7d374662f0ac720"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 779.99,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 779.99,
+        "_id": {
+          "$oid": "00bc41e649f3d29aa023c1ae"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e44e66a6c16a5ab482cd1f7f"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 519.99,
+    "actualAmount": 426.39,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 519.99,
+        "_id": {
+          "$oid": "bc01d665fdc7a056e765245b"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "877a00f7fcddf8574f7d2990"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1114.27,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 1114.27,
+        "_id": {
+          "$oid": "cb7ea48bbc343e89386ee4c6"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "8a3b0cefa780827f404817f3"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 668.56,
+    "actualAmount": 548.22,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 668.56,
+        "_id": {
+          "$oid": "52b5277a2e9d5a5e5481a657"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ce11ce24a416d1aee2a96aa2"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 445.7,
+    "actualAmount": 383.3,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 445.7,
+        "_id": {
+          "$oid": "2bf7bc2a76349fd2b6a6f05f"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "23fb0d08e8b1563881a7df2d"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 742.84,
+    "actualAmount": 609.13,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 742.84,
+        "_id": {
+          "$oid": "fc62eb5620fe618f8f0a069c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9725a8e31fbc59b87cd002e3"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 445.7,
+    "actualAmount": 383.3,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 445.7,
+        "_id": {
+          "$oid": "03ae8c16583a5d7fd1daa3c4"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9061634618415711a54b27ae"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 297.13,
+    "actualAmount": 267.42,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 297.13,
+        "_id": {
+          "$oid": "caf78f3d5d7830949c457e5f"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "cbd55ccd21e685fea1f7cfd9"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1114.27,
+    "actualAmount": 958.27,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 1114.27,
+        "_id": {
+          "$oid": "768df70a7f1941d5bb41b4e5"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9a113ea8941d479a3d653480"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 668.56,
+    "actualAmount": 601.7,
+    "actualAmountDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 668.56,
+        "_id": {
+          "$oid": "094a65bdbd3d0c475ba2d3bd"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "38346e09435c4bcfc52bf0cd"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 445.7,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 445.7,
+        "_id": {
+          "$oid": "38759168e5ffb8bedb738c8e"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e50492bf1b504cee923ee0b7"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1114.27,
+    "actualAmount": 1002.84,
+    "actualAmountDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 1114.27,
+        "_id": {
+          "$oid": "74acd8344d3146497137b175"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "5050b99d4e33cc826d4c6a09"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 668.56,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 668.56,
+        "_id": {
+          "$oid": "40a35f12640bcfcc2ba99feb"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "3fccd67cb1b35d1b933588f1"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 445.7,
+    "actualAmount": 365.47,
+    "actualAmountDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-04-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-04-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-04-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 445.7,
+        "_id": {
+          "$oid": "acb11b1911129ef1e1535d42"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ad1022c85eeb01598f3afd3b"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3362.79,
+    "actualAmount": 2622.98,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 3362.79,
+        "_id": {
+          "$oid": "bc71c289cc1fcaaf223b6528"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "0cd809add743983115db07a5"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2017.67,
+    "actualAmount": 1654.49,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 2017.67,
+        "_id": {
+          "$oid": "8d0b23d2515ec49fcaa0a50f"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7e958331dc09a6768eb6fba3"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1345.11,
+    "actualAmount": 1156.79,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 1345.11,
+        "_id": {
+          "$oid": "dc966e96a402ee33dee65b00"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ea48c6b9f5bfc8793e2aa99b"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2989.15,
+    "actualAmount": 2451.1,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 2989.15,
+        "_id": {
+          "$oid": "c47cb7e90dcfabdc3ccbc180"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6c7652fc829435b4b8f61ff4"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1793.49,
+    "actualAmount": 1542.4,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 1793.49,
+        "_id": {
+          "$oid": "8eca77a8ec89bd4fcbfbb41d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "1a7fbbde057726bdb1653067"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1195.66,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 1195.66,
+        "_id": {
+          "$oid": "31957980690e3aabe7f4e2e3"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "2b67be5078e7d8d4cdc5dda7"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1494.57,
+    "actualAmount": 1285.33,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 1494.57,
+        "_id": {
+          "$oid": "bfebfe5f19848188aed9f1de"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "23b51c79aad143f0b452eab0"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 896.74,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 896.74,
+        "_id": {
+          "$oid": "a01fe0ffc6302f146738c301"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e9687244671aadc5a3ff3660"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 597.83,
+    "actualAmount": 466.31,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 597.83,
+        "_id": {
+          "$oid": "3f30c25433ba24d8ce1ae160"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ec6cb399974ffce3b9967be3"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2615.5,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 2615.5,
+        "_id": {
+          "$oid": "c00497555e04de9381a6c38a"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "d6230345a868f3d726794d4d"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1569.3,
+    "actualAmount": 1224.05,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 1569.3,
+        "_id": {
+          "$oid": "efd1d25752d1bae844e26b18"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4ebe3cd03f784d40b3bac27a"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1046.2,
+    "actualAmount": 857.88,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 1046.2,
+        "_id": {
+          "$oid": "c60ffd9ddbd5e558f6252ce2"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c33fe3d7f0c4ea376ed6e057"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2241.86,
+    "actualAmount": 1748.65,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 2241.86,
+        "_id": {
+          "$oid": "03121d74baaf6fe36c0d637e"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "1cf866921f5d2ad5a4b2e087"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1345.11,
+    "actualAmount": 1102.99,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 1345.11,
+        "_id": {
+          "$oid": "7089c95ae9abe1f868927969"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a603c1972a330603d5b375c0"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 896.74,
+    "actualAmount": 771.2,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 896.74,
+        "_id": {
+          "$oid": "9235b557cf0e7028507daed3"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a623cdb387b8112e949c0e50"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1494.57,
+    "actualAmount": 1225.55,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 1494.57,
+        "_id": {
+          "$oid": "fe03a2083609f81c98593024"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a30adf459b85d67174c739d4"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 896.74,
+    "actualAmount": 771.2,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 896.74,
+        "_id": {
+          "$oid": "f18946ddc56597d7ea334c2f"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ad024e3ead02750863873c08"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 597.83,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 597.83,
+        "_id": {
+          "$oid": "e279028e4c669a116d46bf48"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a6a3f0da62e70534eb44a328"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2241.86,
+    "actualAmount": 1928,
+    "actualAmountDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 2241.86,
+        "_id": {
+          "$oid": "aafdb4f50a45a49d575c1f32"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7a179d745bd98ae5e125031c"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1345.11,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 1345.11,
+        "_id": {
+          "$oid": "0e569ba623f0857ce52b4a77"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "675a9f306da5c3f615346373"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 896.74,
+    "actualAmount": 699.46,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 896.74,
+        "_id": {
+          "$oid": "d79f16f486b5cecb8addbf05"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6a9cc58adc29d9d96154f605"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2241.86,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 2241.86,
+        "_id": {
+          "$oid": "bc227fbfbeb5889338b5b012"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a35ad894e623a76a73ba5038"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1345.11,
+    "actualAmount": 1049.19,
+    "actualAmountDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 1345.11,
+        "_id": {
+          "$oid": "e94619c3aae49d680e55e869"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ef40dc7785cd0c2cac62109b"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 896.74,
+    "actualAmount": 735.33,
+    "actualAmountDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-05-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-05-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-05-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 896.74,
+        "_id": {
+          "$oid": "68fa3a406db06974ff578362"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "f09b9a0411e784610be1b67f"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4999.75,
+    "actualAmount": 3899.81,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 4999.75,
+        "_id": {
+          "$oid": "c4c5951486cd9aa4f4e65789"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "2b7d4eceba899037ce5288d5"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2999.85,
+    "actualAmount": 2459.88,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 2999.85,
+        "_id": {
+          "$oid": "3a5204626a9c096243767967"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6eb85f90739f17d6f6a22355"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1999.9,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 1999.9,
+        "_id": {
+          "$oid": "4d0a391c13f987076a4e1fd5"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "442f794b045d0d0964c4b1a9"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4444.22,
+    "actualAmount": 3644.26,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 4444.22,
+        "_id": {
+          "$oid": "35224117f690ea50a18851db"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "156833e272f1f01eb19e172e"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2666.53,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 2666.53,
+        "_id": {
+          "$oid": "5f27e2c58322b916c82bcc88"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "b35d22d3532ca97cf81d4fa2"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1777.68,
+    "actualAmount": 1599.91,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 1777.68,
+        "_id": {
+          "$oid": "6bee7598db6f8b27b0c257d4"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "0a35e3b5324414d8090a3ec2"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2222.11,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 2222.11,
+        "_id": {
+          "$oid": "4fcd015bf5bcc3605f325763"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "b16e081a88821fbb152b4c27"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1333.26,
+    "actualAmount": 1199.93,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 1333.26,
+        "_id": {
+          "$oid": "a922daa7600cb07a85e629cc"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a09b606208bae8a2572b226c"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 888.84,
+    "actualAmount": 693.3,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 888.84,
+        "_id": {
+          "$oid": "708f01ecebc22ebc49da8d5c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "5f24a2f57f9f8e0ab7ed6233"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3888.69,
+    "actualAmount": 3499.82,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 3888.69,
+        "_id": {
+          "$oid": "1c9a432fdb86dd4b0f9535ed"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "bd522bb82bb2218c038f59bc"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2333.21,
+    "actualAmount": 1819.9,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 2333.21,
+        "_id": {
+          "$oid": "88c11770039376f34a228f48"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "37e1e9835e84c97d69118223"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1555.47,
+    "actualAmount": 1275.49,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 1555.47,
+        "_id": {
+          "$oid": "6653ccbd1e04b1dbb0b93ad8"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e752b9774c5e3b79f31ada9e"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3333.16,
+    "actualAmount": 2599.86,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 3333.16,
+        "_id": {
+          "$oid": "2d095943ba5167be40fa0805"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "f34ada8266b3f5c3af1dca25"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1999.9,
+    "actualAmount": 1639.92,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 1999.9,
+        "_id": {
+          "$oid": "250228d056a2d97dda24f343"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "2ca96901600cc0db0d095a1d"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1333.26,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 1333.26,
+        "_id": {
+          "$oid": "513358a8ab1a7137da733ea7"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "986a0b72fcdf3214210fee4d"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2222.11,
+    "actualAmount": 1822.13,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 2222.11,
+        "_id": {
+          "$oid": "27d42d8783bb8b8fce87487e"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "0b19726a53aecf04600b59d2"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1333.26,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 1333.26,
+        "_id": {
+          "$oid": "aac389b4a01e89142b81477d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "16b16e3a9625cba5d0813fd8"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 888.84,
+    "actualAmount": 799.96,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 888.84,
+        "_id": {
+          "$oid": "9881344f1e585708c6f43107"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c0b62a42004b41a9c881e552"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3333.16,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 3333.16,
+        "_id": {
+          "$oid": "942179f26306e7bd759fc02c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4436b731cfd7e0fef7a7f448"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1999.9,
+    "actualAmount": 1799.91,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 1999.9,
+        "_id": {
+          "$oid": "fe00d48ac3056bfe899ad916"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "bddfeb0f89c363531f4a487b"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1333.26,
+    "actualAmount": 1039.94,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 1333.26,
+        "_id": {
+          "$oid": "ffd43254f0b8e2b6bc85ac45"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "542b59f0a1294eb19c1d94b7"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3333.16,
+    "actualAmount": 2999.84,
+    "actualAmountDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 3333.16,
+        "_id": {
+          "$oid": "198f27f4e0d323faac8ebb40"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "190d2a420f44a5c39dac98bf"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1999.9,
+    "actualAmount": 1559.92,
+    "actualAmountDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 1999.9,
+        "_id": {
+          "$oid": "d5cb9383abca6a923d93a94d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7f4338d3d9108cc431725f30"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1333.26,
+    "actualAmount": 1093.27,
+    "actualAmountDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-06-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-06-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-06-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 1333.26,
+        "_id": {
+          "$oid": "a4ad5bfab0f672ca21b74fbd"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4f4670072d72dc0946daf8aa"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6997.69,
+    "actualAmount": 5458.2,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 6997.69,
+        "_id": {
+          "$oid": "049bbadd619f69c1df997194"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "37226c9c5d0cc7c2d2f14725"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4198.61,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 4198.61,
+        "_id": {
+          "$oid": "98e10921a491575d391a45ea"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "7280a9b1c3757eafbcaf9a95"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2799.07,
+    "actualAmount": 2407.2,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 2799.07,
+        "_id": {
+          "$oid": "e2e42069a626434410e768bf"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e2bad66e798017a3a2c20128"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6220.17,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 6220.17,
+        "_id": {
+          "$oid": "58eff99a138f95d9f116fa1a"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "79b806c73772872326ad8cb6"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3732.1,
+    "actualAmount": 3209.61,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 3732.1,
+        "_id": {
+          "$oid": "de0f126d2773eb5335280e74"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "d7e40689d5ff3d9b97cfeee4"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2488.07,
+    "actualAmount": 2239.26,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 2488.07,
+        "_id": {
+          "$oid": "302232fec42dbcd24a3c9b2a"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "56062f30b1c5fcf494409335"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3110.08,
+    "actualAmount": 2674.67,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 3110.08,
+        "_id": {
+          "$oid": "824e9748387f35fc743a7c46"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c30f893c0760fdd0b7346282"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1866.05,
+    "actualAmount": 1679.45,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 1866.05,
+        "_id": {
+          "$oid": "669c57326adce8eecd209858"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4e08bb605fbda0d65ab8499b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1244.03,
+    "actualAmount": 970.34,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 1244.03,
+        "_id": {
+          "$oid": "13036e6647223c9dd7794ef9"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "dae1c625823b5896992fa696"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 5442.65,
+    "actualAmount": 4898.39,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 5442.65,
+        "_id": {
+          "$oid": "98e4acacc97951728ef92c28"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6ae804ab363e53b446d2e360"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3265.59,
+    "actualAmount": 2547.16,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 3265.59,
+        "_id": {
+          "$oid": "c02d3e10debcf4f38997e991"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "300c882fbecd2a9dc362b741"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2177.06,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 2177.06,
+        "_id": {
+          "$oid": "b0ff3796fedc53e1a5e03a44"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "1b719f632ec6f32ad39fb8fc"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4665.13,
+    "actualAmount": 3638.8,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 4665.13,
+        "_id": {
+          "$oid": "691a4d89d46ba1d955bd8d86"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4e528f05469312e5d9ccb8bb"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2799.07,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 2799.07,
+        "_id": {
+          "$oid": "df44cdb0e1ae8691a260f0d5"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4dfdf90871ed8c4ac47e1e1b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1866.05,
+    "actualAmount": 1604.8,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 1866.05,
+        "_id": {
+          "$oid": "cba99e1bf7961c70cec32a54"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c8e740d2c3bff4d1c269aa51"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3110.08,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 3110.08,
+        "_id": {
+          "$oid": "38f1b3136b3735062ec9844c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a1afbb9e7b0e321b40279683"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1866.05,
+    "actualAmount": 1604.8,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 1866.05,
+        "_id": {
+          "$oid": "077e576fe0403ef89cdcc4ca"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "3539118a12b2116b5c378786"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1244.03,
+    "actualAmount": 1119.63,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 1244.03,
+        "_id": {
+          "$oid": "ad73bc642f4c355c47ceb28b"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "1ebfb54dfe1ea2d65fea0f6b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4665.13,
+    "actualAmount": 4012.01,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 4665.13,
+        "_id": {
+          "$oid": "e27a1d8572dc61261c353f69"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c3c0fb27cf4884f41220bcdb"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2799.07,
+    "actualAmount": 2519.16,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 2799.07,
+        "_id": {
+          "$oid": "e95584d5cd1f94da766ae87e"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "8231849c9fc5c6644c9848d4"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1866.05,
+    "actualAmount": 1455.52,
+    "actualAmountDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 1866.05,
+        "_id": {
+          "$oid": "42522bfe1b52c26f8cfd2d38"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "053797923f5c9c12314c4cf6"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4665.13,
+    "actualAmount": 4198.62,
+    "actualAmountDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 4665.13,
+        "_id": {
+          "$oid": "03b38d3953f90295a654f4f0"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ded77642eeae739e3a66298e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2799.07,
+    "actualAmount": 2183.27,
+    "actualAmountDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 2799.07,
+        "_id": {
+          "$oid": "e58e7288014435aafc7553cd"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "996b394fa699e7c513b58985"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1866.05,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-07-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-07-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-07-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 1866.05,
+        "_id": {
+          "$oid": "7d2b29e094cf0fc385265378"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "dcb01a14423272b427aac0b3"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 8267.02,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 8267.02,
+        "_id": {
+          "$oid": "ec098b3f4f3a66b154513304"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6622513769429a16907d2857"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4960.21,
+    "actualAmount": 4067.37,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 4960.21,
+        "_id": {
+          "$oid": "9f3c8e13a51d14acc3940ce7"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "fd01877256218054e500ceb0"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3306.8,
+    "actualAmount": 2843.85,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 3306.8,
+        "_id": {
+          "$oid": "64bac4040b326bba16dfbde2"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a5ee3829b296dd3defd65c46"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 7348.46,
+    "actualAmount": 6025.74,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 7348.46,
+        "_id": {
+          "$oid": "7ed5057b1ab3660eb16e14c0"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "087c7f6dd3314bff4f206032"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4409.07,
+    "actualAmount": 3791.8,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 4409.07,
+        "_id": {
+          "$oid": "06a6c2caba044ac5d13abb05"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "012187a0a5091068a510e600"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2939.38,
+    "actualAmount": 2645.44,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 2939.38,
+        "_id": {
+          "$oid": "d8c7406526f62ad81743c09c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "eea3c3093d7bc7dd4a5fd806"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3674.23,
+    "actualAmount": 3159.84,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 3674.23,
+        "_id": {
+          "$oid": "7ab008751ddf839819800459"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "854feb15a6b076c1c126fe12"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2204.53,
+    "actualAmount": 1984.08,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 2204.53,
+        "_id": {
+          "$oid": "f1c7f834d28783ae2c687678"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "aaf2b63be6fbd37e4e348ede"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1469.69,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 1469.69,
+        "_id": {
+          "$oid": "6b213e3572baa729a72938f6"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "32f7e180247bb9e3692227b3"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6429.9,
+    "actualAmount": 5786.91,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 6429.9,
+        "_id": {
+          "$oid": "7e1f3486c98ddb350fb7c491"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c32db613c4f0cb040e9dffe6"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3857.94,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 3857.94,
+        "_id": {
+          "$oid": "a95aa5005158323637cd3c5d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9ba4251ebc3f76b752b0fe7d"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2571.96,
+    "actualAmount": 2109.01,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 2571.96,
+        "_id": {
+          "$oid": "01e47156cafefbd564fe1df1"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "298b470b5977279ad6a6f03f"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 5511.34,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 5511.34,
+        "_id": {
+          "$oid": "c0f75b43087e8fb1b66c7534"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4a957a00aee0b2ba89c05e24"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3306.8,
+    "actualAmount": 2711.58,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 3306.8,
+        "_id": {
+          "$oid": "e00ed4be91505beff47a7e7e"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e420f2568f24e42b3b361fb3"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2204.53,
+    "actualAmount": 1895.9,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 2204.53,
+        "_id": {
+          "$oid": "e96d4210f4de38fcbdb1eceb"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "30ed377e2f377862037e419c"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3674.23,
+    "actualAmount": 3012.87,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 3674.23,
+        "_id": {
+          "$oid": "7b60b1fe1b879885406602d8"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c6f5865ad19552b4c080da42"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2204.53,
+    "actualAmount": 1895.9,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 2204.53,
+        "_id": {
+          "$oid": "fdabc3c57fd2a342674499ca"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "00ed5bd6b7744e2fdeac799b"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1469.69,
+    "actualAmount": 1322.72,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 1469.69,
+        "_id": {
+          "$oid": "98c85108242f055f62695d65"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c3716d14d8791a559bf13560"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 5511.34,
+    "actualAmount": 4739.75,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 5511.34,
+        "_id": {
+          "$oid": "2b772053420364bfa955559c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "f5ccfa3cdf87cd4db30a79e6"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3306.8,
+    "actualAmount": 2976.12,
+    "actualAmountDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 3306.8,
+        "_id": {
+          "$oid": "e6183666fa5fed806e1185a0"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "4f3a3c127c49d8fb3648cded"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2204.53,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 2204.53,
+        "_id": {
+          "$oid": "edfcb85b64921e535cc7a859"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "974baea44582dfaa2bc81962"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 5511.34,
+    "actualAmount": 4960.21,
+    "actualAmountDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 5511.34,
+        "_id": {
+          "$oid": "b2b15db3b5601c7d319e90bf"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "ffabe30ad5a2ae65cc22bd39"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3306.8,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 3306.8,
+        "_id": {
+          "$oid": "eaaab9eac12f2385eb8ae7bf"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "52cff769f484d33061bcbe49"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2204.53,
+    "actualAmount": 1807.71,
+    "actualAmountDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-08-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-08-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-08-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 2204.53,
+        "_id": {
+          "$oid": "7de94a6613d068b2203abef2"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9c4dc72b65bf65ff365d4afc"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Preventive maintenance",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 10104.15,
+    "actualAmount": 7881.24,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-1-1",
+    "particulars": [
+      {
+        "particularName": "Preventive maintenance",
+        "particularAmount": 10104.15,
+        "_id": {
+          "$oid": "e212e36fbeda3f6f39fbc3a3"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "edd5307ac97fcf093d4b43e2"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Repairs and spares",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6062.49,
+    "actualAmount": 4971.24,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-1-2",
+    "particulars": [
+      {
+        "particularName": "Repairs and spares",
+        "particularAmount": 6062.49,
+        "_id": {
+          "$oid": "f4fe8663a16c73b9a30fe317"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "aac2e41f4307c6b4864a7ca0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "expanseName": "Equipment servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4041.66,
+    "actualAmount": 3475.83,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Maintenance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-1-3",
+    "particulars": [
+      {
+        "particularName": "Equipment servicing",
+        "particularAmount": 4041.66,
+        "_id": {
+          "$oid": "269c8fb3be20e791f74c5355"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "b907acad071699c5cca8a743"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Recruitment services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 8981.47,
+    "actualAmount": 7364.81,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-2-1",
+    "particulars": [
+      {
+        "particularName": "Recruitment services",
+        "particularAmount": 8981.47,
+        "_id": {
+          "$oid": "b870056a651b6711934e25c6"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "037613e97ca7e67cae04bd93"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee training",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 5388.88,
+    "actualAmount": 4634.44,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-2-2",
+    "particulars": [
+      {
+        "particularName": "Employee training",
+        "particularAmount": 5388.88,
+        "_id": {
+          "$oid": "0b20a40042454b52af31af69"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "de0c38d11848645eda754675"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "expanseName": "Employee engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3592.58,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "HR Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-2-3",
+    "particulars": [
+      {
+        "particularName": "Employee engagement",
+        "particularAmount": 3592.58,
+        "_id": {
+          "$oid": "c371b5882c979d6bde1b55d4"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c1329bb4e50bb60cb041d034"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Strategic planning",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4490.73,
+    "actualAmount": 3862.03,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-3-1",
+    "particulars": [
+      {
+        "particularName": "Strategic planning",
+        "particularAmount": 4490.73,
+        "_id": {
+          "$oid": "dc4b67946231cb40fcbb94fd"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c39e6b61e58e5fbf066d9f8e"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Business advisory",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2694.44,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-3-2",
+    "particulars": [
+      {
+        "particularName": "Business advisory",
+        "particularAmount": 2694.44,
+        "_id": {
+          "$oid": "2a439b2cf83ca517584c0d0b"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "a5274b465958eed2d4c29d22"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "expanseName": "Leadership travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1796.29,
+    "actualAmount": 1401.11,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Top Management Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-3-3",
+    "particulars": [
+      {
+        "particularName": "Leadership travel",
+        "particularAmount": 1796.29,
+        "_id": {
+          "$oid": "8944125fff8444cdf9480cf7"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "01c3481e901bd07dbeac22ad"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Cloud infrastructure",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 7858.78,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-4-1",
+    "particulars": [
+      {
+        "particularName": "Cloud infrastructure",
+        "particularAmount": 7858.78,
+        "_id": {
+          "$oid": "1bc8f51e9a70eca23a8a2f85"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "58726e4698549b7c73de1c6c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Software subscriptions",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4715.27,
+    "actualAmount": 3677.91,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-4-2",
+    "particulars": [
+      {
+        "particularName": "Software subscriptions",
+        "particularAmount": 4715.27,
+        "_id": {
+          "$oid": "3cc3fe4130beda007cb33cab"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "fefaf8df6d3bf41b3bd37ac0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "expanseName": "Application support",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 3143.51,
+    "actualAmount": 2577.68,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Tech Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-4-3",
+    "particulars": [
+      {
+        "particularName": "Application support",
+        "particularAmount": 3143.51,
+        "_id": {
+          "$oid": "e472a6e971b6cbfe3d733750"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e3526bd7314575c5beeaedd8"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Client engagement",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6736.1,
+    "actualAmount": 5254.16,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-5-1",
+    "particulars": [
+      {
+        "particularName": "Client engagement",
+        "particularAmount": 6736.1,
+        "_id": {
+          "$oid": "c4bbdf582c1a19acb5f0f43c"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "da5807b266cd40024b5f15d7"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales travel",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4041.66,
+    "actualAmount": 3314.16,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-5-2",
+    "particulars": [
+      {
+        "particularName": "Sales travel",
+        "particularAmount": 4041.66,
+        "_id": {
+          "$oid": "d3d4dbfaee1d20a53992adcd"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "6e073750f55ea57be2d8b4e5"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "expanseName": "Sales tools",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2694.44,
+    "actualAmount": 2317.22,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Sales Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-5-3",
+    "particulars": [
+      {
+        "particularName": "Sales tools",
+        "particularAmount": 2694.44,
+        "_id": {
+          "$oid": "03a788a244982cf3c33777c9"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "30ed3e80bd4657db97eb9ee3"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Accounting services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4490.73,
+    "actualAmount": 3682.4,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-6-1",
+    "particulars": [
+      {
+        "particularName": "Accounting services",
+        "particularAmount": 4490.73,
+        "_id": {
+          "$oid": "8f8bde45c6cbe76d72fc8add"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "e890ae7303243a270920cad8"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Audit preparation",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2694.44,
+    "actualAmount": 2317.22,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-6-2",
+    "particulars": [
+      {
+        "particularName": "Audit preparation",
+        "particularAmount": 2694.44,
+        "_id": {
+          "$oid": "e91807a44ff16a2f109ec2b1"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "9f4633c67b0d92ac1aad7266"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "expanseName": "Finance systems",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 1796.29,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Finance Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-6-3",
+    "particulars": [
+      {
+        "particularName": "Finance systems",
+        "particularAmount": 1796.29,
+        "_id": {
+          "$oid": "14d71f3f9178cd2f0b7f8f23"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "404046e1a4afea3b4805a8cd"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Network operations",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6736.1,
+    "actualAmount": 5793.05,
+    "actualAmountDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-7-1",
+    "particulars": [
+      {
+        "particularName": "Network operations",
+        "particularAmount": 6736.1,
+        "_id": {
+          "$oid": "fffa85b8a33a7a6329978950"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "1fd88f1bffccbf82e69d6f09"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Device servicing",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4041.66,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-7-2",
+    "particulars": [
+      {
+        "particularName": "Device servicing",
+        "particularAmount": 4041.66,
+        "_id": {
+          "$oid": "fbc217b909e549199fed856d"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "863a99d7a84183941db97309"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "expanseName": "Security software",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2694.44,
+    "actualAmount": 2101.66,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "IT Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-7-3",
+    "particulars": [
+      {
+        "particularName": "Security software",
+        "particularAmount": 2694.44,
+        "_id": {
+          "$oid": "97f25b0ab055658e37afab96"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "c83272bab2d2b68d59a2a30e"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office supplies",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 6736.1,
+    "actualAmount": 0,
+    "actualAmountDate": null,
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Unpaid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-02T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-8-1",
+    "particulars": [
+      {
+        "particularName": "Office supplies",
+        "particularAmount": 6736.1,
+        "_id": {
+          "$oid": "4e44f90000a2b0a85f393cd8"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "987c41b8b55b1940ce92c17d"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Facility services",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 4041.66,
+    "actualAmount": 3152.49,
+    "actualAmountDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-03T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-8-2",
+    "particulars": [
+      {
+        "particularName": "Facility services",
+        "particularAmount": 4041.66,
+        "_id": {
+          "$oid": "a0f313d7bd494b69477b3a23"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "440baccafdbe0da897d210b2"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "expanseName": "Office utilities",
+    "expanseType": "External",
+    "paymentType": "Recurring",
+    "projectedAmount": 2694.44,
+    "actualAmount": 2209.44,
+    "actualAmountDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "category": "Administration Operations",
+    "status": "Approved",
+    "isPaid": "Paid",
+    "isExtraBudget": false,
+    "dueDate": {
+      "$date": "2026-09-04T03:30:00Z"
+    },
+    "month": {
+      "$date": "2026-09-01T00:00:00Z"
+    },
+    "invoiceAttached": false,
+    "preApproved": false,
+    "emergencyApproval": false,
+    "isOnlyBudget": false,
+    "includesBudget": true,
+    "budgetApproval": true,
+    "l1Approval": true,
+    "srNo": "BUD-2026-09-8-3",
+    "particulars": [
+      {
+        "particularName": "Office utilities",
+        "particularAmount": 2694.44,
+        "_id": {
+          "$oid": "9280560872d63cd9fe893a94"
+        }
+      }
+    ],
+    "finance": {
+      "particulars": []
+    },
+    "_id": {
+      "$oid": "574635706dbf2db6d7aa4ab0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T03:30:00Z"
+    }
+  }
+]

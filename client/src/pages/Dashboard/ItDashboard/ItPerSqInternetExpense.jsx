@@ -11,7 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { toast } from "sonner";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inrFormat } from "../../../utils/currencyFormat";
+import { usdFormat } from "../../../utils/currencyFormat";
 import { transformBudgetData } from "../../../utils/transformBudgetData";
 import useAuth from "../../../hooks/useAuth";
 import usePageDepartment from "../../../hooks/usePageDepartment";
@@ -21,8 +21,12 @@ const ItPerSqInternetExpense = () => {
   const { auth } = useAuth();
   const location = useLocation();
   const department = usePageDepartment();
+  const IT_DEPARTMENT_ID = "6798baa8e469e809084e2497";
+  const activeDepartmentId = location.pathname.includes("/IT-dashboard/")
+    ? IT_DEPARTMENT_ID
+    : department?._id;
   const queryClient = useQueryClient();
-  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2025-26");
   const departmentAccess = [
     "67b2cf85b9b6ed5cedeb9a2e",
     "6798bab9e469e809084e249e",
@@ -49,18 +53,17 @@ const ItPerSqInternetExpense = () => {
   const selectedBuilding = watch("building");
 
   const { data: hrFinance = [], isPending: isHrLoading } = useQuery({
-    queryKey: ["departmentBudget", department?._id],
+    queryKey: ["departmentBudget", activeDepartmentId],
     queryFn: async () => {
       const response = await axios.get(
-        `/api/budget/company-budget?departmentId=${department._id}`
+        `/api/budget/company-budget?departmentId=${activeDepartmentId}`
       );
       const budgets = response.data.allBudgets;
-      return Array.isArray(budgets)
-        ? budgets.filter((item) => item.expanseType === "INTERNET EXPENSES")
-        : [];
+      return Array.isArray(budgets) ? budgets.filter((item) => item.expanseType === "INTERNET EXPENSES") : [];
     },
-    enabled: !!department?._id, // <- ✅ prevents firing until department is ready
+    enabled: !!activeDepartmentId, // <- ✅ prevents firing until department is ready
   });
+
 
   const {
     data: units = [],
@@ -89,8 +92,8 @@ const ItPerSqInternetExpense = () => {
     new Map(
       units.length > 0
         ? units
-            .filter((loc) => loc.building && loc.building._id)
-            .map((loc) => [loc.building._id, loc.building.buildingName])
+          .filter((loc) => loc.building && loc.building._id)
+          .map((loc) => [loc.building._id, loc.building.buildingName])
         : []
     ).entries()
   );
@@ -99,7 +102,7 @@ const ItPerSqInternetExpense = () => {
     useMutation({
       mutationFn: async (data) => {
         const response = await axios.post(
-          `/api/budget/request-budget/${department._id}`,
+          `/api/budget/request-budget/${activeDepartmentId}`,
           {
             ...data,
           }
@@ -134,7 +137,8 @@ const ItPerSqInternetExpense = () => {
             { field: "expanseName", headerName: "Expense Name", flex: 1 },
             // { field: "department", headerName: "Department", flex: 200 },
             { field: "expanseType", headerName: "Expense Type", flex: 1 },
-            { field: "projectedAmount", headerName: "Amount (USD)", flex: 1 },
+            { field: "projectedAmount", headerName: "Projected Amount (USD)", flex: 1 },
+            { field: "actualAmount", headerName: "Actual Amount (USD)", flex: 1 },
             { field: "dueDate", headerName: "Due Date", flex: 1 },
             { field: "status", headerName: "Status", flex: 1 },
           ],
@@ -150,7 +154,7 @@ const ItPerSqInternetExpense = () => {
       department: item.department,
       expanseType: item.expanseType,
       projectedAmount: item?.projectedAmount?.toFixed(2),
-      actualAmount: inrFormat(item?.actualAmount || 0),
+      actualAmount: usdFormat(item?.actualAmount || 0),
       dueDate: dayjs(item.dueDate).format("DD-MM-YYYY"),
       status: item.status,
       invoiceAttached: item.invoiceAttached,
@@ -166,8 +170,8 @@ const ItPerSqInternetExpense = () => {
         ...row,
         srNo: index + 1,
         projectedAmount: Number(
-          row.projectedAmount?.toLocaleString("en-IN").replace(/,/g, "")
-        ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
+          row.projectedAmount?.toLocaleString("en-US").replace(/,/g, "")
+        ).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       }));
       const transformedCols = [
         { field: "srNo", headerName: "Sr No", width: 100 },
@@ -176,8 +180,8 @@ const ItPerSqInternetExpense = () => {
 
       return {
         ...data,
-        projectedAmount: data.projectedAmount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
-        amount: data.amount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
+        projectedAmount: data.projectedAmount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
+        amount: data.amount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
         tableData: {
           ...data.tableData,
           rows: transoformedRows,
@@ -263,6 +267,7 @@ const ItPerSqInternetExpense = () => {
   );
   const roundedMax = Math.ceil((maxExpenseValue + 100000) / 100000) * 100000;
 
+
   const expenseOptions = {
     chart: {
       type: "bar",
@@ -286,7 +291,7 @@ const ItPerSqInternetExpense = () => {
     dataLabels: {
       enabled: true,
       formatter: (val) => {
-        return inrFormat(val);
+        return usdFormat(val);
       },
 
       style: {
@@ -298,9 +303,9 @@ const ItPerSqInternetExpense = () => {
 
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount (USD)" },
       labels: {
-        formatter: (val) => `${val / 100000}`,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
     },
     fill: {
@@ -316,7 +321,7 @@ const ItPerSqInternetExpense = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-US")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -325,8 +330,8 @@ const ItPerSqInternetExpense = () => {
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
                <div style="text-align: left;">USD ${Math.round(
-                 rawData
-               ).toLocaleString("en-IN")}</div>
+          rawData
+        ).toLocaleString("en-US")}</div>
   
                 </div>
        
@@ -337,10 +342,8 @@ const ItPerSqInternetExpense = () => {
   };
 
   const totalUtilised =
-    budgetBar?.[selectedFiscalYear]?.utilisedBudget?.reduce(
-      (acc, val) => acc + val,
-      0
-    ) || 0;
+    budgetBar?.[selectedFiscalYear]?.utilisedBudget?.reduce((acc, val) => acc + val, 0) || 0;
+
 
   const navigate = useNavigate();
   // BUDGET NEW END
@@ -351,7 +354,7 @@ const ItPerSqInternetExpense = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={`BIZ Nest ${department?.name} DEPARTMENT EXPENSE`}
-        titleAmount={`USD ${inrFormat(totalUtilised)}`}
+        titleAmount={`USD ${usdFormat(totalUtilised)}`}
         onYearChange={setSelectedFiscalYear}
       />
 
@@ -366,14 +369,12 @@ const ItPerSqInternetExpense = () => {
         </div>
       )} */}
 
-      <AllocatedBudget
-        financialData={financialData}
-        newTitle={"INTERNET EXPENSES"}
-      />
+      <AllocatedBudget financialData={financialData} newTitle={"INTERNET EXPENSES"} exportData />
       <MuiModal
         title="Request Budget"
         open={openModal}
-        onClose={() => setOpenModal(false)}>
+        onClose={() => setOpenModal(false)}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Expense Name */}
           <Controller
@@ -442,10 +443,10 @@ const ItPerSqInternetExpense = () => {
                   {locationsLoading
                     ? []
                     : uniqueBuildings.map((building) => (
-                        <MenuItem key={building[0]} value={building[1]}>
-                          {building[1]}
-                        </MenuItem>
-                      ))}
+                      <MenuItem key={building[0]} value={building[1]}>
+                        {building[1]}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
             )}
@@ -465,14 +466,14 @@ const ItPerSqInternetExpense = () => {
                   {locationsLoading
                     ? []
                     : units.map((unit) =>
-                        unit.building.buildingName === selectedBuilding ? (
-                          <MenuItem key={unit._id} value={unit._id}>
-                            {unit.unitNo}
-                          </MenuItem>
-                        ) : (
-                          <></>
-                        )
-                      )}
+                      unit.building.buildingName === selectedBuilding ? (
+                        <MenuItem key={unit._id} value={unit._id}>
+                          {unit.unitNo}
+                        </MenuItem>
+                      ) : (
+                        <></>
+                      )
+                    )}
                 </Select>
               </FormControl>
             )}

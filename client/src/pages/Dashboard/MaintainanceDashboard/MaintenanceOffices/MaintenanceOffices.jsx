@@ -231,7 +231,7 @@ const MaintenanceOffices = () => {
         ...client,
         srNo: index + 1,
         registerDate: dayjs(client.registerDate).format("DD-MM-YYYY"),
-        actualRevenue: Number(client.actualRevenue).toLocaleString("en-IN"),
+        actualRevenue: Number(client.actualRevenue).toLocaleString("en-US"),
       }));
       return { ...domain, clients: updatedClients };
     });
@@ -262,7 +262,7 @@ const MaintenanceOffices = () => {
       bar: { horizontal: false, columnWidth: "30%", borderRadius: 5 },
     },
     legend: { position: "top" },
-    colors: ["#54C4A7", "#EB5C45"],
+     colors: ["#54C4A7", "#EB5C45"],
   };
 
   return (

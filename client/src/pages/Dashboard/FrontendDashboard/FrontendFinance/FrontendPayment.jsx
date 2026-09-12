@@ -120,7 +120,8 @@ const FrontendPayment = () => {
                           fontSize: "0.875rem",
                           fontWeight: "bold",
                           textTransform: "capitalize",
-                        }}>
+                        }}
+                      >
                         {status}
                       </span>
                     }
@@ -145,9 +146,8 @@ const FrontendPayment = () => {
                     <div key={index} className="flex gap-2 items-start mb-2">
                       <div
                         className="w-3 h-3 rounded-full mt-[0.3rem]"
-                        style={{
-                          backgroundColor: event.backgroundColor,
-                        }}></div>
+                        style={{ backgroundColor: event.backgroundColor }}
+                      ></div>
                       <div className="flex flex-col">
                         <span className="text-content font-medium">
                           {event.title}
@@ -173,6 +173,7 @@ const FrontendPayment = () => {
         {/* Calendar Section */}
         <div className="w-full h-full overflow-y-auto">
           <FullCalendar
+            allDayText="All Day"
             headerToolbar={{
               left: "today",
               center: "prev title next",
@@ -198,7 +199,8 @@ const FrontendPayment = () => {
           selectedEvent
             ? statusColorMap[selectedEvent.extendedProps.status]
             : ""
-        }>
+        }
+      >
         {selectedEvent && (
           <div>
             <div className="flex flex-col gap-2">
@@ -228,7 +230,7 @@ const FrontendPayment = () => {
                 <span>:</span>
                 <span className="text-content font-pmedium w-full justify-start pl-4">
                   {Number(selectedEvent.extendedProps.amount).toLocaleString(
-                    "en-IN"
+                    "en-US"
                   )}
                   &nbsp;USD
                 </span>

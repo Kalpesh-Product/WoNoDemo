@@ -1,0 +1,602 @@
+[
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 1800,
+    "gst": 324,
+    "invoiceAmount": 2124,
+    "invoiceCreationDate": {
+      "$date": "2026-04-01T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "8178fc375464d13b188582e9"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 6500,
+    "gst": 1170,
+    "invoiceAmount": 7670,
+    "invoiceCreationDate": {
+      "$date": "2026-04-02T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-04-02T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "ff6f8d8bbf33ea5087d17f19"
+    },
+    "createdAt": {
+      "$date": "2026-04-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 3200,
+    "gst": 576,
+    "invoiceAmount": 3776,
+    "invoiceCreationDate": {
+      "$date": "2026-04-03T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-04-03T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "ce5d90a6b6cad9a029c16209"
+    },
+    "createdAt": {
+      "$date": "2026-04-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1200,
+    "gst": 216,
+    "invoiceAmount": 1416,
+    "invoiceCreationDate": {
+      "$date": "2026-04-04T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "fe83ca17fcacd603b4dad99a"
+    },
+    "createdAt": {
+      "$date": "2026-04-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-04T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 1895,
+    "gst": 341.1,
+    "invoiceAmount": 2236.1,
+    "invoiceCreationDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "984da09a0d243638fa9ec75f"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 6775,
+    "gst": 1219.5,
+    "invoiceAmount": 7994.5,
+    "invoiceCreationDate": {
+      "$date": "2026-05-02T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-05-02T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "c10b1b4674d20551ccf7252d"
+    },
+    "createdAt": {
+      "$date": "2026-05-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 3360,
+    "gst": 604.8,
+    "invoiceAmount": 3964.8,
+    "invoiceCreationDate": {
+      "$date": "2026-05-03T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "1eaa7d42d0e0866b37e83821"
+    },
+    "createdAt": {
+      "$date": "2026-05-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1280,
+    "gst": 230.4,
+    "invoiceAmount": 1510.4,
+    "invoiceCreationDate": {
+      "$date": "2026-05-04T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-05-04T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "d66ab3723cdb461ce35dbd74"
+    },
+    "createdAt": {
+      "$date": "2026-05-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 1990,
+    "gst": 358.2,
+    "invoiceAmount": 2348.2,
+    "invoiceCreationDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "e951a41eb70affb61c542052"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 7050,
+    "gst": 1269,
+    "invoiceAmount": 8319,
+    "invoiceCreationDate": {
+      "$date": "2026-06-02T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "7e08421dbf8727b66bd10e93"
+    },
+    "createdAt": {
+      "$date": "2026-06-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 3520,
+    "gst": 633.6,
+    "invoiceAmount": 4153.6,
+    "invoiceCreationDate": {
+      "$date": "2026-06-03T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-06-03T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "a392ead9fa95f4b09b01bac9"
+    },
+    "createdAt": {
+      "$date": "2026-06-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1360,
+    "gst": 244.8,
+    "invoiceAmount": 1604.8,
+    "invoiceCreationDate": {
+      "$date": "2026-06-04T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-06-04T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "152fe5e0a705282f41796b1c"
+    },
+    "createdAt": {
+      "$date": "2026-06-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 2085,
+    "gst": 375.3,
+    "invoiceAmount": 2460.3,
+    "invoiceCreationDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "7bba31917e11c28919e3b5d2"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 7325,
+    "gst": 1318.5,
+    "invoiceAmount": 8643.5,
+    "invoiceCreationDate": {
+      "$date": "2026-07-02T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-07-02T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "061d59eed80b087b1719b90a"
+    },
+    "createdAt": {
+      "$date": "2026-07-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 3680,
+    "gst": 662.4,
+    "invoiceAmount": 4342.4,
+    "invoiceCreationDate": {
+      "$date": "2026-07-03T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-07-03T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "15073d439941cc3fa6ab3f6c"
+    },
+    "createdAt": {
+      "$date": "2026-07-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1440,
+    "gst": 259.2,
+    "invoiceAmount": 1699.2,
+    "invoiceCreationDate": {
+      "$date": "2026-07-04T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "18f74bd538d7fb69531792bb"
+    },
+    "createdAt": {
+      "$date": "2026-07-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 2180,
+    "gst": 392.4,
+    "invoiceAmount": 2572.4,
+    "invoiceCreationDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "74ab3ed2eb6632f5eb9cfcb4"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 7600,
+    "gst": 1368,
+    "invoiceAmount": 8968,
+    "invoiceCreationDate": {
+      "$date": "2026-08-02T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-08-02T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "6c85de8188bb591a239a3a2b"
+    },
+    "createdAt": {
+      "$date": "2026-08-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 3840,
+    "gst": 691.2,
+    "invoiceAmount": 4531.2,
+    "invoiceCreationDate": {
+      "$date": "2026-08-03T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "0d87ad15d27b00146dc677af"
+    },
+    "createdAt": {
+      "$date": "2026-08-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1520,
+    "gst": 273.6,
+    "invoiceAmount": 1793.6,
+    "invoiceCreationDate": {
+      "$date": "2026-08-04T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-08-04T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "34ccebc0c67b9b536ae92b2e"
+    },
+    "createdAt": {
+      "$date": "2026-08-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking Charges",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Harbor Advisory",
+    "taxableAmount": 2275,
+    "gst": 409.5,
+    "invoiceAmount": 2684.5,
+    "invoiceCreationDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "b985ba611b2ffee8e558c4aa"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Centre Management Fees",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Willow Creative",
+    "taxableAmount": 7875,
+    "gst": 1417.5,
+    "invoiceAmount": 9292.5,
+    "invoiceCreationDate": {
+      "$date": "2026-09-02T09:00:00Z"
+    },
+    "status": "Unpaid",
+    "_id": {
+      "$oid": "8a135b4b345ce1465282d6e4"
+    },
+    "createdAt": {
+      "$date": "2026-09-02T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Monthly Pass",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Northstar Analytics",
+    "taxableAmount": 4000,
+    "gst": 720,
+    "invoiceAmount": 4720,
+    "invoiceCreationDate": {
+      "$date": "2026-09-03T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-09-03T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "5d3c8be3044962b7e962c139"
+    },
+    "createdAt": {
+      "$date": "2026-09-03T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T09:00:00Z"
+    }
+  },
+  {
+    "particulars": "Parking",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "name": "Juniper Technologies",
+    "taxableAmount": 1600,
+    "gst": 288,
+    "invoiceAmount": 1888,
+    "invoiceCreationDate": {
+      "$date": "2026-09-04T09:00:00Z"
+    },
+    "invoicePaidDate": {
+      "$date": "2026-09-04T09:00:00Z"
+    },
+    "status": "Paid",
+    "_id": {
+      "$oid": "5f8063bd39c13be3b2fee52e"
+    },
+    "createdAt": {
+      "$date": "2026-09-04T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T09:00:00Z"
+    }
+  }
+]

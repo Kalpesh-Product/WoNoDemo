@@ -67,6 +67,8 @@ const Reimbursement = () => {
     },
     mode: "onChange",
   });
+
+  console.log("voucher vouch vouch vouch");
   const { data: departmentBudget = [], isPending: isDepartmentLoading } =
     useQuery({
       queryKey: ["departmentBudget"],
@@ -121,8 +123,19 @@ const Reimbursement = () => {
         unit._id === selectedUnit &&
         unit.building.buildingName === selectedLocation
     );
-    return unit._id;
+
+    // Guard against undefined when the selected unit does not belong to the new
+    // location. This occurs when a user picks a unit and then changes the
+    // location dropdown, which previously caused an error while accessing
+    // unit._id.
+    return unit ? unit._id : null;
   }, [selectedUnit, selectedLocation, units]);
+
+  useEffect(() => {
+    // Reset unit selection whenever the location changes to avoid stale unit
+    // references when switching between buildings.
+    setValue("unitId", "");
+  }, [selectedLocation, setValue]);
 
   // const uniqueBuildings = Array.from(
   //   new Map(
@@ -249,30 +262,44 @@ const Reimbursement = () => {
     },
   });
 
-  const exportToPDF = () => {
+  // const exportToPDF = () => {
+  //   if (!formRef.current) return;
+
+  //   const options = {
+  //     margin: 0.2,
+  //     filename: "Voucher_Form.pdf",
+  //     image: { type: "jpeg", quality: 0.98 },
+  //     html2canvas: { scale: 1, useCORS: true },
+  //     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  //   };
+
+  //   // html2pdf().set(options).from(formRef.current).save();
+
+  //   html2pdf()
+  //     .set(options)
+  //     .from(formRef.current)
+  //     .outputPdf("blob")
+  //     .then((pdfBlob) => {
+  //       const file = new File([pdfBlob], "Voucher_Form.pdf", {
+  //         type: "application/pdf",
+  //       });
+
+  //       setValue("voucherFile", file);
+  //     });
+  // };
+
+  const exportToPDF = async () => {
     if (!formRef.current) return;
 
-    const options = {
+    const opt = {
       margin: 0.2,
       filename: "Voucher_Form.pdf",
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 1, useCORS: true },
+      html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     };
 
-    // html2pdf().set(options).from(formRef.current).save();
-
-    html2pdf()
-      .set(options)
-      .from(formRef.current)
-      .outputPdf("blob")
-      .then((pdfBlob) => {
-        const file = new File([pdfBlob], "Voucher_Form.pdf", {
-          type: "application/pdf",
-        });
-
-        setValue("voucherFile", file);
-      });
+    await html2pdf().set(opt).from(formRef.current).save();
   };
 
   return (
@@ -301,7 +328,8 @@ const Reimbursement = () => {
                     {...field}
                     label="Select Location"
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     <MenuItem value="" disabled>
                       Select Building
                     </MenuItem>
@@ -333,7 +361,8 @@ const Reimbursement = () => {
                     disabled={!selectedLocation}
                     {...field}
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     <MenuItem value="">Select Unit</MenuItem>
                     {locationsLoading ? (
                       <MenuItem disabled>
@@ -520,7 +549,8 @@ const Reimbursement = () => {
                   {fields.map((item, index) => (
                     <li
                       key={index}
-                      className="flex justify-between items-center border-b py-1">
+                      className="flex justify-between items-center border-b py-1"
+                    >
                       <div className="flex flex-col">
                         <span>{item.particularName}</span>
                         <span className="font-medium text-gray-600">
@@ -531,7 +561,8 @@ const Reimbursement = () => {
                         type="button"
                         onClick={() => remove(index)}
                         className="text-red-500 hover:text-red-700"
-                        title="Delete">
+                        title="Delete"
+                      >
                         <MdDelete size={20} />
                       </button>
                     </li>
@@ -596,7 +627,8 @@ const Reimbursement = () => {
                   value={field.value ? "Yes" : "No"}
                   onChange={(e) => field.onChange(e.target.value === "Yes")}
                   error={!!fieldState.error}
-                  helperText={fieldState.error?.message}>
+                  helperText={fieldState.error?.message}
+                >
                   {["Yes", "No"].map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -656,7 +688,8 @@ const Reimbursement = () => {
                     value={field.value ? "Yes" : "No"}
                     onChange={(e) => field.onChange(e.target.value === "Yes")}
                     error={!!fieldState.error}
-                    helperText={fieldState.error?.message}>
+                    helperText={fieldState.error?.message}
+                  >
                     {["Yes", "No"].map((opt) => (
                       <MenuItem key={opt} value={opt}>
                         {opt}
@@ -678,7 +711,11 @@ const Reimbursement = () => {
         </div>
       </PageFrame>
 
-      <MuiModal open={openPreview} onClose={() => setOpenPreview(false)}>
+      <MuiModal
+        open={openPreview}
+        onClose={() => setOpenPreview(false)}
+        hideHeader
+      >
         <Box className="absolute top-1/2 left-1/2 bg-white p-4 rounded shadow max-h-screen overflow-y-auto w-[53%] -translate-x-1/2 -translate-y-1/2">
           <div className="flex justify-between items-center mb-2">
             <span className="text-title text-primary font-pbold uppercase">

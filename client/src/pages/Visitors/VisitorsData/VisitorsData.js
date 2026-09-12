@@ -122,10 +122,10 @@ const assetUtilizationOptions = {
                     <div style="padding-bottom : 5px; border-bottom: 1px solid gray; margin-bottom:10px">
                         <strong>${month}</strong><br>
                     </div> 
-                    Total Assets Value: ₹${totalValue} Cr<br>
-                    Asset Value Used: ₹${usedValue} Cr<br>
-                    Under Maintenance: ₹${underMaintenance} k<br>
-                    Assets Damaged: ₹${damaged} k
+                    Total Assets Value: USD ${totalValue} Cr<br>
+                    Asset Value Used: USD ${usedValue} Cr<br>
+                    Under Maintenance: USD ${underMaintenance} k<br>
+                    Assets Damaged: USD ${damaged} k
                 </div>
             `;
     },

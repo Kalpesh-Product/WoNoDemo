@@ -1,7 +1,3 @@
-export const inrFormat = (money) => {
-  const exchangeRate = 100; // 1 USD = 100 USD
-  const usdValue = Math.ceil(Number(money) / exchangeRate); // Round up
-  return usdValue.toLocaleString("en-US", {
-    maximumFractionDigits: 0,
-  });
-};
+// Amounts passed to this formatter are already denominated in USD.
+export const usdFormat = (money) =>
+  Number(money).toLocaleString("en-US", { maximumFractionDigits: 0 });

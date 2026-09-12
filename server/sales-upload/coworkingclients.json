@@ -1,0 +1,1190 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "email": "workspace.1@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550100",
+    "brandName": "Northstar Analytics",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Technology",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "cabinDesks": 0,
+    "openDesks": 2,
+    "totalDesks": 2,
+    "ratePerOpenDesk": 180,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 4,
+    "meetingCreditBalance": 4,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.1@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "email": "workspace.2@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550101",
+    "brandName": "Juniper Technologies",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Consulting",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "cabinDesks": 2,
+    "openDesks": 3,
+    "totalDesks": 5,
+    "ratePerOpenDesk": 205,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 10,
+    "meetingCreditBalance": 10,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.2@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Harbor Advisory",
+    "clientInvoiceName": "Harbor Advisory Pvt Ltd",
+    "email": "workspace.3@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550102",
+    "brandName": "Harbor Advisory",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Education",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "cabinDesks": 0,
+    "openDesks": 4,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 230,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.3@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Willow Creative",
+    "clientInvoiceName": "Willow Creative Pvt Ltd",
+    "email": "workspace.4@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550103",
+    "brandName": "Willow Creative",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Retail",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "cabinDesks": 2,
+    "openDesks": 2,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 255,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.4@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Cobalt Ventures",
+    "clientInvoiceName": "Cobalt Ventures Pvt Ltd",
+    "email": "workspace.5@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550104",
+    "brandName": "Cobalt Ventures",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Finance",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "cabinDesks": 0,
+    "openDesks": 3,
+    "totalDesks": 3,
+    "ratePerOpenDesk": 180,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 6,
+    "meetingCreditBalance": 6,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.5@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "3c306b1e3ff25027f097f71e"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Meridian Consulting",
+    "clientInvoiceName": "Meridian Consulting Pvt Ltd",
+    "email": "workspace.6@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550105",
+    "brandName": "Meridian Consulting",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Design",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "cabinDesks": 2,
+    "openDesks": 4,
+    "totalDesks": 6,
+    "ratePerOpenDesk": 205,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 12,
+    "meetingCreditBalance": 12,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.6@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "email": "workspace.7@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550106",
+    "brandName": "Atlas Learning",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Technology",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "cabinDesks": 0,
+    "openDesks": 2,
+    "totalDesks": 2,
+    "ratePerOpenDesk": 230,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 4,
+    "meetingCreditBalance": 4,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.7@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "email": "workspace.8@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550107",
+    "brandName": "Orchid Commerce",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Consulting",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "cabinDesks": 2,
+    "openDesks": 3,
+    "totalDesks": 5,
+    "ratePerOpenDesk": 255,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 10,
+    "meetingCreditBalance": 10,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.8@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Aspen Digital",
+    "clientInvoiceName": "Aspen Digital Pvt Ltd",
+    "email": "workspace.9@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550108",
+    "brandName": "Aspen Digital",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Education",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "cabinDesks": 0,
+    "openDesks": 4,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 180,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.9@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Cedar Labs",
+    "clientInvoiceName": "Cedar Labs Pvt Ltd",
+    "email": "workspace.10@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550109",
+    "brandName": "Cedar Labs",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Retail",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "cabinDesks": 2,
+    "openDesks": 2,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 205,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.10@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Horizon Logistics",
+    "clientInvoiceName": "Horizon Logistics Pvt Ltd",
+    "email": "workspace.11@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550110",
+    "brandName": "Horizon Logistics",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Finance",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "cabinDesks": 0,
+    "openDesks": 3,
+    "totalDesks": 3,
+    "ratePerOpenDesk": 230,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 6,
+    "meetingCreditBalance": 6,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.11@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "3d07d88ac61c8d4b95dcbd0d"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Coral Media",
+    "clientInvoiceName": "Coral Media Pvt Ltd",
+    "email": "workspace.12@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550111",
+    "brandName": "Coral Media",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Design",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "cabinDesks": 2,
+    "openDesks": 4,
+    "totalDesks": 6,
+    "ratePerOpenDesk": 255,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 12,
+    "meetingCreditBalance": 12,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.12@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "email": "workspace.13@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550112",
+    "brandName": "Summit Strategy",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Technology",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "cabinDesks": 0,
+    "openDesks": 2,
+    "totalDesks": 2,
+    "ratePerOpenDesk": 180,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 4,
+    "meetingCreditBalance": 4,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.13@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "email": "workspace.14@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550113",
+    "brandName": "Aurora Design",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Consulting",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "cabinDesks": 2,
+    "openDesks": 3,
+    "totalDesks": 5,
+    "ratePerOpenDesk": 205,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 10,
+    "meetingCreditBalance": 10,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.14@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Maple Finance",
+    "clientInvoiceName": "Maple Finance Pvt Ltd",
+    "email": "workspace.15@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550114",
+    "brandName": "Maple Finance",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Education",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "cabinDesks": 0,
+    "openDesks": 4,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 230,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.15@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Sapphire Systems",
+    "clientInvoiceName": "Sapphire Systems Pvt Ltd",
+    "email": "workspace.16@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550115",
+    "brandName": "Sapphire Systems",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Retail",
+    "hoCity": "Mumbai",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "cabinDesks": 2,
+    "openDesks": 2,
+    "totalDesks": 4,
+    "ratePerOpenDesk": 255,
+    "ratePerCabinDesk": 300,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 8,
+    "meetingCreditBalance": 8,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Aisha Shah",
+      "email": "contact.workspace.16@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Solstice Research",
+    "clientInvoiceName": "Solstice Research Pvt Ltd",
+    "email": "workspace.17@example.com",
+    "bookingType": "Dedicated Desk",
+    "phone": "+12025550116",
+    "brandName": "Solstice Research",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Finance",
+    "hoCity": "Pune",
+    "hoState": "Maharashtra",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "cabinDesks": 0,
+    "openDesks": 3,
+    "totalDesks": 3,
+    "ratePerOpenDesk": 180,
+    "ratePerCabinDesk": 330,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 6,
+    "meetingCreditBalance": 6,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Daniel Wilson",
+      "email": "contact.workspace.17@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "28ad0eb3bf044f514f6512e3"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Riverstone Studio",
+    "clientInvoiceName": "Riverstone Studio Pvt Ltd",
+    "email": "workspace.18@example.com",
+    "bookingType": "Private Office",
+    "phone": "+12025550117",
+    "brandName": "Riverstone Studio",
+    "service": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "sector": "Design",
+    "hoCity": "Bengaluru",
+    "hoState": "Karnataka",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "cabinDesks": 2,
+    "openDesks": 4,
+    "totalDesks": 6,
+    "ratePerOpenDesk": 205,
+    "ratePerCabinDesk": 360,
+    "annualIncrement": 5,
+    "perDeskMeetingCredits": 2,
+    "totalMeetingCredits": 12,
+    "meetingCreditBalance": 12,
+    "lastManualCreditResetAt": null,
+    "startDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "endDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "lockinPeriod": 6,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "nextIncrement": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "localPoc": {
+      "name": "Priya Mehta",
+      "email": "contact.workspace.18@example.com",
+      "phone": "+12025550150"
+    },
+    "isActive": true,
+    "lastCreditReset": {
+      "$date": "2026-09-09T18:30:00Z"
+    },
+    "_id": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "meetingCreditBalanceHistory": [],
+    "documents": []
+  }
+]

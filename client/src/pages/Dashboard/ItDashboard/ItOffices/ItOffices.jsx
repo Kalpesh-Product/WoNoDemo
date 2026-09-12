@@ -387,7 +387,7 @@ const ItOffices = () => {
         ...client,
         srNo: index + 1,
         registerDate: dayjs(client.registerDate).format("DD-MM-YYYY"),
-        actualRevenue: Number(client.actualRevenue).toLocaleString("en-IN"),
+        actualRevenue: Number(client.actualRevenue).toLocaleString("en-US"),
       }));
       return { ...domain, clients: updatedClients };
     });
@@ -431,7 +431,8 @@ const ItOffices = () => {
             label="Select Month"
             value={selectedMonth}
             onChange={handleMonthChange}
-            sx={{ width: "200px" }}>
+            sx={{ width: "200px" }}
+          >
             {mockBusinessRevenueData.map((data) => (
               <MenuItem key={data.month} value={data.month}>
                 {data.month}
@@ -464,7 +465,8 @@ const ItOffices = () => {
               <AccordionSummary
                 expandIcon={<IoIosArrowDown />}
                 aria-controls={`panel-${index}-content`}
-                id={`panel-${index}-header`}>
+                id={`panel-${index}-header`}
+              >
                 <div className="flex justify-between items-center w-full px-4">
                   <span className="text-subtitle font-pmedium  ">
                     {domain.name}
@@ -483,9 +485,10 @@ const ItOffices = () => {
                       onClick={() => {
                         localStorage.setItem("client", domain.name);
                         navigate(
-                          `/app/dashboard/it-dashboard/it-offices/it-offices-layout/${domain.name}`
+                          `/app/dashboard/It-dashboard/it-offices/it-offices-layout/${domain.name}`
                         );
-                      }}>
+                      }}
+                    >
                       View Layout {domain.name}
                     </span>
 

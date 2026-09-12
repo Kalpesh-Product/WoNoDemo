@@ -13,7 +13,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import AgTable from "../../../../components/AgTable";
 import WidgetSection from "../../../../components/WidgetSection";
 import dayjs from "dayjs";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 
 const RevenueTarget = () => {
   const mockBusinessRevenueData = [
@@ -29,21 +29,21 @@ const RevenueTarget = () => {
               client: "Zomato",
               representative: "Dipiksha Gawas",
               registerDate: "2024-01-15",
-              actualRevenue: inrFormat(540000),
+              actualRevenue: usdFormat(540000),
             },
             {
               srNo: "2",
               client: "Lancesoft",
               representative: "Samarth Wagrekar",
               registerDate: "2024-02-10",
-              actualRevenue: inrFormat(403000),
+              actualRevenue: usdFormat(403000),
             },
             {
               srNo: "3",
               client: "Zimetrics",
               representative: "Shrey Vernaker",
               registerDate: "2024-03-05",
-              actualRevenue: inrFormat(306000),
+              actualRevenue: usdFormat(306000),
             },
           ],
         },
@@ -56,21 +56,21 @@ const RevenueTarget = () => {
               client: "Turtlemint",
               representative: "Bob Brown",
               registerDate: "2024-01-20",
-              actualRevenue: inrFormat(480040),
+              actualRevenue: usdFormat(480040),
             },
             {
               srNo: "2",
               client: "Infuse",
               representative: "Charlie White",
               registerDate: "2024-02-25",
-              actualRevenue: inrFormat(780076),
+              actualRevenue: usdFormat(780076),
             },
             {
               srNo: "3",
               client: "91HR",
               representative: "Charlie White",
               registerDate: "2024-02-25",
-              actualRevenue: inrFormat(345600),
+              actualRevenue: usdFormat(345600),
             },
 
           ],
@@ -84,21 +84,21 @@ const RevenueTarget = () => {
               client: "Capillary",
               representative: "Diana Prince",
               registerDate: "2024-03-18",
-              actualRevenue: inrFormat(725000),
+              actualRevenue: usdFormat(725000),
             },
             {
               srNo: "5",
               client: "CredAble",
               representative: "Bruce Wayne",
               registerDate: "2024-04-02",
-              actualRevenue: inrFormat(890000),
+              actualRevenue: usdFormat(890000),
             },
             {
               srNo: "6",
               client: "FarEye",
               representative: "Clark Kent",
               registerDate: "2024-04-10",
-              actualRevenue: inrFormat(615000),
+              actualRevenue: usdFormat(615000),
             },
 
           ],
@@ -112,21 +112,21 @@ const RevenueTarget = () => {
               client: "Yellow.ai",
               representative: "Peter Hoffman",
               registerDate: "2024-04-12",
-              actualRevenue: inrFormat(760000),
+              actualRevenue: usdFormat(760000),
             },
             {
               srNo: "8",
               client: "Ninjacart",
               representative: "Tony Perez",
               registerDate: "2024-04-14",
-              actualRevenue: inrFormat(925000),
+              actualRevenue: usdFormat(925000),
             },
             {
               srNo: "9",
               client: "Porter",
               representative: "Natasha Malik",
               registerDate: "2024-04-13",
-              actualRevenue: inrFormat(830000),
+              actualRevenue: usdFormat(830000),
             },
 
           ],
@@ -140,21 +140,21 @@ const RevenueTarget = () => {
               client: "Delhivery",
               representative: "Steve Pascal",
               registerDate: "2024-04-15",
-              actualRevenue: inrFormat(980000),
+              actualRevenue: usdFormat(980000),
             },
             {
               srNo: "11",
               client: "Moglix",
               representative: "Melissa Barera",
               registerDate: "2024-04-16",
-              actualRevenue: inrFormat(645000),
+              actualRevenue: usdFormat(645000),
             },
             {
               srNo: "12",
               client: "Razorpay",
               representative: "Stephen Gomez",
               registerDate: "2024-04-17",
-              actualRevenue: inrFormat(715000),
+              actualRevenue: usdFormat(715000),
             },
           ],
         },
@@ -430,7 +430,7 @@ const RevenueTarget = () => {
     yaxis: {
       title: { text: "Revenue (USD)" },
       labels: {
-        formatter: (value) => `USD ${value.toLocaleString("en-IN")}`
+        formatter: (value) => `USD ${value.toLocaleString("en-US")}`
       }
     },
     plotOptions: {
@@ -468,7 +468,7 @@ const RevenueTarget = () => {
         padding
         title={"Vertical-wise Revenue Targets"}
         titleLabel={dayjs().format("MMMM YYYY")}
-        TitleAmount={`USD ${inrFormat("6800000")}`}>
+        TitleAmount={`USD ${usdFormat("6800000")}`}>
         <BarGraph data={graphData} options={options} height={400} />
       </WidgetSection>
 
@@ -532,7 +532,7 @@ const RevenueTarget = () => {
                       Total Revenue for {domain.name}:{" "}
                     </span>
                     <span className="text-black font-pmedium">
-                      USD&nbsp;{domain.revenue.toLocaleString("en-IN")}
+                      USD&nbsp;{domain.revenue.toLocaleString("en-US")}
                     </span>{" "}
               </AccordionDetails>
             </Accordion>

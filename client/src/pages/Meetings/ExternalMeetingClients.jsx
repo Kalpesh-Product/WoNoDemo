@@ -1,5 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Delete } from "@mui/icons-material";
 import {
@@ -27,16 +28,25 @@ import DetalisFormatted from "../../components/DetalisFormatted";
 import { Controller, useForm } from "react-hook-form";
 import humanDate from "../../utils/humanDateForamt";
 import humanTime from "../../utils/humanTime";
-import { TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import UploadFileInput from "../../components/UploadFileInput";
-import { inrFormat } from "../../utils/currencyFormat";
+import { usdFormat } from "../../utils/currencyFormat";
 import PageFrame from "../../components/Pages/PageFrame";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
 import usePageDepartment from "../../hooks/usePageDepartment";
+import useAuth from "../../hooks/useAuth";
+import { time } from "motion/react";
+import { toLocalDayBoundary } from "../../utils/dateRange";
+import {
+  DEFAULT_PAGE_SIZE,
+  PAGE_SIZE_OPTIONS,
+} from "../../constants/pagination";
 
 const ExternalMeetingCLients = () => {
   const axios = useAxiosPrivate();
+  const { auth } = useAuth();
+  const roleTitles = auth?.user?.role?.map((role) => role?.roleTitle) || [];
   const [checklistModalOpen, setChecklistModalOpen] = useState(false);
   const [selectedMeetingId, setSelectedMeetingId] = useState(null);
   const [checklists, setChecklists] = useState({});
@@ -45,10 +55,103 @@ const ExternalMeetingCLients = () => {
   const [selectedMeeting, setSelectedMeeting] = useState([]);
   const [detailsModal, setDetailsModal] = useState(false);
   const [submittedChecklists, setSubmittedChecklists] = useState({});
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: DEFAULT_PAGE_SIZE,
+    total: 0,
+  });
+  const [meetingSearch, setMeetingSearch] = useState("");
+  const [debouncedMeetingSearch, setDebouncedMeetingSearch] = useState("");
+
+  useEffect(() => {
+    const timeoutId = setTimeout(
+      () => setDebouncedMeetingSearch(meetingSearch.trim()),
+      400,
+    );
+    return () => clearTimeout(timeoutId);
+  }, [meetingSearch]);
+
+  const handleMeetingSearchChange = useCallback((value) => {
+    setMeetingSearch(value);
+    setPagination((current) => ({ ...current, page: 1 }));
+  }, []);
+  const initialMeetingDateRange = useMemo(
+    () => ({
+      startDate: dayjs().startOf("month").toDate(),
+      endDate: dayjs().endOf("month").toDate(),
+      key: "selection",
+    }),
+    [],
+  );
+  const [meetingDateRange, setMeetingDateRange] = useState(
+    initialMeetingDateRange,
+  );
+  const meetingDateRangeRef = useRef(initialMeetingDateRange);
+  const meetingFilters = useMemo(
+    () => ({
+      startDate: toLocalDayBoundary(meetingDateRange.startDate),
+      endDate: toLocalDayBoundary(meetingDateRange.endDate, true),
+    }),
+    [meetingDateRange],
+  );
+  const handleMeetingDateFilterChange = useCallback(({ selectedRange }) => {
+    if (!selectedRange?.startDate || !selectedRange?.endDate) return;
+
+    const currentRange = meetingDateRangeRef.current;
+    const currentStart = new Date(currentRange.startDate).getTime();
+    const currentEnd = new Date(currentRange.endDate).getTime();
+    const nextStart = new Date(selectedRange.startDate).getTime();
+    const nextEnd = new Date(selectedRange.endDate).getTime();
+
+    if (currentStart === nextStart && currentEnd === nextEnd) return;
+
+    meetingDateRangeRef.current = selectedRange;
+    setMeetingDateRange(selectedRange);
+    setPagination((current) => ({ ...current, page: 1 }));
+  }, []);
+  const location = useLocation();
   const department = usePageDepartment();
-  const isFinance = department?.name === "Finance";
+  const isTechDepartment = auth?.user?.departments?.some(
+    (dept) => dept._id === "6798ba9de469e809084e2494",
+  );
+  const departmentNames =
+    auth?.user?.departments?.map((dept) => dept?.name?.trim()) || [];
+  const isFinance =
+    department?.name?.toLowerCase().includes("finance") ||
+    location.pathname.includes("finance-dashboard");
+  const [currentTime, setCurrentTime] = useState(() =>
+    dayjs().second(0).millisecond(0),
+  );
+  const adminTimingRoles = [
+    "Admin Admin",
+    "Admin Manager",
+    "Admin Employee",
+    "Administration Admin",
+    "Administration Manager",
+    "Administration Employee",
+  ];
+  const isAdminTimingUser =
+    roleTitles.some((roleTitle) => adminTimingRoles.includes(roleTitle)) ||
+    departmentNames.some((deptName) =>
+      ["Admin", "Administration"].includes(deptName),
+    );
+  const meetingDateEditRoles = [
+    "Super Admin",
+    "Master Admin",
+    "Tech Admin",
+    "Tech Employee",
+  ];
+  const canEditMeetingDate = roleTitles.some((roleTitle) =>
+    meetingDateEditRoles.includes(roleTitle),
+  );
+  const hasSpecialEditWindowAccess = isAdminTimingUser || canEditMeetingDate;
+  const isAdminTimingRestrictedUser = isAdminTimingUser;
+  const shouldShowExportButton = location.pathname.includes(
+    "/app/dashboard/finance-dashboard/mix-bag/manage-meetings/external-clients",
+  );
 
   const paymentModes = [
+    "UPI",
     "Cash",
     "Cheque",
     "NEFT",
@@ -85,6 +188,14 @@ const ExternalMeetingCLients = () => {
   ];
   // const meetings = useSelector((state) => state.meetings?.data);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(dayjs().second(0).millisecond(0));
+    }, 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   //-----------------------------Form--------------------------------//
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [paymentMeeting, setPaymentMeeting] = useState(null);
@@ -111,6 +222,31 @@ const ExternalMeetingCLients = () => {
   });
 
   const watchedDiscountAmount = paymentWatch("discountAmount");
+
+  const calculatePaymentDetails = (meeting, meetingRoom, discount = 0) => {
+    if (!meeting || !meetingRoom?.perHourPrice) return null;
+
+    const start = new Date(meeting.startTime);
+    const end = new Date(meeting.endTime);
+    const durationInHours =
+      (end.getTime() - start.getTime()) / (1000 * 60 * 60);
+
+    const amount = meetingRoom.perHourPrice * durationInHours;
+    const safeDiscount = Number.isFinite(discount) ? discount : 0;
+    const discountedAmount = Math.max(amount - safeDiscount, 0);
+    const gstAmount = discountedAmount * 0.18;
+    const finalAmount = discountedAmount + gstAmount;
+    const discountPercentage = amount
+      ? ((safeDiscount / amount) * 100).toFixed(2)
+      : "0.00";
+
+    return {
+      amount,
+      gstAmount,
+      finalAmount,
+      discountPercentage,
+    };
+  };
 
   const {
     handleSubmit: cancelMeetingSubmit,
@@ -139,9 +275,11 @@ const ExternalMeetingCLients = () => {
     control: editMeetingControl,
     reset: resetEditMeeting,
     setValue: setEditValue,
+    getValues: getEditValues,
     formState: { errors: editErrors },
   } = useForm({
     defaultValues: {
+      date: null,
       startTime: null,
       endTime: null,
     },
@@ -151,45 +289,104 @@ const ExternalMeetingCLients = () => {
 
   //------------------------------API--------------------------------//
   const { data: meetings = [], isLoading: isMeetingsLoading } = useQuery({
-    queryKey: ["meetings"],
+    queryKey: [
+      "external-meetings",
+      meetingFilters.startDate,
+      meetingFilters.endDate,
+      "false",
+      pagination.page,
+      pagination.limit,
+      debouncedMeetingSearch,
+    ],
+    placeholderData: keepPreviousData,
     queryFn: async () => {
-      const response = await axios.get("/api/meetings/get-meetings");
-      return response.data;
+      const response = await axios.get("/api/meetings/get-meetings", {
+        params: {
+          startDate: meetingFilters.startDate,
+          endDate: meetingFilters.endDate,
+          type: "External",
+          completed: "false",
+          page: pagination.page,
+          limit: pagination.limit,
+          search: debouncedMeetingSearch || undefined,
+          searchContext: "external-table",
+        },
+      });
+      const responsePagination = response.data.pagination || response.data;
+
+      setPagination((current) => ({
+        page: Number(responsePagination.page) || current.page,
+        limit: Number(responsePagination.limit) || current.limit,
+        total: Number(responsePagination.total) || 0,
+      }));
+
+      return response.data.data || [];
     },
   });
-  const filteredMeetings = meetings.filter(
-    (item) => item.meetingStatus !== "Completed"
-  );
-
-  const transformedMeetings = filteredMeetings
+  const transformedMeetings = meetings
     .filter((m) => m.meetingType === "External")
     .map((meeting, index) => {
       return {
         ...meeting,
+        title: meeting.subject || meeting.title || "",
+        agenda: meeting.agenda || "",
         date: meeting.date,
+        time: `${humanTime(meeting.startTime)} - ${humanTime(meeting.endTime)}`,
         bookedBy: meeting.bookedBy
-          ? `${meeting.bookedBy.firstName} ${meeting.bookedBy.lastName}`
+          ? [
+              meeting.bookedBy.firstName,
+              meeting.bookedBy.middleName,
+              meeting.bookedBy.lastName,
+            ]
+              .filter(Boolean)
+              .join(" ")
           : meeting.clientBookedBy?.employeeName || "Unknown",
         startTime: meeting.startTime,
-        endTime: meeting.endTime,
+        endTime:
+          meeting.extendTime > meeting.endTime
+            ? meeting.extendTime
+            : meeting.endTime,
         extendTime: meeting.extendTime,
-        srNo: index + 1,
+        srNo: (pagination.page - 1) * pagination.limit + index + 1,
         paymentAmount: meeting.paymentAmount ?? 0,
         paymnetDiscountAmount: meeting.discountAmount ?? 0,
+        paymentDiscountAmount: meeting.discountAmount ?? 0,
         paymentMode: meeting.paymentMode ?? "",
         paymentProofUrl: meeting?.paymentProof ?? "",
         paymentStatus: meeting.paymentStatus ?? false,
         paymentVerification: meeting.paymentVerification || "Under Review",
-        client: meeting.client || "",
+        client:
+          meeting.client ||
+          meeting.externalClient?.companyName ||
+          meeting.externalClient ||
+          "",
+        companyName:
+          meeting.client ||
+          meeting.externalClient?.companyName ||
+          meeting.externalClient ||
+          "",
+        building: meeting.location?.building?.buildingName || "",
+        duration: meeting.duration || "",
+        receptionist: meeting.receptionist || "",
+        departmentLabel: Array.isArray(meeting.department)
+          ? meeting.department
+              .map((item) => item?.name)
+              .filter(Boolean)
+              .join(", ")
+          : meeting.department?.name || "",
+        locationLabel: `${meeting.location?.unitNo || ""}${
+          meeting.location?.unitName ? ` (${meeting.location.unitName})` : ""
+        }`,
       };
     });
 
   //Fetch Single Room
   const { data: room = {}, isLoading: isRoomLoading } = useQuery({
-    queryKey: ["room"],
+    queryKey: ["room", paymentMeeting?.roomName],
+    // queryKey: ["room"],
     queryFn: async () => {
       const response = await axios.get(
-        `/api/meetings/get-room/${paymentMeeting.roomName}`
+        `/api/meetings/get-room/${paymentMeeting.roomName}`,
       );
       return response.data;
     },
@@ -220,7 +417,7 @@ const ExternalMeetingCLients = () => {
     mutationFn: async (data) => {
       const respone = await axios.patch(
         `/api/meetings/cancel-meeting/${selectedMeetingId}`,
-        data
+        data,
       );
       queryClient.invalidateQueries({ queryKey: ["meetings"] });
       return respone.data;
@@ -251,7 +448,7 @@ const ExternalMeetingCLients = () => {
       mutationFn: async (data) => {
         const respone = await axios.patch(
           `/api/meetings/update-meeting-status`,
-          data
+          data,
         );
         queryClient.invalidateQueries({ queryKey: ["meetings"] });
         return respone.data;
@@ -262,7 +459,7 @@ const ExternalMeetingCLients = () => {
       onError: (error) => {
         toast.error(error.message);
       },
-    }
+    },
   );
 
   const { mutate: editMeeting, isPending: isEditPending } = useMutation({
@@ -272,7 +469,7 @@ const ExternalMeetingCLients = () => {
         {
           ...data,
           meetingId: selectedMeetingId,
-        }
+        },
       );
 
       return respone.data;
@@ -297,7 +494,7 @@ const ExternalMeetingCLients = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       return response.data;
     },
@@ -318,7 +515,7 @@ const ExternalMeetingCLients = () => {
         {
           status: data,
           meetingId: selectedMeeting._id,
-        }
+        },
       );
 
       return respone.data;
@@ -350,10 +547,67 @@ const ExternalMeetingCLients = () => {
 
   useEffect(() => {
     if (selectedMeeting) {
+      setEditValue("date", dayjs(new Date(selectedMeeting?.startTime)));
       setEditValue("startTime", dayjs(new Date(selectedMeeting?.startTime)));
       setEditValue("endTime", dayjs(new Date(selectedMeeting?.endTime)));
     }
   }, [selectedMeeting]);
+
+  const onEditSubmit = (data) => {
+    editMeeting({
+      ...data,
+      date: data.date ? dayjs(data.date).toISOString() : undefined,
+      startTime: data.startTime ? dayjs(data.startTime).toISOString() : null,
+      endTime: data.endTime ? dayjs(data.endTime).toISOString() : null,
+    });
+  };
+
+  const canEditMeeting = (meeting) => {
+    if (!meeting) return false;
+    if (
+      meeting.meetingStatus === "Cancelled" ||
+      meeting.meetingStatus === "Completed"
+    ) {
+      return false;
+    }
+
+    const meetingStart = dayjs(meeting.startTime);
+
+    if (meetingStart.isAfter(currentTime)) {
+      return true;
+    }
+
+    if (!hasSpecialEditWindowAccess) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const getEditTimeBounds = (meetingTime) => {
+    if (!meetingTime) return {};
+
+    const originalTime = dayjs(meetingTime);
+
+    if (isAdminTimingRestrictedUser) {
+      return {
+        minTime: isAdminTimingBufferExpired
+          ? originalTime
+          : originalTime.subtract(30, "minute"),
+      };
+    }
+
+    if (isTechDepartment) return {};
+
+    return {
+      minTime: originalTime,
+    };
+  };
+
+  const isAdminTimingBufferExpired =
+    isAdminTimingRestrictedUser &&
+    selectedMeeting?.startTime &&
+    currentTime.isAfter(dayjs(selectedMeeting.startTime).add(30, "minute"));
 
   //---------------------------------Event handlers----------------------------------------//
 
@@ -421,6 +675,17 @@ const ExternalMeetingCLients = () => {
 
   const handleOpenPaymentModal = (meeting) => {
     setPaymentMeeting(meeting);
+    resetPaymentForm({
+      amount: "",
+      paymentType: meeting?.paymentMode || "",
+      paymentStatus: meeting?.paymentStatus || "",
+      transactionId: "",
+      paymentProof: "",
+      discountAmount: meeting?.paymnetDiscountAmount || 0,
+      discountPercentage: "",
+      gstAmount: "",
+      finalAmount: "",
+    });
     setOpenPaymentModal(true); // open the modal
   };
 
@@ -433,7 +698,7 @@ const ExternalMeetingCLients = () => {
     if (!selectedMeetingId) return;
     setChecklists((prev) => {
       const updatedItems = prev[selectedMeetingId][type].map((item, i) =>
-        i === index ? { ...item, checked: !item.checked } : item
+        i === index ? { ...item, checked: !item.checked } : item,
       );
       return {
         ...prev,
@@ -449,7 +714,7 @@ const ExternalMeetingCLients = () => {
     if (!selectedMeetingId) return;
     setChecklists((prev) => {
       const updatedCustomItems = prev[selectedMeetingId].customItems.filter(
-        (_, i) => i !== index
+        (_, i) => i !== index,
       );
       return {
         ...prev,
@@ -474,7 +739,7 @@ const ExternalMeetingCLients = () => {
     if (!selectedMeetingId) return;
 
     const selectedMeeting = meetings.find(
-      (meeting) => meeting._id === selectedMeetingId
+      (meeting) => meeting._id === selectedMeetingId,
     );
     if (!selectedMeeting) return;
 
@@ -482,7 +747,7 @@ const ExternalMeetingCLients = () => {
       checklists[selectedMeetingId] || {};
 
     const allCheckedItems = [...defaultItems, ...customItems].filter(
-      (item) => item.checked
+      (item) => item.checked,
     );
 
     const housekeepingTasks = allCheckedItems.map((item) => ({
@@ -499,38 +764,77 @@ const ExternalMeetingCLients = () => {
     housekeepingMutation.mutate(payload);
   };
   useEffect(() => {
-    if (!isRoomLoading && room?.perHourPrice) {
-      const finalAmount = room.perHourGstPrice;
-      setPaymentValue("amount", room.perHourPrice);
-      setPaymentValue("gstAmount", room.perHourGstPrice);
-      setPaymentValue("finalAmount", finalAmount);
+    if (!isRoomLoading && paymentMeeting && room?.perHourPrice) {
+      const paymentDetails = calculatePaymentDetails(paymentMeeting, room);
+
+      if (!paymentDetails) return;
+
+      setPaymentValue("amount", paymentDetails.amount);
+      setPaymentValue("gstAmount", paymentDetails.gstAmount);
+      setPaymentValue("finalAmount", paymentDetails.finalAmount);
     }
-  }, [room, isRoomLoading]);
+  }, [room, isRoomLoading, paymentMeeting, setPaymentValue]);
 
   useEffect(() => {
-    if (!isRoomLoading) {
-      const calculatedAmount = room?.perHourGstPrice;
-      const discountPercentage = (
-        (watchedDiscountAmount / calculatedAmount) *
-        100
-      ).toFixed(2);
-      const finalAmount = calculatedAmount - watchedDiscountAmount;
+    if (!isRoomLoading && paymentMeeting && room?.perHourPrice) {
+      const discountAmount = parseFloat(watchedDiscountAmount) || 0;
+      const paymentDetails = calculatePaymentDetails(
+        paymentMeeting,
+        room,
+        discountAmount,
+      );
 
-      setPaymentValue("discountPercentage", discountPercentage);
-      setPaymentValue("finalAmount", finalAmount);
+      if (!paymentDetails) return;
+
+      setPaymentValue("discountPercentage", paymentDetails.discountPercentage);
+      setPaymentValue("gstAmount", paymentDetails.gstAmount);
+      setPaymentValue("finalAmount", paymentDetails.finalAmount);
     }
-  }, [watchedDiscountAmount, room, isRoomLoading]);
-
+  }, [
+    watchedDiscountAmount,
+    room,
+    isRoomLoading,
+    paymentMeeting,
+    setPaymentValue,
+  ]);
   //---------------------------------Event handlers----------------------------------------//
+  const getFinanceStatus = (rowData = {}) => {
+    const isPaid =
+      rowData?.paymentStatus === "Paid" || rowData?.paymentStatus === true;
+    const paymentVerificationStatus = String(
+      rowData?.paymentVerification || "Pending",
+    ).toLowerCase();
+
+    if (!isPaid) return "Wait for Payment";
+    if (paymentVerificationStatus === "under review") return "Verify Payment";
+    if (paymentVerificationStatus === "verified") return "Completed";
+    return "Review Payment";
+  };
+
+  const getFinanceStatusChipStyle = (status) => {
+    const normalizedStatus = String(status || "").toLowerCase();
+
+    if (normalizedStatus === "completed") {
+      return { backgroundColor: "#D1FAE5", color: "#047857" };
+    }
+    if (normalizedStatus === "verify payment") {
+      return { backgroundColor: "#DBEAFE", color: "#1D4ED8" };
+    }
+    if (normalizedStatus === "review payment") {
+      return { backgroundColor: "#FEF3C7", color: "#B45309" };
+    }
+    return { backgroundColor: "#FEE2E2", color: "#B91C1C" };
+  };
 
   const columns = [
-    { field: "srNo", headerName: "Sr No", sort: "desc" },
+    { field: "srNo", headerName: "Sr No" },
     { field: "bookedBy", headerName: "Booked By" },
+    { field: "building", headerName: "Building" },
     { field: "roomName", headerName: "Room Name" },
     {
       field: "date",
       headerName: "Date",
-      cellRenderer: (params) => humanDate(params.value),
+      cellRenderer: (params) => params.value,
     },
     {
       field: "startTime",
@@ -543,11 +847,6 @@ const ExternalMeetingCLients = () => {
       cellRenderer: (params) => humanTime(params.value),
     },
     {
-      field: "extendTime",
-      headerName: "Extended Time",
-      cellRenderer: (params) => humanTime(params.value) || "-",
-    },
-    {
       field: "paymentAmount",
       headerName: "Amount (USD)",
     },
@@ -557,23 +856,47 @@ const ExternalMeetingCLients = () => {
     },
     {
       field: "paymentStatus",
-      headerName: "Status",
+      headerName: "Payment Status",
+      pinned: "right",
       cellRenderer: (params) => (
         <Chip
-          label={params.value ? "Paid" : "Unpaid"}
+          label={params.value === "Paid" ? "Paid" : "Unpaid"}
           sx={{
-            backgroundColor: params.value ? "#D1FAE5" : "#FECACA", // Tailwind: green-100 / red-100
-            color: params.value ? "#047857" : "#B91C1C", // Tailwind: green-700 / red-700
+            backgroundColor: params.value === "Paid" ? "#D1FAE5" : "#FECACA", // Tailwind: green-100 / red-100
+            color: params.value === "Paid" ? "#047857" : "#B91C1C", // Tailwind: green-700 / red-700
             fontWeight: "bold",
           }}
         />
       ),
       cellStyle: { textAlign: "center" },
     },
-
+    ...(isFinance
+      ? [
+          {
+            field: "financeStatus",
+            headerName: "Finance Status",
+            pinned: "right",
+            cellRenderer: (params) => {
+              const status = getFinanceStatus(params.data);
+              const chipStyle = getFinanceStatusChipStyle(status);
+              return (
+                <Chip
+                  label={status}
+                  sx={{
+                    backgroundColor: chipStyle.backgroundColor,
+                    color: chipStyle.color,
+                    fontWeight: "bold",
+                  }}
+                />
+              );
+            },
+          },
+        ]
+      : []),
     {
       field: "meetingStatus",
       headerName: "Meeting Status",
+      sort: "desc",
       cellRenderer: (params) => (
         <Chip
           label={params.value || ""}
@@ -601,6 +924,36 @@ const ExternalMeetingCLients = () => {
         );
       },
     },
+    { field: "title", headerName: "Title", hide: true },
+    { field: "agenda", headerName: "Agenda", hide: true },
+
+    { field: "time", headerName: "Time", hide: true },
+    { field: "duration", headerName: "Duration", hide: true },
+
+    { field: "meetingType", headerName: "Meeting Type", hide: true },
+    { field: "companyName", headerName: "Company Name", hide: true },
+
+    { field: "receptionist", headerName: "Receptionist", hide: true },
+    // { field: "departmentLabel", headerName: "Department", hide: true },
+    { field: "client", headerName: "Client Name", hide: true },
+
+    { field: "locationLabel", headerName: "Location", hide: true },
+
+    {
+      field: "paymentDiscountAmount",
+      headerName: "Discount (USD)",
+      hide: true,
+      valueFormatter: (params) => `USD ${usdFormat(params.value || 0)}`,
+    },
+
+    { field: "paymentVerification", headerName: "Verification", hide: true },
+    { field: "paymentProofUrl", headerName: "Proof URL", hide: true },
+
+    // {
+    //   field: "extendTime",
+    //   headerName: "Extended Time",
+    //   cellRenderer: (params) => humanTime(params.value) || "-",
+    // },
     {
       field: "action",
       headerName: "Action",
@@ -608,7 +961,7 @@ const ExternalMeetingCLients = () => {
       cellRenderer: (params) => {
         const status = params.data.meetingStatus;
         const housekeepingStatus = params.data.housekeepingStatus;
-        const isPaid = params.data.paymentStatus === true;
+        const isPaid = params.data.paymentStatus === "Paid";
         const isUpcoming = status === "Upcoming";
         const isCancelled = status === "Cancelled";
         const isOngoing = status === "Ongoing";
@@ -616,23 +969,39 @@ const ExternalMeetingCLients = () => {
         const isHousekeepingPending = housekeepingStatus === "Pending";
         const isHousekeepingCompleted = housekeepingStatus === "Completed";
         const isVerified = params.data.paymentVerification === "Verified";
+        const paymentVerificationStatus = params.data.paymentVerification;
+
+        const shouldHideMenu =
+          isCancelled || paymentVerificationStatus === "Verified" || !isPaid;
 
         const menuItems = [
-          {
-            label: "View",
-            onClick: () => handleSelectedMeeting("viewDetails", params.data),
-          },
+          // {
+          //   label: "View",
+          //   onClick: () => handleSelectedMeeting("viewDetails", params.data),
+          // },
+          !isPaid &&
+            isFinance && {
+              label: "wait for payment",
+            },
+
           isPaid &&
             isFinance &&
-            !isVerified && {
+            paymentVerificationStatus === "Under Review" && {
               label: "Verify Payment",
               onClick: () => handleVerifyPayment(params.data, "Verified"),
             },
+
           isPaid &&
             isFinance &&
-            isVerified && {
+            paymentVerificationStatus === "Pending" && {
               label: "Review Payment",
               onClick: () => handleVerifyPayment(params.data, "Under Review"),
+            },
+
+          isPaid &&
+            isFinance &&
+            paymentVerificationStatus === "Verified" && {
+              label: "Completed",
             },
 
           // Show the following only when NOT finance
@@ -648,7 +1017,7 @@ const ExternalMeetingCLients = () => {
                     onClick: () =>
                       handleOpenChecklistModal("update", params.data._id),
                   },
-                isUpcoming && {
+                canEditMeeting(params.data) && {
                   label: "Edit",
                   onClick: () => handleEditMeeting("edit", params.data),
                 },
@@ -661,7 +1030,8 @@ const ExternalMeetingCLients = () => {
                   label: "Mark As Completed",
                   onClick: () => handleCompleted("complete", params.data._id),
                 },
-                !isCancelled && {
+                // !isCancelled && {
+                isUpcoming && {
                   label: "Cancel",
                   onClick: () => handleSelectedMeeting("cancel", params.data),
                 },
@@ -671,16 +1041,19 @@ const ExternalMeetingCLients = () => {
 
         return (
           <div className="flex gap-2 items-center">
-            {/* <div
+            <div
               onClick={() => handleSelectedMeeting("viewDetails", params.data)}
               className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all"
             >
               <span className="text-subtitle">
                 <MdOutlineRemoveRedEye />
               </span>
-            </div> */}
+            </div>
 
             {!isCancelled && <ThreeDotMenu menuItems={menuItems} />}
+            {/* {shouldHideMenu && menuItems.length > 0 && (
+              <ThreeDotMenu menuItems={menuItems} />
+            )} */}
           </div>
         );
       },
@@ -690,17 +1063,37 @@ const ExternalMeetingCLients = () => {
   return (
     <div className="flex-col gap-4">
       <PageFrame>
-        {!isMeetingsLoading ? (
+        {isMeetingsLoading && meetings.length === 0 ? (
+          <CircularProgress />
+        ) : (
           <YearWiseTable
-            key={transformedMeetings.length}
             search
             dateColumn={"date"}
+            initialDateRange={initialMeetingDateRange}
+            onDateFilterChange={handleMeetingDateFilterChange}
             tableTitle={"Manage Meetings"}
             data={transformedMeetings || []}
             columns={columns}
+            exportData={shouldShowExportButton}
+            serverPagination
+            pageSizeOptions={PAGE_SIZE_OPTIONS}
+            paginationPageSize={pagination.limit}
+            paginationPage={pagination.page}
+            paginationTotal={pagination.total}
+            onPaginationPageChange={(page) =>
+              setPagination((current) => ({ ...current, page }))
+            }
+            onPaginationPageSizeChange={(limit) =>
+              setPagination((current) =>
+                current.limit === limit
+                  ? current
+                  : { ...current, page: 1, limit },
+              )
+            }
+            serverSearch
+            searchValue={meetingSearch}
+            onSearchChange={handleMeetingSearchChange}
           />
-        ) : (
-          <CircularProgress />
         )}
       </PageFrame>
 
@@ -708,7 +1101,8 @@ const ExternalMeetingCLients = () => {
       <MuiModal
         open={checklistModalOpen}
         onClose={handleCloseChecklistModal}
-        title={"Checklist"}>
+        title={"Checklist"}
+      >
         <Box
           sx={{
             maxHeight: "80vh",
@@ -717,7 +1111,8 @@ const ExternalMeetingCLients = () => {
             overflow: "hidden",
             justifyContent: "start",
             alignItems: "start",
-          }}>
+          }}
+        >
           {/* Scrollable Checklist Section */}
           <div className="h-[60vh] overflow-y-auto w-full">
             <span className="text-subtitle text-primary font-pmedium">
@@ -736,7 +1131,7 @@ const ExternalMeetingCLients = () => {
                     />
                     {item.name}
                   </ListItem>
-                )
+                ),
               )}
             </List>
 
@@ -764,14 +1159,15 @@ const ExternalMeetingCLients = () => {
                             {modalMode === "update" && (
                               <IconButton
                                 onClick={() => handleRemoveChecklistItem(index)}
-                                color="error">
+                                color="error"
+                              >
                                 <Delete />
                               </IconButton>
                             )}
                           </div>
                         </div>
                       </ListItem>
-                    )
+                    ),
                   )}
                 </List>
               </>
@@ -803,7 +1199,8 @@ const ExternalMeetingCLients = () => {
               <Button
                 variant="contained"
                 disabled={isSubmitDisabled()}
-                onClick={handleSubmitChecklist}>
+                onClick={handleSubmitChecklist}
+              >
                 Submit
               </Button>
             </div>
@@ -816,15 +1213,16 @@ const ExternalMeetingCLients = () => {
           modalMode === "viewDetails"
             ? "Meeting Details"
             : modalMode === "cancel"
-            ? "Cancel Meeting"
-            : modalMode === "extend"
-            ? "Extend Meeting"
-            : modalMode === "edit"
-            ? "Edit Meeting"
-            : ""
+              ? "Cancel Meeting"
+              : modalMode === "extend"
+                ? "Extend Meeting"
+                : modalMode === "edit"
+                  ? "Edit Meeting"
+                  : ""
         }
         open={detailsModal}
-        onClose={() => setDetailsModal(false)}>
+        onClose={() => setDetailsModal(false)}
+      >
         {modalMode === "viewDetails" && (
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 w-full">
             <div className="font-bold">Basic Info</div>
@@ -840,7 +1238,7 @@ const ExternalMeetingCLients = () => {
             <DetalisFormatted
               title="Time"
               detail={`${humanTime(selectedMeeting.startTime)} - ${humanTime(
-                selectedMeeting.endTime
+                selectedMeeting.endTime,
               )}`}
             />
             <DetalisFormatted
@@ -934,13 +1332,20 @@ const ExternalMeetingCLients = () => {
               detail={selectedMeeting.receptionist}
               // detail={`N/A`}
             />
-            <DetalisFormatted
+            {/* <DetalisFormatted
               title="Department"
               detail={
-                selectedMeeting.department?.map((item) => item.name) ||
-                "Top Management"
+                selectedMeeting.departmentLabel ||
+                (Array.isArray(selectedMeeting.department)
+                  ? selectedMeeting.department
+                      .map((item) => item?.name)
+                      .filter(Boolean)
+                      .join(", ")
+                  : selectedMeeting.department?.name ||
+                    selectedMeeting.department ||
+                    "N/A")
               }
-            />
+            /> */}
             <DetalisFormatted
               title="Client"
               detail={selectedMeeting.client || "Unknown"}
@@ -978,12 +1383,12 @@ const ExternalMeetingCLients = () => {
             <div className="font-bold">Payment Details</div>
             <DetalisFormatted
               title="Amount"
-              detail={`USD ${inrFormat(selectedMeeting?.paymentAmount)}`}
+              detail={`USD ${usdFormat(selectedMeeting?.paymentAmount)}`}
             />
             <DetalisFormatted
               title="Discount"
-              detail={`USD ${inrFormat(
-                selectedMeeting?.paymnetDiscountAmount
+              detail={`USD ${usdFormat(
+                selectedMeeting?.paymnetDiscountAmount,
               )}`}
             />
             <DetalisFormatted
@@ -993,7 +1398,9 @@ const ExternalMeetingCLients = () => {
 
             <DetalisFormatted
               title="Status"
-              detail={selectedMeeting?.paymentStatus ? "Paid" : "Unpaid"}
+              detail={
+                selectedMeeting?.paymentStatus === "Paid" ? "Paid" : "Unpaid"
+              }
             />
 
             <DetalisFormatted
@@ -1008,7 +1415,8 @@ const ExternalMeetingCLients = () => {
                     href={selectedMeeting.paymentProofUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 underline">
+                    className="text-blue-600 underline"
+                  >
                     View File
                   </a>
                 }
@@ -1027,7 +1435,8 @@ const ExternalMeetingCLients = () => {
                 });
                 resetCancelMeeting();
                 setDetailsModal(false);
-              })}>
+              })}
+            >
               <Controller
                 name="reason"
                 control={cancelMeetingControl}
@@ -1066,7 +1475,8 @@ const ExternalMeetingCLients = () => {
                   meetingId: selectedMeeting?._id,
                   newEndTime: data.newEndTime,
                 });
-              })}>
+              })}
+            >
               <div className="flex flex-col gap-4">
                 <span className="text-content">Meeting Details</span>
                 <hr />
@@ -1130,8 +1540,64 @@ const ExternalMeetingCLients = () => {
         {modalMode === "edit" && (
           <div>
             <form
-              onSubmit={handleEditMeetingSubmit((data) => editMeeting(data))}
-              className="grid grid-cols-2 gap-4">
+              onSubmit={handleEditMeetingSubmit(onEditSubmit)}
+              className="grid grid-cols-2 gap-4"
+            >
+              {canEditMeetingDate && (
+                <div className="col-span-2">
+                  <Controller
+                    name="date"
+                    control={editMeetingControl}
+                    rules={{
+                      required: "Date is required",
+                    }}
+                    render={({ field }) => (
+                      <DatePicker
+                        {...field}
+                        label="Date"
+                        format="DD-MM-YYYY"
+                        slotProps={{
+                          textField: {
+                            size: "small",
+                            fullWidth: true,
+                            error: !!editErrors.date,
+                            helperText: editErrors.date?.message,
+                          },
+                        }}
+                        onChange={(value) => {
+                          field.onChange(value);
+
+                          if (!value) return;
+
+                          const nextDate = dayjs(value);
+                          const currentStart = getEditValues("startTime");
+                          const currentEnd = getEditValues("endTime");
+
+                          if (currentStart) {
+                            setEditValue(
+                              "startTime",
+                              dayjs(currentStart)
+                                .year(nextDate.year())
+                                .month(nextDate.month())
+                                .date(nextDate.date()),
+                            );
+                          }
+
+                          if (currentEnd) {
+                            setEditValue(
+                              "endTime",
+                              dayjs(currentEnd)
+                                .year(nextDate.year())
+                                .month(nextDate.month())
+                                .date(nextDate.date()),
+                            );
+                          }
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+              )}
               <Controller
                 name="startTime"
                 control={editMeetingControl}
@@ -1141,6 +1607,7 @@ const ExternalMeetingCLients = () => {
                 render={({ field }) => (
                   <TimePicker
                     {...field}
+                    {...getEditTimeBounds(selectedMeeting?.startTime)}
                     slotProps={{
                       textField: {
                         size: "small",
@@ -1149,6 +1616,38 @@ const ExternalMeetingCLients = () => {
                       },
                     }}
                     label={"Start Time"}
+                    shouldDisableTime={(time, view) => {
+                      if (isAdminTimingBufferExpired) return true;
+                      if (canEditMeetingDate) return false;
+                      const startTime = selectedMeeting?.startTime;
+                      const timeValue = time.$d;
+
+                      if (!startTime) return false;
+
+                      const startDate = new Date(startTime);
+                      const thresholdDate =
+                        isAdminTimingRestrictedUser &&
+                        !isAdminTimingBufferExpired
+                          ? new Date(startDate.getTime() - 30 * 60000)
+                          : startDate;
+
+                      if (view === "hours") {
+                        return timeValue.getHours() < thresholdDate.getHours();
+                      }
+
+                      if (view === "minutes") {
+                        const selectedHour = field.value
+                          ? new Date(field.value).getHours()
+                          : null;
+
+                        return (
+                          selectedHour === thresholdDate.getHours() &&
+                          timeValue.getMinutes() < thresholdDate.getMinutes()
+                        );
+                      }
+
+                      return false;
+                    }}
                   />
                 )}
               />
@@ -1161,6 +1660,7 @@ const ExternalMeetingCLients = () => {
                 render={({ field }) => (
                   <TimePicker
                     {...field}
+                    {...getEditTimeBounds(selectedMeeting?.endTime)}
                     slotProps={{
                       textField: {
                         size: "small",
@@ -1169,9 +1669,47 @@ const ExternalMeetingCLients = () => {
                       },
                     }}
                     label={"End Time"}
+                    shouldDisableTime={(time, view) => {
+                      if (isAdminTimingBufferExpired) return true;
+                      if (canEditMeetingDate) return false;
+                      const endTime = selectedMeeting?.endTime;
+                      const timeValue = time.$d;
+
+                      if (!endTime) return false;
+
+                      const endDate = new Date(endTime);
+                      const thresholdDate =
+                        isAdminTimingRestrictedUser &&
+                        !isAdminTimingBufferExpired
+                          ? new Date(endDate.getTime() - 30 * 60000)
+                          : endDate;
+
+                      if (view === "hours") {
+                        return timeValue.getHours() < thresholdDate.getHours();
+                      }
+
+                      if (view === "minutes") {
+                        const selectedHour = field.value
+                          ? new Date(field.value).getHours()
+                          : null;
+
+                        return (
+                          selectedHour === thresholdDate.getHours() &&
+                          timeValue.getMinutes() < thresholdDate.getMinutes()
+                        );
+                      }
+
+                      return false;
+                    }}
                   />
                 )}
               />
+              {isAdminTimingBufferExpired && !editErrors.startTime?.message && (
+                <div className="col-span-2 -mt-2 text-[12px] text-[#d32f2f]">
+                  You have exceeded the 30 min buffer to Edit the timings.{" "}
+                  "Please Raise a Ticket" to fix
+                </div>
+              )}
 
               <PrimaryButton
                 title={"Update Meeting"}
@@ -1188,7 +1726,8 @@ const ExternalMeetingCLients = () => {
       <MuiModal
         open={openPaymentModal}
         onClose={handleClosePaymentModal}
-        title={"Update Payment Details"}>
+        title={"Update Payment Details"}
+      >
         <form
           className="flex flex-col gap-4"
           onSubmit={handlePaymentSubmit((data) => {
@@ -1199,7 +1738,18 @@ const ExternalMeetingCLients = () => {
             formData.append("paymentMode", data?.paymentType);
             formData.append("paymentStatus", data?.paymentStatus);
             formData.append("meetingId", paymentMeeting?._id);
-            formData.append("discountAmount", data?.discountAmount);
+            formData.append("discountAmount", data?.discountAmount || 0);
+            formData.append("paymentBaseAmount", data?.amount || 0);
+            formData.append("paymentGstAmount", data?.gstAmount || 0);
+            formData.append("unitsOrHours", "Hours");
+            formData.append("taxable", data?.amount || 0);
+            formData.append("gst", data?.gstAmount || 0);
+            formData.append("status", data?.paymentStatus);
+            formData.append(
+              "client",
+              paymentMeeting?.externalClient || paymentMeeting?.client || "",
+            );
+            formData.append("meetingRoomName", paymentMeeting?.roomName || "");
 
             // If it's a file input (like a PDF or image):
             if (data?.paymentProof) {
@@ -1214,7 +1764,8 @@ const ExternalMeetingCLients = () => {
             //   discountAmount: data.discountAmount,
             //   paymentProof: data.paymentProof
             // });
-          })}>
+          })}
+        >
           <div className="flex gap-4 items-center">
             <Controller
               name="amount"
@@ -1312,7 +1863,8 @@ const ExternalMeetingCLients = () => {
                   size="small"
                   label="Payment Type"
                   select
-                  fullWidth>
+                  fullWidth
+                >
                   <MenuItem value="" disabled>
                     Select Payment Type
                   </MenuItem>
@@ -1334,7 +1886,8 @@ const ExternalMeetingCLients = () => {
                   size="small"
                   fullWidth
                   error={!!paymentErrors.paymentStatus}
-                  helperText={paymentErrors.paymentStatus?.message}>
+                  helperText={paymentErrors.paymentStatus?.message}
+                >
                   <MenuItem value="Paid">Paid</MenuItem>
                   <MenuItem value="Unpaid">Unpaid</MenuItem>
                 </TextField>
@@ -1349,12 +1902,17 @@ const ExternalMeetingCLients = () => {
                 value={field.value}
                 label="Add Payment Proof"
                 onChange={field.onChange}
-                allowedExtensions={["pdf"]}
+                allowedExtensions={["pdf", "jpg", "jpeg", "png"]}
                 previewType="pdf"
               />
             )}
           />
-
+          <div>
+            <p className="text-xs">
+              Add payment proof as : ( "Add Payment Proof in PDF, jpg, jpeg, png
+              format & Name as : DD-MM-YYYY_(Customer Name)" )
+            </p>
+          </div>
           <div className="flex justify-center">
             <PrimaryButton
               disabled={isPaymentPending}

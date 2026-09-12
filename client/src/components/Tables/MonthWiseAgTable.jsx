@@ -6,7 +6,7 @@ import AgTable from "../AgTable";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import WidgetSection from "../WidgetSection";
 import { parseAmount } from "../../utils/parseAmount";
-import { inrFormat } from "../../utils/currencyFormat";
+import { usdFormat } from "../../utils/currencyFormat";
 import { useEffect } from "react";
 
 dayjs.extend(customParseFormat);
@@ -126,8 +126,9 @@ const MonthWiseAgTable = ({ financialData, passedColumns, title, amount }) => {
 
       <WidgetSection
         title={title}
-        TitleAmount={amount || `USD ${inrFormat(monthTotal)}`}
-        border>
+        TitleAmount={amount || `USD ${usdFormat(monthTotal)}`}
+        border
+      >
         <div className="flex justify-center items-center space-x-2 px-4 pt-2 ">
           {/* Month Switcher */}
           {filteredMonths.length > 0 && (

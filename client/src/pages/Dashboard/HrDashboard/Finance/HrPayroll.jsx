@@ -18,7 +18,7 @@ import DetalisFormatted from "../../../../components/DetalisFormatted";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import MuiModal from "../../../../components/MuiModal";
 import PageFrame from "../../../../components/Pages/PageFrame";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import WidgetSection from "../../../../components/WidgetSection";
 import { toast } from "sonner";
@@ -76,7 +76,8 @@ const HrPayroll = () => {
                 },
               }
             )
-          }>
+          }
+        >
           {params.value}
         </span>
       ),
@@ -90,7 +91,7 @@ const HrPayroll = () => {
     {
       field: "totalSalary",
       headerName: "Total Salary (USD)",
-      cellRenderer: (params) => inrFormat(params.value),
+      cellRenderer: (params) => usdFormat(params.value),
     },
     // { field: "reimbursment", headerName: "Total Salary" },
     {
@@ -148,28 +149,27 @@ const HrPayroll = () => {
     // },
   ];
 
-  const tableData = isLoading
-    ? []
-    : payrollData
-        .map((item) => ({
-          ...item,
-          id: item.employeeId,
-          employeeName: item.name,
-          status: item.status,
-          totalSalary: item.totalSalary,
-          departmentName:
-            item.departments?.map((item) => item.name).join(", ") || "N/A",
-          monthDate: item.month,
-          designation:
-            item.role?.map((item) => item.roleTitle).join(", ") || "N/A",
-        }))
-        .sort((a, b) =>
-          a.employeeName?.localeCompare(b.employeeName, undefined, {
-            sensitivity: "base",
-          })
-        );
+const tableData = isLoading
+  ? []
+  : payrollData
+      .map((item) => ({
+        ...item,
+        id: item.employeeId,
+        employeeName: item.name,
+        status: item.status,
+        totalSalary: item.totalSalary,
+        departmentName: item.departments?.map((item) => item.name).join(", ") || "N/A",
+        monthDate: item.month,
+        designation: item.role?.map((item) => item.roleTitle).join(", ") || "N/A",
+      }))
+      .sort((a, b) =>
+        a.employeeName?.localeCompare(b.employeeName, undefined, {
+          sensitivity: "base",
+        })
+      );
 
-  console.log("des : ", tableData);
+
+  console.log("des : ", tableData)
 
   const { mutate: payrollMutate, isPending: isPayrollPending } = useMutation({
     mutationKey: ["batchPayrollMutate"],
@@ -289,7 +289,8 @@ const HrPayroll = () => {
       <MuiModal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={"Payslip Generation"}>
+        title={"Payslip Generation"}
+      >
         <div className="h-36 flex justify-center items-center">
           <div className="flex flex-col gap-2 justify-center items-center">
             <CircularProgress />

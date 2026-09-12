@@ -1,0 +1,226 @@
+[
+  {
+    "_id": {
+      "$oid": "b495d47ec770a988a606fdfb"
+    },
+    "subCategoryName": "Demo Maintenance Power Tools",
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "category": {
+      "$oid": "6948a67804eee99c3e2ef384"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "c55e6ec61d802e895ca9abd9"
+    },
+    "subCategoryName": "Demo Maintenance Cleaning Equipment",
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "category": {
+      "$oid": "037d1d320d24e3ffa4c7d01f"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "9bafb08feb68cf33e019b47a"
+    },
+    "subCategoryName": "Demo HR Printers",
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "category": {
+      "$oid": "101a7c2fc3e9a6af7c6d4591"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "5c119b440ffd1546b051cb04"
+    },
+    "subCategoryName": "Demo HR Office Chairs",
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "category": {
+      "$oid": "8325c84e222d87e4f68df026"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "29e5c59ae68185827bb1c4b0"
+    },
+    "subCategoryName": "Demo Top Management Laptops",
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "category": {
+      "$oid": "381d666cceb1c10cd571d459"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "b320aa26c788f7465fc0aceb"
+    },
+    "subCategoryName": "Demo Top Management Conference Equipment",
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "category": {
+      "$oid": "6fba3852386e8fb4fbe6efc3"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "db79b7e57890360113f402bb"
+    },
+    "subCategoryName": "Demo Tech Laptops",
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "category": {
+      "$oid": "bbf0dd0efa77494e6e4cd6a5"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "bfe09225b94fa06fc6def7ac"
+    },
+    "subCategoryName": "Demo Tech Monitors",
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "category": {
+      "$oid": "bbf0dd0efa77494e6e4cd6a5"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "0366235a337f4b00d11e1639"
+    },
+    "subCategoryName": "Demo Sales Tablets",
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "category": {
+      "$oid": "558dadf7ef43662770769a45"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "f8fbe4b2f29ecccecb4bbf32"
+    },
+    "subCategoryName": "Demo Sales Projectors",
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "category": {
+      "$oid": "c986938bf75dfa02f49627d5"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "b06644a51985a38228428098"
+    },
+    "subCategoryName": "Demo Finance Laptops",
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "category": {
+      "$oid": "3406473cd7c7c494257cf063"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "6b11b36f1c32e5e7a2662e68"
+    },
+    "subCategoryName": "Demo Finance Scanners",
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "category": {
+      "$oid": "7e706f67a99a6e2d79500928"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "7d28bcd021e0699b39b00be2"
+    },
+    "subCategoryName": "Demo IT Routers",
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "category": {
+      "$oid": "9b9e548e69447a47413c9b1b"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "85b10aee1490de1037494632"
+    },
+    "subCategoryName": "Demo IT Laptops",
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "category": {
+      "$oid": "39a3a98f070a50eee48440f9"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "28929fef86061fa3529677b4"
+    },
+    "subCategoryName": "Demo Administration Desks",
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "category": {
+      "$oid": "55c6fcc6b2de08f8a1c717ca"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "32d5a91f999f64519e87e270"
+    },
+    "subCategoryName": "Demo Administration Printers",
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "category": {
+      "$oid": "0979948d50e28e5462078e8d"
+    },
+    "description": "Synthetic demo asset subcategory",
+    "isActive": true
+  }
+]

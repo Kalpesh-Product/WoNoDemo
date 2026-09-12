@@ -1,0 +1,353 @@
+[
+  {
+    "roomId": "RM-001",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Cleaning",
+    "isActive": true,
+    "name": "Cedar",
+    "seats": 4,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 2,
+    "perHourPrice": 20,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "b8e97eccbe9757c0e5258547"
+    }
+  },
+  {
+    "roomId": "RM-002",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Maple",
+    "seats": 6,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 3,
+    "perHourPrice": 23,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "41d1055fe842c0d40a457ad7"
+    }
+  },
+  {
+    "roomId": "RM-003",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Orchid",
+    "seats": 8,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 4,
+    "perHourPrice": 26,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "d4f4309a8cb1b0056145242a"
+    }
+  },
+  {
+    "roomId": "RM-004",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Horizon",
+    "seats": 12,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 2,
+    "perHourPrice": 29,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "ee3887da1d7fa6abcb6154e2"
+    }
+  },
+  {
+    "roomId": "RM-005",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Coral",
+    "seats": 4,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 3,
+    "perHourPrice": 32,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "c7bd2c6f8895e42ee68347d6"
+    }
+  },
+  {
+    "roomId": "RM-006",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "status": "Cleaning",
+    "isActive": true,
+    "name": "Summit",
+    "seats": 6,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 4,
+    "perHourPrice": 35,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "414c6ac4afad772cf1019640"
+    }
+  },
+  {
+    "roomId": "RM-007",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Aurora",
+    "seats": 8,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 2,
+    "perHourPrice": 38,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "cadfdbdcd68ae76a42a27010"
+    }
+  },
+  {
+    "roomId": "RM-008",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Willow",
+    "seats": 12,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 3,
+    "perHourPrice": 41,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "9abc1bbc6245efc2b3618da4"
+    }
+  },
+  {
+    "roomId": "RM-009",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Juniper",
+    "seats": 4,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 4,
+    "perHourPrice": 44,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "a6aba54e421784a0bb4546de"
+    }
+  },
+  {
+    "roomId": "RM-010",
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Sapphire",
+    "seats": 6,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 2,
+    "perHourPrice": 47,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "a89688cb08d46c2ad6ebcdfc"
+    }
+  },
+  {
+    "roomId": "RM-011",
+    "location": {
+      "$oid": "684028c2c51ffdef8b5e7e17"
+    },
+    "status": "Cleaning",
+    "isActive": true,
+    "name": "Aspen",
+    "seats": 8,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 3,
+    "perHourPrice": 50,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "b701d1b7bef933d06978f155"
+    }
+  },
+  {
+    "roomId": "RM-012",
+    "location": {
+      "$oid": "684028c2c51ffdef8b5e7e18"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Solstice",
+    "seats": 12,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 4,
+    "perHourPrice": 53,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "dba82c24c0b1a41c09592a04"
+    }
+  },
+  {
+    "roomId": "RM-013",
+    "location": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "status": "Available",
+    "isActive": true,
+    "name": "Meridian",
+    "seats": 4,
+    "description": "Conference room with display and whiteboard",
+    "image": {
+      "url": "https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "assignedAssets": [],
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "perHourCredit": 2,
+    "perHourPrice": 56,
+    "dailyHours": 9,
+    "monthlyHours": 198,
+    "perSeatPrice": 5,
+    "perHourGstPrice": 0,
+    "_id": {
+      "$oid": "d084e8537a959585ac60fcdf"
+    }
+  }
+]

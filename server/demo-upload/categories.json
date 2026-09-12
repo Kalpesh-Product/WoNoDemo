@@ -1,0 +1,508 @@
+[
+  {
+    "categoryName": "Maintenance Tools",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "6948a67804eee99c3e2ef384"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Maintenance Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "037d1d320d24e3ffa4c7d01f"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "HR Office Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "101a7c2fc3e9a6af7c6d4591"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "HR Furniture",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "8325c84e222d87e4f68df026"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Top Management Electronics",
+    "isActive": true,
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "381d666cceb1c10cd571d459"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Top Management Office Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "6fba3852386e8fb4fbe6efc3"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Tech Electronics",
+    "isActive": true,
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "bbf0dd0efa77494e6e4cd6a5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Sales Electronics",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "558dadf7ef43662770769a45"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Sales Office Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "c986938bf75dfa02f49627d5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Finance Electronics",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "3406473cd7c7c494257cf063"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Finance Office Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "7e706f67a99a6e2d79500928"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "IT Network Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "9b9e548e69447a47413c9b1b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "IT Electronics",
+    "isActive": true,
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "39a3a98f070a50eee48440f9"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Administration Furniture",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "55c6fcc6b2de08f8a1c717ca"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Administration Office Equipment",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "_id": {
+      "$oid": "0979948d50e28e5462078e8d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Maintenance Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "a520a8ee2cb6a6890a2fbb70"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "HR Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "6079cb1ccfbab48c89abc802"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Top Management Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "9852bfa09155dc19eb28773d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Tech Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "9c25c367ae90898a0fca1690"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Sales Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "6a374d7dcc6794ee41b4b0e8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Finance Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "a77e04f51d9108d35ea13d9f"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "IT Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "73a6326b5b2857b16bed55c9"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "categoryName": "Administration Supplies",
+    "isActive": true,
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "appliesTo": [
+      "inventory"
+    ],
+    "_id": {
+      "$oid": "830178b8a1e6fcfc09079670"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "2026-04": {
+    "month": "2026-04",
+    "coworkingclientrevenues": 3900,
+    "virtualofficerevenues": 1062,
+    "workationrevenues": 13290,
+    "alternaterevenues": 12700
+  },
+  "2026-05": {
+    "month": "2026-05",
+    "coworkingclientrevenues": 17325,
+    "virtualofficerevenues": 2419,
+    "workationrevenues": 29220,
+    "alternaterevenues": 13310
+  },
+  "2026-06": {
+    "month": "2026-06",
+    "coworkingclientrevenues": 26925,
+    "virtualofficerevenues": 3953,
+    "workationrevenues": 47790,
+    "alternaterevenues": 13920
+  },
+  "2026-07": {
+    "month": "2026-07",
+    "coworkingclientrevenues": 40275,
+    "virtualofficerevenues": 5782,
+    "workationrevenues": 69000,
+    "alternaterevenues": 14530
+  },
+  "2026-08": {
+    "month": "2026-08",
+    "coworkingclientrevenues": 48825,
+    "virtualofficerevenues": 7788,
+    "workationrevenues": 81340,
+    "alternaterevenues": 15140
+  },
+  "2026-09": {
+    "month": "2026-09",
+    "coworkingclientrevenues": 70725,
+    "virtualofficerevenues": 10089,
+    "workationrevenues": 90550,
+    "alternaterevenues": 15750
+  }
+}

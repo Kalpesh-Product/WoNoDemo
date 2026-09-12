@@ -1,0 +1,24 @@
+[
+  {
+    "_id": {
+      "$oid": "67d56b05ac5326fb7189d89e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "serviceName": "Co-working",
+    "description": "Premium co-working spaces with high-speed internet, modern amenities, and flexible workstations.",
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "serviceName": "Virtual Office",
+    "description": "Get a professional business address, mail handling, and call services without a physical office.",
+    "isActive": true
+  }
+]

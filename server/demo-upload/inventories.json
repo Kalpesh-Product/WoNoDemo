@@ -1,0 +1,866 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "itemName": {
+      "$oid": "abce3ad44dbb925fcfe7b803"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "be63cef0928ac82ee3ff8089"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "itemName": {
+      "$oid": "1abcdee51daa56eb7256c496"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "cb6d1353f9d6c4095f86ba65"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "itemName": {
+      "$oid": "5fb05ed4154d30497bdbc956"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "98fe913b4d3e0689dc7e69d8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "itemName": {
+      "$oid": "80a0208bb09ba4c650b16a2c"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "3957841c69bcec1b56f0fd25"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "itemName": {
+      "$oid": "3f695e9dc6aa8e438fea05ab"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "39279b85ede43b97263f7f28"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "itemName": {
+      "$oid": "c37a85a3373395d0465c226e"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "06c993727d48e4bf46295ccf"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "itemName": {
+      "$oid": "177aa532b52226ac2756817c"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "4779e473aef40f305f711d1c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "itemName": {
+      "$oid": "79e24d6c9efe022ea1fbaab8"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "af20604dfe11299318cdd0c2"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "itemName": {
+      "$oid": "1f2d7ae9c055f20e23a31a78"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "d9226f39c2c55db26519659e"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "itemName": {
+      "$oid": "a6d54bfdaf397429f264e34b"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "c5dc40d205282e3662efbbc9"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "itemName": {
+      "$oid": "1629947af3401df41ff2c247"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "1aa9750d9d15369442882c62"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "itemName": {
+      "$oid": "2a8ebed60b229e4fe654b2b7"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "7cd9de436f77ec544a5debd6"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "itemName": {
+      "$oid": "eff0e951217a39c66a53fef6"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "7528c97645b6d3201e9c56c1"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "itemName": {
+      "$oid": "98b7db22c60ba7ab282104d3"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "fb9e51094328c6309083142d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "itemName": {
+      "$oid": "ad00bd52c4580e7caf28a87a"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "f865b322c51169f65b6ce41f"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "itemName": {
+      "$oid": "8213c075162d31dd9238c678"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "252c9e938548fc6a9d181f7c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "itemName": {
+      "$oid": "ea2eba663d9a3718199eda61"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "acb29b1f7891ca676b811daf"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "itemName": {
+      "$oid": "42619eb26b3a26b4bf796de5"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "3fc4c8f733cefaff2a323e76"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "itemName": {
+      "$oid": "d9c8971770f809a8861ec5ac"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "c7c7fb9958b15c03434152f1"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "itemName": {
+      "$oid": "d1a7b51923e8fba92a3db5a0"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "539bbdee19f78d1f3839b0e7"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "itemName": {
+      "$oid": "28602cf6e0596b1f4c70bda2"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "8f2156a64c0de7e3386413d7"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "itemName": {
+      "$oid": "2c8217c298e6f88f9f28efc1"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 4,
+    "newPurchaseInventoryValue": 400,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "fe8b73e3fc72ce9cb66e4f95"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "itemName": {
+      "$oid": "9a90717f6cc6ae99ed86a226"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 1.5,
+    "newPurchaseInventoryValue": 150,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "ab282ba9b937da390552a414"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "itemName": {
+      "$oid": "18b37d4a6920972cb44ef5d9"
+    },
+    "newPurchaseUnits": 100,
+    "newPurchasePerUnitPrice": 7,
+    "newPurchaseInventoryValue": 700,
+    "openingInventoryUnits": 0,
+    "openingPerUnitPrice": 0,
+    "openingInventoryValue": 0,
+    "consumptions": [],
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "buildingName": "",
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "remainingUnits": 100,
+    "assignedUnits": 0,
+    "_id": {
+      "$oid": "a1eb3ab3bd971c2a21ec059f"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  }
+]

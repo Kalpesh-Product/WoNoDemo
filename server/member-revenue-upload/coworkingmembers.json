@@ -1,0 +1,2016 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "employeeName": "Aisha Shah",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000000",
+    "email": "aisha@northstaranalytics.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1988-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "75eb4ea336859068bb7672b1"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "employeeName": "Marcus Reed",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000010",
+    "email": "marcus@junipertechnologies.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1989-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "1b4eba089eab139c531a70e6"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "employeeName": "Sofia Chen",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000011",
+    "email": "sofia@junipertechnologies.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1990-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "90feff404c369773229fb9dc"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "employeeName": "Maya Brooks",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000020",
+    "email": "maya@harboradvisory.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1990-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "3d911092781d6fd881e5beac"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "employeeName": "Noah Singh",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000021",
+    "email": "noah@harboradvisory.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "aa7bb1cd70f1951dd1d78cec"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "employeeName": "Leah Kapoor",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000022",
+    "email": "leah@harboradvisory.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "f590eb09999651857e6cc60a"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "employeeName": "Ethan Clark",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000030",
+    "email": "ethan@willowcreative.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "0290af512193e2a8b47b74e8"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "employeeName": "Zoya Khan",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000031",
+    "email": "zoya@willowcreative.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "abb7ef283713a76c01fcae6e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "employeeName": "Arjun Rao",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000032",
+    "email": "arjun@willowcreative.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "2c0b1b358016676570b91ec0"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "employeeName": "Amelia Scott",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000033",
+    "email": "amelia@willowcreative.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1994-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "f8443c6bfa284c733ecf6dae"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "3c306b1e3ff25027f097f71e"
+    },
+    "employeeName": "Amelia Scott",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000040",
+    "email": "amelia@cobaltventures.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "894e37fba9423e987ee1c178"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "3c306b1e3ff25027f097f71e"
+    },
+    "employeeName": "Rohan Desai",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000041",
+    "email": "rohan@cobaltventures.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "a2db8b246e8cde765de61d7d"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Oliver Grant",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000050",
+    "email": "oliver@meridianconsulting.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "3f7eaefda7a4af6cfcf07632"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Ananya Nair",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000051",
+    "email": "ananya@meridianconsulting.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1994-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "bec23d4af836a688173b1c4f"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Lucas Bennett",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000052",
+    "email": "lucas@meridianconsulting.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1995-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "0e40f10e46c66a0da6b46a9c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Sara Ali",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000053",
+    "email": "sara@meridianconsulting.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1996-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "18b4d8e62bc5f5f2552738ae"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Aditya Menon",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000054",
+    "email": "aditya@meridianconsulting.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1997-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "a374a613dcb030caf816b82a"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "employeeName": "Isabel Costa",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000055",
+    "email": "isabel@meridianconsulting.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1998-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "b7701ea39bd14e2f115ceef7"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "employeeName": "Sara Ali",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000060",
+    "email": "sara@atlaslearning.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1994-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "3cf0e9e0a14d7a30cf408126"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "employeeName": "Kabir Malhotra",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000070",
+    "email": "kabir@orchidcommerce.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1995-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "2bc8817281725cc6c6fcd6b7"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "employeeName": "Nina Kapoor",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000071",
+    "email": "nina@orchidcommerce.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1996-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "2a0af8901a44e01f7e2a3d63"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "employeeName": "Ryan Thomas",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000072",
+    "email": "ryan@orchidcommerce.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1997-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "dd618d4f20bcb5b41f3eb6b0"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "employeeName": "Aisha Shah",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000080",
+    "email": "aisha@aspendigital.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1996-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "48f5652a682bd786351529ce"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "employeeName": "Marcus Reed",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000090",
+    "email": "marcus@cedarlabs.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1997-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "c005a2ef65a66f99fd73110a"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "employeeName": "Sofia Chen",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000091",
+    "email": "sofia@cedarlabs.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1998-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "a75df6e687baf6a5584f59a3"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "3d07d88ac61c8d4b95dcbd0d"
+    },
+    "employeeName": "Maya Brooks",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000100",
+    "email": "maya@horizonlogistics.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1998-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "ea08c3d95553ed764749505a"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "3d07d88ac61c8d4b95dcbd0d"
+    },
+    "employeeName": "Noah Singh",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000101",
+    "email": "noah@horizonlogistics.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1999-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "604ee8454925180891b3ff2c"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Ethan Clark",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000110",
+    "email": "ethan@coralmedia.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1999-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "8af434c9fbf5d7632d910489"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Zoya Khan",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000111",
+    "email": "zoya@coralmedia.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1988-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "df4337d426c2a19f9795f0bf"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Arjun Rao",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000112",
+    "email": "arjun@coralmedia.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1989-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "d8cd65ef8a27b906ec273660"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Amelia Scott",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000113",
+    "email": "amelia@coralmedia.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1990-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "168aaf2463c4a9ce0bdd41cf"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Rohan Desai",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000114",
+    "email": "rohan@coralmedia.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "747e4c0b71afa1e45a63b934"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "employeeName": "Mira Joshi",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000115",
+    "email": "mira@coralmedia.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "d6d5e6ce699298fe638d9433"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "employeeName": "Amelia Scott",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000120",
+    "email": "amelia@summitstrategy.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1988-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "e7ef15e6188f91ad3ff35bea"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "employeeName": "Oliver Grant",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000130",
+    "email": "oliver@auroradesign.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1989-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "e34e7c3f8bf19ddf9fbd9f4d"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "employeeName": "Ananya Nair",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000131",
+    "email": "ananya@auroradesign.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1990-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "90e1b5571700402ec3fcd9d3"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "employeeName": "Lucas Bennett",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000132",
+    "email": "lucas@auroradesign.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "5f2a8d0eb403d6349b876ab8"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "employeeName": "Sara Ali",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000133",
+    "email": "sara@auroradesign.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "965d9bc123d1a37f5fb7f76f"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "employeeName": "Sara Ali",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000140",
+    "email": "sara@maplefinance.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1990-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "85ba59590b3698d13c43a969"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "employeeName": "Aditya Menon",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000141",
+    "email": "aditya@maplefinance.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "78aeeaeb3eddac3a5efd9aba"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "employeeName": "Isabel Costa",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000142",
+    "email": "isabel@maplefinance.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "fa29534a13239137517d9f73"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "employeeName": "Kabir Malhotra",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000150",
+    "email": "kabir@sapphiresystems.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1991-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "d6d585e3c5863fb1f9b07376"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "employeeName": "Nina Kapoor",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000151",
+    "email": "nina@sapphiresystems.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "5bbc0b7453ed45838de09aab"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "employeeName": "Ryan Thomas",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000152",
+    "email": "ryan@sapphiresystems.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "6e2c03d26ae5ebca287373af"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "employeeName": "Aisha Shah",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000153",
+    "email": "aisha@sapphiresystems.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1994-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "488de7e7c59451301c03b7d3"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "28ad0eb3bf044f514f6512e3"
+    },
+    "employeeName": "Aisha Shah",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000160",
+    "email": "aisha@solsticeresearch.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1992-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "026db15bca9395fe498f683c"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "28ad0eb3bf044f514f6512e3"
+    },
+    "employeeName": "Daniel Wilson",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000161",
+    "email": "daniel@solsticeresearch.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "fbf6fe3b276e8c479b9d5706"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Marcus Reed",
+    "gender": "Male",
+    "designation": "Project Coordinator",
+    "mobileNo": "+919000000170",
+    "email": "marcus@riverstonestudio.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1993-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "2415da1f74df36a043285e3d"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Sofia Chen",
+    "gender": "Female",
+    "designation": "Account Manager",
+    "mobileNo": "+919000000171",
+    "email": "sofia@riverstonestudio.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1994-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "b6a7663d64edcb5c22350621"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Omar Patel",
+    "gender": "Male",
+    "designation": "Software Engineer",
+    "mobileNo": "+919000000172",
+    "email": "omar@riverstonestudio.com",
+    "bloodGroup": "AB+",
+    "dob": {
+      "$date": "1995-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "9387b6cc62c22fce4a635003"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Maya Brooks",
+    "gender": "Female",
+    "designation": "Operations Associate",
+    "mobileNo": "+919000000173",
+    "email": "maya@riverstonestudio.com",
+    "bloodGroup": "O+",
+    "dob": {
+      "$date": "1996-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Pending",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "f84694e794d7a5e9d83fe843"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Noah Singh",
+    "gender": "Male",
+    "designation": "Business Analyst",
+    "mobileNo": "+919000000174",
+    "email": "noah@riverstonestudio.com",
+    "bloodGroup": "A+",
+    "dob": {
+      "$date": "1997-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Active",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "66043dd2fdf7ac25622bf9fa"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "client": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "employeeName": "Leah Kapoor",
+    "gender": "Female",
+    "designation": "Product Designer",
+    "mobileNo": "+919000000175",
+    "email": "leah@riverstonestudio.com",
+    "bloodGroup": "B+",
+    "dob": {
+      "$date": "1998-05-12T00:00:00Z"
+    },
+    "dateOfJoining": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "unit": {
+      "$oid": "69faeca1d2ece2c562735655"
+    },
+    "credits": 2,
+    "biometricStatus": "Approved",
+    "isActive": true,
+    "isDeleted": false,
+    "deletedAt": null,
+    "deletedBy": null,
+    "_id": {
+      "$oid": "4adefdb21ded7501e096419a"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  }
+]

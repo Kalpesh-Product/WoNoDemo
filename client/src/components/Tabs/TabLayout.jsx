@@ -11,6 +11,7 @@ const TabLayout = ({
   defaultTabPath,
   hideTabsCondition = () => false,
   hideTabsOnPaths = [], // NEW PROP
+  contentClassName = "py-4",
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,36 +21,74 @@ const TabLayout = ({
 
   // 🧠 Filter tabs based on permissions
   const filteredTabs = useMemo(() => {
-    return tabs.filter(
-      (tab) => !tab.permission || userPermissions.includes(tab.permission)
-    );
+     return tabs.filter((tab) => {
+      if (!tab.permission) return true;
+      const requiredPermissions = Array.isArray(tab.permission)
+        ? tab.permission
+        : [tab.permission];
+      return requiredPermissions.some((permission) =>
+        userPermissions.includes(permission)
+      );
+    });
   }, [tabs, userPermissions]);
 
-  // Redirect to default tab if on basePath
+  // 🧠 Check if current path is authorized
+  const isAuthorized = useMemo(() => {
+    const currentTab = tabs.find((tab) => location.pathname.includes(tab.path));
+    if (!currentTab) return true;
+    if (!currentTab.permission) return true;
+    const requiredPermissions = Array.isArray(currentTab.permission)
+      ? currentTab.permission
+      : [currentTab.permission];
+    return requiredPermissions.some((permission) =>
+      userPermissions.includes(permission)
+    );
+  }, [tabs, location.pathname, userPermissions]);
+
+  // Redirect to first allowed default tab if on basePath
   useEffect(() => {
     if (
       location.pathname === basePath &&
       defaultTabPath &&
       filteredTabs.length > 0
     ) {
-      navigate(`${basePath}/${filteredTabs[0].path}`, { replace: true }); // 🆕 use filteredTabs
+      navigate(`${basePath}/${filteredTabs[0].path}`, { replace: true });
     }
-  }, [location, navigate, basePath, defaultTabPath, filteredTabs]); // 🆕
+  }, [location, navigate, basePath, defaultTabPath, filteredTabs]);
 
-  const activeTab = filteredTabs.findIndex((tab) =>
-    location.pathname.includes(tab.path)
-  ); // 🆕 use filteredTabs
-  const tabPercent = 100 / filteredTabs.length; // 🆕
+   useEffect(() => {
+    if (!isAuthorized && filteredTabs.length > 0) {
+      navigate(`${basePath}/${filteredTabs[0].path}`, { replace: true });
+    }
+  }, [isAuthorized, filteredTabs, navigate, basePath]);
+
+  // const activeTab = filteredTabs.findIndex((tab) =>
+  //   location.pathname.includes(tab.path)
+   const activeTab = filteredTabs.reduce(
+    (activeIndex, tab, index) =>
+      location.pathname.includes(tab.path) &&
+      (activeIndex === -1 ||
+        tab.path.length > filteredTabs[activeIndex].path.length)
+        ? index
+        : activeIndex,
+    -1,
+  );
+  const tabPercent = 100 / filteredTabs.length;
 
   const showTabs =
-    !hideTabsCondition(location.pathname) &&
+    //!hideTabsCondition(location.pathname) &&
+    !hideTabsCondition(location.pathname, location) &&
     !hideTabsOnPaths.some((path) => location.pathname.includes(path));
+
+  if (!isAuthorized && filteredTabs.length === 0) {
+    return null; // Or show an "Unauthorized" message wrapper
+  }
 
   return (
     <div className="p-4">
-      {showTabs && (
+      {showTabs && filteredTabs.length > 0 && (
         <Tabs
-          value={activeTab}
+          value={activeTab === -1 ? false : activeTab}
           variant={isMobile ? "scrollable" : "fullWidth"}
           scrollButtons={isMobile ? "auto" : false}
           TabIndicatorProps={{ style: { display: "none" } }}
@@ -71,33 +110,30 @@ const TabLayout = ({
             },
           }}
         >
-          {filteredTabs.map(
-            (
-              tab,
-              index // 🆕 use filteredTabs
-            ) => (
-              <NavLink
-                key={index}
-                className="border-r-[1px] border-borderGray"
-                to={`${basePath}/${tab.path}`}
-                style={({ isActive }) => ({
-                  textDecoration: "none",
-                  color: isActive ? "white" : "#1E3D73",
-                  textAlign: "center",
-                  padding: "12px 16px",
-                  display: "block",
-                  backgroundColor: isActive ? "#1E3D73" : "white",
-                  minWidth: isMobile ? "70%" : `${tabPercent}%`,
-                })}
-              >
-                {tab.label}
-              </NavLink>
-            )
-          )}
+          {filteredTabs.map((tab, index) => (
+            <NavLink
+              key={index}
+              className="border-r-[1px] border-borderGray"
+              to={`${basePath}/${tab.path}`}
+              state={location.state}
+              end
+              style={({ isActive }) => ({
+                textDecoration: "none",
+                color: isActive ? "white" : "#1E3D73",
+                textAlign: "center",
+                padding: "12px 16px",
+                display: "block",
+                backgroundColor: isActive ? "#1E3D73" : "white",
+                minWidth: isMobile ? "70%" : `${tabPercent}%`,
+              })}
+            >
+              {tab.label}
+            </NavLink>
+          ))}
         </Tabs>
       )}
 
-      <div className="py-4">
+      <div className={contentClassName}>
         <Outlet />
       </div>
     </div>

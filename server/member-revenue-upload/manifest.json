@@ -1,0 +1,144 @@
+{
+  "company": "6799f0cd6a01edbe1bc3fcea",
+  "through": "2026-09-10T09:00:00+05:30",
+  "clientIds": {
+    "coworkingclients": [
+      "70158140a5b3baa5ac3ab018",
+      "a3022d9f535a9d723144c573",
+      "afd0badea1d190905e1cf218",
+      "229602ff502b449836a4d6d7",
+      "3c306b1e3ff25027f097f71e",
+      "72964c47c261637d2d5d17e8",
+      "682e7245d07a42a90d731ebd",
+      "f0abaee881579227f6f4226a",
+      "994876afffb394be5d16fa27",
+      "8eccdfc9bbfb1b3aa5ec26c1",
+      "3d07d88ac61c8d4b95dcbd0d",
+      "a2c1db6da78a16429daae085",
+      "4fcd0bb260c5f1e615121a98",
+      "8b5c1988e310527ee35b5209",
+      "e0d86b55f8b35ef2a751f68c",
+      "a0c83573140830e1cb6fcdd4",
+      "28ad0eb3bf044f514f6512e3",
+      "04e02f65ffbdc30e135a3efe"
+    ],
+    "virtualofficeclients": [
+      "78a18e388833e8cb2cf0977b",
+      "2a615e21fe25b8253b6ca89e",
+      "6adaf83aa3cd9a32b777c5a0",
+      "4b30c8d94f11c604126471c6",
+      "3be51ad6413ea9c5d3d3c999",
+      "4f42d3b9100f0d1e44e19d4b",
+      "1d300d526d9d06c0dbe52801",
+      "b3a99727e10b57807127ecdf",
+      "bfb083cf243193625044b8e5",
+      "ec0dee9185f18cfd741341f8",
+      "d7bab3fb63a424bcacb5e74c",
+      "2c50e94f7363b3c47163d34f"
+    ],
+    "workationclients": [
+      "5094281c739c94c38b749ae6",
+      "8c23877ba1f72a0d6fa51bda",
+      "f2ae76630596e34f43a940fb",
+      "bfd721673424d1a569dfdb17",
+      "b170202ef39a035087c80b33",
+      "72728c62c4b23f311e2d98d4",
+      "e45cbd3260bc6799b1a28623",
+      "f8bf655aaa9dff0a753c5f88",
+      "36852d9fde0a59e8bc6ee29b",
+      "aabe3f2de88212d144d9eac6"
+    ]
+  },
+  "teamSizes": [
+    {
+      "client": "Northstar Analytics",
+      "members": 1,
+      "bookedDesks": 2
+    },
+    {
+      "client": "Juniper Technologies",
+      "members": 2,
+      "bookedDesks": 5
+    },
+    {
+      "client": "Harbor Advisory",
+      "members": 3,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Willow Creative",
+      "members": 4,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Cobalt Ventures",
+      "members": 2,
+      "bookedDesks": 3
+    },
+    {
+      "client": "Meridian Consulting",
+      "members": 6,
+      "bookedDesks": 6
+    },
+    {
+      "client": "Atlas Learning",
+      "members": 1,
+      "bookedDesks": 2
+    },
+    {
+      "client": "Orchid Commerce",
+      "members": 3,
+      "bookedDesks": 5
+    },
+    {
+      "client": "Aspen Digital",
+      "members": 1,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Cedar Labs",
+      "members": 2,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Horizon Logistics",
+      "members": 2,
+      "bookedDesks": 3
+    },
+    {
+      "client": "Coral Media",
+      "members": 6,
+      "bookedDesks": 6
+    },
+    {
+      "client": "Summit Strategy",
+      "members": 1,
+      "bookedDesks": 2
+    },
+    {
+      "client": "Aurora Design",
+      "members": 4,
+      "bookedDesks": 5
+    },
+    {
+      "client": "Maple Finance",
+      "members": 3,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Sapphire Systems",
+      "members": 4,
+      "bookedDesks": 4
+    },
+    {
+      "client": "Solstice Research",
+      "members": 2,
+      "bookedDesks": 3
+    },
+    {
+      "client": "Riverstone Studio",
+      "members": 6,
+      "bookedDesks": 6
+    }
+  ]
+}

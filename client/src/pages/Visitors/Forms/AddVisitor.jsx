@@ -1,6 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { TextField, MenuItem, CircularProgress } from "@mui/material";
+import {
+  TextField,
+  MenuItem,
+  CircularProgress,
+  Alert,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@mui/material";
 import PrimaryButton from "../../../components/PrimaryButton";
 import SecondaryButton from "../../../components/SecondaryButton";
 import {
@@ -14,6 +23,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import useAuth from "../../../hooks/useAuth";
 import PageFrame from "../../../components/Pages/PageFrame";
 import {
   isAlphanumeric,
@@ -22,6 +32,9 @@ import {
 } from "../../../utils/validators";
 
 const AddVisitor = () => {
+  const uniqueId = () =>
+    `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+
   const {
     control,
     handleSubmit,
@@ -33,17 +46,25 @@ const AddVisitor = () => {
     mode: "onChange",
     defaultValues: {
       firstName: "",
-      lastName:"",
+      lastName: "",
       email: "",
       gender: "",
       address: "",
       phoneNumber: "",
       purposeOfVisit: "",
-      idProof: { idType: "", idNumber: "" },
+      idProof: {
+        idType: uniqueId(),
+        idNumber: uniqueId(),
+      },
+
       dateOfVisit: null,
       checkIn: null,
+      checkInBy: "",
       checkOut: null,
+      checkOutBy: "",
       toMeet: "",
+      location: "",
+      unit: "",
       department: "",
       clientToMeet: "",
       toMeetCompany: "",
@@ -55,13 +76,58 @@ const AddVisitor = () => {
     },
   });
 
+  const { auth } = useAuth();
+
   const selectedCompany = watch("toMeetCompany");
+  const firstName = watch("firstName");
+  const lastName = watch("lastName");
+  const phoneNumber = watch("phoneNumber");
   const selectedIdType = watch("idProof.idType");
   const visitorType = watch("visitorType");
+  const watchLocation = watch("location");
 
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [debouncedVisitorPhone, setDebouncedVisitorPhone] = useState("");
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setDebouncedVisitorPhone("");
+
+    const hasValidIdentity =
+      firstName?.trim() &&
+      lastName?.trim() &&
+      isValidPhoneNumber(String(phoneNumber || "")) === true;
+
+    if (!hasValidIdentity) return undefined;
+
+    const timeoutId = setTimeout(
+      () => setDebouncedVisitorPhone(String(phoneNumber).trim()),
+      400,
+    );
+
+    return () => clearTimeout(timeoutId);
+  }, [firstName, lastName, phoneNumber]);
+
+  const {
+    data: visitorCheck,
+    isFetching: isCheckingVisitor,
+    isError: isVisitorCheckError,
+  } = useQuery({
+    queryKey: ["visitor-exists", debouncedVisitorPhone],
+    queryFn: async () => {
+      const response = await axios.get("/api/visitors/check-existing", {
+        params: { phoneNumber: debouncedVisitorPhone },
+      });
+      return response.data;
+    },
+    enabled: Boolean(debouncedVisitorPhone),
+    retry: false,
+  });
+
+  const existingVisitor = visitorCheck?.exists
+    ? visitorCheck.visitor
+    : null;
   const { data: employees = [], isLoading } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
@@ -102,27 +168,70 @@ const AddVisitor = () => {
       enabled: !!selectedCompany, // <-- Runs only if selectedCompany has a truthy value
     });
 
+
+      const { data: unitsData = [], isPending: isUnitsPending } = useQuery({
+    queryKey: ["unitsData"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("/api/company/fetch-units");
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching units data:", error);
+        return [];
+      }
+    },
+  });
   //---------------------------------------Data processing----------------------------------------------------//
+  const getEmployeeDepartments = (employee) =>
+    Array.isArray(employee?.departments) ? employee.departments : [];
+
   const departmentMap = new Map();
   employees.forEach((employee) => {
-    employee.departments?.forEach((department) => {
+    getEmployeeDepartments(employee).forEach((department) => {
       departmentMap.set(department._id, department);
     });
   });
   const uniqueDepartments = Array.from(departmentMap.values());
 
   const departmentEmployees = employees.filter((item) =>
-    item.departments?.some((dept) => dept._id === selectedDepartment)
+    getEmployeeDepartments(item).some((dept) => dept._id === selectedDepartment)
   );
+
+  const filteredClientCompanies = useMemo(() => {
+    const seenNames = new Set();
+
+    return clientCompanies.filter((client) => {
+      if (client?.isActive === false) return false;
+
+      const normalizedName = (client?.clientName || "").trim().toLowerCase();
+      if (!normalizedName) return false;
+
+      if (["biznest", "biz nest"].includes(normalizedName)) {
+        return false;
+      }
+
+      if (seenNames.has(normalizedName)) {
+        return false;
+      }
+
+      seenNames.add(normalizedName);
+      return true;
+    });
+  }, [clientCompanies]);
   //---------------------------------------Data processing----------------------------------------------------//
   const { mutate: addVisitor, isPending: isMutateVisitor } = useMutation({
     mutationKey: ["addVisitor"],
     mutationFn: async (data) => {
+      const isBiznest = data.toMeetCompany === "6799f0cd6a01edbe1bc3fcea";
+      console.log("viz data", data.toMeet);
+      console.log("isBiznest", isBiznest);
       const response = await axios.post("/api/visitors/add-visitor", {
         ...data,
         department: selectedDepartment === "na" ? null : selectedDepartment,
-        toMeet: selectedDepartment === "na" ? null : data.toMeet,
+        toMeet: isBiznest ? data.toMeet : null, // only for BIZNest
+        clientToMeet: !isBiznest ? data.toMeet : null, // only for other companies
       });
+
       return response.data;
     },
     onSuccess: (data) => {
@@ -136,15 +245,23 @@ const AddVisitor = () => {
       ));
     },
     onError: (error) => {
-      toast.error(error.message || "Error Adding Visitor");
+      toast.error(error.response.data.message || "Error Adding Visitor");
     },
   });
   const onSubmit = (data) => {
+    if (existingVisitor) {
+      toast.error(
+        "Visitor already exists. Continue from Repeat Visitors in Mix Bag.",
+      );
+      return;
+    }
+
     const isBiznest = data.toMeetCompany === "6799f0cd6a01edbe1bc3fcea";
 
     const payload = {
       ...data,
       visitorFlag: "Visitor",
+        building: data.location || null,
       department: isBiznest
         ? data.department === "na"
           ? null
@@ -155,7 +272,14 @@ const AddVisitor = () => {
           ? null
           : data.toMeet
         : data.toMeet || null, // allow client member ID
+      checkInBy: auth?.user
+        ? `${auth.user.firstName || ""} ${auth.user.lastName || ""}`.trim() ||
+        auth.user.name ||
+        auth.user.email ||
+        "Unknown User"
+        : "-",
     };
+    console.log("PAYLOAD BEING SENT:", JSON.stringify(payload, null, 2));
 
     addVisitor(payload);
   };
@@ -166,7 +290,7 @@ const AddVisitor = () => {
 
   useEffect(() => {
     setValue("checkIn", dayjs(new Date()));
-  }, []);
+  }, [setValue]);
 
   return (
     <div className=" p-4">
@@ -259,6 +383,75 @@ const AddVisitor = () => {
                   )}
                 />
 
+                {debouncedVisitorPhone && (
+                  <div className="md:col-span-4">
+                    {isCheckingVisitor ? (
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <CircularProgress size={16} />
+                        <span>Checking for an existing visitor…</span>
+                      </div>
+                    ) : existingVisitor ? (
+                      <Alert
+                        severity="warning"
+                        action={
+                          <Button
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                              const params = new URLSearchParams();
+
+                              if (existingVisitor.id) {
+                                params.set("visitorId", existingVisitor.id);
+                              }
+                              if (existingVisitor.lastVisitedAt) {
+                                params.set(
+                                  "lastVisitedAt",
+                                  existingVisitor.lastVisitedAt,
+                                );
+                              }
+
+                              navigate({
+                                pathname:
+                                  "/app/visitors/mix-bag/repeat-visitors/repeat-internal-visitors",
+                                search: params.toString()
+                                  ? `?${params.toString()}`
+                                  : "",
+                              });
+                            }}
+                          >
+                            Repeat Visitor
+                          </Button>
+                        }
+                      >
+                        {[
+                          existingVisitor.firstName,
+                          existingVisitor.lastName,
+                        ]
+                          .filter(Boolean)
+                          .join(" ") || "This visitor"}{" "}
+                        already exists with this phone number.
+                        {existingVisitor.lastVisitedAt && (
+                          <span className="block mt-1">
+                            Last visited: {" "}
+                            {dayjs(existingVisitor.lastVisitedAt).format(
+                              "DD MMM YYYY, hh:mm A",
+                            )}
+                          </span>
+                        )}
+                      </Alert>
+                    ) : isVisitorCheckError ? (
+                      <Alert severity="info">
+                        Visitor availability could not be checked. The phone
+                        number will still be verified on submit.
+                      </Alert>
+                    ) : (
+                      <span className="text-sm text-green-700">
+                        No existing visitor found.
+                      </span>
+                    )}
+                  </div>
+                )}
+
                 <Controller
                   name="gender"
                   control={control}
@@ -343,7 +536,75 @@ const AddVisitor = () => {
               <div className="py-4 border-b-default border-borderGray">
                 <span className="text-subtitle font-pmedium">To Meet</span>
               </div>
-              <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-3 gap-4 p-4 ">
+              
+              <div className="grid grid-cols-1 md:grid-cols-6 gap-4 p-4">
+                <Controller
+                  name="location"
+                  control={control}
+                  rules={{ required: "Location is required" }}
+                  render={({ field }) => (
+                     <TextField
+                      {...field}
+                      size="small"
+                      select
+                      fullWidth
+                      label={"Location"}
+                      error={!!errors.location}
+                      helperText={errors.location?.message}
+                      className="md:col-span-3"
+                    >
+                        <MenuItem value="">Select Location</MenuItem>
+                        {auth.user.company.workLocations.length > 0 ? (
+                          auth.user.company.workLocations.map((loc) => (
+                            <MenuItem key={loc._id} value={loc._id}>
+                              {loc.buildingName}
+                            </MenuItem>
+                          ))
+                        ) : (
+                          <MenuItem disabled>No Locations Available</MenuItem>
+                        )}
+                      </TextField>
+                  )}
+                />
+
+                <Controller
+                  name="unit"
+                  control={control}
+                  rules={{ required: "Unit is required" }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      select
+                      size="small"
+                                           fullWidth
+                      label="Select Unit"
+                      disabled={!watchLocation}
+                      error={!!errors.unit}
+                      helperText={errors.unit?.message}
+                      className="md:col-span-3"
+                    >
+                      <MenuItem value="">
+                        Select Unit
+                      </MenuItem>
+                      {isUnitsPending ? (
+                        <MenuItem disabled>
+                          <CircularProgress size={20} />
+                        </MenuItem>
+                      ) : (
+                        unitsData
+                          .filter((item) => item.building?._id === watchLocation)
+                          .map((item) => (
+                            <MenuItem key={item._id} value={item._id}>
+                              {item.unitNo}
+                            </MenuItem>
+                          ))
+                      )}
+                    </TextField>
+                  )}
+                />
+                {/* </div>
+              <div className="grid grid-cols sm:grid-cols-1 md:grid-cols-3 gap-2 p-2 "> */}
+                
                 <Controller
                   name="toMeetCompany"
                   control={control}
@@ -358,6 +619,7 @@ const AddVisitor = () => {
                         setSelectedDepartment("");
                       }}
                       select
+                        className="md:col-span-2"
                     >
                       <MenuItem value="" disabled>
                         Select Company
@@ -365,7 +627,7 @@ const AddVisitor = () => {
                       <MenuItem value="6799f0cd6a01edbe1bc3fcea">
                         BIZNest
                       </MenuItem>
-                      {clientCompanies.map((client) => (
+                       {filteredClientCompanies.map((client) => (
                         <MenuItem key={client._id} value={client._id}>
                           {client.clientName}
                         </MenuItem>
@@ -391,6 +653,7 @@ const AddVisitor = () => {
                       size="small"
                       label={"Select Department"}
                       fullWidth
+                        className="md:col-span-2"
                       disabled={selectedCompany !== "6799f0cd6a01edbe1bc3fcea"}
                       onChange={(e) => {
                         field.onChange(e);
@@ -431,6 +694,7 @@ const AddVisitor = () => {
                         select
                         size="small"
                         fullWidth
+                        className="md:col-span-2"
                         disabled={
                           (!showClientMembers && !showBiznestEmployees) ||
                           (isBiznest && selectedDepartment === "na")
@@ -469,6 +733,7 @@ const AddVisitor = () => {
                   }}
                 />
               </div>
+              
 
               <div>
                 <div className="py-4 border-b-default border-borderGray">
@@ -550,6 +815,31 @@ const AddVisitor = () => {
                           render={(params) => (
                             <TextField {...params} fullWidth />
                           )}
+                          shouldDisableTime={(time, view) => {
+                            const startTime = watch("checkIn");
+
+                            if (!startTime) return false;
+
+                            const startDate = dayjs(startTime).toDate(); // <-- the fix
+                            const current = time.$d;
+
+                            if (view === "hours") {
+                              return current.getHours() < startDate.getHours();
+                            }
+
+                            if (view === "minutes") {
+                              const selectedHour = dayjs(field.value).isValid()
+                                ? dayjs(field.value).hour()
+                                : null;
+
+                              return (
+                                selectedHour === startDate.getHours() &&
+                                current.getMinutes() < startDate.getMinutes()
+                              );
+                            }
+
+                            return false;
+                          }}
                         />
                       )}
                     />
@@ -565,7 +855,9 @@ const AddVisitor = () => {
               type="submit"
               title={"Submit"}
               isLoading={isMutateVisitor}
-              disabled={isMutateVisitor}
+              disabled={
+                isMutateVisitor || isCheckingVisitor || Boolean(existingVisitor)
+              }
             />
             <SecondaryButton handleSubmit={handleReset} title={"Reset"} />
           </div>

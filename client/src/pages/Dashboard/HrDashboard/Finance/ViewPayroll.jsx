@@ -9,7 +9,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import humanTime from "../../../../utils/humanTime";
 import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import humanDate from "../../../../utils/humanDateForamt";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import PageFrame from "../../../../components/Pages/PageFrame";
 import ThreeDotMenu from "../../../../components/ThreeDotMenu";
 import { CircularProgress } from "@mui/material";
@@ -484,7 +484,7 @@ const ViewPayroll = () => {
                         className="flex justify-between py-1 border-b border-borderGray"
                       >
                         <span>{formatKeyLabel(key)}</span>
-                        <span>{inrFormat(value) || 0}</span>
+                        <span>{usdFormat(value) || 0}</span>
                       </div>
                     ))
                   )}
@@ -507,7 +507,7 @@ const ViewPayroll = () => {
                         className="flex justify-between py-1 border-b border-borderGray"
                       >
                         <span>{formatKeyLabel(key)}</span>
-                        <span>{inrFormat(value) || 0}</span>
+                        <span>{usdFormat(value) || 0}</span>
                       </div>
                     ))
                   )}
@@ -517,7 +517,7 @@ const ViewPayroll = () => {
 
             <div className="text-sm text-right font-semibold text-gray-800">
               <span>Net Pay : </span>{" "}
-              <span className="text-lg">{inrFormat(netPay || 0)}</span>
+              <span className="text-lg">{usdFormat(netPay || 0)}</span>
             </div>
 
             <p className="text-xs text-gray-500 mt-4 text-center">

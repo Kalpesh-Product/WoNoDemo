@@ -1,0 +1,2144 @@
+[
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0847d291cbc3118bcb14437f"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "de21bf9c01f49c9e4f7a61fb"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "9f3f24ebc892343c6f139761"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a3b7853e0019bf294f740dc2"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "af08bb1e361495dc82e86006"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "70158140a5b3baa5ac3ab018"
+    },
+    "clientName": "Northstar Analytics",
+    "clientInvoiceName": "Northstar Analytics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 6,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "1cb8e545cf5729b8d9fb6b1c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3cde465d2054c7ba91adae46"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "aaa442ce0f7f1b16afff3ba1"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "83f426ba1f81469073514d11"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e2d58b728b5a0c11f80c3761"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a3022d9f535a9d723144c573"
+    },
+    "clientName": "Juniper Technologies",
+    "clientInvoiceName": "Juniper Technologies Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "ebd9deaa01a520178c388bb3"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "clientName": "Harbor Advisory",
+    "clientInvoiceName": "Harbor Advisory Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c6c5cc0daa286757ea16c5f2"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "clientName": "Harbor Advisory",
+    "clientInvoiceName": "Harbor Advisory Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "fb577b9ca215a58edebcfc3f"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "clientName": "Harbor Advisory",
+    "clientInvoiceName": "Harbor Advisory Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c46be8b8b03b89dfc2463e0a"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "afd0badea1d190905e1cf218"
+    },
+    "clientName": "Harbor Advisory",
+    "clientInvoiceName": "Harbor Advisory Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e8dfc5936500f123b2a33ce7"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "clientName": "Willow Creative",
+    "clientInvoiceName": "Willow Creative Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "504097be8fe59e66516be336"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "clientName": "Willow Creative",
+    "clientInvoiceName": "Willow Creative Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e8afee2c07d8e2c0006b4136"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "229602ff502b449836a4d6d7"
+    },
+    "clientName": "Willow Creative",
+    "clientInvoiceName": "Willow Creative Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "89fe11dfd8e9864f2954313d"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "3c306b1e3ff25027f097f71e"
+    },
+    "clientName": "Cobalt Ventures",
+    "clientInvoiceName": "Cobalt Ventures Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "de7e0f0636a415527312abd1"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "3c306b1e3ff25027f097f71e"
+    },
+    "clientName": "Cobalt Ventures",
+    "clientInvoiceName": "Cobalt Ventures Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a66755830e7aceb661d2d1d0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "72964c47c261637d2d5d17e8"
+    },
+    "clientName": "Meridian Consulting",
+    "clientInvoiceName": "Meridian Consulting Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 6,
+    "deskRate": 1216.67,
+    "occupation": "Private Office",
+    "revenue": 7300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "530cbbf7baea8601f919175c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6c4782a975afd9c7f9404fcb"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0bc09890045d791deb682aa8"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "4a924da79f9158b78c969481"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "19ea7f93957a23f0690bee45"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "29ab5886735a549c3bea85da"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "682e7245d07a42a90d731ebd"
+    },
+    "clientName": "Atlas Learning",
+    "clientInvoiceName": "Atlas Learning Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 6,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "73d812d436c3199b62446d68"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "de8a0645c5d57fef1c2cca9e"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "ab159b0e04fe7159f5fb3b92"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b2bcf7f0f22c9bd190ee9b11"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b3a0756f93b04d3271668257"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "f0abaee881579227f6f4226a"
+    },
+    "clientName": "Orchid Commerce",
+    "clientInvoiceName": "Orchid Commerce Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7f459a3e258478cabdf192a1"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "clientName": "Aspen Digital",
+    "clientInvoiceName": "Aspen Digital Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "5929b96977aa07cfb24458ec"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "clientName": "Aspen Digital",
+    "clientInvoiceName": "Aspen Digital Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "bd7394bfadae8f3c30007ecf"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "clientName": "Aspen Digital",
+    "clientInvoiceName": "Aspen Digital Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "ca2dabff35faf00e4a36ae22"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "994876afffb394be5d16fa27"
+    },
+    "clientName": "Aspen Digital",
+    "clientInvoiceName": "Aspen Digital Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "827fe0ad26964d4a9d2f82dc"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "clientName": "Cedar Labs",
+    "clientInvoiceName": "Cedar Labs Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "92e79d15347809f3262ecd0f"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "clientName": "Cedar Labs",
+    "clientInvoiceName": "Cedar Labs Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e9aaa647a50e41d6d0e075b5"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8eccdfc9bbfb1b3aa5ec26c1"
+    },
+    "clientName": "Cedar Labs",
+    "clientInvoiceName": "Cedar Labs Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b05a7f8563938730cecf79a1"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "3d07d88ac61c8d4b95dcbd0d"
+    },
+    "clientName": "Horizon Logistics",
+    "clientInvoiceName": "Horizon Logistics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "59d6612d6ed03566c95134ee"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "3d07d88ac61c8d4b95dcbd0d"
+    },
+    "clientName": "Horizon Logistics",
+    "clientInvoiceName": "Horizon Logistics Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "cbac4c69b9d7d435931e1625"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a2c1db6da78a16429daae085"
+    },
+    "clientName": "Coral Media",
+    "clientInvoiceName": "Coral Media Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 6,
+    "deskRate": 1216.67,
+    "occupation": "Private Office",
+    "revenue": 7300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6ee29436b54c457117c4fd5d"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "85013d05c149abaa921f9541"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7fe468ee895fb8cde3a982ac"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "8c3e6a5457889de73994835e"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "74ea343023baf5ef81a8aa5f"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "73dd3b06c59e5fc91fd62d56"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "4fcd0bb260c5f1e615121a98"
+    },
+    "clientName": "Summit Strategy",
+    "clientInvoiceName": "Summit Strategy Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 2,
+    "deskRate": 650,
+    "occupation": "Dedicated Desk",
+    "revenue": 1300,
+    "totalTerm": 12,
+    "dueTerm": 6,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "95d5a2e4de7ba08a7a1a607c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "cb3b94b6a4c663c368ae1bb2"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b5df3ace7707354ad55dff1d"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2fbb0cfd5d94d57064ee6e52"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "148bde038835b272414f1cdd"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "8b5c1988e310527ee35b5209"
+    },
+    "clientName": "Aurora Design",
+    "clientInvoiceName": "Aurora Design Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 5,
+    "deskRate": 895,
+    "occupation": "Private Office",
+    "revenue": 4475,
+    "totalTerm": 12,
+    "dueTerm": 7,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "8181748e83753e3936dae041"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "clientName": "Maple Finance",
+    "clientInvoiceName": "Maple Finance Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "f6213ba4e498aa5889bfbab1"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "clientName": "Maple Finance",
+    "clientInvoiceName": "Maple Finance Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "035dfd3d2d2e87c3e4dcd30b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "clientName": "Maple Finance",
+    "clientInvoiceName": "Maple Finance Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0c58d36a206aec3762187cf1"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "e0d86b55f8b35ef2a751f68c"
+    },
+    "clientName": "Maple Finance",
+    "clientInvoiceName": "Maple Finance Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 800,
+    "occupation": "Dedicated Desk",
+    "revenue": 3200,
+    "totalTerm": 12,
+    "dueTerm": 8,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6a933d383c2190da8f086526"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "clientName": "Sapphire Systems",
+    "clientInvoiceName": "Sapphire Systems Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3812f18a3d9f6a901e42b9e7"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "clientName": "Sapphire Systems",
+    "clientInvoiceName": "Sapphire Systems Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "f6edae06b2b94b9b509e8fa4"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "a0c83573140830e1cb6fcdd4"
+    },
+    "clientName": "Sapphire Systems",
+    "clientInvoiceName": "Sapphire Systems Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 4,
+    "deskRate": 1112.5,
+    "occupation": "Private Office",
+    "revenue": 4450,
+    "totalTerm": 12,
+    "dueTerm": 9,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "46373bf4fcdbd48dd5e00a08"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "28ad0eb3bf044f514f6512e3"
+    },
+    "clientName": "Solstice Research",
+    "clientInvoiceName": "Solstice Research Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "rentStatus": "Unpaid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "5294b21882f1e2234edfd9f3"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "28ad0eb3bf044f514f6512e3"
+    },
+    "clientName": "Solstice Research",
+    "clientInvoiceName": "Solstice Research Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 3,
+    "deskRate": 950,
+    "occupation": "Dedicated Desk",
+    "revenue": 2850,
+    "totalTerm": 12,
+    "dueTerm": 10,
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a5bf04f5f6f5e85985305cc5"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "clients": {
+      "$oid": "04e02f65ffbdc30e135a3efe"
+    },
+    "clientName": "Riverstone Studio",
+    "clientInvoiceName": "Riverstone Studio Pvt Ltd",
+    "channel": "Direct",
+    "noOfDesks": 6,
+    "deskRate": 1216.67,
+    "occupation": "Private Office",
+    "revenue": 7300,
+    "totalTerm": 12,
+    "dueTerm": 11,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "rentStatus": "Paid",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "735658385d15c073ec798c03"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  }
+]

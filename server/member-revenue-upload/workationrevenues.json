@@ -1,0 +1,3044 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1200,
+    "status": "Unpaid",
+    "gst": 216,
+    "totalAmount": 1416,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "7515022c1e792c57105ff72c"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 1800,
+    "status": "Unpaid",
+    "gst": 324,
+    "totalAmount": 2124,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "d3c2047ec3bcb9dbdabf1af5"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3200,
+    "status": "Unpaid",
+    "gst": 576,
+    "totalAmount": 3776,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "10dd20a1a7d32a5e770d4d0a"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1240,
+    "status": "Paid",
+    "gst": 223.2,
+    "totalAmount": 1463.2,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c8efccde3dd739af51a7242a"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 1865,
+    "status": "Paid",
+    "gst": 335.7,
+    "totalAmount": 2200.7,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "3bf47330c579fe26a7dc8f23"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3310,
+    "status": "Paid",
+    "gst": 595.8,
+    "totalAmount": 3905.8,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "0098f7d3332ab1e7a6e8da2d"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1280,
+    "status": "Paid",
+    "gst": 230.4,
+    "totalAmount": 1510.4,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "a34da09f5eca22e863dc362f"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 1930,
+    "status": "Paid",
+    "gst": 347.4,
+    "totalAmount": 2277.4,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "6b4f5886dd03f0cf5c8ec12a"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3420,
+    "status": "Paid",
+    "gst": 615.6,
+    "totalAmount": 4035.6,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "7bec55c2c58cf6012df1acf6"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1320,
+    "status": "Paid",
+    "gst": 237.6,
+    "totalAmount": 1557.6,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "8d15f661113bee0e7c5a9fbb"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 1995,
+    "status": "Paid",
+    "gst": 359.1,
+    "totalAmount": 2354.1,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "6823e5fed5f37fb820363f7e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3530,
+    "status": "Paid",
+    "gst": 635.4,
+    "totalAmount": 4165.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "ba28d5ff6a3ef259ac38924d"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1360,
+    "status": "Unpaid",
+    "gst": 244.8,
+    "totalAmount": 1604.8,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "fd456056677909d799e5b137"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2060,
+    "status": "Unpaid",
+    "gst": 370.8,
+    "totalAmount": 2430.8,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "957782fd4d039478179ff872"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3640,
+    "status": "Unpaid",
+    "gst": 655.2,
+    "totalAmount": 4295.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "549075213cfa6b33f6ac9a33"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1400,
+    "status": "Paid",
+    "gst": 252,
+    "totalAmount": 1652,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "ad241b70d93f89d4e6fd76b0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2125,
+    "status": "Paid",
+    "gst": 382.5,
+    "totalAmount": 2507.5,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "b06a6847496d412a02a9499b"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Trailhead Collective",
+    "client": {
+      "$oid": "5094281c739c94c38b749ae6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3750,
+    "status": "Paid",
+    "gst": 675,
+    "totalAmount": 4425,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c491d57020d3bba742037216"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1420,
+    "status": "Paid",
+    "gst": 255.6,
+    "totalAmount": 1675.6,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "e288692c1d5e3a07740d5699"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2125,
+    "status": "Paid",
+    "gst": 382.5,
+    "totalAmount": 2507.5,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "ad7c62b92847fa82980f7334"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3760,
+    "status": "Paid",
+    "gst": 676.8,
+    "totalAmount": 4436.8,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "abf171f99a715de1698be550"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1460,
+    "status": "Paid",
+    "gst": 262.8,
+    "totalAmount": 1722.8,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "4566cc6cde62505d2c57b1a3"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2190,
+    "status": "Paid",
+    "gst": 394.2,
+    "totalAmount": 2584.2,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "a8fc1fddddcd4651c1d9761e"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3870,
+    "status": "Paid",
+    "gst": 696.6,
+    "totalAmount": 4566.6,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "ce8b8277ddfc853ce9b7d797"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1500,
+    "status": "Paid",
+    "gst": 270,
+    "totalAmount": 1770,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "cc7b16c1ed329fab7dafecd8"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2255,
+    "status": "Paid",
+    "gst": 405.9,
+    "totalAmount": 2660.9,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "0d0a26fb2c0eca3a0347257b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3980,
+    "status": "Paid",
+    "gst": 716.4,
+    "totalAmount": 4696.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "6506e75c478d6ec34c990540"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1540,
+    "status": "Unpaid",
+    "gst": 277.2,
+    "totalAmount": 1817.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "358796b7044beac9a3ef9cb8"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2320,
+    "status": "Unpaid",
+    "gst": 417.6,
+    "totalAmount": 2737.6,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c699c0fa4469aa7650bbf04e"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4090,
+    "status": "Unpaid",
+    "gst": 736.2,
+    "totalAmount": 4826.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "81e8f4ff0200171b1e93cccf"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1580,
+    "status": "Paid",
+    "gst": 284.4,
+    "totalAmount": 1864.4,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "fb8791c7cd715b9ed840b45c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2385,
+    "status": "Paid",
+    "gst": 429.3,
+    "totalAmount": 2814.3,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "55a30b782a103f6261d95f5d"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Coastline Creative",
+    "client": {
+      "$oid": "8c23877ba1f72a0d6fa51bda"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4200,
+    "status": "Paid",
+    "gst": 756,
+    "totalAmount": 4956,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "70e374e53c7ffa81bca22c75"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1640,
+    "status": "Paid",
+    "gst": 295.2,
+    "totalAmount": 1935.2,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "249843e022cd78fef7a4f99b"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2450,
+    "status": "Paid",
+    "gst": 441,
+    "totalAmount": 2891,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "3a4c31805693815f32bbd891"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4320,
+    "status": "Paid",
+    "gst": 777.6,
+    "totalAmount": 5097.6,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "9b2adfa07823f55302d50608"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1680,
+    "status": "Paid",
+    "gst": 302.4,
+    "totalAmount": 1982.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "17e8f8631cd8c244e1de493e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2515,
+    "status": "Paid",
+    "gst": 452.7,
+    "totalAmount": 2967.7,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "1666d2bcb91a0a9206089cf7"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4430,
+    "status": "Paid",
+    "gst": 797.4,
+    "totalAmount": 5227.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "d0abd2aa8fd4166fb38121e6"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1720,
+    "status": "Unpaid",
+    "gst": 309.6,
+    "totalAmount": 2029.6,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "871376ad9c7f87596435ae92"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2580,
+    "status": "Unpaid",
+    "gst": 464.4,
+    "totalAmount": 3044.4,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "071f2e0e0ffe02c54b5048e1"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4540,
+    "status": "Unpaid",
+    "gst": 817.2,
+    "totalAmount": 5357.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "df562e2f0c149d12db68dbe5"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1760,
+    "status": "Paid",
+    "gst": 316.8,
+    "totalAmount": 2076.8,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c18b4487309906f9857420d1"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2645,
+    "status": "Paid",
+    "gst": 476.1,
+    "totalAmount": 3121.1,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "f1e4d858a6358247a050f485"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Evergreen Strategy",
+    "client": {
+      "$oid": "f2ae76630596e34f43a940fb"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4650,
+    "status": "Paid",
+    "gst": 837,
+    "totalAmount": 5487,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "884653b45a8e6b0d5aa474ba"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1860,
+    "status": "Paid",
+    "gst": 334.8,
+    "totalAmount": 2194.8,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "fc09a2d1e42e8924e91f31ff"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2775,
+    "status": "Paid",
+    "gst": 499.5,
+    "totalAmount": 3274.5,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "5747410ebb5a43f2d480ed47"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4880,
+    "status": "Paid",
+    "gst": 878.4,
+    "totalAmount": 5758.4,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "1b6ff34360db3cf4f0ee6375"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1900,
+    "status": "Unpaid",
+    "gst": 342,
+    "totalAmount": 2242,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "7544b94d2fa3c53e96f1380a"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2840,
+    "status": "Unpaid",
+    "gst": 511.2,
+    "totalAmount": 3351.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "984c0b39c0db6237b1eddc92"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4990,
+    "status": "Unpaid",
+    "gst": 898.2,
+    "totalAmount": 5888.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "da5c16f101ef9f7af320f597"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1940,
+    "status": "Paid",
+    "gst": 349.2,
+    "totalAmount": 2289.2,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "fe00d8bd7cda75c12373bd25"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2905,
+    "status": "Paid",
+    "gst": 522.9,
+    "totalAmount": 3427.9,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "24cfea941b921227d8185d90"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Suncrest Studio",
+    "client": {
+      "$oid": "bfd721673424d1a569dfdb17"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5100,
+    "status": "Paid",
+    "gst": 918,
+    "totalAmount": 6018,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "d4aaf883d21532f1c45256ee"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 2080,
+    "status": "Unpaid",
+    "gst": 374.4,
+    "totalAmount": 2454.4,
+    "date": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "58a26f09e88d1bef29d485d1"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 3100,
+    "status": "Unpaid",
+    "gst": 558,
+    "totalAmount": 3658,
+    "date": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "3e2c5b92f4fcf4f944fedeac"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5440,
+    "status": "Unpaid",
+    "gst": 979.2,
+    "totalAmount": 6419.2,
+    "date": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "23157af512de8966ca5bbe00"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 2120,
+    "status": "Paid",
+    "gst": 381.6,
+    "totalAmount": 2501.6,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "8027779ceb206a9f3d55c498"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 3165,
+    "status": "Paid",
+    "gst": 569.7,
+    "totalAmount": 3734.7,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "1811fe9a40f2f4a11094abc3"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Lakeside Labs",
+    "client": {
+      "$oid": "b170202ef39a035087c80b33"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5550,
+    "status": "Paid",
+    "gst": 999,
+    "totalAmount": 6549,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "a8c0aafa8dba19fc4461ea2f"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Windward Partners",
+    "client": {
+      "$oid": "72728c62c4b23f311e2d98d4"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1400,
+    "status": "Paid",
+    "gst": 252,
+    "totalAmount": 1652,
+    "date": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "41b1792f4e462cd846b5ae26"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Windward Partners",
+    "client": {
+      "$oid": "72728c62c4b23f311e2d98d4"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2125,
+    "status": "Paid",
+    "gst": 382.5,
+    "totalAmount": 2507.5,
+    "date": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "780c4c360e96bf54683379af"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Windward Partners",
+    "client": {
+      "$oid": "72728c62c4b23f311e2d98d4"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3750,
+    "status": "Paid",
+    "gst": 675,
+    "totalAmount": 4425,
+    "date": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "63f57757539d9ca5a7a1f0f6"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1380,
+    "status": "Paid",
+    "gst": 248.4,
+    "totalAmount": 1628.4,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "cabfed26e74e7f62d49896c8"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2060,
+    "status": "Paid",
+    "gst": 370.8,
+    "totalAmount": 2430.8,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "245d1ce5bb531ec8f4e44a6f"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3650,
+    "status": "Paid",
+    "gst": 657,
+    "totalAmount": 4307,
+    "date": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "93fc5743429c8b00b3e62b14"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1420,
+    "status": "Paid",
+    "gst": 255.6,
+    "totalAmount": 1675.6,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "4095c0ebdeff95d1956c9f80"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2125,
+    "status": "Paid",
+    "gst": 382.5,
+    "totalAmount": 2507.5,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "4a3518ad4905ba46f3d2db92"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3760,
+    "status": "Paid",
+    "gst": 676.8,
+    "totalAmount": 4436.8,
+    "date": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "5d63ef9a8e399a13fdece6de"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1460,
+    "status": "Unpaid",
+    "gst": 262.8,
+    "totalAmount": 1722.8,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "5189df86d6dc95a78da9fbfa"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2190,
+    "status": "Unpaid",
+    "gst": 394.2,
+    "totalAmount": 2584.2,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "d89fc4b1c722167a931ce57f"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3870,
+    "status": "Unpaid",
+    "gst": 696.6,
+    "totalAmount": 4566.6,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "add3516d98f8faf2454dfffe"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1500,
+    "status": "Paid",
+    "gst": 270,
+    "totalAmount": 1770,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "6ee89cdab646dd24b723d083"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2255,
+    "status": "Paid",
+    "gst": 405.9,
+    "totalAmount": 2660.9,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "795ed4a51fa67f80d519e2a6"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 3980,
+    "status": "Paid",
+    "gst": 716.4,
+    "totalAmount": 4696.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "7b12ca454c326f9c8f691e41"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1540,
+    "status": "Paid",
+    "gst": 277.2,
+    "totalAmount": 1817.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "1cecedbb62ab4706ee5017da"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2320,
+    "status": "Paid",
+    "gst": 417.6,
+    "totalAmount": 2737.6,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c45f0142bf53e17eda26c923"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4090,
+    "status": "Paid",
+    "gst": 736.2,
+    "totalAmount": 4826.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "154d0fef75b4a822b0dce970"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1580,
+    "status": "Paid",
+    "gst": 284.4,
+    "totalAmount": 1864.4,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "ee597ed106a96a66269a4e9b"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2385,
+    "status": "Paid",
+    "gst": 429.3,
+    "totalAmount": 2814.3,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "09d2f09aee92931fe7a0798c"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Fieldstone Design",
+    "client": {
+      "$oid": "e45cbd3260bc6799b1a28623"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4200,
+    "status": "Paid",
+    "gst": 756,
+    "totalAmount": 4956,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "7817b3fb239ab42cf49153a8"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1600,
+    "status": "Paid",
+    "gst": 288,
+    "totalAmount": 1888,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "5a820e74cefef5386d5a93c4"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2385,
+    "status": "Paid",
+    "gst": 429.3,
+    "totalAmount": 2814.3,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "678bfd4c1bd782709e2566de"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4210,
+    "status": "Paid",
+    "gst": 757.8,
+    "totalAmount": 4967.8,
+    "date": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "e8ebee2a2e8e98185bd59cd9"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1640,
+    "status": "Unpaid",
+    "gst": 295.2,
+    "totalAmount": 1935.2,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "3209cf4019bcdb435cd9406a"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2450,
+    "status": "Unpaid",
+    "gst": 441,
+    "totalAmount": 2891,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "2c05729d469f669dc95855bd"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4320,
+    "status": "Unpaid",
+    "gst": 777.6,
+    "totalAmount": 5097.6,
+    "date": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "6cacd58b2ef56cab53b0ae66"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1680,
+    "status": "Paid",
+    "gst": 302.4,
+    "totalAmount": 1982.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "41dbf3f491ed0102484a935b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2515,
+    "status": "Paid",
+    "gst": 452.7,
+    "totalAmount": 2967.7,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "237b2f0227e26be37210426a"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4430,
+    "status": "Paid",
+    "gst": 797.4,
+    "totalAmount": 5227.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "185373b555575a0af75c93b5"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1720,
+    "status": "Paid",
+    "gst": 309.6,
+    "totalAmount": 2029.6,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "19e1da46fefd64e8b10b6826"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2580,
+    "status": "Paid",
+    "gst": 464.4,
+    "totalAmount": 3044.4,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "24f420e78982a5805559f455"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4540,
+    "status": "Paid",
+    "gst": 817.2,
+    "totalAmount": 5357.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "c140f67f6ccd3da08e69b105"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1760,
+    "status": "Paid",
+    "gst": 316.8,
+    "totalAmount": 2076.8,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "d8ede652613a702652bc7660"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2645,
+    "status": "Paid",
+    "gst": 476.1,
+    "totalAmount": 3121.1,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "95c76ef0ef83ed9ddd6ec090"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Highland Analytics",
+    "client": {
+      "$oid": "f8bf655aaa9dff0a753c5f88"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4650,
+    "status": "Paid",
+    "gst": 837,
+    "totalAmount": 5487,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "4c47106232925f22ffc183b8"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1820,
+    "status": "Unpaid",
+    "gst": 327.6,
+    "totalAmount": 2147.6,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "d1d4f166275a1c0656ca0cc4"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2710,
+    "status": "Unpaid",
+    "gst": 487.8,
+    "totalAmount": 3197.8,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "be66c6b1b04dcff77127af95"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4770,
+    "status": "Unpaid",
+    "gst": 858.6,
+    "totalAmount": 5628.6,
+    "date": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "9ebf0d9af796325085e56a80"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1860,
+    "status": "Paid",
+    "gst": 334.8,
+    "totalAmount": 2194.8,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "2d1cf7ab3ecf6ebfd2ece787"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2775,
+    "status": "Paid",
+    "gst": 499.5,
+    "totalAmount": 3274.5,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "5d4b424e407d88a018a05cab"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4880,
+    "status": "Paid",
+    "gst": 878.4,
+    "totalAmount": 5758.4,
+    "date": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "3c90663503d363c904d2654e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1900,
+    "status": "Paid",
+    "gst": 342,
+    "totalAmount": 2242,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "0e93ad73ccb496fdf5afdefb"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2840,
+    "status": "Paid",
+    "gst": 511.2,
+    "totalAmount": 3351.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "02be3de752803dfae7ab04f7"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 4990,
+    "status": "Paid",
+    "gst": 898.2,
+    "totalAmount": 5888.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "186ce246ead4d424e7bb5d6b"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 1940,
+    "status": "Paid",
+    "gst": 349.2,
+    "totalAmount": 2289.2,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "910702f55652bdaa7e822801"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 2905,
+    "status": "Paid",
+    "gst": 522.9,
+    "totalAmount": 3427.9,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "f0b49ee47b764ea77d588eb3"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Bayview Digital",
+    "client": {
+      "$oid": "36852d9fde0a59e8bc6ee29b"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5100,
+    "status": "Paid",
+    "gst": 918,
+    "totalAmount": 6018,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "2030bb81da5e6498c4c6c73b"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 2040,
+    "status": "Paid",
+    "gst": 367.2,
+    "totalAmount": 2407.2,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "c10af7e5ded2b3313d94c53a"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 3035,
+    "status": "Paid",
+    "gst": 546.3,
+    "totalAmount": 3581.3,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "3414c74e550b953b80dea53e"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5330,
+    "status": "Paid",
+    "gst": 959.4,
+    "totalAmount": 6289.4,
+    "date": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "_id": {
+      "$oid": "f2addc2236295c98b806453b"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 2080,
+    "status": "Paid",
+    "gst": 374.4,
+    "totalAmount": 2454.4,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "8660f9a0ace49f7f6fa97fb9"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 3100,
+    "status": "Paid",
+    "gst": 558,
+    "totalAmount": 3658,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "44d5b0afce80964b67e1d4dc"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5440,
+    "status": "Paid",
+    "gst": 979.2,
+    "totalAmount": 6419.2,
+    "date": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "1d7628066785876dd7aade13"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Cab Services",
+    "taxableAmount": 2120,
+    "status": "Paid",
+    "gst": 381.6,
+    "totalAmount": 2501.6,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "2c47ab0a5922a99e1aff69a0"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Food and beverages",
+    "taxableAmount": 3165,
+    "status": "Paid",
+    "gst": 569.7,
+    "totalAmount": 3734.7,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "f270c3aebae93d14493b66b1"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "nameOfClient": "Brookside Consulting",
+    "client": {
+      "$oid": "aabe3f2de88212d144d9eac6"
+    },
+    "particulars": "Event Management Services",
+    "taxableAmount": 5550,
+    "status": "Paid",
+    "gst": 999,
+    "totalAmount": 6549,
+    "date": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "_id": {
+      "$oid": "be693d12a0f284ba87fa9dec"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  }
+]

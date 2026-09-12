@@ -1,0 +1,290 @@
+[
+  {
+    "department": "Maintenance",
+    "month": "April",
+    "tasks": 11,
+    "completed": 9
+  },
+  {
+    "department": "Maintenance",
+    "month": "May",
+    "tasks": 12,
+    "completed": 7
+  },
+  {
+    "department": "Maintenance",
+    "month": "June",
+    "tasks": 13,
+    "completed": 8
+  },
+  {
+    "department": "Maintenance",
+    "month": "July",
+    "tasks": 14,
+    "completed": 10
+  },
+  {
+    "department": "Maintenance",
+    "month": "August",
+    "tasks": 8,
+    "completed": 6
+  },
+  {
+    "department": "Maintenance",
+    "month": "September",
+    "tasks": 9,
+    "completed": 3
+  },
+  {
+    "department": "HR",
+    "month": "April",
+    "tasks": 14,
+    "completed": 7
+  },
+  {
+    "department": "HR",
+    "month": "May",
+    "tasks": 8,
+    "completed": 4
+  },
+  {
+    "department": "HR",
+    "month": "June",
+    "tasks": 9,
+    "completed": 6
+  },
+  {
+    "department": "HR",
+    "month": "July",
+    "tasks": 10,
+    "completed": 8
+  },
+  {
+    "department": "HR",
+    "month": "August",
+    "tasks": 11,
+    "completed": 6
+  },
+  {
+    "department": "HR",
+    "month": "September",
+    "tasks": 12,
+    "completed": 7
+  },
+  {
+    "department": "Top Management",
+    "month": "April",
+    "tasks": 10,
+    "completed": 6
+  },
+  {
+    "department": "Top Management",
+    "month": "May",
+    "tasks": 11,
+    "completed": 8
+  },
+  {
+    "department": "Top Management",
+    "month": "June",
+    "tasks": 12,
+    "completed": 9
+  },
+  {
+    "department": "Top Management",
+    "month": "July",
+    "tasks": 13,
+    "completed": 6
+  },
+  {
+    "department": "Top Management",
+    "month": "August",
+    "tasks": 14,
+    "completed": 9
+  },
+  {
+    "department": "Top Management",
+    "month": "September",
+    "tasks": 8,
+    "completed": 6
+  },
+  {
+    "department": "Tech",
+    "month": "April",
+    "tasks": 13,
+    "completed": 9
+  },
+  {
+    "department": "Tech",
+    "month": "May",
+    "tasks": 14,
+    "completed": 12
+  },
+  {
+    "department": "Tech",
+    "month": "June",
+    "tasks": 8,
+    "completed": 4
+  },
+  {
+    "department": "Tech",
+    "month": "July",
+    "tasks": 9,
+    "completed": 6
+  },
+  {
+    "department": "Tech",
+    "month": "August",
+    "tasks": 10,
+    "completed": 7
+  },
+  {
+    "department": "Tech",
+    "month": "September",
+    "tasks": 11,
+    "completed": 8
+  },
+  {
+    "department": "Sales",
+    "month": "April",
+    "tasks": 9,
+    "completed": 8
+  },
+  {
+    "department": "Sales",
+    "month": "May",
+    "tasks": 10,
+    "completed": 5
+  },
+  {
+    "department": "Sales",
+    "month": "June",
+    "tasks": 11,
+    "completed": 6
+  },
+  {
+    "department": "Sales",
+    "month": "July",
+    "tasks": 12,
+    "completed": 8
+  },
+  {
+    "department": "Sales",
+    "month": "August",
+    "tasks": 13,
+    "completed": 10
+  },
+  {
+    "department": "Sales",
+    "month": "September",
+    "tasks": 14,
+    "completed": 8
+  },
+  {
+    "department": "Finance",
+    "month": "April",
+    "tasks": 12,
+    "completed": 5
+  },
+  {
+    "department": "Finance",
+    "month": "May",
+    "tasks": 13,
+    "completed": 7
+  },
+  {
+    "department": "Finance",
+    "month": "June",
+    "tasks": 14,
+    "completed": 10
+  },
+  {
+    "department": "Finance",
+    "month": "July",
+    "tasks": 8,
+    "completed": 6
+  },
+  {
+    "department": "Finance",
+    "month": "August",
+    "tasks": 9,
+    "completed": 5
+  },
+  {
+    "department": "Finance",
+    "month": "September",
+    "tasks": 10,
+    "completed": 6
+  },
+  {
+    "department": "IT",
+    "month": "April",
+    "tasks": 8,
+    "completed": 5
+  },
+  {
+    "department": "IT",
+    "month": "May",
+    "tasks": 9,
+    "completed": 6
+  },
+  {
+    "department": "IT",
+    "month": "June",
+    "tasks": 10,
+    "completed": 8
+  },
+  {
+    "department": "IT",
+    "month": "July",
+    "tasks": 11,
+    "completed": 6
+  },
+  {
+    "department": "IT",
+    "month": "August",
+    "tasks": 12,
+    "completed": 8
+  },
+  {
+    "department": "IT",
+    "month": "September",
+    "tasks": 13,
+    "completed": 9
+  },
+  {
+    "department": "Administration",
+    "month": "April",
+    "tasks": 11,
+    "completed": 8
+  },
+  {
+    "department": "Administration",
+    "month": "May",
+    "tasks": 12,
+    "completed": 10
+  },
+  {
+    "department": "Administration",
+    "month": "June",
+    "tasks": 13,
+    "completed": 7
+  },
+  {
+    "department": "Administration",
+    "month": "July",
+    "tasks": 14,
+    "completed": 8
+  },
+  {
+    "department": "Administration",
+    "month": "August",
+    "tasks": 8,
+    "completed": 5
+  },
+  {
+    "department": "Administration",
+    "month": "September",
+    "tasks": 9,
+    "completed": 6
+  }
+]

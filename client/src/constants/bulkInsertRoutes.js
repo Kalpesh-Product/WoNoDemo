@@ -14,6 +14,7 @@ const bulkInsertRoutes = [
       },
       {
         name: "performance",
+         // aliases: ["KRA", "KPA", "KRA KPA", "KRA/KPA", "performance tasks"],
         fileKey: "performance-tasks",
         route:
           "/api/performance/bulk-insert-performance-tasks/6798bae6e469e809084e24a4",
@@ -30,6 +31,7 @@ const bulkInsertRoutes = [
       },
       {
         name: "client events",
+        fileKey: "client-events",
         route: "/api/administration/bulk-insert-client-events",
       },
       {
@@ -48,6 +50,54 @@ const bulkInsertRoutes = [
     ],
   },
   {
+    department: "6798ba9de469e809084e2494", // Tech / Frontend Department
+    bulkInsertRoutes: [
+      {
+        name: "performance",
+        aliases: ["KRA", "KPA", "KRA KPA", "KRA/KPA", "performance"],
+        fileKey: "performance",
+        route:
+          "/api/performance/bulk-upload-performance-tasks",
+      },
+      {
+        name: "tasks",    
+        fileKey: "file",
+        route:
+          "api/tasks/bulk-insert",
+      },
+    ],
+  },
+  {
+    department: "6798bab0e469e809084e249a", // Finance Department
+    bulkInsertRoutes: [
+      {
+        name: "Alternate Revenue",
+        fileKey: "alternate-revenue",
+        route: "/api/sales/bulk-insert-alternate-revenue",
+      },
+      {
+        name: "Coworking Revenue",
+        fileKey: "coworking-revenues",
+        route: "/api/sales/bulk-insert-coworking-client-revenue",
+      },
+      {
+        name: "Virtual Office Revenue",
+        fileKey: "virtual-office-revenue",
+        route: "/api/sales/bulk-insert-virtual-office-revenue",
+      },
+      {
+        name: "Workation Revenues",
+        fileKey: "workation-revenue",
+        route: "/api/sales/bulk-insert-workation-revenue",
+      },
+      {
+        name: "Expense And Budget",
+        fileKey: "budgets",
+        route: "/api/budget/bulk-insert-budget/6798bab0e469e809084e249a",
+      },
+    ],
+  },
+  {
     department: "6798bacce469e809084e24a1", //sales Department
     bulkInsertRoutes: [
       {
@@ -62,6 +112,7 @@ const bulkInsertRoutes = [
       },
       {
         name: "performance", //working
+         //aliases: ["KRA", "KPA", "KRA KPA", "KRA/KPA", "performance tasks"],
         fileKey: "performance-tasks",
         route:
           "/api/performance/bulk-insert-performance-tasks/6798bacce469e809084e24a1",

@@ -8,16 +8,19 @@ import { useSelector } from "react-redux";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { Controller, useForm } from "react-hook-form";
-import { inrFormat } from "../../../utils/currencyFormat";
+import { usdFormat } from "../../../utils/currencyFormat";
 import humanDate from "../../../utils/humanDateForamt";
 import ThreeDotMenu from "../../../components/ThreeDotMenu";
 import DetalisFormatted from "../../../components/DetalisFormatted";
 import { toast } from "sonner";
 import { queryClient } from "../../../main";
 import StatusChip from "../../../components/StatusChip";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useLocation } from "react-router-dom";
 
-const AssignAssets = () => {
+const AssignAssets = ({ availableOnly = false, tableTitle = "Overall Asset" }) => {
   const axios = useAxiosPrivate();
+  const location = useLocation();
   const [openModal, setOpenModal] = useState(false);
   const [modalMode, setModalMode] = useState("");
   const [selectedAsset, setSelectedAsset] = useState([]);
@@ -41,6 +44,8 @@ const AssignAssets = () => {
   const selectedLocation = watch("building");
   const selectedUnit = watch("floor");
   const [selectedDepartment, setSelectedDepartment] = useState("");
+   const isAvailableView = availableOnly || location.state?.assetViewFilter === "available";
+  //const isAvailableView = location.state?.assetViewFilter === "available";
   //-----------------------API----------------------//
   const { data: employees = [], isLoading } = useQuery({
     queryKey: ["employees"],
@@ -96,9 +101,9 @@ const AssignAssets = () => {
     new Map(
       units.length > 0
         ? units.map((loc) => [
-            loc.building?._id ?? `unknown-${loc.unitNo}`,
-            loc.building?.buildingName ?? "Unknown Building",
-          ])
+          loc.building?._id ?? `unknown-${loc.unitNo}`,
+          loc.building?.buildingName ?? "Unknown Building",
+        ])
         : []
     ).entries()
   );
@@ -118,10 +123,18 @@ const AssignAssets = () => {
       setOpenModal(false);
       reset();
     },
-    onError: (error) => {
-      toast.error(error.message || "Failed to assign asset");
+        onError: (error) => {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to assign asset"
+      );
     },
   });
+  //   onError: (error) => {
+  //     toast.error(error.message || "Failed to assign asset");
+  //   },
+  // });
   //-----------------------API----------------------//
   //---------------------------------------Data processing----------------------------------------------------//
   const departmentMap = new Map();
@@ -159,20 +172,55 @@ const AssignAssets = () => {
   const assetsColumns = [
     { field: "srNo", headerName: "Sr No", width: 100 },
     { field: "assetId", headerName: "Asset ID" },
-    { field: "name", headerName: "Asset Name" },
-    // { field: "department", headerName: "Department" },
+    { field: "assetType", headerName: "Asset Type", hide: true },
+    { field: "secondaryId", headerName: "Secondary ID", hide: true },
+    { field: "departmentAssetId", headerName: "Department Asset ID", hide: true },
     { field: "brand", headerName: "Brand" },
+    { field: "department", headerName: "Department", hide: true },
+    { field: "underMaintenanceLabel", headerName: "Under Maintenance", hide: true },
+    { field: "name", headerName: "Asset Name" },
+    { field: "serialNumber", headerName: "Serial Number" },
+    { field: "building", headerName: "Building" },
+    { field: "unit", headerName: "Location" },
+    { field: "ownershipType", headerName: "Ownership Type", hide: true },
+    { field: "rentedMonths", headerName: "Rented Months", hide: true },
+    {
+      field: "rentalExpiry",
+      headerName: "Rented Expiration Date",
+      hide: true,
+      exportFormat: "date",
+      cellRenderer: (params) => params.value || "N/A",
+    },
     {
       field: "price",
       headerName: "Price (USD)",
-      cellRenderer: (params) => inrFormat(params.value),
+      cellRenderer: (params) => usdFormat(params.value),
     },
     {
-      field: "purchaseDate",
+      field: "purchaseOn",
       headerName: "Purchase Date",
-      cellRenderer: (params) => humanDate(params.value),
+      exportFormat: "date",
+      cellRenderer: (params) => params.value || "N/A",
     },
     { field: "warranty", headerName: "Warranty (Months)" },
+    {
+      field: "warrantyExpiry",
+      headerName: "Warranty Expiry Date",
+      hide: true,
+      exportFormat: "date",
+      cellRenderer: (params) => params.value || "N/A",
+    },
+    { field: "description", headerName: "Description", hide: true },
+    { field: "assetStatus", headerName: "Status", hide: true },
+    { field: "subCategory", headerName: "Sub Category", hide: true },
+    { field: "tangableLabel", headerName: "Tangable", hide: true },
+    { field: "damagedLabel", headerName: "Damaged", hide: true },
+    { field: "extraLabel", headerName: "Extra", hide: true },
+    {
+      field: "assignedLabel",
+      headerName: "Assigned",
+      hide: true,
+    },
     {
       field: "isAssigned",
       headerName: "Status",
@@ -184,32 +232,87 @@ const AssignAssets = () => {
       headerName: "Actions",
       pinned: "right",
       cellRenderer: (params) => {
-        const isAssigned =
-          params.data.isAssigned !== "Available" ? true : false;
-        const menuItems = [
-          { label: "View", onClick: () => handleViewAsset(params.data) },
-        ];
-
-        if (!isAssigned) {
-          menuItems.push({
-            label: "Assign",
-            onClick: () => handleAssignAsset(params.data),
-          });
-        }
-
-        return <ThreeDotMenu rowId={params.data._id} menuItems={menuItems} />;
+        const isAssignable = params.data.isAssigned === "Available";
+        return (
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              title="View"
+              className="p-1 text-gray-600 hover:text-primary"
+              onClick={() => handleViewAsset(params.data)}
+            >
+              <MdOutlineRemoveRedEye size={20} />
+            </button>
+            {isAssignable && (
+              <ThreeDotMenu
+                rowId={params.data._id}
+                menuItems={[
+                  {
+                    label: "Assign",
+                    onClick: () => handleAssignAsset(params.data),
+                  },
+                ]}
+              />
+            )}
+          </div>
+        );
       },
     },
   ];
 
   const tableData = isAssetsListPending
     ? []
-    : assetsList.map((item, index) => ({
+    : assetsList
+      .filter((item) => {
+        const normalizedStatus = String(item?.status ?? "").trim().toLowerCase();
+        const isActive = normalizedStatus
+          ? normalizedStatus === "active"
+          : item?.isActive === true;
+
+        if (!isActive) return false;
+
+        if (!isAvailableView) return true;
+
+        const assignmentState = String(item?.assignmentState ?? "")
+          .trim()
+          .toLowerCase();
+
+        if (assignmentState) return assignmentState === "available";
+        return !item?.isAssigned;
+      })
+      .map((item, index) => ({
         ...item,
         srNo: index + 1,
-        department: item?.department?.name,
-        subCategory: item?.subCategory?.subCategoryName,
-        isAssigned: item?.isAssigned ? "Assigned" : "Available",
+        department: item?.department?.name || "N/A",
+        subCategory: item?.subCategory?.subCategoryName || "N/A",
+        assetType: item?.assetType || "N/A",
+        secondaryId: item?.secondaryId || "N/A",
+        departmentAssetId: item?.departmentAssetId || "N/A",
+        building:
+          item?.location?.building?.buildingName ||
+          item?.building?.buildingName ||
+          item?.buildingName ||
+          "N/A",
+        location: item?.location || null,
+        unit: item?.location?.unitNo || "N/A",
+        underMaintenanceLabel: item?.isUnderMaintenance ? "Yes" : "No",
+        ownershipType: item?.ownershipType || "N/A",
+        rentedMonths: item?.rentedMonths ?? "N/A",
+        purchaseOn: item?.purchaseDate ? humanDate(item.purchaseDate) : "N/A",
+        rentalExpiry: item?.rentedExpirationDate
+          ? humanDate(item.rentedExpirationDate)
+          : "N/A",
+        warrantyExpiry: item?.warrantyExpiryDate
+          ? humanDate(item.warrantyExpiryDate)
+          : "N/A",
+        description: item?.description || "N/A",
+        assetStatus: item?.status || "N/A",
+        tangableLabel: item?.tangable ? "Yes" : "No",
+        damagedLabel: item?.isDamaged ? "Yes" : "No",
+        extraLabel: item?.isExtra ? "Yes" : "No",
+        assignedLabel: item?.isAssigned ? "Yes" : "No",
+        isAssigned:
+          item?.assignmentState || (item?.isAssigned ? "Assigned" : "Available"),
       }));
 
   //-----------------------Table Data----------------------//
@@ -220,15 +323,18 @@ const AssignAssets = () => {
         <AgTable
           key={assetsList.length}
           search={true}
-          tableTitle={"Assign Assets"}
+           tableTitle={tableTitle}
+          //tableTitle={"Assign Assets"}
           data={tableData}
           columns={assetsColumns}
+          exportData
         />
       </PageFrame>
       <MuiModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        title={modalMode === "assign" ? "Assign Asset" : "View Asset"}>
+        title={modalMode === "assign" ? "Assign Asset" : "View Asset"}
+      >
         {modalMode === "view" && (
           <div className="grid grid-cols-1 gap-4">
             <DetalisFormatted
@@ -243,6 +349,14 @@ const AssignAssets = () => {
               title={"Asset Type"}
               detail={selectedAsset?.assetType || "N/A"}
             />
+             <DetalisFormatted
+              title={"Secondary ID"}
+              detail={selectedAsset?.secondaryId || "N/A"}
+            />
+            <DetalisFormatted
+              title={"Department Asset ID"}
+              detail={selectedAsset?.departmentAssetId || "N/A"}
+            />
             <DetalisFormatted
               title={"Brand"}
               detail={selectedAsset?.brand || "N/A"}
@@ -256,20 +370,62 @@ const AssignAssets = () => {
               detail={selectedAsset?.isUnderMaintenance ? "Yes" : "No"}
             />
             <DetalisFormatted
+              title={"Building"}
+              detail={
+                selectedAsset?.location?.building?.buildingName ||
+                selectedAsset?.building ||
+                "N/A"
+              }
+            />
+            <DetalisFormatted
               title={"UnitNo"}
-              detail={selectedAsset?.location?.unitNo || "N/A"}
+              detail={selectedAsset?.location?.unitNo || selectedAsset?.unit || "N/A"}
             />
             <DetalisFormatted
               title={"Ownership Type"}
               detail={selectedAsset?.ownershipType || "N/A"}
             />
+             <DetalisFormatted
+              title={"Rented Months"}
+              detail={selectedAsset?.rentedMonths ?? "N/A"}
+            />
+            <DetalisFormatted
+              title={"Rented Expiration Date"}
+              detail={
+                selectedAsset?.rentedExpirationDate
+                  ? humanDate(selectedAsset?.rentedExpirationDate)
+                  : "N/A"
+              }
+            />
             <DetalisFormatted
               title={"Price"}
-              detail={inrFormat(selectedAsset?.price)}
+             // detail={usdFormat(selectedAsset?.price)}
+              detail={`USD ${usdFormat(selectedAsset?.price)}`}
+
             />
             <DetalisFormatted
               title={"Purchase Date"}
               detail={humanDate(selectedAsset?.purchaseDate)}
+            />
+            <DetalisFormatted
+              title={"Warranty (Months)"}
+              detail={selectedAsset?.warranty ?? "N/A"}
+            />
+            <DetalisFormatted
+              title={"Warranty Expiry Date"}
+              detail={
+                selectedAsset?.warrantyExpiryDate
+                  ? humanDate(selectedAsset?.warrantyExpiryDate)
+                  : "N/A"
+              }
+            />
+            <DetalisFormatted
+              title={"Serial Number"}
+              detail={selectedAsset?.serialNumber || "N/A"}
+            />
+            <DetalisFormatted
+              title={"Description"}
+              detail={selectedAsset?.description || "N/A"}
             />
             <DetalisFormatted
               title={"Status"}
@@ -283,6 +439,18 @@ const AssignAssets = () => {
               title={"Tangable"}
               detail={selectedAsset?.tangable ? "Yes" : "No"}
             />
+             <DetalisFormatted
+              title={"Damaged"}
+              detail={selectedAsset?.isDamaged ? "Yes" : "No"}
+            />
+            <DetalisFormatted
+              title={"Extra"}
+              detail={selectedAsset?.isExtra ? "Yes" : "No"}
+            />
+            <DetalisFormatted
+              title={"Assigned"}
+              detail={selectedAsset?.isAssigned ? "Yes" : "No"}
+            />
             {/* <DetalisFormatted title={"Asset ID"} detail={selectedAsset?.status || "N/A"}/> */}
           </div>
         )}
@@ -290,7 +458,8 @@ const AssignAssets = () => {
         {modalMode === "assign" && (
           <form
             onSubmit={handleSubmit((data) => assignAsset(data))}
-            className="grid grid-cols-2 gap-4">
+            className="grid grid-cols-2 gap-4"
+          >
             <Controller
               name="toDepartmentId"
               control={control}
@@ -305,7 +474,8 @@ const AssignAssets = () => {
                     setSelectedDepartment(e.target.value);
                   }}
                   label="Department"
-                  size="small">
+                  size="small"
+                >
                   <MenuItem value="" disabled>
                     <em>Select a Department</em>
                   </MenuItem>
@@ -328,7 +498,8 @@ const AssignAssets = () => {
                   fullWidth
                   disabled={!selectedDepartment}
                   size="small"
-                  label="Assignee">
+                  label="Assignee"
+                >
                   {departmentEmployees.map((emp) => (
                     <MenuItem key={emp._id} value={emp._id}>
                       {emp.firstName} {emp.lastName}
@@ -349,7 +520,8 @@ const AssignAssets = () => {
                   fullWidth
                   error={!!errors.building}
                   helperText={errors?.building?.message}
-                  label="Building">
+                  label="Building"
+                >
                   <MenuItem value="" disabled>
                     Select Building
                   </MenuItem>
@@ -385,7 +557,8 @@ const AssignAssets = () => {
                   value={field.value}
                   error={!!errors.location}
                   helperText={errors?.location?.message}
-                  onChange={(event) => field.onChange(event.target.value)}>
+                  onChange={(event) => field.onChange(event.target.value)}
+                >
                   <MenuItem value="" disabled>
                     Select Unit
                   </MenuItem>

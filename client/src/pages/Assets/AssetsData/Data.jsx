@@ -124,17 +124,17 @@ const assetUtilizationOptions = {
           </div> 
           Total Assets Value: USD ${totalValue} Cr<br>
           Asset Value Used: USD ${usedValue} Cr<br>
-          Under Maintenance: ₹${underMaintenance} k<br>
+          Under Maintenance: USD ${underMaintenance} k<br>
           Assets Damaged: USD ${damaged} k
         </div>
       `;
     },
     fixed: {
       enabled: true,
-      position: "bottomRight", // Or try 'bottomLeft', depending on preference
+      position: 'bottomRight', // Or try 'bottomLeft', depending on preference
       offsetX: 0,
       offsetY: -10, // Adjust to move tooltip closer to base
-    },
+    }
   },
 
   plotOptions: {
@@ -316,7 +316,7 @@ const recentAssetsData = [
     assetNumber: "L0001",
     category: "Laptop",
     brand: "Lenovo",
-    price: "₹55,000",
+    price: "USD 55,000",
     quantity: 2,
     purchaseDate: "02/01/2025",
     warranty: 12,
@@ -327,7 +327,7 @@ const recentAssetsData = [
     assetNumber: "P0002",
     category: "Printer",
     brand: "HP",
-    price: "₹15,000",
+    price: "USD 15,000",
     quantity: 1,
     purchaseDate: "15/02/2025",
     warranty: 24,
@@ -338,7 +338,7 @@ const recentAssetsData = [
     assetNumber: "C0003",
     category: "Chair",
     brand: "Godrej",
-    price: "₹5,000",
+    price: "USD 5,000",
     quantity: 4,
     purchaseDate: "10/03/2025",
     warranty: 36,
@@ -349,7 +349,7 @@ const recentAssetsData = [
     assetNumber: "B0004",
     category: "Bottle",
     brand: "Milton",
-    price: "₹700",
+    price: "USD 700",
     quantity: 10,
     purchaseDate: "20/04/2025",
     warranty: 12,
@@ -360,7 +360,7 @@ const recentAssetsData = [
     assetNumber: "M0005",
     category: "Marker",
     brand: "Camlin",
-    price: "₹50",
+    price: "USD 50",
     quantity: 25,
     purchaseDate: "05/05/2025",
     warranty: 6,
@@ -371,7 +371,7 @@ const recentAssetsData = [
     assetNumber: "D0006",
     category: "Desk",
     brand: "IKEA",
-    price: "₹12,000",
+    price: "USD 12,000",
     quantity: 3,
     purchaseDate: "12/06/2025",
     warranty: 24,
@@ -382,7 +382,7 @@ const recentAssetsData = [
     assetNumber: "S0007",
     category: "Scanner",
     brand: "Canon",
-    price: "₹18,000",
+    price: "USD 18,000",
     quantity: 1,
     purchaseDate: "25/07/2025",
     warranty: 18,

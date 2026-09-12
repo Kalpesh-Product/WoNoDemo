@@ -20,10 +20,10 @@ const DonutChart = ({
   };
   const { chartKey, containerRef } = useResponsiveChart();
 
-  const fullLabels = chartData.labels;
-  const truncatedLabels = fullLabels.map((label) =>
-    label.length > 7 ? label.slice(0, 15) + "..." : label
-  );
+//  const fullLabels = chartData.labels;
+// const truncatedLabels = fullLabels.map(label =>
+//   label.length > 7 ? label.slice(0, 15) + "..." : label
+// );
 
   const chartOptions = {
     chart: {
@@ -43,7 +43,7 @@ const DonutChart = ({
       },
     },
     colors: chartData.colors,
-    labels: truncatedLabels,
+     labels: chartData.labels,
     legend: {
       position: "bottom",
     },
@@ -51,13 +51,22 @@ const DonutChart = ({
       enabled: true,
       formatter: (val) => `${val.toFixed(0)}%`,
     },
-    tooltip: {
+    // tooltip: {
+    //   enabled: true,
+    //      custom: function ({ seriesIndex }) {
+    //     const fullLabel = chartData.labels[seriesIndex];
+    //     return `<div style="padding: 8px">
+    //               <strong>${fullLabel}</strong>
+     tooltip: {
       enabled: true,
       custom: function ({ seriesIndex }) {
-        const fullLabel = chartData.labels[seriesIndex]; // ✅ Full label only
+        const fullLabel = chartData.labels[seriesIndex];
+        const tooltipDetail = tooltipValue?.[seriesIndex];
         return `<div style="padding: 8px">
-              <strong>${fullLabel}</strong>
-            </div>`;
+                  <strong>${fullLabel}</strong>${
+                    tooltipDetail ? `<br/><span>${tooltipDetail}</span>` : ""
+                  }
+                </div>`;
       },
       y: {
         formatter: (val, { seriesIndex }) => `${tooltipValue[seriesIndex]}`,
@@ -76,20 +85,20 @@ const DonutChart = ({
               formatter: function (val) {
                 const numericVal = parseFloat(val);
                 return isMonetary
-                  ? `USD ${numericVal.toLocaleString("en-IN")}`
-                  : `${numericVal.toLocaleString("en-IN")}`;
+                  ? `USD ${numericVal.toLocaleString("en-US")}`
+                  : `${numericVal.toLocaleString("en-US")}`;
               },
             },
             total: {
               show: true,
-              label: `Total ${centerLabel}`,
+              label: `${centerLabel}`,
               fontSize: "16px",
               fontWeight: "bold",
               formatter: function (w) {
                 const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
                 return isMonetary
-                  ? `USD ${total.toLocaleString("en-IN")}`
-                  : `${total.toLocaleString("en-IN")}`;
+                  ? `USD ${total.toLocaleString("en-US")}`
+                  : `${total.toLocaleString("en-US")}`;
               },
             },
           },

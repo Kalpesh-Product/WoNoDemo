@@ -82,7 +82,7 @@ const AdminPerSqFtElectricityExpense = () => {
       }));
   console.log("table data ", tableData);
   const columns = [
-    { headerName: "SR NO", field: "srNo", width: 100 },
+    { headerName: "SR NO", field: "srNo", width: 600 },
     {
       headerName: "Unit No",
       field: "unitNo",
@@ -102,7 +102,7 @@ const AdminPerSqFtElectricityExpense = () => {
         </span>
       ),
     },
-    { headerName: "Expense (USD)", field: "expense", flex: 1 },
+    { headerName: "Expense (USD)", field: "expense", flex: 0.5 },
   ];
 
   const chartOptions = {
@@ -118,6 +118,7 @@ const AdminPerSqFtElectricityExpense = () => {
       },
       offsetY: -22,
     },
+    
   };
 
   return (
@@ -136,10 +137,12 @@ const AdminPerSqFtElectricityExpense = () => {
         columns={columns}
         totalKey="expense"
         dateColumn={"dueDate"}
+        preserveCurrentMonthRange
         search
         sortByString="unitNo"
         sortOrder="asc"
         tableTitle="admin expense per sq. ft"
+        exportData
       />
     </div>
   );

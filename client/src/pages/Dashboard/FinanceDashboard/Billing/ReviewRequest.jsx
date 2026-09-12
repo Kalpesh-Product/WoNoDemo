@@ -1,18 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import {
-  TextField,
-  MenuItem,
-  Box,
-  IconButton,
-  FormControl,
-  CircularProgress,
-} from "@mui/material";
+// import { jsPDF } from "jspdf";
+// import html2canvas from "html2canvas";
+import { TextField, MenuItem, Modal, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import PrimaryButton from "../../../../components/PrimaryButton";
-import MuiModal from "../../../../components/MuiModal";
 import usePageDepartment from "../../../../hooks/usePageDepartment";
 import { MdDelete } from "react-icons/md";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -42,6 +34,7 @@ const ReviewRequest = () => {
   const department = usePageDepartment();
   const axios = useAxiosPrivate();
   const { control, watch, setValue, getValues, reset } = useForm({
+    mode: "onChange",
     defaultValues: {
       fSrNo: "",
       fDate: null,
@@ -67,7 +60,7 @@ const ReviewRequest = () => {
       queryFn: async () => {
         try {
           const response = await axios.get(
-            `/api/budget/company-budget?departmentId=${department?._id}`
+            `/api/budget/company-budget?departmentId=${department?._id}`,
           );
           const budgets = response.data.allBudgets;
           return Array.isArray(budgets) ? budgets : [];
@@ -116,7 +109,7 @@ const ReviewRequest = () => {
     const unit = units.find(
       (unit) =>
         unit._id === selectedUnit &&
-        unit.building.buildingName === selectedLocation
+        unit.building.buildingName === selectedLocation,
     );
     return unit._id;
   }, [selectedUnit, selectedLocation, units]);
@@ -128,19 +121,29 @@ const ReviewRequest = () => {
             loc.building._id, // use building._id as unique key
             loc.building.buildingName,
           ])
-        : []
-    ).entries()
+        : [],
+    ).entries(),
   );
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control,
     name: "particulars",
   });
   const values = watch();
+  useEffect(() => {
+    if (!Array.isArray(voucherDetails?.particulars)) return;
+
+    replace(
+      voucherDetails.particulars.map((item) => ({
+        particularName: item?.particularName || "",
+        particularAmount: Number(item?.particularAmount) || 0,
+      })),
+    );
+  }, [replace, voucherDetails?.particulars]);
 
   const onUpload = async () => {
     const values = getValues();
-    values.particulars = fields;
+   values.particulars = getValues("particulars") || fields;
 
     try {
       // Step 1: Generate the PDF Blob directly using html2pdf
@@ -160,7 +163,7 @@ const ReviewRequest = () => {
       const worker = html2pdf().set(opt).from(element).toPdf();
 
       const pdfBlob = await new Promise((resolve) =>
-        worker.outputPdf("blob").then(resolve)
+        worker.outputPdf("blob").then(resolve),
       );
 
       // Step 2: Prepare FormData
@@ -193,7 +196,7 @@ const ReviewRequest = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       return response.data;
     },
@@ -201,7 +204,9 @@ const ReviewRequest = () => {
       toast.success(data.message);
       setOpenPreview(false);
       reset();
-      navigate("/app/dashboard/finance-dashboard/billing/pending-approvals");
+      navigate(
+        "/app/dashboard/finance-dashboard/billing/voucher-request/pending-approvals-voucher",
+      );
     },
     onError: (error) => {
       toast.error(error.message);
@@ -338,7 +343,8 @@ const ReviewRequest = () => {
                   {fields.map((item, index) => (
                     <li
                       key={index}
-                      className="flex justify-between items-center border-b py-1">
+                      className="flex justify-between items-center border-b py-1"
+                    >
                       <div className="flex flex-col">
                         <span>{item.particularName}</span>
                         <span className="font-medium text-gray-600">
@@ -349,7 +355,8 @@ const ReviewRequest = () => {
                         type="button"
                         onClick={() => remove(index)}
                         className="text-red-500 hover:text-red-700"
-                        title="Delete">
+                        title="Delete"
+                      >
                         <MdDelete size={20} />
                       </button>
                     </li>
@@ -364,7 +371,7 @@ const ReviewRequest = () => {
                       .reduce(
                         (acc, item) =>
                           acc + (parseFloat(item.particularAmount) || 0),
-                        0
+                        0,
                       )
                       .toFixed(0)}
                   </span>
@@ -396,12 +403,14 @@ const ReviewRequest = () => {
                     fullWidth
                     size="small"
                     label={label}
-                    {...field}>
+                    {...field}
+                  >
                     {values.map((opt) => (
                       <MenuItem
                         key={opt}
                         value={opt}
-                        disabled={opt !== "Cash" && opt !== "Cheque"}>
+                        disabled={opt !== "Cash" && opt !== "Cheque"}
+                      >
                         {opt}
                       </MenuItem>
                     ))}
@@ -415,15 +424,38 @@ const ReviewRequest = () => {
                 key={fieldName}
                 name={fieldName}
                 control={control}
-                render={({ field }) => (
+                // render={({ field }) => (
+                //   <TextField
+                //     fullWidth
+                //     size="small"
+                //     disabled={values.modeOfPayment === "Cash"}
+                //     label={fieldName
+                //       .replace(/([A-Z])/g, " $1")
+                //       .replace(/^./, (str) => str.toUpperCase())}
+                //     {...field}
+                  rules={{
+                  validate: (value) => {
+                    if (values.modeOfPayment !== "Cheque") return true;
+                    if (!value) return "Cheque No is required";
+                    if (!/^[0-9]{6,9}$/.test(value)) {
+                      return "Cheque No must be 123-456 or 123-456-789 digits";
+                    }
+                    return true;
+                  },
+                }}
+                render={({ field, fieldState }) => (
                   <TextField
+                    {...field}
                     fullWidth
                     size="small"
                     disabled={values.modeOfPayment === "Cash"}
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
                     label={fieldName
                       .replace(/([A-Z])/g, " $1")
                       .replace(/^./, (str) => str.toUpperCase())}
-                    {...field}
+                    inputProps={{ maxLength: 9 }}
+                    onChange={(e) => field.onChange(e.target.value)}
                   />
                 )}
               />
@@ -531,7 +563,7 @@ const ReviewRequest = () => {
         </div>
       </PageFrame>
 
-      <MuiModal open={openPreview} onClose={() => setOpenPreview(false)}>
+      <Modal open={openPreview} onClose={() => setOpenPreview(false)}>
         <Box className="absolute top-1/2 left-1/2 bg-white p-4 rounded shadow max-h-screen overflow-y-auto w-[77%] -translate-x-1/2 -translate-y-1/2">
           <div className="flex justify-between items-center mb-2">
             <span className="text-title text-primary font-pbold uppercase">
@@ -553,10 +585,10 @@ const ReviewRequest = () => {
               FY{" "}
               {new Date().getMonth() + 1 >= 4
                 ? `${String(new Date().getFullYear()).slice(2)}-${String(
-                    new Date().getFullYear() + 1
+                    new Date().getFullYear() + 1,
                   ).slice(2)}`
                 : `${String(new Date().getFullYear() - 1).slice(2)}-${String(
-                    new Date().getFullYear()
+                    new Date().getFullYear(),
                   ).slice(2)}`}
             </div>
 
@@ -615,7 +647,7 @@ const ReviewRequest = () => {
                     {voucherDetails?.particulars
                       ?.reduce(
                         (sum, item) => sum + Number(item.particularAmount || 0),
-                        0
+                        0,
                       )
                       .toFixed(0)}
                   </td>
@@ -749,7 +781,7 @@ const ReviewRequest = () => {
                     {values?.particulars
                       ?.reduce(
                         (sum, item) => sum + Number(item.particularAmount || 0),
-                        0
+                        0,
                       )
                       .toFixed(0)}
                   </td>
@@ -821,7 +853,7 @@ const ReviewRequest = () => {
             <PrimaryButton title="Export to PDF" handleSubmit={exportToPDF} />
           </div>
         </Box>
-      </MuiModal>
+      </Modal>
     </div>
   );
 };

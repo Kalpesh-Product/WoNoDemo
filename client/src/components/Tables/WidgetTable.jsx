@@ -10,7 +10,7 @@ import { MdCalendarToday } from "react-icons/md";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import WidgetSection from "../WidgetSection";
-import { inrFormat } from "../../utils/currencyFormat";
+import { usdFormat } from "../../utils/currencyFormat";
 
 const WidgetTable = ({
   data = [],
@@ -32,6 +32,7 @@ const WidgetTable = ({
   isRowSelectable,
   hideTitle = true,
   search = true,
+  border = true,
   onMonthChange,
   totalKey = "actualAmount",
   totalText = "USD",
@@ -39,6 +40,15 @@ const WidgetTable = ({
   sortByString = "",
   sortByNo = "",
   sortOrder = "asc", // default sort order
+  titleAmountOverride,
+  titleAmountGreen,
+  titleAmountRed,
+  titleAmountTotal,
+  greenTitle,
+  redTitle,
+  totalTitle,
+  summaryChipVariant,
+  preserveCurrentMonthRange = false,
 }) => {
   const agGridRef = useRef(null);
   const [exportTable, setExportTable] = useState(false);
@@ -58,6 +68,17 @@ const WidgetTable = ({
 
     const currentMonthStart = today.startOf("month");
     const currentMonthEnd = today.endOf("month");
+
+    if (preserveCurrentMonthRange) {
+      setDateRange([
+        {
+          startDate: currentMonthStart.toDate(),
+          endDate: currentMonthEnd.toDate(),
+          key: "selection",
+        },
+      ]);
+      return;
+    }
 
     const monthHasData = data.some((item) => {
       const date = dayjs(item[dateColumn]);
@@ -103,7 +124,7 @@ const WidgetTable = ({
         key: "selection",
       },
     ]);
-  }, [data, dateColumn, isUserChangedRange]);
+  }, [data, dateColumn, isUserChangedRange, preserveCurrentMonthRange]);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -146,6 +167,14 @@ const WidgetTable = ({
     }, 0);
   }, [filteredData, totalKey]);
 
+  const resolveSummaryValue = (value, fallback = null) => {
+    if (typeof value === "function") {
+      return value({ filteredData, rangeTotal, dateRange });
+    }
+
+    return value ?? fallback;
+  };
+
   useEffect(() => {
     if (!onMonthChange || !filteredData.length) return;
 
@@ -159,8 +188,8 @@ const WidgetTable = ({
       return sum + (isNaN(amt) ? 0 : amt);
     }, 0);
 
-    onMonthChange(total);
-  }, [filteredData, onMonthChange]);
+    onMonthChange(total, filteredData, dateRange[0]);
+  }, [filteredData, onMonthChange, dateRange]);
 
   const formattedColumns = useMemo(() => {
     return columns.map((col) => {
@@ -180,6 +209,11 @@ const WidgetTable = ({
     });
   }, [columns, formatDate, formatTime]);
 
+  const exportColumnKeys = useMemo(
+    () => columns.map((col) => col.field).filter(Boolean),
+    [columns]
+  );
+
   const finalTableData = filteredData.map((item, index) => ({
     ...item,
     srNo: index + 1,
@@ -190,6 +224,8 @@ const WidgetTable = ({
     if (agGridRef.current) {
       agGridRef.current.api.exportDataAsCsv({
         fileName: `${tableTitle || "data"}.csv`,
+        allColumns: true,
+        columnKeys: exportColumnKeys,
       });
     }
   };
@@ -209,7 +245,7 @@ const WidgetTable = ({
     const sorted = Object.entries(grouped)
       .map(([group, total]) => ({
         [groupByKey]: group,
-        [totalKey]: inrFormat(total),
+        [totalKey]: usdFormat(total),
       }))
       .sort((a, b) => {
         const valA = a[sortByString] ?? "";
@@ -262,11 +298,22 @@ const WidgetTable = ({
       {/* Header */}
 
       <WidgetSection
-        border
+        border={border}
         title={tableTitle}
-        TitleAmount={`${totalText}  ${inrFormat(rangeTotal)}`}>
-        <div className="grid grid-cols-9 items-center w-full">
-          <div className="flex gap-2 items-center justify-end flex-wrap col-span-3">
+        TitleAmount={resolveSummaryValue(
+          titleAmountOverride,
+          `${totalText}  ${usdFormat(rangeTotal)}`
+        )}
+        TitleAmountGreen={resolveSummaryValue(titleAmountGreen)}
+        TitleAmountRed={resolveSummaryValue(titleAmountRed)}
+        TitleAmountTotal={resolveSummaryValue(titleAmountTotal)}
+        greenTitle={greenTitle}
+        redTitle={redTitle}
+        totalTitle={totalTitle}
+        summaryChipVariant={summaryChipVariant}
+      >
+         <div className="w-full flex justify-end">
+          <div className="flex gap-2 items-center justify-end flex-wrap">
             {/* ✅ Show calendar only if data is not empty */}
 
             <Popover
@@ -276,7 +323,8 @@ const WidgetTable = ({
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
-              }}>
+              }}
+            >
               {dateRange.length > 0 && (
                 <DateRangePicker
                   onChange={handleDateRangeChange}
@@ -300,7 +348,8 @@ const WidgetTable = ({
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                          }}>
+                          }}
+                        >
                           {date.getDate()}
                         </div>
                       </div>
@@ -347,7 +396,8 @@ const WidgetTable = ({
             </div>
             <div
               className="p-2 rounded-md bg-primary text-white cursor-pointer hover:bg-[#1E3D55]"
-              onClick={handleOpenCalendar}>
+              onClick={handleOpenCalendar}
+            >
               <MdCalendarToday size={19} />
             </div>
           </div>
@@ -376,7 +426,8 @@ const WidgetTable = ({
           ) : (
             <div
               className="h-[60vh] flex justify-center items-center"
-              style={{ padding: "2rem", color: "#666" }}>
+              style={{ padding: "2rem", color: "#666" }}
+            >
               No data available for the selected date range.
             </div>
           )}

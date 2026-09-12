@@ -1,0 +1,1556 @@
+[
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "f30e694b68920f66a9dfcf8e"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "61bc41915f743f1cd2f1783e"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "95f64de3373ca2c70e066fd7"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "65fb6f47582a7b7b4d7ffdae"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "4427e9fc2c9f725eb2e73970"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "location": "ST 501 A",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "2e168e762435a20d603dc5fb"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "location": "ST 501 B",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "69f92e09efeea4e7c6901fd7"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "location": "ST 501 B",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "fbcca2f8460a769fd5bce5ce"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "location": "ST 501 B",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "0bf1abbf9633c6bb35a7c932"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "location": "ST 501 B",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "c48a3ecaa55849f6bc7f6ecd"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "location": "ST 501 B",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "70fb6bdb31a908525ae7c7d7"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "6adaf83aa3cd9a32b777c5a0"
+    },
+    "location": "ST 601 A",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "ef9ea3efa9b9a8e6cce080e5"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "6adaf83aa3cd9a32b777c5a0"
+    },
+    "location": "ST 601 A",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "768bfe2d6c6f3e545dcf1e94"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "6adaf83aa3cd9a32b777c5a0"
+    },
+    "location": "ST 601 A",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "f51443637a05df7d4817f0bb"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "6adaf83aa3cd9a32b777c5a0"
+    },
+    "location": "ST 601 A",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "942ee8d02d1e6830b3b97a48"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "4b30c8d94f11c604126471c6"
+    },
+    "location": "ST 701 A",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "c253ae21104893678206f066"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "4b30c8d94f11c604126471c6"
+    },
+    "location": "ST 701 A",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "447ac9804112d1195fb962a5"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "4b30c8d94f11c604126471c6"
+    },
+    "location": "ST 701 A",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "e63b5505eb2b4c043b734989"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "3be51ad6413ea9c5d3d3c999"
+    },
+    "location": "ST 701 B",
+    "channel": "Direct",
+    "taxableAmount": 850,
+    "revenue": 1003,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "1b31ad483798e64557218099"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "3be51ad6413ea9c5d3d3c999"
+    },
+    "location": "ST 701 B",
+    "channel": "Direct",
+    "taxableAmount": 850,
+    "revenue": 1003,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "4f37cb02eea63447a3f075ed"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "4f42d3b9100f0d1e44e19d4b"
+    },
+    "location": "002",
+    "channel": "Direct",
+    "taxableAmount": 975,
+    "revenue": 1150.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "fdbc48e2af226ba89817328b"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "0d9e1f1a63c24e35cf82670f"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "0da28ada6dba90fbc250178a"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "5c41e1e437911a9e0e7ba408"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "7edf7cb0a9bd01eccde0fbff"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "a24dedb817fab8bf837066d1"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "location": "004",
+    "channel": "Direct",
+    "taxableAmount": 450,
+    "revenue": 531,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "76de24e4a5e693690a7959b5"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "location": "503",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "adebc486b1b741b37f66f53e"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "location": "503",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "4af7cce235f3bd2b92aa3e42"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "location": "503",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "696e5ca225f96e61ba6d35ef"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "location": "503",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "9ac4ba72a53bf16b48638f1c"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "location": "503",
+    "channel": "Direct",
+    "taxableAmount": 575,
+    "revenue": 678.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "9ea1f019dd515133adb0a1c1"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "bfb083cf243193625044b8e5"
+    },
+    "location": "706",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "3ceaeb6893a819012e216036"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "bfb083cf243193625044b8e5"
+    },
+    "location": "706",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "18e00448e875170fa1996597"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "bfb083cf243193625044b8e5"
+    },
+    "location": "706",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "3d71f741ff3c99c0fb4b16c2"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "bfb083cf243193625044b8e5"
+    },
+    "location": "706",
+    "channel": "Direct",
+    "taxableAmount": 650,
+    "revenue": 767,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "82bb684296897fdfdb48f2b6"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "ec0dee9185f18cfd741341f8"
+    },
+    "location": "703",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "status": false,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "3f957845c084f8216c0509aa"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "ec0dee9185f18cfd741341f8"
+    },
+    "location": "703",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "fb265e0f10c8a1ffeb26f7d5"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "ec0dee9185f18cfd741341f8"
+    },
+    "location": "703",
+    "channel": "Direct",
+    "taxableAmount": 775,
+    "revenue": 914.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "d1a26ec90041a727d9fa29c9"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "d7bab3fb63a424bcacb5e74c"
+    },
+    "location": "605 A",
+    "channel": "Direct",
+    "taxableAmount": 850,
+    "revenue": 1003,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "847073093e272b6409ef39bc"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "d7bab3fb63a424bcacb5e74c"
+    },
+    "location": "605 A",
+    "channel": "Direct",
+    "taxableAmount": 850,
+    "revenue": 1003,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "0c9283b8363f873e33e8c0ea"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T09:00:00Z"
+    }
+  },
+  {
+    "client": {
+      "$oid": "2c50e94f7363b3c47163d34f"
+    },
+    "location": "603 A",
+    "channel": "Direct",
+    "taxableAmount": 975,
+    "revenue": 1150.5,
+    "totalTerm": 12,
+    "dueTerm": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "status": true,
+    "rentStatus": "Active",
+    "annualIncrement": 5,
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "_id": {
+      "$oid": "9f0467afdf3a701fa3ffe688"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    }
+  }
+]

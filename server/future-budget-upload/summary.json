@@ -1,0 +1,92 @@
+[
+  {
+    "month": "2026-10",
+    "projectedUSD": 107140,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 18915,
+      "HR": 17575,
+      "Top Management": 8490,
+      "Tech": 14940,
+      "Sales": 12870,
+      "Finance": 8620,
+      "IT": 12665,
+      "Administration": 13065
+    }
+  },
+  {
+    "month": "2026-11",
+    "projectedUSD": 114515,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 20175,
+      "HR": 18505,
+      "Top Management": 9060,
+      "Tech": 16350,
+      "Sales": 13725,
+      "Finance": 9435,
+      "IT": 13865,
+      "Administration": 13400
+    }
+  },
+  {
+    "month": "2026-12",
+    "projectedUSD": 120385,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 22020,
+      "HR": 18915,
+      "Top Management": 9885,
+      "Tech": 16720,
+      "Sales": 14405,
+      "Finance": 9650,
+      "IT": 14550,
+      "Administration": 14240
+    }
+  },
+  {
+    "month": "2027-01",
+    "projectedUSD": 111460,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 20005,
+      "HR": 17410,
+      "Top Management": 8980,
+      "Tech": 15390,
+      "Sales": 13600,
+      "Finance": 8880,
+      "IT": 13740,
+      "Administration": 13455
+    }
+  },
+  {
+    "month": "2027-02",
+    "projectedUSD": 117270,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 21650,
+      "HR": 18850,
+      "Top Management": 9110,
+      "Tech": 16660,
+      "Sales": 13800,
+      "Finance": 9250,
+      "IT": 13940,
+      "Administration": 14010
+    }
+  },
+  {
+    "month": "2027-03",
+    "projectedUSD": 124935,
+    "actualUSD": null,
+    "departments": {
+      "Maintenance": 22315,
+      "HR": 19945,
+      "Top Management": 9760,
+      "Tech": 17620,
+      "Sales": 14790,
+      "Finance": 10170,
+      "IT": 14935,
+      "Administration": 15400
+    }
+  }
+]

@@ -1,10 +1,16 @@
-import { inrFormat } from "../../../utils/currencyFormat";
+import { usdFormat } from "../../../utils/currencyFormat";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import { CircularProgress } from "@mui/material";
 import WidgetTable from "../../../components/Tables/WidgetTable";
 import StatusChip from "../../../components/StatusChip";
 import FyBarGraph from "../../../components/graphs/FyBarGraph";
+
+const getNormalizedPaymentStatus = (status) =>
+  String(status || "").trim().toLowerCase();
+
+const getNumericAmount = (value) =>
+  parseFloat(String(value || "0").replace(/,/g, "")) || 0;
 
 const AltRevenues = () => {
   const axios = useAxiosPrivate();
@@ -21,15 +27,11 @@ const AltRevenues = () => {
       },
     });
 
-  const graphData = isLoadingAlternateRevenue
-    ? []
-    : alternateRevenue.flatMap((item) => item.revenue);
-
   const options = {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return `${inrFormat(val)}`;
+        return `${usdFormat(val)}`;
       },
       style: {
         fontSize: "10px",
@@ -39,13 +41,36 @@ const AltRevenues = () => {
       offsetY: -22,
     },
     yaxis: {
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount (USD)" },
       labels: {
-        formatter: (val) => `${(val / 100000).toLocaleString()}`,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
     },
     tooltip: {
-      enabled: false,
+      enabled: true,
+      custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+        const label =
+          w?.globals?.categoryLabels?.[dataPointIndex] ||
+          w?.config?.xaxis?.categories?.[dataPointIndex] ||
+          "";
+        const seriesName =
+          w?.globals?.seriesNames?.[seriesIndex] || "Alternate Revenue";
+        const value = series?.[seriesIndex]?.[dataPointIndex] || 0;
+        const color = w?.globals?.colors?.[seriesIndex] || "#1976D2";
+
+        return `
+          <div style="min-width: 160px; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18); border: 1px solid #e5e7eb;">
+            <div style="background: #eef2f6; color: #1f2937; font-size: 12px; padding: 8px 12px; border-bottom: 1px solid #dbe1e8;">
+              ${label}
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; font-size: 12px; color: #111827;">
+              <span style="width: 12px; height: 12px; border-radius: 999px; background: ${color}; display: inline-block;"></span>
+              <span>${seriesName}:</span>
+              <span style="font-weight: 700;">USD ${usdFormat(value)}</span>
+            </div>
+          </div>
+        `;
+      },
       y: {
         formatter: (val) => `${val.toLocaleString()} USD`,
       },
@@ -67,11 +92,21 @@ const AltRevenues = () => {
       // revenue: `USD ${totalRevenue.toLocaleString()}`,
       clients: monthData.revenue.map((client, i) => ({
         ...client,
+        normalizedStatus: getNormalizedPaymentStatus(client.status),
       })),
     };
   });
 
   const flattenedRevenueData = tableData.flatMap((month) => month.clients);
+  const graphData = isLoadingAlternateRevenue
+    ? []
+    : flattenedRevenueData
+        .filter((item) => item.normalizedStatus === "paid")
+        .map((item) => ({
+          ...item,
+          taxableAmount: getNumericAmount(item.taxableAmount),
+          vertical: "Alternate Revenue",
+        }));
   return (
     <div className="flex flex-col gap-4">
       {isLoadingAlternateRevenue ? (
@@ -94,13 +129,36 @@ const AltRevenues = () => {
           data={flattenedRevenueData}
           dateColumn={"invoiceCreationDate"}
           totalKey="taxableAmount"
+          exportData
+          titleAmountOverride=""
+          titleAmountGreen={({ filteredData }) =>
+            `USD ${usdFormat(
+              filteredData.reduce((sum, item) => {
+                if (item.normalizedStatus !== "paid") return sum;
+                return sum + getNumericAmount(item.taxableAmount);
+              }, 0)
+            )}`
+          }
+          titleAmountRed={({ filteredData }) =>
+            `USD ${usdFormat(
+              filteredData.reduce((sum, item) => {
+                if (item.normalizedStatus !== "unpaid") return sum;
+                return sum + getNumericAmount(item.taxableAmount);
+              }, 0)
+            )}`
+          }
+          titleAmountTotal={({ rangeTotal }) => `USD ${usdFormat(rangeTotal)}`}
+          greenTitle="Paid"
+          redTitle="Unpaid"
+          totalTitle="Total"
+          summaryChipVariant="ticket"
           columns={[
             { headerName: "Sr No", field: "srNo", width: 100 },
             { headerName: "Particulars", field: "particulars", width: 350 },
             {
               headerName: "Taxable Amount (USD)",
               field: "taxableAmount",
-              cellRenderer: (params) => inrFormat(params.value),
+              cellRenderer: (params) => usdFormat(params.value),
             },
             {
               headerName: "Invoice Creation Date",
@@ -111,7 +169,7 @@ const AltRevenues = () => {
             {
               headerName: "GST (USD)",
               field: "gst",
-              cellRenderer: (params) => inrFormat(params.value || 0),
+              cellRenderer: (params) => usdFormat(params.value || 0),
             },
 
             {

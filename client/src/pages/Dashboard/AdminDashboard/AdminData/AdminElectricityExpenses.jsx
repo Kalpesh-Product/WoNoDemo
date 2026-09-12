@@ -11,7 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { toast } from "sonner";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import { transformBudgetData } from "../../../../utils/transformBudgetData";
 import YearlyGraph from "../../../../components/graphs/YearlyGraph";
 import useAuth from "../../../../hooks/useAuth";
@@ -23,7 +23,7 @@ const AdminElectricityExpenses = () => {
   const location = useLocation();
   const department = usePageDepartment();
   const queryClient = useQueryClient();
-  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
+  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2025-26");
   const departmentAccess = [
     "67b2cf85b9b6ed5cedeb9a2e",
     "6798bab9e469e809084e249e",
@@ -90,8 +90,8 @@ const AdminElectricityExpenses = () => {
     new Map(
       units.length > 0
         ? units
-            .filter((loc) => loc.building && loc.building._id)
-            .map((loc) => [loc.building._id, loc.building.buildingName])
+          .filter((loc) => loc.building && loc.building._id)
+          .map((loc) => [loc.building._id, loc.building.buildingName])
         : []
     ).entries()
   );
@@ -152,7 +152,7 @@ const AdminElectricityExpenses = () => {
       expanseType: item.expanseType,
       unitNo: item.unit?.unitNo,
       projectedAmount: item?.projectedAmount?.toFixed(2),
-      actualAmount: inrFormat(item?.actualAmount || 0),
+      actualAmount: usdFormat(item?.actualAmount || 0),
       dueDate: dayjs(item.dueDate).format("DD-MM-YYYY"),
       status: item.status,
       invoiceAttached: item.invoiceAttached,
@@ -168,19 +168,19 @@ const AdminElectricityExpenses = () => {
         ...row,
         srNo: index + 1,
         projectedAmount: Number(
-          row.projectedAmount?.toLocaleString("en-IN").replace(/,/g, "")
-        ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
+          row.projectedAmount?.toLocaleString("en-US").replace(/,/g, "")
+        ).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       }));
       const transformedCols = [
-        { field: "srNo", headerName: "Sr No", width: 100 },
-        { field: "unitNo", headerName: "Unit No", width: 100 },
+        { field: "srNo", headerName: "Sr No", flex: 1 },
+        { field: "unitNo", headerName: "Unit No", flex: 1  },
         ...data.tableData.columns,
       ];
 
       return {
         ...data,
-        projectedAmount: data.projectedAmount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
-        amount: data.amount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
+        projectedAmount: data.projectedAmount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
+        amount: data.amount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
         tableData: {
           ...data.tableData,
           rows: transoformedRows,
@@ -189,6 +189,8 @@ const AdminElectricityExpenses = () => {
       };
     })
     .sort((a, b) => dayjs(b.latestDueDate).diff(dayjs(a.latestDueDate))); // Sort descending
+
+
 
   const onSubmit = (data) => {
     requestBudget(data);
@@ -289,7 +291,7 @@ const AdminElectricityExpenses = () => {
     dataLabels: {
       enabled: true,
       formatter: (val) => {
-        return inrFormat(val);
+        return usdFormat(val);
       },
 
       style: {
@@ -301,9 +303,9 @@ const AdminElectricityExpenses = () => {
 
     yaxis: {
       max: roundedMax,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount (USD)" },
       labels: {
-        formatter: (val) => `${val / 100000}`,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
     },
     fill: {
@@ -319,7 +321,7 @@ const AdminElectricityExpenses = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-US")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -328,8 +330,8 @@ const AdminElectricityExpenses = () => {
                   <div><strong>Finance Expense:</strong></div>
                   <div style="width: 10px;"></div>
                <div style="text-align: left;">USD ${Math.round(
-                 rawData
-               ).toLocaleString("en-IN")}</div>
+          rawData
+        ).toLocaleString("en-US")}</div>
   
                 </div>
        
@@ -354,7 +356,7 @@ const AdminElectricityExpenses = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={`BIZ Nest ${department?.name} DEPARTMENT EXPENSE`}
-        titleAmount={`USD ${inrFormat(totalUtilised)}`}
+        titleAmount={`USD ${usdFormat(totalUtilised)}`}
         onYearChange={setSelectedFiscalYear}
       />
 
@@ -372,11 +374,13 @@ const AdminElectricityExpenses = () => {
       <AllocatedBudget
         financialData={financialData}
         newTitle={"ELECTRICITY EXPENSES"}
+        exportData
       />
       <MuiModal
         title="Request Budget"
         open={openModal}
-        onClose={() => setOpenModal(false)}>
+        onClose={() => setOpenModal(false)}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Expense Name */}
           <Controller
@@ -445,10 +449,10 @@ const AdminElectricityExpenses = () => {
                   {locationsLoading
                     ? []
                     : uniqueBuildings.map((building) => (
-                        <MenuItem key={building[0]} value={building[1]}>
-                          {building[1]}
-                        </MenuItem>
-                      ))}
+                      <MenuItem key={building[0]} value={building[1]}>
+                        {building[1]}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
             )}
@@ -468,14 +472,14 @@ const AdminElectricityExpenses = () => {
                   {locationsLoading
                     ? []
                     : units.map((unit) =>
-                        unit.building.buildingName === selectedBuilding ? (
-                          <MenuItem key={unit._id} value={unit._id}>
-                            {unit.unitNo}
-                          </MenuItem>
-                        ) : (
-                          <></>
-                        )
-                      )}
+                      unit.building.buildingName === selectedBuilding ? (
+                        <MenuItem key={unit._id} value={unit._id}>
+                          {unit.unitNo}
+                        </MenuItem>
+                      ) : (
+                        <></>
+                      )
+                    )}
                 </Select>
               </FormControl>
             )}

@@ -1,0 +1,166 @@
+{
+  "chartConfigurations": 43,
+  "files": 40,
+  "details": [
+    {
+      "file": "components/graphs/RevenueGraph.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "components/Pages/AnnualExpense.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "components/Pages/BudgetPage.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Assets/AssetsDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/AdminDashboard/AdminDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/AdminDashboard/AdminData/AdminElectricityExpenses.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/AdminDashboard/AdminExecutiveExpenses.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/AdminDashboard/AdminExpenses/AdminExpenses.jsx",
+      "chartConfigurations": 2
+    },
+    {
+      "file": "pages/Dashboard/AdminDashboard/AdminFinance/AdminBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/CafeDashboard/CafeDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/AverageProfitLoss/AverageProfitLoss.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Cashflow/HistoricalPnl.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Cashflow/Projections.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Finance/DeptWiseBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Finance/FinanceBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Finance/LandlordPaymentLocation.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/Finance/LandlordPayments.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/FinanceDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/MonthyProfitLoss/MonthlyProfitLoss.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/OverallProfitLoss/OverallProfitLoss.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FinanceDashboard/SqftWiseData/SqWiseData.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FrontendDashboard/FrontendDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/FrontendDashboard/FrontendFinance/FrontendBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/HrDashboard/Finance/HrBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/HrDashboard/HrDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/ItDashboard/ItDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/ItDashboard/ItExpenses/ItExpenses.jsx",
+      "chartConfigurations": 2
+    },
+    {
+      "file": "pages/Dashboard/ItDashboard/ItFinance/ItBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/ItDashboard/ItPerSqInternetExpense.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/LegalDashboard/LegalDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/MaintainanceDashboard/MaintainanceDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/MaintainanceDashboard/MaintenanceExpenses/MaintenanceExpenses.jsx",
+      "chartConfigurations": 2
+    },
+    {
+      "file": "pages/Dashboard/MaintainanceDashboard/MaintenanceFinance/MaintenanceBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/AltRevenues.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/CoWorking.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/MeetingRevenue.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/SalesDashboard.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/SalesFinance/SalesBudget.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/VirtualOffice.jsx",
+      "chartConfigurations": 1
+    },
+    {
+      "file": "pages/Dashboard/SalesDashboard/Workations.jsx",
+      "chartConfigurations": 1
+    }
+  ]
+}

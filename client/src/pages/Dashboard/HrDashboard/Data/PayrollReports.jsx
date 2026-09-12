@@ -8,7 +8,7 @@ import { CircularProgress } from "@mui/material";
 import MuiModal from "../../../../components/MuiModal";
 import DetalisFormatted from "../../../../components/DetalisFormatted";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import YearWiseTable from "../../../../components/Tables/YearWiseTable";
 import dayjs from "dayjs";
 
@@ -23,20 +23,23 @@ const PayrollReports = () => {
       try {
         const response = await axios.get("/api/payroll/get-payrolls");
 
-        const uniquePayrollMap = new Map();
+       
 
-        response.data?.forEach((payroll) => {
-          const monthKey = dayjs(payroll.month).format("MM-YYYY");
+      const uniquePayrollMap = new Map();
 
-          // Only keep the first encountered entry for that monthKey
-          if (!uniquePayrollMap.has(`${payroll.employeeId}-${monthKey}`)) {
-            uniquePayrollMap.set(`${payroll.employeeId}-${monthKey}`, payroll);
-          }
-        });
+      response.data?.forEach((payroll) => {
+        const monthKey = dayjs(payroll.month).format("MM-YYYY");
 
-        const filteredData = Array.from(uniquePayrollMap.values());
+        // Only keep the first encountered entry for that monthKey
+        if (!uniquePayrollMap.has(`${payroll.employeeId}-${monthKey}`)) {
+          uniquePayrollMap.set(`${payroll.employeeId}-${monthKey}`, payroll);
+        }
+      });
 
-        return filteredData;
+      const filteredData = Array.from(uniquePayrollMap.values());
+
+      
+        return filteredData
       } catch (error) {
         throw new Error(
           error.response?.data?.message || "Failed to fetch employees"
@@ -55,7 +58,8 @@ const PayrollReports = () => {
       cellRenderer: (params) => (
         <span
           className="text-primary underline cursor-pointer"
-          onClick={() => handleViewApplicationDetails(params.data)}>
+          onClick={() => handleViewApplicationDetails(params.data)}
+        >
           {params.value}
         </span>
       ),
@@ -73,7 +77,7 @@ const PayrollReports = () => {
             empId: item.empId,
             employeeName: item.name,
             status: item?.status,
-            totalSalary: item?.totalSalary ? inrFormat(item?.totalSalary) : 0,
+            totalSalary: item?.totalSalary ? usdFormat(item?.totalSalary) : 0,
             departmentName: item.departments?.map(
               (item) => item.name || "null"
             ),
@@ -107,7 +111,8 @@ const PayrollReports = () => {
       <MuiModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        title={"Payroll Details"}>
+        title={"Payroll Details"}
+      >
         {!isLoading && selectedEmployee ? (
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             <DetalisFormatted title="Name" detail={selectedEmployee?.name} />
@@ -123,7 +128,7 @@ const PayrollReports = () => {
             <DetalisFormatted title="Date" detail={selectedEmployee?.date} />
             <DetalisFormatted
               title="Total Salary"
-              detail={`USD ${inrFormat(selectedEmployee?.totalSalary)}`}
+              detail={`USD ${usdFormat(selectedEmployee?.totalSalary)}`}
             />
             <DetalisFormatted
               title="Status"
@@ -137,7 +142,8 @@ const PayrollReports = () => {
                     className="text-primary underline cursor-pointer"
                     href={selectedEmployee.payslip}
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                  >
                     View Payslip
                   </a>
                 ) : (

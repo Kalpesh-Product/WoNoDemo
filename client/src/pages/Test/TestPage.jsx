@@ -49,11 +49,11 @@ const PayslipTemplate = ({ data }) => {
           <div style={{ padding: "16px 0" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
               <span>Basic Pay</span>
-              <span>₹{totalSalary.toLocaleString()}</span>
+              <span>USD {totalSalary.toLocaleString()}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold" }}>
               <span>Total Earnings</span>
-              <span>₹{totalSalary.toLocaleString()}</span>
+              <span>USD {totalSalary.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -66,18 +66,18 @@ const PayslipTemplate = ({ data }) => {
           <div style={{ padding: "16px 0" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
               <span>Tax and Other Deductions</span>
-              <span>₹{deductions.toLocaleString()}</span>
+              <span>USD {deductions.toLocaleString()}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold" }}>
               <span>Total Deductions</span>
-              <span>₹{deductions.toLocaleString()}</span>
+              <span>USD {deductions.toLocaleString()}</span>
             </div>
           </div>
         </div>
 
         {/* Net Pay */}
         <div style={{ textAlign: "right", fontWeight: "bold", fontSize: "1.1rem", marginBottom: "24px" }}>
-          Net Pay: ₹{netPay.toLocaleString()}
+          Net Pay: USD {netPay.toLocaleString()}
         </div>
 
         <p style={{ fontSize: "0.8rem", color: "#555", textAlign: "center" }}>

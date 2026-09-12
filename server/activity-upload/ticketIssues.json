@@ -1,0 +1,986 @@
+[
+  {
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f0"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc4"
+      },
+      "title": "Water & Pantry Supply Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc5"
+      },
+      "title": "General Cleaning Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc6"
+      },
+      "title": "Washroom Cleaning & Hygiene Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc7"
+      },
+      "title": "Water Quality Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc8"
+      },
+      "title": "Furniture Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6999949aa54ac741efaefdc9"
+      },
+      "title": "AC Control Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f1"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6a0aa232b5127feafb8ff492"
+      },
+      "title": "Requirements of Water & Bottle",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b1234577"
+      },
+      "title": "CRM Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b1234578"
+      },
+      "title": "Collateral Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b1234579"
+      },
+      "title": "Client Database",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457a"
+      },
+      "title": "Report Error",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457b"
+      },
+      "title": "Travel Delay",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457c"
+      },
+      "title": "Proposal Template",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457d"
+      },
+      "title": "Lead Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457e"
+      },
+      "title": "Demo Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b123457f"
+      },
+      "title": "Invoice Delay",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841024b38fc2ed4b1234580"
+      },
+      "title": "Pricing Query",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "68410568a95bf374692540c9"
+      },
+      "title": "Other",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f2"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60c"
+      },
+      "title": "Leave & Attendance",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60d"
+      },
+      "title": "Payroll & Salary",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60e"
+      },
+      "title": "HR Documents Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60f"
+      },
+      "title": "PF / ESIC / Tax Queries",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a610"
+      },
+      "title": "Performance & Appraisal",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a611"
+      },
+      "title": "Recruitment / Referral",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a612"
+      },
+      "title": "Policy Clarification",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a613"
+      },
+      "title": "Grievance / Complaint",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a614"
+      },
+      "title": "Workplace Concern (Confidential)",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a615"
+      },
+      "title": "Employee Engagement / Events",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a616"
+      },
+      "title": "General HR Query / Other Option",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f3"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c3"
+      },
+      "title": "Salary Delay",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c4"
+      },
+      "title": "Reimbursement Pending",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c5"
+      },
+      "title": "Invoice Payment",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c6"
+      },
+      "title": "Budget Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c7"
+      },
+      "title": "Tax Update",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c8"
+      },
+      "title": "Petty Cash",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131c9"
+      },
+      "title": "Expense Policy",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131ca"
+      },
+      "title": "Vendor Payment",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131cb"
+      },
+      "title": "Bonus Query",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "684102c3b3f1391b906131cc"
+      },
+      "title": "Account Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "68410568a95bf374692540cb"
+      },
+      "title": "Other",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f4"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5f7"
+      },
+      "title": "Email & Outlook Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5f8"
+      },
+      "title": "Internet & Network Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5f9"
+      },
+      "title": "Printer Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5fa"
+      },
+      "title": "Hardware Upgrade Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5fb"
+      },
+      "title": "System Update Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5fc"
+      },
+      "title": "Shared Drive & Access Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5fd"
+      },
+      "title": "System Boot Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5fe"
+      },
+      "title": "Antivirus Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a5ff"
+      },
+      "title": "Software Installation Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a600"
+      },
+      "title": "Backup & Restore Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a601"
+      },
+      "title": "Peripheral & Device Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f5"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69e61911aa92992fb43474a9"
+      },
+      "title": "Biometric Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6a0db298f03a7fdd43d4290c"
+      },
+      "title": "IT Internal Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a602"
+      },
+      "title": "AC Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a603"
+      },
+      "title": "Water Leakage",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a604"
+      },
+      "title": "Washroom Plumbing Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a605"
+      },
+      "title": "Washroom Door & Lock Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a606"
+      },
+      "title": "Electrical & Lighting Issues",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a607"
+      },
+      "title": "Ceiling / Wall Damage",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a608"
+      },
+      "title": "Flooring & Interior Fixing",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a609"
+      },
+      "title": "Furniture & Fixture Repairs",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60a"
+      },
+      "title": "Equipment Maintenance",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6998055b4be1add0d233a60b"
+      },
+      "title": "Rat smell / Bad odour",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f6"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb69"
+      },
+      "title": "Proposal Submission",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6a"
+      },
+      "title": "Conflict Escalation",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6b"
+      },
+      "title": "Meeting Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6c"
+      },
+      "title": "Improvement Suggestion",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6d"
+      },
+      "title": "Feedback Confidential",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6e"
+      },
+      "title": "Project Approval",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb6f"
+      },
+      "title": "Expansion Input",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb70"
+      },
+      "title": "Performance Feedback",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb71"
+      },
+      "title": "Mentorship Request",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "6841038b34339257326feb72"
+      },
+      "title": "Policy Review",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "68410568a95bf374692540cf"
+      },
+      "title": "Other",
+      "priority": "High"
+    }
+  },
+  {
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "issue": {
+      "_id": {
+        "$oid": "69c3990bf425259d536a58f8"
+      },
+      "title": "Platform Issue",
+      "priority": "High"
+    }
+  }
+]

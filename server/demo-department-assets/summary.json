@@ -1,0 +1,71 @@
+{
+  "currency": "USD",
+  "seed": 42,
+  "asOf": "2026-09-09",
+  "excluded": [
+    "legal",
+    "cafe",
+    "people and culture",
+    "expansion",
+    "marketing",
+    "compliance"
+  ],
+  "departments": [
+    {
+      "department": "Maintenance",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "HR",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "Top Management",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "Tech",
+      "assets": 20,
+      "categories": 1,
+      "subcategories": 2
+    },
+    {
+      "department": "Sales",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "Finance",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "IT",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    },
+    {
+      "department": "Administration",
+      "assets": 20,
+      "categories": 2,
+      "subcategories": 2
+    }
+  ],
+  "vendor": "Unset: no vendor references supplied",
+  "importOrder": [
+    "categories",
+    "subcategories",
+    "departmentUpdates (bulkWrite operations, not collection documents)",
+    "assets"
+  ],
+  "databaseWrites": false
+}

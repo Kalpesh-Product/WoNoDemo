@@ -1,0 +1,13 @@
+{
+  "from": "2026-04-01",
+  "through": "2026-09-09T10:38:45Z",
+  "company": "6799f0cd6a01edbe1bc3fcea",
+  "counts": {
+    "rooms": 13,
+    "visitors": 518,
+    "meetings": 276,
+    "tickets": 348,
+    "supporttickets": 116,
+    "externalvisits": 518
+  }
+}

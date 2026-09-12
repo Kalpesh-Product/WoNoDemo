@@ -1,0 +1,530 @@
+[
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "category": {
+      "$oid": "a520a8ee2cb6a6890a2fbb70"
+    },
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "abce3ad44dbb925fcfe7b803"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "category": {
+      "$oid": "a520a8ee2cb6a6890a2fbb70"
+    },
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "1abcdee51daa56eb7256c496"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "category": {
+      "$oid": "a520a8ee2cb6a6890a2fbb70"
+    },
+    "addedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "5fb05ed4154d30497bdbc956"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "category": {
+      "$oid": "6079cb1ccfbab48c89abc802"
+    },
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "80a0208bb09ba4c650b16a2c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "category": {
+      "$oid": "6079cb1ccfbab48c89abc802"
+    },
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "3f695e9dc6aa8e438fea05ab"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "category": {
+      "$oid": "6079cb1ccfbab48c89abc802"
+    },
+    "addedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "c37a85a3373395d0465c226e"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "category": {
+      "$oid": "9852bfa09155dc19eb28773d"
+    },
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "177aa532b52226ac2756817c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "category": {
+      "$oid": "9852bfa09155dc19eb28773d"
+    },
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "79e24d6c9efe022ea1fbaab8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "category": {
+      "$oid": "9852bfa09155dc19eb28773d"
+    },
+    "addedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "1f2d7ae9c055f20e23a31a78"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "category": {
+      "$oid": "9c25c367ae90898a0fca1690"
+    },
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "a6d54bfdaf397429f264e34b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "category": {
+      "$oid": "9c25c367ae90898a0fca1690"
+    },
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "1629947af3401df41ff2c247"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "category": {
+      "$oid": "9c25c367ae90898a0fca1690"
+    },
+    "addedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "2a8ebed60b229e4fe654b2b7"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "category": {
+      "$oid": "6a374d7dcc6794ee41b4b0e8"
+    },
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "eff0e951217a39c66a53fef6"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "category": {
+      "$oid": "6a374d7dcc6794ee41b4b0e8"
+    },
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "98b7db22c60ba7ab282104d3"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "category": {
+      "$oid": "6a374d7dcc6794ee41b4b0e8"
+    },
+    "addedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "ad00bd52c4580e7caf28a87a"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "category": {
+      "$oid": "a77e04f51d9108d35ea13d9f"
+    },
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "8213c075162d31dd9238c678"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "category": {
+      "$oid": "a77e04f51d9108d35ea13d9f"
+    },
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "ea2eba663d9a3718199eda61"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "category": {
+      "$oid": "a77e04f51d9108d35ea13d9f"
+    },
+    "addedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "42619eb26b3a26b4bf796de5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "category": {
+      "$oid": "73a6326b5b2857b16bed55c9"
+    },
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "d9c8971770f809a8861ec5ac"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "category": {
+      "$oid": "73a6326b5b2857b16bed55c9"
+    },
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "d1a7b51923e8fba92a3db5a0"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "category": {
+      "$oid": "73a6326b5b2857b16bed55c9"
+    },
+    "addedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "28602cf6e0596b1f4c70bda2"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Notebooks",
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "category": {
+      "$oid": "830178b8a1e6fcfc09079670"
+    },
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "2c8217c298e6f88f9f28efc1"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Pens",
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "category": {
+      "$oid": "830178b8a1e6fcfc09079670"
+    },
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "9a90717f6cc6ae99ed86a226"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "name": "Printer Paper",
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "category": {
+      "$oid": "830178b8a1e6fcfc09079670"
+    },
+    "addedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "isActive": true,
+    "_id": {
+      "$oid": "18b37d4a6920972cb44ef5d9"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  }
+]

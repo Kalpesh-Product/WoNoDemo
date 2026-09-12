@@ -392,6 +392,26 @@ const companySchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  meetingCreditBalanceHistory: [
+    {
+      monthStartDate: {
+        type: Date,
+        required: true,
+      },
+      remainingCredit: {
+        type: Number,
+        default: 0,
+      },
+      consumedCredit: {
+        type: Number,
+        default: 0,
+      },
+    },
+  ],
+  lastCreditReset: {
+    type: Date,
+    default: Date.now,
+  },
   complianceDocuments: [
     {
       name: String,

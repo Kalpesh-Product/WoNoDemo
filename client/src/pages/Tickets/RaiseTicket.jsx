@@ -25,6 +25,7 @@ import humanTime from "../../utils/humanTime";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
 import humanDate from "../../utils/humanDateForamt";
 import { isAlphanumeric, noOnlyWhitespace } from "../../utils/validators";
+import formatDateTime from "../../utils/formatDateTime";
 
 const RaiseTicket = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -41,7 +42,7 @@ const RaiseTicket = () => {
   const fetchDepartments = async () => {
     try {
       const response = await axios.get(
-        "api/company/get-company-data?field=selectedDepartments"
+        "api/company/get-company-data?field=selectedDepartments",
       );
       return response.data?.selectedDepartments;
     } catch (error) {
@@ -122,12 +123,50 @@ const RaiseTicket = () => {
     },
   });
 
+  const formatAssignments = (assignments = []) => {
+    const assignmentDetails = Array.isArray(assignments)
+      ? assignments.map((assignment) => {
+        const assignee = assignment?.assignee;
+        const assigneeName =
+          assignee?.firstName && assignee?.lastName
+            ? `${assignee.firstName} ${assignee.lastName}`
+            : "Unknown";
+        const assignedAtFormatted = formatDateTime(assignment?.assignedAt);
+
+        return { assigneeName, assignedAtFormatted };
+      })
+      : [];
+
+    const assignedToDisplay = assignmentDetails
+      .map(({ assigneeName, assignedAtFormatted }) =>
+        assignedAtFormatted && assignedAtFormatted !== "N/A"
+          ? `${assigneeName} (${assignedAtFormatted})`
+          : assigneeName,
+      )
+      .join(", ");
+
+    return { assignedToDisplay, assignmentDetails };
+  };
+
+  const formatEscalation = (escalations = []) => {
+    if (!Array.isArray(escalations) || !escalations.length) {
+      return { escalatedTo: "", escalatedStatus: "", escalatedAt: "" };
+    }
+
+    const latest = escalations[escalations.length - 1];
+    return {
+      escalatedTo: latest?.raisedToDepartment?.name || "",
+      escalatedStatus: latest?.status || "",
+      escalatedAt: latest?.createdAt ? formatDateTime(latest.createdAt) : "",
+    };
+  };
+
   const handleDepartmentSelect = (deptId) => {
     setSelectedDepartment(deptId);
 
     // Find the selected department and get its ticketIssues
     const selectedDept = fetchedDepartments.find(
-      (dept) => dept.department._id === deptId
+      (dept) => dept?.department?._id === deptId,
     );
 
     setTicketIssues(selectedDept?.ticketIssues || []);
@@ -146,47 +185,54 @@ const RaiseTicket = () => {
 
   const recievedTicketsColumns = [
     { field: "srNo", headerName: "Sr No", width: 80 },
-    { field: "raisedBy", headerName: "Raised By", width: 150 },
-    { field: "raisedTo", headerName: "To Department", width: 150 },
     { field: "ticketTitle", headerName: "Ticket Title", width: 250 },
-    { field: "description", headerName: "Description", width: 300 },
+    { field: "raisedTo", headerName: "To Department", width: 150 },
+    // { field: "raisedBy", headerName: "Raised By", width: 150 },
+    // {
+    //   field: "raisedAt",
+    //   headerName: "Raised At",
+    //   width: 200,
+    //   cellRenderer: (params) => formatDateTime(params.value),
+    // },
+
+    // { field: "description", headerName: "Description", width: 300 },
     { field: "acceptedBy", headerName: "Accepted By", width: 300 },
-    {
-      field: "acceptedAt",
-      headerName: "Accepted Time",
-      width: 300,
-      cellRenderer: (params) => humanDate(params.value),
-    },
+    // {
+    //   field: "acceptedAt",
+    //   headerName: "Accepted At",
+    //   width: 300,
+    //   cellRenderer: (params) => formatDateTime(params.value),
+    // },
 
-    {
-      field: "priority",
-      headerName: "Priority",
-      width: 130,
-      cellRenderer: (params) => {
-        const statusColorMap = {
-          High: { backgroundColor: "#FFC5C5", color: "#8B0000" },
-          Medium: { backgroundColor: "#FFECC5", color: "#CC8400" },
-          Low: { backgroundColor: "#ADD8E6", color: "#00008B" },
-        };
+    // {
+    //   field: "priority",
+    //   headerName: "Priority",
+    //   width: 130,
+    //   cellRenderer: (params) => {
+    //     const statusColorMap = {
+    //       High: { backgroundColor: "#FFC5C5", color: "#8B0000" },
+    //       Medium: { backgroundColor: "#FFECC5", color: "#CC8400" },
+    //       Low: { backgroundColor: "#ADD8E6", color: "#00008B" },
+    //     };
 
-        const { backgroundColor, color } = statusColorMap[
-          params.value === "high" ? "High" : params.value
-        ] || {
-          backgroundColor: "gray",
-          color: "white",
-        };
+    //     const { backgroundColor, color } = statusColorMap[
+    //       params.value === "high" ? "High" : params.value
+    //     ] || {
+    //       backgroundColor: "gray",
+    //       color: "white",
+    //     };
 
-        return (
-          <Chip
-            label={params.value === "high" ? "High" : params.value}
-            style={{
-              backgroundColor,
-              color,
-            }}
-          />
-        );
-      },
-    },
+    //     return (
+    //       <Chip
+    //         label={params.value === "high" ? "High" : params.value}
+    //         style={{
+    //           backgroundColor,
+    //           color,
+    //         }}
+    //       />
+    //     );
+    //   },
+    // },
     {
       field: "status",
       headerName: "Status",
@@ -225,7 +271,8 @@ const RaiseTicket = () => {
         <div className="p-2 mb-2 flex gap-2">
           <span
             className="text-subtitle cursor-pointer"
-            onClick={() => handleViewTicketDetails(params.data)}>
+            onClick={() => handleViewTicketDetails(params.data)}
+          >
             <MdOutlineRemoveRedEye />
           </span>
         </div>
@@ -262,7 +309,8 @@ const RaiseTicket = () => {
                           onChange={(e) => {
                             field.onChange(e.target.value);
                             handleDepartmentSelect(e.target.value);
-                          }}>
+                          }}
+                        >
                           <MenuItem value="" disabled>
                             Select Department
                           </MenuItem>
@@ -277,20 +325,47 @@ const RaiseTicket = () => {
                             fetchedDepartments
                               ?.filter(
                                 (dept) =>
-                                  dept.department.name !== "Cafe" &&
-                                  dept.department.name !== "Marketing" &&
-                                  dept.department.name !== "Expansion" &&
-                                  dept.department.name !== "Compliance" &&
-                                  dept.department.name !== "Legal"
+                                  //dept?.department?.name !== "Sales" &&
+                                  // dept?.department?.name !== "HR" &&
+                                  dept?.department?.name !== "Tik Department" &&
+                                  //dept?.department?.name !== "Finance" &&
+                                  // dept.department.name !== "IT" &&
+                                  //dept?.department?.name !== "Maintenance" &&
+                                  dept?.department?.name !== "Top Management" &&
+                                  dept?.department?.name !== "Test Dept 1" &&
+                                  dept?.department?.name !== "Cafe" &&
+                                  dept?.department?.name !== "Marketing" &&
+                                  dept?.department?.name !== "Expansion" &&
+                                  dept?.department?.name !== "Compliance" &&
+                                  dept?.department?.name !== "Legal",
                               )
                               .map((dept) => (
                                 <MenuItem
-                                  key={dept.department._id}
-                                  value={dept.department._id}>
-                                  {dept.department.name}
+                                  key={dept?.department?._id}
+                                  value={dept?.department?._id}
+                                >
+                                  {dept?.department?.name}
                                 </MenuItem>
                               ))
                           )}
+                          {/* <MenuItem value="Sales">
+                            Sales
+                          </MenuItem> */}
+                          {/* <MenuItem value="HR" disabled>
+                            HR
+                          </MenuItem> */}
+                          {/* <MenuItem value="Finance" disabled>
+                            Finance
+                          </MenuItem> */}
+                          {/* <MenuItem value="IT" disabled>
+                            IT
+                          </MenuItem> */}
+                          {/* <MenuItem value="Maintainance" disabled>
+                            Maintainance
+                          </MenuItem> */}
+                          <MenuItem value="Top Management" disabled>
+                            Top Management
+                          </MenuItem>
                           <MenuItem value="Cafe" disabled>
                             Cafe
                           </MenuItem>
@@ -311,7 +386,7 @@ const RaiseTicket = () => {
                     )}
                   />
                 </div>
-
+                {/* div  */}
                 <div>
                   <Controller
                     name="ticketTitle"
@@ -327,14 +402,17 @@ const RaiseTicket = () => {
                           label="Issue"
                           helperText={errors.ticketTitle?.message}
                           error={!!errors.ticketTitle}
-                          disabled={!watchFields.department}>
+                          disabled={!watchFields.department}
+                        >
                           <MenuItem value="">Select Ticket Title</MenuItem>
                           {ticketIssues.length > 0 ? (
-                            ticketIssues.map((issue) => (
-                              <MenuItem key={issue._id} value={issue.title}>
-                                {issue.title}
-                              </MenuItem>
-                            ))
+                            ticketIssues
+                              .filter((issue) => issue.title !== "Other")
+                              .map((issue) => (
+                                <MenuItem key={issue._id} value={issue.title}>
+                                  {issue.title}
+                                </MenuItem>
+                              ))
                           ) : (
                             <MenuItem disabled>No Issues Available</MenuItem>
                           )}
@@ -407,7 +485,8 @@ const RaiseTicket = () => {
                               <IconButton
                                 color="primary"
                                 component="label"
-                                htmlFor="image-upload">
+                                htmlFor="image-upload"
+                              >
                                 <LuImageUp />
                               </IconButton>
                             ),
@@ -419,13 +498,15 @@ const RaiseTicket = () => {
                           <>
                             <span
                               className="underline text-primary text-content cursor-pointer"
-                              onClick={() => setOpenModal(true)}>
+                              onClick={() => setOpenModal(true)}
+                            >
                               Preview
                             </span>
                             <MuiModal
                               open={openModal}
                               onClose={() => setOpenModal(false)}
-                              title={"Preview File"}>
+                              title={"Preview File"}
+                            >
                               <div>
                                 <div className="flex flex-col">
                                   <IconButton
@@ -433,7 +514,8 @@ const RaiseTicket = () => {
                                     onClick={() => {
                                       onChange(null);
                                       setPreview(null);
-                                    }}>
+                                    }}
+                                  >
                                     <MdDelete />
                                   </IconButton>
                                   <div className="p-2 border-default border-borderGray rounded-md">
@@ -464,7 +546,7 @@ const RaiseTicket = () => {
                   control={control}
                   rules={{
                     required: "Please specify your message",
-                    validate: { noOnlyWhitespace, isAlphanumeric },
+                    validate: { noOnlyWhitespace },
                   }}
                   render={({ field }) => (
                     <>
@@ -509,24 +591,36 @@ const RaiseTicket = () => {
               key={tickets?.length}
               search
               dropdownColumns={["status", "priority"]}
-              data={tickets?.map((ticket, index) => ({
-                raisedBy: ticket.raisedBy.firstName,
-                raisedTo: ticket.raisedToDepartment.name,
-                description: ticket.description,
-                ticketTitle: ticket.ticket,
-                status: ticket.status,
-                acceptedBy: ticket?.acceptedBy
-                  ? `${ticket.acceptedBy.firstName} ${ticket.acceptedBy.lastName}`
-                  : "None",
-                closedBy: ticket?.closedBy
-                  ? `${ticket.closedBy.firstName} ${ticket.closedBy.lastName}`
-                  : "None",
-                acceptedAt: ticket.acceptedAt,
-                closedAt: ticket.closedAt ? ticket.closedAt : "None",
-                priority: ticket.priority,
-                image: ticket.image ? ticket.image.url : null,
-                raisedAt: ticket.createdAt,
-              }))}
+              data={tickets?.map((ticket, index) => {
+                return {
+                  raisedBy: ticket?.raisedBy?.firstName || "Unknown",
+                  raisedTo: ticket?.raisedToDepartment?.name || "Unknown",
+                  description: ticket?.description,
+                  ticketTitle: ticket?.ticket,
+                  status: ticket?.status,
+                  closingRemark: ticket?.closingRemark,
+                  acceptedBy: ticket?.acceptedBy
+                    ? `${ticket.acceptedBy.firstName} ${ticket.acceptedBy.lastName}`
+                    : "None",
+                  closedBy: ticket?.closedBy
+                    ? `${ticket.closedBy.firstName} ${ticket.closedBy.lastName}`
+                    : "None",
+                  acceptedAt: ticket?.acceptedAt ? ticket.acceptedAt : "N/A",
+                  closedAt: ticket?.closedAt ? ticket.closedAt : "N/A",
+                  priority: ticket?.priority,
+                  ...(() => {
+                    const { assignedToDisplay, assignmentDetails } =
+                      formatAssignments(ticket.assignedTo);
+                    return {
+                      assignedTo: assignedToDisplay,
+                      assignedToDetails: assignmentDetails,
+                    };
+                  })(),
+                  image: ticket.image ? ticket.image.url : null,
+                  raisedAt: ticket.createdAt,
+                  ...formatEscalation(ticket.escalatedTo),
+                };
+              })}
               columns={recievedTicketsColumns}
               paginationPageSize={10}
             />
@@ -536,7 +630,8 @@ const RaiseTicket = () => {
       <MuiModal
         open={viewDetails && viewTicketDetails}
         onClose={() => setViewDetails(false)}
-        title={"Ticket Details"}>
+        title={"Ticket Details"}
+      >
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 overflow-y-auto max-h-[70vh]">
           <DetalisFormatted
             title="Ticket Title"
@@ -546,39 +641,61 @@ const RaiseTicket = () => {
             title="Description"
             detail={viewTicketDetails?.description}
           />
-          <DetalisFormatted
+          {/* <DetalisFormatted
             title="Raised By"
             detail={viewTicketDetails?.raisedBy}
-          />
-          <DetalisFormatted
-            title="Raised At"
-            detail={humanTime(viewTicketDetails?.raisedAt) || "N/A"}
-          />
+          /> */}
           <DetalisFormatted
             title="Raised To Department"
             detail={viewTicketDetails?.raisedTo}
           />
-
-          <DetalisFormatted title="Status" detail={viewTicketDetails?.status} />
           <DetalisFormatted
+            title="Raised At"
+            detail={formatDateTime(viewTicketDetails?.raisedAt)}
+          />
+
+          {/* <DetalisFormatted
             title="Priority"
             detail={viewTicketDetails?.priority}
-          />
+          /> */}
           <DetalisFormatted
-            title="Accepted by"
+            title="Accepted By"
             detail={viewTicketDetails?.acceptedBy}
           />
+
           <DetalisFormatted
-            title="Accepted Date"
-            detail={humanDate(viewTicketDetails?.acceptedAt)}
+            title="Accepted At"
+            detail={formatDateTime(viewTicketDetails?.acceptedAt)}
+          />
+          {/* <DetalisFormatted
+            title="Assigned To"
+            detail={viewTicketDetails?.assignedTo || ""}
+          /> */}
+
+          {/* <DetalisFormatted
+            title="Escalated To"
+            detail={viewTicketDetails?.escalatedTo || ""}
           />
           <DetalisFormatted
-            title="Accepted at"
-            detail={humanTime(viewTicketDetails?.acceptedAt)}
+            title="Escalated Status"
+            detail={viewTicketDetails?.escalatedStatus || ""}
           />
           <DetalisFormatted
-            title="Closed by"
+            title="Escalated At"
+            detail={viewTicketDetails?.escalatedAt || ""}
+          /> */}
+          <DetalisFormatted
+            title="Closed By"
             detail={viewTicketDetails?.closedBy}
+          />
+          <DetalisFormatted
+            title="Closed At"
+            detail={formatDateTime(viewTicketDetails?.closedAt)}
+          />
+          <DetalisFormatted title="Status" detail={viewTicketDetails?.status} />
+          <DetalisFormatted
+            title="Closing Remark"
+            detail={viewTicketDetails?.closingRemark}
           />
           {viewTicketDetails.image && (
             <div className="lg:col-span-1">

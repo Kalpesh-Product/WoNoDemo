@@ -13,6 +13,11 @@ const YearlyGraph = ({
   chartId,
   TitleAmountGreen,
   TitleAmountRed,
+  TitleAmountTotal,
+   greenTitle,
+  redTitle,
+  totalTitle,
+  summaryChipVariant,
   responsiveResize = false,
   secondParam = false,
   chartHeight,
@@ -20,38 +25,44 @@ const YearlyGraph = ({
   onYearChange,
   dateKey, // 👈 New prop
 }) => {
-  const fiscalYears = ["FY 2024-25", "FY 2025-26"];
+   const yearKey = dataPoint === "name" ? "name" : "group";
+  const currentDate = new Date();
+  const currentFYStartYear =
+    currentDate.getMonth() >= 3
+      ? currentDate.getFullYear()
+      : currentDate.getFullYear() - 1;
+  const getFYLabel = (startYear) =>
+    `FY ${startYear}-${String(startYear + 1).slice(-2)}`;
 
   const getYearIndexFromDate = (dateInput) => {
     const date = new Date(dateInput);
     const month = date.getMonth(); // 0 = Jan
     const year = date.getFullYear();
 
-    if (
-      (year === 2024 && month >= 3) || // Apr–Dec 2024
-      (year === 2025 && month <= 2) // Jan–Mar 2025
-    )
-      return 0;
-
-    if (
-      (year === 2025 && month >= 3) || // Apr–Dec 2025
-      (year === 2026 && month <= 2) // Jan–Mar 2026
-    )
-      return 1;
-
-    return 0; // fallback
+    const fyStartYear = month >= 3 ? year : year - 1;
+    return fyStartYear;
   };
 
-  const [selectedYearIndex, setSelectedYearIndex] = useState(() => {
-    if (dateKey && data?.length > 0) {
-      const dateValue = data[0]?.dateKey;
+  const getStartYearFromFiscalYear = (fiscalYear) => {
+    if (typeof fiscalYear === "number") return fiscalYear;
 
+    const parsedYear = Number(String(fiscalYear || "").match(/\d{4}/)?.[0]);
+    return parsedYear || null;
+  };
+
+
+  const [selectedYearStart, setSelectedYearStart] = useState(() => {
+     const currentYearStart = getStartYearFromFiscalYear(currentYear);
+    if (currentYearStart) return currentYearStart;
+    
+    if (dateKey && data?.length > 0) {
+      const dateValue = data[0]?.[dateKey];
       if (dateValue) return getYearIndexFromDate(dateValue);
     }
-    return currentYear ? 1 : 0;
+    return currentFYStartYear;
   });
 
-  const selectedYear = fiscalYears[selectedYearIndex];
+  const selectedYear = getFYLabel(selectedYearStart);
 
   useEffect(() => {
     if (!dateKey && onYearChange) {
@@ -59,35 +70,15 @@ const YearlyGraph = ({
     }
   }, [selectedYear, onYearChange, dateKey]);
 
-  const yearCategories = {
-    "FY 2024-25": [
-      "Apr-24",
-      "May-24",
-      "Jun-24",
-      "Jul-24",
-      "Aug-24",
-      "Sep-24",
-      "Oct-24",
-      "Nov-24",
-      "Dec-24",
-      "Jan-25",
-      "Feb-25",
-      "Mar-25",
-    ],
-    "FY 2025-26": [
-      "Apr-25",
-      "May-25",
-      "Jun-25",
-      "Jul-25",
-      "Aug-25",
-      "Sep-25",
-      "Oct-25",
-      "Nov-25",
-      "Dec-25",
-      "Jan-26",
-      "Feb-26",
-      "Mar-26",
-    ],
+  const buildYearCategories = (fy) => {
+    const startYear = Number(String(fy).match(/\d{4}/)?.[0]);
+    if (!startYear) return [];
+    const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
+    return months.map((month, index) => {
+      const year = index < 9 ? startYear : startYear + 1;
+      return `${month}-${String(year).slice(-2)}`;
+    });
+
   };
 
   let filteredData;
@@ -95,6 +86,15 @@ const YearlyGraph = ({
     filteredData = data.filter((item) => item.name === selectedYear);
   } else {
     filteredData = data.filter((item) => item.group === selectedYear);
+  }
+
+ if (filteredData.length === 0 && dataPoint !== "name") {
+    const uniqueSeriesNames = [...new Set((data || []).map((item) => item?.name).filter(Boolean))];
+    filteredData = uniqueSeriesNames.map((seriesName) => ({
+      name: seriesName,
+      group: selectedYear,
+      data: Array(12).fill(0),
+    }));
   }
 
   const updatedOptions = {
@@ -107,16 +107,16 @@ const YearlyGraph = ({
     },
     xaxis: {
       ...options.xaxis,
-      categories: yearCategories[selectedYear],
+       categories: buildYearCategories(selectedYear),
     },
   };
 
   const goToPrevYear = () => {
-    setSelectedYearIndex((prev) => Math.max(0, prev - 1));
+     setSelectedYearStart((prev) => prev - 1);
   };
 
   const goToNextYear = () => {
-    setSelectedYearIndex((prev) => Math.min(fiscalYears.length - 1, prev + 1));
+     setSelectedYearStart((prev) => prev + 1);
   };
 
   return (
@@ -126,8 +126,13 @@ const YearlyGraph = ({
         border
         title={title || "Title not given"}
         TitleAmount={titleAmount || ""}
+        TitleAmountTotal={TitleAmountTotal}
         TitleAmountGreen={TitleAmountGreen}
         TitleAmountRed={TitleAmountRed}
+        totalTitle={totalTitle}
+         greenTitle={greenTitle}
+        redTitle={redTitle}
+        summaryChipVariant={summaryChipVariant}
       >
         <div className="flex flex-col gap-4">
           <BarGraph
@@ -141,19 +146,25 @@ const YearlyGraph = ({
           />
 
           <div className="flex justify-center items-center">
-            <div className="flex items-center pb-4">
+            {/* <div className="flex items-center pb-2 gap-4 mt-4"> */}
+            <div className="flex items-center gap-4 mt-4">
               <SecondaryButton
                 title={<MdNavigateBefore />}
                 handleSubmit={goToPrevYear}
-                disabled={selectedYearIndex === 0}
+                // externalStyles="min-w-24 px-6 py-2 bg-[#B8BDC6] text-primary font-semibold rounded-lg"
+               // disabled={selectedYearIndex === 0}
               />
-              <div className="text-sm min-w-[120px] text-center">
+              {/* <div className="text-sm min-w-[120px] text-center">
+                {selectedYear}
+              </div> */}
+               <div className="text-primary text-content font-semibold">
                 {selectedYear}
               </div>
               <SecondaryButton
                 title={<MdNavigateNext />}
                 handleSubmit={goToNextYear}
-                disabled={selectedYearIndex === fiscalYears.length - 1}
+                 externalStyles="min-w-20 px-6 py-2 bg-[#9ca3af] text-black font-semibold rounded-lg"
+               // disabled={selectedYearIndex === fiscalYears.length - 1}
               />
             </div>
           </div>

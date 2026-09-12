@@ -15,7 +15,7 @@ import MuiAccordion from "../../components/MuiAccordion";
 import { PERMISSIONS } from "../../constants/permissions";
 import Permissions from "../../components/Permissions/Permissions";
 
-const Access = () => {
+const Access = ({ showDepartmentAccordion = true }) => {
   const axios = useAxiosPrivate();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const Access = () => {
       profilePicture: emp.profilePicture?.url || "",
       status: emp.isActive ? "Active" : "Inactive",
     };
+    dispatch(setSelectedEmployee(userData));
     navigate("permissions", {
       state: {
         user: userData,
@@ -64,15 +65,17 @@ const Access = () => {
         </div>
       </PageFrame>
 
-      <PageFrame>
-        <MuiAccordion
-          data={departments}
-          titleKey="name"
-          itemsKey="employees"
-          itemClick={handleEmployeeClick}
-          disabledKey="isActive"
-        />
-      </PageFrame>
+      {showDepartmentAccordion && (
+        <PageFrame>
+          <MuiAccordion
+            data={departments}
+            titleKey="name"
+            itemsKey="employees"
+            itemClick={handleEmployeeClick}
+            disabledKey="isActive"
+          />
+        </PageFrame>
+      )}
     </div>
   );
 };

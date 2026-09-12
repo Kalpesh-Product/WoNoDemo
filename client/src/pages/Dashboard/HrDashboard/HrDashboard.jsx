@@ -10,11 +10,12 @@ import { MdMiscellaneousServices } from "react-icons/md";
 import PayRollExpenseGraph from "../../../components/HrDashboardGraph/PayRollExpenseGraph";
 import MuiTable from "../../../components/Tables/MuiTable";
 import PieChartMui from "../../../components/graphs/PieChartMui";
+import DonutChart from "../../../components/graphs/DonutChart";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { inrFormat } from "../../../utils/currencyFormat";
+import { usdFormat } from "../../../utils/currencyFormat";
 import { useSidebar } from "../../../context/SideBarContext";
 import { transformBudgetData } from "../../../utils/transformBudgetData";
 import { calculateAverageAttendance } from "../../../utils/calculateAverageAttendance ";
@@ -30,15 +31,67 @@ import {
 } from "../../../redux/slices/hrSlice";
 import dateToHyphen from "../../../utils/dateToHyphen";
 import LazyDashboardWidget from "../../../components/Optimization/LazyDashboardWidget";
+import usePageDepartment from "../../../hooks/usePageDepartment";
 
 import { PERMISSIONS } from "./../../../constants/permissions";
 
 const HrDashboard = () => {
-  const { setIsSidebarOpen } = useSidebar();
-  const dispatch = useDispatch();
-  const [selectedFiscalYear, setSelectedFiscalYear] = useState("FY 2024-25");
-  const [selectedHrFiscalYear, setSelectedHrFiscalYear] =
-    useState("FY 2024-25");
+const { setIsSidebarOpen } = useSidebar();
+const dispatch = useDispatch();
+
+const getFiscalYearStart = (date = dayjs()) => {
+  const parsedDate = dayjs(date);
+  return parsedDate.month() >= 3 ? parsedDate.year() : parsedDate.year() - 1;
+};
+
+const formatFiscalYear = (startYear) =>
+  `FY ${startYear}-${String(startYear + 1).slice(-2)}`;
+
+const getFiscalMonthIndex = (date) => {
+  const parsedDate = dayjs(date);
+  const month = parsedDate.month();
+
+  return month >= 3 ? month - 3 : month + 9;
+};
+
+const getAmount = (value) => {
+  if (typeof value === "number") return value;
+
+  if (typeof value === "string") {
+    const parsed = Number(value.replace(/,/g, ""));
+    return Number.isNaN(parsed) ? 0 : parsed;
+  }
+
+  return 0;
+};
+
+const fiscalMonths = [
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+];
+
+const currentFiscalYear = formatFiscalYear(getFiscalYearStart());
+
+const [selectedFiscalYear, setSelectedFiscalYear] =
+  useState(currentFiscalYear);
+
+const [selectedHrFiscalYear, setSelectedHrFiscalYear] =
+  useState(currentFiscalYear);
+const [hiddenHrExpenseSeries, setHiddenHrExpenseSeries] = useState({
+  actual: false,
+  projected: false,
+});
+const department = usePageDepartment();
 
   const [budgetData, setBudgetData] = useState({});
   const [totalSalary, setTotalSalary] = useState({});
@@ -98,8 +151,271 @@ const HrDashboard = () => {
   //------------------------PAGE ACCESS END-------------------//
 
   const axios = useAxiosPrivate();
+  const { data: selectedDepartments = [] } = useQuery({
+    queryKey: ["hr-selectedDepartments"],
+    queryFn: async () => {
+      const response = await axios.get(
+        "api/company/get-company-data?field=selectedDepartments",
+      );
+      return Array.isArray(response.data?.selectedDepartments)
+        ? response.data.selectedDepartments
+        : [];
+    },
+  });
+
+  const { data: dashboardTasks = [] } = useQuery({
+    queryKey: ["hr-dashboard-tasks", department?._id],
+    queryFn: async () => {
+      const response = await axios.get(`/api/tasks/get-tasks?dept=${department?._id}`);
+      return Array.isArray(response.data) ? response.data : [];
+    },
+    enabled: Boolean(department?._id),
+  });
+
+  const { data: hrTickets = [], isLoading: isHrTicketsLoading } = useQuery({
+    queryKey: ["hr-dashboard-tickets", department?._id],
+    queryFn: async () => {
+      if (!department?._id) {
+        return [];
+      }
+
+      try {
+        const response = await axios.get(
+          `/api/tickets/department-tickets/${department._id}`,
+        );
+        return Array.isArray(response.data) ? response.data : [];
+      } catch (error) {
+        console.error("Error fetching HR tickets:", error);
+        return [];
+      }
+    },
+    enabled: !!department?._id,
+  });
 
   const navigate = useNavigate();
+   const managerByDepartmentName = useMemo(() => {
+    const map = new Map();
+
+    selectedDepartments.forEach((item) => {
+      const departmentName = item?.department?.name?.trim();
+      if (departmentName) {
+        map.set(departmentName.toLowerCase(), item?.admin || "Unassigned");
+      }
+    });
+
+    return map;
+  }, [selectedDepartments]);
+
+  const pendingDepartmentTasks = useMemo(
+    () =>
+      dashboardTasks.filter(
+        (task) => task?.taskType === "Department" && task?.status === "Pending",
+      ),
+    [dashboardTasks],
+  );
+
+  const unitWisePieData = useMemo(() => {
+    const groupedTasks = pendingDepartmentTasks.reduce((acc, task) => {
+      const unitName = task?.location?.unitNo || "Unassigned";
+      if (!acc[unitName]) acc[unitName] = { label: unitName, value: 0 };
+      acc[unitName].value += 1;
+      return acc;
+    }, {});
+
+    return Object.values(groupedTasks).sort((a, b) =>
+      a.label.localeCompare(b.label, undefined, { numeric: true }),
+    );
+  }, [pendingDepartmentTasks]);
+
+  const unitPieChartOptions = {
+    labels: unitWisePieData.map((item) => item.label),
+    chart: {
+      fontFamily: "Poppins-Regular",
+      events: {
+        dataPointSelection: () => navigate("/app/tasks"),
+      },
+    },
+    tooltip: {
+      y: {
+        formatter: (val) => `${val} Due tasks`,
+      },
+    },
+  };
+
+  const executiveTasks = useMemo(() => {
+    const groupedTasks = pendingDepartmentTasks.reduce((acc, task) => {
+      const departmentName =
+        typeof task?.department === "object"
+          ? task?.department?.name
+          : task?.department || department?.name || "Unknown Department";
+      const managerName =
+        managerByDepartmentName.get(departmentName.toLowerCase()) ||
+        "Unassigned";
+       if (!acc[managerName]) acc[managerName] = { name: managerName, tasks: 0 };
+      acc[managerName].tasks += 1;
+      return acc;
+    }, {});
+
+    return Object.values(groupedTasks).sort((a, b) => b.tasks - a.tasks);
+  }, [department?.name, managerByDepartmentName, pendingDepartmentTasks]);
+
+  const executiveTaskLabels = executiveTasks.map((item) => item.name);
+  const executiveTasksCount = executiveTasks.map((item) => item.tasks);
+  const executiveTaskColors = [
+    "#FF5733",
+    "#FFC300",
+    "#28B463",
+    "#5B6CFF",
+    "#9B59B6",
+    "#17A2B8",
+    "#E67E22",
+    "#E91E63",
+  ];
+
+  const hrCategoryWiseTickets = useMemo(() => {
+    if (isHrTicketsLoading || !Array.isArray(hrTickets)) return [];
+
+    const categoryCountMap = hrTickets.reduce((acc, item) => {
+      const category = String(item?.ticket || "Others").trim() || "Others";
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {});
+
+    const sortedCategories = Object.entries(categoryCountMap)
+      .map(([label, value]) => ({ label, value }))
+      .sort((first, second) => second.value - first.value);
+
+    if (sortedCategories.length <= 5) {
+      return sortedCategories;
+    }
+
+    const topCategories = sortedCategories.slice(0, 5);
+    const othersCount = sortedCategories
+      .slice(5)
+      .reduce((sum, item) => sum + item.value, 0);
+
+    return [...topCategories, { label: "Others", value: othersCount }];
+  }, [hrTickets, isHrTicketsLoading]);
+
+  const hrCategoryWiseTicketsData = hrCategoryWiseTickets.map((item) => ({
+    label: item.label,
+    value: item.value,
+  }));
+
+  const hrCategoryWiseTicketsOptions = {
+    labels: hrCategoryWiseTickets.map((item) => item.label),
+    chart: {
+      fontFamily: "Poppins-Regular",
+    },
+    legend: {
+      horizontalAlign: "center",
+      itemMargin: {
+        horizontal: 4,
+        vertical: 2,
+      },
+      formatter: (seriesName) =>
+        `<span title="${seriesName}" style="display:inline-block;max-width:92px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom;font-size:12px;line-height:1.2;">${seriesName}</span>`,
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ["#ffffff"],
+    },
+    colors: [
+      "#274C77",
+      "#6096BA",
+      "#A3CEF1",
+      "#8B5E3C",
+      "#5B8E7D",
+      "#D08C60",
+    ],
+    tooltip: {
+      fillSeriesColor: false,
+      custom: ({ series, seriesIndex, w }) => {
+        const category =
+          hrCategoryWiseTickets?.[seriesIndex]?.label ||
+          w?.globals?.labels?.[seriesIndex] ||
+          "Unknown";
+        const count = series?.[seriesIndex] ?? 0;
+        const color =
+          w?.globals?.colors?.[seriesIndex] ||
+          hrCategoryWiseTicketsOptions.colors[
+            seriesIndex % hrCategoryWiseTicketsOptions.colors.length
+          ];
+
+        return `<div style="
+          padding:8px 12px;
+          font-size:12px;
+          font-family:Poppins-Regular;
+          font-weight:600;
+          background:${color};
+          color:#fff;
+          border-radius:6px;
+        ">
+          ${category} : ${count}
+        </div>`;
+      },
+    },
+  };
+
+  const hrPendingStatuses = new Set(["open", "pending", "in progress", "escalated"]);
+
+  const hrPendingTicketsCount = (Array.isArray(hrTickets) ? hrTickets : []).filter(
+    (ticket) => hrPendingStatuses.has(String(ticket?.status || "").toLowerCase())
+  ).length;
+
+  const hrCompletedTicketsCount = (Array.isArray(hrTickets) ? hrTickets : []).filter(
+    (ticket) => String(ticket?.status || "").toLowerCase() === "closed"
+  ).length;
+
+  const hrDueTicketsData = [
+    { label: "Completed", value: hrCompletedTicketsCount },
+    { label: "Pending", value: hrPendingTicketsCount },
+  ];
+
+  const hrDueTicketsOptions = {
+    labels: hrDueTicketsData.map((item) => item.label),
+    chart: {
+      fontFamily: "Poppins-Regular",
+    },
+    legend: {
+      horizontalAlign: "center",
+      itemMargin: {
+        horizontal: 8,
+        vertical: 4,
+      },
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ["#ffffff"],
+    },
+    colors: ["#59C9A5", "#FCA5A5"],
+    tooltip: {
+      fillSeriesColor: false,
+      custom: ({ series, seriesIndex, w }) => {
+        const label = w?.globals?.labels?.[seriesIndex] || "Unknown";
+        const count = series?.[seriesIndex] ?? 0;
+        const color =
+          w?.globals?.colors?.[seriesIndex] ||
+          hrDueTicketsOptions.colors[
+            seriesIndex % hrDueTicketsOptions.colors.length
+          ];
+
+        return `<div style="
+          padding:8px 12px;
+          font-size:12px;
+          font-family:Poppins-Regular;
+          font-weight:600;
+          background:${color};
+          color:#fff;
+          border-radius:6px;
+        ">
+          ${label} : ${count}
+        </div>`;
+      },
+    },
+  };
 
   const usersQuery = useQuery({
     queryKey: ["users"],
@@ -109,6 +425,23 @@ const HrDashboard = () => {
         return response.data.filter((u) => u.isActive);
       } catch (error) {
         throw new Error(error.response.data.message);
+      }
+    },
+    keepPreviousData: true,
+  });
+
+  const pastEmployeesQuery = useQuery({
+    queryKey: ["past-employees-summary"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("/api/users/fetch-users", {
+          params: { status: "false" },
+        });
+        return Array.isArray(response.data)
+          ? response.data.filter((employee) => employee.isActive === false)
+          : [];
+      } catch (error) {
+        throw new Error(error.response?.data?.message || "Failed to fetch past employees");
       }
     },
     keepPreviousData: true,
@@ -138,227 +471,634 @@ const HrDashboard = () => {
 
   //--------------------HR BUDGET---------------------------//
   //------------------------Graph round functions-------------------//
-  const expenseSeries = useMemo(() => {
-    // Initialize monthly buckets
-    const months = Array.from({ length: 12 }, (_, index) =>
-      dayjs(`2024-04-01`).add(index, "month").format("MMM")
-    );
-
-    const fyData = {
-      "FY 2024-25": Array(12).fill(0),
-      "FY 2025-26": Array(12).fill(0),
-    };
-
-    hrFinance.forEach((item) => {
-      const date = dayjs(item.dueDate);
-      const year = date.year();
-      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
-
-      if (year === 2024 && monthIndex >= 3) {
-        // Apr 2024 to Dec 2024 (month 3 to 11)
-        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
-      } else if (year === 2025) {
-        if (monthIndex <= 2) {
-          // Jan to Mar 2025 (months 0–2)
-          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
-        } else if (monthIndex >= 3) {
-          // Apr 2025 to Dec 2025 (months 3–11)
-          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
-        }
-      } else if (year === 2026 && monthIndex <= 2) {
-        // Jan to Mar 2026
-        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
-      }
-    });
-
-    return [
-      {
-        name: "total",
-        group: "FY 2024-25",
-        data: fyData["FY 2024-25"],
-      },
-      {
-        name: "total",
-        group: "FY 2025-26",
-        data: fyData["FY 2025-26"],
-      },
-    ];
-  }, [hrFinance]);
-
-  const maxExpenseValue = Math.max(
-    ...expenseSeries.flatMap((series) => series.data)
-  );
-  const roundedMax = Math.ceil((maxExpenseValue + 100000) / 100000) * 100000;
   //------------------------Graph round functions-------------------//
   //--------------------HR BUDGET---------------------------//
 
   //-------------------HR Expense graph start--------------------//
 
-  const expenseRawSeries = useMemo(() => {
-    // Initialize monthly buckets
-    const months = Array.from({ length: 12 }, (_, index) =>
-      dayjs(`2024-04-01`).add(index, "month").format("MMM")
-    );
+  const hrExpenseByFiscalYear = useMemo(() => {
+  const fyData = {};
 
-    const fyData = {
-      "FY 2024-25": Array(12).fill(0),
-      "FY 2025-26": Array(12).fill(0),
+  (hrFinance || []).forEach((item) => {
+    if (!item?.dueDate || !dayjs(item.dueDate).isValid()) {
+      return;
+    }
+
+    const fiscalYearStart = getFiscalYearStart(item.dueDate);
+    const fiscalYearLabel = formatFiscalYear(fiscalYearStart);
+    const monthIndex = getFiscalMonthIndex(item.dueDate);
+
+    if (!fyData[fiscalYearLabel]) {
+      fyData[fiscalYearLabel] = {
+        actual: Array(12).fill(0),
+        projected: Array(12).fill(0),
+      };
+    }
+
+    const actualAmount = getAmount(item?.actualAmount);
+    const projectedAmount = getAmount(item?.projectedAmount);
+
+    fyData[fiscalYearLabel].actual[monthIndex] += actualAmount;
+    fyData[fiscalYearLabel].projected[monthIndex] += projectedAmount;
+  });
+
+  if (!fyData[currentFiscalYear]) {
+    fyData[currentFiscalYear] = {
+      actual: Array(12).fill(0),
+      projected: Array(12).fill(0),
     };
+  }
 
-    hrFinance.forEach((item) => {
-      const date = dayjs(item.dueDate);
-      const year = date.year();
-      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+  return fyData;
+}, [hrFinance, currentFiscalYear]);
 
-      if (year === 2024 && monthIndex >= 3) {
-        // Apr 2024 to Dec 2024 (month 3 to 11)
-        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
-      } else if (year === 2025) {
-        if (monthIndex <= 2) {
-          // Jan to Mar 2025 (months 0–2)
-          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
-        } else if (monthIndex >= 3) {
-          // Apr 2025 to Dec 2025 (months 3–11)
-          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
-        }
-      } else if (year === 2026 && monthIndex <= 2) {
-        // Jan to Mar 2026
-        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
-      }
-    });
+const expenseRawSeries = useMemo(() => {
+  return Object.entries(hrExpenseByFiscalYear)
+    .sort(([fyA], [fyB]) => {
+      const startA = Number(fyA.slice(3, 7));
+      const startB = Number(fyB.slice(3, 7));
 
-    return [
-      {
-        name: "total",
-        group: "FY 2024-25",
-        data: fyData["FY 2024-25"],
-      },
-      {
-        name: "total",
-        group: "FY 2025-26",
-        data: fyData["FY 2025-26"],
-      },
-    ];
-  }, [hrFinance]);
-
-  const selectedHrExpenseSeries = expenseRawSeries.find(
-    (item) => item.group === selectedHrFiscalYear
-  );
-
-  const totalUtilised = useMemo(() => {
-    if (!selectedHrExpenseSeries) return 0;
-    return selectedHrExpenseSeries.data.reduce((sum, val) => sum + val, 0);
-  }, [selectedHrExpenseSeries]);
-
-  const march2025Expense = Math.round(
-    expenseRawSeries.find((series) => series.group === selectedHrFiscalYear)
-      ?.data?.[11] || 0
-  );
-
-  const expenseOptions = {
-    chart: {
-      type: "bar",
-      animations: { enabled: false },
-      toolbar: { show: false },
-
-      stacked: true,
-      fontFamily: "Poppins-Regular, Arial, sans-serif",
-      events: {
-        dataPointSelection: () => {
-          navigate("finance/budget");
-        },
-      },
-    },
-    colors: ["#54C4A7", "#EB5C45"],
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "40%",
-        borderRadius: 5,
-        borderRadiusApplication: "none",
-        dataLabels: {
-          position: "top",
-        },
-      },
-    },
-    dataLabels: {
-      enabled: true,
-      // formatter: (val) => inrFormat(val),
-      // formatter: (val) => {
-      //   const scaled = val / 100000; // Scale from actual to "xx.xx" format
-      //   return scaled.toFixed(2); // Keep two digits after decimal
-      // },
-      // formatter: (val) => {
-      //   const scaled = Math.round((val / 100000) * 100) / 100;
-      //   return Number.isInteger(scaled) ? scaled.toFixed(0) : scaled.toFixed(2);
-      // },
-
-      // formatter: (val) => {
-      //   return val.toLocaleString("en-IN"); // Formats number with commas (Indian style)
-      // },
-      formatter: (val) => {
-        return Math.round(val).toLocaleString("en-IN");
-      },
-
-      style: {
-        fontSize: "12px",
-        colors: ["#000"],
-      },
-      offsetY: -22,
-    },
-    xaxis: {
-      title: {
-        text: "  ",
-      },
-    },
-    yaxis: {
-      min: 0,
-      max: roundedMax,
-      tickAmount: 4,
-      title: { text: "Amount In Thousand (USD)" },
-      labels: {
-        formatter: (val) => `${Math.round(val / 100000)}`,
-      },
-    },
-    fill: {
-      opacity: 1,
-    },
-    legend: {
-      show: true,
-      position: "top",
-    },
-
-    tooltip: {
-      enabled: false,
-      // y: {
-      //   formatter: (val, { seriesIndex, dataPointIndex }) => {
-      //     const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
-      //     // return `${rawData} Tasks`;
-      //     return `HR Expense: USD ${rawData.toLocaleString("en-IN")}`;
-      //   },
-      // },
-      custom: function ({ series, seriesIndex, dataPointIndex }) {
-        const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
-        // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
-        //     </div>`;
-        return `
-            <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
-        
-              <div style="display: flex; align-items: center; justify-content: space-between; background-color: #d7fff4; color: #00936c; padding: 6px 8px; border-radius: 4px; margin-bottom: 4px;">
-                <div><strong>HR Expense:</strong></div>
-                <div style="width: 10px;"></div>
-             <div style="text-align: left;">USD ${Math.round(
-               rawData
-             ).toLocaleString("en-IN")}</div>
-
-              </div>
+      return startA - startB;
+    })
+    .flatMap(([fiscalYear, data]) => {
      
-            </div>
-          `;
+      const actualForGraph = data.actual.map((actualAmount) =>
+        hiddenHrExpenseSeries.actual ? 0 : actualAmount,
+      );
+
+      const projectedForGraph = data.projected.map(
+        (projectedAmount, monthIndex) => {
+          
+          if (hiddenHrExpenseSeries.projected) {
+            return 0;
+          }
+
+          
+          if (hiddenHrExpenseSeries.actual) {
+            return projectedAmount;
+          }
+
+         
+          const actualAmount = data.actual[monthIndex] || 0;
+
+          return actualAmount > 0 ? 0 : projectedAmount;
+        },
+      );
+
+      return [
+        {
+          name: "Actual Amount",
+          group: fiscalYear,
+          data: actualForGraph,
+        },
+        {
+          name: "Projected Amount",
+          group: fiscalYear,
+          data: projectedForGraph,
+        },
+      ];
+    });
+}, [
+  hrExpenseByFiscalYear,
+  hiddenHrExpenseSeries.actual,
+  hiddenHrExpenseSeries.projected,
+]);
+
+// const roundedMax = useMemo(() => {
+//   const fiscalYears = [
+//     ...new Set(expenseRawSeries.map((series) => series.group)),
+//   ];
+
+//   const maxValue = fiscalYears.reduce((max, fiscalYear) => {
+//     const actualSeries = expenseRawSeries.find(
+//       (series) =>
+//         series.group === fiscalYear && series.name === "Actual Amount"
+//     );
+
+//     const projectedSeries = expenseRawSeries.find(
+//       (series) =>
+//         series.group === fiscalYear && series.name === "Projected Amount"
+//     );
+
+//     const monthlyMax = Array.from({ length: 12 }, (_, index) => {
+//       const actual = actualSeries?.data?.[index] || 0;
+//       const projectedBalance = projectedSeries?.data?.[index] || 0;
+
+//       return actual + projectedBalance;
+//     });
+
+//     return Math.max(max, ...monthlyMax);
+//   }, 0);
+
+//   return Math.ceil((maxValue + 100000) / 100000) * 100000;
+// }, [expenseRawSeries]);
+const { roundedMax, tickAmount } = useMemo(() => {
+ 
+  const selectedYearSeries = expenseRawSeries.filter(
+    (series) => series.group === selectedHrFiscalYear,
+  );
+
+ 
+  const monthlyTotals = Array.from(
+    { length: 12 },
+    (_, monthIndex) =>
+      selectedYearSeries.reduce(
+        (total, series) =>
+          total + Number(series?.data?.[monthIndex] || 0),
+        0,
+      ),
+  );
+
+  const maxExpenseValue = Math.max(...monthlyTotals, 0);
+
+  if (maxExpenseValue <= 0) {
+    return {
+      roundedMax: 10000,
+      tickAmount: 5,
+    };
+  }
+
+ 
+  const bufferedMax = maxExpenseValue * 1.1;
+  const roughStep = bufferedMax / 6;
+
+  const magnitude =
+    10 ** Math.floor(Math.log10(roughStep));
+
+  const normalizedStep = roughStep / magnitude;
+
+  let step = magnitude;
+
+  if (normalizedStep <= 1) {
+    step = magnitude;
+  } else if (normalizedStep <= 2) {
+    step = 2 * magnitude;
+  } else if (normalizedStep <= 5) {
+    step = 5 * magnitude;
+  } else {
+    step = 10 * magnitude;
+  }
+
+  const safeRoundedMax =
+    Math.ceil(bufferedMax / step) * step;
+
+  return {
+    roundedMax: safeRoundedMax,
+    tickAmount: Math.max(
+      Math.round(safeRoundedMax / step),
+      1,
+    ),
+  };
+}, [expenseRawSeries, selectedHrFiscalYear]);
+
+  const selectedHrActualAmounts = useMemo(() => {
+  return (
+    hrExpenseByFiscalYear?.[selectedHrFiscalYear]?.actual ||
+    Array(12).fill(0)
+  );
+}, [hrExpenseByFiscalYear, selectedHrFiscalYear]);
+
+// const selectedHrProjectedSeries = expenseRawSeries.find(
+//   (item) =>
+//     item.group === selectedHrFiscalYear && item.name === "Projected Amount"
+// );
+const selectedHrProjectedAmounts = useMemo(() => {
+  return (
+    hrExpenseByFiscalYear?.[selectedHrFiscalYear]?.projected ||
+    Array(12).fill(0)
+  );
+}, [hrExpenseByFiscalYear, selectedHrFiscalYear]);
+
+const totalUtilised = useMemo(() => {
+  return selectedHrActualAmounts.reduce(
+    (sum, value) => sum + (Number(value) || 0),
+    0,
+  );
+}, [selectedHrActualAmounts]);
+
+const currentFiscalMonthIndexForCard =
+  dayjs().month() >= 3 ? dayjs().month() - 3 : dayjs().month() + 9;
+const previousFiscalMonthIndexForCard =
+  currentFiscalMonthIndexForCard > 0 ? currentFiscalMonthIndexForCard - 1 : 11;
+
+const selectedHrFiscalStartYear = Number(
+  String(selectedHrFiscalYear || "").match(/\d{4}/)?.[0],
+);
+
+const previousExpenseMonthLabel = Number.isFinite(selectedHrFiscalStartYear)
+  ? dayjs(
+      new Date(
+        previousFiscalMonthIndexForCard <= 8
+          ? selectedHrFiscalStartYear
+          : selectedHrFiscalStartYear + 1,
+        (previousFiscalMonthIndexForCard + 3) % 12,
+        1,
+      ),
+    ).format("MMMM-YY")
+  : "";
+
+const previousMonthActualExpense = Math.round(
+  selectedHrActualAmounts?.[previousFiscalMonthIndexForCard] || 0,
+);
+
+// const previousMonthProjectedExpense = Math.round(
+//   selectedHrProjectedSeries?.data?.[previousFiscalMonthIndexForCard] || 0
+// );
+const previousMonthProjectedExpense = Math.round(
+  selectedHrProjectedAmounts?.[previousFiscalMonthIndexForCard] || 0
+);
+
+const averageActualAmount = useMemo(() => {
+  if (!selectedHrActualAmounts?.length) {
+    return 0;
+  }
+
+  const totalActual = selectedHrActualAmounts.reduce(
+    (sum, value) => sum + (Number(value) || 0),
+    0,
+  );
+
+  return totalActual / selectedHrActualAmounts.length;
+}, [selectedHrActualAmounts]);
+
+// const averageProjectedAmount = useMemo(() => {
+//   if (!selectedHrProjectedSeries?.data?.length) return 0;
+
+//   const totalProjected = selectedHrProjectedSeries.data.reduce(
+//     (sum, value) => sum + (Number(value) || 0),
+//     0
+//   );
+
+//   return totalProjected / selectedHrProjectedSeries.data.length;
+// }, [selectedHrProjectedSeries]);
+const averageProjectedAmount = useMemo(() => {
+  if (!selectedHrProjectedAmounts?.length) {
+    return 0;
+  }
+
+  const totalProjected = selectedHrProjectedAmounts.reduce(
+    (sum, value) => sum + (Number(value) || 0),
+    0,
+  );
+
+  return totalProjected / selectedHrProjectedAmounts.length;
+}, [selectedHrProjectedAmounts]);
+
+const activeHeadCount = usersQuery.isLoading
+  ? 0
+  : Array.isArray(usersQuery.data)
+    ? usersQuery.data.length
+    : 0;
+
+const previousMonthExitLabel = dayjs().subtract(1, "month").format("MMMM-YY");
+const previousMonthStart = dayjs().subtract(1, "month").startOf("month");
+const previousMonthEnd = dayjs().subtract(1, "month").endOf("month");
+
+const previousMonthExitCount = useMemo(() => {
+  const pastEmployees = Array.isArray(pastEmployeesQuery.data)
+    ? pastEmployeesQuery.data
+    : [];
+
+  return pastEmployees.filter((employee) => {
+    const exitDate = employee?.endDate || employee?.updatedAt;
+    if (!exitDate) return false;
+
+    const parsedExitDate = dayjs(exitDate);
+    if (!parsedExitDate.isValid()) return false;
+
+    return (
+      parsedExitDate.isSameOrAfter(previousMonthStart, "day") &&
+      parsedExitDate.isSameOrBefore(previousMonthEnd, "day")
+    );
+  }).length;
+}, [pastEmployeesQuery.data, previousMonthEnd, previousMonthStart]);
+
+const previousMonthExitEmployeeIds = useMemo(() => {
+  const pastEmployees = Array.isArray(pastEmployeesQuery.data)
+    ? pastEmployeesQuery.data
+    : [];
+
+  return pastEmployees
+    .filter((employee) => {
+      const exitDate = employee?.endDate || employee?.updatedAt;
+      if (!exitDate) return false;
+
+      const parsedExitDate = dayjs(exitDate);
+      if (!parsedExitDate.isValid()) return false;
+
+      return (
+        parsedExitDate.isSameOrAfter(previousMonthStart, "day") &&
+        parsedExitDate.isSameOrBefore(previousMonthEnd, "day")
+      );
+    })
+    .map((employee) => employee?._id || employee?.empId)
+    .filter(Boolean);
+}, [pastEmployeesQuery.data, previousMonthEnd, previousMonthStart]);
+
+ const expenseOptions = {
+  chart: {
+    type: "bar",
+    animations: { enabled: false },
+    toolbar: { show: false },
+    stacked: true,
+    fontFamily: "Poppins-Regular, Arial, sans-serif",
+   events: {
+  legendClick: (_chartContext, seriesIndex) => {
+    setHiddenHrExpenseSeries((currentState) => {
+      // Series index 0 = Actual Amount
+      if (seriesIndex === 0) {
+        return {
+          ...currentState,
+          actual: !currentState.actual,
+        };
+      }
+
+      // Series index 1 = Projected Amount
+      if (seriesIndex === 1) {
+        return {
+          ...currentState,
+          projected: !currentState.projected,
+        };
+      }
+
+      return currentState;
+    });
+  },
+
+ 
+  dataPointSelection: () => {
+    navigate("finance/budget");
+  },
+},
+  },
+  colors: ["#54C4A7", "#c4c4c4"],
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "40%",
+      borderRadius: 5,
+      borderRadiusApplication: "end",
+      dataLabels: {
+        position: "top",
+        total: {
+          enabled: true,
+          // formatter: (_, config) => {
+          //   const isCurrentFiscalYearSelected =
+          //     selectedHrFiscalYear === currentFiscalYear;
+          //   const isCurrentFiscalMonth =
+          //     config?.dataPointIndex === currentFiscalMonthIndexForCard;
+
+          //   if (isCurrentFiscalYearSelected && isCurrentFiscalMonth) {
+          //     return "";
+          //   }
+
+          //   const total =
+          //     config?.w?.globals?.stackedSeriesTotals?.[config?.dataPointIndex] ||
+          //     0;
+
+          //   return total ? Math.round(Number(total)).toLocaleString("en-US") : "";
+          // },
+          formatter: (_, config) => {
+  const total =
+    config?.w?.globals?.stackedSeriesTotals?.[
+      config?.dataPointIndex
+    ] || 0;
+
+  if (Number(total) <= 0) {
+    return "";
+  }
+
+  return Math.round(
+    Number(total),
+  ).toLocaleString("en-US");
+},
+          style: {
+            fontSize: "12px",
+            fontWeight: 600,
+            color: "#000",
+          },
+          offsetY: -8,
+        },
       },
     },
-  };
+  },
+  dataLabels: {
+    enabled: false,
+  },
+ xaxis: {
+  categories: fiscalMonths,
+  title: {
+    text: "  ",
+  },
+  crosshairs: {
+    show: false,
+    fill: {
+      opacity: 0,
+    },
+    stroke: {
+      opacity: 0,
+    },
+  },
+},
+  // yaxis: {
+  //   min: 0,
+  //   max: roundedMax,
+  //   tickAmount: 4,
+  //   title: { text: "Amount (USD)" },
+  //   labels: {
+  //     formatter: (val) => `${Math.round(val / 100000)}`,
+  //   },
+  // },
+  yaxis: {
+  min: 0,
+  max: roundedMax,
+  tickAmount,
+  forceNiceScale: false,
+
+  title: {
+    text: "Amount (USD)",
+  },
+
+  labels: {
+    minWidth: 65,
+    maxWidth: 100,
+
+   
+    formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
+
+    style: {
+      fontFamily: "Poppins-Regular, Arial, sans-serif",
+      fontSize: "11px",
+    },
+  },
+},
+  fill: {
+    opacity: 1,
+  },
+  states: {
+    hover: {
+      filter: {
+        type: "none",
+      },
+    },
+    active: {
+      filter: {
+        type: "none",
+      },
+    },
+  },
+ legend: {
+  show: true,
+  position: "top",
+
+ 
+  onItemClick: {
+    toggleDataSeries: false,
+  },
+
+  labels: {
+    colors: [
+      // Actual legend text
+      hiddenHrExpenseSeries.actual
+        ? "#D5D5D5"
+        : "#4B4B4B",
+
+      // Projected legend text
+      hiddenHrExpenseSeries.projected
+        ? "#D5D5D5"
+        : "#4B4B4B",
+    ],
+  },
+
+  markers: {
+    fillColors: [
+      // Actual legend marker
+      hiddenHrExpenseSeries.actual
+        ? "#E1F5EF"
+        : "#54C4A7",
+
+      // Projected legend marker
+      hiddenHrExpenseSeries.projected
+        ? "#E2E2E2"
+        : "#C4C4C4",
+    ],
+  },
+},
+  tooltip: {
+  enabled: true,
+  shared: true,
+  intersect: false,
+
+  custom: function ({ dataPointIndex, w }) {
+    const selectedYearData =
+      hrExpenseByFiscalYear?.[selectedHrFiscalYear];
+
+    const actualAmount =
+      selectedYearData?.actual?.[dataPointIndex] || 0;
+
+    const projectedAmount =
+      selectedYearData?.projected?.[dataPointIndex] || 0;
+
+    const monthLabel =
+      w?.globals?.labels?.[dataPointIndex] ||
+      fiscalMonths[dataPointIndex] ||
+      `Month ${dataPointIndex + 1}`;
+
+    return `
+      <div
+        class="apexcharts-tooltip-title"
+        style="
+          font-family: Poppins-Regular;
+          font-size: 12px;
+          padding: 6px 10px;
+          margin-bottom: 0;
+        "
+      >
+        ${monthLabel}
+      </div>
+
+      <div
+        style="
+          padding: 8px 10px;
+          font-family: Poppins-Regular;
+          font-size: 12px;
+          background: #ffffff;
+          min-width: 230px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 7px;
+            white-space: nowrap;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            "
+          >
+            <span
+              style="
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #54C4A7;
+                display: inline-block;
+              "
+            ></span>
+
+            <span>Actual Amount:</span>
+          </div>
+
+          <span style="font-weight: 600;">
+            USD ${Math.round(actualAmount).toLocaleString("en-US")}
+          </span>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            white-space: nowrap;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            "
+          >
+            <span
+              style="
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #C4C4C4;
+                display: inline-block;
+              "
+            ></span>
+
+            <span>Projected Amount:</span>
+          </div>
+
+          <span style="font-weight: 600;">
+            USD ${Math.round(projectedAmount).toLocaleString("en-US")}
+          </span>
+        </div>
+      </div>
+    `;
+  },
+},
+};
 
   //-------------------HR Expense graph end--------------------//
   //-------------------Tasks vs Achievements graph--------------------//
@@ -444,6 +1184,9 @@ const HrDashboard = () => {
 
     return filteredTasks;
   }
+
+  const isDepartmentTask = (task) => task?.taskType === "Department";
+
   const tasksForSelectedYear = getTasksForSelectedFiscalYear(
     departmentTasks,
     selectedFiscalYear
@@ -470,99 +1213,160 @@ const HrDashboard = () => {
     "March",
   ];
 
-  // Init counters
-  const departmentMonthlyTotals = {};
-  const departmentMonthlyAchieved = {};
-  fyMonths.forEach((m) => {
-    departmentMonthlyTotals[m] = 0;
-    departmentMonthlyAchieved[m] = 0;
-  });
+  const buildCompletionSeriesByFiscalYear = (
+    departments,
+    completedLabel,
+    remainingLabel,
+    taskFilter = () => true
+  ) => {
+    const fyData = {};
 
-  if (Array.isArray(tasksRawData)) {
-    tasksRawData.forEach((dept) => {
-      dept.tasks?.forEach((task) => {
-        const [day, month, year] = task.assignedDate.split("-").map(Number);
-        const dateObj = new Date(year, month - 1, day);
-        const fyMonth = fyMonths[(dateObj.getMonth() + 9) % 12];
+    (Array.isArray(departments) ? departments : []).forEach((dept) => {
+      (Array.isArray(dept?.tasks) ? dept.tasks : []).forEach((task) => {
+        if (!taskFilter(task)) return;
 
-        departmentMonthlyTotals[fyMonth]++;
+        const assignedDate = task?.assignedDate;
+        if (!assignedDate) return;
+
+        const [day, month, year] = assignedDate.split("-").map(Number);
+        if (!day || !month || !year) return;
+
+        const taskDate = dayjs(new Date(year, month - 1, day));
+        if (!taskDate.isValid()) return;
+
+        const fiscalYearLabel = formatFiscalYear(getFiscalYearStart(taskDate));
+        const monthIndex = getFiscalMonthIndex(taskDate);
+
+        if (!fyData[fiscalYearLabel]) {
+          fyData[fiscalYearLabel] = {
+            totals: Array(12).fill(0),
+            completed: Array(12).fill(0),
+          };
+        }
+
+        fyData[fiscalYearLabel].totals[monthIndex] += 1;
         if (task.status === "Completed") {
-          departmentMonthlyAchieved[fyMonth]++;
+          fyData[fiscalYearLabel].completed[monthIndex] += 1;
         }
       });
     });
-  }
 
-  const overallMonthlyTotals = {};
-  const overallMonthlyAchieved = {};
-  fyMonths.forEach((m) => {
-    overallMonthlyTotals[m] = 0;
-    overallMonthlyAchieved[m] = 0;
-  });
+    if (!fyData[currentFiscalYear]) {
+      fyData[currentFiscalYear] = {
+        totals: Array(12).fill(0),
+        completed: Array(12).fill(0),
+      };
+    }
 
-  if (Array.isArray(tasksOverallRedux)) {
-    tasksOverallRedux.forEach((dept) => {
-      dept.tasks?.forEach((task) => {
-        const [day, month, year] = task.assignedDate.split("-").map(Number);
-        const dateObj = new Date(year, month - 1, day);
-        const fyMonth = fyMonths[(dateObj.getMonth() + 9) % 12];
+    return Object.entries(fyData)
+      .sort(([fyA], [fyB]) => {
+        const startA = Number(fyA.slice(3, 7));
+        const startB = Number(fyB.slice(3, 7));
+        return startA - startB;
+      })
+      .flatMap(([fiscalYear, data]) => {
+        const completedSeries = fyMonths.map((month, index) => {
+          const total = data.totals[index] || 0;
+          const completed = data.completed[index] || 0;
+          const percent = total > 0 ? (completed / total) * 100 : 0;
 
-        overallMonthlyTotals[fyMonth]++;
-        if (task.status === "Completed") {
-          overallMonthlyAchieved[fyMonth]++;
+          return { x: month, y: +percent.toFixed(1), raw: completed };
+        });
+
+        const remainingSeries = fyMonths.map((month, index) => {
+          const total = data.totals[index] || 0;
+          const completed = data.completed[index] || 0;
+          const remaining = total - completed;
+          const percent = total > 0 ? (remaining / total) * 100 : 0;
+
+          return { x: month, y: +percent.toFixed(1), raw: remaining };
+        });
+
+        return [
+          {
+            name: completedLabel,
+            group: fiscalYear,
+            data: completedSeries,
+          },
+          {
+            name: remainingLabel,
+            group: fiscalYear,
+            data: remainingSeries,
+          },
+        ];
+      });
+  };
+
+  const tasksData = buildCompletionSeriesByFiscalYear(
+    tasksRawData,
+    "Completed KPA",
+    "Remaining KPA"
+  );
+
+  const tasksGraphData = buildCompletionSeriesByFiscalYear(
+    tasksOverallRedux,
+    "Completed Tasks",
+    "Remaining Tasks",
+    isDepartmentTask
+  );
+
+  const annualKpaTotals = useMemo(() => {
+    const selectedYearSeries = tasksData.filter(
+      (series) => series.group === selectedFiscalYear
+    );
+
+    const monthlyCompleted = Array(12).fill(0);
+    const monthlyPending = Array(12).fill(0);
+
+    selectedYearSeries.forEach((series) => {
+      (series.data || []).forEach((point, index) => {
+        const rawCount = Number(point?.raw) || 0;
+        if (series.name === "Completed KPA") {
+          monthlyCompleted[index] = rawCount;
+        }
+        if (series.name === "Remaining KPA") {
+          monthlyPending[index] = rawCount;
         }
       });
     });
-  }
 
-  // Final structure
-  const tasksData = [
-    {
-      name: "Completed KPA",
-      group: "FY 2025-26",
-      data: fyMonths.map((month) => {
-        const total = departmentMonthlyTotals[month];
-        const achieved = departmentMonthlyAchieved[month];
-        const percent = total > 0 ? (achieved / total) * 100 : 0;
-        return { x: month, y: +percent.toFixed(1), raw: achieved };
-      }),
-    },
-    {
-      name: "Remaining KPA",
-      group: "FY 2025-26",
-      data: fyMonths.map((month) => {
-        const total = departmentMonthlyTotals[month];
-        const achieved = departmentMonthlyAchieved[month];
-        const remaining = total - achieved;
-        const percent = total > 0 ? (remaining / total) * 100 : 0;
-        return { x: month, y: +percent.toFixed(1), raw: remaining };
-      }),
-    },
-  ];
+    return {
+      completed: monthlyCompleted.reduce((sum, count) => sum + count, 0),
+      pending: monthlyPending.reduce((sum, count) => sum + count, 0),
+    };
+  }, [tasksData, selectedFiscalYear]);
 
-  const tasksGraphData = [
-    {
-      name: "Completed Tasks",
-      group: "FY 2025-26",
-      data: fyMonths.map((month) => {
-        const total = overallMonthlyTotals[month];
-        const achieved = overallMonthlyAchieved[month];
-        const percent = total > 0 ? (achieved / total) * 100 : 0;
-        return { x: month, y: +percent.toFixed(1), raw: achieved };
-      }),
-    },
-    {
-      name: "Remaining Tasks",
-      group: "FY 2025-26",
-      data: fyMonths.map((month) => {
-        const total = overallMonthlyTotals[month];
-        const achieved = overallMonthlyAchieved[month];
-        const remaining = total - achieved;
-        const percent = total > 0 ? (remaining / total) * 100 : 0;
-        return { x: month, y: +percent.toFixed(1), raw: remaining };
-      }),
-    },
-  ];
+  const annualKpaTotal =
+    annualKpaTotals.completed + annualKpaTotals.pending;
+
+  const annualTasksTotals = useMemo(() => {
+    const selectedYearSeries = tasksGraphData.filter(
+      (series) => series.group === selectedFiscalYear
+    );
+
+    const monthlyCompleted = Array(12).fill(0);
+    const monthlyPending = Array(12).fill(0);
+
+    selectedYearSeries.forEach((series) => {
+      (series.data || []).forEach((point, index) => {
+        const rawCount = Number(point?.raw) || 0;
+        if (series.name === "Completed Tasks") {
+          monthlyCompleted[index] = rawCount;
+        }
+        if (series.name === "Remaining Tasks") {
+          monthlyPending[index] = rawCount;
+        }
+      });
+    });
+
+    return {
+      completed: monthlyCompleted.reduce((sum, count) => sum + count, 0),
+      pending: monthlyPending.reduce((sum, count) => sum + count, 0),
+    };
+  }, [tasksGraphData, selectedFiscalYear]);
+
+  const annualTasksTotal =
+    annualTasksTotals.completed + annualTasksTotals.pending;
 
   const tasksOptions = {
     chart: {
@@ -578,8 +1382,10 @@ const HrDashboard = () => {
           dispatch(setSelectedMonth(clickedMonth));
 
           const selectedMonthTasks = [];
-          tasksRawData.forEach((dept) => {
+          tasksOverallRedux.forEach((dept) => {
             dept.tasks.forEach((task) => {
+              if (!isDepartmentTask(task)) return;
+
               const [day, month, year] = task.assignedDate
                 .split("-")
                 .map(Number);
@@ -595,14 +1401,14 @@ const HrDashboard = () => {
             });
           });
 
-          navigate(`overall-KPA`, {
-            state: {
-              month: clickedMonth,
-              tasks: selectedMonthTasks,
-            },
-          });
+            navigate("/app/dashboard/HR-dashboard/overall-KPA/department-KPA", {
+              state: {
+                month: clickedMonth,
+                tasks: selectedMonthTasks,
+              },
+            });
+          },
         },
-      },
       animations: { enabled: false },
       fontFamily: "Poppins-Regular",
       toolbar: { show: false },
@@ -656,7 +1462,7 @@ const HrDashboard = () => {
             </div>
             <hr style="margin: 6px 0; border-top: 1px solid #ddd"/>
             <div style="display:flex ; justify-content:space-between ; width:"100%" ">
-              <div style="width:100px ">Remaining KPA</div>
+              <div style="width:100px ">Pending KPA</div>
               <div style="width:"100%" ">:</div>
               <div style="width:"100%" ">${remaining}</div>
             </div>
@@ -758,7 +1564,7 @@ const HrDashboard = () => {
             </div>
             <hr style="margin: 6px 0; border-top: 1px solid #ddd"/>
             <div style="display:flex ; justify-content:space-between ; width:"100%" ">
-              <div style="width:100px ">Remaining tasks</div>
+              <div style="width:100px ">Pending tasks</div>
               <div style="width:"100%" ">:</div>
               <div style="width:"100%" ">${remaining}</div>
             </div>
@@ -1000,44 +1806,42 @@ const HrDashboard = () => {
   //--------------------New Data card data -----------------------//
 
   const HrExpenses = {
-    cardTitle: "Expenses",
-    // timePeriod: "FY 2024-25",
-    descriptionData: [
-      {
-        title: `${selectedHrFiscalYear}`,
-        // value: `USD ${Math.round(totalUtilised).toLocaleString("en-IN")}`,
-        value: `USD ${inrFormat(totalUtilised)}`,
-        route: "finance",
+  cardTitle: "Expenses",
+  descriptionData: [
+    {
+      title: `${selectedHrFiscalYear}`,
+      value: `USD ${usdFormat(totalUtilised)}`,
+      route: "finance",
+    },
+    {
+      title: `Projected Amount ${previousExpenseMonthLabel}`,
+      value: `USD ${usdFormat(previousMonthProjectedExpense)}`,
+      route: "finance",
+    },
+    {
+      title: `Actual Amount ${previousExpenseMonthLabel}`,
+      value: `USD ${usdFormat(previousMonthActualExpense)}`,
+      route: "finance",
+    },
+    {
+      title: "Overall Active Head Count",
+      value: activeHeadCount,
+      route: "employee/employee-list",
+    },
+    {
+      title: `Exit Head Count ${previousMonthExitLabel}`,
+      value: previousMonthExitCount,
+      route: "employee/past-employees",
+      stateData: {
+        filterType: "last-month-exits",
+        startDate: previousMonthStart.toISOString(),
+        endDate: previousMonthEnd.toISOString(),
+        label: previousMonthExitLabel,
+        employeeIds: previousMonthExitEmployeeIds,
       },
-      {
-        title: `${
-          selectedHrFiscalYear === "FY 2024-25" ? "March 2025" : "March 2026"
-        }`,
-        value: `USD ${inrFormat(march2025Expense)}`,
-        route: "finance",
-      },
-      {
-        title: `${
-          selectedHrFiscalYear === "FY 2024-25"
-            ? "March 2025 Budget"
-            : "March 2026 Budget"
-        }`,
-        // value: "N/A",
-        value: `USD ${inrFormat(march2025Expense)}`,
-        route: "finance",
-      },
-      {
-        title: "Exit Head Count",
-        value: "2",
-        route: "employee/past-employees",
-      },
-      {
-        title: "Per Sq. Ft.",
-        value: `USD ${inrFormat(totalUtilised / totalSqft)}`,
-        route: "finance",
-      },
-    ],
-  };
+    },
+  ],
+};
   function getFYDateRange(fyString) {
     const match = fyString.match(/FY\s*(\d{4})-(\d{2})/);
     if (!match) throw new Error("Invalid FY format");
@@ -1103,40 +1907,39 @@ const HrDashboard = () => {
       descriptionData: [
         {
           title: "Annual Average Expense",
-          value: `USD ${inrFormat(totalUtilised / 12)}`,
+          value: `USD ${usdFormat(totalUtilised / 12)}`,
           route: "finance",
         },
         {
-          title: "Average Salary",
-          value: `USD ${inrFormat(totalSalary / totalEmployees)}`,
-          route: "employee/employee-list",
+          title: "Annual Average Projected Amt",
+          value: `USD ${usdFormat(averageProjectedAmount)}`,
+          route: "finance",
         },
         {
-          title: "Average Head Count",
-          value: `${usersQuery.isLoading ? 0 : averageHeadCount.average}`,
-          route: "employee/employee-list",
+          title: "Annual Average Actual Amt",
+          value: `USD ${usdFormat(averageActualAmount)}`,
+          route: "finance",
         },
         {
           title: "Average Attendance",
           route: "employee/attendance",
           value: averageAttendance
-            ? `${(Number(averageAttendance) - 55).toFixed(0)}%`
+            ? `${Number(averageAttendance).toFixed(0)}%`
             : "0%",
         },
         {
           title: "Average Hours",
           route: "employee/attendance",
           value: averageWorkingHours
-            ? `${(Number(averageWorkingHours) / 30).toFixed(2)}h`
+            ? `${Number(averageWorkingHours).toFixed(2)}h`
             : "0h",
         },
       ],
     }),
     [
       totalUtilised,
-      totalSalary,
-      totalEmployees,
-      averageHeadCount,
+      averageProjectedAmount,
+      averageActualAmount,
       averageAttendance,
       averageWorkingHours,
     ]
@@ -1223,10 +2026,11 @@ const HrDashboard = () => {
       key: "employeeGenderDistribution",
       title: "Employee Gender Distribution ",
       border: true,
-
       percent: true,
       data: genderData,
       options: genderPieChart,
+      height:320,
+      width:500,
       permission: PERMISSIONS.HR_EMPLOYEE_GENDER_DISTRIBUTION_PIE.value,
     },
     {
@@ -1234,10 +2038,11 @@ const HrDashboard = () => {
       key: "cityWiseEmployees",
       title: "City Wise Employees ",
       border: true,
-
       percent: true,
       data: pieChartData,
       options: techGoaVisitorsOptions,
+      height:320,
+      width:500,
       permission: PERMISSIONS.HR_CITY_WISE_EMPLOYEES_PIE.value,
     },
   ];
@@ -1276,6 +2081,65 @@ const HrDashboard = () => {
   const holidayTableConfig = {
     permission: PERMISSIONS.HR_CURRENT_MONTH_HOLIDAY_LIST.value,
   };
+// unit wise due task , executive wise due taska
+   const dueTasksConfigs = [
+    {
+      key: PERMISSIONS.HR_UNIT_WISE_DUE_TASKS.value,
+      title: "Unit Wise Due Tasks",
+      type: "PieChartMui",
+      border: true,
+      data: unitWisePieData,
+      options: unitPieChartOptions,
+      width: 500,
+      height: 320,
+      centerAlign: true,
+    },
+    {
+      key: PERMISSIONS.HR_EXECUTIVE_WISE_DUE_TASKS.value,
+      title: "Executive Wise Due Tasks",
+      type: "DonutChart",
+      border: true,
+      centerLabel: "Tasks",
+      labels: executiveTaskLabels,
+      colors: executiveTaskColors,
+      series: executiveTasksCount,
+      tooltipValue: executiveTasksCount,
+      tooltipFormatter: (label, value) => `${label}: ${value || 0} pending tasks`,
+    },
+  ];
+
+  const allowedDueTasks = dueTasksConfigs.filter((widget) =>
+    userPermissions.includes(widget.key)
+  );
+
+  const hrTicketChartConfigs = [
+    {
+      key: PERMISSIONS.HR_CATEGORY_WISE_TICKETS.value,
+      type: "PieChartMui",
+      border: true,
+      title: "Category Wise Tickets",
+      data: hrCategoryWiseTicketsData,
+      options: hrCategoryWiseTicketsOptions,
+      centerAlign: true,
+      height: 320,
+      width: 500,
+    },
+    {
+      key: PERMISSIONS.HR_DUE_TICKETS.value,
+      type: "PieChartMui",
+      border: true,
+      title: "Due Tickets",
+      data: hrDueTicketsData,
+      options: hrDueTicketsOptions,
+      centerAlign: true,
+      height: 320,
+      width: 500,
+    },
+  ];
+
+  const allowedHrTicketCharts = hrTicketChartConfigs.filter((widget) =>
+    userPermissions.includes(widget.key)
+  );
 
   const hrWidgets = [
     {
@@ -1288,7 +2152,8 @@ const HrDashboard = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }>
+            }
+          >
             <WidgetSection normalCase layout={1} padding>
               <YearlyGraph
                 data={expenseRawSeries}
@@ -1296,7 +2161,7 @@ const HrDashboard = () => {
                 chartId={"bargraph-hr-expense"}
                 options={expenseOptions}
                 title={`BIZ Nest HR DEPARTMENT EXPENSE`}
-                titleAmount={`USD ${inrFormat(totalUtilised)}`}
+                titleAmount={`USD ${usdFormat(totalUtilised)}`}
                 onYearChange={setSelectedHrFiscalYear}
               />
             </WidgetSection>
@@ -1336,12 +2201,20 @@ const HrDashboard = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }>
+            }
+          >
             <YearlyGraph
               data={tasksData}
               options={tasksOptions}
               title={"ANNUAL KPA VS ACHIEVEMENTS"}
-              titleAmount={`TOTAL KPA : ${tasksForSelectedYear.length || 0}`}
+              titleAmount=""
+              TitleAmountTotal={annualKpaTotal}
+              TitleAmountGreen={annualKpaTotals.completed}
+              TitleAmountRed={annualKpaTotals.pending}
+              totalTitle="Total"
+              greenTitle="KPA"
+              redTitle="KPA"
+              summaryChipVariant="ticket"
               secondParam
               currentYear={true}
               onYearChange={setSelectedFiscalYear}
@@ -1355,12 +2228,20 @@ const HrDashboard = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }>
+            }
+          >
             <YearlyGraph
               data={tasksGraphData}
               options={tasksOverallOptions}
               title={"ANNUAL TASKS VS ACHIEVEMENTS"}
-              titleAmount={`TOTAL TASKS : ${overallTasksForYear.length || 0}`}
+              titleAmount=""
+              TitleAmountTotal={annualTasksTotal}
+              TitleAmountGreen={annualTasksTotals.completed}
+              TitleAmountRed={annualTasksTotals.pending}
+              totalTitle="Total"
+              greenTitle="Tasks"
+              redTitle="Tasks"
+              summaryChipVariant="ticket"
               secondParam
               currentYear={true}
               onYearChange={setSelectedFiscalYear}
@@ -1376,12 +2257,55 @@ const HrDashboard = () => {
           key={item.key}
           layout={item.layout}
           title={item.title}
-          border={item.border}>
+          border={item.border}
+        >
           <PieChartMui
             percent={item.percent}
             title={item.title}
             data={item.data}
             options={item.options}
+            width={item?.width}
+            height={item?.height}
+            centerAlign
+          />
+        </WidgetSection>
+      )),
+    },
+    {
+       layout: allowedDueTasks.length,
+      widgets: allowedDueTasks.map((config) => (
+        <WidgetSection key={config.key} border title={config.title}>
+          {config.type === "PieChartMui" ? (
+            <PieChartMui
+              data={config.data}
+              options={config.options}
+              width={config.width}
+              height={config.height}
+              centerAlign={config.centerAlign}
+            />
+          ) : (
+            <DonutChart
+              centerLabel={config.centerLabel}
+              labels={config.labels}
+              colors={config.colors}
+              series={config.series}
+              tooltipValue={config.tooltipValue}
+              tooltipFormatter={config.tooltipFormatter}
+            />
+          )}
+        </WidgetSection>
+      )),
+    },
+    {
+      layout: allowedHrTicketCharts.length,
+      widgets: allowedHrTicketCharts.map((config) => (
+        <WidgetSection key={config.title} border title={config.title}>
+          <PieChartMui
+            data={config.data}
+            options={config.options}
+            width={config.width}
+            height={config.height}
+            centerAlign={config.centerAlign}
           />
         </WidgetSection>
       )),
@@ -1437,6 +2361,10 @@ const HrDashboard = () => {
     },
   ];
 
+  const visibleHrWidgets = hrWidgets.filter(
+    (widget) => Array.isArray(widget?.widgets) && widget.widgets.length > 0,
+  );
+
   // const hrWidgets = [
   //   {
   //     layout: 1,
@@ -1456,7 +2384,7 @@ const HrDashboard = () => {
   //             chartId={"bargraph-hr-expense"}
   //             options={expenseOptions}
   //             title={`BIZ Nest HR DEPARTMENT EXPENSE`}
-  //             titleAmount={`USD ${inrFormat(totalUtilised)}`}
+  //             titleAmount={`USD ${usdFormat(totalUtilised)}`}
   //             onYearChange={setSelectedHrFiscalYear}
   //           />
   //         </WidgetSection>
@@ -1664,7 +2592,7 @@ const HrDashboard = () => {
     <>
       <div>
         <div className="flex flex-col gap-4">
-          {hrWidgets.map((widget, index) => (
+          {visibleHrWidgets.map((widget, index) => (
             <LazyDashboardWidget
               key={index}
               layout={widget.layout}

@@ -39,7 +39,21 @@ const ticketsSchema = new mongoose.Schema(
         ref: "Ticket",
       },
     ],
+    assignedTo: [
+      {
+        assignee: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "UserData",
+          required: true,
+        },
+        assignedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     assignees: [
+      //deprecated in support & assigned tickets
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "UserData",
@@ -49,6 +63,10 @@ const ticketsSchema = new mongoose.Schema(
     closedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserData",
+    },
+    closingRemark: {
+      type: String,
+      maxlength: 250,
     },
     acceptedAt: Date,
     acceptedBy: {
@@ -63,9 +81,10 @@ const ticketsSchema = new mongoose.Schema(
       reason: {
         type: String,
       },
+      rejectedAt: Date,
     },
     resolvedDate: Date,
-    assignedAt: Date,
+    assignedAt: Date, //deprecated in support & assigned tickets
     escalatededAt: Date,
     company: {
       type: mongoose.Schema.Types.ObjectId,

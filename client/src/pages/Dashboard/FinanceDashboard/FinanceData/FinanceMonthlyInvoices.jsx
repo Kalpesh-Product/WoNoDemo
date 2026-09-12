@@ -56,7 +56,7 @@ const FinanceMonthlyInvoices = () => {
     queryKey: ["assetsCategories"],
     queryFn: async () => {
       try {
-        const response = await axios.get("/api/assets/get-category");
+        const response = await axios.get("/api/category/get-category");
         return response.data;
       } catch (error) {
         throw new Error(error.response.data.message);
@@ -153,7 +153,8 @@ const FinanceMonthlyInvoices = () => {
             <div className="hover:bg-gray-200 cursor-pointer p-2 rounded-full transition-all">
               <span
                 className="text-subtitle cursor-pointer"
-                onClick={() => handleViewModal(params.data)}>
+                onClick={() => handleViewModal(params.data)}
+              >
                 <MdOutlineRemoveRedEye />
               </span>
             </div>
@@ -279,7 +280,7 @@ const FinanceMonthlyInvoices = () => {
             //   dueDate: invoice.dueDate
             //     ? dayjs(invoice.dueDate).format("DD-MM-YYYY")
             //     : "-",
-            //   amount: Number(invoice.amount)?.toLocaleString("en-IN") || "0",
+            //   amount: Number(invoice.amount)?.toLocaleString("en-US") || "0",
             //   status: invoice.status || "-",
             // })),
           ]
@@ -292,7 +293,8 @@ const FinanceMonthlyInvoices = () => {
         <MuiModal
           open={viewModalOpen}
           onClose={() => setViewModalOpen(false)}
-          title="Invoice Detail">
+          title="Invoice Detail"
+        >
           <div className="space-y-3">
             <DetalisFormatted title="Month" detail={viewDetails.month} />
             <DetalisFormatted
@@ -308,9 +310,7 @@ const FinanceMonthlyInvoices = () => {
             <DetalisFormatted title="Due Date" detail={viewDetails.dueDate} />
             <DetalisFormatted
               title="Amount"
-              detail={`USD ${Number(
-                String(viewDetails.amount).replace(/,/g, "")
-              ).toLocaleString("en-IN")}`}
+              detail={`USD ${Number(String(viewDetails.amount).replace(/,/g, "")).toLocaleString("en-US")}`}
             />
             <DetalisFormatted title="Status" detail={viewDetails.status} />
           </div>
@@ -334,7 +334,8 @@ const FinanceMonthlyInvoices = () => {
                           errors.assetImage
                             ? "border-red-500"
                             : "border-gray-300"
-                        } `}>
+                        } `}
+                      >
                         <div
                           className="w-full h-48 flex justify-center items-center relative"
                           style={{
@@ -344,7 +345,8 @@ const FinanceMonthlyInvoices = () => {
                             backgroundSize: "contain",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
-                          }}>
+                          }}
+                        >
                           <Button
                             variant="outlined"
                             component="label"
@@ -359,7 +361,8 @@ const FinanceMonthlyInvoices = () => {
                               padding: "8px 16px",
                               borderRadius: "8px",
                               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)",
-                            }}>
+                            }}
+                          >
                             Select Image
                             <input
                               type="file"
@@ -385,7 +388,8 @@ const FinanceMonthlyInvoices = () => {
                               left: "50%",
                               transform: "translate(-50%, -50%)",
                               margin: 0,
-                            }}>
+                            }}
+                          >
                             {errors.assetImage.message}
                           </FormHelperText>
                         )}
@@ -402,7 +406,8 @@ const FinanceMonthlyInvoices = () => {
                       {...field}
                       label="Asset Type"
                       helperText={!!errors.assetType?.message}
-                      select>
+                      select
+                    >
                       <MenuItem value="">Select an Asset Type</MenuItem>
                       <MenuItem value="Physical">Physical</MenuItem>
                       <MenuItem value="Digital">Digital</MenuItem>
@@ -422,7 +427,8 @@ const FinanceMonthlyInvoices = () => {
                       {...field}
                       select
                       label="Department"
-                      size="small">
+                      size="small"
+                    >
                       {auth.user.company.selectedDepartments?.map((dept) => (
                         <MenuItem key={dept._id} value={dept._id}>
                           {dept.name}
@@ -443,7 +449,8 @@ const FinanceMonthlyInvoices = () => {
                       fullWidth
                       select
                       label="Category"
-                      size="small">
+                      size="small"
+                    >
                       {assetsCategories.map((category) => (
                         <MenuItem key={category._id} value={category._id}>
                           {category.categoryName}
@@ -463,7 +470,8 @@ const FinanceMonthlyInvoices = () => {
                       fullWidth
                       select
                       label="Sub-Category"
-                      size="small">
+                      size="small"
+                    >
                       {assetsCategories.subCategories?.map((subCategory) => (
                         <MenuItem key={subCategory._id} value={subCategory._id}>
                           {subCategory.categoryName}

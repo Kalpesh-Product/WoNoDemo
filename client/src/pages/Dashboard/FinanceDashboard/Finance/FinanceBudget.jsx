@@ -10,8 +10,7 @@ import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { toast } from "sonner";
-import { useLocation, useNavigate } from "react-router-dom";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import { transformBudgetData } from "../../../../utils/transformBudgetData";
 import YearlyGraph from "../../../../components/graphs/YearlyGraph";
 import useAuth from "../../../../hooks/useAuth";
@@ -20,7 +19,6 @@ import usePageDepartment from "../../../../hooks/usePageDepartment";
 const FinanceBudget = () => {
   const axios = useAxiosPrivate();
   const { auth } = useAuth();
-  const location = useLocation();
   const department = usePageDepartment();
   const departmentAccess = [
     "67b2cf85b9b6ed5cedeb9a2e",
@@ -149,7 +147,7 @@ const FinanceBudget = () => {
       department: item.department,
       expanseType: item.expanseType,
       projectedAmount: item?.projectedAmount?.toFixed(2),
-      actualAmount: inrFormat(item?.actualAmount || 0),
+      actualAmount: usdFormat(item?.actualAmount || 0),
       dueDate: dayjs(item.dueDate).format("DD-MM-YYYY"),
       status: item.status,
       invoiceAttached: item.invoiceAttached,
@@ -165,8 +163,8 @@ const FinanceBudget = () => {
         ...row,
         srNo: index + 1,
         projectedAmount: Number(
-          row.projectedAmount?.toLocaleString("en-IN").replace(/,/g, "")
-        ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
+          row.projectedAmount?.toLocaleString("en-US").replace(/,/g, "")
+        ).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       }));
       const transformedCols = [
         { field: "srNo", headerName: "SR NO", width: 100 },
@@ -175,8 +173,8 @@ const FinanceBudget = () => {
 
       return {
         ...data,
-        projectedAmount: data.projectedAmount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
-        amount: data.amount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
+        projectedAmount: data.projectedAmount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
+        amount: data.amount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
         tableData: {
           ...data.tableData,
           rows: transoformedRows,
@@ -210,52 +208,53 @@ const FinanceBudget = () => {
     }
   }, [isHrLoading]);
 
-  const expenseRawSeries = useMemo(() => {
-    // Initialize monthly buckets
-    const months = Array.from({ length: 12 }, (_, index) =>
-      dayjs(`2024-04-01`).add(index, "month").format("MMM")
-    );
+const expenseRawSeries = useMemo(() => {
+  // Initialize monthly buckets
+  const months = Array.from({ length: 12 }, (_, index) =>
+    dayjs(`2024-04-01`).add(index, "month").format("MMM")
+  );
 
-    const fyData = {
-      "FY 2024-25": Array(12).fill(0),
-      "FY 2025-26": Array(12).fill(0),
-    };
+  const fyData = {
+    "FY 2024-25": Array(12).fill(0),
+    "FY 2025-26": Array(12).fill(0),
+  };
 
-    hrFinance.forEach((item) => {
-      const date = dayjs(item.dueDate);
-      const year = date.year();
-      const monthIndex = date.month(); // 0 = Jan, 11 = Dec
+  hrFinance.forEach((item) => {
+    const date = dayjs(item.dueDate);
+    const year = date.year();
+    const monthIndex = date.month(); // 0 = Jan, 11 = Dec
 
-      if (year === 2024 && monthIndex >= 3) {
-        // Apr 2024 to Dec 2024 (month 3 to 11)
-        fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
-      } else if (year === 2025) {
-        if (monthIndex <= 2) {
-          // Jan to Mar 2025 (months 0–2)
-          fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
-        } else if (monthIndex >= 3) {
-          // Apr 2025 to Dec 2025 (months 3–11)
-          fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
-        }
-      } else if (year === 2026 && monthIndex <= 2) {
-        // Jan to Mar 2026
-        fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+    if (year === 2024 && monthIndex >= 3) {
+      // Apr 2024 to Dec 2024 (month 3 to 11)
+      fyData["FY 2024-25"][monthIndex - 3] += item.actualAmount || 0;
+    } else if (year === 2025) {
+      if (monthIndex <= 2) {
+        // Jan to Mar 2025 (months 0–2)
+        fyData["FY 2024-25"][monthIndex + 9] += item.actualAmount || 0;
+      } else if (monthIndex >= 3) {
+        // Apr 2025 to Dec 2025 (months 3–11)
+        fyData["FY 2025-26"][monthIndex - 3] += item.actualAmount || 0;
       }
-    });
+    } else if (year === 2026 && monthIndex <= 2) {
+      // Jan to Mar 2026
+      fyData["FY 2025-26"][monthIndex + 9] += item.actualAmount || 0;
+    }
+  });
 
-    return [
-      {
-        name: "total",
-        group: "FY 2024-25",
-        data: fyData["FY 2024-25"],
-      },
-      {
-        name: "total",
-        group: "FY 2025-26",
-        data: fyData["FY 2025-26"],
-      },
-    ];
-  }, [hrFinance]);
+  return [
+    {
+      name: "total",
+      group: "FY 2024-25",
+      data: fyData["FY 2024-25"],
+    },
+    {
+      name: "total",
+      group: "FY 2025-26",
+      data: fyData["FY 2025-26"],
+    },
+  ];
+}, [hrFinance]);
+
 
   const expenseOptions = {
     chart: {
@@ -280,7 +279,7 @@ const FinanceBudget = () => {
     dataLabels: {
       enabled: true,
       formatter: (val) => {
-        return inrFormat(val);
+        return usdFormat(val);
       },
 
       style: {
@@ -292,9 +291,9 @@ const FinanceBudget = () => {
 
     yaxis: {
       max: 5000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount (USD)" },
       labels: {
-        formatter: (val) => `${val / 100000}`,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
     },
     fill: {
@@ -310,7 +309,7 @@ const FinanceBudget = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-US")}
         //     </div>`;
         return `
               <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -320,7 +319,7 @@ const FinanceBudget = () => {
                   <div style="width: 10px;"></div>
                <div style="text-align: left;">USD ${Math.round(
                  rawData
-               ).toLocaleString("en-IN")}</div>
+               ).toLocaleString("en-US")}</div>
   
                 </div>
        
@@ -332,7 +331,6 @@ const FinanceBudget = () => {
 
   const totalUtilised =
     budgetBar?.utilisedBudget?.reduce((acc, val) => acc + val, 0) || 0;
-  const navigate = useNavigate();
   // BUDGET NEW END
 
   return (
@@ -341,7 +339,7 @@ const FinanceBudget = () => {
         data={expenseRawSeries}
         options={expenseOptions}
         title={"BIZ Nest FINANCE DEPARTMENT EXPENSE"}
-        titleAmount={`USD ${inrFormat(totalUtilised)}`}
+        titleAmount={`USD ${usdFormat(totalUtilised)}`}
       />
 
       {!isTop && (
@@ -359,7 +357,8 @@ const FinanceBudget = () => {
       <MuiModal
         title="Request Budget"
         open={openModal}
-        onClose={() => setOpenModal(false)}>
+        onClose={() => setOpenModal(false)}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Expense Name */}
           <Controller

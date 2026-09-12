@@ -1,0 +1,2438 @@
+[
+  {
+    "ticket": {
+      "$oid": "ef951be5e2c963fdb6443ac7"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e4667dad26a376507752ad76"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "c3d1835e731c20db250da991"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "985bed99a93dd56fb7f4a81d"
+    },
+    "createdAt": {
+      "$date": "2026-04-02T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "93218177d46fecf35aa7ed58"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b6d245952d906927858d378c"
+    },
+    "createdAt": {
+      "$date": "2026-04-03T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "fb68f0909b10aec605c6942f"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "343c1632f23d3a1e19f29a03"
+    },
+    "createdAt": {
+      "$date": "2026-04-06T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-06T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "99f792ba253f4a2009c6d2f4"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a7003e4f717dc7cfdda56b56"
+    },
+    "createdAt": {
+      "$date": "2026-04-07T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-07T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4e7be7269e774754030b0059"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e1e101063d8adebba65d3da9"
+    },
+    "createdAt": {
+      "$date": "2026-04-08T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-08T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "06abc189e137da48d0f433ec"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "48c5d58ae2339364958098f7"
+    },
+    "createdAt": {
+      "$date": "2026-04-09T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-09T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "666f7dba897eb7b701335d97"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "1ac7e7fb0a1fa422a04e1e8b"
+    },
+    "createdAt": {
+      "$date": "2026-04-10T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-10T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "01809607d38adf42b26d8674"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0b4b93c6186024f539fbbb0e"
+    },
+    "createdAt": {
+      "$date": "2026-04-13T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-13T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "79ec3166778f9a03a47648a5"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "1a823c690e5217888b756b7b"
+    },
+    "createdAt": {
+      "$date": "2026-04-14T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-14T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f688e6fed0f9ce96878cef62"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "74736a6346870c840b22d714"
+    },
+    "createdAt": {
+      "$date": "2026-04-15T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-15T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "339be0fcec533c007319fa8f"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "9683825cad1e51b33ca872c6"
+    },
+    "createdAt": {
+      "$date": "2026-04-16T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-16T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "0c260c051e04f41952e37500"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "1c0f0c4e4e3895d83edd580a"
+    },
+    "createdAt": {
+      "$date": "2026-04-17T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-17T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "a41b824983546a253250a553"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "88b2bd727c960fe0067c80b6"
+    },
+    "createdAt": {
+      "$date": "2026-04-20T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-20T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "2f49718d3d56c7f7d3b328c1"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b014d78ebc54159c65e77abf"
+    },
+    "createdAt": {
+      "$date": "2026-04-21T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-21T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "5381a332ff19bef6b94f9c40"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "97e630a1465db299e527b7c0"
+    },
+    "createdAt": {
+      "$date": "2026-04-22T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-22T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "ee422d6c4477f5006ccefb6e"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "561bde6be718c81688422736"
+    },
+    "createdAt": {
+      "$date": "2026-04-23T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-23T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "42cca52147d57673e78241f0"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "729e5fccf6e3c48de0a3721d"
+    },
+    "createdAt": {
+      "$date": "2026-04-24T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-24T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "951a16421d02c933b6fa3e1d"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "cc62c5820a88eb1b84715ace"
+    },
+    "createdAt": {
+      "$date": "2026-04-27T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-27T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "53350bad015eaa0938828a1b"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e75a13469a2bafe16cb3a234"
+    },
+    "createdAt": {
+      "$date": "2026-04-28T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-28T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "8f2755f8adf363eb4c8ff4ff"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "06b2850b7f07acac109b466b"
+    },
+    "createdAt": {
+      "$date": "2026-04-29T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-29T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "75d9802db83e42ea3ce0bf35"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "d4d023e98f986693fb6dc0eb"
+    },
+    "createdAt": {
+      "$date": "2026-04-30T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-30T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "43b0c4f7ece55509158d3799"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2b224345673996b911445204"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "3962cef07843ac5886c47769"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "44ad07769f2eefe8f51ea9e9"
+    },
+    "createdAt": {
+      "$date": "2026-05-04T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f816e775122f73efafe4287d"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "9c31ac52a75be56670e40db4"
+    },
+    "createdAt": {
+      "$date": "2026-05-05T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-05T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "5904bc95d94587ff00733800"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c43a82ac7cc216550f683cf5"
+    },
+    "createdAt": {
+      "$date": "2026-05-06T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-06T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "283cde38cf3c38d30ea207b3"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7169399e2f63c14cb4642a6b"
+    },
+    "createdAt": {
+      "$date": "2026-05-07T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-07T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "8c0ed6cd41b4bc0e07fe1cfa"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "4d94b1e4e0097394f74a2302"
+    },
+    "createdAt": {
+      "$date": "2026-05-08T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-08T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "7fddc5a9376e3536ede4bdeb"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c09f4099043d68c924995bd9"
+    },
+    "createdAt": {
+      "$date": "2026-05-11T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-11T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "a78bdddc063ef2674d57c82a"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6de6eddb24dd3820ae5fc9f5"
+    },
+    "createdAt": {
+      "$date": "2026-05-12T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-12T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f10f63bc7ff109558fdc9827"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6fd3591b4ebddf73aee4519e"
+    },
+    "createdAt": {
+      "$date": "2026-05-13T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-13T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "966f6e09453939fb7279a727"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "19fe1203ed86c843a2190b89"
+    },
+    "createdAt": {
+      "$date": "2026-05-14T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-14T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "7f713ad3af355a8b6fccbfc6"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e97c1476fa786665032320d7"
+    },
+    "createdAt": {
+      "$date": "2026-05-15T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "11251caf93c6100b5b7f2924"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "4051378569080be2d9b72576"
+    },
+    "createdAt": {
+      "$date": "2026-05-18T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-18T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "53d323c3172aa00ce0d62890"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3fff88d81ab15b45db8bb616"
+    },
+    "createdAt": {
+      "$date": "2026-05-19T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-19T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "d1ef14f894a3d9822b28fcd6"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b36a1fe5f085892469daf45d"
+    },
+    "createdAt": {
+      "$date": "2026-05-20T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-20T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "cc2bf09fd1b9c8227d5ace6a"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "8a335fdbf06c5ae40198df45"
+    },
+    "createdAt": {
+      "$date": "2026-05-21T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-21T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "3a15aaabb3fe043130133e00"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "4ea6b3f01c613694ecbf322f"
+    },
+    "createdAt": {
+      "$date": "2026-05-22T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-22T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4adfe0cdeee07ae4194ca1be"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a356a0ec5a41bb3b21c95262"
+    },
+    "createdAt": {
+      "$date": "2026-05-25T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-25T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "d4c527ec00dd991dfc5fc87a"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "36e67d5ab6594c77c67bf0ac"
+    },
+    "createdAt": {
+      "$date": "2026-05-26T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-26T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "747bd84d9d0157f485f55da1"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "eb4c9c55040aeee8ae45d63a"
+    },
+    "createdAt": {
+      "$date": "2026-05-27T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-27T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "eb5a3b8892b93a552bd5ddc5"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3c7017e3e08319d328bbe2b2"
+    },
+    "createdAt": {
+      "$date": "2026-05-28T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-28T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "85b5395c09deba3ccdc700f4"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2be28b9e03bfa5fa2d88e142"
+    },
+    "createdAt": {
+      "$date": "2026-05-29T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-29T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e8cc7ac9beaec323550f2321"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "988a275c288d68bf03dcd4df"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e3f146572d101f20276c3233"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "dda9040a9f3790b001c09073"
+    },
+    "createdAt": {
+      "$date": "2026-06-02T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4ea0ef63d48d06d1c20f9b06"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0b3bbcaf1fa938c88e151f7e"
+    },
+    "createdAt": {
+      "$date": "2026-06-03T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "c034ba75ecf9b84f38bc9ef7"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "9690ea35eab9c0b76af08501"
+    },
+    "createdAt": {
+      "$date": "2026-06-04T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "a82b626b057303a2fecef963"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3e8b13ea812885953dafc8cb"
+    },
+    "createdAt": {
+      "$date": "2026-06-05T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-05T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "6b7adeb3f3f75cfccedbc61d"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "90417b1803f6be5b3e60bca6"
+    },
+    "createdAt": {
+      "$date": "2026-06-08T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-08T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "be122016213406381559a19a"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "177309a2b1c3a6be982fb0a5"
+    },
+    "createdAt": {
+      "$date": "2026-06-09T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-09T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "0a08b4f8bd9ca79875d60a5c"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c35d978217ea53025943f1ae"
+    },
+    "createdAt": {
+      "$date": "2026-06-10T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-10T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "0112b13ddb93b26bc6234e85"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "74ba62574af98db7538a1fb7"
+    },
+    "createdAt": {
+      "$date": "2026-06-11T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-11T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "aeb8e956b0b453f62298445e"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b90ac71e057879c558d0b738"
+    },
+    "createdAt": {
+      "$date": "2026-06-12T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-12T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "65a3ddc8dad7cdc9bf7e1558"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "d6c430d2d18b7bb6224afde2"
+    },
+    "createdAt": {
+      "$date": "2026-06-15T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-15T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "71aa71a8d4a7f9f4f700f08d"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c6fceb12d7128c9d50df84eb"
+    },
+    "createdAt": {
+      "$date": "2026-06-16T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-16T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e4f20e18ae397a1834d47a7c"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "8c0fd9da214cf0dc22d51451"
+    },
+    "createdAt": {
+      "$date": "2026-06-17T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-17T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "8358be5ea00905b2aafbcef2"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "cd61203a7f0645006f8917b0"
+    },
+    "createdAt": {
+      "$date": "2026-06-18T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-18T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "895ae649c7cc2c33d67958da"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "f10a59676f17391599023987"
+    },
+    "createdAt": {
+      "$date": "2026-06-19T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-19T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f8e39f1eb7f5c5ae7244c3af"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e6059f2d23f95de5d49ac4f7"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e6dfe07ec47d2575ea174682"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7d2ef77d4357c86d5cfcaab2"
+    },
+    "createdAt": {
+      "$date": "2026-06-23T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-23T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "d0201851ec5c64be94933069"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "5231413ba25470b0caa94e13"
+    },
+    "createdAt": {
+      "$date": "2026-06-24T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "6e4c353fd6d565bfcdbcbcf2"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2f45c4508af57b29577d322f"
+    },
+    "createdAt": {
+      "$date": "2026-06-25T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-25T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "851117a237512111c7263e4a"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "bcce408dbf6e8b475a98c114"
+    },
+    "createdAt": {
+      "$date": "2026-06-26T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-26T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "13ed7c3be5f1b88f1236dd5e"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0cbe911d13db07812754808d"
+    },
+    "createdAt": {
+      "$date": "2026-06-29T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-29T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "2721f9e32ef5e46b89d330a8"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "1b412de31d4c7de6067ce588"
+    },
+    "createdAt": {
+      "$date": "2026-06-30T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-30T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e26e7e055876b3aa7ad14311"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "37be736fb3471cce92e48429"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "8f87d0fabdb3bf79e66c78c7"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7750cbb498470235555b9037"
+    },
+    "createdAt": {
+      "$date": "2026-07-02T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "1e531ec4c1935d5c0381d743"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0adfbc5eb2f3c14b435c192f"
+    },
+    "createdAt": {
+      "$date": "2026-07-03T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4440fda6346a481f7f55c220"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "771c8afce0d906dbece7780e"
+    },
+    "createdAt": {
+      "$date": "2026-07-06T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-06T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "64939e2cb261d115e57dba54"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "09cd722c7af96b4309b4b09f"
+    },
+    "createdAt": {
+      "$date": "2026-07-07T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-07T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "2b2c6b53fdeed7546a7d8a6e"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e695a97c906ec014fabc2cdd"
+    },
+    "createdAt": {
+      "$date": "2026-07-08T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-08T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "5bc25707c1a2290a22128deb"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "bd0fbc6a3b0d434b9fe0cda4"
+    },
+    "createdAt": {
+      "$date": "2026-07-09T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-09T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "0018a9aca1a5b28f460dcd4a"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6b9329e6b1fb51cf0454cf18"
+    },
+    "createdAt": {
+      "$date": "2026-07-10T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-10T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "20fa45c67783df5dc6fbc55a"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "b508c00041647c3d6b4b5707"
+    },
+    "createdAt": {
+      "$date": "2026-07-13T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-13T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "ac5395e6aeaa626ea67ac6c5"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "02df46a290642f11f89d95cb"
+    },
+    "createdAt": {
+      "$date": "2026-07-14T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-14T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "68b7f1f74ee0bc2f3d1d2ad2"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "35cc8132d974e990c26e4f11"
+    },
+    "createdAt": {
+      "$date": "2026-07-15T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-15T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "c7a31fcfec4c824180fd36a0"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6af142dbf4e5ed2bd6b5b90b"
+    },
+    "createdAt": {
+      "$date": "2026-07-16T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-16T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e333d64e9c35ace3f446153c"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0c1528c26f7c1d2206aa5ef2"
+    },
+    "createdAt": {
+      "$date": "2026-07-17T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-17T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f9fc40f63efb2e63c637955a"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "0c11747f3e01afc377878291"
+    },
+    "createdAt": {
+      "$date": "2026-07-20T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-20T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "64f13ee1f24ef940c6b26d21"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "f203c5dd1c477b1834d2cda7"
+    },
+    "createdAt": {
+      "$date": "2026-07-21T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-21T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "9445c47c72076d9ca513c06e"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "eaea8dc67b84fb0bea1bca5c"
+    },
+    "createdAt": {
+      "$date": "2026-07-22T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-22T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "dbe98b85701f95f8cc388332"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6c8732726587ce9abd995713"
+    },
+    "createdAt": {
+      "$date": "2026-07-23T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-23T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f81c66a59027e75f3bff27b1"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a7772100d8d06cf5706d5555"
+    },
+    "createdAt": {
+      "$date": "2026-07-24T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-24T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "3d270da8d004fbfafbbbcd31"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "6fd4acc8bcd75fe9ff4c6b67"
+    },
+    "createdAt": {
+      "$date": "2026-07-27T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-27T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "df0cb9257e7163bdb7a2b495"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "15e43c3f03cc46e7c7d8b83d"
+    },
+    "createdAt": {
+      "$date": "2026-07-28T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-28T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "fcd04fc3bea2a5289a370181"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2255e7b66a69fcce895831c7"
+    },
+    "createdAt": {
+      "$date": "2026-07-29T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-29T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "140244d6f6414f385441f96a"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "d177c3448236603f5136410a"
+    },
+    "createdAt": {
+      "$date": "2026-07-30T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-30T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "043c594f16d006e52c3e7ff8"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3bc1a5ffc3c094a4ac04c389"
+    },
+    "createdAt": {
+      "$date": "2026-07-31T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-31T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "bdc33ff1cb4c4ebf7bc251fd"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "5818c549428ae125691ed73a"
+    },
+    "createdAt": {
+      "$date": "2026-08-03T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "b39f26ab31787e9129cd2435"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "182ee54e2f2f6b0b17758b14"
+    },
+    "createdAt": {
+      "$date": "2026-08-04T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "7a1ee74ede668df1eaa6bd70"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e26960d16b4a37f7bdc9f676"
+    },
+    "createdAt": {
+      "$date": "2026-08-05T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-05T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "e3b6baa188fd45d522c93b76"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "fa9c22f6bffdb8186925b765"
+    },
+    "createdAt": {
+      "$date": "2026-08-06T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-06T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "854e322cfdb5abb1096903f9"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "23fd4a653fe2a37caffd4dea"
+    },
+    "createdAt": {
+      "$date": "2026-08-07T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-07T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f9158b9ab8b13e10546f8f00"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "44adc285ebd44204be2c7fc1"
+    },
+    "createdAt": {
+      "$date": "2026-08-10T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-10T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "fa3b4a6fcbf02600b8474efa"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "618e01c6e4a8cda955ebe42c"
+    },
+    "createdAt": {
+      "$date": "2026-08-11T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "8ca6f9afbccfd4a74e2f4634"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "3c9668c37b0cfc061ce778ea"
+    },
+    "createdAt": {
+      "$date": "2026-08-12T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-12T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "0004b04da1c2deaef279297a"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "17e4cb394aa7f32151fca133"
+    },
+    "createdAt": {
+      "$date": "2026-08-13T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-13T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "35da223f290e02187ed922b3"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "a7472c5f44f1d48cae0429a3"
+    },
+    "createdAt": {
+      "$date": "2026-08-14T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "985eb4e06fe30918068a46e3"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e38ce45687bbe3586df4c6ad"
+    },
+    "createdAt": {
+      "$date": "2026-08-17T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-17T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "cd40f59138f7a023da66dad1"
+    },
+    "user": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e81ec0ff1c7cbff0fafd4646"
+    },
+    "createdAt": {
+      "$date": "2026-08-18T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "7d68814a059d370e502f603b"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e5b8d30ef7f968ccd7be4b61"
+    },
+    "createdAt": {
+      "$date": "2026-08-19T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-19T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "ff936a1619649ef0e7c7af58"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "c701f647a5c05a3166f346d7"
+    },
+    "createdAt": {
+      "$date": "2026-08-20T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-20T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "776b58ba5ec60fae7463f096"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "ab6d6a9b25a20ef191287128"
+    },
+    "createdAt": {
+      "$date": "2026-08-21T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-21T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4a0828f946e025b669677d5f"
+    },
+    "user": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "312c9eb37eaefe487c254b25"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "a370f937d687c5dbc1f2308e"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "696077d303aa50cdbaa11a60"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "6789b514dd1d88324e0709e8"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "eab6cec9ea34752c9d595f5a"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "94773171f0ad27d7984245d9"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "715e05f3ac781abf8ea7c4fe"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "80431fbb0a3bd79f9af9c63d"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "e2a1b21130081cff1b4f8745"
+    },
+    "createdAt": {
+      "$date": "2026-08-28T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-28T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f2457db12cea14e74a0bdd37"
+    },
+    "user": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "ea8b08bcd32ce05f56df4253"
+    },
+    "createdAt": {
+      "$date": "2026-08-31T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-31T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "f6ace0002ff7a063babd000e"
+    },
+    "user": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "58ccf1a0de301156cf267028"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "c67024b687f412caeedb1c22"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "4923e78ede497dea54ed5a08"
+    },
+    "createdAt": {
+      "$date": "2026-09-02T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "da2d886960c8943d93c02c5b"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "5e7db275f170d58ab2643416"
+    },
+    "createdAt": {
+      "$date": "2026-09-03T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T07:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "17d3474355805fa2df2f578c"
+    },
+    "user": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "7e15e028d38d7ac4fe7ac1aa"
+    },
+    "createdAt": {
+      "$date": "2026-09-04T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "4c765c44053f5bd6491bdc5f"
+    },
+    "user": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "reason": "Cross-team assistance requested",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "319e0982b9966543a7b1da4c"
+    },
+    "createdAt": {
+      "$date": "2026-09-07T04:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-07T05:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "c74c6396c74a31f175124395"
+    },
+    "user": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "reason": "Additional troubleshooting required",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "540950879fde484e96388d7f"
+    },
+    "createdAt": {
+      "$date": "2026-09-08T05:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-08T06:30:00Z"
+    }
+  },
+  {
+    "ticket": {
+      "$oid": "a789da7b281c13fc4917d94a"
+    },
+    "user": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "reason": "Follow-up requested by employee",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "_id": {
+      "$oid": "2e275e6bdaef34252a871b8d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T06:15:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T07:30:00Z"
+    }
+  }
+]

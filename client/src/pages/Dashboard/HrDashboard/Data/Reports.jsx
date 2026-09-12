@@ -4,7 +4,7 @@ import AgTable from "../../../../components/AgTable";
 import { Chip, TextField } from "@mui/material";
 import { Select, MenuItem, FormControl, InputLabel, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 
 const HrReports = ({ title, buttonTitle, rowSelection }) => {
   const [selected, setSelected] = useState("");
@@ -69,69 +69,69 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
 
   const rows = [
     {
-      srNo: 1,
+      srNo:1,
       payrollid: "PYRL120124",
       employeename: "Kalpesh Naik",
       role: "Lead UI/UX Developer",
       dateandtime: "21 Jun, 2024 - 05.05pm ",
-      totalsalary: inrFormat("250000"),
-      reimbursment: inrFormat("50000"),
+      totalsalary: usdFormat("250000"),
+      reimbursment: usdFormat("50000"),
       status: "completed",
     },
     {
-      srNo: 2,
+      srNo:2,
       payrollid: "PYRL120130",
       employeename: "AiwinRaj",
       role: "Jr UI/UX Developer",
       dateandtime: "21 Jun, 2024 - 05.03pm ",
-      totalsalary: inrFormat("230000"),
-      reimbursment: inrFormat("10000"),
+      totalsalary: usdFormat("230000"),
+      reimbursment: usdFormat("10000"),
       status: "completed",
     },
     {
-      srNo: 3,
+      srNo:3,
       payrollid: "PYRL120131",
       employeename: "Ashwin Karthik",
       role: "Jr UI/UX Developer",
       dateandtime: "21 Jun, 2024 - 05.05pm ",
-      totalsalary: inrFormat("200000"),
-      reimbursment: inrFormat("10000"),
+      totalsalary: usdFormat("200000"),
+      reimbursment: usdFormat("10000"),
       status: "Pending",
     },
     {
-      srNo: 4,
+      srNo:4,
       payrollid: "PYRL120132",
       employeename: "Allen Silvera",
       role: "Jr UI/UX Developer",
       dateandtime: "21 Jun, 2024 - 05.00pm ",
-      totalsalary: inrFormat("200000"),
-      reimbursment: inrFormat("10000"),
+      totalsalary: usdFormat("200000"),
+      reimbursment: usdFormat("10000"),
       status: "Pending",
     },
     {
-      srNo: 5,
+      srNo:5,
       payrollid: "PYRL120133",
       employeename: "Sankalp Kalangutkar",
       role: "Jr backed Develper",
       dateandtime: "21 Jun 2024 - 05.03pm ",
-      totalsalary: inrFormat("250000"),
-      reimbursment: inrFormat("20000"),
+      totalsalary: usdFormat("250000"),
+      reimbursment: usdFormat("20000"),
       status: "completed",
     },
     {
-      srNo: 6,
+      srNo:6,
       payrollid: "PYRL120134",
       employeename: "Muskan Dodmani",
       role: "Jr backend Developer",
       dateandtime: "21 Jun 2024 - 05.10pm ",
-      totalsalary: inrFormat("250000"),
-      reimbursment: inrFormat("20000"),
+      totalsalary: usdFormat("250000"),
+      reimbursment: usdFormat("20000"),
       status: "Pending",
     },
   ];
   return (
     <div>
-      <Box sx={{ width: "20vw" }}>
+      <Box sx={{width:'20vw'}}>
         <FormControl fullWidth>
           <InputLabel id="dropdown-label">Select Option</InputLabel>
           <Select
@@ -139,7 +139,8 @@ const HrReports = ({ title, buttonTitle, rowSelection }) => {
             value={selected}
             label="Select Option"
             size="small"
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             <MenuItem value="Payroll">Payroll</MenuItem>
             <MenuItem value="Attendance">Attendance</MenuItem>
           </Select>

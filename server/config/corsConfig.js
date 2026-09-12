@@ -2,8 +2,12 @@
 require("dotenv").config();
 
 const allowedOrigins = [
-  "http://localhost:3000",
+  "http://localhost:3009",
+  "http://localhost:3001",
+  "http://localhost:3010",
   "http://localhost:4173",
+  "https://wonofe.vercel.app",
+  "https://wonomasterfe.vercel.app",
   process.env.CORS_FRONTEND_URL,
 ];
 
@@ -34,7 +38,7 @@ module.exports = { corsConfig, allowedOrigins };
 // require("dotenv").config();
 
 // const allowedOrigins = [
-//   "http://localhost:3000",
+//   "http://localhost:3009",
 //   process.env.CORS_FRONTEND_URL,
 //   "http://localhost:4173",
 // ];

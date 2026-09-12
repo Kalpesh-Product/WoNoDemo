@@ -1,0 +1,926 @@
+[
+  {
+    "name": "Aisha Shah",
+    "address": "12, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Facility Services",
+    "subCategory": "Consulting",
+    "email": "aisha@silverbrookfacilityservices.com",
+    "mobile": "+919300000000",
+    "status": "Active",
+    "companyName": "Silverbrook Facility Services",
+    "onboardingDate": {
+      "$date": "2026-04-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "d9d73f3f4be57056982a0519"
+    },
+    "createdAt": {
+      "$date": "2026-04-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Arjun Rao",
+    "address": "13, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Facility Services",
+    "subCategory": "Supply and installation",
+    "email": "arjun@westhavenfacilityservices.com",
+    "mobile": "+919300000001",
+    "status": "Active",
+    "companyName": "Westhaven Facility Services",
+    "onboardingDate": {
+      "$date": "2026-05-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "7ae90424048e1bcbb4ddda72"
+    },
+    "createdAt": {
+      "$date": "2026-05-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Kabir Menon",
+    "address": "17, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Talent Partners",
+    "subCategory": "Consulting",
+    "email": "kabir@crestwoodtalentpartners.com",
+    "mobile": "+919300000005",
+    "status": "Active",
+    "companyName": "Crestwood Talent Partners",
+    "onboardingDate": {
+      "$date": "2026-05-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "31ce10b3dceae2f26f98b32d"
+    },
+    "createdAt": {
+      "$date": "2026-05-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Zoya Khan",
+    "address": "18, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Talent Partners",
+    "subCategory": "Supply and installation",
+    "email": "zoya@lakefronttalentpartners.com",
+    "mobile": "+919300000006",
+    "status": "Active",
+    "companyName": "Lakefront Talent Partners",
+    "onboardingDate": {
+      "$date": "2026-06-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "f08016e70ece35e38ae9ef1e"
+    },
+    "createdAt": {
+      "$date": "2026-06-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Aditya Nair",
+    "address": "19, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Talent Partners",
+    "subCategory": "Ongoing support",
+    "email": "aditya@ashfordtalentpartners.com",
+    "mobile": "+919300000007",
+    "status": "Active",
+    "companyName": "Ashford Talent Partners",
+    "onboardingDate": {
+      "$date": "2026-07-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "49baf295d7aadc88cfa1337d"
+    },
+    "createdAt": {
+      "$date": "2026-07-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Nina Shah",
+    "address": "22, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Business Advisory",
+    "subCategory": "Consulting",
+    "email": "nina@stonebridgebusinessadvisory.com",
+    "mobile": "+919300000010",
+    "status": "Active",
+    "companyName": "Stonebridge Business Advisory",
+    "onboardingDate": {
+      "$date": "2026-06-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "c4e4e4ec404504d83b1253cc"
+    },
+    "createdAt": {
+      "$date": "2026-06-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Vikram Rao",
+    "address": "23, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Business Advisory",
+    "subCategory": "Supply and installation",
+    "email": "vikram@seaviewbusinessadvisory.com",
+    "mobile": "+919300000011",
+    "status": "Active",
+    "companyName": "Seaview Business Advisory",
+    "onboardingDate": {
+      "$date": "2026-07-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "62ee822c5ea0aa6c28eafea9"
+    },
+    "createdAt": {
+      "$date": "2026-07-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Leah Mehta",
+    "address": "24, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Business Advisory",
+    "subCategory": "Ongoing support",
+    "email": "leah@brightonbusinessadvisory.com",
+    "mobile": "+919300000012",
+    "status": "Active",
+    "companyName": "Brighton Business Advisory",
+    "onboardingDate": {
+      "$date": "2026-08-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "08f6dee32acc2b0270f6f0d4"
+    },
+    "createdAt": {
+      "$date": "2026-08-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Ishaan Desai",
+    "address": "25, Market Street, Panaji",
+    "departmentId": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Business Advisory",
+    "subCategory": "Annual maintenance",
+    "email": "ishaan@pinehillbusinessadvisory.com",
+    "mobile": "+919300000013",
+    "status": "Active",
+    "companyName": "Pinehill Business Advisory",
+    "onboardingDate": {
+      "$date": "2026-09-05T04:00:00Z"
+    },
+    "state": "Goa",
+    "city": "Panaji",
+    "country": "India",
+    "pinCode": "403001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "b8cd0c14e97b7377487cf4d2"
+    },
+    "createdAt": {
+      "$date": "2026-09-05T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-05T04:00:00Z"
+    }
+  },
+  {
+    "name": "Dev Menon",
+    "address": "27, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Cloud Solutions",
+    "subCategory": "Consulting",
+    "email": "dev@pinehillcloudsolutions.com",
+    "mobile": "+919300000015",
+    "status": "Active",
+    "companyName": "Pinehill Cloud Solutions",
+    "onboardingDate": {
+      "$date": "2026-07-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "5e4e4a7b02eb080137750161"
+    },
+    "createdAt": {
+      "$date": "2026-07-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Mira Khan",
+    "address": "28, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Cloud Solutions",
+    "subCategory": "Supply and installation",
+    "email": "mira@windcrestcloudsolutions.com",
+    "mobile": "+919300000016",
+    "status": "Active",
+    "companyName": "Windcrest Cloud Solutions",
+    "onboardingDate": {
+      "$date": "2026-08-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "79fd899540e03e2ce9b0f9f6"
+    },
+    "createdAt": {
+      "$date": "2026-08-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Karan Nair",
+    "address": "29, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Cloud Solutions",
+    "subCategory": "Ongoing support",
+    "email": "karan@fairmontcloudsolutions.com",
+    "mobile": "+919300000017",
+    "status": "Active",
+    "companyName": "Fairmont Cloud Solutions",
+    "onboardingDate": {
+      "$date": "2026-09-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "e9a13b8927f19b8173445c2c"
+    },
+    "createdAt": {
+      "$date": "2026-09-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Sofia Joshi",
+    "address": "30, Market Street, Panaji",
+    "departmentId": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Cloud Solutions",
+    "subCategory": "Annual maintenance",
+    "email": "sofia@rosewoodcloudsolutions.com",
+    "mobile": "+919300000018",
+    "status": "Active",
+    "companyName": "Rosewood Cloud Solutions",
+    "onboardingDate": {
+      "$date": "2026-04-05T04:00:00Z"
+    },
+    "state": "Goa",
+    "city": "Panaji",
+    "country": "India",
+    "pinCode": "403001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "5c5aa2e0a7ab258f7150a2ba"
+    },
+    "createdAt": {
+      "$date": "2026-04-05T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-05T04:00:00Z"
+    }
+  },
+  {
+    "name": "Nikhil Patel",
+    "address": "31, Park Avenue, Delhi",
+    "departmentId": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Cloud Solutions",
+    "subCategory": "Managed services",
+    "email": "nikhil@clearbrookcloudsolutions.com",
+    "mobile": "+919300000019",
+    "status": "Inactive",
+    "companyName": "Clearbrook Cloud Solutions",
+    "onboardingDate": {
+      "$date": "2026-05-06T04:00:00Z"
+    },
+    "state": "Delhi",
+    "city": "Delhi",
+    "country": "India",
+    "pinCode": "110001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "6c2db2727ec0057477a7a7e6"
+    },
+    "createdAt": {
+      "$date": "2026-05-06T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-06T04:00:00Z"
+    }
+  },
+  {
+    "name": "Riya Shah",
+    "address": "32, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Sales Enablement",
+    "subCategory": "Consulting",
+    "email": "riya@rosewoodsalesenablement.com",
+    "mobile": "+919300000020",
+    "status": "Active",
+    "companyName": "Rosewood Sales Enablement",
+    "onboardingDate": {
+      "$date": "2026-08-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "ee0d810f427df7a650335669"
+    },
+    "createdAt": {
+      "$date": "2026-08-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Aarav Rao",
+    "address": "33, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Sales Enablement",
+    "subCategory": "Supply and installation",
+    "email": "aarav@clearbrooksalesenablement.com",
+    "mobile": "+919300000021",
+    "status": "Active",
+    "companyName": "Clearbrook Sales Enablement",
+    "onboardingDate": {
+      "$date": "2026-09-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "3d0f37159343e345de541acd"
+    },
+    "createdAt": {
+      "$date": "2026-09-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Sahil Menon",
+    "address": "37, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Accounting Services",
+    "subCategory": "Consulting",
+    "email": "sahil@baystoneaccountingservices.com",
+    "mobile": "+919300000025",
+    "status": "Active",
+    "companyName": "Baystone Accounting Services",
+    "onboardingDate": {
+      "$date": "2026-09-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "efe0222d38922695253ad857"
+    },
+    "createdAt": {
+      "$date": "2026-09-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Meera Khan",
+    "address": "38, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Accounting Services",
+    "subCategory": "Supply and installation",
+    "email": "meera@redfieldaccountingservices.com",
+    "mobile": "+919300000026",
+    "status": "Active",
+    "companyName": "Redfield Accounting Services",
+    "onboardingDate": {
+      "$date": "2026-04-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "fea52363d6fd2d9010ee86a1"
+    },
+    "createdAt": {
+      "$date": "2026-04-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Varun Nair",
+    "address": "39, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Accounting Services",
+    "subCategory": "Ongoing support",
+    "email": "varun@hillcrestaccountingservices.com",
+    "mobile": "+919300000027",
+    "status": "Active",
+    "companyName": "Hillcrest Accounting Services",
+    "onboardingDate": {
+      "$date": "2026-05-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "5de4d7cf66766923a74ee6e3"
+    },
+    "createdAt": {
+      "$date": "2026-05-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Aisha Shah",
+    "address": "42, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Network Systems",
+    "subCategory": "Consulting",
+    "email": "aisha@springvalenetworksystems.com",
+    "mobile": "+919300000030",
+    "status": "Active",
+    "companyName": "Springvale Network Systems",
+    "onboardingDate": {
+      "$date": "2026-04-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "a22b11a99b0bd5e276fa4748"
+    },
+    "createdAt": {
+      "$date": "2026-04-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Arjun Rao",
+    "address": "43, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Network Systems",
+    "subCategory": "Supply and installation",
+    "email": "arjun@woodhavennetworksystems.com",
+    "mobile": "+919300000031",
+    "status": "Active",
+    "companyName": "Woodhaven Network Systems",
+    "onboardingDate": {
+      "$date": "2026-05-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "e4db0b0d3485dcd104961e6e"
+    },
+    "createdAt": {
+      "$date": "2026-05-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Priya Mehta",
+    "address": "44, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Network Systems",
+    "subCategory": "Ongoing support",
+    "email": "priya@eastgatenetworksystems.com",
+    "mobile": "+919300000032",
+    "status": "Active",
+    "companyName": "Eastgate Network Systems",
+    "onboardingDate": {
+      "$date": "2026-06-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "011c9b4abd902a6a79d2403c"
+    },
+    "createdAt": {
+      "$date": "2026-06-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Rohan Desai",
+    "address": "45, Market Street, Panaji",
+    "departmentId": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Network Systems",
+    "subCategory": "Annual maintenance",
+    "email": "rohan@rivertonnetworksystems.com",
+    "mobile": "+919300000033",
+    "status": "Active",
+    "companyName": "Riverton Network Systems",
+    "onboardingDate": {
+      "$date": "2026-07-05T04:00:00Z"
+    },
+    "state": "Goa",
+    "city": "Panaji",
+    "country": "India",
+    "pinCode": "403001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "67d64b888786813bbb6eaf23"
+    },
+    "createdAt": {
+      "$date": "2026-07-05T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-05T04:00:00Z"
+    }
+  },
+  {
+    "name": "Kabir Menon",
+    "address": "47, Park Avenue, Mumbai",
+    "departmentId": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Office Supplies",
+    "subCategory": "Consulting",
+    "email": "kabir@rivertonofficesupplies.com",
+    "mobile": "+919300000035",
+    "status": "Active",
+    "companyName": "Riverton Office Supplies",
+    "onboardingDate": {
+      "$date": "2026-05-02T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "country": "India",
+    "pinCode": "400001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "02ec580d8fe758b65e3cf629"
+    },
+    "createdAt": {
+      "$date": "2026-05-02T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-02T04:00:00Z"
+    }
+  },
+  {
+    "name": "Zoya Khan",
+    "address": "48, Lake Road, Pune",
+    "departmentId": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Office Supplies",
+    "subCategory": "Supply and installation",
+    "email": "zoya@larkspurofficesupplies.com",
+    "mobile": "+919300000036",
+    "status": "Active",
+    "companyName": "Larkspur Office Supplies",
+    "onboardingDate": {
+      "$date": "2026-06-03T04:00:00Z"
+    },
+    "state": "Maharashtra",
+    "city": "Pune",
+    "country": "India",
+    "pinCode": "411001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "29a9cc7024f0d491a68527c6"
+    },
+    "createdAt": {
+      "$date": "2026-06-03T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-03T04:00:00Z"
+    }
+  },
+  {
+    "name": "Aditya Nair",
+    "address": "49, Station Road, Bengaluru",
+    "departmentId": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Office Supplies",
+    "subCategory": "Ongoing support",
+    "email": "aditya@brookhavenofficesupplies.com",
+    "mobile": "+919300000037",
+    "status": "Active",
+    "companyName": "Brookhaven Office Supplies",
+    "onboardingDate": {
+      "$date": "2026-07-04T04:00:00Z"
+    },
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "country": "India",
+    "pinCode": "560001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "b84bfe55ca9a301220d892c0"
+    },
+    "createdAt": {
+      "$date": "2026-07-04T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-04T04:00:00Z"
+    }
+  },
+  {
+    "name": "Ananya Joshi",
+    "address": "50, Market Street, Panaji",
+    "departmentId": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Office Supplies",
+    "subCategory": "Annual maintenance",
+    "email": "ananya@silverbrookofficesupplies.com",
+    "mobile": "+919300000038",
+    "status": "Active",
+    "companyName": "Silverbrook Office Supplies",
+    "onboardingDate": {
+      "$date": "2026-08-05T04:00:00Z"
+    },
+    "state": "Goa",
+    "city": "Panaji",
+    "country": "India",
+    "pinCode": "403001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "7c3baee2547b6ecd1f9f195a"
+    },
+    "createdAt": {
+      "$date": "2026-08-05T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-05T04:00:00Z"
+    }
+  },
+  {
+    "name": "Omar Patel",
+    "address": "51, Park Avenue, Delhi",
+    "departmentId": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "category": "Office Supplies",
+    "subCategory": "Managed services",
+    "email": "omar@westhavenofficesupplies.com",
+    "mobile": "+919300000039",
+    "status": "Inactive",
+    "companyName": "Westhaven Office Supplies",
+    "onboardingDate": {
+      "$date": "2026-09-06T04:00:00Z"
+    },
+    "state": "Delhi",
+    "city": "Delhi",
+    "country": "India",
+    "pinCode": "110001",
+    "partyType": "Company",
+    "_id": {
+      "$oid": "22d6e52ea3675eade919be0b"
+    },
+    "createdAt": {
+      "$date": "2026-09-06T04:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-06T04:00:00Z"
+    }
+  }
+]

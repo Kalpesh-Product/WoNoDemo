@@ -92,7 +92,7 @@ const AdminOffices = () => {
     const roundedMax = Math.ceil(maxY / 5) * 5;
   
   
-    const inrFormat = (val) => val.toLocaleString("en-IN");
+    const usdFormat = (val) => val.toLocaleString("en-US");
   
     const barGraphSeries = [
       {
@@ -120,7 +120,7 @@ const AdminOffices = () => {
       },
       dataLabels: {
         enabled: true,
-        formatter: (val) => inrFormat(val),
+        formatter: (val) => usdFormat(val),
         style: { fontSize: "12px", colors: ["#000"] },
         offsetY: -22,
       },

@@ -64,7 +64,7 @@ const TicketDashboard = () => {
 
   const roles = auth.user.role.map((role) => role.roleTitle);
   const depts = auth.user.departments.map((dept) => dept.name);
-  const [timeFilter, setTimeFilter] = useState("Yearly");
+  const [timeFilter, setTimeFilter] = useState("Monthly");
   const [filteredTotal, setFilteredTotal] = useState(0);
   const [dateLabel, setDateLabel] = useState("");
 
@@ -98,10 +98,31 @@ const TicketDashboard = () => {
 
   const todayDate = dayjs().startOf("day");
 
+  const currentUserId = auth.user?._id?.toString();
+
+  const isAssignedToCurrentUser = (ticket) => {
+    if (!currentUserId || !Array.isArray(ticket?.assignees)) return false;
+
+    return ticket.assignees.some((assignee) => {
+      const assigneeId =
+        typeof assignee === "string"
+          ? assignee
+          : assignee?._id || assignee?.id;
+
+      return assigneeId?.toString() === currentUserId;
+    });
+  };
+
   const ticketsFilteredData = {
     openTickets: ticketsData.filter((item) => {
       return (
         item.status === "Open" && dayjs(item.createdAt).isSame(todayDate, "day")
+      );
+    }).length,
+
+    rejectedTickets: ticketsData.filter((item) => {
+      return (
+        item.status === "Rejected" && dayjs(item.createdAt).isSame(todayDate, "day")
       );
     }).length,
 
@@ -126,7 +147,7 @@ const TicketDashboard = () => {
 
     assignedTickets: ticketsData.filter(
       (item) =>
-        item.assignees?.length > 0 &&
+        isAssignedToCurrentUser(item) &&
         dayjs(item?.assignedAt).isSame(todayDate, "day")
     ).length,
 
@@ -171,22 +192,18 @@ const TicketDashboard = () => {
   } else {
     masterDepartments = !departmentsIsLoading
       ? departments
-          .filter((dept) => depts.includes(dept.name))
-          .map((dept) => dept.name)
+        .filter((dept) => depts.includes(dept.name))
+        .map((dept) => dept.name)
       : [];
   }
 
   const departmentCountMap = {};
 
-  const today = new Date();
   const currentYear = new Date().getFullYear();
 
   const todayTickets = ticketsData.filter((ticket) => {
-    const createdAt = new Date(ticket.createdAt);
-    return (
-      createdAt.getDate() === today.getDate() &&
-      createdAt.getFullYear() === currentYear
-    );
+    if (!ticket?.createdAt) return false;
+    return dayjs(ticket.createdAt).isSame(dayjs(), "day");
   });
 
   const lastMonth = new Date().getMonth();
@@ -225,10 +242,10 @@ const TicketDashboard = () => {
   const priorityCountMap = {};
 
   lastMonthTickets.forEach((item) => {
-    const priority = item.priority.toLowerCase();
-    if (priority) {
-      priorityCountMap[priority] = (priorityCountMap[priority] || 0) + 1;
-    }
+    const priority = item?.priority?.toLowerCase();
+    if (!priority) return;
+
+    priorityCountMap[priority] = (priorityCountMap[priority] || 0) + 1;
   });
 
   const priorityOrder = ["high", "medium", "low"]; // order you want in the chart
@@ -240,11 +257,11 @@ const TicketDashboard = () => {
   const todayPriorityCountMap = {};
 
   todayTickets.forEach((item) => {
-    const priority = item.priority.toLowerCase();
-    if (priority) {
-      todayPriorityCountMap[priority] =
-        (todayPriorityCountMap[priority] || 0) + 1;
-    }
+    const priority = item?.priority?.toLowerCase();
+    if (!priority) return;
+
+    todayPriorityCountMap[priority] =
+      (todayPriorityCountMap[priority] || 0) + 1;
   });
 
   const todayPriorityOrder = ["high", "medium", "low"]; // order you want in the chart
@@ -437,7 +454,8 @@ const TicketDashboard = () => {
           border
           padding
           title={`Overall Department Raised Tickets - ${dateLabel}`}
-          TitleAmount={`TOTAL TICKETS : ${filteredTotal}`}>
+          TitleAmount={`TOTAL TICKETS : ${filteredTotal}`}
+        >
           {!isLoading ? (
             <AreaGraph
               responseData={ticketsData}
@@ -516,7 +534,8 @@ const TicketDashboard = () => {
           title={item.title}
           border={item.border}
           padding={item.padding}
-          titleLabel={item.titleLabel}>
+          titleLabel={item.titleLabel}
+        >
           <DonutChart
             centerLabel={item.centerLabel}
             labels={item.labels}
@@ -524,7 +543,7 @@ const TicketDashboard = () => {
             series={item.series}
             tooltipValue={item.tooltipValue}
             onSliceClick={item.onSliceClick}
-            // isMonetary={item.isMonetary}
+          // isMonetary={item.isMonetary}
           />
         </WidgetSection>
       )),

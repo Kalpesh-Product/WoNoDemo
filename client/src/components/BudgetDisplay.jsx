@@ -18,7 +18,7 @@ import { MdTrendingUp } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import AllocatedBudget from "./Tables/AllocatedBudget";
 import { useQuery } from "@tanstack/react-query";
-import { inrFormat } from "../utils/currencyFormat";
+import { usdFormat } from "../utils/currencyFormat";
 import DataCard from "./DataCard";
 import BudgetGraph from "./graphs/BudgetGraph";
 
@@ -102,8 +102,8 @@ const BudgetDisplay = ({ budgetData }) => {
         ...row,
         srNo: index + 1,
         projectedAmount: Number(
-          row.projectedAmount.toLocaleString("en-IN").replace(/,/g, "")
-        ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
+          row.projectedAmount.toLocaleString("en-US").replace(/,/g, "")
+        ).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       }));
       const transformedCols = [
         { field: "srNo", headerName: "SR NO", flex: 1 },
@@ -112,8 +112,8 @@ const BudgetDisplay = ({ budgetData }) => {
 
       return {
         ...data,
-        projectedAmount: data.projectedAmount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
-        amount: data.amount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
+        projectedAmount: data.projectedAmount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
+        amount: data.amount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
         tableData: {
           ...data.tableData,
           rows: transoformedRows,
@@ -137,34 +137,34 @@ const BudgetDisplay = ({ budgetData }) => {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <WidgetSection border layout={1} title={"BUDGET 2024-25"}>
+        <WidgetSection border layout={1} title={"BUDGET 2025-26"}>
           <BudgetGraph utilisedData={utilisedData} maxBudget={maxBudget} />
         </WidgetSection>
       </div>
       <WidgetSection layout={3} padding>
         <DataCard
-          data={"USD " + inrFormat("4000000")}
+          data={"USD " + usdFormat("4000000")}
           title={"Projected"}
           route={"/app/dashboard/it-dashboard/finance/budget"}
           description={`Current Month: ${new Date().toLocaleString("default", {
             month: "short",
-          })}-25`}
+          })}-26`}
         />
         <DataCard
-          data={"USD " + inrFormat("3500000")}
+          data={"USD " + usdFormat("3500000")}
           title={"Actual"}
           route={"/app/dashboard/it-dashboard/finance/budget"}
           description={`Current Month: ${new Date().toLocaleString("default", {
             month: "short",
-          })}-25`}
+          })}-26`}
         />
         <DataCard
-          data={"USD " + inrFormat(60000)}
+          data={"USD " + usdFormat(60000)}
           title={"Requested"}
           route={"/app/dashboard/it-dashboard/finance/budget"}
           description={`Current Month: ${new Date().toLocaleString("default", {
             month: "short",
-          })}-25`}
+          })}-26`}
         />
       </WidgetSection>
 

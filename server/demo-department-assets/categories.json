@@ -1,0 +1,242 @@
+[
+  {
+    "_id": {
+      "$oid": "6948a67804eee99c3e2ef384"
+    },
+    "categoryName": "Demo Maintenance Tools",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "037d1d320d24e3ffa4c7d01f"
+    },
+    "categoryName": "Demo Maintenance Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "101a7c2fc3e9a6af7c6d4591"
+    },
+    "categoryName": "Demo HR Office Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "8325c84e222d87e4f68df026"
+    },
+    "categoryName": "Demo HR Furniture",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "381d666cceb1c10cd571d459"
+    },
+    "categoryName": "Demo Top Management Electronics",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "6fba3852386e8fb4fbe6efc3"
+    },
+    "categoryName": "Demo Top Management Office Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "bbf0dd0efa77494e6e4cd6a5"
+    },
+    "categoryName": "Demo Tech Electronics",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "558dadf7ef43662770769a45"
+    },
+    "categoryName": "Demo Sales Electronics",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "c986938bf75dfa02f49627d5"
+    },
+    "categoryName": "Demo Sales Office Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "3406473cd7c7c494257cf063"
+    },
+    "categoryName": "Demo Finance Electronics",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "7e706f67a99a6e2d79500928"
+    },
+    "categoryName": "Demo Finance Office Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "9b9e548e69447a47413c9b1b"
+    },
+    "categoryName": "Demo IT Network Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "39a3a98f070a50eee48440f9"
+    },
+    "categoryName": "Demo IT Electronics",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "55c6fcc6b2de08f8a1c717ca"
+    },
+    "categoryName": "Demo Administration Furniture",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  },
+  {
+    "_id": {
+      "$oid": "0979948d50e28e5462078e8d"
+    },
+    "categoryName": "Demo Administration Office Equipment",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "department": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "appliesTo": [
+      "asset"
+    ],
+    "isActive": true
+  }
+]

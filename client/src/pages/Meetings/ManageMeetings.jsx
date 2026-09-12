@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Delete } from "@mui/icons-material";
 import {
@@ -27,26 +27,118 @@ import DetalisFormatted from "../../components/DetalisFormatted";
 import { Controller, useForm } from "react-hook-form";
 import humanDate from "../../utils/humanDateForamt";
 import humanTime from "../../utils/humanTime";
-import { TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import PageFrame from "../../components/Pages/PageFrame";
 import YearWiseTable from "../../components/Tables/YearWiseTable";
 import usePageDepartment from "../../hooks/usePageDepartment";
 import useAuth from "../../hooks/useAuth";
+import { toLocalDayBoundary } from "../../utils/dateRange";
+import {
+  DEFAULT_PAGE_SIZE,
+  PAGE_SIZE_OPTIONS,
+} from "../../constants/pagination";
 
 const ManageMeetings = () => {
   const axios = useAxiosPrivate();
+  const { auth } = useAuth();
+  const roleTitles = auth?.user?.role?.map((role) => role?.roleTitle) || [];
   const [checklistModalOpen, setChecklistModalOpen] = useState(false);
   const [selectedMeetingId, setSelectedMeetingId] = useState(null);
   const [checklists, setChecklists] = useState({});
   const department = usePageDepartment();
   const isFinance = department?.name === "Finance";
+  const isTechDepartment = auth?.user?.departments?.some(
+    (dept) => dept._id === "6798ba9de469e809084e2494",
+  );
+  const departmentNames =
+    auth?.user?.departments?.map((dept) => dept?.name?.trim()) || [];
   const [newItem, setNewItem] = useState("");
   const [modalMode, setModalMode] = useState("update"); // 'update', or 'view'
   const [selectedMeeting, setSelectedMeeting] = useState(null);
   const [detailsModal, setDetailsModal] = useState(false);
   const [submittedChecklists, setSubmittedChecklists] = useState({});
-  const { auth } = useAuth();
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: DEFAULT_PAGE_SIZE,
+    total: 0,
+  });
+  const [meetingSearch, setMeetingSearch] = useState("");
+  const [debouncedMeetingSearch, setDebouncedMeetingSearch] = useState("");
+
+  useEffect(() => {
+    const timeoutId = setTimeout(
+      () => setDebouncedMeetingSearch(meetingSearch.trim()),
+      400,
+    );
+    return () => clearTimeout(timeoutId);
+  }, [meetingSearch]);
+
+  const handleMeetingSearchChange = useCallback((value) => {
+    setMeetingSearch(value);
+    setPagination((current) => ({ ...current, page: 1 }));
+  }, []);
+  const initialMeetingDateRange = useMemo(
+    () => ({
+      startDate: dayjs().startOf("month").toDate(),
+      endDate: dayjs().endOf("month").toDate(),
+      key: "selection",
+    }),
+    [],
+  );
+  const [meetingDateRange, setMeetingDateRange] = useState(
+    initialMeetingDateRange,
+  );
+  const meetingDateRangeRef = useRef(initialMeetingDateRange);
+  const meetingFilters = useMemo(
+    () => ({
+      startDate: toLocalDayBoundary(meetingDateRange.startDate),
+      endDate: toLocalDayBoundary(meetingDateRange.endDate, true),
+    }),
+    [meetingDateRange],
+  );
+  const handleMeetingDateFilterChange = useCallback(({ selectedRange }) => {
+    if (!selectedRange?.startDate || !selectedRange?.endDate) return;
+
+    const currentRange = meetingDateRangeRef.current;
+    const currentStart = new Date(currentRange.startDate).getTime();
+    const currentEnd = new Date(currentRange.endDate).getTime();
+    const nextStart = new Date(selectedRange.startDate).getTime();
+    const nextEnd = new Date(selectedRange.endDate).getTime();
+
+    if (currentStart === nextStart && currentEnd === nextEnd) return;
+
+    meetingDateRangeRef.current = selectedRange;
+    setMeetingDateRange(selectedRange);
+    setPagination((current) => ({ ...current, page: 1 }));
+  }, []);
+  const [currentTime, setCurrentTime] = useState(() =>
+    dayjs().second(0).millisecond(0),
+  );
+  const adminTimingRoles = [
+    "Admin Admin",
+    "Admin Manager",
+    "Admin Employee",
+    "Administration Admin",
+    "Administration Manager",
+    "Administration Employee",
+  ];
+  const isAdminTimingUser =
+    roleTitles.some((roleTitle) => adminTimingRoles.includes(roleTitle)) ||
+    departmentNames.some((deptName) =>
+      ["Admin", "Administration"].includes(deptName),
+    );
+  const meetingDateEditRoles = [
+    "Super Admin",
+    "Master Admin",
+    "Tech Admin",
+    "Tech Employee",
+  ];
+  const canEditMeetingDate = roleTitles.some((roleTitle) =>
+    meetingDateEditRoles.includes(roleTitle),
+  );
+  const hasSpecialEditWindowAccess = isAdminTimingUser || canEditMeetingDate;
+  const isAdminTimingRestrictedUser = isAdminTimingUser;
 
   const statusColors = {
     Upcoming: { bg: "#E3F2FD", text: "#1565C0" }, // Light Blue
@@ -75,6 +167,14 @@ const ManageMeetings = () => {
   ];
   // const meetings = useSelector((state) => state.meetings?.data);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(dayjs().second(0).millisecond(0));
+    }, 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   //-----------------------API-----------------------------//
   //-------------------------------API-------------------------------//
   const { data: employees = [], isLoading: isEmployeesLoading } = useQuery({
@@ -86,6 +186,15 @@ const ManageMeetings = () => {
         .filter((u) => u.isActive === true);
     },
   });
+  const { data: clientDetails = [], isLoading: isClientDetailsLoading } =
+    useQuery({
+      queryKey: ["clientsData"],
+      queryFn: async () => {
+        const response = await axios.get("/api/sales/co-working-clients");
+        return response.data;
+      },
+    });
+  // console.log("clientDetails", clientDetails);
   const { data: clientEmployees = [], isLoading: isClientEmployeesLoading } =
     useQuery({
       queryKey: ["client-participants"],
@@ -128,6 +237,7 @@ const ManageMeetings = () => {
     formState: { errors: editErrors },
   } = useForm({
     defaultValues: {
+      date: null,
       startTime: null,
       endTime: null,
       internalParticipants: [],
@@ -140,7 +250,8 @@ const ManageMeetings = () => {
     mutationFn: async (data) => {
       const response = await axios.patch(
         "/api/meetings/update-meeting-details",
-        { ...data, meetingId: selectedMeetingId, internalParticipants: [] }
+        // { ...data, meetingId: selectedMeetingId, internalParticipants: [] }
+        { ...data, meetingId: selectedMeetingId },
       );
       return response.data;
     },
@@ -155,10 +266,21 @@ const ManageMeetings = () => {
   });
 
   const onEditSubmit = (data) => {
+    const mapParticipantIds = (participants = []) =>
+      participants
+        .map((participant) =>
+          typeof participant === "string" ? participant : participant?._id,
+        )
+        .filter(Boolean);
     const payload = {
       ...data,
-      internalParticipants: data.internalParticipants?.map((p) => p._id),
-      clientParticipants: data.clientParticipants?.map((p) => p._id),
+      date: data.date ? dayjs(data.date).toISOString() : undefined,
+      startTime: data.startTime ? dayjs(data.startTime).toISOString() : null,
+      endTime: data.endTime ? dayjs(data.endTime).toISOString() : null,
+      // internalParticipants: data.internalParticipants?.map((p) => p._id),
+      // clientParticipants: data.clientParticipants?.map((p) => p._id),
+      internalParticipants: mapParticipantIds(data.internalParticipants),
+      clientParticipants: mapParticipantIds(data.clientParticipants),
     };
     updateMeeting(payload);
     console.log("Final payload:", payload);
@@ -167,23 +289,41 @@ const ManageMeetings = () => {
 
   useEffect(() => {
     if (selectedMeeting) {
+      setEditValue("date", dayjs(new Date(selectedMeeting.startTime)));
       setEditValue("startTime", dayjs(new Date(selectedMeeting.startTime)));
       setEditValue("endTime", dayjs(new Date(selectedMeeting.endTime)));
 
       const formattedInternal =
-        selectedMeeting.participants?.map((p) => ({
-          _id: p._id,
-          firstName: p.firstName,
-          lastName: p.lastName,
-          email: p.email,
-        })) || [];
+        selectedMeeting.participants
+          ?.filter((p) => p?.firstName)
+          .map((p) => ({
+            _id: p._id,
+            firstName: p.firstName,
+            lastName: p.lastName,
+            email: p.email,
+          })) || [];
 
       const formattedExternal =
-        selectedMeeting.participants?.map((p) => ({
-          _id: p._id,
-          employeeName: p.employeeName,
-          email: p.email,
-        })) || [];
+        selectedMeeting.participants
+          ?.filter((p) => p?.employeeName)
+          .map((p) => ({
+            _id: p._id,
+            employeeName: p.employeeName,
+            email: p.email,
+          })) || [];
+      //   selectedMeeting.participants?.map((p) => ({
+      //     _id: p._id,
+      //     firstName: p.firstName,
+      //     lastName: p.lastName,
+      //     email: p.email,
+      //   })) || [];
+
+      // const formattedExternal =
+      //   selectedMeeting.participants?.map((p) => ({
+      //     _id: p._id,
+      //     employeeName: p.employeeName,
+      //     email: p.email,
+      //   })) || [];
 
       setEditValue("internalParticipants", formattedInternal);
       setEditValue("clientParticipants", formattedExternal);
@@ -194,18 +334,70 @@ const ManageMeetings = () => {
 
   //------------------------------API--------------------------------//
   const { data: meetings = [], isLoading: isMeetingsLoading } = useQuery({
-    queryKey: ["meetings"],
+    queryKey: [
+      "internal-meetings",
+      meetingFilters.startDate,
+      meetingFilters.endDate,
+      pagination.page,
+      pagination.limit,
+      debouncedMeetingSearch,
+    ],
+    placeholderData: keepPreviousData,
     queryFn: async () => {
-      const response = await axios.get("/api/meetings/get-meetings");
-      return response.data;
+      const response = await axios.get("/api/meetings/get-meetings", {
+        params: {
+          startDate: meetingFilters.startDate,
+          endDate: meetingFilters.endDate,
+          type: "internal",
+          completed: "false",
+          page: pagination.page,
+          limit: pagination.limit,
+          search: debouncedMeetingSearch || undefined,
+          searchContext: "internal-table",
+        },
+      });
+      const responsePagination = response.data.pagination || response.data;
+
+      setPagination((current) => ({
+        page: Number(responsePagination.page) || current.page,
+        limit: Number(responsePagination.limit) || current.limit,
+        total: Number(responsePagination.total) || 0,
+      }));
+
+      return response.data.data || [];
     },
   });
   const filteredMeetings = meetings.filter(
     (item) =>
-      item.meetingStatus !== "Completed" && item.meetingType === "Internal"
+      // item.meetingStatus !== "Completed" && item.meetingType === "Internal",
+      item.meetingStatus !== "Completed" &&
+      item.meetingStatus !== "Cancelled" &&
+      item.meetingType === "Internal",
   );
 
   const transformedMeetings = filteredMeetings.map((meeting, index) => ({
+    ...(() => {
+      console.log("meeting booked", meeting.booked);
+      const client = clientDetails.find((c) => c.clientName === meeting.client);
+      const meetingMonth = dayjs(meeting.date);
+      const monthHistory = client?.meetingCreditBalanceHistory?.find(
+        (history) =>
+          dayjs(history.monthStartDate).isSame(meetingMonth, "month"),
+      );
+      const totalMonthlyCredit = Number(client?.totalMeetingCredits || 0);
+
+      let monthlyRemainingCredit = totalMonthlyCredit;
+
+      if (monthHistory) {
+        monthlyRemainingCredit = Number(monthHistory.remainingCredit || 0);
+      } else if (meetingMonth.isSame(dayjs(), "month")) {
+        monthlyRemainingCredit = Number(client?.meetingCreditBalance || 0);
+      }
+
+      return {
+        monthlyRemainingCredit: monthlyRemainingCredit.toFixed(2),
+      };
+    })(),
     ...meeting,
     date: meeting.date,
     bookedBy: meeting.bookedBy
@@ -213,15 +405,85 @@ const ManageMeetings = () => {
       : meeting.clientBookedBy?.employeeName || "Unknown",
     bookedById: meeting.bookedBy ? meeting.bookedBy._id : "",
     startTime: meeting.startTime,
-    endTime: meeting.endTime,
+    endTime:
+      meeting.extendTime > meeting.endTime
+        ? meeting.extendTime
+        : meeting.endTime,
     extendTime: meeting.extendTime,
-    srNo: index + 1,
+    srNo: (pagination.page - 1) * pagination.limit + index + 1,
     company: meeting.client || "",
     clientBookedBy: meeting.clientBookedBy || "",
-    department:
-      meeting.bookedBy &&
-      [...meeting.bookedBy.departments.map((dept) => dept.name)].join(","),
+    building: meeting.location?.building?.buildingName || "",
+    department: Array.isArray(meeting.department)
+      ? meeting.department
+          .map((dept) => dept?.name)
+          .filter(Boolean)
+          .join(", ")
+      : "Unknown",
+    // meetingCreditBalance: clientDetails.find((c) => c.clientName === meeting.client)?.meetingCreditBalance.toFixed(2) || "0.00",
   }));
+
+  const getDisplayDuration = (meeting) => {
+    const startTime = meeting?.startTime;
+    const endTime = meeting?.endTime;
+
+    if (!startTime || !endTime) return meeting?.duration || "N/A";
+
+    const durationInMinutes = dayjs(endTime).diff(dayjs(startTime), "minute");
+
+    if (!Number.isFinite(durationInMinutes) || durationInMinutes < 0) {
+      return meeting?.duration || "N/A";
+    }
+
+    return `${durationInMinutes}min`;
+  };
+
+  const canEditMeeting = (meeting) => {
+    if (!meeting) return false;
+    if (
+      meeting.meetingStatus === "Cancelled" ||
+      meeting.meetingStatus === "Completed"
+    ) {
+      return false;
+    }
+
+    const meetingStart = dayjs(meeting.startTime);
+
+    if (meetingStart.isAfter(currentTime)) {
+      return true;
+    }
+
+    if (!hasSpecialEditWindowAccess) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const getEditTimeBounds = (meetingTime) => {
+    if (!meetingTime) return {};
+
+    const originalTime = dayjs(meetingTime);
+
+    if (isAdminTimingRestrictedUser) {
+      return {
+        minTime: isAdminTimingBufferExpired
+          ? originalTime
+          : originalTime.subtract(30, "minute"),
+      };
+    }
+
+    if (isTechDepartment) return {};
+
+    return {
+      minTime: originalTime,
+    };
+  };
+
+  const isAdminTimingBufferExpired =
+    isAdminTimingRestrictedUser &&
+    selectedMeeting?.startTime &&
+    currentTime.isAfter(dayjs(selectedMeeting.startTime).add(30, "minute"));
 
   // API mutation for submitting housekeeping tasks
   const housekeepingMutation = useMutation({
@@ -247,7 +509,7 @@ const ManageMeetings = () => {
     mutationFn: async (data) => {
       const respone = await axios.patch(
         `/api/meetings/cancel-meeting/${selectedMeetingId}`,
-        data
+        data,
       );
       queryClient.invalidateQueries({ queryKey: ["meetings"] });
       return respone.data;
@@ -280,7 +542,7 @@ const ManageMeetings = () => {
       mutationFn: async (data) => {
         const respone = await axios.patch(
           `/api/meetings/update-meeting-status`,
-          data
+          data,
         );
         queryClient.invalidateQueries({ queryKey: ["meetings"] });
         return respone.data;
@@ -291,7 +553,7 @@ const ManageMeetings = () => {
       onError: (error) => {
         toast.error(error.response.data.message);
       },
-    }
+    },
   );
   //------------------------------API--------------------------------//
 
@@ -377,7 +639,7 @@ const ManageMeetings = () => {
     if (!selectedMeetingId) return;
     setChecklists((prev) => {
       const updatedItems = prev[selectedMeetingId][type].map((item, i) =>
-        i === index ? { ...item, checked: !item.checked } : item
+        i === index ? { ...item, checked: !item.checked } : item,
       );
       return {
         ...prev,
@@ -393,7 +655,7 @@ const ManageMeetings = () => {
     if (!selectedMeetingId) return;
     setChecklists((prev) => {
       const updatedCustomItems = prev[selectedMeetingId].customItems.filter(
-        (_, i) => i !== index
+        (_, i) => i !== index,
       );
       return {
         ...prev,
@@ -418,7 +680,7 @@ const ManageMeetings = () => {
     if (!selectedMeetingId) return;
 
     const selectedMeeting = meetings.find(
-      (meeting) => meeting._id === selectedMeetingId
+      (meeting) => meeting._id === selectedMeetingId,
     );
     if (!selectedMeeting) return;
 
@@ -426,7 +688,7 @@ const ManageMeetings = () => {
       checklists[selectedMeetingId] || {};
 
     const allCheckedItems = [...defaultItems, ...customItems].filter(
-      (item) => item.checked
+      (item) => item.checked,
     );
 
     const housekeepingTasks = allCheckedItems.map((item) => ({
@@ -447,10 +709,24 @@ const ManageMeetings = () => {
 
   //---------------------------------Event handlers----------------------------------------//
 
+  const getAvatarName = (participant) => {
+    if (participant.firstName && participant.lastName) {
+      return `${participant.firstName}+${participant.lastName}`;
+    }
+
+    // External participants (client side)
+    if (participant.employeeName) {
+      return participant.employeeName.replace(/\s+/g, "+");
+    }
+
+    return "User";
+  };
+
   const columns = [
-    { field: "srNo", headerName: "Sr No", sort: "desc" },
+    { field: "srNo", headerName: "Sr No" },
     { field: "client", headerName: "Company" },
     { field: "bookedBy", headerName: "Booked By" },
+    { field: "building", headerName: "Building" },
     { field: "roomName", headerName: "Room Name" },
     {
       field: "date",
@@ -468,13 +744,19 @@ const ManageMeetings = () => {
       cellRenderer: (params) => humanTime(params.value),
     },
     {
-      field: "extendTime",
-      headerName: "Extended Time",
-      cellRenderer: (params) => humanTime(params.value) || "-",
+      field: "monthlyRemainingCredit",
+      headerName: "Remaining Credit",
+      cellRenderer: (params) => params.value,
     },
+    // {
+    //   field: "extendTime",
+    //   headerName: "Extended Time",
+    //   cellRenderer: (params) => humanTime(params.value) || "-",
+    // },
     {
       field: "meetingStatus",
       headerName: "Meeting Status",
+      sort: "desc",
       cellRenderer: (params) => (
         <Chip
           label={params.value || ""}
@@ -518,7 +800,10 @@ const ManageMeetings = () => {
                     key={index}
                     alt={participant.firstName}
                     // src={participant.avatar}
-                    src="https://ui-avatars.com/api/?name=Alice+Johnson&background=random"
+                    // src="https://ui-avatars.com/api/?name=Alice+Johnson&background=random"
+                    src={`https://ui-avatars.com/api/?name=${getAvatarName(
+                      participant,
+                    )}&background=random`}
                     sx={{ width: 23, height: 23 }}
                   />
                 );
@@ -542,6 +827,7 @@ const ManageMeetings = () => {
         const isCompleted = status === "Completed";
         const isHousekeepingPending = housekeepingStatus === "Pending";
         const isHousekeepingCompleted = housekeepingStatus === "Completed";
+        const isEditAllowed = canEditMeeting(params.data);
 
         const menuItems = [
           !isOngoing &&
@@ -550,7 +836,7 @@ const ManageMeetings = () => {
               onClick: () =>
                 handleOpenChecklistModal("update", params.data._id),
             },
-          isUpcoming && {
+          isEditAllowed && {
             label: "Edit",
             onClick: () => handleEditMeeting("edit", params.data),
           },
@@ -567,7 +853,8 @@ const ManageMeetings = () => {
             label: "Extend Meeting",
             onClick: () => handleExtendMeetingModal("extend", params.data),
           },
-          !isCancelled && {
+          // !isCancelled && {
+          isUpcoming && {
             label: "Cancel",
             onClick: () => handleSelectedMeeting("cancel", params.data),
           },
@@ -584,8 +871,9 @@ const ManageMeetings = () => {
               </span>
             </div>
 
-
-            {!isCancelled && !isFinance &&<ThreeDotMenu menuItems={menuItems} />}
+            {!isCancelled && !isFinance && (
+              <ThreeDotMenu menuItems={menuItems} />
+            )}
           </div>
         );
       },
@@ -595,16 +883,36 @@ const ManageMeetings = () => {
   return (
     <div className="flex flex-col gap-4">
       <PageFrame>
-        {!isMeetingsLoading ? (
+        {isMeetingsLoading && meetings.length === 0 ? (
+          <CircularProgress />
+        ) : (
           <YearWiseTable
             search
             dateColumn={"date"}
+            initialDateRange={initialMeetingDateRange}
+            onDateFilterChange={handleMeetingDateFilterChange}
             tableTitle={"Manage Meetings"}
             data={transformedMeetings || []}
             columns={columns}
+            serverPagination
+            pageSizeOptions={PAGE_SIZE_OPTIONS}
+            paginationPageSize={pagination.limit}
+            paginationPage={pagination.page}
+            paginationTotal={pagination.total}
+            onPaginationPageChange={(page) =>
+              setPagination((current) => ({ ...current, page }))
+            }
+            onPaginationPageSizeChange={(limit) =>
+              setPagination((current) =>
+                current.limit === limit
+                  ? current
+                  : { ...current, page: 1, limit },
+              )
+            }
+            serverSearch
+            searchValue={meetingSearch}
+            onSearchChange={handleMeetingSearchChange}
           />
-        ) : (
-          <CircularProgress />
         )}
       </PageFrame>
 
@@ -630,7 +938,7 @@ const ManageMeetings = () => {
               Default Tasks
             </span>
             <List>
-              {checklists[selectedMeetingId]?.defaultItems.map(
+              {checklists[selectedMeetingId]?.defaultItems?.map(
                 (item, index) => (
                   <ListItem key={index}>
                     <Checkbox
@@ -642,7 +950,7 @@ const ManageMeetings = () => {
                     />
                     {item.name}
                   </ListItem>
-                )
+                ),
               )}
             </List>
 
@@ -678,7 +986,7 @@ const ManageMeetings = () => {
                           </div>
                         </div>
                       </ListItem>
-                    )
+                    ),
                   )}
                 </List>
               </>
@@ -724,12 +1032,12 @@ const ManageMeetings = () => {
           modalMode === "viewDetails"
             ? "Meeting Details"
             : modalMode === "cancel"
-            ? "Cancel Meeting"
-            : modalMode === "extend"
-            ? "Extend Meeting"
-            : modalMode === "edit"
-            ? "Edit Meeting"
-            : ""
+              ? "Cancel Meeting"
+              : modalMode === "extend"
+                ? "Extend Meeting"
+                : modalMode === "edit"
+                  ? "Edit Meeting"
+                  : ""
         }
         open={detailsModal}
         onClose={() => setDetailsModal(false)}
@@ -749,12 +1057,12 @@ const ManageMeetings = () => {
             <DetalisFormatted
               title="Time"
               detail={`${humanTime(selectedMeeting.startTime)} - ${humanTime(
-                selectedMeeting.endTime
+                selectedMeeting.endTime,
               )}`}
             />
             <DetalisFormatted
               title="Duration"
-              detail={selectedMeeting.duration || "N/A"}
+              detail={getDisplayDuration(selectedMeeting)}
             />
             <DetalisFormatted
               title="Status"
@@ -779,8 +1087,8 @@ const ManageMeetings = () => {
                       return p.firstName
                         ? `${p.firstName} ${p.lastName}`
                         : p.employeeName
-                        ? p.employeeName
-                        : "N/A";
+                          ? p.employeeName
+                          : "N/A";
                     })
                     .join(", ") || "N/A"
                 }
@@ -939,6 +1247,61 @@ const ManageMeetings = () => {
               onSubmit={handleEditMeetingSubmit(onEditSubmit)}
               className="grid grid-cols-2 gap-4"
             >
+              {canEditMeetingDate && (
+                <div className="col-span-2">
+                  <Controller
+                    name="date"
+                    control={editControl}
+                    rules={{
+                      required: "Date is required",
+                    }}
+                    render={({ field }) => (
+                      <DatePicker
+                        {...field}
+                        label="Date"
+                        format="DD-MM-YYYY"
+                        slotProps={{
+                          textField: {
+                            size: "small",
+                            fullWidth: true,
+                            error: !!editErrors.date,
+                            helperText: editErrors.date?.message,
+                          },
+                        }}
+                        onChange={(value) => {
+                          field.onChange(value);
+
+                          if (!value) return;
+
+                          const nextDate = dayjs(value);
+                          const currentStart = getValues("startTime");
+                          const currentEnd = getValues("endTime");
+
+                          if (currentStart) {
+                            setEditValue(
+                              "startTime",
+                              dayjs(currentStart)
+                                .year(nextDate.year())
+                                .month(nextDate.month())
+                                .date(nextDate.date()),
+                            );
+                          }
+
+                          if (currentEnd) {
+                            setEditValue(
+                              "endTime",
+                              dayjs(currentEnd)
+                                .year(nextDate.year())
+                                .month(nextDate.month())
+                                .date(nextDate.date()),
+                            );
+                          }
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+              )}
               {/* <Controller
                 name="startTime"
                 control={editControl}
@@ -970,6 +1333,7 @@ const ManageMeetings = () => {
                   <TimePicker
                     {...field}
                     label="Start Time"
+                    {...getEditTimeBounds(selectedMeeting?.startTime)}
                     slotProps={{
                       textField: {
                         size: "small",
@@ -978,15 +1342,22 @@ const ManageMeetings = () => {
                       },
                     }}
                     shouldDisableTime={(time, view) => {
+                      if (isAdminTimingBufferExpired) return true;
+                      if (canEditMeetingDate) return false;
                       const startTime = selectedMeeting.startTime;
                       const timeValue = time.$d;
 
                       if (!startTime) return false;
 
                       const startDate = new Date(startTime);
+                      const thresholdDate =
+                        isAdminTimingRestrictedUser &&
+                        !isAdminTimingBufferExpired
+                          ? new Date(startDate.getTime() - 30 * 60000)
+                          : startDate;
 
                       if (view === "hours") {
-                        return timeValue.getHours() < startDate.getHours();
+                        return timeValue.getHours() < thresholdDate.getHours();
                       }
 
                       if (view === "minutes") {
@@ -995,8 +1366,8 @@ const ManageMeetings = () => {
                           : null;
 
                         return (
-                          selectedHour === startDate.getHours() &&
-                          timeValue.getMinutes() < startDate.getMinutes()
+                          selectedHour === thresholdDate.getHours() &&
+                          timeValue.getMinutes() < thresholdDate.getMinutes()
                         );
                       }
 
@@ -1035,6 +1406,7 @@ const ManageMeetings = () => {
                 render={({ field }) => (
                   <TimePicker
                     {...field}
+                    {...getEditTimeBounds(selectedMeeting?.endTime)}
                     slotProps={{
                       textField: {
                         size: "small",
@@ -1044,15 +1416,22 @@ const ManageMeetings = () => {
                     }}
                     label={"End Time"}
                     shouldDisableTime={(time, view) => {
+                      if (isAdminTimingBufferExpired) return true;
+                      if (canEditMeetingDate) return false;
                       const endTime = selectedMeeting.endTime;
                       const timeValue = time.$d;
 
                       if (!endTime) return false;
 
                       const endDate = new Date(endTime);
+                      const thresholdDate =
+                        isAdminTimingRestrictedUser &&
+                        !isAdminTimingBufferExpired
+                          ? new Date(endDate.getTime() - 30 * 60000)
+                          : endDate;
 
                       if (view === "hours") {
-                        return timeValue.getHours() < endDate.getHours();
+                        return timeValue.getHours() < thresholdDate.getHours();
                       }
 
                       if (view === "minutes") {
@@ -1061,8 +1440,8 @@ const ManageMeetings = () => {
                           : null;
 
                         return (
-                          selectedHour === endDate.getHours() &&
-                          timeValue.getMinutes() < endDate.getMinutes()
+                          selectedHour === thresholdDate.getHours() &&
+                          timeValue.getMinutes() < thresholdDate.getMinutes()
                         );
                       }
 
@@ -1105,6 +1484,12 @@ const ManageMeetings = () => {
                   // />
                 )}
               />
+              {isAdminTimingBufferExpired && !editErrors.startTime?.message && (
+                <div className="col-span-2 -mt-2 text-[12px] text-[#d32f2f]">
+                  You have exceeded the 30 min buffer to Edit the timings.{" "}
+                  "Please Raise a Ticket" to fix
+                </div>
+              )}
               {!selectedMeeting?.clientBookedBy ? (
                 <div className="col-span-2">
                   <Controller
@@ -1118,7 +1503,7 @@ const ManageMeetings = () => {
                       const availableOptions = employees.filter(
                         (emp) =>
                           !selectedParticipantIds.includes(emp._id) &&
-                          emp._id !== bookedById
+                          emp._id !== bookedById,
                       );
 
                       const mergedOptions = [
@@ -1173,7 +1558,7 @@ const ManageMeetings = () => {
 
                       // Find the booking employee from clientEmployees
                       const bookedByEmployee = clientEmployees.find(
-                        (emp) => emp.employeeName === bookedByEmployeeName
+                        (emp) => emp.employeeName === bookedByEmployeeName,
                       );
                       const bookedByCompanyId = bookedByEmployee?.client?._id;
 
@@ -1182,7 +1567,7 @@ const ManageMeetings = () => {
                         (emp) =>
                           emp.client?._id === bookedByCompanyId &&
                           emp.employeeName !== bookedByEmployeeName &&
-                          !selectedExternalIds.includes(emp._id)
+                          !selectedExternalIds.includes(emp._id),
                       );
                       const mergedExternalOptions = [
                         ...field.value,

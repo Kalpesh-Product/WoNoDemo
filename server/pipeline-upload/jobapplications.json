@@ -1,0 +1,932 @@
+[
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Facilities Coordinator",
+    "name": "Aisha Shah",
+    "email": "aisha.shah@outlook.com",
+    "dateOfBirth": {
+      "$date": "1988-01-03T00:00:00Z"
+    },
+    "mobileNumber": "+919200000000",
+    "location": "Mumbai",
+    "experienceInYears": "1",
+    "currentMonthlySalary": "810",
+    "expectedMonthlySalary": "931",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 1 years of experience in facilities coordinator responsibilities.",
+    "skillSetsForJob": "Vendor coordination and facility inspections",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in vendor coordination and facility inspections and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Facilities Coordinator opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-04-01T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "30132dbe7bdf0c7c07810388"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Talent Acquisition Specialist",
+    "name": "Arjun Desai",
+    "email": "arjun.desai@outlook.com",
+    "dateOfBirth": {
+      "$date": "1989-02-04T00:00:00Z"
+    },
+    "mobileNumber": "+919200000001",
+    "location": "Pune",
+    "experienceInYears": "2",
+    "currentMonthlySalary": "1045",
+    "expectedMonthlySalary": "1254",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 2 years of experience in talent acquisition specialist responsibilities.",
+    "skillSetsForJob": "Candidate screening and interview coordination",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in candidate screening and interview coordination and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Talent Acquisition Specialist opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-05-01T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "7776f29af6e0c4649626c854"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Business Analyst",
+    "name": "Priya Khan",
+    "email": "priya.khan@outlook.com",
+    "dateOfBirth": {
+      "$date": "1990-03-05T00:00:00Z"
+    },
+    "mobileNumber": "+919200000002",
+    "location": "Bengaluru",
+    "experienceInYears": "3",
+    "currentMonthlySalary": "1280",
+    "expectedMonthlySalary": "1600",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 3 years of experience in business analyst responsibilities.",
+    "skillSetsForJob": "Business reporting and stakeholder communication",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in business reporting and stakeholder communication and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Business Analyst opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-06-01T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "ec85f3d38cb8626a68d4b268"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Frontend Engineer",
+    "name": "Rohan Patel",
+    "email": "rohan.patel@outlook.com",
+    "dateOfBirth": {
+      "$date": "1991-04-06T00:00:00Z"
+    },
+    "mobileNumber": "+919200000003",
+    "location": "Panaji",
+    "experienceInYears": "4",
+    "currentMonthlySalary": "1515",
+    "expectedMonthlySalary": "1742",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 4 years of experience in frontend engineer responsibilities.",
+    "skillSetsForJob": "React, JavaScript and accessibility testing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in react, javascript and accessibility testing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Frontend Engineer opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-07-01T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "3be736d13b90fa796d652969"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Account Executive",
+    "name": "Maya Mehta",
+    "email": "maya.mehta@outlook.com",
+    "dateOfBirth": {
+      "$date": "1992-05-07T00:00:00Z"
+    },
+    "mobileNumber": "+919200000004",
+    "location": "Delhi",
+    "experienceInYears": "5",
+    "currentMonthlySalary": "1450",
+    "expectedMonthlySalary": "1740",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 5 years of experience in account executive responsibilities.",
+    "skillSetsForJob": "CRM management and consultative selling",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in crm management and consultative selling and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Account Executive opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-08-01T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "021753729b5337c95a6c9296"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Accounts Associate",
+    "name": "Kabir Menon",
+    "email": "kabir.menon@outlook.com",
+    "dateOfBirth": {
+      "$date": "1993-06-08T00:00:00Z"
+    },
+    "mobileNumber": "+919200000005",
+    "location": "Mumbai",
+    "experienceInYears": "6",
+    "currentMonthlySalary": "1685",
+    "expectedMonthlySalary": "2106",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 6 years of experience in accounts associate responsibilities.",
+    "skillSetsForJob": "Reconciliation, spreadsheets and invoicing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in reconciliation, spreadsheets and invoicing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Accounts Associate opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-09-01T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "45b1bacab24ca28ed7816bd9"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "IT Support Engineer",
+    "name": "Zoya Joshi",
+    "email": "zoya.joshi@outlook.com",
+    "dateOfBirth": {
+      "$date": "1994-07-09T00:00:00Z"
+    },
+    "mobileNumber": "+919200000006",
+    "location": "Pune",
+    "experienceInYears": "7",
+    "currentMonthlySalary": "1920",
+    "expectedMonthlySalary": "2208",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 7 years of experience in it support engineer responsibilities.",
+    "skillSetsForJob": "Network troubleshooting and endpoint support",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in network troubleshooting and endpoint support and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the IT Support Engineer opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-04-02T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "c076677951c924d605ad7b12"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Office Administrator",
+    "name": "Aditya Rao",
+    "email": "aditya.rao@outlook.com",
+    "dateOfBirth": {
+      "$date": "1995-08-10T00:00:00Z"
+    },
+    "mobileNumber": "+919200000007",
+    "location": "Bengaluru",
+    "experienceInYears": "8",
+    "currentMonthlySalary": "2155",
+    "expectedMonthlySalary": "2586",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 8 years of experience in office administrator responsibilities.",
+    "skillSetsForJob": "Office coordination and inventory management",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in office coordination and inventory management and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Office Administrator opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-05-02T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "ae34d67d57ae81a0d433d061"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Facilities Coordinator",
+    "name": "Ananya Kapoor",
+    "email": "ananya.kapoor@outlook.com",
+    "dateOfBirth": {
+      "$date": "1996-09-11T00:00:00Z"
+    },
+    "mobileNumber": "+919200000008",
+    "location": "Panaji",
+    "experienceInYears": "9",
+    "currentMonthlySalary": "2090",
+    "expectedMonthlySalary": "2613",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 9 years of experience in facilities coordinator responsibilities.",
+    "skillSetsForJob": "Vendor coordination and facility inspections",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in vendor coordination and facility inspections and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Facilities Coordinator opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-06-02T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "f7bf21e6f8f8ec5f92fced16"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Talent Acquisition Specialist",
+    "name": "Omar Nair",
+    "email": "omar.nair@outlook.com",
+    "dateOfBirth": {
+      "$date": "1997-10-12T00:00:00Z"
+    },
+    "mobileNumber": "+919200000009",
+    "location": "Delhi",
+    "experienceInYears": "1",
+    "currentMonthlySalary": "885",
+    "expectedMonthlySalary": "1018",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 1 years of experience in talent acquisition specialist responsibilities.",
+    "skillSetsForJob": "Candidate screening and interview coordination",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in candidate screening and interview coordination and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Talent Acquisition Specialist opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-07-02T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "809f558717df5842a3425c7b"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Business Analyst",
+    "name": "Nina Shah",
+    "email": "nina.shah@outlook.com",
+    "dateOfBirth": {
+      "$date": "1998-11-13T00:00:00Z"
+    },
+    "mobileNumber": "+919200000010",
+    "location": "Mumbai",
+    "experienceInYears": "2",
+    "currentMonthlySalary": "1120",
+    "expectedMonthlySalary": "1344",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 2 years of experience in business analyst responsibilities.",
+    "skillSetsForJob": "Business reporting and stakeholder communication",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in business reporting and stakeholder communication and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Business Analyst opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-08-02T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "fc8e8397027f5fcf51103cec"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Frontend Engineer",
+    "name": "Vikram Desai",
+    "email": "vikram.desai@outlook.com",
+    "dateOfBirth": {
+      "$date": "1999-12-14T00:00:00Z"
+    },
+    "mobileNumber": "+919200000011",
+    "location": "Pune",
+    "experienceInYears": "3",
+    "currentMonthlySalary": "1355",
+    "expectedMonthlySalary": "1694",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 3 years of experience in frontend engineer responsibilities.",
+    "skillSetsForJob": "React, JavaScript and accessibility testing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in react, javascript and accessibility testing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Frontend Engineer opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-09-02T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "06d7697abe160ea9bf0f0ffc"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Account Executive",
+    "name": "Leah Khan",
+    "email": "leah.khan@outlook.com",
+    "dateOfBirth": {
+      "$date": "2000-01-15T00:00:00Z"
+    },
+    "mobileNumber": "+919200000012",
+    "location": "Bengaluru",
+    "experienceInYears": "4",
+    "currentMonthlySalary": "1290",
+    "expectedMonthlySalary": "1483",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 4 years of experience in account executive responsibilities.",
+    "skillSetsForJob": "CRM management and consultative selling",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in crm management and consultative selling and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Account Executive opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-04-03T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "9510722675c75903530db31a"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Accounts Associate",
+    "name": "Ishaan Patel",
+    "email": "ishaan.patel@outlook.com",
+    "dateOfBirth": {
+      "$date": "1988-02-16T00:00:00Z"
+    },
+    "mobileNumber": "+919200000013",
+    "location": "Panaji",
+    "experienceInYears": "5",
+    "currentMonthlySalary": "1525",
+    "expectedMonthlySalary": "1830",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 5 years of experience in accounts associate responsibilities.",
+    "skillSetsForJob": "Reconciliation, spreadsheets and invoicing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in reconciliation, spreadsheets and invoicing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Accounts Associate opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-05-03T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "193662ac5c1714538d5b882d"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "IT Support Engineer",
+    "name": "Sara Mehta",
+    "email": "sara.mehta@outlook.com",
+    "dateOfBirth": {
+      "$date": "1989-03-17T00:00:00Z"
+    },
+    "mobileNumber": "+919200000014",
+    "location": "Delhi",
+    "experienceInYears": "6",
+    "currentMonthlySalary": "1760",
+    "expectedMonthlySalary": "2200",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 6 years of experience in it support engineer responsibilities.",
+    "skillSetsForJob": "Network troubleshooting and endpoint support",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in network troubleshooting and endpoint support and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the IT Support Engineer opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-06-03T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "b0a89c98f7fe67d161829d5b"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Office Administrator",
+    "name": "Dev Menon",
+    "email": "dev.menon@outlook.com",
+    "dateOfBirth": {
+      "$date": "1990-04-18T00:00:00Z"
+    },
+    "mobileNumber": "+919200000015",
+    "location": "Mumbai",
+    "experienceInYears": "7",
+    "currentMonthlySalary": "1995",
+    "expectedMonthlySalary": "2294",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 7 years of experience in office administrator responsibilities.",
+    "skillSetsForJob": "Office coordination and inventory management",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in office coordination and inventory management and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Office Administrator opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-07-03T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "272ecfc688bdd94fb41e6dc3"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Facilities Coordinator",
+    "name": "Mira Joshi",
+    "email": "mira.joshi@outlook.com",
+    "dateOfBirth": {
+      "$date": "1991-05-19T00:00:00Z"
+    },
+    "mobileNumber": "+919200000016",
+    "location": "Pune",
+    "experienceInYears": "8",
+    "currentMonthlySalary": "1930",
+    "expectedMonthlySalary": "2316",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 8 years of experience in facilities coordinator responsibilities.",
+    "skillSetsForJob": "Vendor coordination and facility inspections",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in vendor coordination and facility inspections and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Facilities Coordinator opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-08-03T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "a1f7a2220b6eb0a71f314e72"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Talent Acquisition Specialist",
+    "name": "Karan Rao",
+    "email": "karan.rao@outlook.com",
+    "dateOfBirth": {
+      "$date": "1992-06-20T00:00:00Z"
+    },
+    "mobileNumber": "+919200000017",
+    "location": "Bengaluru",
+    "experienceInYears": "9",
+    "currentMonthlySalary": "2165",
+    "expectedMonthlySalary": "2706",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 9 years of experience in talent acquisition specialist responsibilities.",
+    "skillSetsForJob": "Candidate screening and interview coordination",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in candidate screening and interview coordination and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Talent Acquisition Specialist opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-09-03T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "84d0957e01739361de4c3e62"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Business Analyst",
+    "name": "Sofia Kapoor",
+    "email": "sofia.kapoor@outlook.com",
+    "dateOfBirth": {
+      "$date": "1993-07-21T00:00:00Z"
+    },
+    "mobileNumber": "+919200000018",
+    "location": "Panaji",
+    "experienceInYears": "1",
+    "currentMonthlySalary": "960",
+    "expectedMonthlySalary": "1104",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 1 years of experience in business analyst responsibilities.",
+    "skillSetsForJob": "Business reporting and stakeholder communication",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in business reporting and stakeholder communication and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Business Analyst opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-04-04T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "b5199f9215b4ef3788100e14"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Frontend Engineer",
+    "name": "Nikhil Nair",
+    "email": "nikhil.nair@outlook.com",
+    "dateOfBirth": {
+      "$date": "1994-08-22T00:00:00Z"
+    },
+    "mobileNumber": "+919200000019",
+    "location": "Delhi",
+    "experienceInYears": "2",
+    "currentMonthlySalary": "1195",
+    "expectedMonthlySalary": "1434",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 2 years of experience in frontend engineer responsibilities.",
+    "skillSetsForJob": "React, JavaScript and accessibility testing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in react, javascript and accessibility testing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Frontend Engineer opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-05-04T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "5caf8b212e46327ae1b3d8fa"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Account Executive",
+    "name": "Riya Shah",
+    "email": "riya.shah@outlook.com",
+    "dateOfBirth": {
+      "$date": "1995-09-03T00:00:00Z"
+    },
+    "mobileNumber": "+919200000020",
+    "location": "Mumbai",
+    "experienceInYears": "3",
+    "currentMonthlySalary": "1130",
+    "expectedMonthlySalary": "1413",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 3 years of experience in account executive responsibilities.",
+    "skillSetsForJob": "CRM management and consultative selling",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in crm management and consultative selling and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Account Executive opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-06-04T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "5c3f5fa2a3ad43545b7dda95"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Accounts Associate",
+    "name": "Aarav Desai",
+    "email": "aarav.desai@outlook.com",
+    "dateOfBirth": {
+      "$date": "1996-10-04T00:00:00Z"
+    },
+    "mobileNumber": "+919200000021",
+    "location": "Pune",
+    "experienceInYears": "4",
+    "currentMonthlySalary": "1365",
+    "expectedMonthlySalary": "1570",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 4 years of experience in accounts associate responsibilities.",
+    "skillSetsForJob": "Reconciliation, spreadsheets and invoicing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in reconciliation, spreadsheets and invoicing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Accounts Associate opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-07-04T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "9b098cb1376d9cd742c11c92"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "IT Support Engineer",
+    "name": "Tara Khan",
+    "email": "tara.khan@outlook.com",
+    "dateOfBirth": {
+      "$date": "1997-11-05T00:00:00Z"
+    },
+    "mobileNumber": "+919200000022",
+    "location": "Bengaluru",
+    "experienceInYears": "5",
+    "currentMonthlySalary": "1600",
+    "expectedMonthlySalary": "1920",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 5 years of experience in it support engineer responsibilities.",
+    "skillSetsForJob": "Network troubleshooting and endpoint support",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in network troubleshooting and endpoint support and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the IT Support Engineer opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-08-04T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "a943ceb1bcef2cdd914a8e76"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Office Administrator",
+    "name": "Ravi Patel",
+    "email": "ravi.patel@outlook.com",
+    "dateOfBirth": {
+      "$date": "1998-12-06T00:00:00Z"
+    },
+    "mobileNumber": "+919200000023",
+    "location": "Panaji",
+    "experienceInYears": "6",
+    "currentMonthlySalary": "1835",
+    "expectedMonthlySalary": "2294",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 6 years of experience in office administrator responsibilities.",
+    "skillSetsForJob": "Office coordination and inventory management",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in office coordination and inventory management and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Office Administrator opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-09-04T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "a525a380fba279ee18ce3232"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Facilities Coordinator",
+    "name": "Neha Mehta",
+    "email": "neha.mehta@outlook.com",
+    "dateOfBirth": {
+      "$date": "1999-01-07T00:00:00Z"
+    },
+    "mobileNumber": "+919200000024",
+    "location": "Delhi",
+    "experienceInYears": "7",
+    "currentMonthlySalary": "1770",
+    "expectedMonthlySalary": "2035",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 7 years of experience in facilities coordinator responsibilities.",
+    "skillSetsForJob": "Vendor coordination and facility inspections",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in vendor coordination and facility inspections and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Facilities Coordinator opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-04-05T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "60ecc0f6dcfd0d7861a707da"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Talent Acquisition Specialist",
+    "name": "Sahil Menon",
+    "email": "sahil.menon@outlook.com",
+    "dateOfBirth": {
+      "$date": "2000-02-08T00:00:00Z"
+    },
+    "mobileNumber": "+919200000025",
+    "location": "Mumbai",
+    "experienceInYears": "8",
+    "currentMonthlySalary": "2005",
+    "expectedMonthlySalary": "2406",
+    "howSoonYouCanJoinInDays": "0",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 8 years of experience in talent acquisition specialist responsibilities.",
+    "skillSetsForJob": "Candidate screening and interview coordination",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in candidate screening and interview coordination and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "No",
+    "message": "Interested in the Talent Acquisition Specialist opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-05-05T05:00:00Z"
+    },
+    "status": "Pending",
+    "remarks": "Application awaiting initial review",
+    "_id": {
+      "$oid": "4415c4b53570ffdeebe70d0d"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Business Analyst",
+    "name": "Meera Joshi",
+    "email": "meera.joshi@outlook.com",
+    "dateOfBirth": {
+      "$date": "1988-03-09T00:00:00Z"
+    },
+    "mobileNumber": "+919200000026",
+    "location": "Pune",
+    "experienceInYears": "9",
+    "currentMonthlySalary": "2240",
+    "expectedMonthlySalary": "2800",
+    "howSoonYouCanJoinInDays": "15",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Collaborative professional with 9 years of experience in business analyst responsibilities.",
+    "skillSetsForJob": "Business reporting and stakeholder communication",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in business reporting and stakeholder communication and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Business Analyst opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-06-05T05:00:00Z"
+    },
+    "status": "Shortlisted",
+    "remarks": "Relevant experience matches the role",
+    "_id": {
+      "$oid": "f24004301be9e89815f99fc1"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Frontend Engineer",
+    "name": "Varun Rao",
+    "email": "varun.rao@outlook.com",
+    "dateOfBirth": {
+      "$date": "1989-04-10T00:00:00Z"
+    },
+    "mobileNumber": "+919200000027",
+    "location": "Bengaluru",
+    "experienceInYears": "1",
+    "currentMonthlySalary": "1035",
+    "expectedMonthlySalary": "1190",
+    "howSoonYouCanJoinInDays": "30",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 1 years of experience in frontend engineer responsibilities.",
+    "skillSetsForJob": "React, JavaScript and accessibility testing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in react, javascript and accessibility testing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Frontend Engineer opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-07-05T05:00:00Z"
+    },
+    "status": "Interview Scheduled",
+    "remarks": "Technical discussion scheduled",
+    "_id": {
+      "$oid": "6defbef31c3a2dd59211cc85"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Account Executive",
+    "name": "Isha Kapoor",
+    "email": "isha.kapoor@outlook.com",
+    "dateOfBirth": {
+      "$date": "1990-05-11T00:00:00Z"
+    },
+    "mobileNumber": "+919200000028",
+    "location": "Panaji",
+    "experienceInYears": "2",
+    "currentMonthlySalary": "970",
+    "expectedMonthlySalary": "1164",
+    "howSoonYouCanJoinInDays": "45",
+    "willRelocateToGoa": "No",
+    "whoAreYouAsPerson": "Collaborative professional with 2 years of experience in account executive responsibilities.",
+    "skillSetsForJob": "CRM management and consultative selling",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in crm management and consultative selling and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Account Executive opening; available for an interview on weekday afternoons.",
+    "finalSubmissionDate": {
+      "$date": "2026-08-05T05:00:00Z"
+    },
+    "status": "Selected",
+    "remarks": "Final discussion completed",
+    "_id": {
+      "$oid": "5bfd2e6a6a82360083a33a4f"
+    }
+  },
+  {
+    "companyData": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "jobPosition": "Accounts Associate",
+    "name": "Rahul Nair",
+    "email": "rahul.nair@outlook.com",
+    "dateOfBirth": {
+      "$date": "1991-06-12T00:00:00Z"
+    },
+    "mobileNumber": "+919200000029",
+    "location": "Delhi",
+    "experienceInYears": "3",
+    "currentMonthlySalary": "1205",
+    "expectedMonthlySalary": "1506",
+    "howSoonYouCanJoinInDays": "60",
+    "willRelocateToGoa": "Yes",
+    "whoAreYouAsPerson": "Detail-oriented professional with 3 years of experience in accounts associate responsibilities.",
+    "skillSetsForJob": "Reconciliation, spreadsheets and invoicing",
+    "whyShouldWeConsiderYou": "I bring hands-on experience in reconciliation, spreadsheets and invoicing and focus on clear communication and timely delivery.",
+    "willingToBootstrap": "Yes",
+    "message": "Interested in the Accounts Associate opening; available for an interview on weekday mornings.",
+    "finalSubmissionDate": {
+      "$date": "2026-09-05T05:00:00Z"
+    },
+    "status": "Rejected",
+    "remarks": "Experience does not match current requirements",
+    "_id": {
+      "$oid": "72be2950773367cfc3afed68"
+    }
+  }
+]

@@ -81,19 +81,14 @@ const RevenueGraph = ({ annualMonthlyRawData }) => {
     xaxis: { categories: financialYearMonths, title: { text: "Months" } },
     yaxis: {
       labels: {
-        formatter: (val) =>
-          val >= 10000000
-            ? (val / 10000000).toFixed(1) + "Cr"
-            : val >= 100000
-            ? (val / 100000).toFixed(1) + "L"
-            : val,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
-      title: { text: "Revenue" },
+      title: { text: "Revenue (USD)" },
     },
     legend: { position: "top" },
     dataLabels: { enabled: false },
     tooltip: {
-      y: { formatter: (val) => new Intl.NumberFormat("en-IN").format(val) },
+      y: { formatter: (val) => new Intl.NumberFormat("en-US").format(val) },
     },
   };
 

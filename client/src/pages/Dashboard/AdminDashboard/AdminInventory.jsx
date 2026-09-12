@@ -11,7 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Button, FormHelperText, MenuItem, TextField } from "@mui/material";
 import { toast } from "sonner";
 import useAuth from "../../../hooks/useAuth";
-import { inrFormat } from "../../../utils/currencyFormat";
+import { usdFormat } from "../../../utils/currencyFormat";
 import humanDateForamt from "../../../utils/humanDateForamt";
 import PageFrame from "../../../components/Pages/PageFrame";
 
@@ -47,7 +47,7 @@ const AdminInventory = () => {
     queryKey: ["assetsCategories"],
     queryFn: async () => {
       try {
-        const response = await axios.get("/api/assets/get-category");
+        const response = await axios.get("/api/category/get-category");
         return response.data;
       } catch (error) {
         throw new Error(error.response.data.message);
@@ -226,7 +226,8 @@ const AdminInventory = () => {
       <MuiModal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Add inventory">
+        title="Add inventory"
+      >
         {modalMode === "add" && (
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="grid grid-cols-1 gap-4">
@@ -243,7 +244,8 @@ const AdminInventory = () => {
                     select
                     error={!!errors.category}
                     helperText={errors.category?.message}
-                    fullWidth>
+                    fullWidth
+                  >
                     {assetsCategories?.map((cat) => (
                       <MenuItem key={cat} value={cat}>
                         {cat}
@@ -378,7 +380,8 @@ const AdminInventory = () => {
                     select
                     error={!!errors.vendor}
                     helperText={errors.vendor?.message}
-                    fullWidth>
+                    fullWidth
+                  >
                     {vendorDetials?.map((vendor) => (
                       <MenuItem key={vendor._id} value={vendor.name}>
                         {vendor.name}

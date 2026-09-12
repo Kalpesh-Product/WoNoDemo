@@ -1,0 +1,1394 @@
+[
+  {
+    "empId": "fe812ced83a19586a9f3f821",
+    "firstName": "Aisha",
+    "lastName": "Shah",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550100",
+    "email": "fe812ced83a19586a9f3f821@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bafbe469e809084e24a7"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "b911ab883ea9eb1a9954b166"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "fab96d630ca48feeb1c612e9"
+      },
+      {
+        "$oid": "ef77f4fc24019e2470cb3a11"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Maintenance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "ae86a61ee9fca0ed538410a6",
+    "firstName": "Daniel",
+    "lastName": "Wilson",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550101",
+    "email": "ae86a61ee9fca0ed538410a6@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bafbe469e809084e24a7"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "b911ab883ea9eb1a9954b166"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "5f2ad89a8f5be82ab97e57bf"
+      },
+      {
+        "$oid": "42f968d6dd3e021d67a5896b"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Maintenance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "ae86a61ee9fca0ed538410a6"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "89c62109225db3995e6f9cce",
+    "firstName": "Priya",
+    "lastName": "Mehta",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550102",
+    "email": "89c62109225db3995e6f9cce@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bafbe469e809084e24a7"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "b911ab883ea9eb1a9954b166"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "e5d5bb1a0f646b5a93347e43"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Maintenance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "89c62109225db3995e6f9cce"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "3eb13b3898303afbd0576b3b",
+    "firstName": "Marcus",
+    "lastName": "Reed",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550103",
+    "email": "3eb13b3898303afbd0576b3b@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab9e469e809084e249e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "04410f6c35e3b3e91f49db7b"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "9c38fd5abe2c121b16f71c07"
+      },
+      {
+        "$oid": "70422c430bcc9221d71b72cc"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "HR Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "a237b358c57ac3b79b340bf5",
+    "firstName": "Sofia",
+    "lastName": "Chen",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550104",
+    "email": "a237b358c57ac3b79b340bf5@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab9e469e809084e249e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "04410f6c35e3b3e91f49db7b"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "28a9feed65c63ae608156f95"
+      },
+      {
+        "$oid": "407c141165fde43506b2775b"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "HR Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "a237b358c57ac3b79b340bf5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "1ee67bdd768ded376506c3b7",
+    "firstName": "Omar",
+    "lastName": "Patel",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550105",
+    "email": "1ee67bdd768ded376506c3b7@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab9e469e809084e249e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "04410f6c35e3b3e91f49db7b"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "c94f125ca5192ec661f7f33c"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "HR Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "1ee67bdd768ded376506c3b7"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "b1864a9de1d8b0e618f22cb0",
+    "firstName": "Maya",
+    "lastName": "Brooks",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550106",
+    "email": "b1864a9de1d8b0e618f22cb0@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "02e5ef297719031f5e3fd810"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "62d57537b14a8d492c2a56c4"
+      },
+      {
+        "$oid": "3b860ecdcc4cd20598b83f80"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Top Management Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "ed58ecf7bb119d73ebcccddb",
+    "firstName": "Noah",
+    "lastName": "Singh",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550107",
+    "email": "ed58ecf7bb119d73ebcccddb@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "02e5ef297719031f5e3fd810"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "6e67e8e8744a5b3d94753fe2"
+      },
+      {
+        "$oid": "448afabebfeb3ecc003f5a0e"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Top Management Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "ed58ecf7bb119d73ebcccddb"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "96dac446bdee3294d16616dd",
+    "firstName": "Aisha",
+    "lastName": "Shah",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550108",
+    "email": "96dac446bdee3294d16616dd@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "02e5ef297719031f5e3fd810"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "6af0f1d5d5624338c5d26136"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Top Management Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "96dac446bdee3294d16616dd"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "5890cf7056b9d9aad008370e",
+    "firstName": "Daniel",
+    "lastName": "Wilson",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550109",
+    "email": "5890cf7056b9d9aad008370e@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798ba9de469e809084e2494"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "e277455a0ef3854c1d28ed63"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "c80c1b0e108c1482667c08e0"
+      },
+      {
+        "$oid": "019f11fb305964bb07e1fb18"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Tech Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "953551acd38c051edf41204a",
+    "firstName": "Priya",
+    "lastName": "Mehta",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550110",
+    "email": "953551acd38c051edf41204a@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798ba9de469e809084e2494"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "e277455a0ef3854c1d28ed63"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "72e3bec822e746360911bd68"
+      },
+      {
+        "$oid": "2875b459548111592501355f"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Tech Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "953551acd38c051edf41204a"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "16c16f66c13623b12d587515",
+    "firstName": "Marcus",
+    "lastName": "Reed",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550111",
+    "email": "16c16f66c13623b12d587515@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798ba9de469e809084e2494"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "e277455a0ef3854c1d28ed63"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "191eef0109b06ccf313c3f93"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Tech Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "16c16f66c13623b12d587515"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "072602d1ff577e9b7f1f9193",
+    "firstName": "Sofia",
+    "lastName": "Chen",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550112",
+    "email": "072602d1ff577e9b7f1f9193@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bacce469e809084e24a1"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "8c69ea89daa7d6252ca506d2"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "c5cc45d797f58e9fad0df30f"
+      },
+      {
+        "$oid": "0b156e3d66273e31b63fd2f0"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Sales Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "be8cf6e47131b896298e800e",
+    "firstName": "Omar",
+    "lastName": "Patel",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550113",
+    "email": "be8cf6e47131b896298e800e@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bacce469e809084e24a1"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "8c69ea89daa7d6252ca506d2"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "43aa8dff08c07f38ac826f8f"
+      },
+      {
+        "$oid": "a26ed828a6ed55b7247ce22c"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Sales Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "be8cf6e47131b896298e800e"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "0fce251bd6cc885f6e2f7b2b",
+    "firstName": "Maya",
+    "lastName": "Brooks",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550114",
+    "email": "0fce251bd6cc885f6e2f7b2b@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bacce469e809084e24a1"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "8c69ea89daa7d6252ca506d2"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "f55a139b50decdb17a55ffc7"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Sales Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "0fce251bd6cc885f6e2f7b2b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "2ee85fc0b879ea5cdb44b134",
+    "firstName": "Noah",
+    "lastName": "Singh",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550115",
+    "email": "2ee85fc0b879ea5cdb44b134@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab0e469e809084e249a"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "cd78c3d465af8ebf7b2c3dc7"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "b8e852a1a7112d6ee4365cbb"
+      },
+      {
+        "$oid": "0fa86fb730ffcd561a720061"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Finance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "00d59a61012f3e737a854d86",
+    "firstName": "Aisha",
+    "lastName": "Shah",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550116",
+    "email": "00d59a61012f3e737a854d86@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab0e469e809084e249a"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "cd78c3d465af8ebf7b2c3dc7"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "3ef124e1a51e826006f08a30"
+      },
+      {
+        "$oid": "a0f7275382c8d6d5e0576cff"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Finance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "00d59a61012f3e737a854d86"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "82384e25e9e4b76bcea1a447",
+    "firstName": "Daniel",
+    "lastName": "Wilson",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550117",
+    "email": "82384e25e9e4b76bcea1a447@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bab0e469e809084e249a"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "cd78c3d465af8ebf7b2c3dc7"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "2fe280ebb04170469d031a38"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Finance Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "82384e25e9e4b76bcea1a447"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "e21208a4014ccaaf518d534a",
+    "firstName": "Priya",
+    "lastName": "Mehta",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550118",
+    "email": "e21208a4014ccaaf518d534a@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798baa8e469e809084e2497"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "61037c198a424665897d89ca"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "deb95b4d0bb6e2b97bc41cf3"
+      },
+      {
+        "$oid": "138be7d035a5f8cb93f8dd2c"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "IT Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "748aa810178acea04e9b4c1a",
+    "firstName": "Marcus",
+    "lastName": "Reed",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550119",
+    "email": "748aa810178acea04e9b4c1a@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798baa8e469e809084e2497"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "61037c198a424665897d89ca"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "6f053b1de99756037a0d7aeb"
+      },
+      {
+        "$oid": "81dab5d088bc4d984d1577dd"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "IT Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "748aa810178acea04e9b4c1a"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "bd69fe4851cec1ae2e0c7040",
+    "firstName": "Sofia",
+    "lastName": "Chen",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550120",
+    "email": "bd69fe4851cec1ae2e0c7040@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798baa8e469e809084e2497"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "61037c198a424665897d89ca"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "2e3b4c86208233716d5f0982"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "IT Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "bd69fe4851cec1ae2e0c7040"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "07acb430576c2b245dce4fce",
+    "firstName": "Omar",
+    "lastName": "Patel",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1988-03-15T00:00:00Z"
+    },
+    "phone": "+12025550121",
+    "email": "07acb430576c2b245dce4fce@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bae6e469e809084e24a4"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "0251d4900436e45bea510476"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "8d525384a57484a5b157597b"
+      },
+      {
+        "$oid": "b86c5befc1ef4b491294dc14"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Administration Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "42d7deecbed8a8f7571c1b62",
+    "firstName": "Maya",
+    "lastName": "Brooks",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1992-03-15T00:00:00Z"
+    },
+    "phone": "+12025550122",
+    "email": "42d7deecbed8a8f7571c1b62@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bae6e469e809084e24a4"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "0251d4900436e45bea510476"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "09ab85cbf97f64fc4768a39e"
+      },
+      {
+        "$oid": "33c6384e51a64f1f82ff80ae"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Administration Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "42d7deecbed8a8f7571c1b62"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "empId": "2035eaccd96b4bf75683a4a6",
+    "firstName": "Noah",
+    "lastName": "Singh",
+    "gender": "Other",
+    "dateOfBirth": {
+      "$date": "1996-03-15T00:00:00Z"
+    },
+    "phone": "+12025550123",
+    "email": "2035eaccd96b4bf75683a4a6@example.com",
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "departments": [
+      {
+        "$oid": "6798bae6e469e809084e24a4"
+      }
+    ],
+    "role": [
+      {
+        "$oid": "0251d4900436e45bea510476"
+      }
+    ],
+    "assignedAsset": [
+      {
+        "$oid": "31e8217c0f9e633bcb1427df"
+      }
+    ],
+    "employeeType": {
+      "leavesCount": []
+    },
+    "designation": "Administration Specialist",
+    "jobDescription": "employee record",
+    "clockInDetails": {
+      "hasClockedIn": false,
+      "clockInTime": null,
+      "clockOutTime": null,
+      "breaks": []
+    },
+    "startDate": {
+      "$date": "2026-01-01T00:00:00Z"
+    },
+    "workLocation": "ST 501 A",
+    "dateOfExit": null,
+    "isActive": true,
+    "credits": 10,
+    "_id": {
+      "$oid": "2035eaccd96b4bf75683a4a6"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  }
+]

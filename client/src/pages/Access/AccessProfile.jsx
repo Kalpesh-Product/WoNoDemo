@@ -20,23 +20,27 @@ import { PERMISSIONS } from "../../constants/permissions";
 import Abrar from "../../assets/abrar.jpeg";
 import PrimaryButton from "../../components/PrimaryButton";
 import { toast } from "sonner";
+import { setSelectedEmployeeMongoId } from "../../redux/slices/hrSlice";
+import { useSelector } from "react-redux";
 
 const AccessProfile = () => {
   const location = useLocation();
   const axios = useAxiosPrivate();
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState(false);
-  const { user } = location.state || {};
-  const navigate = useNavigate()
+  // const { user } = location.state || {};
+  const navigate = useNavigate();
 
   const { register, setValue, handleSubmit, watch } = useForm({
     defaultValues: { permissions: [] },
   });
 
+  const user = useSelector((state) => state.hr.selectedEmployee);
+
   const fetchUserPermissions = async () => {
     if (!user?._id) return null;
     const response = await axios.get(
-      `/api/access/user-permissions/${user._id}`
+      `/api/access/user-permissions/${user._id}`,
     );
     return response.data;
   };
@@ -58,7 +62,7 @@ const AccessProfile = () => {
         `/api/access/modify-permissions/${user._id}`,
         {
           permissions: data.permissions,
-        }
+        },
       );
       return response.data;
     },
@@ -84,22 +88,25 @@ const AccessProfile = () => {
 
   const groupPermissionsByModule = (permissionsObj) => {
     const grouped = {};
-    Object.entries(permissionsObj).forEach(([key, { value, type, access }]) => {
-      const [module] = key.split("_");
+    Object.entries(permissionsObj).forEach(
+      ([key, { value, type, access, title }]) => {
+        const [module] = key.split("_");
 
-      if (!grouped[module]) grouped[module] = [];
+        if (!grouped[module]) grouped[module] = [];
 
-      grouped[module].push({
-        key,
-        action: value,
-        type,
-        access : access,
-        label: value
-          .split("_")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join("_"),
-      });
-    });
+        grouped[module].push({
+          key,
+          action: value,
+          type,
+          access: access,
+          title: title,
+          label: value
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join("_"),
+        });
+      },
+    );
     return grouped;
   };
 
@@ -185,7 +192,9 @@ const AccessProfile = () => {
       </div>
 
       {/* Permissions Table */}
-      <span className="text-title text-primary font-pmedium">Manage Access</span>
+      <span className="text-title text-primary font-pmedium">
+        Manage Access
+      </span>
       <div className="grid grid-cols-3 gap-4">
         {Object.entries(groupedPermissions).map(([module, permissions]) => (
           <div className="" key={module}>

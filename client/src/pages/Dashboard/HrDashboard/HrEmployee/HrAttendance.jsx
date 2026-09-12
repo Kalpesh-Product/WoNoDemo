@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useMemo, useState } from "react";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import AgTable from "../../../../components/AgTable";
 import dayjs from "dayjs";
@@ -8,6 +8,16 @@ import PrimaryButton from "../../../../components/PrimaryButton";
 import { Box, MenuItem, Skeleton, TextField, Tooltip } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PageFrame from "../../../../components/Pages/PageFrame";
+import {
+  DEFAULT_PAGE_SIZE,
+  PAGE_SIZE_OPTIONS,
+} from "../../../../constants/pagination";
+const getLocalMonthBoundary = (value, endOfMonth = false) => {
+  const month = dayjs(value);
+  const boundary = endOfMonth ? month.endOf("month") : month.startOf("month");
+
+  return boundary.format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+};
 
 const HrAttendance = () => {
   const axios = useAxiosPrivate();
@@ -23,17 +33,77 @@ const HrAttendance = () => {
       start: new Date(2025, 3, 1),
       end: new Date(2026, 2, 31),
     },
+    {
+      label: "FY 2026–27",
+      start: new Date(2026, 3, 1),
+      end: new Date(2027, 2, 31),
+    },
   ];
 
-  const [selectedFY, setSelectedFY] = useState(fyOptions[0]);
-  const [currentMonth, setCurrentMonth] = useState(selectedFY.start);
+  const [selectedFY, setSelectedFY] = useState(fyOptions[fyOptions.length - 1]);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+const [pagination, setPagination] = useState({ page: 1, limit: DEFAULT_PAGE_SIZE, total: 0 });
+  const extendedFyOptions = useMemo(
+    () =>
+      Array.from({ length: 11 }, (_, index) => {
+        const startYear = 2020 + index;
+        return {
+          label: `FY ${startYear}-${String(startYear + 1).slice(-2)}`,
+          start: new Date(startYear, 3, 1),
+          end: new Date(startYear + 1, 2, 31),
+        };
+      }),
+    []
+  );
+
+  const defaultFY = useMemo(() => {
+    const today = dayjs();
+    const currentFyStartYear =
+      today.month() >= 3 ? today.year() : today.year() - 1;
+
+    return (
+      extendedFyOptions.find(
+        (fy) => fy.start.getFullYear() === currentFyStartYear
+      ) || extendedFyOptions[extendedFyOptions.length - 1]
+    );
+  }, [extendedFyOptions]);
+
+  useEffect(() => {
+    setSelectedFY(defaultFY);
+       setPagination((current) => ({ ...current, page: 1 }));
+    setCurrentMonth(
+      dayjs().isBetween(dayjs(defaultFY.start), dayjs(defaultFY.end), "month", "[]")
+        ? new Date()
+        : defaultFY.start
+    );
+  }, [defaultFY]);
 
   const { data: attendanceData = {}, isLoading } = useQuery({
-    queryKey: ["attendance"],
+     queryKey: [
+      "hr-attendance",
+      currentMonth,
+      pagination.page,
+      pagination.limit,
+    ],
     queryFn: async () => {
-      const response = await axios.get("/api/company/company-attandances");
+     const response = await axios.get("/api/company/company-attandances", {
+        params: {
+          startDate: getLocalMonthBoundary(currentMonth),
+          endDate: getLocalMonthBoundary(currentMonth, true),
+          page: pagination.page,
+          limit: pagination.limit,
+        },
+      });
+      const responsePagination = response.data?.pagination;
+
+      setPagination((current) => ({
+        page: Number(responsePagination?.page) || current.page,
+        limit: Number(responsePagination?.limit) || current.limit,
+        total: Number(responsePagination?.total) || 0,
+      }));
       return response.data;
     },
+     placeholderData: keepPreviousData,
   });
 
   const formattedMonth = dayjs(currentMonth).format("MMMM YYYY");
@@ -78,8 +148,27 @@ const HrAttendance = () => {
     const groupedUsers = {};
     const attendanceMap = {};
 
+    const activeUsersMap = new Map(
+      (attendanceData?.activeEmployees || []).map((employee) => [
+        employee?._id?.toString(),
+        employee,
+      ])
+    );
+
+    (attendanceData?.activeEmployees || []).forEach((employee) => {
+      const userId = employee?._id?.toString();
+      if (!userId) return;
+
+      groupedUsers[userId] = {
+        empId: employee.empId || "",
+        empName: `${employee.firstName || ""} ${employee.lastName || ""}`.trim(),
+        startDate: employee.startDate,
+      };
+    });
+
     attendanceData?.companyAttandances?.forEach((entry) => {
-      const userId = entry.user?._id;
+      const userId = entry.user?._id?.toString();
+      if (!userId || !activeUsersMap.has(userId)) return;
       const dateKey = dayjs(entry.inTime).format("YYYY-MM-DD");
       const inTime = dayjs(entry.inTime);
       const outTime = dayjs(entry.outTime);
@@ -90,16 +179,17 @@ const HrAttendance = () => {
       if (!groupedUsers[userId]) {
         groupedUsers[userId] = {
           empId: entry.user?.empId,
-          empName: `${entry.user?.firstName || ""} ${
-            entry.user?.lastName || ""
-          }`.trim(),
+          empName: `${entry.user?.firstName || ""} ${entry.user?.lastName || ""
+            }`.trim(),
+          startDate: entry.user?.startDate,
         };
       }
     });
 
     const leaveMap = {};
     attendanceData?.allLeaves?.forEach((leave) => {
-      const userId = leave.takenBy?._id;
+      const userId = leave.takenBy?._id?.toString();
+      if (!userId || !activeUsersMap.has(userId)) return;
       const leaveType = leave.leaveType?.toLowerCase().includes("sick")
         ? "SL"
         : "PL";
@@ -115,9 +205,9 @@ const HrAttendance = () => {
       if (!groupedUsers[userId]) {
         groupedUsers[userId] = {
           empId: leave.takenBy?.empId || "",
-          empName: `${leave.takenBy?.firstName || ""} ${
-            leave.takenBy?.lastName || ""
-          }`.trim(),
+          empName: `${leave.takenBy?.firstName || ""} ${leave.takenBy?.lastName || ""
+            }`.trim(),
+          startDate: leave.takenBy?.startDate,
         };
       }
     });
@@ -132,15 +222,12 @@ const HrAttendance = () => {
         let totalWorkedHours = 0;
         let hasData = false;
 
-        const userAttendance = attendanceData.companyAttandances?.find(
-          (entry) => entry.user?._id === userId && entry.user?.startDate
-        );
-        const startDate = dayjs(userAttendance?.user?.startDate);
+        const startDate = dayjs(userInfo?.startDate);
 
         for (let day = 1; day <= daysInMonth; day++) {
           const date = dayjs(new Date(currentYearNum, currentMonthNum, day));
           const key = `${userId}-${date.format("YYYY-MM-DD")}`;
-          const isWeekend = date.day() === 0 || date.day() === 6;
+          const isWeekend = date.day() === 0 || date.day() === 7;
           const beforeJoining =
             startDate.isValid() && date.isBefore(startDate, "day");
 
@@ -155,10 +242,10 @@ const HrAttendance = () => {
             row[`day${day}`] = leaveMap[key];
             hasData = true;
           } else if (!isWeekend) {
-            row[`day${day}`] = "H";
+            row[`day${day}`] = "A";
             hasData = true;
           } else {
-            row[`day${day}`] = "";
+            row[`day${day}`] = "H";
           }
         }
 
@@ -170,17 +257,23 @@ const HrAttendance = () => {
       .filter(Boolean);
 
     return finalRows;
-  }, [attendanceData, currentMonth]);
+  }, [
+    attendanceData,
+    currentMonthNum,
+    currentYearNum,
+    daysInMonth,
+    workingDaysInMonth,
+  ]);
 
   const dayColumns = Array.from({ length: daysInMonth }, (_, i) => {
     const date = dayjs(new Date(currentYearNum, currentMonthNum, i + 1));
     const dayOfWeek = date.format("ddd");
-    const isSaturday = dayOfWeek === "Sat";
+    // const isSaturday = dayOfWeek === "Sat";
     const isSunday = dayOfWeek === "Sun";
 
     return {
       field: `day${i + 1}`,
-      headerName: isSaturday ? "SAT" : isSunday ? "SUN" : `${i + 1}`,
+      headerName: isSunday ? "SUN" : `${i + 1}`,
       width: 80,
       cellStyle: { textAlign: "center" },
       headerClass: "ag-center-header",
@@ -222,6 +315,12 @@ const HrAttendance = () => {
         let tooltip = "";
 
         switch (value) {
+          case "A":
+            bgColor = "#fee2e2";
+            textColor = "#991b1b";
+            label = "A";
+            tooltip = "Absent";
+            break;
           case "PL":
             bgColor = "#fee2e2";
             textColor = "#991b1b";
@@ -324,15 +423,28 @@ const HrAttendance = () => {
                 size="small"
                 value={selectedFY.label}
                 onChange={(e) => {
-                  const fy = fyOptions.find(
+                  const fy = extendedFyOptions.find(
                     (fy) => fy.label === e.target.value
                   );
                   setSelectedFY(fy);
                   setCurrentMonth(fy.start);
+                  setPagination((current) => ({ ...current, page: 1 }));
                 }}
                 className="min-w-[140px]"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "#1E3D73",
+                    color: "#fff",
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#1E3D73",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#fff",
+                  },
+                }}
               >
-                {fyOptions.map((fy) => (
+                {extendedFyOptions.map((fy) => (
                   <MenuItem key={fy.label} value={fy.label}>
                     {fy.label}
                   </MenuItem>
@@ -351,10 +463,23 @@ const HrAttendance = () => {
                   const [year, month] = e.target.value.split("-");
                   const newDate = dayjs(`${year}-${month}-01`).toDate();
                   setCurrentMonth(newDate);
+                   setPagination((current) => ({ ...current, page: 1 }));
                 }}
                 className="min-w-[160px]"
                 SelectProps={{
                   IconComponent: KeyboardArrowDownIcon,
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "#1E3D73",
+                    color: "#fff",
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#1E3D73",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#fff",
+                  },
                 }}
               >
                 {generateMonthOptions(selectedFY.start, selectedFY.end).map(
@@ -375,12 +500,28 @@ const HrAttendance = () => {
           isMonthWithinFY ? (
             <AgTable
               data={tableData.map((data, index) => ({
-                srNo: index + 1,
+                srNo: (pagination.page - 1) * pagination.limit + index + 1,
                 ...data,
               }))}
               columns={columns}
               search={true}
               searchColumn="empName"
+              exportData
+              serverPagination
+              pageSizeOptions={PAGE_SIZE_OPTIONS}
+              paginationPageSize={pagination.limit}
+              paginationPage={pagination.page}
+              paginationTotal={pagination.total}
+              onPaginationPageChange={(page) =>
+                setPagination((current) => ({ ...current, page }))
+              }
+              onPaginationPageSizeChange={(limit) =>
+                setPagination((current) =>
+                  current.limit === limit
+                    ? current
+                    : { ...current, page: 1, limit },
+                )
+              }
             />
           ) : (
             <div className="text-center text-gray-500 py-8 text-lg">

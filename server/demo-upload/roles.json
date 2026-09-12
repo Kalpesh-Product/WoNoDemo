@@ -1,0 +1,58 @@
+[
+  {
+    "roleTitle": "Maintenance Specialist",
+    "roleID": "ROLE-6798bafbe469e809084e24a7",
+    "_id": {
+      "$oid": "b911ab883ea9eb1a9954b166"
+    }
+  },
+  {
+    "roleTitle": "HR Specialist",
+    "roleID": "ROLE-6798bab9e469e809084e249e",
+    "_id": {
+      "$oid": "04410f6c35e3b3e91f49db7b"
+    }
+  },
+  {
+    "roleTitle": "Top Management Specialist",
+    "roleID": "ROLE-67b2cf85b9b6ed5cedeb9a2e",
+    "_id": {
+      "$oid": "02e5ef297719031f5e3fd810"
+    }
+  },
+  {
+    "roleTitle": "Tech Specialist",
+    "roleID": "ROLE-6798ba9de469e809084e2494",
+    "_id": {
+      "$oid": "e277455a0ef3854c1d28ed63"
+    }
+  },
+  {
+    "roleTitle": "Sales Specialist",
+    "roleID": "ROLE-6798bacce469e809084e24a1",
+    "_id": {
+      "$oid": "8c69ea89daa7d6252ca506d2"
+    }
+  },
+  {
+    "roleTitle": "Finance Specialist",
+    "roleID": "ROLE-6798bab0e469e809084e249a",
+    "_id": {
+      "$oid": "cd78c3d465af8ebf7b2c3dc7"
+    }
+  },
+  {
+    "roleTitle": "IT Specialist",
+    "roleID": "ROLE-6798baa8e469e809084e2497",
+    "_id": {
+      "$oid": "61037c198a424665897d89ca"
+    }
+  },
+  {
+    "roleTitle": "Administration Specialist",
+    "roleID": "ROLE-6798bae6e469e809084e24a4",
+    "_id": {
+      "$oid": "0251d4900436e45bea510476"
+    }
+  }
+]

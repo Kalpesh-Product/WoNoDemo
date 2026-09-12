@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
+import html2pdf from "html2pdf.js";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { TextField, MenuItem, Box, IconButton } from "@mui/material";
@@ -229,7 +230,8 @@ const VoucherForm = () => {
                   fullWidth
                   size="small"
                   label={label}
-                  {...field}>
+                  {...field}
+                >
                   {values.map((opt) => (
                     <MenuItem key={opt} value={opt}>
                       {opt}
@@ -347,8 +349,7 @@ const VoucherForm = () => {
                     Total
                   </td>
                   <td className={cellClasses + " font-bold"} colSpan={2}>
-                    ₹
-                    {values.expenses
+                    USD {values.expenses
                       ?.reduce((sum, item) => sum + Number(item.amount || 0), 0)
                       .toFixed(2)}
                   </td>
@@ -447,7 +448,7 @@ const VoucherForm = () => {
               <thead>
                 <tr>
                   <td className={cellClasses}>PARTICULARS</td>
-                  <td className={cellClasses}>Rs.</td>
+                  <td className={cellClasses}>USD</td>
                 </tr>
               </thead>
               <tbody>

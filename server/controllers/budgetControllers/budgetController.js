@@ -11,10 +11,53 @@ const { PDFDocument } = require("pdf-lib");
 const {
   handleDocumentUpload,
   handleFileDelete,
-} = require("../../config/cloudinaryConfig");
+} = require("../../config/s3Config");
 const Department = require("../../models/Departments");
 const UserData = require("../../models/hr/UserData");
 const emitter = require("../../utils/eventEmitter");
+const { parseAmount } = require("../../utils/parseAmount");
+const { fetchBudgetVoucherService } = require("../../services/reports/finance");
+
+const normalizeMonth = (value) => {
+  if (!value) return null;
+
+  return String(value).trim().slice(0, 3).toLowerCase();
+};
+
+const getMonthDate = (monthValue) => {
+  const normalizedMonth = normalizeMonth(monthValue);
+
+  const monthIndex = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ].indexOf(normalizedMonth);
+
+  if (monthIndex === -1) return null;
+
+  const currentYear = new Date().getFullYear();
+  const fiscalYear = monthIndex <= 2 ? currentYear + 1 : currentYear;
+
+  // Last day of the month (UTC)
+  return new Date(Date.UTC(fiscalYear, monthIndex + 1, 0));
+};
+
+const getMonthEndFromDate = (date) => {
+  if (!(date instanceof Date) || isNaN(date.getTime())) return null;
+
+  return new Date(
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 0),
+  );
+};
 
 const requestBudget = async (req, res, next) => {
   const logPath = "/budget/BudgetLog";
@@ -61,7 +104,7 @@ const requestBudget = async (req, res, next) => {
         "Missing required fields",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -70,7 +113,7 @@ const requestBudget = async (req, res, next) => {
         "Voucher file isn't uploaded",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -79,7 +122,7 @@ const requestBudget = async (req, res, next) => {
         "Invoice file isn't uploaded",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -88,7 +131,7 @@ const requestBudget = async (req, res, next) => {
         "Invalid department Id provided",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -98,7 +141,7 @@ const requestBudget = async (req, res, next) => {
         "Invalid payment type",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -108,7 +151,7 @@ const requestBudget = async (req, res, next) => {
         "Invalid GSTIN format",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -120,7 +163,7 @@ const requestBudget = async (req, res, next) => {
         "Invalid mode of payment",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -132,7 +175,7 @@ const requestBudget = async (req, res, next) => {
         "Invalid cheque number",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -158,13 +201,14 @@ const requestBudget = async (req, res, next) => {
         "Department not found",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
     const budgetData = {
       expanseName,
       projectedAmount: projectedAmount || 0,
+      actualAmount: 0,
       department: departmentId,
       company: company,
       dueDate: parsedDueDate,
@@ -195,7 +239,7 @@ const requestBudget = async (req, res, next) => {
           "Invalid invoice file type",
           logPath,
           logAction,
-          logSourceKey
+          logSourceKey,
         );
       }
 
@@ -211,7 +255,7 @@ const requestBudget = async (req, res, next) => {
       const response = await handleDocumentUpload(
         processedBuffer,
         `${foundCompany.companyName}/departments/${departmentExists.name}/budget/invoice`,
-        originalFilename
+        originalFilename,
       );
 
       if (!response.public_id) {
@@ -219,7 +263,7 @@ const requestBudget = async (req, res, next) => {
           "Failed to upload invoice",
           logPath,
           logAction,
-          logSourceKey
+          logSourceKey,
         );
       }
 
@@ -238,7 +282,7 @@ const requestBudget = async (req, res, next) => {
           "Invalid voucher file type",
           logPath,
           logAction,
-          logSourceKey
+          logSourceKey,
         );
       }
 
@@ -254,7 +298,7 @@ const requestBudget = async (req, res, next) => {
       const response = await handleDocumentUpload(
         processedBuffer,
         `${foundCompany.companyName}/departments/${departmentExists.name}/budget/voucher`,
-        originalFilename
+        originalFilename,
       );
 
       if (!response.public_id) {
@@ -262,7 +306,7 @@ const requestBudget = async (req, res, next) => {
           "Failed to upload voucher",
           logPath,
           logAction,
-          logSourceKey
+          logSourceKey,
         );
       }
 
@@ -278,9 +322,8 @@ const requestBudget = async (req, res, next) => {
     const savedBudget = await newBudgetRequest.save();
 
     // Notification for budget request
-    const foundDepartment = await Department.findById(departmentId).select(
-      "name"
-    );
+    const foundDepartment =
+      await Department.findById(departmentId).select("name");
 
     const userDetails = await UserData.findById({
       _id: user,
@@ -289,15 +332,6 @@ const requestBudget = async (req, res, next) => {
     const deptEmployees = await UserData.find({
       departments: { $in: departmentId },
     });
-
-    console.log(departmentId);
-    console.log(deptEmployees);
-
-    // const deptEmployees = await UserData.find({
-    //   departments: { $in: [department] },
-    // });
-
-    // const employeeIds = deptEmployees.map((emp) => emp._id);
 
     // * Emit notification event for task creation *
     emitter.emit("notification", {
@@ -333,7 +367,7 @@ const requestBudget = async (req, res, next) => {
     next(
       error instanceof CustomError
         ? error
-        : new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        : new CustomError(error.message, logPath, logAction, logSourceKey, 500),
     );
   }
 };
@@ -347,8 +381,9 @@ const updateBudget = async (req, res, next) => {
   try {
     const { budgetId } = req.params;
     const updateFields = req.body;
+    const { departments, roles } = req;
 
-    const allowedFields = ["gstIn", "expanseType"]; // Add more fields here later
+    const allowedFields = ["gstIn", "expanseType", "actualAmount"]; // Add more fields here later
 
     // Filter only allowed fields from incoming data
     const filteredFields = Object.keys(updateFields).reduce((acc, key) => {
@@ -359,9 +394,9 @@ const updateBudget = async (req, res, next) => {
     }, {});
 
     if (Object.keys(filteredFields).length === 0) {
-      return res
-        .status(400)
-        .json({ message: "Allowed fields include only: gstIn, expanseType" });
+      return res.status(400).json({
+        message: "Allowed fields include only: gstIn, expanseType,actualAmount",
+      });
     }
 
     if (!mongoose.Types.ObjectId.isValid(budgetId)) {
@@ -373,7 +408,37 @@ const updateBudget = async (req, res, next) => {
       return res.status(400).json({ message: "Budget not found" });
     }
 
+    const departmentIds = (departments || []).map((department) =>
+      typeof department === "string"
+        ? department
+        : department?._id?.toString?.() || department?.toString?.(),
+    );
+
+    if (
+      !departmentIds.includes(foundBudget.department.toString()) &&
+      !roles.includes("Master Admin") &&
+      !roles.includes("Super Admin")
+    ) {
+      return res
+        .status(403)
+        .json({ message: "You don't have permission to update this budget" });
+    }
+
     const originalData = foundBudget.toObject();
+
+    if (filteredFields.actualAmount !== undefined) {
+      const amount = Number(filteredFields.actualAmount);
+
+      if (isNaN(amount)) {
+        return res
+          .status(400)
+          .json({ message: "Actual amount must be a number" });
+      }
+
+      filteredFields.actualAmount = amount;
+
+      filteredFields.actualAmountDate = new Date();
+    }
 
     // Apply updates
     for (const key in filteredFields) {
@@ -407,59 +472,78 @@ const updateBudget = async (req, res, next) => {
     next(
       error instanceof CustomError
         ? error
-        : new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        : new CustomError(error.message, logPath, logAction, logSourceKey, 500),
     );
   }
 };
 
+// const fetchBudget = async (req, res, next) => {
+//   try {
+//     const { departmentId } = req.query;
+//     const { user } = req;
+
+//     const foundUser = await User.findOne({ _id: user })
+//       .select("company")
+//       .populate([{ path: "company", select: "companyName" }])
+//       .lean()
+//       .exec();
+
+//     if (!foundUser) {
+//       return res.status(400).json({ message: "No user found" });
+//     }
+
+//     const query = { company: foundUser.company };
+//     if (departmentId) {
+//       query.department = departmentId;
+//     }
+
+//     const budgets = await Budget.find(query)
+//       .populate([
+//         { path: "department", select: "name" },
+//         { path: "unit", populate: { path: "building", model: "Building" } },
+//       ])
+//       .lean()
+//       .exec();
+
+//     const allBudgets = budgets.map((budget) => {
+//       let particularsTotalAmount = 0;
+//       if (budget?.particulars && budget.particulars.length > 0) {
+//         particularsTotalAmount = budget.particulars.reduce(
+//           (acc, curr) => acc + curr.particularAmount,
+//           0,
+//         );
+//         return {
+//           ...budget,
+//           projectedAmount: particularsTotalAmount,
+//         };
+//       }
+//       return {
+//         ...budget,
+//       };
+//     });
+
+//     res.status(200).json({ allBudgets });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 const fetchBudget = async (req, res, next) => {
   try {
     const { departmentId } = req.query;
-    const { user } = req;
+    const { company } = req;
 
-    const foundUser = await User.findOne({ _id: user })
-      .select("company")
-      .populate([{ path: "company", select: "companyName" }])
-      .lean()
-      .exec();
-
-    if (!foundUser) {
-      return res.status(400).json({ message: "No user found" });
-    }
-
-    const query = { company: foundUser.company };
-    if (departmentId) {
-      query.department = departmentId;
-    }
-
-    const budgets = await Budget.find(query)
-      .populate([
-        { path: "department", select: "name" },
-        { path: "unit", populate: { path: "building", model: "Building" } },
-      ])
-      .lean()
-      .exec();
-
-    const allBudgets = budgets.map((budget) => {
-      let particularsTotalAmount = 0;
-      if (budget?.particulars && budget.particulars.length > 0) {
-        particularsTotalAmount = budget.particulars.reduce(
-          (acc, curr) => acc + curr.particularAmount,
-          0
-        );
-        return {
-          ...budget,
-          projectedAmount: particularsTotalAmount,
-        };
-      }
-      return {
-        ...budget,
-      };
+    const result = await fetchBudgetVoucherService({
+      company: company,
+      departmentId,
     });
 
-    res.status(200).json({ allBudgets });
+    return res.status(200).json(result);
   } catch (error) {
-    next(error);
+    if (error.statusCode) {
+      return res.status(error.statusCode).json({ message: error.message });
+    }
+    return next(error);
   }
 };
 
@@ -480,7 +564,7 @@ const fetchPendingApprovals = async (req, res, next) => {
       if (budget?.particulars && budget.particulars.length > 0) {
         particularsTotalAmount = budget.particulars.reduce(
           (acc, curr) => acc + curr.particularAmount,
-          0
+          0,
         );
         return {
           ...budget,
@@ -515,7 +599,7 @@ const fetchApprovedbudgets = async (req, res, next) => {
       if (budget?.particulars && budget.particulars.length > 0) {
         particularsTotalAmount = budget.particulars.reduce(
           (acc, curr) => acc + curr.particularAmount,
-          0
+          0,
         );
         return {
           ...budget,
@@ -576,7 +660,7 @@ const approveBudget = async (req, res, next) => {
     const approvedBudget = await Budget.findByIdAndUpdate(
       { _id: budgetId },
       { status: "Approved" },
-      { new: true }
+      { new: true },
     );
 
     if (!approvedBudget) {
@@ -584,7 +668,7 @@ const approveBudget = async (req, res, next) => {
         "Failed to approve the budget,please try again",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -606,7 +690,7 @@ const approveBudget = async (req, res, next) => {
     next(
       error instanceof CustomError
         ? error
-        : new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        : new CustomError(error.message, logPath, logAction, logSourceKey, 500),
     );
   }
 };
@@ -639,14 +723,14 @@ const approveFinanceBudget = async (req, res, next) => {
     };
 
     const budget = await Budget.findById({ _id: budgetId }).populate(
-      "department"
+      "department",
     );
     if (!budget) {
       throw new CustomError(
         "Budget not found",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -665,7 +749,7 @@ const approveFinanceBudget = async (req, res, next) => {
         `Missing required fields: ${missingFields.join(", ")}`,
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -678,7 +762,7 @@ const approveFinanceBudget = async (req, res, next) => {
         "Missing cheque number or cheque date",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -696,7 +780,7 @@ const approveFinanceBudget = async (req, res, next) => {
         "Invalid or missing file. Allowed types: PDF, DOC, DOCX",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -716,7 +800,7 @@ const approveFinanceBudget = async (req, res, next) => {
     const response = await handleDocumentUpload(
       processedBuffer,
       `${foundCompany.companyName}/departments/${budget.department.name}/budget/voucher`,
-      originalFilename
+      originalFilename,
     );
 
     if (!response.public_id) {
@@ -724,7 +808,7 @@ const approveFinanceBudget = async (req, res, next) => {
         "Failed to upload voucher document",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -783,7 +867,7 @@ const approveFinanceBudget = async (req, res, next) => {
     next(
       error instanceof CustomError
         ? error
-        : new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        : new CustomError(error.message, logPath, logAction, logSourceKey, 500),
     );
   }
 };
@@ -800,7 +884,7 @@ const rejectBudget = async (req, res, next) => {
     const rejectedBudget = await Budget.findByIdAndUpdate(
       { _id: budgetId },
       { status: "Rejected" },
-      { new: true }
+      { new: true },
     );
 
     if (!rejectedBudget) {
@@ -808,7 +892,7 @@ const rejectBudget = async (req, res, next) => {
         "Failed to reject the budget,please try again",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -830,7 +914,7 @@ const rejectBudget = async (req, res, next) => {
     next(
       error instanceof CustomError
         ? error
-        : new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        : new CustomError(error.message, logPath, logAction, logSourceKey, 500),
     );
   }
 };
@@ -856,7 +940,7 @@ const uploadInvoice = async (req, res, next) => {
         "Invalid budget Id provided",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -865,7 +949,7 @@ const uploadInvoice = async (req, res, next) => {
         "Invalid file type. Allowed types: PDF, DOC, DOCX",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -876,7 +960,7 @@ const uploadInvoice = async (req, res, next) => {
         "Company not found",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -887,7 +971,7 @@ const uploadInvoice = async (req, res, next) => {
         "No such budget found",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -902,7 +986,7 @@ const uploadInvoice = async (req, res, next) => {
     if (file.mimetype === "application/pdf") {
       const pdfDoc = await PDFDocument.load(file.buffer);
       pdfDoc.setTitle(
-        file.originalname ? file.originalname.split(".")[0] : "Untitled"
+        file.originalname ? file.originalname.split(".")[0] : "Untitled",
       );
       processedBuffer = await pdfDoc.save();
     }
@@ -910,7 +994,7 @@ const uploadInvoice = async (req, res, next) => {
     const response = await handleDocumentUpload(
       processedBuffer,
       `${foundCompany.companyName}/departments/${departmentName}/budget/invoice`,
-      originalFilename
+      originalFilename,
     );
 
     if (!response.public_id) {
@@ -918,7 +1002,7 @@ const uploadInvoice = async (req, res, next) => {
         "Failed to upload document",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -937,7 +1021,7 @@ const uploadInvoice = async (req, res, next) => {
         },
         invoiceAttached: true,
       },
-      { new: true }
+      { new: true },
     ).exec();
 
     if (!updatedBudget) {
@@ -945,7 +1029,7 @@ const uploadInvoice = async (req, res, next) => {
         "Failed to update company document field",
         logPath,
         logAction,
-        logSourceKey
+        logSourceKey,
       );
     }
 
@@ -974,7 +1058,7 @@ const uploadInvoice = async (req, res, next) => {
       next(error);
     } else {
       next(
-        new CustomError(error.message, logPath, logAction, logSourceKey, 500)
+        new CustomError(error.message, logPath, logAction, logSourceKey, 500),
       );
     }
   }
@@ -1001,53 +1085,96 @@ const bulkInsertBudgets = async (req, res, next) => {
     const units = await Unit.find({ company }).lean();
     const unitsMap = new Map(units.map((u) => [u.unitNo, u._id]));
 
+    const departments = await Department.find().select("name").lean();
+
+    const normalize = (value) =>
+      String(value || "")
+        .trim()
+        .toLowerCase();
+
+    const departmentMap = new Map(
+      departments.map((dept) => [normalize(dept.name), dept._id]),
+    );
+
     const budgets = [];
+    const invalidRows = [];
+    const invalidRowNos = [];
+    let rowNumber = 1;
     Readable.from(csvData)
       .pipe(csvParser())
       .on("data", (row) => {
-        const projectedAmt = parseFloat(row["Projected Amount"]);
-        const actualAmt = row["Actual Amount"]
-          ? parseFloat(row["Actual Amount"])
-          : 0;
-        const month = new Date(row["Due Date"]);
+        rowNumber++;
+        const projectedAmt = parseAmount(row["Projected Amount"]);
+        const actualAmt = parseAmount(row["Actual Amount"]);
 
-        /** skip clearly bad rows **/
-        if (isNaN(projectedAmt) || isNaN(month.getTime())) {
-          return res.status(400).json({ message: "please check the csv file" });
+        const rawDueDate = row["Due Date"]?.trim();
+        const rawMonth = row["Month"]?.trim();
+
+        const normalizedMonth = normalizeMonth(rawMonth);
+        const fallbackMonth = getMonthDate(normalizedMonth);
+        const dueDate = rawDueDate ? new Date(rawDueDate) : fallbackMonth;
+        const month = getMonthEndFromDate(dueDate);
+
+        const department = departmentMap.get(normalize(row["Department"]));
+
+        if (
+          isNaN(projectedAmt) ||
+          !month ||
+          !department
+        ) {
+          invalidRowNos.push(rowNumber);
+          invalidRows.push({
+            row,
+            reason: !department
+              ? `Invalid department: ${row["Department"]}`
+              : "Invalid amount or date",
+          });
+          return;
         }
 
         budgets.push({
           company,
-          department: departmentId,
-          expanseName: row["Expanse Name"],
+          department,
+          expanseName: row["Expense Name"],
           projectedAmount: projectedAmt,
           actualAmount: actualAmt,
-          unit: row["Unit"] ? unitsMap.get(row["Unit"].trim()) ?? null : null,
-          status: row["Status"] || "Pending",
+          unit: row["Unit"] ? (unitsMap.get(row["Unit"].trim()) ?? null) : null,
+          // status: row["Status"] || "Pending",
+          status: "Approved",
           month,
+          dueDate: dueDate || null,
+          expanseType: row["Expanse Type"],
           category: row["Expanse Category"],
+          // isPaid: row["Status"] === "Approved" ? "Paid" : "Unpaid",
+          isPaid: "Paid",
+          isExtraBudget: false,
         });
       })
       .on("end", async () => {
-        if (budgets.length === 0) {
-          return res
-            .status(400)
-            .json({ success: false, message: "No valid budgets found in CSV" });
+        if (invalidRows.length > 0) {
+          return res.status(400).json({
+            message: "Invalid rows found in CSV",
+            invalidRowNos,
+            rowNumberLen: invalidRowNos.length,
+            invalidRows,
+            invalidRowsLen: invalidRows.length,
+          });
         }
 
-        try {
-          await Budget.insertMany(budgets);
-          return res.status(201).json({
-            success: true,
-            message: "Budgets uploaded successfully",
-            data: budgets,
+        if (budgets.length === 0) {
+          return res.status(400).json({
+            success: false,
+            message: "No valid budgets found in CSV",
           });
-        } catch (dbErr) {
-          console.error(dbErr);
-          return res
-            .status(500)
-            .json({ success: false, message: dbErr.message });
         }
+
+        await Budget.insertMany(budgets);
+
+        return res.status(201).json({
+          success: true,
+          message: "Budgets uploaded successfully",
+          uploadCount: budgets.length,
+        });
       })
       .on("error", (streamErr) => {
         console.error(streamErr);

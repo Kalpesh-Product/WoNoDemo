@@ -4,6 +4,7 @@ const agreementsSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      enum: ["Work Schedule Policy", "Leave Policy", "Holiday Policy"],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +16,9 @@ const agreementsSchema = new mongoose.Schema(
     id: {
       type: String,
     },
+    type: {
+      type: String,
+    },
     isActive: {
       type: Boolean,
       default: true,
@@ -24,7 +28,9 @@ const agreementsSchema = new mongoose.Schema(
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
+
+agreementsSchema.index({ user: 1 });
 const Agreements = mongoose.model("agreements", agreementsSchema);
 module.exports = Agreements;

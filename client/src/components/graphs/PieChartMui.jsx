@@ -6,9 +6,10 @@ import useResponsiveChart from "../../hooks/useResponsiveChart";
 const PieChartMui = ({
   data,
   options,
-  width = 320,
+  width = 500,
   height = 320,
   customLegend,
+  centerAlign = false,
 }) => {
   const chartData = data.map((item) => parseFloat(item.value));
   const { containerRef, chartKey } = useResponsiveChart();
@@ -26,19 +27,40 @@ const PieChartMui = ({
     },
   };
   return (
-    <div className="w-full flex flex-col justify-between " style={{ height }}>
+    <div className="w-full flex flex-col" style={{ height }}>
       <div
         ref={containerRef}
-        style={{ flex: 1 }}
-        className={customLegend ? "flex gap-20 overflow-x-scroll" : ""}
+        className={
+          centerAlign
+            ? "flex items-center justify-center w-full h-full"
+            : "flex items-center"
+        }
+        style={centerAlign ? undefined : { width, height }}
       >
-        <ReactApexChart
-          key={chartKey}
-          options={updatedOptions}
-          series={chartData}
-          type="pie"
-          height={height - 20} // Reserve space for built-in legend
-        />
+        {centerAlign ? (
+          // <div style={{ width, height }}>
+             <div
+            className="w-full"
+            style={{ maxWidth: typeof width === "number" ? width : "100%", height }}
+          >
+            <ReactApexChart
+              key={chartKey}
+              options={updatedOptions}
+              series={chartData}
+              type="pie"
+              height="100%"
+              width="100%"
+            />
+          </div>
+        ) : (
+          <ReactApexChart
+            key={chartKey}
+            options={updatedOptions}
+            series={chartData}
+            type="pie"
+            height="100%"
+          />
+        )}
         {customLegend && (
           <div>
             <div className="w-full flex justify-between">{customLegend}</div>

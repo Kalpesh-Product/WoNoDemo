@@ -32,13 +32,14 @@ export function useTopDepartment({
 
   const topDepartmentIds = useMemo(() => {
     return Array.from(
-      new Set([...baseTopDepartmentIds, ...additionalTopDepartmentIds])
+      new Set([...baseTopDepartmentIds, ...additionalTopDepartmentIds]),
     );
   }, [additionalTopDepartmentIds]);
 
   // Get all department IDs of current user
   const userDeptIds = auth.user?.departments?.map((d) => d._id) || [];
 
+  console.log("userDeptIds", userDeptIds);
   // Determine if the user is top-level (either directly or via dept)
   const isTop =
     topUserIds.includes(currentUserId) ||

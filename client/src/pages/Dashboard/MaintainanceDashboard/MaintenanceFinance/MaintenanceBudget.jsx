@@ -20,7 +20,7 @@ import DataCard from "../../../../components/DataCard";
 import AllocatedBudget from "../../../../components/Tables/AllocatedBudget";
 import { toast } from "sonner";
 import Yearlygraph from "../../../../components/graphs/YearlyGraph";
-import { inrFormat } from "../../../../utils/currencyFormat";
+import { usdFormat } from "../../../../utils/currencyFormat";
 import { useNavigate } from "react-router-dom";
 import BarGraph from "../../../../components/graphs/BarGraph";
 import { transformBudgetData } from "../../../../utils/transformBudgetData";
@@ -29,7 +29,7 @@ import usePageDepartment from "../../../../hooks/usePageDepartment";
 const Maintenance = () => {
   const axios = useAxiosPrivate();
   const [isReady, setIsReady] = useState(false);
-  const department = usePageDepartment();
+  const department = usePageDepartment()
 
   const [openModal, setOpenModal] = useState(false);
   const { data: hrFinance = [], isPending: isHrLoading } = useQuery({
@@ -37,7 +37,7 @@ const Maintenance = () => {
     queryFn: async () => {
       try {
         const response = await axios.get(
-          `/api/budget/company-budget?${department?._id}`
+          `/api/budget/company-budget?${department?._id}`  
         );
         const budgets = response.data.allBudgets;
         return Array.isArray(budgets) ? budgets : [];
@@ -49,25 +49,25 @@ const Maintenance = () => {
   });
 
   const { mutate: requestBudget, isPending: requestBudgetPending } =
-    useMutation({
-      mutationFn: async (data) => {
-        const response = await axios.post(
-          `/api/budget/request-budget/${department._id}`,
-          {
-            ...data,
-          }
-        );
-        return response.data;
-      },
-      onSuccess: function (data) {
-        setOpenModal(false);
-        toast.success(data.message);
-        reset();
-      },
-      onError: function (error) {
-        toast.error(error.response.data.message);
-      },
-    });
+      useMutation({
+        mutationFn: async (data) => {
+          const response = await axios.post(
+            `/api/budget/request-budget/${department._id}`,
+            {
+              ...data,
+            }
+          );
+          return response.data;
+        },
+        onSuccess: function (data) {
+          setOpenModal(false);
+          toast.success(data.message);
+          reset();
+        },
+        onError: function (error) {
+          toast.error(error.response.data.message);
+        },
+      });
 
   const budgetBar = useMemo(() => {
     if (isHrLoading || !Array.isArray(hrFinance)) return null;
@@ -119,7 +119,7 @@ const Maintenance = () => {
     dataLabels: {
       enabled: true,
       formatter: (val) => {
-        const formatted = inrFormat(val.toFixed(0));
+        const formatted = usdFormat(val.toFixed(0));
         return formatted;
       },
 
@@ -132,9 +132,9 @@ const Maintenance = () => {
 
     yaxis: {
       // max: 3000000,
-      title: { text: "Amount In Thousand (USD)" },
+      title: { text: "Amount (USD)" },
       labels: {
-        formatter: (val) => `${Math.round(val / 100000)}`,
+        formatter: (value) => Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       },
     },
     fill: {
@@ -150,7 +150,7 @@ const Maintenance = () => {
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const rawData = expenseRawSeries[seriesIndex]?.data[dataPointIndex];
         // return `<div style="padding: 8px; font-family: Poppins, sans-serif;">
-        //       HR Expense: USD ${rawData.toLocaleString("en-IN")}
+        //       HR Expense: USD ${rawData.toLocaleString("en-US")}
         //     </div>`;
         return `
             <div style="padding: 8px; font-size: 13px; font-family: Poppins, sans-serif">
@@ -160,7 +160,7 @@ const Maintenance = () => {
                 <div style="width: 10px;"></div>
              <div style="text-align: left;">USD ${Math.round(
                rawData
-             ).toLocaleString("en-IN")}</div>
+             ).toLocaleString("en-US")}</div>
 
               </div>
      
@@ -184,7 +184,7 @@ const Maintenance = () => {
   });
 
   const onSubmit = (data) => {
-    requestBudget(data);
+     requestBudget(data);
     setOpenModal(false);
     reset();
   };
@@ -225,9 +225,9 @@ const Maintenance = () => {
           expanseName: item?.expanseName,
           department: item?.department,
           expanseType: item?.expanseType,
-          invoiceAttached: item?.invoiceAttached,
+          invoiceAttached : item?.invoiceAttached,
           projectedAmount: Number(item?.projectedAmount).toFixed(2),
-          actualAmount: inrFormat(item?.actualAmount || 0), // ✅ Add this
+          actualAmount: usdFormat(item?.actualAmount || 0), // ✅ Add this
           dueDate: dayjs(item.dueDate).format("DD-MM-YYYY"),
           status: item.status,
         });
@@ -243,8 +243,8 @@ const Maintenance = () => {
         ...row,
         srNo: index + 1,
         projectedAmount: Number(
-          row.projectedAmount.toLocaleString("en-IN").replace(/,/g, "")
-        ).toLocaleString("en-IN", { maximumFractionDigits: 0 }),
+          row.projectedAmount.toLocaleString("en-US").replace(/,/g, "")
+        ).toLocaleString("en-US", { maximumFractionDigits: 0 }),
       }));
       const transformedCols = [
         { field: "srNo", headerName: "SR NO", flex: 1 },
@@ -253,8 +253,8 @@ const Maintenance = () => {
 
       return {
         ...data,
-        projectedAmount: data.projectedAmount.toLocaleString("en-IN"), // Ensuring two decimal places for total amount
-        amount: Number(data?.amount || 0).toLocaleString("en-IN"),
+        projectedAmount: data.projectedAmount.toLocaleString("en-US"), // Ensuring two decimal places for total amount
+        amount: Number(data?.amount || 0).toLocaleString("en-US"),
         expanseType: data?.expanseType,
         tableData: {
           ...data.tableData,
@@ -279,13 +279,14 @@ const Maintenance = () => {
                 <Skeleton variant="text" width={200} height={30} />
                 <Skeleton variant="rectangular" width="100%" height={300} />
               </Box>
-            }>
+            }
+          >
             <Yearlygraph
               data={expenseRawSeries}
               options={expenseOptions}
               title={"BIZ Nest MAINTENANCE DEPARTMENT EXPENSE"}
               titleAmount={`USD ${Math.round(totalUtilised).toLocaleString(
-                "en-IN"
+                "en-US"
               )}`}
             />
           </Suspense>
@@ -293,7 +294,7 @@ const Maintenance = () => {
         <div>
           <WidgetSection layout={2} padding>
             {/* <DataCard
-              data={"USD " + inrFormat("2000000")}
+              data={"USD " + usdFormat("2000000")}
               title={"Projected"}
               route={"/app/dashboard/hr-dashboard/finance/budget"}
               description={`Current Month: ${new Date().toLocaleString(
@@ -328,7 +329,8 @@ const Maintenance = () => {
         <MuiModal
           title="Request Budget"
           open={openModal}
-          onClose={() => setOpenModal(false)}>
+          onClose={() => setOpenModal(false)}
+        >
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Expense Name */}
             <Controller
@@ -365,23 +367,23 @@ const Maintenance = () => {
               )}
             />
 
-            {/* Payment Type */}
-            <Controller
-              name="paymentType"
-              control={control}
-              rules={{ required: "Payment type is required" }}
-              render={({ field, fieldState }) => (
-                <FormControl fullWidth error={!!fieldState.error}>
-                  <Select {...field} size="small" displayEmpty>
-                    <MenuItem value="" disabled>
-                      Select Payment Type
-                    </MenuItem>
-                    <MenuItem value="One Time">One Time</MenuItem>
-                    <MenuItem value="Recurring">Recurring</MenuItem>
-                  </Select>
-                </FormControl>
-              )}
-            />
+ {/* Payment Type */}
+ <Controller
+            name="paymentType"
+            control={control}
+            rules={{ required: "Payment type is required" }}
+            render={({ field, fieldState }) => (
+              <FormControl fullWidth error={!!fieldState.error}>
+                <Select {...field} size="small" displayEmpty>
+                  <MenuItem value="" disabled>
+                    Select Payment Type
+                  </MenuItem>
+                  <MenuItem value="One Time">One Time</MenuItem>
+                  <MenuItem value="Recurring">Recurring</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          />
             {/* Amount */}
             <Controller
               name="amount"

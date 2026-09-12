@@ -1,0 +1,1482 @@
+[
+  {
+    "asset": {
+      "$oid": "fab96d630ca48feeb1c612e9"
+    },
+    "fromDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "toDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "approvedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignee": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "72a9efd811aa8fc2efeb05bf"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "5f2ad89a8f5be82ab97e57bf"
+    },
+    "fromDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "toDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "approvedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignee": {
+      "$oid": "ae86a61ee9fca0ed538410a6"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "598553cc70ffd791dc0f4a59"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "e5d5bb1a0f646b5a93347e43"
+    },
+    "fromDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "toDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "approvedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignee": {
+      "$oid": "89c62109225db3995e6f9cce"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "2405d27bc99ea1b540b1306b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "ef77f4fc24019e2470cb3a11"
+    },
+    "fromDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "toDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "approvedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignee": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "3aa4d248d19052907790d68b"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "42f968d6dd3e021d67a5896b"
+    },
+    "fromDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "toDepartment": {
+      "$oid": "6798bafbe469e809084e24a7"
+    },
+    "approvedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignedBy": {
+      "$oid": "fe812ced83a19586a9f3f821"
+    },
+    "assignee": {
+      "$oid": "ae86a61ee9fca0ed538410a6"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "637511fb5c132db8d075b6a2"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "9c38fd5abe2c121b16f71c07"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "toDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "approvedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignee": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "5c08dba932195f39e1cafaa8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "28a9feed65c63ae608156f95"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "toDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "approvedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignee": {
+      "$oid": "a237b358c57ac3b79b340bf5"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "0ad5bb02c1a931b28882d8aa"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "c94f125ca5192ec661f7f33c"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "toDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "approvedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignee": {
+      "$oid": "1ee67bdd768ded376506c3b7"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "cd9d82420bc9c99d0858c6cf"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "70422c430bcc9221d71b72cc"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "toDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "approvedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignee": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "7d5468bd35936cf30386a0e3"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "407c141165fde43506b2775b"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "toDepartment": {
+      "$oid": "6798bab9e469e809084e249e"
+    },
+    "approvedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignedBy": {
+      "$oid": "3eb13b3898303afbd0576b3b"
+    },
+    "assignee": {
+      "$oid": "a237b358c57ac3b79b340bf5"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "f030fc5d0122fa93357bfecc"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "62d57537b14a8d492c2a56c4"
+    },
+    "fromDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "toDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "approvedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignee": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "42f230e8acf24c304a4edca4"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "6e67e8e8744a5b3d94753fe2"
+    },
+    "fromDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "toDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "approvedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignee": {
+      "$oid": "ed58ecf7bb119d73ebcccddb"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "52252b6bb1f4bce5b6070d05"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "6af0f1d5d5624338c5d26136"
+    },
+    "fromDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "toDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "approvedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignee": {
+      "$oid": "96dac446bdee3294d16616dd"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "bcb5c57e6a75ab79582f4be1"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "3b860ecdcc4cd20598b83f80"
+    },
+    "fromDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "toDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "approvedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignee": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "b6909f6a858af0eeb09c2833"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "448afabebfeb3ecc003f5a0e"
+    },
+    "fromDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "toDepartment": {
+      "$oid": "67b2cf85b9b6ed5cedeb9a2e"
+    },
+    "approvedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignedBy": {
+      "$oid": "b1864a9de1d8b0e618f22cb0"
+    },
+    "assignee": {
+      "$oid": "ed58ecf7bb119d73ebcccddb"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "c9e928472317403792d1aaec"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "c80c1b0e108c1482667c08e0"
+    },
+    "fromDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "toDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "approvedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignee": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "d8ecfc24f2186aa4c987d0b5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "72e3bec822e746360911bd68"
+    },
+    "fromDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "toDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "approvedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignee": {
+      "$oid": "953551acd38c051edf41204a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "bebcce249470d8341ffebc35"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "191eef0109b06ccf313c3f93"
+    },
+    "fromDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "toDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "approvedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignee": {
+      "$oid": "16c16f66c13623b12d587515"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "cf944053015468e73d89de5d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "019f11fb305964bb07e1fb18"
+    },
+    "fromDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "toDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "approvedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignee": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "6e1a4cec96cc205958415176"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "2875b459548111592501355f"
+    },
+    "fromDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "toDepartment": {
+      "$oid": "6798ba9de469e809084e2494"
+    },
+    "approvedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignedBy": {
+      "$oid": "5890cf7056b9d9aad008370e"
+    },
+    "assignee": {
+      "$oid": "953551acd38c051edf41204a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "629d4d275acafbd48312014c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "c5cc45d797f58e9fad0df30f"
+    },
+    "fromDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "toDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "approvedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignee": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "cad1b134df2b6d7e2c8ca777"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "43aa8dff08c07f38ac826f8f"
+    },
+    "fromDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "toDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "approvedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignee": {
+      "$oid": "be8cf6e47131b896298e800e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "27edb415dfbebe040dd90b89"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "f55a139b50decdb17a55ffc7"
+    },
+    "fromDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "toDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "approvedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignee": {
+      "$oid": "0fce251bd6cc885f6e2f7b2b"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "caab293334ab584a09c94169"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "0b156e3d66273e31b63fd2f0"
+    },
+    "fromDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "toDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "approvedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignee": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "65dd492c10bfbb0dc5d2c492"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "a26ed828a6ed55b7247ce22c"
+    },
+    "fromDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "toDepartment": {
+      "$oid": "6798bacce469e809084e24a1"
+    },
+    "approvedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignedBy": {
+      "$oid": "072602d1ff577e9b7f1f9193"
+    },
+    "assignee": {
+      "$oid": "be8cf6e47131b896298e800e"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "b0f74a7c53472991c9e55df1"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "b8e852a1a7112d6ee4365cbb"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "toDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "approvedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignee": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "347adf376c5f0365d31b8e4c"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "3ef124e1a51e826006f08a30"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "toDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "approvedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignee": {
+      "$oid": "00d59a61012f3e737a854d86"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "4b21615707d852d98cb5c861"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "2fe280ebb04170469d031a38"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "toDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "approvedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignee": {
+      "$oid": "82384e25e9e4b76bcea1a447"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "2520a7b2e15ebe4b20998848"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "0fa86fb730ffcd561a720061"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "toDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "approvedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignee": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "cde3d924e762c5a4eeb29fd6"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "a0f7275382c8d6d5e0576cff"
+    },
+    "fromDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "toDepartment": {
+      "$oid": "6798bab0e469e809084e249a"
+    },
+    "approvedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignedBy": {
+      "$oid": "2ee85fc0b879ea5cdb44b134"
+    },
+    "assignee": {
+      "$oid": "00d59a61012f3e737a854d86"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "d3257e2f75250e1a29ce73e5"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "deb95b4d0bb6e2b97bc41cf3"
+    },
+    "fromDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "toDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "approvedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignee": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "9f9822a090793fab04548c01"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "6f053b1de99756037a0d7aeb"
+    },
+    "fromDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "toDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "approvedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignee": {
+      "$oid": "748aa810178acea04e9b4c1a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "1c05e22ca2bc6745bf4d9e4f"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "2e3b4c86208233716d5f0982"
+    },
+    "fromDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "toDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "approvedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignee": {
+      "$oid": "bd69fe4851cec1ae2e0c7040"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "c54bc52cadda8654839664b8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "138be7d035a5f8cb93f8dd2c"
+    },
+    "fromDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "toDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "approvedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignee": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "ed531005b6b09b5c730ed696"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "81dab5d088bc4d984d1577dd"
+    },
+    "fromDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "toDepartment": {
+      "$oid": "6798baa8e469e809084e2497"
+    },
+    "approvedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignedBy": {
+      "$oid": "e21208a4014ccaaf518d534a"
+    },
+    "assignee": {
+      "$oid": "748aa810178acea04e9b4c1a"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "332614a443b470a1e5619991"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "8d525384a57484a5b157597b"
+    },
+    "fromDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "toDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "approvedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignee": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "064871f18cb048dfca1bbbdd"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "09ab85cbf97f64fc4768a39e"
+    },
+    "fromDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "toDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "approvedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignee": {
+      "$oid": "42d7deecbed8a8f7571c1b62"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "2840a2c745bae900e853dfe8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "31e8217c0f9e633bcb1427df"
+    },
+    "fromDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "toDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "approvedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignee": {
+      "$oid": "2035eaccd96b4bf75683a4a6"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "76b4afed3986e7ca2007c9f8"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "b86c5befc1ef4b491294dc14"
+    },
+    "fromDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "toDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "approvedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignee": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "636ac8fd0adda59a061610ed"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  },
+  {
+    "asset": {
+      "$oid": "33c6384e51a64f1f82ff80ae"
+    },
+    "fromDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "toDepartment": {
+      "$oid": "6798bae6e469e809084e24a4"
+    },
+    "approvedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignedBy": {
+      "$oid": "07acb430576c2b245dce4fce"
+    },
+    "assignee": {
+      "$oid": "42d7deecbed8a8f7571c1b62"
+    },
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "location": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "status": "Approved",
+    "isRevoked": false,
+    "_id": {
+      "$oid": "670c4786d19c231cb37e3c7d"
+    },
+    "createdAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-09T00:00:00Z"
+    }
+  }
+]

@@ -1,0 +1,842 @@
+[
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Oakridge Solutions",
+    "brandName": "Oakridge Solutions",
+    "bookingType": "Virtual Office",
+    "email": "office.1@example.com",
+    "phone": "+12025550150",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Technology",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "totalDesks": 0,
+    "channel": "Direct",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5b"
+    },
+    "termStartDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 100,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "ST 501 A",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Mira Shah",
+      "email": "contact.office.1@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "78a18e388833e8cb2cf0977b"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Bluewater Advisory",
+    "brandName": "Bluewater Advisory",
+    "bookingType": "Virtual Office",
+    "email": "office.2@example.com",
+    "phone": "+12025550151",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Consulting",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "totalDesks": 0,
+    "channel": "Referral",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5c"
+    },
+    "termStartDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 110,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "ST 501 B",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Omar Patel",
+      "email": "contact.office.2@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "2a615e21fe25b8253b6ca89e"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Silverline Commerce",
+    "brandName": "Silverline Commerce",
+    "bookingType": "Virtual Office",
+    "email": "office.3@example.com",
+    "phone": "+12025550152",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Education",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "totalDesks": 0,
+    "channel": "Website",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5d"
+    },
+    "termStartDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 120,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "ST 601 A",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Leah Chen",
+      "email": "contact.office.3@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "6adaf83aa3cd9a32b777c5a0"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Meadow Analytics",
+    "brandName": "Meadow Analytics",
+    "bookingType": "Virtual Office",
+    "email": "office.4@example.com",
+    "phone": "+12025550153",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Retail",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "totalDesks": 0,
+    "channel": "Direct",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e5f"
+    },
+    "termStartDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 130,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "ST 701 A",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Mira Shah",
+      "email": "contact.office.4@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "4b30c8d94f11c604126471c6"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Pinecrest Ventures",
+    "brandName": "Pinecrest Ventures",
+    "bookingType": "Virtual Office",
+    "email": "office.5@example.com",
+    "phone": "+12025550154",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Finance",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "totalDesks": 0,
+    "channel": "Referral",
+    "building": {
+      "$oid": "67d16288cc5511229b3aa060"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e60"
+    },
+    "termStartDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 140,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "ST 701 B",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Omar Patel",
+      "email": "contact.office.5@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "3be51ad6413ea9c5d3d3c999"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Brightfield Labs",
+    "brandName": "Brightfield Labs",
+    "bookingType": "Virtual Office",
+    "email": "office.6@example.com",
+    "phone": "+12025550155",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Design",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "totalDesks": 0,
+    "channel": "Website",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e61"
+    },
+    "termStartDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 150,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "002",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Leah Chen",
+      "email": "contact.office.6@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "4f42d3b9100f0d1e44e19d4b"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Westbridge Media",
+    "brandName": "Westbridge Media",
+    "bookingType": "Virtual Office",
+    "email": "office.7@example.com",
+    "phone": "+12025550156",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Technology",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "totalDesks": 0,
+    "channel": "Direct",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e62"
+    },
+    "termStartDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-04-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 160,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "004",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Mira Shah",
+      "email": "contact.office.7@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "1d300d526d9d06c0dbe52801"
+    },
+    "createdAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Clearview Consulting",
+    "brandName": "Clearview Consulting",
+    "bookingType": "Virtual Office",
+    "email": "office.8@example.com",
+    "phone": "+12025550157",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Consulting",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "totalDesks": 0,
+    "channel": "Referral",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e63"
+    },
+    "termStartDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-05-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 170,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "503",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Omar Patel",
+      "email": "contact.office.8@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "b3a99727e10b57807127ecdf"
+    },
+    "createdAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Seabrook Design",
+    "brandName": "Seabrook Design",
+    "bookingType": "Virtual Office",
+    "email": "office.9@example.com",
+    "phone": "+12025550158",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Education",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "totalDesks": 0,
+    "channel": "Website",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e64"
+    },
+    "termStartDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-06-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 180,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "706",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Leah Chen",
+      "email": "contact.office.9@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "bfb083cf243193625044b8e5"
+    },
+    "createdAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Greenstone Digital",
+    "brandName": "Greenstone Digital",
+    "bookingType": "Virtual Office",
+    "email": "office.10@example.com",
+    "phone": "+12025550159",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Retail",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "totalDesks": 0,
+    "channel": "Direct",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "67ed1a4b3ea0f84ec3068e65"
+    },
+    "termStartDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-07-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 190,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "703",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Mira Shah",
+      "email": "contact.office.10@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "ec0dee9185f18cfd741341f8"
+    },
+    "createdAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Fairview Learning",
+    "brandName": "Fairview Learning",
+    "bookingType": "Virtual Office",
+    "email": "office.11@example.com",
+    "phone": "+12025550160",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Finance",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "totalDesks": 0,
+    "channel": "Referral",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "684028c2c51ffdef8b5e7e17"
+    },
+    "termStartDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-08-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 200,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "605 A",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Omar Patel",
+      "email": "contact.office.11@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "d7bab3fb63a424bcacb5e74c"
+    },
+    "createdAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+  {
+    "company": {
+      "$oid": "6799f0cd6a01edbe1bc3fcea"
+    },
+    "clientName": "Redwood Partners",
+    "brandName": "Redwood Partners",
+    "bookingType": "Virtual Office",
+    "email": "office.12@example.com",
+    "phone": "+12025550161",
+    "service": {
+      "$oid": "67d56bacac5326fb7189d8b2"
+    },
+    "sector": "Design",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "totalDesks": 0,
+    "channel": "Website",
+    "building": {
+      "$oid": "67d16291cc5511229b3aa0e4"
+    },
+    "unit": {
+      "$oid": "684028c2c51ffdef8b5e7e18"
+    },
+    "termStartDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "termEnd": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "lockInPeriodMonths": 3,
+    "rentDate": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "nextIncrementDate": {
+      "$date": "2027-09-01T03:30:00Z"
+    },
+    "annualIncrement": 5,
+    "totalTerm": 12,
+    "cabinDesks": 0,
+    "securityDeposit": 210,
+    "cabinDeskRate": 0,
+    "cabinTotal": 0,
+    "openDesks": 0,
+    "openDeskRate": 0,
+    "openTotal": 0,
+    "perDeskMeetingCredits": 0,
+    "totalMeetingCredits": 0,
+    "rentStatus": "Active",
+    "location": "603 A",
+    "clientStatus": true,
+    "localPoc": {
+      "name": "Leah Chen",
+      "email": "contact.office.12@example.com",
+      "phone": "+12025550180"
+    },
+    "_id": {
+      "$oid": "2c50e94f7363b3c47163d34f"
+    },
+    "createdAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-01T03:30:00Z"
+    },
+    "hoPoc": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
+  }
+]
