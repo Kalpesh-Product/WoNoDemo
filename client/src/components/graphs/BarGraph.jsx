@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Chart from "react-apexcharts";
-import { Select, MenuItem, FormControl, CircularProgress } from "@mui/material";
+import { Select, MenuItem, FormControl } from "@mui/material";
 import SecondaryButton from "../SecondaryButton";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import useResponsiveChart from "../../hooks/useResponsiveChart";
+import { getChartDataState } from "../../utils/chartDataState";
 
 const BarGraph = ({
   chartId = "bar-graph",
@@ -19,18 +20,8 @@ const BarGraph = ({
   doubleParam,
   responsiveResize = false,
 }) => {
-  const [isChartLoading, setIsChartLoading] = useState(false);
   const [selectedYear, setSelectedYear] = useState("2024-2025");
   const [departmentIndex, setDepartmentIndex] = useState(0);
-  useEffect(() => {
-    // Trigger loading once on initial render
-    setIsChartLoading(true);
-    const timer = setTimeout(() => {
-      setIsChartLoading(false);
-    }, 400); // adjust as needed
-  
-    return () => clearTimeout(timer);
-  }, []);
   
 
   // Hooks always called
@@ -49,16 +40,6 @@ const BarGraph = ({
       ...options?.xaxis,
     },
   }), [options, chartId]);
-  useEffect(() => {
-    if (!responsiveResize) return;
-    setIsChartLoading(true);
-
-    const timeout = setTimeout(() => {
-      setIsChartLoading(false);
-    }, 300); // match debounce time in useResponsiveChart
-
-    return () => clearTimeout(timeout);
-  }, [chartKey]);
 
   const handleYearChange = (event) => {
     setSelectedYear(event.target.value);
@@ -94,7 +75,7 @@ const BarGraph = ({
   };
 
   return (
-    <div className="bg-white rounded-md pt-2">
+    <div ref={containerRef} className="min-w-0 bg-white rounded-md pt-2">
       <div className="flex justify-end items-center w-full">
         <div className="flex gap-4 items-center mx-8">
           {year && (
@@ -123,21 +104,15 @@ const BarGraph = ({
         </div>
       )}
 
-      {isChartLoading ? (
-        <div className="flex justify-center items-center h-[350px]">
-          <CircularProgress size={32} />
-        </div>
-      ) : (
-        <div  className="w-full">
+        <div className="w-full min-w-0">
           <Chart
-            key={chartKey}
+            key={`${chartKey}-${getChartDataState(filteredData)}`}
             options={updatedOptions}
             series={filteredData}
             type="bar"
             height={height || 370}
           />
         </div>
-      )}
 
       {departments && (
         <div className="flex justify-center items-center">

@@ -1,4 +1,5 @@
 import Card from "../../../components/Card";
+import { isStatutoryPayment } from "../../../utils/statutoryPayments";
 import {
   MdFormatListBulleted,
   MdOutlineMiscellaneousServices,
@@ -212,9 +213,7 @@ const FinanceDashboard = () => {
       (item) => item.department?._id === "6798bab0e469e809084e249a"
     );
 
-  const financeBudgets = financeBudgetsRaw.filter(
-    (item) => item.expanseType === "Statutory Payments"
-  );
+  const financeBudgets = financeBudgetsRaw.filter(isStatutoryPayment);
 
   const currentMonthStatutoryPayments = financeBudgets.filter(
     (item) =>
@@ -1210,7 +1209,7 @@ const FinanceDashboard = () => {
   const statutoryPaymentsData = isBudgetDataLoading
     ? []
     : budgetData.filter((budget) => {
-      return budget.expanseType === "Statutory";
+      return isStatutoryPayment(budget);
     });
 
   const statutoryPaymentsMap = new Map();

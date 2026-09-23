@@ -1,9 +1,10 @@
 import { api } from "../utils/axios";
 import useAuth from "./useAuth";
+import { useCallback } from "react";
 
 export default function useRefresh() {
   const { setAuth } = useAuth();
-  const refresh = async () => {
+  const refresh = useCallback(async () => {
     try {
       const response = await api.get("/api/auth/refresh", {
         withCredentials: true,
@@ -25,6 +26,6 @@ export default function useRefresh() {
         };
       });
     }
-  };
+  }, [setAuth]);
   return refresh;
 }

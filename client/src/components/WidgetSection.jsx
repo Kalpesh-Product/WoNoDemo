@@ -63,10 +63,10 @@ const WidgetSection = ({
 
 
   return (
-    <div className={`py-0 motion-preset-slide-up-sm ${height ? height : ""}`}>
+    <div className={`flex min-w-0 flex-col py-0 motion-preset-slide-up-sm ${height ? height : ""}`}>
       {title && (
         <div
-          className={`border-default border-[#7D7D7E] p-4 flex w-full justify-between items-center rounded-t-xl ${
+          className={`border-default border-[#7D7D7E] p-4 flex w-full shrink-0 justify-between items-center rounded-t-xl ${
             normalCase ? "" : "uppercase"
           }`}>
           <div className="flex flex-col md:flex-col lg:flex-row w-full gap-4 items-center justify-between">
@@ -166,15 +166,15 @@ const WidgetSection = ({
       )}
       <div
         style={border ? { border: "2px solid #d1d5db", borderTop: "0" } : {}}
-        className="h-full rounded-b-xl">
+        className="min-w-0 flex-1 rounded-b-xl">
         <div
           style={{ padding: padding ? "0" : "1rem" }}
           // className={`w-full grid gap-4 ${gridClasses[layout]} h-full py-4`}>
           // {React.Children.map(children, (child) => (
           //   <div>{child}</div>
-           className={`w-full grid gap-4 ${gridClasses[effectiveLayout]} h-full py-4`}>
+           className={`w-full min-w-0 grid gap-4 ${gridClasses[effectiveLayout]} py-4`}>
           {visibleChildren.map((child, index) => (
-            <div key={index}>{child}</div>
+            <div className="min-w-0" key={index}>{child}</div>
           ))}
         </div>
       </div>

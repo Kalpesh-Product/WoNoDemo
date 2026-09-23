@@ -159,7 +159,7 @@ const fetchBudgetService = async ({
       type === "electricity"
         ? "ELECTRICITY"
         : type === "statutory"
-          ? "statutory payments"
+          ? "^\\s*statutory(?:\\s+payments)?\\s*$"
           : "";
 
     if (typeValue) {

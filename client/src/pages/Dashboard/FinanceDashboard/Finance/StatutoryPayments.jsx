@@ -1,3 +1,4 @@
+import { isStatutoryPayment } from "../../../../utils/statutoryPayments";
 import React, {
   useEffect,
   useState,
@@ -157,7 +158,7 @@ const StatutoryPayments = () => {
     () =>
       isHrLoading
         ? []
-        : hrFinance.filter((item) => item.expanseType === "Statutory Payments"),
+        : hrFinance.filter(isStatutoryPayment),
     [hrFinance, isHrLoading]
   );
 

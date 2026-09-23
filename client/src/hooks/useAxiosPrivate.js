@@ -1,5 +1,5 @@
 import { axiosPrivate } from "../utils/axios";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import useRefresh from "./useRefresh";
 import useAuth from "./useAuth";
 
@@ -7,7 +7,8 @@ export default function useAxiosPrivate() {
   const { auth } = useAuth();
   const refresh = useRefresh();
 
-  useEffect(() => {
+  // Install authentication before passive effects start dashboard queries.
+  useLayoutEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
@@ -21,9 +22,10 @@ export default function useAxiosPrivate() {
       (response) => response,
       async (error) => {
         const prevRequest = error?.config;
-        if (error?.response?.status === 403 && !prevRequest.sent) {
+        if (error?.response?.status === 403 && prevRequest && !prevRequest.sent) {
           prevRequest.sent = true;
           const authData = await refresh();
+          if (!authData?.accessToken) return Promise.reject(error);
           prevRequest.headers[
             "Authorization"
           ] = `Bearer ${authData?.accessToken}`;

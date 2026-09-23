@@ -1,6 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import useResponsiveChart from "../../hooks/useResponsiveChart";
+import { getChartDataState } from "../../utils/chartDataState";
 
 const DonutChart = ({
   centerLabel,
@@ -110,7 +111,7 @@ const DonutChart = ({
   return (
     <div className="rounded-md" ref={containerRef}>
       <ReactApexChart
-        key={chartKey}
+        key={`${chartKey}-${getChartDataState(chartData.series)}`}
         options={chartOptions}
         series={chartData.series}
         type="donut"

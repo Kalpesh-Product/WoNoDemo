@@ -2,6 +2,7 @@ import { useMediaQuery } from "@mui/material";
 import React, { useRef, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import useResponsiveChart from "../../hooks/useResponsiveChart";
+import { getChartDataState } from "../../utils/chartDataState";
 
 const PieChartMui = ({
   data,
@@ -44,7 +45,7 @@ const PieChartMui = ({
             style={{ maxWidth: typeof width === "number" ? width : "100%", height }}
           >
             <ReactApexChart
-              key={chartKey}
+              key={`${chartKey}-${getChartDataState(chartData)}`}
               options={updatedOptions}
               series={chartData}
               type="pie"
@@ -54,7 +55,7 @@ const PieChartMui = ({
           </div>
         ) : (
           <ReactApexChart
-            key={chartKey}
+            key={`${chartKey}-${getChartDataState(chartData)}`}
             options={updatedOptions}
             series={chartData}
             type="pie"
